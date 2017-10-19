@@ -1,0 +1,17 @@
+afl-analyze
+afl-as
+afl-clang
+afl-clang++
+afl-fuzz
+afl-g++
+afl-gcc
+afl-gotcpu
+afl-showmap
+afl-tmin
+as
+*.o
+afl-qemu-trace
+/qemu_mode/qemu-2.3.0
+/qemu_mode/qemu-2.3.0.tar.bz2
+/fuse_*
+/qemu_mode/qemu-2.3.0/
