@@ -4333,14 +4333,14 @@ static void show_stats(void) {
 
   SAYF(TERM_HOME);
 
-  if (term_too_small) {
-
-    SAYF(cBRI "Your terminal is too small to display the UI.\n"
-         "Please resize terminal window to at least 80x25.\n" cRST);
-
-    return;
-
-  }
+//  if (term_too_small) {
+//
+//    SAYF(cBRI "Your terminal is too small to display the UI.\n"
+//         "Please resize terminal window to at least 80x25.\n" cRST);
+//
+//    return;
+//
+//  }
 
   /* Let's start by drawing a centered banner. */
 
@@ -4350,7 +4350,7 @@ static void show_stats(void) {
 
   sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
           " (%s)",  crash_mode ? cPIN "peruvian were-rabbit" : 
-          cYEL "american fuzzy lop", use_banner);
+          cYEL "american fuzzy lop-rb", use_banner);
 
   SAYF("\n%s\n\n", tmp);
 
@@ -5420,7 +5420,7 @@ static u8 fuzz_one(char** argv) {
   u32 a_len = 0;
 
   /* RB Vars*/
-  u8 * branch_mask = 0;
+  u8 * branch_mask = 0; //一个指针,指向测试用例长度的空间
   u8 * orig_branch_mask = 0;
   u8 rb_skip_deterministic = 0;
   u8 skip_simple_bitflip = 0;
@@ -5644,7 +5644,7 @@ static u8 fuzz_one(char** argv) {
   /***************
   *  @RB@ TRIM  *
   ***************/
-
+//增加了一个trim过程
   u32 orig_bitmap_size = queue_cur->bitmap_size;
   u64 orig_exec_us = queue_cur->exec_us;
 
@@ -8723,7 +8723,7 @@ int main(int argc, char** argv) {
   doc_path = access(DOC_PATH, F_OK) ? "docs" : DOC_PATH;
 
   gettimeofday(&tv, &tz);
-  srandom(tv.tv_sec ^ tv.tv_usec ^ getpid());
+  srandom(tv.tv_sec ^ tv.tv_usec ^ getpid()); //设定种子,从而 random可以得到随机数
 
   while ((opt = getopt(argc, argv, "+bq:rsi:o:f:m:t:T:dnCB:S:M:x:Q")) > 0)
 
@@ -9019,8 +9019,8 @@ int main(int argc, char** argv) {
   /* Woop woop woop */
 
   if (!not_on_tty) {
-    sleep(4);
-    start_time += 4000;
+    sleep(0.1);
+    start_time += 0.1;
     if (stop_soon) goto stop_fuzzing;
   }
 
