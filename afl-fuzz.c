@@ -149,7 +149,7 @@ static s32 forksrv_pid,               /* PID of the fork server           */
 EXP_ST u8* trace_bits;                /* SHM with instrumentation bitmap  */
 
 
-static u64 hit_bits[MAP_SIZE];        /* @RB@ Hits to every basic block transition */
+static u64 hit_bits[MAP_SIZE];        /* @RB@ Hits to every basic block transition */ //记录每个元组的执行次数
 
 EXP_ST u8  virgin_bits[MAP_SIZE],     /* Regions yet untouched by fuzzing */
            virgin_tmout[MAP_SIZE],    /* Bits we haven't seen in tmouts   */
@@ -264,7 +264,7 @@ struct queue_entry {
   u8* trace_mini;                     /* Trace bytes, if kept             */
   u32 tc_ref;                         /* Trace bytes ref count            */
 
-  u8* fuzzed_branches;                /* @RB@ which branches have been done */
+  u8* fuzzed_branches;                /* @RB@ which branches have been done */  //记录已经被fuzz过的branch
 
   struct queue_entry *next,           /* Next element, if any             */
                      *next_100;       /* 100 elements ahead               */
@@ -296,12 +296,12 @@ static u8* (*post_handler)(u8* buf, u32* len);
 
 /* @RB@ Things about branches */
 
-static u32 vanilla_afl = 1000;      /* @RB@ How many executions to conduct 
+static u32 vanilla_afl = 1000;      /* @RB@ How many executions to conduct   //执行vanilla_afl次测试之后再进行调度吧,在common_fuzz_stuff每次减一
                                          in vanilla AFL mode               */
-static u32 MAX_RARE_BRANCHES = 256;
+static u32 MAX_RARE_BRANCHES = 256;  //rare branch的最大数量?
 static int rare_branch_exp = 4;        /* @RB@ less than 2^rare_branch_exp is rare*/
 
-static int * blacklist; 
+static int * blacklist;  //黑名单,用来排除一些的吧?
 static int blacklist_size = 1024;
 static int blacklist_pos;
 
@@ -315,7 +315,7 @@ static u8 run_with_shadow = 0;
 
 static u8 use_branch_mask = 1;
 
-static int prev_cycle_wo_new = 0;
+static int prev_cycle_wo_new = 0;  //这个何用?
 static int cycle_wo_new = 0;
 
 static int bootstrap = 0; /* @RB@ */
@@ -417,6 +417,7 @@ void fileonly (char const *fmt, ...) {
     va_start(ap, fmt);
     vfprintf(f, fmt, ap);
     va_end(ap);
+    fflush(f);
 }
 
 
@@ -891,18 +892,18 @@ static int contains_id(int branch_id, int* branch_ids){
 
 /* you'll have to free the return pointer. */
 static int* get_lowest_hit_branch_ids(){
-  int * rare_branch_ids = ck_alloc(sizeof(int) * MAX_RARE_BRANCHES);
-  int lowest_hob = INT_MAX;
+  int * rare_branch_ids = ck_alloc(sizeof(int) * MAX_RARE_BRANCHES); //rare branch的空列表,有最大数量
+  int lowest_hob = INT_MAX; //int类型的最大值 is 2147483647
   int ret_list_size = 0;
-
+  //从 hit_bits 中选择最小数量的 rare branch
   for (int i = 0; (i < MAP_SIZE) && (ret_list_size < MAX_RARE_BRANCHES - 1); i++){
     // ignore unseen branches. sparse array -> unlikely 
     if (unlikely(hit_bits[i] > 0)){
       if (contains_id(i, blacklist)) continue;
-      unsigned int long cur_hits = hit_bits[i];
+      unsigned int long cur_hits = hit_bits[i]; //对应的执行次数
       int highest_order_bit = 0;
       while(cur_hits >>=1)
-          highest_order_bit++;
+          highest_order_bit++;// 转变成幂次方
       lowest_hob = highest_order_bit < lowest_hob ? highest_order_bit : lowest_hob;
       if (highest_order_bit < rare_branch_exp){
         // if we are an order of magnitude smaller, prioritize the
@@ -946,7 +947,7 @@ static int hits_branch(int branch_id){
 // else returns a list of all the rare branches hit
 // by the mini trace bits, in decreasing order of rarity
 static u32 * is_rb_hit_mini(u8* trace_bits_mini){
-  int * rarest_branches = get_lowest_hit_branch_ids();
+  int * rarest_branches = get_lowest_hit_branch_ids(); //得到rare brach
   u32 * branch_ids = ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES);
   u32 * branch_cts = ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES);
   int min_hit_index = 0;
@@ -954,8 +955,8 @@ static u32 * is_rb_hit_mini(u8* trace_bits_mini){
   for (int i = 0; i < MAP_SIZE ; i ++){
 ;
       if (unlikely (trace_bits_mini[i >> 3]  & (1 <<(i & 7)) )){
-        int cur_index = i;
-        int is_rare = contains_id(cur_index, rarest_branches);
+        int cur_index = i; //第i个元组关系被执行了
+        int is_rare = contains_id(cur_index, rarest_branches); //判断cur_index是否属于rarest_branches列表
         if (is_rare) {
           // at loop initialization, set min_branch_hit properly
           if (!min_hit_index) {
@@ -3054,7 +3055,7 @@ static void perform_dry_run(char** argv) {
     res = calibrate_case(argv, q, use_mem, 0, 1);
 
     // @RB@ added these for every queue entry
-    // free what was added in add_to_queue
+    // free what was added in add_to_queue   这里是提早计算出了q->trace_mini 然后也计算了q->fuzzed_branches
     ck_free(q->trace_mini);
     ck_free(q->fuzzed_branches);
     q->trace_mini = ck_alloc(MAP_SIZE >> 3);
@@ -4333,14 +4334,14 @@ static void show_stats(void) {
 
   SAYF(TERM_HOME);
 
-  if (term_too_small) {
-
-    SAYF(cBRI "Your terminal is too small to display the UI.\n"
-         "Please resize terminal window to at least 80x25.\n" cRST);
-
-    return;
-
-  }
+//  if (term_too_small) {
+//
+//    SAYF(cBRI "Your terminal is too small to display the UI.\n"
+//         "Please resize terminal window to at least 80x25.\n" cRST);
+//
+//    return;
+//
+//  }
 
   /* Let's start by drawing a centered banner. */
 
@@ -4957,7 +4958,7 @@ EXP_ST u8 common_fuzz_stuff(char** argv, u8* out_buf, u32 len) {
 
   fault = run_target(argv, exec_tmout);
 
-  if (vanilla_afl) --vanilla_afl;
+  if (vanilla_afl) --vanilla_afl; //每次运行一次减1
 
   if (stop_soon) return 1;
 
@@ -5426,13 +5427,13 @@ static u8 fuzz_one(char** argv) {
   u8 skip_simple_bitflip = 0;
   u8 * virgin_virgin_bits = 0;
   char * shadow_prefix = "";
-  u32 * position_map = NULL;
+  u32 * position_map = NULL;  //用于记录当前测试用例中的有效字段的位置吧?
   u32 orig_queued_with_cov = queued_with_cov;
   u32 orig_queued_discovered = queued_discovered;
   u32 orig_total_execs = total_execs;
   
-
   if (!vanilla_afl){
+	// vanilla_afl 为0 进入 啥用?
     if (prev_cycle_wo_new && bootstrap){
       vanilla_afl = 1;
       rb_fuzzing = 0;
@@ -5458,9 +5459,9 @@ static u8 fuzz_one(char** argv) {
   if (queue_cur->depth > 1) return 1;
 
 #else
-
+  // @RBy@
   if (vanilla_afl){
-
+	//如果vanilla_afl为0了,就使用另一种判断了; 这里采用了原有afl的测试用例判断
     if (pending_favored) {
 
       /* If we have any favored, non-fuzzed new arrivals in the queue,
@@ -5492,11 +5493,11 @@ static u8 fuzz_one(char** argv) {
 
 #endif /* ^IGNORE_FINDS */
 
-  /* select inputs which hit rare branches */
+  /* select inputs which hit rare branches */  //什么时候进入 当vanilla_afl为0的时候进入,使用另外一种判断
   if (!vanilla_afl) {
     skip_deterministic_bootstrap = 0;
-    u32 * min_branch_hits = is_rb_hit_mini(queue_cur->trace_mini);
-
+    //判断当前测试用例是否击中了 rare branch (rb)
+    u32 * min_branch_hits = is_rb_hit_mini(queue_cur->trace_mini); //参数是当前测试用例的trace_mini
     if (min_branch_hits == NULL){
       // not a rare hit. don't fuzz.
       return 1;
@@ -7591,17 +7592,17 @@ abandon_entry:
   DEBUG1("%shavoc stage: %i new coverage in %i total execs\n", shadow_prefix, queued_discovered-orig_queued_discovered, total_execs-orig_total_execs);
   DEBUG1("%shavoc stage: %i new branches in %i total execs\n", shadow_prefix, queued_with_cov-orig_queued_with_cov, total_execs-orig_total_execs);
   if (shadow_mode) goto re_run;
-
+  //如果这一轮发现新的路径了
   if (queued_with_cov-orig_queued_with_cov){
     prev_cycle_wo_new = 0;
     vanilla_afl = 0;
     cycle_wo_new = 0;
   }
 
-  munmap(orig_in, queue_cur->len);
+  munmap(orig_in, queue_cur->len); //解除内存映射,解除orig_in变量的内存映射
 
   if (in_buf != orig_in) ck_free(in_buf);
-
+  //释放内存
   ck_free(position_map);
   ck_free(out_buf);
   ck_free(eff_map);
@@ -9003,7 +9004,7 @@ int main(int argc, char** argv) {
   else
     use_argv = argv + optind;
 
-  perform_dry_run(use_argv);
+  perform_dry_run(use_argv); //运行时,多记录了fuzzed_branches和trace_mini
 
   cull_queue();
 
@@ -9019,15 +9020,15 @@ int main(int argc, char** argv) {
   /* Woop woop woop */
 
   if (!not_on_tty) {
-    sleep(4);
-    start_time += 4000;
+    sleep(0.1);
+    start_time += 100;
     if (stop_soon) goto stop_fuzzing;
   }
 
   while (1) {
 
     u8 skipped_fuzz;
-    cull_queue();
+    cull_queue(); //在这里会处理trace_mini
 
     if (!queue_cur) {
       DEBUG1("Entering new queueing cycle\n");

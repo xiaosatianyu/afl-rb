@@ -206,7 +206,7 @@
 
 /* Output directory reuse grace period (minutes): */
 
-#define OUTPUT_GRACE        25
+#define OUTPUT_GRACE        2500
 
 /* Uncomment to use simple file names (id_NNNNNN): */
 
