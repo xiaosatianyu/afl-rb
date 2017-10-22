@@ -142,8 +142,7 @@ echo "[+] Configuration complete."
 echo "[*] Attempting to build QEMU (fingers crossed!)..."
 
 make -j4|| exit 1
-echo "yyy end"
-exit
+
 
 echo "[+] Build process successful!"
 
@@ -155,6 +154,9 @@ cd ..
 ls -l ../afl-qemu-trace || exit 1
 
 echo "[+] Successfully created '../afl-qemu-trace'."
+
+echo "yyy end"
+exit
 
 if [ "$ORIG_CPU_TARGET" = "" ]; then
 
