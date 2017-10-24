@@ -133,9 +133,9 @@
 /* Limits for the test case trimmer. The absolute minimum chunk size; and
    the starting and ending divisors for chopping up the input file: */
 
-#define TRIM_MIN_BYTES      4
-#define TRIM_START_STEPS    16
-#define TRIM_END_STEPS      1024
+#define TRIM_MIN_BYTES      4  //移除字节的最小值
+#define TRIM_START_STEPS    16 //移除字节的一个计算基数,可能是步数
+#define TRIM_END_STEPS      1024 //移除字节的结束基数
 
 /* Maximum size of input file, in bytes (keep under 100MB): */
 

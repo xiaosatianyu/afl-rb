@@ -306,8 +306,8 @@ static int blacklist_size = 1024;
 static int blacklist_pos;
 
 static u32 rb_fuzzing = 0;           /* @RB@ non-zero branch index + 1 if fuzzing is being done with that branch constant*/ //得到 rare branch的 index+1的数值
-static u32 total_branch_tries = 0;
-static u32 successful_branch_tries = 0;
+static u32 total_branch_tries = 0;  //总的导向测试次数
+static u32 successful_branch_tries = 0;  //根据rare branch导向进行的一次测试后就加1
 
 static u8 shadow_mode = 0;           /* @RB@ shadow AFL run -- do not modify
                                         queue or branch hits             */
@@ -4986,9 +4986,9 @@ EXP_ST u8 common_fuzz_stuff(char** argv, u8* out_buf, u32 len) {
   }
 
   if (rb_fuzzing){
-    total_branch_tries++; //总的测试次数
+    total_branch_tries++; //总的导向测试次数
     if (hits_branch(rb_fuzzing - 1)){
-      successful_branch_tries++; //每次根据rare branch导向,进行一次测试,successful_branch_tries的次数就加1
+      successful_branch_tries++; //每次根据rare branch导向进行的一次测试,successful_branch_tries的次数就加1
     } else {
     }
   }
@@ -5040,8 +5040,8 @@ static u32 trim_case_rb(char** argv, u8* in_buf, u32 in_len, u8* out_buf) {
 
   len_p2 = next_p2(in_len); //转换成幂次方
 
-  // CAROTODO: could make TRIM_START_STEPS smaller   
-  remove_len = MAX(len_p2 / TRIM_START_STEPS, TRIM_MIN_BYTES);
+  // CAROTODO: could make TRIM_START_STEPS smaller     remove_len什么用?
+  remove_len = MAX(len_p2 / TRIM_START_STEPS, TRIM_MIN_BYTES); //计算出每次移除的长度; TRIM_START_STEPS是步长
 
   /* Continue until the number of steps gets too high or the stepover
      gets too small. */
@@ -5050,21 +5050,21 @@ static u32 trim_case_rb(char** argv, u8* in_buf, u32 in_len, u8* out_buf) {
 
     // why doesn't this start at 0?
     // u32 remove_pos = remove_len;
-    u32 remove_pos = 0;
+    u32 remove_pos = 0;//表示头部的末尾位置,在头部和末尾之间的trim_avail长度的字节被删除了
 
-    sprintf(tmp, "rb trim %s/%s", DI(remove_len), DI(remove_len));
+    sprintf(tmp, "rb trim %s/%s", DI(remove_len), DI(remove_len)); //表示当前阶段
 
     stage_cur = 0;
     stage_max = in_len / remove_len;
 
     while (remove_pos < in_len) {
 
-      u32 trim_avail = MIN(remove_len, in_len - remove_pos);
+      u32 trim_avail = MIN(remove_len, in_len - remove_pos); //准备在in_buf上删除的长度
 
       //write_with_gap(in_buf, q->len, remove_pos, trim_avail);
       // HEAD 头部始终一致
-      memcpy(out_buf, in_buf, remove_pos);
-      // TAIL
+      memcpy(out_buf, in_buf, remove_pos);//从in_buf拷贝remove_pos个字节到out_buf
+      // TAIL 末尾
       memcpy(out_buf + remove_pos, in_buf + remove_pos + trim_avail, in_len - remove_pos - trim_avail);//相当于中间删除了trim_avail个字节的内容
 
       // not actually fault...
@@ -5075,17 +5075,17 @@ static u32 trim_case_rb(char** argv, u8* in_buf, u32 in_len, u8* out_buf) {
       // Not sure if we want this given that fault is no longer a fault
       if (stop_soon || fault == FAULT_ERROR) goto abort_rb_trimming;
 
-      // if successfully hit branch of interest... 如果击中了原来的rare branch,则说明当前的是关键字段
+      // if successfully hit branch of interest... 如果击中了当前正在测试的rare branch,则说明当前删除的字段不影响关键字段,然后构造新的测试用例
       if (hits_branch(rb_fuzzing - 1)) {
         // (0) calclength of tail
-        u32 move_tail = in_len - remove_pos - trim_avail;
+        u32 move_tail = in_len - remove_pos - trim_avail; //末尾的长度
         // (1) reduce length by how much was trimmed
         in_len -= trim_avail;
 
         // (2) update the closest power of 2 len
         len_p2  = next_p2(in_len);
         memmove(in_buf + remove_pos, in_buf + remove_pos + trim_avail, 
-                move_tail);
+                move_tail); //将末尾和头部链接,构造成新的测试用例
           
       } else remove_pos += remove_len;
 
@@ -5424,7 +5424,7 @@ static u8 fuzz_one(char** argv) {
 
   /* RB Vars*/
   u8 * branch_mask = 0; //一个指针,指向测试用例长度的空间
-  u8 * orig_branch_mask = 0;
+  u8 * orig_branch_mask = 0; //这个什么用呢?
   u8 rb_skip_deterministic = 0;
   u8 skip_simple_bitflip = 0;
   u8 * virgin_virgin_bits = 0;
@@ -5512,7 +5512,7 @@ static u8 fuzz_one(char** argv) {
           int byte_offset = (rb_fuzzing - 1) >> 3; //
           int bit_offset = (rb_fuzzing - 1) & 7;   //
 
-          // skip deterministic if we have fuzzed this min branch
+          // skip deterministic if we have fuzzed this min branch //判断这个当前测试用例是否 fuzz过了这个rare branch
           if (queue_cur->fuzzed_branches[byte_offset] & (1 << (bit_offset))){
             // let's try the next one
             continue;
@@ -5579,7 +5579,7 @@ static u8 fuzz_one(char** argv) {
 
   if (fd < 0) PFATAL("Unable to open '%s'", queue_cur->fname);
 
-  len = queue_cur->len;
+  len = queue_cur->len; //当前测试用例的长度,可能会因为trim而改变
 
   orig_in = in_buf = mmap(0, len, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0);
 
@@ -5660,8 +5660,8 @@ static u8 fuzz_one(char** argv) {
       /* this is kind of an unfair time measurement because the
          one in calibrate includes a lot of other loop stuff*/
       u64 start_time = get_cur_time_us();
-      write_to_testcase(in_buf, len);
-      run_target(argv, exec_tmout);
+      write_to_testcase(in_buf, len); //写到 .cur中
+      run_target(argv, exec_tmout); //这里运行一下是为了获取新测试用例的执行时间 和 新测试用例的bitmap_size,用于后面的打分
       /* we are setting these to get a more accurate performance score */
       queue_cur->exec_us = get_cur_time_us() - start_time;
       queue_cur->bitmap_size = count_bytes(trace_bits);
@@ -5682,14 +5682,14 @@ static u8 fuzz_one(char** argv) {
 
   if (rb_fuzzing && trim_for_branch){
     /* restoring these because the changes to the test case 
-     were not permanent */
+     were not permanent */  //恢复trim_rb之前的数据,因为trim-rb只获取暂时性的数据
     queue_cur->bitmap_size = orig_bitmap_size;
     queue_cur->exec_us =  orig_exec_us;
   }
 
 
   /* @RB@ */
-re_run: // re-run when running in shadow mode
+re_run: // re-run when running in shadow mode  这里只有shadow mode 才会进去
   if (rb_fuzzing){
     if (run_with_shadow && !shadow_mode){
       shadow_mode = 1;
@@ -5857,12 +5857,12 @@ re_run: // re-run when running in shadow mode
   stage_finds[STAGE_FLIP1]  += new_hit_cnt - orig_hit_cnt;
   stage_cycles[STAGE_FLIP1] += stage_max;
 
-  /* @RB@ */
+  /* @RB@ */  // total_branch_tries次测试中,有successful_branch_tries次成功击中了 rb_fuzzing - 1 branch
   DEBUG1("%swhile bitflipping, %i of %i tries hit branch %i\n", shadow_prefix, successful_branch_tries, total_branch_tries, rb_fuzzing - 1);
 
 
 skip_simple_bitflip:
-
+	//为什么要清0 为了后面的使用,这里相当于是一个插入型的代码
   successful_branch_tries = 0;
   total_branch_tries = 0;
 
@@ -5906,10 +5906,10 @@ skip_simple_bitflip:
     out_buf[stage_cur] ^= 0xFF;
 
     if (common_fuzz_stuff(argv, out_buf, len)) goto abandon_entry;
-
+    //制作branch_mask
     if (rb_fuzzing && !shadow_mode && use_branch_mask > 0)
       if (hits_branch(rb_fuzzing - 1)){
-        branch_mask[stage_cur] = 1;
+        branch_mask[stage_cur] = 1; //标记非关键byte,当前byte保证
      }
 
     /* We also use this stage to pull off a simple trick: we identify
@@ -5963,13 +5963,13 @@ skip_simple_bitflip:
 
   stage_finds[STAGE_FLIP8]  += new_hit_cnt - orig_hit_cnt;
   stage_cycles[STAGE_FLIP8] += stage_max;
-
+  //接下来是新加的一些
   /* @RB@ also figure out add/delete map in this stage */
   if (rb_fuzzing && !shadow_mode && use_branch_mask > 0){
     
     // buffer to clobber with new things
-    u8* tmp_buf = ck_alloc(len+1);
-
+    u8* tmp_buf = ck_alloc(len+1); //临时的测试用例内容
+    //识别可以删除一个字节的branch mask
     // check if we can delete this byte
     stage_short = "rbrem8";
     for (stage_cur = 0; stage_cur < len; stage_cur++) {
@@ -5979,7 +5979,7 @@ skip_simple_bitflip:
       /* head */
       memcpy(tmp_buf, out_buf, stage_cur);
       /* tail */
-      memcpy(tmp_buf + stage_cur, out_buf + 1 + stage_cur, len - stage_cur - 1 );
+      memcpy(tmp_buf + stage_cur, out_buf + 1 + stage_cur, len - stage_cur - 1 );//中间删除了一个字节
 
       if (common_fuzz_stuff(argv, tmp_buf, len - 1)) goto abandon_entry;
 
@@ -5988,7 +5988,7 @@ skip_simple_bitflip:
         branch_mask[stage_cur] += 2;
       }
     }
-
+    //识别可以添加一个字节位置
     // check if we can add at this byte
     stage_short = "rbadd8";
     for (stage_cur = 0; stage_cur <= len; stage_cur++) {
@@ -5996,7 +5996,7 @@ skip_simple_bitflip:
       stage_cur_byte = stage_cur;
       /* head */
       memcpy(tmp_buf, out_buf, stage_cur);
-      tmp_buf[stage_cur] = UR(256);
+      tmp_buf[stage_cur] = UR(256); //插入一个随机数
       /* tail */
       memcpy(tmp_buf + stage_cur + 1, out_buf + stage_cur, len - stage_cur);
 
@@ -6004,18 +6004,18 @@ skip_simple_bitflip:
 
       /* if adding before still hit branch, can add */
       if (hits_branch(rb_fuzzing - 1)){
-        branch_mask[stage_cur] += 4;
+        branch_mask[stage_cur] += 4; //识别出可以添加的位置
       }
 
     }
 
     ck_free(tmp_buf);
     // save the original branch mask for after the havoc stage 
-    memcpy (orig_branch_mask, branch_mask, len + 1);
+    memcpy (orig_branch_mask, branch_mask, len + 1); //保存 brach_mask
   }
 
   if (rb_fuzzing && (successful_branch_tries == 0)){
-    if (blacklist_pos >= blacklist_size -1){
+    if (blacklist_pos >= blacklist_size -1){  //如果有黑名单
       DEBUG1("Increasing size of blacklist from %d to %d\n", blacklist_size, blacklist_size*2);
       blacklist_size = 2 * blacklist_size; 
       blacklist = ck_realloc(blacklist, sizeof(int) * blacklist_size);
@@ -6038,7 +6038,7 @@ skip_simple_bitflip:
 
   if (rb_skip_deterministic) goto havoc_stage;
 
-  /* Two walking bits. */
+  /* Two walking bits. */  //2个比特
 
   stage_name  = "bitflip 2/1";
   stage_short = "flip2";
@@ -6052,15 +6052,15 @@ skip_simple_bitflip:
 
     if (rb_fuzzing){ //&& use_mask()){
       // only run modified case if it won't produce garbage
-
-      if (!(branch_mask[stage_cur_byte] & 1)) {
+    //如果 branch_mask[stage_cur_byte] 为0 则表示这个位置不能动
+      if (!(branch_mask[stage_cur_byte] & 1)) {  //只有branch_mask[stage_cur_byte] 包含1,即表示当前字节可以修改
         stage_max--;
         continue;
       }
 
-      // if we're spilling into next byte, check that that byte can
+      // if we're spilling into next byte, check that that byte can  如果第二个bit属于下一个字节
       // be modified
-      if ((stage_cur_byte != ((stage_cur + 1)>> 3))&& (!(branch_mask[stage_cur_byte + 1] & 1))){
+      if ((stage_cur_byte != ( (stage_cur + 1)>> 3) ) && ( !(branch_mask[stage_cur_byte + 1] & 1)) ){
         stage_max--;
         continue;
       }
@@ -6081,28 +6081,28 @@ skip_simple_bitflip:
   stage_finds[STAGE_FLIP2]  += new_hit_cnt - orig_hit_cnt;
   stage_cycles[STAGE_FLIP2] += stage_max;
 
-  /* Four walking bits. */
+  /* Four walking bits. */ //以4个比特为步长
 
   stage_name  = "bitflip 4/1";
   stage_short = "flip4";
-  stage_max   = (len << 3) - 3;
+  stage_max   = (len << 3) - 3; //循环数量
 
   orig_hit_cnt = new_hit_cnt;
 
   for (stage_cur = 0; stage_cur < (len << 3) - 3; stage_cur++) {
 
-    stage_cur_byte = stage_cur >> 3;
+    stage_cur_byte = stage_cur >> 3; //即第几个字节
 
     if (rb_fuzzing){//&& use_mask()){
       // only run modified case if it won't produce garbage
-      if (!(branch_mask[stage_cur_byte] & 1)) {
+      if ( !(branch_mask[stage_cur_byte] & 1) ) {  //只有 branch_mask[stage_cur_byte] 包含1,即表示可以修改
         stage_max--;
         continue;
       }
 
       // if we're spilling into next byte, check that that byte can
-      // be modified
-      if ((stage_cur_byte != ((stage_cur + 3)>> 3))&& (!(branch_mask[stage_cur_byte + 1] & 1))){
+      // be modified     //如果最后一个bit属于下一个字节,且下一个字节不能修改,则跳过
+      if ( (stage_cur_byte!= ((stage_cur + 3)>> 3)) && (!(branch_mask[stage_cur_byte + 1] & 1)) ){
         stage_max--;
         continue;
       }
@@ -6127,7 +6127,7 @@ skip_simple_bitflip:
   stage_finds[STAGE_FLIP4]  += new_hit_cnt - orig_hit_cnt;
   stage_cycles[STAGE_FLIP4] += stage_max;
 
-  /* Two walking bytes. */
+  /* Two walking bytes. */   //2个字节走路
 
   if (len < 2) goto skip_bitflip;
 
@@ -6149,7 +6149,7 @@ skip_simple_bitflip:
 
     if (rb_fuzzing ){
       // skip if either byte will modify the branch
-      if (!(branch_mask[i] & 1) || !(branch_mask[i+1] & 1) ){
+      if (!(branch_mask[i] & 1) || !(branch_mask[i+1] & 1) ){  //只有两个字节都能修改,才动
         stage_max--;
         continue;
       }
@@ -6174,7 +6174,7 @@ skip_simple_bitflip:
 
   if (len < 4) goto skip_bitflip;
 
-  /* Four walking bytes. */
+  /* Four walking bytes. */  //4个字节走路
 
   stage_name  = "bitflip 32/8";
   stage_short = "flip32";
@@ -6196,7 +6196,7 @@ skip_simple_bitflip:
     if (rb_fuzzing){
       // skip if either byte will modify the branch
       if (!(branch_mask[i] & 1) || !(branch_mask[i+1]& 1) ||
-            !(branch_mask[i+2]& 1) || !(branch_mask[i+3]& 1) ){
+            !(branch_mask[i+2]& 1) || !(branch_mask[i+3]& 1) ){  //只有4个字节都能修改,才动
         stage_max--;
         continue;
       }
@@ -6226,12 +6226,12 @@ skip_bitflip:
    * ARITHMETIC INC/DEC *
    **********************/
 
-  /* 8-bit arithmetics. */
+  /* 8-bit arithmetics. */  //8bits 一个字节的自增
 
   stage_name  = "arith 8/8";
   stage_short = "arith8";
   stage_cur   = 0;
-  stage_max   = 2 * len * ARITH_MAX;
+  stage_max   = 2 * len * ARITH_MAX;  //这里循环没有用这个变量,只是为了统计执行的次数
 
   stage_val_type = STAGE_VAL_LE;
 
@@ -6250,7 +6250,7 @@ skip_bitflip:
 
     if (rb_fuzzing){
       if (!(branch_mask[i]& 1) ){
-        stage_max -= 2 * ARITH_MAX;
+        stage_max -= 2 * ARITH_MAX;  //如果不能修改,stage_max就减去2个ARITH_MAX次数
         continue;
       }
     }
@@ -6297,7 +6297,7 @@ skip_bitflip:
   stage_finds[STAGE_ARITH8]  += new_hit_cnt - orig_hit_cnt;
   stage_cycles[STAGE_ARITH8] += stage_max;
 
-  /* 16-bit arithmetics, both endians. */
+  /* 16-bit arithmetics, both endians. */  //2个字节的增减
 
   if (len < 2) goto skip_arith;
 
@@ -6320,7 +6320,7 @@ skip_bitflip:
     }
 
     if (rb_fuzzing){
-      if (!(branch_mask[i] & 1) || !(branch_mask[i+1] & 1)){
+      if (!(branch_mask[i] & 1) || !(branch_mask[i+1] & 1)){  //只有2个字节都能修改才行
         stage_max -= 4 * ARITH_MAX;
         continue;
       }
@@ -6528,7 +6528,7 @@ skip_arith:
     }
 
     if (rb_fuzzing ){
-      if (!(branch_mask[i]& 1)){
+      if (!(branch_mask[i]& 1)){  //只有能修改才继续
         stage_max -= sizeof(interesting_8);
         continue;
       }
@@ -6588,7 +6588,7 @@ skip_arith:
 
     if (rb_fuzzing ){
       // skip if either byte will modify the branch
-      if (!(branch_mask[i] & 1) || !(branch_mask[i+1] & 1)){
+      if (!(branch_mask[i] & 1) || !(branch_mask[i+1] & 1)){ //只有能修改才继续
         stage_max -= sizeof(interesting_16);
         continue;
       }
