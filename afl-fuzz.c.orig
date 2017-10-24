@@ -9024,7 +9024,11 @@ int main(int argc, char** argv) {
 
   if (!not_on_tty) {
     sleep(0.1);
+<<<<<<< HEAD
+    start_time += 0.1;
+=======
     start_time += 100;
+>>>>>>> 0764e46444d86126bdd85f86c5cd59b9be9a9de1
     if (stop_soon) goto stop_fuzzing;
   }
 

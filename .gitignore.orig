@@ -9,8 +9,7 @@ afl-gotcpu
 afl-showmap
 afl-tmin
 as
-*.o
-afl-qemu-trace
+<<<<<<< HEAD
 .cproject
 .project
 *.o
@@ -18,5 +17,14 @@ afl-qemu-trace
 /qemu_mode/qemu-2.3.0
 /qemu_mode/qemu-2.3.0.tar.bz2
 /qemu_mode/yybuild_qemu_support.sh
+/fuse_*
+=======
+*.o
+afl-qemu-trace
+.cproject
+.project
+/qemu_mode/qemu-2.3.0
+/qemu_mode/qemu-2.3.0.tar.bz2
 fuse_*
+>>>>>>> 0764e46444d86126bdd85f86c5cd59b9be9a9de1
 /qemu_mode/qemu-2.3.0/
