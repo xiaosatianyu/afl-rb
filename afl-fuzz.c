@@ -178,7 +178,7 @@ EXP_ST u32 queued_paths,              /* Total number of queued testcases */
            useless_at_start,          /* Number of useless starting paths */
            var_byte_count,            /* Bitmap bytes with var behavior   */
            current_entry,             /* Current queue entry ID           */
-           havoc_div = 1;             /* Cycle count divisor for havoc    */
+           havoc_div = 1;             /* Cycle count divisor for havoc    */  //havoc中的除数准备
 
 EXP_ST u64 total_crashes,             /* Total number of crashes          */
            unique_crashes,            /* Crashes with unique signatures   */
@@ -315,7 +315,7 @@ static u8 run_with_shadow = 0;
 
 static u8 use_branch_mask = 1;
 
-static int prev_cycle_wo_new = 0;  //这个何用?
+static int prev_cycle_wo_new = 0;  //如果上一轮发现新的测试用例的了,就将这个变量设置为0
 static int cycle_wo_new = 0;  //大循环次数?
 
 static int bootstrap = 0; /* @RB@ */
@@ -900,7 +900,7 @@ static int* get_lowest_hit_branch_ids(){
     // ignore unseen branches. sparse array -> unlikely 
     if (unlikely(hit_bits[i] > 0)){
       if (contains_id(i, blacklist)) continue; //黑名单
-      unsigned int long cur_hits = hit_bits[i]; //对应的执行次数
+      unsigned int long cur_hits = hit_bits[i]; //执行这个rare brach的测试用例个数
       int highest_order_bit = 0;
       while(cur_hits >>=1)
           highest_order_bit++;// 将hit_bit中的执行次数转变为幂次方
@@ -951,7 +951,7 @@ static u32 * is_rb_hit_mini(u8* trace_bits_mini){
   int * rarest_branches = get_lowest_hit_branch_ids(); //从所有轨迹中得到rare brach的一个数组
   u32 * branch_ids = ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES); //保存对应rare的id(但是加了1,和0区别出来)
   u32 * branch_cts = ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES); //保存对应rare的执行次数
-  int min_hit_index = 0;
+  int min_hit_index = 0;  //记录现在有多少个记录的rare branch
   //判断当前测试用例的轨迹中是否有 rare branch
   for (int i = 0; i < MAP_SIZE ; i ++){
 
@@ -960,17 +960,17 @@ static u32 * is_rb_hit_mini(u8* trace_bits_mini){
         int is_rare = contains_id(cur_index, rarest_branches); //判断cur_index是否属于rarest_branches列表
         if (is_rare) {
           // at loop initialization, set min_branch_hit properly
-        	//第一次初始化 branch_cts 和 branch_ids
+        	//第一次初始化 branch_cts 和 branch_ids,第一次就不用检查是否更小
           if (!min_hit_index) {
-            branch_cts[min_hit_index] = hit_bits[cur_index]; //保存对应branch的执行次数
+            branch_cts[min_hit_index] = hit_bits[cur_index]; //保存执行对应branch的测试用例数量
             branch_ids[min_hit_index] = cur_index + 1;  //为什么要加1? 和0区别出来
           }
           // in general just check if we're a smaller branch 
-          // than the previously found min
+          // than the previously found min  //这里有排序的功能
           int j;
           for (j = 0 ; j < min_hit_index; j++){
             if (hit_bits[cur_index] <= branch_cts[j]){
-              memmove(branch_cts + j + 1, branch_cts + j, min_hit_index -j);
+              memmove(branch_cts + j + 1, branch_cts + j, min_hit_index -j); //插入一个,如果指针超了怎么办?
               memmove(branch_ids + j + 1, branch_ids + j, min_hit_index -j);
               branch_cts[j] = hit_bits[cur_index];
               branch_ids[j] = cur_index + 1;
@@ -1008,15 +1008,15 @@ static u32 * is_rb_hit_mini(u8* trace_bits_mini){
 /* get a random modifiable position (i.e. where branch_mask & mod_type) 
    for both overwriting and removal we want to make sure we are overwriting
    or removing parts within the branch mask
-*/
-// assumes map_len is len, not len + 1. be careful. 
+*/  //这里得到的是可以修改字节的位置,但是这里的方法好像会修改那些不能修改的位置
+// assumes map_len is len, not len + 1. be careful(测试用例的长度).   num_to_modify应该表示要操作的bit数量; mod_type 表示操作类型, 2表示删除;
 static u32 get_random_modifiable_posn(u32 num_to_modify, u8 mod_type, u32 map_len, u8* branch_mask, u32 * position_map){
   u32 ret = 0xffffffff;
-  u32 position_map_len = 0;
-  int prev_start_of_1_block = -1;
-  int in_0_block = 1;
+  u32 position_map_len = 0; //表示有这个数量的字节包含操作权限
+  int prev_start_of_1_block = -1;  //表示一个可操作block的起点index
+  int in_0_block = 1; //表示是否在设置了可操作block的起点,默认为1,表示没有;0表示设置好了
   for (int i = 0; i < map_len; i ++){
-    if (branch_mask[i] & mod_type){
+    if (branch_mask[i] & mod_type){ //判断当前字节是否有对应的操作权限
       // if the last thing we saw was a zero, set
       // to start of 1 block
       if (in_0_block) {
@@ -1028,7 +1028,7 @@ static u32 get_random_modifiable_posn(u32 num_to_modify, u8 mod_type, u32 map_le
       // we know the last index was the last 1 in the line
       if ((!in_0_block) &&(prev_start_of_1_block != -1)){
         int num_bytes = MAX(num_to_modify/8, 1);
-        for (int j = prev_start_of_1_block; j < i-num_bytes + 1; j++){
+        for (int j = prev_start_of_1_block; j < i-num_bytes + 1; j++){  //记录前一个可操作block的字节位置
             // I hate this ++ within operator stuff
             position_map[position_map_len++] = j;
         }
@@ -1038,19 +1038,19 @@ static u32 get_random_modifiable_posn(u32 num_to_modify, u8 mod_type, u32 map_le
     }
   }
 
-  // if we ended not in a 0 block, add it in too 
+  // if we ended not in a 0 block, add it in too  记录剩下的可操作字节的位置
   if (!in_0_block) {
-    u32 num_bytes = MAX(num_to_modify/8, 1);
-    for (u32 j = prev_start_of_1_block; j < map_len-num_bytes + 1; j++){
+    u32 num_bytes = MAX(num_to_modify/8, 1); //要操作的字节数量,不足一个就设为1个字节
+    for (u32 j = prev_start_of_1_block; j < map_len-num_bytes + 1; j++){ //从prev_start_of_1_block位置出发,到最后
         // I hate this ++ within operator stuff
-        position_map[position_map_len++] = j;
+        position_map[position_map_len++] = j; //记录剩下的有操作权限的位置
     }
   }
-
+  //判断是否有位置可以修改
   if (position_map_len){
-    u32 random_pos = UR(position_map_len);
+    u32 random_pos = UR(position_map_len);//一共有position_map_len个位置可以修改,
     if (num_to_modify >= 8)
-      ret =  position_map[random_pos];
+      ret =  position_map[random_pos]; //表示从这个位置开始修改, 这里只保证了起点字节是可以修改的,但是没有保证后续字节都能修改
     else // I think num_to_modify can only ever be 1 if it's less than 8. otherwise need trickier stuff. 
       ret = position_map[random_pos] + UR(8);
   } 
@@ -1072,7 +1072,7 @@ static u32 get_random_insert_posn(u32 map_len, u8* branch_mask, u32 * position_m
   }
 
   if (position_map_len){
-    ret = position_map[UR(position_map_len)];
+    ret = position_map[UR(position_map_len)]; //选择一个可以插入的字节
   }
 
   return ret;
@@ -5496,7 +5496,7 @@ static u8 fuzz_one(char** argv) {
 #endif /* ^IGNORE_FINDS */
 
   /* select inputs which hit rare branches */  //什么时候进入 当vanilla_afl为0的时候进入,使用另外一种判断
-  if (!vanilla_afl) {
+  if (!vanilla_afl) { //如果上一轮有新的发现,这一轮肯定是rb fuzzing
 	  //新的判断策略, rb判断策略
     skip_deterministic_bootstrap = 0;
     //判断当前测试用例是否击中了 rare branch (rb), min_branch_hits是总的rare branch列表
@@ -5516,11 +5516,11 @@ static u8 fuzz_one(char** argv) {
           if (queue_cur->fuzzed_branches[byte_offset] & (1 << (bit_offset))){
             // let's try the next one
             continue;
-          } else {
+          } else { //如果这个rare branch没有被fuzz过
             for (int k = 0; k < MAP_SIZE >> 3; k ++){
               if (queue_cur->fuzzed_branches[k] != 0){
-                DEBUG1("We fuzzed this guy already\n");
-                skip_simple_bitflip = 1; // 这个变量控制了什么?
+                DEBUG1("We fuzzed this guy already\n"); //说明别的rare branch 测试过了,所以就不测 simple_bitflip了
+                skip_simple_bitflip = 1;
                 break;
               }
             }
@@ -6959,7 +6959,7 @@ havoc_stage:
     stage_name  = "havoc";
     stage_short = "havoc";
     stage_max   = (doing_det ? HAVOC_CYCLES_INIT : HAVOC_CYCLES) *
-                  perf_score / havoc_div / 100;
+                  perf_score / havoc_div / 100;  //这里循环的数量和perf_score有关系,分数越高,循环的次数越高
 
   } else {
 
@@ -6978,28 +6978,28 @@ havoc_stage:
 
   temp_len = len;
 
-  orig_hit_cnt = queued_paths + unique_crashes;
+  orig_hit_cnt = queued_paths + unique_crashes;//路径的数量,包括  crash路径
 
-  havoc_queued = queued_paths;
+  havoc_queued = queued_paths; //这个为了统计queue的数量
 
   /* We essentially just do several thousand runs (depending on perf_score)
      where we take the input file and make random stacked tweaks. */
 
   for (stage_cur = 0; stage_cur < stage_max; stage_cur++) {
 
-    u32 use_stacking = 1 << (1 + UR(HAVOC_STACK_POW2));
-    u32 posn;
+    u32 use_stacking = 1 << (1 + UR(HAVOC_STACK_POW2)); //随机得到变异次数
+    u32 posn;  //这个应该是rb加的
 
     stage_cur_val = use_stacking;
- 
+    //这里对out_buf的操作是累计的
     for (i = 0; i < use_stacking; i++) {
 
       switch (UR(15 + ((extras_cnt + a_extras_cnt) ? 2 : 0))) {
 
         case 0:
-
+        //ok
           /* Flip a single bit somewhere. Spooky! */
-
+        	//修改一个bit
           if((posn = get_random_modifiable_posn(1, 1, temp_len, branch_mask, position_map)) == 0xffffffff) break;
           FLIP_BIT(out_buf, posn);
 
@@ -7008,7 +7008,7 @@ havoc_stage:
         case 1: 
 
           /* Set byte to interesting value. */
-
+        //ok
           if((posn = get_random_modifiable_posn(8, 1, temp_len, branch_mask, position_map)) == 0xffffffff) break;
           out_buf[posn] = interesting_8[UR(sizeof(interesting_8))];
 
@@ -7019,7 +7019,7 @@ havoc_stage:
           /* Set word to interesting value, randomly choosing endian. */
 
           if (temp_len < 2) break;
-
+          //这里是修改连续的2个字节
           if((posn = get_random_modifiable_posn(16, 1, temp_len, branch_mask, position_map)) == 0xffffffff) break;
           if (UR(2)) {
 
@@ -7192,17 +7192,17 @@ havoc_stage:
 
             /* Don't delete too much. */
 
-            del_len = choose_block_len(temp_len - 1);
-
+            del_len = choose_block_len(temp_len - 1); //在当前条件下,随机返回一个长度,字节数
+            //根据 branch_mask 得到?  这里要选择一个删除起点,是不是找一个能够删除del_len长度的地方; position_map 什么用呢?
             del_from = get_random_modifiable_posn(del_len*8, 2, temp_len, branch_mask, position_map);
             if (del_from == 0xffffffff) break;
 
             memmove(out_buf + del_from, out_buf + del_from + del_len,
-                    temp_len - del_from - del_len);
+                    temp_len - del_from - del_len); //生成新的测试用例
             // remove that data from the branch mask
             // the +1 copies over the last part of branch_mask
             memmove(branch_mask + del_from, branch_mask + del_from + del_len,
-                    temp_len - del_from - del_len + 1);
+                    temp_len - del_from - del_len + 1); //将branch_mask也做同样的操作,删除对应的一段内容
 
 
             temp_len -= del_len;
@@ -7424,7 +7424,7 @@ havoc_stage:
       goto abandon_entry;
 
     /* out_buf might have been mangled a bit, so let's restore it to its
-       original size and shape. */
+       original size and shape. */   //变异后恢复原来的数据,准备下一轮变异
     if (temp_len < len) {
       out_buf = ck_realloc(out_buf, len);
       branch_mask = ck_realloc(branch_mask, len + 1);
@@ -7597,9 +7597,9 @@ abandon_entry:
   if (shadow_mode) goto re_run;
   //如果这一轮发现新的路径了
   if (queued_with_cov-orig_queued_with_cov){
-    prev_cycle_wo_new = 0;
-    vanilla_afl = 0;
-    cycle_wo_new = 0;
+    prev_cycle_wo_new = 0; //为什么都要设置为0?  如果这一轮发现新的branch了,就设置为0, 在下一轮使用
+    vanilla_afl = 0; //如果这一轮发现新的branch了,就设置vanilla_afl变量为0,在下一轮使用
+    cycle_wo_new = 0; //如果这一轮发现新的branch了,就设置vanilla_afl变量为0,在下一轮使用
   }
 
   munmap(orig_in, queue_cur->len); //解除内存映射,解除orig_in变量的内存映射
@@ -8715,7 +8715,7 @@ int main(int argc, char** argv) {
   u8  mem_limit_given = 0;
   u8  exit_1 = !!getenv("AFL_BENCH_JUST_ONE");
   char** use_argv;
-
+  //@RB@
   blacklist = ck_alloc(sizeof(int) * blacklist_size);
   blacklist[0] = -1;
 
