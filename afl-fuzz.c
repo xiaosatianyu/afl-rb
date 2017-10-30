@@ -297,7 +297,7 @@ static u8* (*post_handler)(u8* buf, u32* len);
 /* @RB@ Things about branches */
 
 static u32 vanilla_afl = 1000;      /* @RB@ How many executions to conduct   //执行vanilla_afl次测试之后再进行调度吧,在common_fuzz_stuff每次减一
-                                         in vanilla AFL mode               */
+                                         in vanilla AFL mode               */ //这个变量表示执行原来AFL的次数,如果为0 ,就执行rare branch fuzzing
 static u32 MAX_RARE_BRANCHES = 256;  //rare branch的最大数量?
 static int rare_branch_exp = 4;        /* @RB@ less than 2^rare_branch_exp is rare*/  // 这个默认是4, 即第一次认为执行次数小于2^4的基本块为rare branch
 
@@ -306,8 +306,8 @@ static int blacklist_size = 1024;
 static int blacklist_pos;
 
 static u32 rb_fuzzing = 0;           /* @RB@ non-zero branch index + 1 if fuzzing is being done with that branch constant*/ //得到 rare branch的 index+1的数值
-static u32 total_branch_tries = 0;  //总的导向测试次数
-static u32 successful_branch_tries = 0;  //根据rare branch导向进行的一次测试后就加1
+static u32 total_branch_tries = 0;  //  每一轮总的导向测试次数
+static u32 successful_branch_tries = 0;  //每一轮 根据rare branch导向进行的一次测试后并且依然击中rare branch 才加1
 
 static u8 shadow_mode = 0;           /* @RB@ shadow AFL run -- do not modify
                                         queue or branch hits             */
@@ -315,8 +315,8 @@ static u8 run_with_shadow = 0;
 
 static u8 use_branch_mask = 1;
 
-static int prev_cycle_wo_new = 0;  //如果上一轮发现新的测试用例的了,就将这个变量设置为0
-static int cycle_wo_new = 0;  //大循环次数?
+static int prev_cycle_wo_new = 0;  //这个何用?
+static int cycle_wo_new = 0;  //
 
 static int bootstrap = 0; /* @RB@ */
 static u8 skip_deterministic_bootstrap = 0;
@@ -905,7 +905,7 @@ static int* get_lowest_hit_branch_ids(){
       while(cur_hits >>=1)
           highest_order_bit++;// 将hit_bit中的执行次数转变为幂次方
       lowest_hob = highest_order_bit < lowest_hob ? highest_order_bit : lowest_hob;
-      //这里只记录执行次数少于 2的rare_branch_exp次方的brach ,第一次rare_branch_exp为4
+      //这里只记录 少于 2的rare_branch_exp次方的brach ,第一次rare_branch_exp为4; 即这个基本块只有 少数几个测试用例执行了
       if (highest_order_bit < rare_branch_exp){
         // if we are an order of magnitude smaller, prioritize the
         // rarer branches  //这里rare_branch_exp能够缩小,那么怎么变大?
@@ -913,7 +913,7 @@ static int* get_lowest_hit_branch_ids(){
           rare_branch_exp = highest_order_bit + 1;//如果highest_order_bit 太小,则rare_branch_exp缩小一点
           // everything else that came before had way more hits
           // than this one, so remove from list
-          ret_list_size = 0;
+          ret_list_size = 0; //重构
         }
         rare_branch_ids[ret_list_size] = i; //这里记录的rare branch是0到65535排列的
         ret_list_size++;
@@ -5461,7 +5461,7 @@ static u8 fuzz_one(char** argv) {
   if (queue_cur->depth > 1) return 1;
 
 #else
-  // @RBy@
+  // @RB@ //第一轮使用
   if (vanilla_afl){
 	//如果vanilla_afl为0了,就使用另一种判断了; 这里采用了原有afl的测试用例判断
     if (pending_favored) {
@@ -5469,7 +5469,7 @@ static u8 fuzz_one(char** argv) {
       /* If we have any favored, non-fuzzed new arrivals in the queue,
          possibly skip to them at the expense of already-fuzzed or non-favored
          cases. */
-
+    	//第二轮怎么判断 was_fuzzed
       if ((queue_cur->was_fuzzed || !queue_cur->favored) &&
           UR(100) < SKIP_TO_NEW_PROB) return 1;
 
@@ -5519,8 +5519,8 @@ static u8 fuzz_one(char** argv) {
           } else { //如果这个rare branch没有被fuzz过
             for (int k = 0; k < MAP_SIZE >> 3; k ++){
               if (queue_cur->fuzzed_branches[k] != 0){
-                DEBUG1("We fuzzed this guy already\n"); //说明别的rare branch 测试过了,所以就不测 simple_bitflip了
-                skip_simple_bitflip = 1;
+                DEBUG1("We fuzzed this guy already\n");  //测试用过这个测试用例别的 rare branch
+                skip_simple_bitflip = 1; // 就可以跳过 simple_bitflip 这个测试用例的其他rb被fuzz过,就可以跳过simple_bitflip了
                 break;
               }
             }
@@ -5547,7 +5547,7 @@ static u8 fuzz_one(char** argv) {
       ck_free(min_branch_hits);
 
     if (!skip_simple_bitflip){
-      cycle_wo_new = 0;  //这里是为啥?
+      cycle_wo_new = 0;  //这里是为啥????
     }
     //rarest_branches = get_lowest_hit_branch_ids();
     //DEBUG1("---\ncurrent rarest branches: ");
@@ -5761,7 +5761,7 @@ re_run: // re-run when running in shadow mode  这里只有shadow mode 才会进
     _arf[(_bf) >> 3] ^= (128 >> ((_bf) & 7)); \
   } while (0)
 
-  /* Single walking bit. */
+  /* Single walking bit. */  //这个过程不参与制作branch_mask
 
   stage_short = "flip1";
   stage_max   = len << 3;
@@ -7595,11 +7595,11 @@ abandon_entry:
   DEBUG1("%shavoc stage: %i new coverage in %i total execs\n", shadow_prefix, queued_discovered-orig_queued_discovered, total_execs-orig_total_execs);
   DEBUG1("%shavoc stage: %i new branches in %i total execs\n", shadow_prefix, queued_with_cov-orig_queued_with_cov, total_execs-orig_total_execs);
   if (shadow_mode) goto re_run;
-  //如果这一轮发现新的路径了
+  //如果这一轮发现新的路径了, 就重设 一下几个变量  prev_cycle_wo_new 和 cycle_wo_new 什么用?
   if (queued_with_cov-orig_queued_with_cov){
-    prev_cycle_wo_new = 0; //为什么都要设置为0?  如果这一轮发现新的branch了,就设置为0, 在下一轮使用
-    vanilla_afl = 0; //如果这一轮发现新的branch了,就设置vanilla_afl变量为0,在下一轮使用
-    cycle_wo_new = 0; //如果这一轮发现新的branch了,就设置vanilla_afl变量为0,在下一轮使用
+    prev_cycle_wo_new = 0;
+    vanilla_afl = 0;
+    cycle_wo_new = 0;
   }
 
   munmap(orig_in, queue_cur->len); //解除内存映射,解除orig_in变量的内存映射
