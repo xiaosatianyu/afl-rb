@@ -268,6 +268,11 @@ struct queue_entry {
 
   struct queue_entry *next,           /* Next element, if any             */
                      *next_100;       /* 100 elements ahead               */
+  //@RD@
+  double distance;                    /* Distance to targets              */
+  double seed_rarity;                 /* the absolute number of the rarity*/
+
+   //end
 
 };
 
@@ -371,6 +376,13 @@ enum {
   /* 05 */ FAULT_NOBITS
 };
 
+
+//@RD@ variable for RD
+static double cur_distance = -1.0;     /* Distance of executed input       */
+static double max_distance = -1.0;     /* Maximal distance for any input   */
+static double min_distance = -1.0;     /* Minimal distance for any input   */
+static u64 seed_number_with_distance;  /*record the number of the seeds which contain distance data*/
+//end
 
 /* create a new branch mask of the specified size */
 
@@ -1130,6 +1142,24 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det) {
   q->depth        = cur_depth + 1;
   q->passed_det   = passed_det;
 
+  //@RD@
+  	q->distance = cur_distance;
+  	q->fuzzed_branches = ck_alloc(MAP_SIZE >>3);
+
+  	if (cur_distance > 0) {
+  		seed_number_with_distance++;
+  		if (max_distance <= 0) {
+  			max_distance = cur_distance;
+  			min_distance = cur_distance;
+  		}
+  		if (cur_distance > max_distance)
+  			max_distance = cur_distance;
+  		if (cur_distance < min_distance)
+  			min_distance = cur_distance;
+
+  	}
+  	//end
+
   if (q->depth > max_depth) max_depth = q->depth;
 
   if (queue_top) {
@@ -1231,12 +1261,35 @@ static inline u8 has_new_bits(u8* virgin_map) {
 
   u32  i = (MAP_SIZE >> 3);
 
+	//@RD@
+	/* Calculate distance of current input to targets */
+	u64* total_distance = (u64*) (trace_bits + MAP_SIZE);
+	u64* total_count = (u64*) (trace_bits + MAP_SIZE + 8);
+
+	if (*total_count > 0)
+		cur_distance = (double) (*total_distance) / (double) (*total_count);
+	else
+		cur_distance = -1.0;
+	//end
+
+
 #else
 
   u32* current = (u32*)trace_bits;
   u32* virgin  = (u32*)virgin_map;
 
   u32  i = (MAP_SIZE >> 2);
+
+  	//@Rd@
+	/* Calculate distance of current input to targets */
+	u32* total_distance = (u32*) (trace_bits + MAP_SIZE);
+	u32* total_count = (u32*) (trace_bits + MAP_SIZE + 4);
+
+	if (*total_count > 0)
+		cur_distance = (double) (*total_distance) / (double) (*total_count);
+	else
+		cur_distance = -1.0;
+	//end
 
 #endif /* ^__x86_64__ */
 
@@ -1681,7 +1734,10 @@ EXP_ST void setup_shm(void) {
   memset(virgin_tmout, 255, MAP_SIZE);
   memset(virgin_crash, 255, MAP_SIZE);
 
-  shm_id = shmget(IPC_PRIVATE, MAP_SIZE, IPC_CREAT | IPC_EXCL | 0600);
+	//@RD@
+	shm_id = shmget(IPC_PRIVATE, MAP_SIZE + 16, IPC_CREAT | IPC_EXCL | 0600);
+	//shm_id = shmget(IPC_PRIVATE, MAP_SIZE, IPC_CREAT | IPC_EXCL | 0600);
+	//end
 
   if (shm_id < 0) PFATAL("shmget() failed");
 
@@ -2604,8 +2660,9 @@ static u8 run_target(char** argv, u32 timeout) {
   /* After this memset, trace_bits[] are effectively volatile, so we
      must prevent any earlier operations from venturing into that
      territory. */
-
-  memset(trace_bits, 0, MAP_SIZE); //每次执行轨迹
+  //@RD@
+  memset(trace_bits, 0, MAP_SIZE+16);
+  //end
   MEM_BARRIER();
 
   /* If we're running in "dumb" mode, we can't rely on the fork server
@@ -2920,6 +2977,26 @@ static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,
     }
 
     cksum = hash32(trace_bits, MAP_SIZE, HASH_CONST);
+
+
+    //@RD@
+	/* This is relevant when test cases are added w/out save_if_interesting */
+	if (q->distance <= 0) {
+		/* This calculates cur_distance */
+		has_new_bits(virgin_bits);
+		q->distance = cur_distance;
+		if (cur_distance > 0) {
+			if (max_distance <= 0) {
+				max_distance = cur_distance;
+				min_distance = cur_distance;
+			}
+			if (cur_distance > max_distance)
+				max_distance = cur_distance;
+			if (cur_distance < min_distance)
+				min_distance = cur_distance;
+		}
+	}
+	//end
 
     if (q->exec_cksum != cksum) {
 

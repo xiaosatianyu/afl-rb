@@ -18,5 +18,5 @@ afl-qemu-trace
 /qemu_mode/qemu-2.3.0
 /qemu_mode/qemu-2.3.0.tar.bz2
 /qemu_mode/yybuild_qemu_support.sh
-fuse_*
+.fuse_*
 /qemu_mode/qemu-2.3.0/
