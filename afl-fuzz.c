@@ -903,9 +903,9 @@ static int* get_lowest_hit_branch_ids(){
       unsigned int long cur_hits = hit_bits[i]; //执行这个rare brach的测试用例个数
       int highest_order_bit = 0;
       while(cur_hits >>=1)
-          highest_order_bit++;// 将hit_bit中的执行次数转变为幂次方
-      lowest_hob = highest_order_bit < lowest_hob ? highest_order_bit : lowest_hob;
-      //这里只记录 少于 2的rare_branch_exp次方的brach ,第一次rare_branch_exp为4; 即这个基本块只有 少数几个测试用例执行了
+          highest_order_bit++;// 将hit_bit中的数字向上转变为幂次方
+      lowest_hob = highest_order_bit < lowest_hob ? highest_order_bit : lowest_hob; //这个好像没有用到
+      //这里只记录 少于 2的rare_branch_exp次方的brach ,第一次rare_branch_exp为4;
       if (highest_order_bit < rare_branch_exp){
         // if we are an order of magnitude smaller, prioritize the
         // rarer branches  //这里rare_branch_exp能够缩小,那么怎么变大?
@@ -925,7 +925,7 @@ static int* get_lowest_hit_branch_ids(){
   if (ret_list_size == 0){
     DEBUG1("Was returning list of size 0\n");
     if (lowest_hob != INT_MAX) {
-      rare_branch_exp = lowest_hob + 1;
+      rare_branch_exp = lowest_hob + 1; //这里在提升 阈值
       DEBUG1("Upped max exp to %i\n", rare_branch_exp);
       ck_free(rare_branch_ids);
       return get_lowest_hit_branch_ids();
@@ -5531,7 +5531,7 @@ static u8 fuzz_one(char** argv) {
           }
         } else break; 
       }
-      // if we got to the end of min_branch_hits...
+      // if we got to the end of min_branch_hits... 如果到最后了,表示当前测试用例的所有rb都测试过了
       // it's either because we fuzzed all the things in min_branch_hits
       // or because there was nothing. If there was nothing, 
       // min_branch_hits[0] should be 0 
@@ -5746,7 +5746,7 @@ re_run: // re-run when running in shadow mode  这里只有shadow mode 才会进
   /* Skip simple bitflip if we've done it already */
   if (skip_simple_bitflip) {
     new_hit_cnt = queued_paths + unique_crashes;
-    goto skip_simple_bitflip;
+    goto skip_simple_bitflip; //如果已经fuzz过了,就不在进行这一步
   }
 
   doing_det = 1;
@@ -5891,7 +5891,7 @@ skip_simple_bitflip:
     eff_cnt++;
   }
 
-  /* Walking byte. */
+  /* Walking byte. */  //把这个阶段提前了
 
   stage_name  = "bitflip 8/8";
   stage_short = "flip8";
