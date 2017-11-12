@@ -268,11 +268,12 @@ struct queue_entry {
 
   struct queue_entry *next,           /* Next element, if any             */
                      *next_100;       /* 100 elements ahead               */
-  //@RD@
+  //@rd@
   double distance;                    /* Distance to targets              */
-  double seed_rarity;                 /* the absolute number of the rarity*/
-
-   //end
+  u64 trace_rarity_seed;                 /* the absolute number of the rarity*/
+  int *branch_ids;					/*save some the minimum branch index*/
+  u64 *branch_rrs;					/*save the branch rarity of the corresponding index*/
+  //end
 
 };
 
@@ -377,11 +378,13 @@ enum {
 };
 
 
-//@RD@ variable for RD
+//@rd@ variable for rd
 static double cur_distance = -1.0;     /* Distance of executed input       */
 static double max_distance = -1.0;     /* Maximal distance for any input   */
 static double min_distance = -1.0;     /* Minimal distance for any input   */
 static u64 seed_number_with_distance;  /*record the number of the seeds which contain distance data*/
+static int *mut_branch_ids;				/*save some the minimum branch index when in nutation*/
+static u64 *mut_branch_rrs;				/*save the branch rarity of the corresponding index*/
 //end
 
 /* create a new branch mask of the specified size */
@@ -445,6 +448,188 @@ static void dump_to_logs() {
   ck_free(fn);
   close(branch_hit_fd);
 }
+
+
+//function for rdfuzz
+
+// @rd@ moved up here so we can use it in add_to_queue
+/* Compact trace bytes into a smaller bitmap. We effectively just drop the
+   count information here. This is called only sporadically, for some
+   new paths. */
+
+static void minimize_bits(u8* dst, u8* src) {
+
+  u32 i = 0;
+
+  while (i < MAP_SIZE) {
+
+    if (*(src++)) dst[i >> 3] |= 1 << (i & 7);
+    i++;
+
+  }
+
+}
+
+//从trace中提取最小的NUM_BRANCH_FOR_SEED_RARITY branch
+//结果保存在q中或者,全局变量中
+static void get_some_branch_rarity_from_trace(u8* trace, u8 seed_flag, struct queue_entry* q){
+	// seed_flag 0: meaning use trace_bits
+	// seed_flag 1: meaning use trace_mini
+	/*return the absolute seed-level*/
+
+	//these data defautl are 0
+	int upper_num_record=NUM_BRANCH_FOR_SEED_RARITY;
+	int * branch_ids = ck_alloc(sizeof(u32) * upper_num_record);  //记录MAX_NUM_MIN_BRANCHES个最小branch的index
+	u64 * branch_rrs = ck_alloc(sizeof(u64) * upper_num_record);  //记录MAX_NUM_MIN_BRANCHES个最小branch的rarity
+	int   min_num = 0;  //记录branch_ids中有几个branch了
+	int rarity_min=0;
+	int rarity_max=0;
+	int cur_rarity=0;
+
+
+	//1. check if trace is 0
+	if (trace == 0 && seed_flag) {
+		//trace is the trace_mini
+		trace = ck_alloc(MAP_SIZE >> 3);
+		//generate the trace_mini, save in the q
+		minimize_bits(trace, trace_bits);
+	}
+
+	//2. go through the trace
+	int index;
+	for (index = 0; index < MAP_SIZE; index++){
+		if (seed_flag){
+			// 1: trace_mini
+			if ( (trace[index>>3] & (1<<(index&7))) ==0 )	continue;
+		}
+		else{
+			// 0: trace_bits
+			if (trace_bits[index] ==0)	continue;
+		}
+
+		cur_rarity=hit_bits[index];
+		if (cur_rarity==0){
+			DEBUG1("It is a init seed do not increment the hit_bits");
+			break;
+		}
+
+		//2.1 calculate the min and the max rarity in the trace
+		if (rarity_min==0){
+			rarity_min=cur_rarity;
+			rarity_max=cur_rarity;
+		}
+		if (cur_rarity>rarity_max)
+			rarity_max=cur_rarity;
+		if (cur_rarity<rarity_min)
+			rarity_min=cur_rarity;
+
+		//2.2 记录最小的upper_num_record个branch rarity
+		//if the first record
+		if (!min_num) {
+			branch_rrs[min_num] = hit_bits[index];
+			branch_ids[min_num] = index;
+			min_num++;
+			min_num=min_num>upper_num_record ? upper_num_record : min_num;
+			continue;
+		}
+
+		//after the first, add on the last
+		int j;
+		for (j = 0 ; j < upper_num_record; j++){
+			//进行比较,小的在当前位置插入,大的往后挪,超出的不要
+			if (hit_bits[index] < branch_rrs[j]){
+				//the tail move back 1 byte
+				if (j < upper_num_record-1){
+					//将内容往后挪,注意不要超出
+					memmove(branch_rrs + j + 1, branch_rrs + j, upper_num_record -j-1);
+					memmove(branch_ids + j + 1, branch_ids + j, upper_num_record -j-1);
+				}
+				// record the new one
+				branch_rrs[j] = hit_bits[index];
+				branch_ids[j] = index ;
+				min_num++;
+				min_num=min_num>upper_num_record ? upper_num_record:min_num;
+				break;
+			}
+			//表示还没有写入
+			if (branch_rrs[j]==0){
+				branch_rrs[j] = hit_bits[index];
+				branch_ids[j] = index ;
+				min_num++;
+				min_num=min_num>upper_num_record ? upper_num_record:min_num;
+				break;
+			}
+		}
+	}
+
+	//3.save the information
+	if ( seed_flag && min_num>0)	{
+		// seed_flag:1 meaning trace_mini
+		q->branch_ids=branch_ids;
+		q->branch_rrs=branch_rrs;
+	}
+	if (!seed_flag && min_num>0){
+		//flag 0 : meaning the mutate test
+		if (mut_branch_rrs!=0){
+			ck_free(mut_branch_rrs);
+			ck_free(mut_branch_ids);
+		}
+		mut_branch_rrs=branch_rrs;
+		mut_branch_ids=branch_ids;
+	}
+}
+
+static u64 cal_trace_rarity(u64 *branch_rrs){
+	//自定义的seed 计算方法
+	//这里先采用最小值
+	return branch_rrs[0];
+
+}
+
+// 计算当前路径的rarity属性
+static int get_trace_rarity(struct queue_entry* q,  u8 trace_flag, u8 read_test){
+	// trace_flag 0: meaning the mutation trace, use the mut_branch_ids and mut_branch_rrs
+	// trace_flag 1: meaning the seed trace (但是不适用于 read testcase)
+
+	// read_test 1: 表示是readtest 阶段,不用算
+	// read_test 0: 表示不是readtest阶段,需要算
+
+	if (read_test)	return -1; // readtest阶段不处理
+
+	int trace_rarity=-1;
+
+	if (trace_flag){
+		//根据trace_mini,获取数据
+		get_some_branch_rarity_from_trace(q->trace_mini,trace_flag,q);
+		//调用trace_rarity计算方法
+		trace_rarity=cal_trace_rarity(q->branch_rrs);
+		q->trace_rarity_seed=trace_rarity;
+	}
+	else{
+		//根据trace,获取数据
+		get_some_branch_rarity_from_trace(trace_bits,trace_flag,0);
+		//调用trace_rarity计算方法
+		trace_rarity=cal_trace_rarity(mut_branch_rrs);
+	}
+
+	return trace_rarity;
+}
+
+//// 更新一下所有测试用例的seed-rarity
+static void update_seed_rarity(u8 readtest){
+	struct queue_entry *q;
+	int trace_new_rarity=-1;
+	q=queue;
+	while(q){
+		trace_new_rarity=get_trace_rarity(q,1,readtest);
+		if (trace_new_rarity!=-1)
+			q->trace_rarity_seed=trace_new_rarity;
+		q=q->next;
+	}
+}
+
+
+
 
 /* Get unix time in milliseconds */
 
@@ -1107,27 +1292,11 @@ static void init_hit_bits() {
   OKF("Init'ed hit_bits.");
 }
 
-// @RB@ moved up here so we can use it in add_to_queue 
-/* Compact trace bytes into a smaller bitmap. We effectively just drop the
-   count information here. This is called only sporadically, for some
-   new paths. */
 
-static void minimize_bits(u8* dst, u8* src) {
-
-  u32 i = 0;
-
-  while (i < MAP_SIZE) {
-
-    if (*(src++)) dst[i >> 3] |= 1 << (i & 7);
-    i++;
-
-  }
-
-}
 
 /* Append new test case to the queue. */
 
-static void add_to_queue(u8* fname, u32 len, u8 passed_det) {
+static void add_to_queue(u8* fname, u32 len, u8 passed_det,u8 readtest) {
 
   struct queue_entry* q = ck_alloc(sizeof(struct queue_entry));
 
@@ -1142,7 +1311,7 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det) {
   q->depth        = cur_depth + 1;
   q->passed_det   = passed_det;
 
-  //@RD@
+  //@rd@
   	q->distance = cur_distance;
   	q->fuzzed_branches = ck_alloc(MAP_SIZE >>3);
 
@@ -1182,6 +1351,8 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det) {
 
   last_path_time = get_cur_time();
 
+update_seed_rarity(readtest);
+
 }
 
 
@@ -1196,6 +1367,10 @@ EXP_ST void destroy_queue(void) {
     ck_free(q->fname);
     ck_free(q->trace_mini);
     ck_free(q->fuzzed_branches);
+    //@rd@
+        ck_free(q->branch_ids);
+        ck_free(q->branch_rrs);
+    //end
     ck_free(q);
     q = n;
 
@@ -1261,7 +1436,7 @@ static inline u8 has_new_bits(u8* virgin_map) {
 
   u32  i = (MAP_SIZE >> 3);
 
-	//@RD@
+	//@rd@
 	/* Calculate distance of current input to targets */
 	u64* total_distance = (u64*) (trace_bits + MAP_SIZE);
 	u64* total_count = (u64*) (trace_bits + MAP_SIZE + 8);
@@ -1734,7 +1909,7 @@ EXP_ST void setup_shm(void) {
   memset(virgin_tmout, 255, MAP_SIZE);
   memset(virgin_crash, 255, MAP_SIZE);
 
-	//@RD@
+	//@rd@
 	shm_id = shmget(IPC_PRIVATE, MAP_SIZE + 16, IPC_CREAT | IPC_EXCL | 0600);
 	//shm_id = shmget(IPC_PRIVATE, MAP_SIZE, IPC_CREAT | IPC_EXCL | 0600);
 	//end
@@ -1868,7 +2043,7 @@ static void read_testcases(void) {
     if (!access(dfn, F_OK)) passed_det = 1;
     ck_free(dfn);
 
-    add_to_queue(fn, st.st_size, passed_det);
+    add_to_queue(fn, st.st_size, passed_det,1);
 
   }
 
@@ -2660,7 +2835,7 @@ static u8 run_target(char** argv, u32 timeout) {
   /* After this memset, trace_bits[] are effectively volatile, so we
      must prevent any earlier operations from venturing into that
      territory. */
-  //@RD@
+  //@rd@
   memset(trace_bits, 0, MAP_SIZE+16);
   //end
   MEM_BARRIER();
@@ -2979,7 +3154,7 @@ static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,
     cksum = hash32(trace_bits, MAP_SIZE, HASH_CONST);
 
 
-    //@RD@
+    //@rd@
 	/* This is relevant when test cases are added w/out save_if_interesting */
 	if (q->distance <= 0) {
 		/* This calculates cur_distance */
@@ -3557,7 +3732,7 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
   if (fault == crash_mode) {
 
     /* @RB@ in shadow mode, don't increment hit bits*/
-    if (!shadow_mode) increment_hit_bits();	 //所有执行过的测试用例的轨迹都会记录
+    if (!shadow_mode) increment_hit_bits();	 //所有执行过的测试用例的轨迹都会记录,即使是重复的
 
     /* Keep only if there are new bits in the map, add to queue for
        future fuzzing, etc. */
@@ -3581,7 +3756,7 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
 
     /* @RB@ in shadow mode, don't actuallly add to queue */
     if (!shadow_mode) { 
-      add_to_queue(fn, len, 0);
+      add_to_queue(fn, len, 0,0);
 
       if (hnb == 2) {
         queue_top->has_new_cov = 1;
@@ -4096,7 +4271,7 @@ static void maybe_delete_out_dir(void) {
 
     /* Let's see how much work is at stake. */
 
-    if (!in_place_resume && last_update - start_time > OUTPUT_GRACE * 60) {
+    if (!in_place_resume && last_update - start_time > OUTPUT_GRACE * 60 && start_time<last_update) {
 
       SAYF("\n" cLRD "[-] " cRST
            "The job output directory already exists and contains the results of more\n"
@@ -7312,7 +7487,7 @@ havoc_stage:
    
             if (clone_to == 0xffffffff) break; // this shouldn't happen, probably...
 
-            new_buf = ck_alloc_nozero(temp_len + clone_len);
+            new_buf = ck_alloc_nozero(temp_len + clone_len); //这里有问题
             new_branch_mask = alloc_branch_mask(temp_len + clone_len + 1);
 
             /* Head */

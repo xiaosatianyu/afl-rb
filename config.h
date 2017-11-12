@@ -347,4 +347,7 @@
 
 // #define IGNORE_FINDS
 
+//@rd@
+#define NUM_BRANCH_FOR_SEED_RARITY 10
+
 #endif /* ! _HAVE_CONFIG_H */
