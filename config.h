@@ -349,5 +349,7 @@
 
 //@rd@
 #define NUM_BRANCH_FOR_SEED_RARITY 10
+#define MIN_RATE_IN_MAX_MIN  15
+#define MIN_RATE_NUM_IN_ALL  50
 
 #endif /* ! _HAVE_CONFIG_H */

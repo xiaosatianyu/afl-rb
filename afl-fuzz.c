@@ -304,7 +304,7 @@ static u8* (*post_handler)(u8* buf, u32* len);
 
 static u32 vanilla_afl = 1000;      /* @RB@ How many executions to conduct   //执行vanilla_afl次测试之后再进行调度吧,在common_fuzz_stuff每次减一
                                          in vanilla AFL mode               */ //这个变量表示执行原来AFL的次数,如果为0 ,就执行rare branch fuzzing
-static u32 MAX_RARE_BRANCHES = 256;  //rare branch的最大数量?
+static u32 MAX_RARE_BRANCHES = 256;  //  rare branch的最大数量?
 static int rare_branch_exp = 4;        /* @RB@ less than 2^rare_branch_exp is rare*/  // 这个默认是4, 即第一次认为执行次数小于2^4的基本块为rare branch
 
 static int * blacklist;  //黑名单,用来排除一些的吧?
@@ -321,8 +321,8 @@ static u8 run_with_shadow = 0;
 
 static u8 use_branch_mask = 1;
 
-static int prev_cycle_wo_new = 0;  //这个何用?
-static int cycle_wo_new = 0;  //
+static int prev_cycle_wo_new = 0;  //0 表示发现了新路径; 1 表示没有发现新路径
+static int cycle_wo_new = 0;  // 0 表示发现了新路径; 1 表示没有发现新路径
 
 static int bootstrap = 0; /* @RB@ */
 static u8 skip_deterministic_bootstrap = 0;
@@ -382,13 +382,11 @@ enum {
 static double cur_distance = -1.0;     /* Distance of executed input       */
 static double max_distance = -1.0;     /* Maximal distance for any input   */
 static double min_distance = -1.0;     /* Minimal distance for any input   */
-static u64 seed_number_with_distance;  /*record the number of the seeds which contain distance data*/
 static int *mut_branch_ids;				/*save some the minimum branch index when in nutation*/
 static u64 *mut_branch_rrs;				/*save the branch rarity of the corresponding index*/
 //end
 
 /* create a new branch mask of the specified size */
-
 static inline u8* alloc_branch_mask(u32 size) {
 
   u8* mem;
@@ -470,9 +468,49 @@ static void minimize_bits(u8* dst, u8* src) {
 
 }
 
+static u8 check_if_enough_data_with_distance(){
+	struct queue_entry *q;
+	u32 data_num_with_dis=0;
+	u32 rate_in_max_min=0;
+	u32 rate_dis_num_in_all=0;
+	//1. 最大值和最小值的差值
+	rate_in_max_min=( max_distance-min_distance)*100/min_distance ;
+
+	q=queue;
+	while(q){
+		if (q->distance > min_distance && q->distance <max_distance)
+			data_num_with_dis++;
+		q=q->next;
+	}
+
+	rate_dis_num_in_all=100*data_num_with_dis/queued_paths;
+
+	if (rate_in_max_min > MIN_RATE_IN_MAX_MIN  && rate_dis_num_in_all > MIN_RATE_NUM_IN_ALL)
+		return 1;
+	return 0;
+}
+
+//将rb_fuzzing 添加到blacklist
+static void add_into_blacklist(){
+	// 如果黑名单太多了
+	if (blacklist_pos >= blacklist_size - 1) {
+		DEBUG1("Increasing size of blacklist from %d to %d\n", blacklist_size, blacklist_size * 2);
+		blacklist_size = 2 * blacklist_size;
+		blacklist = ck_realloc(blacklist, sizeof(int) * blacklist_size);
+		if (!blacklist) {
+			PFATAL("Failed to realloc blacklist");
+		}
+	}
+	blacklist[blacklist_pos++] = rb_fuzzing - 1;
+	blacklist[blacklist_pos] = -1; //最后一个位置写上-1
+	DEBUG1("adding branch %i to blacklist\n", rb_fuzzing - 1);
+
+}
+
+
 //从trace中提取最小的NUM_BRANCH_FOR_SEED_RARITY branch
 //结果保存在q中或者,全局变量中
-static void get_some_branch_rarity_from_trace(u8* trace, u8 seed_flag, struct queue_entry* q){
+static u8 get_some_branch_rarity_from_trace(u8* trace, u8 seed_flag, struct queue_entry* q){
 	// seed_flag 0: meaning use trace_bits
 	// seed_flag 1: meaning use trace_mini
 	/*return the absolute seed-level*/
@@ -485,6 +523,7 @@ static void get_some_branch_rarity_from_trace(u8* trace, u8 seed_flag, struct qu
 	int rarity_min=0;
 	int rarity_max=0;
 	int cur_rarity=0;
+	u8  get_flag=0;
 
 
 	//1. check if trace is 0
@@ -557,6 +596,7 @@ static void get_some_branch_rarity_from_trace(u8* trace, u8 seed_flag, struct qu
 				branch_ids[j] = index ;
 				min_num++;
 				min_num=min_num>upper_num_record ? upper_num_record:min_num;
+				get_flag=1;
 				break;
 			}
 		}
@@ -577,11 +617,14 @@ static void get_some_branch_rarity_from_trace(u8* trace, u8 seed_flag, struct qu
 		mut_branch_rrs=branch_rrs;
 		mut_branch_ids=branch_ids;
 	}
+	return get_flag;
 }
 
 static u64 cal_trace_rarity(u64 *branch_rrs){
 	//自定义的seed 计算方法
 	//这里先采用最小值
+	if (branch_rrs==0)
+		return -1;
 	return branch_rrs[0];
 
 }
@@ -597,13 +640,18 @@ static int get_trace_rarity(struct queue_entry* q,  u8 trace_flag, u8 read_test)
 	if (read_test)	return -1; // readtest阶段不处理
 
 	int trace_rarity=-1;
+	int get_flag=0;
 
 	if (trace_flag){
 		//根据trace_mini,获取数据
-		get_some_branch_rarity_from_trace(q->trace_mini,trace_flag,q);
-		//调用trace_rarity计算方法
-		trace_rarity=cal_trace_rarity(q->branch_rrs);
-		q->trace_rarity_seed=trace_rarity;
+		get_flag=get_some_branch_rarity_from_trace(q->trace_mini,trace_flag,q);
+		if (get_flag){
+			//调用trace_rarity计算方法
+			trace_rarity=cal_trace_rarity(q->branch_rrs);
+			q->trace_rarity_seed=trace_rarity;
+		}
+
+
 	}
 	else{
 		//根据trace,获取数据
@@ -612,6 +660,8 @@ static int get_trace_rarity(struct queue_entry* q,  u8 trace_flag, u8 read_test)
 		trace_rarity=cal_trace_rarity(mut_branch_rrs);
 	}
 
+	if (get_flag==0)
+		return -1;
 	return trace_rarity;
 }
 
@@ -1092,7 +1142,8 @@ static int* get_lowest_hit_branch_ids(){
   int * rare_branch_ids = ck_alloc(sizeof(int) * MAX_RARE_BRANCHES); //rare branch的空列表,有最大数量
   int lowest_hob = INT_MAX; //int类型的最大值 is 2147483647
   int ret_list_size = 0;  //rare branch的长度
-  //从 hit_bits 中选择最小数量的 rare branch
+
+  //从 hit_bits(所有的branch的执行次数) 中选择最小数量的 rare branch
   for (int i = 0; (i < MAP_SIZE) && (ret_list_size < MAX_RARE_BRANCHES - 1); i++){
     // ignore unseen branches. sparse array -> unlikely 
     if (unlikely(hit_bits[i] > 0)){
@@ -1115,10 +1166,9 @@ static int* get_lowest_hit_branch_ids(){
         rare_branch_ids[ret_list_size] = i; //这里记录的rare branch是0到65535排列的
         ret_list_size++;
       }
-
     }
   }
-
+  //提升阈值 重新统计
   if (ret_list_size == 0){
     DEBUG1("Was returning list of size 0\n");
     if (lowest_hob != INT_MAX) {
@@ -1145,13 +1195,13 @@ static int hits_branch(int branch_id){
 // else returns a list of all the rare branches hit
 // by the mini trace bits, in decreasing order of rarity
 static u32 * is_rb_hit_mini(u8* trace_bits_mini){
-  int * rarest_branches = get_lowest_hit_branch_ids(); //从所有轨迹中得到rare brach的一个数组
-  u32 * branch_ids = ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES); //保存对应rare的id(但是加了1,和0区别出来)
+  int * rarest_branches = get_lowest_hit_branch_ids(); //总的rare branch,最后一个值是-1
+  u32 * branch_ids = ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES); //保存对应rare的id(加了1,和0区别出来)
   u32 * branch_cts = ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES); //保存对应rare的执行次数
   int min_hit_index = 0;  //记录现在有多少个记录的rare branch
+
   //判断当前测试用例的轨迹中是否有 rare branch
   for (int i = 0; i < MAP_SIZE ; i ++){
-
       if (unlikely (trace_bits_mini[i >> 3]  & (1 <<(i & 7)) )){
         int cur_index = i; //第i个元组关系被执行了
         int is_rare = contains_id(cur_index, rarest_branches); //判断cur_index是否属于rarest_branches列表
@@ -1275,6 +1325,23 @@ static u32 get_random_insert_posn(u32 map_len, u8* branch_mask, u32 * position_m
   return ret;
 }
 
+/* increment hit bits by 1 for every element of trace_bits that has been hit.
+ effectively counts that one input has hit each element of trace_bits */
+static void increment_hit_bits(){
+  for (int i = 0; i < MAP_SIZE; i++){
+    if ( (trace_bits[i] > 0) && (hit_bits[i] < ULONG_MAX)) //trace_bits是每次的轨迹图,0表示没有执行
+      hit_bits[i]++; //记录执行当前基本块的测试用例数量,而非测试用例的执行次数
+  }
+}
+
+//判断当前测试用例怎么样
+static check_queue_cur(struct queue_entry *q, u32 * min_branch_hits){
+	// 1. 是rare 距离近
+	// 2. 是rare 距离远
+	// 3. 不是rare 距离近   不抛弃
+	// 4.  不是rare 距离远   逐渐抛弃
+
+}
 
 // when resuming re-increment hit bits
 static void init_hit_bits() {
@@ -1311,12 +1378,11 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det,u8 readtest) {
   q->depth        = cur_depth + 1;
   q->passed_det   = passed_det;
 
-  //@rd@
+  //@rd@  //readtest 阶段是没有的
   	q->distance = cur_distance;
   	q->fuzzed_branches = ck_alloc(MAP_SIZE >>3);
 
   	if (cur_distance > 0) {
-  		seed_number_with_distance++;
   		if (max_distance <= 0) {
   			max_distance = cur_distance;
   			min_distance = cur_distance;
@@ -1325,7 +1391,6 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det,u8 readtest) {
   			max_distance = cur_distance;
   		if (cur_distance < min_distance)
   			min_distance = cur_distance;
-
   	}
   	//end
 
@@ -1351,7 +1416,9 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det,u8 readtest) {
 
   last_path_time = get_cur_time();
 
-update_seed_rarity(readtest);
+	update_seed_rarity(readtest);
+
+	check_if_enough_data_with_distance();
 
 }
 
@@ -1368,8 +1435,8 @@ EXP_ST void destroy_queue(void) {
     ck_free(q->trace_mini);
     ck_free(q->fuzzed_branches);
     //@rd@
-        ck_free(q->branch_ids);
-        ck_free(q->branch_rrs);
+    ck_free(q->branch_ids);
+    ck_free(q->branch_rrs);
     //end
     ck_free(q);
     q = n;
@@ -3205,6 +3272,9 @@ static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,
     }
 
   }
+  //@rd@
+  increment_hit_bits();
+  //end
 
   stop_us = get_cur_time_us();
 
@@ -3706,14 +3776,7 @@ static void write_crash_readme(void) {
 }
 
 
-/* increment hit bits by 1 for every element of trace_bits that has been hit.
- effectively counts that one input has hit each element of trace_bits */
-static void increment_hit_bits(){
-  for (int i = 0; i < MAP_SIZE; i++){
-    if ( (trace_bits[i] > 0) && (hit_bits[i] < ULONG_MAX)) //trace_bits是每次的轨迹图,0表示没有执行
-      hit_bits[i]++; //记录执行当前基本块的测试用例数量,而非测试用例的执行次数
-  }
-}
+
 
 /* Check if the result of an execve() during routine fuzzing is interesting,
    save or queue the input test case for further analysis if so. Returns 1 if
@@ -3756,7 +3819,7 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
 
     /* @RB@ in shadow mode, don't actuallly add to queue */
     if (!shadow_mode) { 
-      add_to_queue(fn, len, 0,0);
+      add_to_queue(fn, len, 0, 0);
 
       if (hnb == 2) {
         queue_top->has_new_cov = 1;
@@ -5688,15 +5751,13 @@ static u8 fuzz_one(char** argv) {
   
   if (!vanilla_afl){
 	// vanilla_afl 为0 进入 准备新的判断策略
-    if (prev_cycle_wo_new && bootstrap){
+    if (prev_cycle_wo_new && bootstrap){  // prev_cycle_wo_new: 0表示有发现,without是false
       vanilla_afl = 1;
       rb_fuzzing = 0;
       if (bootstrap == 2){
         skip_deterministic_bootstrap = 1;
-
       }
     }
-
   }
 
  if (skip_deterministic){
@@ -5713,11 +5774,10 @@ static u8 fuzz_one(char** argv) {
   if (queue_cur->depth > 1) return 1;
 
 #else
-  // @RB@ //第一轮使用
+  // @RB@ //常规afl的筛选策略
   if (vanilla_afl){
 	//如果vanilla_afl为0了,就使用另一种判断了; 这里采用了原有afl的测试用例判断
     if (pending_favored) {
-
       /* If we have any favored, non-fuzzed new arrivals in the queue,
          possibly skip to them at the expense of already-fuzzed or non-favored
          cases. */
@@ -5726,35 +5786,31 @@ static u8 fuzz_one(char** argv) {
           UR(100) < SKIP_TO_NEW_PROB) return 1;
 
     } else if (!dumb_mode && !queue_cur->favored && queued_paths > 10) {
-
       /* Otherwise, still possibly skip non-favored cases, albeit less often.
          The odds of skipping stuff are higher for already-fuzzed inputs and
          lower for never-fuzzed entries. */
-
       if (queue_cycle > 1 && !queue_cur->was_fuzzed) {
-
         if (UR(100) < SKIP_NFAV_NEW_PROB) return 1;
-
       } else {
-
         if (UR(100) < SKIP_NFAV_OLD_PROB) return 1;
-
       }
-
     }
-
   }
 
 #endif /* ^IGNORE_FINDS */
 
-  /* select inputs which hit rare branches */  //什么时候进入 当vanilla_afl为0的时候进入,使用另外一种判断
+  /* select inputs which hit rare branches */
   if (!vanilla_afl) { //如果上一轮有新的发现,这一轮肯定是rb fuzzing
-	  //新的判断策略, rb判断策略
-    skip_deterministic_bootstrap = 0;
-    //判断当前测试用例是否击中了 rare branch (rb), min_branch_hits是总的rare branch列表
+	// rb判断策略
+    skip_deterministic_bootstrap = 0; //由参数设定的
+    //当前测试用例trace中是否有rare branch
     u32 * min_branch_hits = is_rb_hit_mini(queue_cur->trace_mini); //参数是当前测试用例的trace_mini
+    check_queue_cur(queue_cur, min_branch_hits);
+    //这里根据情况情况选择fuzz
+
     if (min_branch_hits == NULL){
       // not a rare hit. don't fuzz.
+    	// 说明这里不是rare path ,还要再判定距离
       return 1;
     } else { 
       int ii;
@@ -6143,7 +6199,7 @@ skip_simple_bitflip:
     eff_cnt++;
   }
 
-  /* Walking byte. */  //把这个阶段提前了
+  /* Walking byte. */  //把这个阶段提前了,用于计算branch-mask
 
   stage_name  = "bitflip 8/8";
   stage_short = "flip8";
@@ -6158,7 +6214,7 @@ skip_simple_bitflip:
     out_buf[stage_cur] ^= 0xFF;
 
     if (common_fuzz_stuff(argv, out_buf, len)) goto abandon_entry;
-    //制作branch_mask
+    //制作branch_mask 正常情况下也能用,全部可以修改
     if (rb_fuzzing && !shadow_mode && use_branch_mask > 0)
       if (hits_branch(rb_fuzzing - 1)){
         branch_mask[stage_cur] = 1; //标记非关键byte,当前byte保证
@@ -6265,19 +6321,21 @@ skip_simple_bitflip:
     // save the original branch mask for after the havoc stage 
     memcpy (orig_branch_mask, branch_mask, len + 1); //保存 brach_mask
   }
-
+  //添加到黑名单
   if (rb_fuzzing && (successful_branch_tries == 0)){
-    if (blacklist_pos >= blacklist_size -1){  //如果有黑名单
-      DEBUG1("Increasing size of blacklist from %d to %d\n", blacklist_size, blacklist_size*2);
-      blacklist_size = 2 * blacklist_size; 
-      blacklist = ck_realloc(blacklist, sizeof(int) * blacklist_size);
-      if (!blacklist){
-        PFATAL("Failed to realloc blacklist");
-      }
-    }
-    blacklist[blacklist_pos++] = rb_fuzzing -1;
-    blacklist[blacklist_pos] = -1;
-    DEBUG1("adding branch %i to blacklist\n", rb_fuzzing-1);
+	  add_into_blacklist();
+	  //转移到这个函数中
+//    if (blacklist_pos >= blacklist_size -1){  //如果有黑名单
+//      DEBUG1("Increasing size of blacklist from %d to %d\n", blacklist_size, blacklist_size*2);
+//      blacklist_size = 2 * blacklist_size;
+//      blacklist = ck_realloc(blacklist, sizeof(int) * blacklist_size);
+//      if (!blacklist){
+//        PFATAL("Failed to realloc blacklist");
+//      }
+//    }
+//    blacklist[blacklist_pos++] = rb_fuzzing -1;
+//    blacklist[blacklist_pos] = -1;
+//    DEBUG1("adding branch %i to blacklist\n", rb_fuzzing-1);
   }
   /* @RB@ reset stats for debugging*/
   DEBUG1("%swhile calibrating, %i of %i tries hit branch %i\n", shadow_prefix, successful_branch_tries, total_branch_tries, rb_fuzzing - 1);
@@ -7847,10 +7905,10 @@ abandon_entry:
   DEBUG1("%shavoc stage: %i new coverage in %i total execs\n", shadow_prefix, queued_discovered-orig_queued_discovered, total_execs-orig_total_execs);
   DEBUG1("%shavoc stage: %i new branches in %i total execs\n", shadow_prefix, queued_with_cov-orig_queued_with_cov, total_execs-orig_total_execs);
   if (shadow_mode) goto re_run;
-  //如果这一轮发现新的路径了, 就重设 一下几个变量  prev_cycle_wo_new 和 cycle_wo_new 什么用?
+  //如果这一轮发现新的路径了
   if (queued_with_cov-orig_queued_with_cov){
     prev_cycle_wo_new = 0;
-    vanilla_afl = 0;
+    vanilla_afl = 0; //发现新路径后,不用传统的afl
     cycle_wo_new = 0;
   }
 
@@ -8985,6 +9043,7 @@ int main(int argc, char** argv) {
 
     switch (opt) {
 
+
       case 'b': /* disable use of branch mask */
         use_branch_mask = 0;
         break;
@@ -9375,6 +9434,10 @@ stop_fuzzing:
   destroy_extras();
   ck_free(target_path);
   ck_free(sync_id);
+
+  //@rd@
+  ck_free(mut_branch_ids);
+  ck_free(mut_branch_rrs);
 
   alloc_report();
 
