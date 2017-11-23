@@ -82,7 +82,9 @@
 /* Maximum multiplier for the above (should be a power of two, beware
    of 32-bit int overflows): */
 
-#define HAVOC_MAX_MULT      16
+//#define HAVOC_MAX_MULT      16
+//rd
+#define HAVOC_MAX_MULT      32
 
 /* Absolute minimum number of havoc cycles (after all adjustments): */
 
@@ -349,7 +351,7 @@
 
 //@rd@
 #define NUM_BRANCH_FOR_SEED_RARITY 10
-#define MIN_RATE_IN_MAX_MIN  15
+#define MIN_RATE_IN_MAX_MIN  20
 #define MIN_RATE_NUM_IN_ALL  50
 
 #endif /* ! _HAVE_CONFIG_H */
