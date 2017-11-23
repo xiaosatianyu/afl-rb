@@ -318,7 +318,7 @@ static int blacklist_pos;
 
 static u32 rb_fuzzing = 0;           /* @RB@ non-zero branch index + 1 if fuzzing is being done with that branch constant*/ //得到 rare branch的 index+1的数值
 //@rd@
-static u32 distance_fuzzing=1;
+static u32 distance_fuzzing=0;   //默认不使用
 //end
 
 static u32 total_branch_tries = 0;  //  每一轮总的导向测试次数
@@ -778,6 +778,10 @@ static u32 cal_power_factor(struct queue_entry * q){
 
 
 static u8 check_if_keep_distance( struct queue_entry * q){
+
+
+	if(q->distance*2 > min_distance+max_distance)
+		return 1;  //对本身距离太大的不用distancefuzzing了
 
 	if (cur_distance > q->distance*1.05)
 		//距离变差,不能改
@@ -1447,72 +1451,6 @@ static void increment_hit_bits(){
   }
 
   cal_branch_level_rarity();
-}
-
-//判断针对当前测试用例,应该分配多少的power
-static int check_queue_cur(struct queue_entry *q, u32 * min_branch_hits){
-	// 设置几个返回级别 4个象限
-	// 1: rb_fuzzing
-	// 2: 常规fuzzing
-	// 3. 抛弃
-
-	u8 rare_flag=0;
-	u8 dis_ful_flag=0;
-	int trace_distance_rate;
-
-	//1.判断rare 属性
-	if (min_branch_hits==NULL)
-		rare_flag=0;
-	else
-		rare_flag=1;
-
-	//2.判断 distance full属性
-	if (check_if_enough_data_with_distance())
-		dis_ful_flag=1;
-	else
-		dis_ful_flag=0;
-
-	//3.得到距离分布
-	if (max_distance!=min_distance){
-		trace_distance_rate= (q->distance-min_distance)/(max_distance-min_distance);
-	}
-	else{
-		trace_distance_rate=1;
-	}
-
-	//4. 基于rare 和 distance full ,根据距离判定
-	if (rare_flag==1 && dis_ful_flag==1)
-		//rare trace, disatnce data充分
-		if (trace_distance_rate<0.6)
-			return 1;
-		else
-			return 3; //这里也不应该这么绝对的,后面再改
-	else{}
-
-	if (rare_flag==1 && dis_ful_flag==0)
-		//rare, disatnce data 不充分
-		return 1;
-	else{}
-
-	if (rare_flag==0 && dis_ful_flag==1)
-		//非rare, 多disatnce
-		if (trace_distance_rate<0.6)
-			return 2;
-		else
-			return 3;
-	else{}
-
-	if (rare_flag==0 && dis_ful_flag==0)
-		//非rare, disatnce data 少
-		return 2;
-	else{}
-
-//	//这里的代码没有用到
-//	int trace_rarity;
-//	// 提取 trace_rarity 和 trace_distance
-//	trace_rarity=get_trace_rarity(q,1,0);
-//
-	return 2;
 }
 
 // when resuming re-increment hit bits
@@ -5919,7 +5857,7 @@ static u8 fuzz_one(char** argv) {
 
   //@rd@
   u8 * distance_mask=0; //
-  u8 * orig_distance_mask = 0; //这个什么用呢?
+  u8 * orig_distance_mask = 0;
   //end
 
   /* RB Vars*/
@@ -5942,57 +5880,29 @@ static u8 fuzz_one(char** argv) {
 //	  qy=qy->next;
 //  }
 
+  //对近距离的测试用例开启distance_fuzzing mutation
+  distance_fuzzing=0;// 默认不开启
+  if (min_distance< max_distance && queue_cur->distance*2 < min_distance+max_distance){
+	  // 使用distance fuzzing
+	  distance_fuzzing=1;
+  }
 
-
-//  //@rd@ var
-//  s8 mutation_flag=-1;
-//  //1.计算出当前trace 是否包含有 rare branch, 有的话给出,没有的话返回null
-//  u32 * min_branch_hits = is_rb_hit_mini(queue_cur->trace_mini); //参数是当前测试用例的trace_mini
-//  //根据,距离,包含rare branch, seed-rarity属性 对测试用例进行评价,然后进行选择
-//  // mutation_flag 1: rb_fuzzing
-//  // mutation_flag 2: 常规fuzzing
-//  // mutation_flag 3. 抛弃
-//  if (vanilla_afl){
-//	  //一开始跑常规afl,vanilla_afl次
-//	  mutation_flag=2;
-//  }
-//  else{
-//	  mutation_flag=check_queue_cur(queue_cur, min_branch_hits);
-//  }
-//  switch(mutation_flag){
-//  case 1:
-//  	  //rb_fuzzing
-//	  vanilla_afl=0;
-//	  DEBUG1("rb_fuzzing: %s\n",queue_cur->fname);
-//  	  break;
-//  case 2:
-//  	  //常规fuzzing
-//	  if (vanilla_afl<100)  //默认的普通afl的次数一定要跑到
-//		  vanilla_afl=1;
-//	  DEBUG1("traditional_fuzzing: %s\n",queue_cur->fname);
-//  	  break;
-//  case 3:
-//  	  //抛弃
-//	  DEBUG1("抛弃了%s\n",queue_cur->fname);
-//	  return 1;
-//  }
-//  //end
-
-  //这里判定用哪种引擎
+  //这里判定用哪种模式
   if (!vanilla_afl){
 	// vanilla_afl 为0 进入 准备新的判断策略
     if (prev_cycle_wo_new && bootstrap){  // prev_cycle_wo_new: 0表示有发现, without是false
-      vanilla_afl = 1;
-      rb_fuzzing = 0;
-      if (bootstrap == 2){
-        skip_deterministic_bootstrap = 1;
-      }
+    	//如果上一轮没有发现新的测试用例,这一轮没有必要用rb_fuzzin
+    	vanilla_afl = 1;
+    	rb_fuzzing = 0;
+    	if (bootstrap == 2){
+    		skip_deterministic_bootstrap = 1;
+    	}
     }
   }
 
  if (skip_deterministic){
-  rb_skip_deterministic = 1;
-  skip_simple_bitflip = 1;
+	 rb_skip_deterministic = 1;
+	 skip_simple_bitflip = 1;
  }
 
 
@@ -6260,10 +6170,11 @@ re_run: // re-run when running in shadow mode  这里只有shadow mode 才会进
 
   //@rd@
   //增加distance_mask
-	if (vanilla_afl || shadow_mode || (use_distance_mask == 0)) {
+	if ( !distance_fuzzing || use_distance_mask == 0 ) {
 		distance_mask = alloc_branch_mask(len + 1); //内容是7 1+2+4,表示都可以修改
 		orig_distance_mask = alloc_branch_mask(len + 1);
-	} else {
+	}
+	else {
 		distance_mask = ck_alloc(len + 1);
 		orig_distance_mask = ck_alloc(len + 1);
 	}
