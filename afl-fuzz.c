@@ -8330,8 +8330,6 @@ retry_splicing:
     split_at = f_diff + UR(l_diff - f_diff);
 
     /* Do the thing. */
-
-
     len = target->len;
     memcpy(new_buf, in_buf, split_at);
     in_buf = new_buf;
@@ -8350,14 +8348,14 @@ retry_splicing:
     //ck_realloc(orig_branch_mask, len + 1);
     memcpy (orig_rarity_mask, rarity_mask, len + 1);
 
-    //重新布置 mask
+    //重新布置 distance_mask
     //@RD@
     new_distance_mask = alloc_branch_mask(len + 1);
     memcpy(new_distance_mask, distance_mask, MIN(split_at, temp_len + 1));
     ck_free(distance_mask);
-    rarity_mask = new_distance_mask;
-    ck_free(orig_rarity_mask);
-    orig_rarity_mask = ck_alloc(len +1);
+    distance_mask = new_distance_mask;
+    ck_free(orig_distance_mask);
+    orig_distance_mask = ck_alloc(len +1);
     //ck_realloc(orig_branch_mask, len + 1);
     memcpy (orig_distance_mask, distance_mask, len + 1);
     //end
