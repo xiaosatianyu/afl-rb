@@ -321,10 +321,15 @@ static u32 rb_fuzzing = 0;           /* @RB@ non-zero branch index + 1 if fuzzin
 static u32 distance_fuzzing=0;   //默认不使用
 //end
 
-static u32 total_branch_tries = 0;  //  每一轮总的导向测试次数
-static u32 successful_branch_tries = 0;  //每一轮 根据rare branch导向变异后,仍然击中rare branch的数据
+static u32 total_rarity_tries = 0;  //  每一轮总的rarity导向测试次数
+static u32 successful_rarity_tries = 0;  //每一轮 根据rare branch导向变异后,仍然击中rare branch的数据
 
-static u8 shadow_mode = 0;           /* @RB@ shadow AFL run -- do not modify  //如果有的话,先跑shadow_mode=1, 再跑shadow_mode=0,作对比
+//@RD@
+static u32 total_distance_tries = 0;  //  每一轮总的distance导向测试次数
+static u32 successful_distance_tries = 0;  //每一轮 根据distance feature导向变异后,仍然保持distance的数据
+//end
+
+static u8 rarity_shadow_mode = 0;           /* @RB@ shadow AFL run -- do not modify  //如果有的话,先跑shadow_mode=1, 再跑shadow_mode=0,作对比
                                         queue or branch hits             */
 static u8 run_with_shadow = 0;
 
@@ -337,7 +342,7 @@ static int prev_cycle_wo_new = 0;  //上一轮, 0 表示发现了新路径; 1 �
 static int cycle_wo_new = 0;   // 本轮, 0 表示发现了新路径; 1 表示没有发现新路径
 
 static int bootstrap = 0; /* @RB@ */
-static u8 skip_deterministic_bootstrap = 0;
+static u8 skip_deterministic_bootstrap = 0; // 表示回到什么程度的AFL, 0 表示不会到AFL
 
 static int trim_for_branch = 0;
 
@@ -397,7 +402,7 @@ static double min_distance = -1.0;     /* Minimal distance for any input   */
 static int *mut_branch_ids;				/*save some the minimum branch index when in nutation*/
 static u64 *mut_branch_rrs;				/*save the branch rarity of the corresponding index*/
 static u64 max_seed_rarity=0;          /*record the max seed rarity*/
-static double max_power_factor=0;
+static double max_power_factor=0;      /*the max power factor*/
 static int data_num_with_dis;      /*meanint the number of inputs with distance in the queue*/
 //end
 
@@ -437,7 +442,7 @@ void tee2(char const *fmt, ...) {
 void fileonly (char const *fmt, ...) { 
     static FILE *f = NULL;
     if (f == NULL) {
-      u8 * fn = alloc_printf("%s/min-branch-fuzzing.log", out_dir);
+      u8 * fn = alloc_printf("%s/RDFUZZING.log", out_dir);
       f= fopen(fn, "w");
       ck_free(fn);
     }
@@ -717,7 +722,7 @@ static u32 cal_power_factor(struct queue_entry * q){
 		return 1;
 	}
 
-	//初始话
+	//0.初始化
 	double distance=-1;
 	int seed_rarity=-1;
 	double power_factor=1;
@@ -3904,7 +3909,7 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
   if (fault == crash_mode) {
 
     /* @RB@ in shadow mode, don't increment hit bits*/
-    if (!shadow_mode) increment_hit_bits();	 //所有执行过的测试用例的轨迹都会记录,即使是重复的
+    if (!rarity_shadow_mode) increment_hit_bits();	 //所有执行过的测试用例的轨迹都会记录,即使是重复的
 
     /* Keep only if there are new bits in the map, add to queue for
        future fuzzing, etc. */
@@ -3927,7 +3932,7 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
 #endif /* ^!SIMPLE_FILES */
 
     /* @RB@ in shadow mode, don't actuallly add to queue */
-    if (!shadow_mode) { 
+    if (!rarity_shadow_mode) { 
       add_to_queue(fn, len, 0, 0);
 
       if (hnb == 2) {
@@ -4777,7 +4782,7 @@ static void show_stats(void) {
 
   sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
           " (%s)",  crash_mode ? cPIN "peruvian were-rabbit" : 
-          cYEL "american fuzzy lop-rb", use_banner);
+          cYEL "american fuzzy lop-rdfuzz", use_banner);
 
   SAYF("\n%s\n\n", tmp);
 
@@ -5408,18 +5413,28 @@ EXP_ST u8 common_fuzz_stuff(char** argv, u8* out_buf, u32 len) {
      return 1;
 
   }
-
+  //统计rarity_mask的有效性
   if (rb_fuzzing){
-    total_branch_tries++; //总的导向测试次数
+    total_rarity_tries++; //总的导向测试次数
     if (hits_branch(rb_fuzzing - 1)){
-      successful_branch_tries++; //每次根据rare branch导向进行的一次测试,successful_branch_tries的次数就加1
+      successful_rarity_tries++; //每次根据rare branch导向进行的一次测试,successful_branch_tries的次数就加1
     } else {
     }
   }
 
-  /* This handles FAULT_ERROR for us: */
 
+  /* This handles FAULT_ERROR for us: */
   queued_discovered += save_if_interesting(argv, out_buf, len, fault);
+
+  //@RD@
+  //统计disance_mask的有效性, 要在 save_if_interesting 后面, 更新了距离
+   if(distance_fuzzing){
+ 	  total_distance_tries++;
+ 	  if( check_if_keep_distance(queue_cur)){
+ 		  successful_distance_tries++;
+ 	  }
+   }
+   //end
 
   if (!(stage_cur % stats_update_freq) || stage_cur + 1 == stage_max)
     show_stats();
@@ -5862,9 +5877,9 @@ static u8 fuzz_one(char** argv) {
 
   /* RB Vars*/
   u8 * rarity_mask = 0; //一个指针,指向测试用例长度的空间
-  u8 * orig_rarity_mask = 0; //这个什么用呢?
-  u8 rb_skip_deterministic = 0;
-  u8 skip_simple_bitflip = 0;
+  u8 * orig_rarity_mask = 0;
+  u8 rb_skip_deterministic = 0; //产生mask,然后再跳过确定性变异
+  u8 skip_simple_bitflip = 0;  //跳过第一部分的bitflip阶段,后面接着计算masks
   u8 * virgin_virgin_bits = 0;
   char * shadow_prefix = "";
   u32 * position_map = NULL;  //用于记录当前测试用例中的有效字段的位置吧?
@@ -5881,17 +5896,22 @@ static u8 fuzz_one(char** argv) {
 //  }
 
   //对近距离的测试用例开启distance_fuzzing mutation
+  //有一定的记录不开启distance_fuzzing
   distance_fuzzing=0;// 默认不开启
-  if (min_distance< max_distance && queue_cur->distance*2 < min_distance+max_distance){
-	  // 使用distance fuzzing
-	  distance_fuzzing=1;
+  if (min_distance< max_distance  && use_distance_mask){
+	  if (100*(queue_cur->distance-min_distance)/(max_distance-min_distance)<40){
+		  //相对距离小于0.4的测试用例启用distance_fuzzing
+		  // 使用distance fuzzing
+		  distance_fuzzing=1;// 只有这里1个地方开启,其他地方都是关闭
+		  //用相对距离的模拟退火算法,关闭 distance_fuzzing
+	  }
   }
 
-  //这里判定用哪种模式
+  //这里判定是否启动rb_fuzzing模式
   if (!vanilla_afl){
 	// vanilla_afl 为0 进入 准备新的判断策略
     if (prev_cycle_wo_new && bootstrap){  // prev_cycle_wo_new: 0表示有发现, without是false
-    	//如果上一轮没有发现新的测试用例,这一轮没有必要用rb_fuzzin
+    	//如果上一大轮没有发现新的测试用例,这一轮就用普通的AFl fuzzing,
     	vanilla_afl = 1;
     	rb_fuzzing = 0;
     	if (bootstrap == 2){
@@ -5900,6 +5920,7 @@ static u8 fuzz_one(char** argv) {
     }
   }
 
+ // 判断越过的变异阶段
  if (skip_deterministic){
 	 rb_skip_deterministic = 1;
 	 skip_simple_bitflip = 1;
@@ -5907,16 +5928,13 @@ static u8 fuzz_one(char** argv) {
 
 
 #ifdef IGNORE_FINDS
-
   /* In IGNORE_FINDS mode, skip any entries that weren't in the
      initial data set. */
-
   if (queue_cur-> depth > 1) return 1;
-
 #else
   // @RB@ //常规afl的筛选策略
   if (vanilla_afl){
-	//如果vanilla_afl为0了,就使用另一种判断了; 这里采用了原有afl的测试用例判断
+	//这里采用了原有afl的测试用例判断
     if (pending_favored) {
       /* If we have any favored, non-fuzzed new arrivals in the queue,
          possibly skip to them at the expense of already-fuzzed or non-favored
@@ -5935,53 +5953,58 @@ static u8 fuzz_one(char** argv) {
       }
     }
   }
-
 #endif /* ^IGNORE_FINDS */
 
+  //在rb-fuzzing中选择 rare branch
   /* select inputs which hit rare branches */
   if (!vanilla_afl) { //如果上一轮有新的发现,这一轮肯定尝试 rb_fuzzing
-	// rb判断策略
-    skip_deterministic_bootstrap = 0; //由参数设定的
+    skip_deterministic_bootstrap = 0;
     //当前测试用例trace中是否有rare branch
     u32 * min_branch_hits = is_rb_hit_mini(queue_cur->trace_mini); //参数是当前测试用例的trace_mini
-
     if (min_branch_hits == NULL){
       // not a rare hit. don't fuzz.
       return 1;  //这里 return 1 之后会跳到下一个测试用例, 这里是为了用rb的方式跑一轮, 也ok的
     }
     else {
-      int ii;
-      for (ii = 0; min_branch_hits[ii] != 0; ii++){
-        rb_fuzzing = min_branch_hits[ii]; //得到rare branch的id,注意是加了1
-        if (rb_fuzzing){//转换一种表达方式
-          int byte_offset = (rb_fuzzing - 1) >> 3; //
-          int bit_offset = (rb_fuzzing - 1) & 7;   //
+		 //@RD@
+		 DEBUG1("\n");
+		 //end
+    	int ii;
+    	//选择一个rare branch
+		for (ii = 0; min_branch_hits[ii] != 0; ii++) {
+			rb_fuzzing = min_branch_hits[ii]; //得到rare branch的id,注意是加了1
 
-          // skip deterministic if we have fuzzed this min branch //判断这个当前测试用例是否 fuzz过了这个rare branch
-          if (queue_cur->fuzzed_branches[byte_offset] & (1 << (bit_offset))){
-            // let's try the next one
-            continue;
-          } else { //如果这个rare branch没有被fuzz过
-            for (int k = 0; k < MAP_SIZE >> 3; k ++){
-              if (queue_cur->fuzzed_branches[k] != 0){
-                DEBUG1("We fuzzed this guy already\n");  //测试用过这个测试用例别的 rare branch
-                skip_simple_bitflip = 1; // 就可以跳过 simple_bitflip 这个测试用例的其他rb被fuzz过,就可以跳过simple_bitflip了
-                break;
-              }
-            }
-            // indicate we have fuzzed this branch id
-            queue_cur->fuzzed_branches[byte_offset] |= (1 << (bit_offset));  //记录当前测试用例fuzz过的基本块
-            // chose minimum
-            break;
-          }
-        } else break; 
-      }
+			if (rb_fuzzing) { //转换一种表达方式
+				int byte_offset = (rb_fuzzing - 1) >> 3; //
+				int bit_offset = (rb_fuzzing - 1) & 7;   //
+
+				// skip deterministic if we have fuzzed this min branch //判断这个当前测试用例是否 fuzz过了这个rare branch
+				if (queue_cur->fuzzed_branches[byte_offset]	& (1 << (bit_offset))) {
+					// let's try the next one
+					continue;
+				} else {
+					//如果测试用例有其他的rare branch 被fuzz过
+					for (int k = 0; k < MAP_SIZE >> 3; k++) {
+						if (queue_cur->fuzzed_branches[k] != 0) {
+							DEBUG1("We fuzzed this guy already\n"); //测试用过这个测试用例别的 rare branch
+							skip_simple_bitflip = 1; // 就可以跳过 simple_bitflip 这个测试用例的其他rb被fuzz过,就可以跳过simple_bitflip了
+							break;
+						}
+					}
+					// indicate we have fuzzed this branch id
+					queue_cur->fuzzed_branches[byte_offset] |= (1<< (bit_offset));  //记录当前测试用例fuzz过的基本块
+					// chose minimum
+					break;
+				}
+			} else
+				break;
+		}
+
       // if we got to the end of min_branch_hits... 如果到最后了,表示当前测试用例的所有rb都测试过了
-      // it's either because we fuzzed all the things in min_branch_hits
-      // or because there was nothing. If there was nothing, 
-      // min_branch_hits[0] should be 0 
+      // it's either because we fuzzed all the things in min_branch_hits or because there was nothing. If there was nothing,
+      // min_branch_hits[0] should be 0  表示最后一个了
       if (!rb_fuzzing || (min_branch_hits[ii] == 0)){
-        rb_fuzzing = min_branch_hits[0];
+        rb_fuzzing = min_branch_hits[0]; //都fuzz过了,就选第一个rare ? 为什么
         if (!rb_fuzzing) {
           return 1;
         }
@@ -5992,7 +6015,7 @@ static u8 fuzz_one(char** argv) {
       ck_free(min_branch_hits);
 
     if (!skip_simple_bitflip){
-      cycle_wo_new = 0; //表示本轮发现新的路径了??? 没明白
+      cycle_wo_new = 0; //说明是第一次跑这个测试用例,好像这里无所谓
     }
     //rarest_branches = get_lowest_hit_branch_ids();
     //DEBUG1("---\ncurrent rarest branches: ");
@@ -6001,7 +6024,7 @@ static u8 fuzz_one(char** argv) {
     //}
     //DEBUG1("\n");
 
-    DEBUG1("Trying to fuzz input %s: \n", queue_cur->fname);
+    DEBUG1("Trying to rb_fuzz input %s: \n", queue_cur->fname);
     //for (int k = 0; k < len; k++) DEBUG1("%c", out_buf[k]);
     //DEBUG1("\n");
 
@@ -6011,7 +6034,6 @@ static u8 fuzz_one(char** argv) {
    
     }
   }
-
   // 筛选测试用例结束
 
   if (not_on_tty) {
@@ -6131,21 +6153,21 @@ static u8 fuzz_one(char** argv) {
     /* restoring these because the changes to the test case 
      were not permanent */  //恢复trim_rb之前的数据,因为trim-rb只获取暂时性的数据, 在calculate_score时使用
     queue_cur->bitmap_size = orig_bitmap_size;
-    queue_cur->exec_us = orig_exec_us;   //这里为什么要恢复呢?
+    queue_cur->exec_us = orig_exec_us;   //要恢复,因为根据rb的这属性的特质是估计的,不是对所有都准确的
   }
 
 
   /* @RB@ */
-re_run: // re-run when running in shadow mode  这里只有shadow mode 才会进去
+re_run_wo_rarity: // re-run when running in shadow mode  这里只有shadow mode 才会进去
   if (rb_fuzzing){
-    if (run_with_shadow && !shadow_mode){
-      shadow_mode = 1;
+    if (run_with_shadow && !rarity_shadow_mode){
+      rarity_shadow_mode = 1;
       virgin_virgin_bits = ck_alloc(MAP_SIZE);
       memcpy(virgin_virgin_bits, virgin_bits, MAP_SIZE);
       shadow_prefix = "PLAIN AFL: ";
-    } else if (run_with_shadow && shadow_mode) {
+    } else if (run_with_shadow && rarity_shadow_mode) {
       // reset all stats. nothing is added to queue.  
-      shadow_mode = 0;
+      rarity_shadow_mode = 0;
       queued_discovered = orig_queued_discovered;
       queued_with_cov = orig_queued_with_cov;
       perf_score = orig_perf; //NOTE: this line is not stricly necessary. 
@@ -6157,16 +6179,15 @@ re_run: // re-run when running in shadow mode  这里只有shadow mode 才会进
 
   }
 
-  // @RB@: allocate the branch mask
-
-  if (vanilla_afl || shadow_mode || (use_rarity_mask == 0)){
+  // @RB@: allocate the rarity mask
+  if (vanilla_afl || rarity_shadow_mode || (use_rarity_mask == 0)){
       rarity_mask = alloc_branch_mask(len + 1); //内容是7 1+2+4,表示都可以修改
       orig_rarity_mask = alloc_branch_mask(len + 1);
-  } else {
-      rarity_mask = ck_alloc(len + 1);
-      orig_rarity_mask = ck_alloc(len + 1);
   }
-
+  else{
+	  rarity_mask = ck_alloc(len + 1);
+	  orig_rarity_mask = ck_alloc(len + 1);
+	  }
 
   //@rd@
   //增加distance_mask
@@ -6180,30 +6201,33 @@ re_run: // re-run when running in shadow mode  这里只有shadow mode 才会进
 	}
 
 
-
-  // this will be used to store the valid modifiable positions
-  // in the havoc stage. malloc'ing once to reduce overhead. 
+  // this will be used to store the valid modifiable positions in the havoc stage. malloc'ing once to reduce overhead.
   position_map = ck_alloc(sizeof(u32) * (len+1));
 
   /* Skip right away if -d is given, if we have done deterministic fuzzing on
-     this entry ourselves (was_fuzzed), or if it has gone through deterministic
+   *  this entry ourselves (was_fuzzed), or if it has gone through deterministic
      testing in earlier, resumed runs (passed_det). */
+  if ( (!rb_fuzzing && skip_deterministic)  || skip_deterministic_bootstrap
+		  || (vanilla_afl && queue_cur->was_fuzzed )  || (vanilla_afl && queue_cur->passed_det)){
+	  if(distance_fuzzing){
+		//要计算masks
+		rb_skip_deterministic=1;
+		skip_simple_bitflip=1;
+	  }
+	  else 	{
+		goto havoc_stage;
+	  }
+  }
 
-  if ((!rb_fuzzing && skip_deterministic) || skip_deterministic_bootstrap || (vanilla_afl && queue_cur->was_fuzzed ) || (vanilla_afl && queue_cur->passed_det))
-    goto havoc_stage;
-
-  /* Skip deterministic fuzzing if exec path checksum puts this out of scope
-     for this master instance. */
-
+  /* Skip deterministic fuzzing if exec path checksum puts this out of scope  for this master instance. */
   if (master_max && (queue_cur->exec_cksum % master_max) != master_id - 1) {
-    if (!rb_fuzzing || shadow_mode) goto havoc_stage;
-    // skip all but branch mask creation if we're RB fuzzing
+    if ( (!rb_fuzzing && !distance_fuzzing) || rarity_shadow_mode) goto havoc_stage;
+    // skip all but masks creation
     else {
       rb_skip_deterministic=1; 
       skip_simple_bitflip=1;
     }
   }  
-
 
   /* Skip simple bitflip if we've done it already */
   if (skip_simple_bitflip) {
@@ -6319,15 +6343,20 @@ re_run: // re-run when running in shadow mode  这里只有shadow mode 才会进
   stage_finds[STAGE_FLIP1]  += new_hit_cnt - orig_hit_cnt;
   stage_cycles[STAGE_FLIP1] += stage_max;
 
-  /* @RB@ */  // total_branch_tries次测试中,有successful_branch_tries次成功击中了 rb_fuzzing - 1 branch
-  DEBUG1("%swhile bitflipping, %i of %i tries hit branch %i\n", shadow_prefix, successful_branch_tries, total_branch_tries, rb_fuzzing - 1);
-
+  /* @RB@ */
+  if(rb_fuzzing)
+	  DEBUG1("%swhile bitflipping, %i of %i tries hit branch %i\n", shadow_prefix, successful_rarity_tries, total_rarity_tries, rb_fuzzing - 1);
+  //@RD@
+  if(distance_fuzzing)
+	  DEBUG1("%swhile bitflipping, %i of %i using distance\n", shadow_prefix, successful_distance_tries, total_distance_tries);
 
 skip_simple_bitflip:
-	//为什么要清0 为了后面的使用,这里相当于是一个插入型的代码
-  successful_branch_tries = 0;
-  total_branch_tries = 0;
-
+  //统计rarity_mask的有效性
+  successful_rarity_tries = 0;
+  total_rarity_tries = 0;
+  //统计 distance_mask的有效性
+  successful_distance_tries=0;
+  total_distance_tries=0;
 
   /* Effector map setup. These macros calculate:
 
@@ -6370,7 +6399,7 @@ skip_simple_bitflip:
     if (common_fuzz_stuff(argv, out_buf, len)) goto abandon_entry;
 
     //制作branch_mask 正常情况下也能用,全部可以修改
-    if (rb_fuzzing && !shadow_mode && use_rarity_mask > 0)
+    if (rb_fuzzing && !rarity_shadow_mode && use_rarity_mask > 0)
       if (hits_branch(rb_fuzzing - 1)){
         rarity_mask[stage_cur] = 1; //标记非关键byte,当前byte保证
       }
@@ -6436,13 +6465,13 @@ skip_simple_bitflip:
 
 
 
-
-  //接下来 计算 rarity_mask
+  //接下来 计算 rarity_mask的delet 和insert
   /* @RB@ also figure out add/delete map in this stage */
-  if (rb_fuzzing && !shadow_mode && use_rarity_mask > 0){
+  if ( (rb_fuzzing || distance_fuzzing) && !rarity_shadow_mode && (use_rarity_mask||use_distance_mask) > 0){
     // buffer to clobber with new things
     u8* tmp_buf = ck_alloc(len+1); //临时的测试用例内容
-    //识别可以删除一个字节的branch mask
+
+    //1.识别可以删除一个字节的branch mask
     // check if we can delete this byte
     stage_short = "rbrem8";
     for (stage_cur = 0; stage_cur < len; stage_cur++) {
@@ -6456,13 +6485,24 @@ skip_simple_bitflip:
 
       if (common_fuzz_stuff(argv, tmp_buf, len - 1)) goto abandon_entry;
 
-      /* if even with this byte deleted we hit the branch, can delete here */
-      if (hits_branch(rb_fuzzing - 1)){
-        rarity_mask[stage_cur] += 2;
+      //计算rarity_mask
+      if(rb_fuzzing){
+    	  /* if even with this byte deleted we hit the branch, can delete here */
+			if (hits_branch(rb_fuzzing - 1)){
+			  rarity_mask[stage_cur] += 2;
+			}
       }
+      //计算distance-mask
+      if(distance_fuzzing){
+    	  if (check_if_keep_distance(queue_cur)) {
+    		  distance_mask[stage_cur] += 2;
+    	  }
+      }
+
+
     }
 
-    //识别可以添加一个字节位置
+    //2.识别可以添加一个字节位置
     // check if we can add at this byte
     stage_short = "rbadd8";
     for (stage_cur = 0; stage_cur <= len; stage_cur++) {
@@ -6476,9 +6516,18 @@ skip_simple_bitflip:
 
       if (common_fuzz_stuff(argv, tmp_buf, len + 1)) goto abandon_entry;
 
-      /* if adding before still hit branch, can add */
-      if (hits_branch(rb_fuzzing - 1)){
-        rarity_mask[stage_cur] += 4; //识别出可以添加的位置
+      //计算rarity_mask
+      if(rb_fuzzing){
+    	  /* if adding before still hit branch, can add */
+    	  if (hits_branch(rb_fuzzing - 1)){
+    		  rarity_mask[stage_cur] += 4; //识别出可以添加的位置
+    	  }
+      }
+      //计算distance_mask
+      if(distance_fuzzing){
+    	  if (check_if_keep_distance(queue_cur)) {
+    		  distance_mask[stage_cur] += 4;
+    	  }
       }
 
     }
@@ -6487,8 +6536,8 @@ skip_simple_bitflip:
     memcpy (orig_rarity_mask, rarity_mask, len + 1); //保存 brach_mask
   }
 
-  //添加到黑名单
-  if (rb_fuzzing && (successful_branch_tries == 0)){
+  //添加 某个 rarity 到黑名单
+  if (rb_fuzzing && (successful_rarity_tries == 0)){
 	  add_into_blacklist();
 	  //转移到这个函数中
 //    if (blacklist_pos >= blacklist_size -1){  //如果有黑名单
@@ -6503,75 +6552,29 @@ skip_simple_bitflip:
 //    blacklist[blacklist_pos] = -1;
 //    DEBUG1("adding branch %i to blacklist\n", rb_fuzzing-1);
   }
+
   /* @RB@ reset stats for debugging*/
-  DEBUG1("%swhile calibrating, %i of %i tries hit branch %i\n", shadow_prefix, successful_branch_tries, total_branch_tries, rb_fuzzing - 1);
+  if(rb_fuzzing)
+	  DEBUG1("%swhile calibrating, %i of %i tries hit branch %i\n", shadow_prefix, successful_rarity_tries, total_rarity_tries, rb_fuzzing - 1);
+  successful_rarity_tries = 0;
+  total_rarity_tries = 0;
+
   DEBUG1("%scalib stage: %i new coverage in %i total execs\n", shadow_prefix, queued_discovered-orig_queued_discovered, total_execs-orig_total_execs);
   DEBUG1("%scalib stage: %i new branches in %i total execs\n", shadow_prefix, queued_with_cov-orig_queued_with_cov, total_execs-orig_total_execs);
-  successful_branch_tries = 0;
-  total_branch_tries = 0;
+
+  //@RD@
+  if(distance_fuzzing)
+	  DEBUG1("%swhile calibrating, %i of %i tries using distance_feature\n", shadow_prefix, successful_distance_tries, total_distance_tries);
+  successful_distance_tries=0;
+  total_distance_tries=0;
+  //end
 
   // @RB@ TODO: skip to havoc (or dictionary add?) if can't modify any bytes 
-
-
-
-  //接下来 计算 distance_mask
-	/* @rd@ also figure out add/delete map in this stage */
-	if (distance_fuzzing && use_distance_mask > 0) {
-		// buffer to clobber with new things
-		u8* tmp_buf = ck_alloc(len + 1); //临时的测试用例内容
-		//识别可以删除一个字节的branch mask
-		// check if we can delete this byte
-		stage_short = "RDrem8";
-		for (stage_cur = 0; stage_cur < len; stage_cur++) {
-			/* delete current byte */
-			stage_cur_byte = stage_cur;
-
-			/* head */
-			memcpy(tmp_buf, out_buf, stage_cur);
-			/* tail */
-			memcpy(tmp_buf + stage_cur, out_buf + 1 + stage_cur,
-					len - stage_cur - 1);      //中间删除了一个字节
-
-			if (common_fuzz_stuff(argv, tmp_buf, len - 1))
-				goto abandon_entry;
-
-			if (check_if_keep_distance(queue_cur)) {
-				distance_mask[stage_cur] += 2;
-			}
-
-		}
-
-		//识别可以添加一个字节位置
-		// check if we can add at this byte
-		stage_short = "rbadd8";
-		for (stage_cur = 0; stage_cur <= len; stage_cur++) {
-			/* add random byte */
-			stage_cur_byte = stage_cur;
-			/* head */
-			memcpy(tmp_buf, out_buf, stage_cur);
-			tmp_buf[stage_cur] = UR(256); //插入一个随机数
-			/* tail */
-			memcpy(tmp_buf + stage_cur + 1, out_buf + stage_cur,
-					len - stage_cur);
-
-			if (common_fuzz_stuff(argv, tmp_buf, len + 1))
-				goto abandon_entry;
-
-			if (check_if_keep_distance(queue_cur)) {
-				distance_mask[stage_cur] += 4;
-			}
-		}
-		ck_free(tmp_buf);
-		// save the original distance mask for after the havoc stage
-		memcpy(orig_distance_mask, distance_mask, len + 1); //保存 distance_mask
-	}
-
-
+  //计算完mask之后跳过确定性变异
   if (rb_skip_deterministic) goto havoc_stage;
 
 
   /* Two walking bits. */  //2个比特
-
   stage_name  = "bitflip 2/1";
   stage_short = "flip2";
   stage_max   = (len << 3) - 1;
@@ -7624,12 +7627,20 @@ skip_extras:
   if (!queue_cur->passed_det) mark_as_det_done(queue_cur);
 
   /* @RB@ reset stats for debugging*/
-  DEBUG1("%sIn deterministic stage, %i of %i tries hit branch %i\n", shadow_prefix, successful_branch_tries, total_branch_tries, rb_fuzzing - 1);
+  if(rb_fuzzing)
+	  DEBUG1("%sIn deterministic stage, %i of %i tries hit branch %i\n", shadow_prefix, successful_rarity_tries, total_rarity_tries, rb_fuzzing - 1);
+  successful_rarity_tries = 0;
+  total_rarity_tries = 0;
+
   DEBUG1("%sdet stage: %i new coverage in %i total execs\n", shadow_prefix, queued_discovered-orig_queued_discovered, total_execs-orig_total_execs);
   DEBUG1("%sdet stage: %i new branches in %i total execs\n", shadow_prefix, queued_with_cov-orig_queued_with_cov, total_execs-orig_total_execs);
 
-  successful_branch_tries = 0;
-  total_branch_tries = 0;
+  //@RD@
+  if(distance_fuzzing)
+	  DEBUG1("%sIn deterministic stage, %i of %i tries using distance\n", shadow_prefix, successful_distance_tries, total_distance_tries);
+  successful_distance_tries=0;
+  total_distance_tries=0;
+  //end
 
   /****************
    * RANDOM HAVOC *
@@ -8133,25 +8144,19 @@ havoc_stage:
     //end
 
 
-
     /* If we're finding new stuff, let's run for a bit longer, limits
        permitting. */
 
     if (queued_paths != havoc_queued) {
-
       if (perf_score <= HAVOC_MAX_MULT * 100) {
         stage_max  *= 2;
         perf_score *= 2;
       }
-
       havoc_queued = queued_paths;
-
     }
-
-  }
+  }//end havoc变异循环
 
   new_hit_cnt = queued_paths + unique_crashes;
-
   if (!splice_cycle) {
     stage_finds[STAGE_HAVOC]  += new_hit_cnt - orig_hit_cnt;
     stage_cycles[STAGE_HAVOC] += stage_max;
@@ -8172,7 +8177,6 @@ havoc_stage:
      code to mutate that blob. */
 
 retry_splicing:
-
   if (use_splicing && splice_cycle++ < SPLICE_CYCLES &&
       queued_paths > 1 && queue_cur->len > 1) {
 
@@ -8297,21 +8301,32 @@ abandon_entry:
   }
 
   /* @RB@ reset stats for debugging*/
-  DEBUG1("%sIn havoc stage, %i of %i tries hit branch %i\n", shadow_prefix, successful_branch_tries, total_branch_tries, rb_fuzzing - 1);
-  successful_branch_tries = 0;
-  total_branch_tries = 0;
+  if(rb_fuzzing)
+	  DEBUG1("%sIn havoc stage, %i of %i tries hit branch %i\n", shadow_prefix, successful_rarity_tries, total_rarity_tries, rb_fuzzing - 1);
+  successful_rarity_tries = 0;
+  total_rarity_tries = 0;
+
+  //@RD@
+  if(distance_fuzzing)
+	  DEBUG1("%sIn havoc stage, %i of %i tries using distance_feature\n", shadow_prefix, successful_distance_tries, total_distance_tries);
+  successful_distance_tries=0;
+  total_distance_tries=0;
+  //end
+
   DEBUG1("%shavoc stage: %i new coverage in %i total execs\n", shadow_prefix, queued_discovered-orig_queued_discovered, total_execs-orig_total_execs);
   DEBUG1("%shavoc stage: %i new branches in %i total execs\n", shadow_prefix, queued_with_cov-orig_queued_with_cov, total_execs-orig_total_execs);
-  if (shadow_mode) goto re_run; //如果是shadow模式,就返回过去重新跑一遍
-  //如果这一轮发现新的路径了
+
+  if (rarity_shadow_mode) goto re_run_wo_rarity; //如果是shadow模式,就返回过去重新跑一遍, 用来统计没有用rarity_mask时的效果
+
+  //表示这个大轮 发现新的路径了
   if (queued_with_cov-orig_queued_with_cov){
     prev_cycle_wo_new = 0;
-    vanilla_afl = 0; //发现新路径后,不用传统的afl
+    vanilla_afl = 0; //发现新路径后,下一轮立刻调用 rb_fuzzing
     cycle_wo_new = 0;
   }
 
+  //恢复
   munmap(orig_in, queue_cur->len); //解除内存映射,解除orig_in变量的内存映射
-
   if (in_buf != orig_in) ck_free(in_buf);
   //释放内存
   ck_free(position_map);
@@ -8324,8 +8339,6 @@ abandon_entry:
   ck_free(distance_mask);
   ck_free(orig_distance_mask);
   //end
-
-
   return ret_val;
 
 #undef FLIP_BIT
@@ -9756,9 +9769,9 @@ int main(int argc, char** argv) {
         // only bootstrap for 1 cycle
         prev_cycle_wo_new = 0;
       } else {
-        prev_cycle_wo_new = cycle_wo_new;
+        prev_cycle_wo_new = cycle_wo_new;//prev_cycle_wo_new 只有可能在这里赋值为1,表示上一个大轮完全没有发现测试用例
       }
-      cycle_wo_new = 1;
+      cycle_wo_new = 1; //表示这个大循环还没有发现新的测试用例
 
       queue_cycle++;
       current_entry     = 0;
