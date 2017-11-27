@@ -30,6 +30,10 @@
 
 #define DEBUG1 fileonly
 
+//@RD@
+#define DEBUG2 fileonly_output
+//end
+
 #include "config.h"
 #include "types.h"
 #include "debug.h"
@@ -326,16 +330,52 @@ static u32 successful_rarity_tries = 0;  //每一轮 根据rare branch导向变�
 
 //@RD@
 static u32 total_distance_tries = 0;  //  每一轮总的distance导向测试次数
-static u32 successful_distance_tries = 0;  //每一轮 根据distance feature导向变异后,仍然保持distance的数据
+static u32 successful_distance_tries = 0;  //每一轮 根据distance导向变异后,仍然保持distance
 //end
 
-static u8 rarity_shadow_mode = 0;           /* @RB@ shadow AFL run -- do not modify  //如果有的话,先跑shadow_mode=1, 再跑shadow_mode=0,作对比
-                                        queue or branch hits             */
-static u8 run_with_shadow = 0;
+//@RD@
+//表示阶段
+static u8 stage_state; //用来表示当前的state是det还是havoc
+enum {
+  /* 00 */ DET,   //表示det阶段
+  /* 01 */ HAVOC   //表示havoc阶段
+};
 
-static u8 use_rarity_mask = 1;
+//用于统计整个测试过程的比例, 使用了mask机制
+static u32 g_total_rarity_tries_det=0;
+static u32 g_total_rarity_tries_havoc=0;
+
+static u32 g_successful_rarity_tries_det = 0;
+static u32 g_successful_rarity_tries_havoc = 0;
+
+static u32 g_total_distance_tries_det=0;
+static u32 g_total_distance_tries_havoc=0;
+
+static u32 g_successful_distance_tries_det = 0;
+static u32 g_successful_distance_tries_havoc = 0;
+
+//用于统计不使用mask条件下的
+static u32 g_total_rarity_shadow_det=0;
+static u32 g_total_rarity_shadow_havoc=0;
+
+static u32 g_successful_rarity_shadow_det = 0;
+static u32 g_successful_rarity_shadow_havoc = 0;
+
+static u32 g_total_distance_shadow_det=0;
+static u32 g_total_distance_shadow_havoc=0;
+
+static u32 g_successful_distance_shadow_det = 0;
+static u32 g_successful_distance_shadow_havoc = 0;
+//end
+
+
+static u8 shadow_mode = 0;           /* @RB@ shadow AFL run -- do not modify */ //表示当前选择的模式, 0 表示关闭; 1表示开启
+static u8 run_with_shadow = 0;   // 1 表示选择使用shadow模式
+
+
+static u8 use_rarity_mask = 1; //默认开启的,由参数指定关闭
 //@rd@
-static u8 use_distance_mask = 1;
+static u8 use_distance_mask = 0;
 //end
 
 static int prev_cycle_wo_new = 0;  //上一轮, 0 表示发现了新路径; 1 表示没有发现新路径
@@ -453,6 +493,20 @@ void fileonly (char const *fmt, ...) {
     fflush(f);
 }
 
+void fileonly_output (char const *fmt, ...) {
+    static FILE *f = NULL;
+    if (f == NULL) {
+      u8 * fn = alloc_printf("%s/ouput.log", out_dir);
+      f= fopen(fn, "w");
+      ck_free(fn);
+    }
+    va_list ap;
+    va_start(ap, fmt);
+    vfprintf(f, fmt, ap);
+    va_end(ap);
+    fflush(f);
+}
+
 
 /* at the end of execution, dump the number of inputs hitting
    each branch to log */
@@ -489,6 +543,7 @@ static void minimize_bits(u8* dst, u8* src) {
 }
 
 //将hit-bits中的值转换成power格式,用于计算branch-level rarity
+//最好到用到了再算
 static void cal_branch_level_rarity(){
 	int index;
 	u64 hit_times=0;
@@ -539,19 +594,22 @@ static void add_into_blacklist(){
 
 //从trace中提取最小的NUM_BRANCH_FOR_SEED_RARITY branch
 //结果保存在q中或者,全局变量中
+//计算当前轨迹包含有的rare branches, 保存到queue_entry结构下 这里的计算量太大
+//只在计算power的时候调用一次
+//找出当前路径执行次数最少的基本块
 static u8 get_some_branch_rarity_from_trace(u8* trace, u8 seed_flag, struct queue_entry* q){
 	// seed_flag 0: meaning use trace_bits
 	// seed_flag 1: meaning use trace_mini
 	/*return the absolute seed-level*/
 
-	//0.  将执行次数,转换成branch-level-rarity
+	//0. 将执行次数,转换成branch-level-rarity
 	cal_branch_level_rarity();
 
 	//these data defautl are 0
 	int upper_num_record=NUM_BRANCH_FOR_SEED_RARITY;
-	int * branch_ids = ck_alloc(sizeof(u32) * upper_num_record);  //记录MAX_NUM_MIN_BRANCHES个最小branch的index
-	u64 * branch_rrs = ck_alloc(sizeof(u64) * upper_num_record);  //记录MAX_NUM_MIN_BRANCHES个最小branch的rarity
-	int   min_num = 0;  //记录branch_ids中有几个branch了
+	int * branch_ids = ck_alloc(sizeof(u32) * upper_num_record);  //记录 MAX_NUM_MIN_BRANCHES 个最小branch的index
+	u64 * branch_rrs = ck_alloc(sizeof(u64) * upper_num_record);  //记录 MAX_NUM_MIN_BRANCHES 个最小branch的rarity
+	int min_num = 0;  //记录branch_ids中有几个branch了
 	int rarity_min=0;
 	int rarity_max=0;
 	int cur_rarity=0;
@@ -566,7 +624,7 @@ static u8 get_some_branch_rarity_from_trace(u8* trace, u8 seed_flag, struct queu
 		minimize_bits(trace, trace_bits);
 	}
 
-	//2. go through the trace
+	//2. go through the trace, 选出最小的rare_branch
 	int index;
 	for (index = 0; index < MAP_SIZE; index++){
 		if (seed_flag){
@@ -658,11 +716,22 @@ static u64 cal_trace_rarity(u64 *branch_rrs){
 	//这里先采用最小值
 	if (branch_rrs==0)
 		return -1;
-	return branch_rrs[0];
+	return branch_rrs[0]; //最小值
 
 }
 
+
+////更新一个测试用例的seed_rarity
+//static void update_one_seed_rarity(struct queue_entry * q){
+//	int trace_new_rarity=-1;
+//	trace_new_rarity=get_trace_rarity(q,1,0);
+//	if (trace_new_rarity!=-1)
+//		q->trace_rarity_seed=trace_new_rarity;
+//
+//}
+
 // 计算当前路径的rarity属性
+//会自动更新trace_rarity
 static int get_trace_rarity(struct queue_entry* q,  u8 trace_flag, u8 readtest_flag){
 	// trace_flag 0: meaning the mutation trace, use the mut_branch_ids and mut_branch_rrs
 	// trace_flag 1: meaning the seed trace (但是不适用于 read testcase)
@@ -701,21 +770,24 @@ static int get_trace_rarity(struct queue_entry* q,  u8 trace_flag, u8 readtest_f
 	return trace_rarity;
 }
 
-//// 更新一下所有测试用例的seed-rarity
-static void update_seed_rarity(u8 readtest_flag){
-	struct queue_entry *q;
-	int trace_new_rarity=-1;
-	q=queue;
-	while(q){
-		trace_new_rarity=get_trace_rarity(q,1,readtest_flag);
-		if (trace_new_rarity!=-1)
-			q->trace_rarity_seed=trace_new_rarity;
-		q=q->next;
-	}
-}
+////// 更新一下所有测试用例的seed-rarity
+//static void update_all_seed_rarity(u8 readtest_flag){
+//	struct queue_entry *q;
+//	int trace_new_rarity=-1;
+//	q=queue;
+//	while(q){
+//		trace_new_rarity=get_trace_rarity(q,1,readtest_flag);
+//		if (trace_new_rarity!=-1)
+//			q->trace_rarity_seed=trace_new_rarity;
+//		q=q->next;
+//	}
+//}
+
+
 
 //返回对当前trace计算的一个银子
 static u32 cal_power_factor(struct queue_entry * q){
+
 	// 表示 这是第一次,使用traditional AFL Fuzzing
 	if (vanilla_afl>100){
 		// indicate this is the first tradition AFL fuzzing
@@ -795,6 +867,152 @@ static u8 check_if_keep_distance( struct queue_entry * q){
 
 }
 
+//记录total 和succe的区别
+static void increment_total_succ(u8 shadow_mode, u8 total_succ_mode, u8 rarity_distance_mask_mode){
+	//shadow_mode: 1表示在shadow模式下,0 表示没在shadow模式下
+	//total_succ_mode: 1表示记录到total下, 0 表示记录到success模式下
+	//mask_mode: 1表示记录到rarity mask下, 0 表示记录到distance mask下
+	if (rarity_distance_mask_mode){	//rarity mask
+		if (shadow_mode){//shadow mode
+			if (total_succ_mode) {	//total
+				if (stage_state==DET)
+					g_total_rarity_shadow_det++;
+				if(stage_state==HAVOC)
+					g_total_rarity_shadow_havoc++;
+			}
+			else{ //succe
+				if (stage_state==DET)
+					g_successful_rarity_shadow_det++;
+				if(stage_state==HAVOC)
+					g_successful_rarity_shadow_havoc++;
+			}
+		}
+		else{//非shadow mode
+			if (total_succ_mode) {	//total
+				if (stage_state==DET)
+					g_total_rarity_tries_det++;
+				if(stage_state==HAVOC)
+					g_total_rarity_tries_havoc++;
+			}
+			else{ //succe
+				if (stage_state==DET)
+					g_successful_rarity_tries_det++;
+				if(stage_state==HAVOC)
+					g_successful_rarity_tries_havoc++;
+			}
+		}
+	}
+	else{//distance mask
+		if (shadow_mode){//shadow mode
+			if (total_succ_mode) {	//total
+				if (stage_state==DET)
+					g_total_distance_shadow_det++;
+				if(stage_state==HAVOC)
+					g_total_distance_shadow_havoc++;
+			}
+			else{ //succe
+				if (stage_state==DET)
+					g_successful_distance_shadow_det++;
+				if(stage_state==HAVOC)
+					g_successful_distance_shadow_havoc++;
+			}
+		}
+		else{//非shadow mode
+			if (total_succ_mode) {	//total
+				if (stage_state==DET)
+					g_total_distance_tries_det++;
+				if(stage_state==HAVOC)
+					g_total_distance_tries_havoc++;
+			}
+			else{ //succe
+				if (stage_state==DET)
+					g_successful_distance_tries_det++;
+				if(stage_state==HAVOC)
+					g_successful_distance_tries_havoc++;
+			}
+		}
+	}
+}
+
+//输出测试mask有效性的信息
+
+static void output_rarity_mask_information(){
+	u32 rate=0;
+
+	if (g_total_rarity_shadow_det==0)
+		return;
+
+	// 1. shadow 下的det
+	if (g_total_rarity_shadow_det!=0)
+		rate=100*g_successful_rarity_shadow_det/g_total_rarity_shadow_det;
+	else
+		rate=0;
+	DEBUG2("shadow det:, %i in %i, the rate is %i\n", g_successful_rarity_shadow_det, g_total_rarity_shadow_det, rate);
+
+	// 2. shadow下的havoc
+	if (g_total_rarity_shadow_havoc!=0)
+		rate=100*g_successful_rarity_shadow_havoc/g_total_rarity_shadow_havoc;
+	else
+		rate=0;
+	DEBUG2("shadow havoc:, %i in %i, the rate is %i\n", g_successful_rarity_shadow_havoc, g_total_rarity_shadow_havoc, rate);
+
+	// 3. 非shadow下的det
+	if (g_total_rarity_tries_det!=0)
+		rate=100*g_successful_rarity_tries_det/g_total_rarity_tries_det;
+	else
+		rate=0;
+	DEBUG2("mask det: %i in %i, the rate is %i\n", g_successful_rarity_tries_det, g_total_rarity_tries_det, rate);
+
+	// 4. 非shadow下的havoc
+	if (g_total_rarity_tries_havoc!=0)
+		rate=100*g_successful_rarity_tries_havoc/g_total_rarity_tries_havoc;
+	else
+		rate=0;
+	DEBUG2("mask havoc: %i in %i, the rate is %i\n", g_successful_rarity_tries_havoc, g_total_rarity_tries_havoc, rate);
+}
+
+static void output_distance_mask_information(){
+	u32 rate=0;
+
+	if (g_total_distance_shadow_det==0)
+		return;
+
+	// 1. shadow 下的det
+	if (g_total_distance_shadow_det!=0)
+		rate=100*g_successful_distance_shadow_det/g_total_distance_shadow_det;
+	else
+		rate=0;
+	DEBUG2("shadow det: %i in %i, the rate is %i\n", g_successful_distance_shadow_det, g_total_distance_shadow_det, rate);
+
+	// 2. shadow下的havoc
+	if (g_total_distance_shadow_havoc!=0)
+		rate=100*g_successful_distance_shadow_havoc/g_total_distance_shadow_havoc;
+	else
+		rate=0;
+	DEBUG2("shadow havoc: %i in %i, the rate is %i\n", g_successful_distance_shadow_havoc, g_total_distance_shadow_havoc, rate);
+
+	// 3. 非shadow下的det
+	if (g_total_distance_tries_det!=0)
+		rate=100*g_successful_distance_tries_det/g_total_distance_tries_det;
+	else
+		rate=0;
+	DEBUG2("mask det: %i in %i, the rate is %i\n", g_successful_distance_tries_det, g_total_distance_tries_det, rate);
+
+	// 4. 非shadow下的havoc
+	if (g_total_distance_tries_havoc!=0)
+		rate=100*g_successful_distance_tries_havoc/g_total_distance_tries_havoc;
+	else
+		rate=0;
+	DEBUG2("mask havoc: %i in %i, the rate is %i\n", g_successful_distance_tries_havoc, g_total_distance_tries_havoc, rate);
+}
+//输出信息 mask的有效信息
+static void output_mask_information(){
+	if (use_rarity_mask)
+		output_rarity_mask_information();
+	if (use_distance_mask)
+		output_distance_mask_information();
+	DEBUG2("\n");
+}
 
 
 /* Get unix time in milliseconds */
@@ -1254,6 +1472,7 @@ static int contains_id(int branch_id, int* branch_ids){
 }
 
 /* you'll have to free the return pointer. */
+//找出当前所被执行过的基本块中,执行次数最少的基本块,用来定义为rare branch
 static int* get_lowest_hit_branch_ids(){
   int * rare_branch_ids = ck_alloc(sizeof(int) * MAX_RARE_BRANCHES); //rare branch的空列表,有最大数量
   int lowest_hob = INT_MAX; //int类型的最大值 is 2147483647
@@ -1454,8 +1673,8 @@ static void increment_hit_bits(){
     if ( (trace_bits[i] > 0) && (hit_bits[i] < ULONG_MAX)) //trace_bits是每次的轨迹图,0表示没有执行
       hit_bits[i]++; //记录执行当前基本块的测试用例数量,而非测试用例的执行次数
   }
-
-  cal_branch_level_rarity();
+  //不用每次都算吧?
+  //cal_branch_level_rarity();
 }
 
 // when resuming re-increment hit bits
@@ -1531,9 +1750,7 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det,u8 readtest_flag) {
   }
 
   last_path_time = get_cur_time();
-  //@rd@
-  update_seed_rarity(readtest_flag); //好像也不用这么着急吧
-  //end
+
 }
 
 
@@ -3909,7 +4126,7 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
   if (fault == crash_mode) {
 
     /* @RB@ in shadow mode, don't increment hit bits*/
-    if (!rarity_shadow_mode) increment_hit_bits();	 //所有执行过的测试用例的轨迹都会记录,即使是重复的
+    if (!shadow_mode) increment_hit_bits();	 //所有执行过的测试用例的轨迹都会记录,即使是重复的 shadow模式下不记录
 
     /* Keep only if there are new bits in the map, add to queue for
        future fuzzing, etc. */
@@ -3931,8 +4148,8 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
 
 #endif /* ^!SIMPLE_FILES */
 
-    /* @RB@ in shadow mode, don't actuallly add to queue */
-    if (!rarity_shadow_mode) { 
+    /* @RB@ in shadow mode, don't actuallly add to queue */  //shadow模式只是再跑一遍,用来表示对比,不记录结果
+    if (!shadow_mode) { 
       add_to_queue(fn, len, 0, 0);
 
       if (hnb == 2) {
@@ -4780,10 +4997,14 @@ static void show_stats(void) {
   banner_pad = (80 - banner_len) / 2;
   memset(tmp, ' ', banner_pad);
 
-  sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
+  if (rb_fuzzing)
+	  sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
           " (%s)",  crash_mode ? cPIN "peruvian were-rabbit" : 
-          cYEL "american fuzzy lop-rdfuzz", use_banner);
-
+          cYEL "american fuzzy lop-rdfuzz-rb", use_banner);
+  else
+	  sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
+	            " (%s)",  crash_mode ? cPIN "peruvian were-rabbit" :
+	            cYEL "american fuzzy lop-rdfuzz-AFL", use_banner);
   SAYF("\n%s\n\n", tmp);
 
   /* "Handy" shortcuts for drawing boxes... */
@@ -5407,21 +5628,29 @@ EXP_ST u8 common_fuzz_stuff(char** argv, u8* out_buf, u32 len) {
      to be abandoned. */
 
   if (skip_requested) {
-
      skip_requested = 0;
      cur_skipped_paths++;
      return 1;
-
   }
-  //统计rarity_mask的有效性
+
+  //统计rarity_mask的有效性  只有rb_fuzzing中才有rare branches
   if (rb_fuzzing){
-    total_rarity_tries++; //总的导向测试次数
-    if (hits_branch(rb_fuzzing - 1)){
-      successful_rarity_tries++; //每次根据rare branch导向进行的一次测试,successful_branch_tries的次数就加1
-    } else {
-    }
-  }
+    total_rarity_tries++; //本轮总的导向测试次数
+    //区分有没有在shadow 模式下
+    if (shadow_mode)
+    	increment_total_succ(1,1,1);
+    else
+    	increment_total_succ(0,1,1);
 
+    if (hits_branch(rb_fuzzing - 1)){
+    	successful_rarity_tries++; //每次根据rare branch导向进行的一次测试,successful_branch_tries的次数就加1
+		//区分有没有在shadow 模式下
+		if (shadow_mode)
+			increment_total_succ(1,0,1);
+		else
+			increment_total_succ(0,0,1);
+		}
+  }
 
   /* This handles FAULT_ERROR for us: */
   queued_discovered += save_if_interesting(argv, out_buf, len, fault);
@@ -5429,12 +5658,28 @@ EXP_ST u8 common_fuzz_stuff(char** argv, u8* out_buf, u32 len) {
   //@RD@
   //统计disance_mask的有效性, 要在 save_if_interesting 后面, 更新了距离
    if(distance_fuzzing){
- 	  total_distance_tries++;
- 	  if( check_if_keep_distance(queue_cur)){
+	   total_distance_tries++;
+	   //区分有没有在shadow 模式下
+	   if (shadow_mode)
+		   //g_total_distance_shadow_det++;
+		   increment_total_succ(1,1,0);
+	   else
+		   //g_total_distance_tries_det++;
+		   increment_total_succ(0,1,0);
+
+	   if( check_if_keep_distance(queue_cur)){
  		  successful_distance_tries++;
+ 		 //区分有没有在shadow 模式下
+		 if (shadow_mode)
+			 //g_successful_distance_shadow_det++;
+			 increment_total_succ(1,0,0);
+		 else
+		 	 //g_successful_distance_tries_det++;
+			 increment_total_succ(0,0,0);
  	  }
    }
    //end
+
 
   if (!(stage_cur % stats_update_freq) || stage_cur + 1 == stage_max)
     show_stats();
@@ -5871,7 +6116,7 @@ static u8 fuzz_one(char** argv) {
   u32 a_len = 0;
 
   //@rd@
-  u8 * distance_mask=0; //
+  u8 * distance_mask=0;
   u8 * orig_distance_mask = 0;
   //end
 
@@ -5887,7 +6132,9 @@ static u8 fuzz_one(char** argv) {
   u32 orig_queued_discovered = queued_discovered;
   u32 orig_total_execs = total_execs;
   
-  //for try
+  stage_state=DET;
+
+  //for try 计算每个测试用例的power因子
 //  struct queue_entry *qy;
 //  qy=queue;
 //  while(qy){
@@ -6158,29 +6405,55 @@ static u8 fuzz_one(char** argv) {
 
 
   /* @RB@ */
-re_run_wo_rarity: // re-run when running in shadow mode  这里只有shadow mode 才会进去
-  if (rb_fuzzing){
-    if (run_with_shadow && !rarity_shadow_mode){
-      rarity_shadow_mode = 1;
-      virgin_virgin_bits = ck_alloc(MAP_SIZE);
-      memcpy(virgin_virgin_bits, virgin_bits, MAP_SIZE);
-      shadow_prefix = "PLAIN AFL: ";
-    } else if (run_with_shadow && rarity_shadow_mode) {
-      // reset all stats. nothing is added to queue.  
-      rarity_shadow_mode = 0;
-      queued_discovered = orig_queued_discovered;
-      queued_with_cov = orig_queued_with_cov;
-      perf_score = orig_perf; //NOTE: this line is not stricly necessary. 
-      total_execs = orig_total_execs;
-      memcpy(virgin_bits, virgin_virgin_bits, MAP_SIZE);
-      ck_free(virgin_virgin_bits);
-      shadow_prefix = "RB: ";
+//re_run: // re-run when running in shadow mode  这里只有shadow mode 才会进去
+//  if (rb_fuzzing){
+//    if (run_with_rarity_shadow && !rarity_shadow_mode){ //开启
+//      rarity_shadow_mode = 1; //只有这里会开启 shadow模式
+//      virgin_bits_rarity_shadow = ck_alloc(MAP_SIZE);
+//      memcpy(virgin_bits_rarity_shadow, virgin_bits, MAP_SIZE);
+//      shadow_prefix = "PLAIN AFL: ";
+//    } else if (run_with_rarity_shadow && rarity_shadow_mode) {
+//      // reset all stats. nothing is added to queue.
+//      rarity_shadow_mode = 0;
+//      queued_discovered = orig_queued_discovered;
+//      queued_with_cov = orig_queued_with_cov;
+//      perf_score = orig_perf; //NOTE: this line is not stricly necessary.
+//      total_execs = orig_total_execs;
+//      memcpy(virgin_bits, virgin_bits_rarity_shadow, MAP_SIZE);
+//      ck_free(virgin_bits_rarity_shadow);
+//      shadow_prefix = "RB: ";
+//    }
+//  }
+
+//@RD@
+re_run: // re-run when running in shadow mode  这里只有shadow mode 才会进去
+    if (rb_fuzzing || distance_fuzzing){
+      if (run_with_shadow && !shadow_mode){
+        shadow_mode = 1; //只有这里会开启 shadow模式, 针对同一个测试用例,先跑shadow模式
+        virgin_virgin_bits = ck_alloc(MAP_SIZE);
+        memcpy(virgin_virgin_bits, virgin_bits, MAP_SIZE);
+        shadow_prefix = "shadow AFL: ";
+      } else if (run_with_shadow && shadow_mode) {
+        // reset all stats. nothing is added to queue.
+        shadow_mode = 0;
+        queued_discovered = orig_queued_discovered;
+        queued_with_cov = orig_queued_with_cov;
+        perf_score = orig_perf; //NOTE: this line is not stricly necessary.
+        total_execs = orig_total_execs;
+        memcpy(virgin_bits, virgin_virgin_bits, MAP_SIZE);
+        ck_free(virgin_virgin_bits);
+
+        if (rb_fuzzing && distance_fuzzing)
+        	shadow_prefix = "both mask: ";
+        if (rb_fuzzing && !distance_fuzzing)
+            shadow_prefix = "rarity mask: ";
+        if (!rb_fuzzing && distance_fuzzing)
+            shadow_prefix = "distance mask: ";
+      }
     }
 
-  }
-
   // @RB@: allocate the rarity mask
-  if (vanilla_afl || rarity_shadow_mode || (use_rarity_mask == 0)){
+  if (vanilla_afl || shadow_mode || (use_rarity_mask == 0)){
       rarity_mask = alloc_branch_mask(len + 1); //内容是7 1+2+4,表示都可以修改
       orig_rarity_mask = alloc_branch_mask(len + 1);
   }
@@ -6191,7 +6464,7 @@ re_run_wo_rarity: // re-run when running in shadow mode  这里只有shadow mode
 
   //@rd@
   //增加distance_mask
-	if ( !distance_fuzzing || use_distance_mask == 0 ) {
+	if ( !distance_fuzzing || shadow_mode ||use_distance_mask == 0 ) {
 		distance_mask = alloc_branch_mask(len + 1); //内容是7 1+2+4,表示都可以修改
 		orig_distance_mask = alloc_branch_mask(len + 1);
 	}
@@ -6221,7 +6494,7 @@ re_run_wo_rarity: // re-run when running in shadow mode  这里只有shadow mode
 
   /* Skip deterministic fuzzing if exec path checksum puts this out of scope  for this master instance. */
   if (master_max && (queue_cur->exec_cksum % master_max) != master_id - 1) {
-    if ( (!rb_fuzzing && !distance_fuzzing) || rarity_shadow_mode) goto havoc_stage;
+    if ( (!rb_fuzzing && !distance_fuzzing) || shadow_mode) goto havoc_stage;
     // skip all but masks creation
     else {
       rb_skip_deterministic=1; 
@@ -6399,7 +6672,7 @@ skip_simple_bitflip:
     if (common_fuzz_stuff(argv, out_buf, len)) goto abandon_entry;
 
     //制作branch_mask 正常情况下也能用,全部可以修改
-    if (rb_fuzzing && !rarity_shadow_mode && use_rarity_mask > 0)
+    if (rb_fuzzing && !shadow_mode && use_rarity_mask > 0)
       if (hits_branch(rb_fuzzing - 1)){
         rarity_mask[stage_cur] = 1; //标记非关键byte,当前byte保证
       }
@@ -6467,7 +6740,7 @@ skip_simple_bitflip:
 
   //接下来 计算 rarity_mask的delet 和insert
   /* @RB@ also figure out add/delete map in this stage */
-  if ( (rb_fuzzing || distance_fuzzing) && !rarity_shadow_mode && (use_rarity_mask||use_distance_mask) > 0){
+  if ( (rb_fuzzing || distance_fuzzing) && !shadow_mode && (use_rarity_mask||use_distance_mask) > 0){
     // buffer to clobber with new things
     u8* tmp_buf = ck_alloc(len+1); //临时的测试用例内容
 
@@ -7649,6 +7922,7 @@ skip_extras:
 havoc_stage:
    
   // @RB@ TODO: don't havoc if there's nothing to modify :()
+  stage_state=HAVOC; //表示当前在havoc阶段
 
   stage_cur_byte = -1;
 
@@ -8146,7 +8420,7 @@ havoc_stage:
 
     /* If we're finding new stuff, let's run for a bit longer, limits
        permitting. */
-
+    //这里会改变分值, 如果发现新的就翻倍
     if (queued_paths != havoc_queued) {
       if (perf_score <= HAVOC_MAX_MULT * 100) {
         stage_max  *= 2;
@@ -8316,7 +8590,7 @@ abandon_entry:
   DEBUG1("%shavoc stage: %i new coverage in %i total execs\n", shadow_prefix, queued_discovered-orig_queued_discovered, total_execs-orig_total_execs);
   DEBUG1("%shavoc stage: %i new branches in %i total execs\n", shadow_prefix, queued_with_cov-orig_queued_with_cov, total_execs-orig_total_execs);
 
-  if (rarity_shadow_mode) goto re_run_wo_rarity; //如果是shadow模式,就返回过去重新跑一遍, 用来统计没有用rarity_mask时的效果
+  if (shadow_mode) goto re_run; //如果是shadow模式,就返回过去重新跑一遍, 用来统计没有用rarity_mask时的效果
 
   //表示这个大轮 发现新的路径了
   if (queued_with_cov-orig_queued_with_cov){
@@ -8339,6 +8613,10 @@ abandon_entry:
   ck_free(distance_mask);
   ck_free(orig_distance_mask);
   //end
+
+  //输出信息
+  output_mask_information();
+
   return ret_val;
 
 #undef FLIP_BIT
@@ -9455,14 +9733,22 @@ int main(int argc, char** argv) {
   gettimeofday(&tv, &tz);
   srandom(tv.tv_sec ^ tv.tv_usec ^ getpid()); //设定种子,从而 random可以得到随机数
 
-  while ((opt = getopt(argc, argv, "+bq:rsi:o:f:m:t:T:dnCB:S:M:x:Q")) > 0)
+  while ((opt = getopt(argc, argv, "+bq:rski:o:f:m:t:T:dnCB:S:M:x:Q")) > 0)
 
     switch (opt) {
 
 
-      case 'b': /* disable use of branch mask */
+      case 'b': /* 关闭distance mask */
         use_rarity_mask = 0;
         break;
+
+      case 'k': /* 开启distance mask*/
+    	  use_distance_mask=1;
+    	  break;
+
+      case 's': /* run with rarity shadow mode */
+		 run_with_shadow = 1;
+		 break;
 
       case 'q': /* bootstrap queueing after being stuck */
         bootstrap = strtol(optarg, 0, 10);
@@ -9472,9 +9758,9 @@ int main(int argc, char** argv) {
         trim_for_branch = 1;
         break;
 
-      case 's': /* run with shadow mode */
-        run_with_shadow = 1;
-        break;
+
+
+
 
       case 'i': /* input dir */
 
@@ -9845,6 +10131,10 @@ stop_fuzzing:
            "    (For info on resuming, see %s/README.)\n", doc_path);
 
   }
+  //@RD@
+  //计算rarity mask的有效性
+  output_mask_information();
+  //end
 
   dump_to_logs();
   fclose(plot_file);
