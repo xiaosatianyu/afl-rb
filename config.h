@@ -351,8 +351,8 @@
 
 //@rd@
 #define NUM_BRANCH_FOR_SEED_RARITY 10
-#define MIN_RATE_IN_MAX_MIN  20
-#define MIN_RATE_NUM_IN_ALL  50
+#define MIN_RATE_IN_MAX_MIN   20   //20
+#define MIN_RATE_NUM_IN_ALL   50
 #define THRESHOLD_FOR_DISTANCE_FUZZING 40
 
 #endif /* ! _HAVE_CONFIG_H */
