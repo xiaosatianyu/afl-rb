@@ -50,6 +50,12 @@ u32 waitFreeSlaves(const char* freeDir)
                 freeIDs.insert(id);
                 freeID = id;
                 cout << "Name is " << id << std::endl;
+
+                char full_name[256];
+                memset(full_name, 0, 256);
+                sprintf(full_name, "%s/%s", freeDir, dirp->d_name);
+                unlink(full_name);
+
                 break;
             }
         }
