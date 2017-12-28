@@ -32,6 +32,10 @@ CFLAGS     += -Wall -D_FORTIFY_SOURCE=2 -g -Wno-pointer-sign \
 	      -DAFL_PATH=\"$(HELPER_PATH)\" -DDOC_PATH=\"$(DOC_PATH)\" \
 	      -DBIN_PATH=\"$(BIN_PATH)\"
 
+CXXFLAGS   ?= -O0 -funroll-loops
+CXXFLAGS   += -std=c++11 -Wall -g -ggdb
+
+
 ifneq "$(filter Linux GNU%,$(shell uname))" ""
   LDFLAGS  += -ldl
 endif
@@ -72,7 +76,7 @@ afl-as: afl-as.c afl-as.h $(COMM_HDR) | test_x86
 
 afl-fuzz: afl-fuzz.c afl-para.o $(COMM_HDR) | test_x86
 	$(CC) $(CFLAGS) -c $@.c -o $@.o $(LDFLAGS)
-	$(CXX) $(CFLAGS) -o $@ $@.o afl-para.o $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) -o $@ $@.o afl-para.o $(LDFLAGS)
 
 afl-showmap: afl-showmap.c $(COMM_HDR) | test_x86
 	$(CC) $(CFLAGS) $@.c -o $@ $(LDFLAGS)
@@ -86,8 +90,8 @@ afl-analyze: afl-analyze.c $(COMM_HDR) | test_x86
 afl-gotcpu: afl-gotcpu.c $(COMM_HDR) | test_x86
 	$(CC) $(CFLAGS) $@.c -o $@ $(LDFLAGS)
 
-afl-para:afl-para.cpp $(COMM_HDR)
-	$(CXX) $(CFLAGS) -c -g -ggdb -O0 $@.cpp -o $@
+afl-para:afl-para.cpp afl-para.h $(COMM_HDR)
+	$(CXX) $(CFLAGS) -c  $@.cpp -o $@
 
 ifndef AFL_NO_X86
 
