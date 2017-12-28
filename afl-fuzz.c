@@ -9311,6 +9311,11 @@ else{
 		//3. 保存执行结果本地 hit_bits
 		handoverResults(hit_bits,out_dir);
 
+        //4. 通知Master节点
+        u8* free_dir;
+		free_dir=alloc_printf("%s/../free", out_dir);
+        notifyMaster4Free(free_dir, atoi(sync_id));
+
   }
 
 } //end slave
