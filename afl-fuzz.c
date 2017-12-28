@@ -378,8 +378,8 @@ enum{
 	/* 00 */ Master,
 	/* 01 */ Slave
 };
-
 u8 id;   //默认是master
+//end for para
 
 
 /* create a new branch mask of the specified size */
@@ -7811,7 +7811,7 @@ static void pullSeeds(char** argv, u8* source_id) {
     if (sd_ent->d_name[0] == '.' || !strcmp(sync_id, sd_ent->d_name)) continue;
 
     //只同步master
-    if ( strcmp(sd_ent->d_name[0],source_id  ) ) continue;
+    if (! strcmp(sd_ent->d_name , source_id ) ) continue;
 
     /* Skip anything that doesn't have a queue/ subdirectory. */
 
@@ -8874,6 +8874,32 @@ static void save_cmdline(u32 argc, char** argv) {
 
 }
 
+//function for para
+static void save_rare_branch(){
+
+
+	int * rarest_branches = get_lowest_hit_branch_ids(); //从所有轨迹中得到rare brach的一个数组
+	int i;
+
+	//先清空原来的task
+	u8 * fn;
+	fn = alloc_printf("%s/task", out_dir);
+	if (delete_files(fn, NULL)) PFATAL("Unable to remove '%s'", fn);
+	if (mkdir(fn, 0700)) PFATAL("Unable to create '%s'", fn);
+	ck_free(fn);
+
+
+	//保存到mater下的task目录
+	for (i=0; i<MAX_RARE_BRANCHES && rarest_branches[i]!=-1; i++ ){
+		u8* fn = alloc_printf("%s/task/%d", out_dir, rarest_branches[i]);
+		unlink(fn); /* Ignore errors */
+		out_fd = open(fn, O_RDWR | O_CREAT | O_EXCL, 0600);
+		if (out_fd < 0) PFATAL("Unable to create '%s'", fn);
+		ck_free(fn);
+	}
+
+}
+
 
 #ifndef AFL_LIB
 
@@ -9211,7 +9237,7 @@ if(id==Master){
 //		exit(1);
 //	}
 
-	u8 get_one_slave_id=1;
+	u8* get_one_slave_id="1";
 	while(1){
 		//1. 读取空闲的slave. 阻塞等待 ok
 		u8* free_dir;
@@ -9220,23 +9246,25 @@ if(id==Master){
 		ck_free(free_dir);
 
 		//2. 收集对应slave的result到master下的hit_bits
-		u8* tmp_dir;
-		tmp_dir=alloc_printf("%s/../", out_dir);
-		if(	!collectResults(hit_bits, tmp_dir, get_one_slave_id) )
+		u8* work_dir;
+		work_dir=alloc_printf("%s/..", out_dir);
+		if(	!collectResults(hit_bits, work_dir, get_one_slave_id) )
 			continue;
+		ck_free(work_dir);
 
 		//同步种子
-		pullSeeds(use_argv, (u8*)get_one_slave_id);
+		pullSeeds(use_argv, get_one_slave_id);
 
 		//3. 计算rarity,将 branch_id 保存到 master下的task目录下
 		u8* master_task_dir;
 		master_task_dir=alloc_printf("%s/task", out_dir);
-		calculateRarity(hit_bits,master_task_dir);
+		save_rare_branch();
+		//calculateRarity(hit_bits,master_task_dir);
 		//ck_free(task_dir);
 
 		//4.下发任务
 		u8 * salve_task_dir;
-		salve_task_dir=alloc_printf("%s/../%d/task", out_dir, get_one_slave_id);
+		salve_task_dir=alloc_printf("%s/../%s/task", out_dir, get_one_slave_id);
 		distributeRareSeeds(master_task_dir, salve_task_dir); //从master的task到 slave的task
 		ck_free(master_task_dir);
 		ck_free(salve_task_dir);

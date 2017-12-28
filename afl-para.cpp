@@ -16,6 +16,8 @@ extern "C" {
 #include "config.h"
 }
 
+
+
 using namespace std;
 
 //u8 distributeInitSeeds(char* masterInputDir, char* slaveInputDir, u32 numWorkNodes)
@@ -24,13 +26,13 @@ using namespace std;
 //}
 
 
-u32 waitFreeSlaves(const char* freeDir)
+u8* waitFreeSlaves(const char* freeDir)
 {
     DIR *dp;
     struct dirent *dirp;
 
-    std::set<u32> freeIDs;
-    u32 freeID;
+    std::set<u8*> freeIDs;
+    u8*  freeID;
     while (1) {
         if((dp  = opendir(freeDir)) == NULL) {
             cout << "Error(" << errno << ") opening " << freeDir << endl;
@@ -41,7 +43,8 @@ u32 waitFreeSlaves(const char* freeDir)
             if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
                 continue;
             else {
-                u32 id = atoi(dirp->d_name);
+                //u8* id = atoi(dirp->d_name);
+            	u8* id = (u8*)dirp->d_name;
                 if (!id) {
                     cout << "Unknown id name\n";
                     continue;
@@ -50,8 +53,7 @@ u32 waitFreeSlaves(const char* freeDir)
                 freeIDs.insert(id);
                 freeID = id;
                 cout << "Name is " << id << std::endl;
-
-                char full_name[256];
+                char * full_name;
                 memset(full_name, 0, 256);
                 sprintf(full_name, "%s/%s", freeDir, dirp->d_name);
                 unlink(full_name);
@@ -81,20 +83,26 @@ void distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir)
         exit(-1);
     }
 
+    //先清空原来的task
+//	u8 * fn;
+//	fn = alloc_printf("%s/task", out_dir);
+//	if (delete_files(fn, NULL)) PFATAL("Unable to remove '%s'", fn);
+//	if (mkdir(fn, 0700)) PFATAL("Unable to create '%s'", fn);
+//	ck_free(fn);
+
     u32 touched = 0;
-    while (taskNum--) {
-        while ((dirp = readdir(dp)) != NULL) {
-            if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
-                continue;
-            else {
-                string newName = string(slaveTaskDir);
-                newName += string(dirp->d_name);
-                ofstream task (newName.c_str(), fstream::trunc);
-                task.close();
-                touched++;
-            }
-        }
-    }
+	while ((dirp = readdir(dp)) != NULL && taskNum--) {
+		if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
+			continue;
+		else {
+			string newName = string(slaveTaskDir);
+			newName += "/";
+			newName += string(dirp->d_name);
+			ofstream task (newName.c_str(), fstream::trunc);
+			task.close();
+			touched++;
+		}
+	}
 
     closedir(dp);
 
@@ -169,12 +177,12 @@ void handoverResults(u64* rareMap, const char* out_dir)
     fclose(fd);
 }
 
-u8 collectResults(u64* hit_bits, const char* out_dir, u32 slaveID)
+u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID)
 {
     // 1st: read sizeof(u64)*MAP_SIZE into buffer
     char binfile[256];
     memset(binfile, 0, 256);
-    sprintf(binfile, "%s/%d/hit_bits-bin", out_dir, slaveID); //FIXME:
+    sprintf(binfile, "%s/%s/branch-hits.bin", out_dir, slaveID); //FIXME:
     FILE *fbin = fopen(binfile, "rb");
     if (fbin < 0) {
         cout << "Cannot open file: " << binfile << "\n";

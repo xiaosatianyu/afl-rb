@@ -23,7 +23,7 @@ extern "C" {
  * Arg1 (const char*): free directory
  * Ret  (u32)        : free ID.
  */
-u32 waitFreeSlaves(const char* freeDir);
+u8 * waitFreeSlaves(const char* freeDir);
 
 /*
  * Collect bit_hits results from work node.
@@ -31,7 +31,7 @@ u32 waitFreeSlaves(const char* freeDir);
  * Arg2 (u32)    : slave ID
  * Ret  (u8)     : return 1 if succeed.
  */
-u8 collectResults(u64* hit_bits, const char* out_dir, u32 slaveID);
+u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID);
 
 /*
  * Calculate the rarity values and store all branch IDs 
