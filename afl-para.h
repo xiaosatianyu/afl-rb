@@ -65,6 +65,14 @@ u64 waitTask(const char *out_dir);
  */
 void handoverResults(u64* rareMap, const char* out_dir);
 
+/*
+ * Notify master node I'm free.
+ * Arg1 (const char*) : free directory
+ * Arg2 (u32)         : my ID
+ * Ret  (void)        : None
+ */
+void notifyMaster4Free(const char* freeDir, u32 slaveID);
+
 #ifdef _cplusplus
 }
 #endif
