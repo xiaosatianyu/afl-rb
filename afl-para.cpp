@@ -18,10 +18,10 @@ extern "C" {
 
 using namespace std;
 
-u8 distributeInitSeeds(char* masterInputDir, char* slaveInputDir, u32 numWorkNodes)
-{
-    return 1;
-}
+//u8 distributeInitSeeds(char* masterInputDir, char* slaveInputDir, u32 numWorkNodes)
+//{
+//    return 1;
+//}
 
 
 u32 waitFreeSlaves(const char* freeDir)

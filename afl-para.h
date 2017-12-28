@@ -14,9 +14,9 @@ extern "C" {
  * Arg3 (u32)    : total number of work nodes
  * Ret  (u8)     : return 1 if succeed.
  */
-u8 distributeInitSeeds(char* masterInputDir=NULL, 
-                        char* slaveInputDir=NULL, 
-                        u32 numWorkNodes);
+//u8 distributeInitSeeds(char* masterInputDir=NULL,
+//                        char* slaveInputDir=NULL,
+//                        u32 numWorkNodes);
 
 /*
  * Wait for finish signal from work node.
@@ -31,7 +31,7 @@ u32 waitFreeSlaves(const char* freeDir);
  * Arg2 (u32)    : slave ID
  * Ret  (u8)     : return 1 if succeed.
  */
-u8 collectResults(u64* bit_hits, u32 slaveID);
+u8 collectResults(u64* hit_bits, const char* out_dir, u32 slaveID);
 
 /*
  * Calculate the rarity values and store all branch IDs 
@@ -55,7 +55,7 @@ void distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir);
  * Arg1 (const char*)  : out_dir
  * Ret  (u64)  : branch ID
  */
-u64 waitTask(u32 ID);
+u64 waitTask(const char *out_dir);
 
 /*
  * Hand over fuzzing results in one cycle.

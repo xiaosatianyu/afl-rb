@@ -65,7 +65,7 @@
 #include <sys/ioctl.h>
 #include <sys/file.h>
 
-//#include "afl-para.h"
+#include "afl-para.h"
 
 #if defined(__APPLE__) || defined(__FreeBSD__) || defined (__OpenBSD__)
 #  include <sys/sysctl.h>
@@ -9193,10 +9193,10 @@ int main(int argc, char** argv) {
 //判定进入哪个while循环
 
 if(id==Master){
-	if	( !distributeInitSeeds(out_dir, 4) ){
-		FATAL("distributeInitSeeds error \n");
-		exit(1);
-	}
+//	if	( !distributeInitSeeds(out_dir, 4) ){
+//		FATAL("distributeInitSeeds error \n");
+//		exit(1);
+//	}
 
 	u8 get_one_slave_id=1;
 	while(1){
@@ -9207,16 +9207,18 @@ if(id==Master){
 		ck_free(free_dir);
 
 		//2. 收集对应slave的result到master下的hit_bits
-		if(	!collectResults(hit_bits, get_one_slave_id) )
+		u8* tmp_dir;
+		tmp_dir=alloc_printf("%s/../", out_dir);
+		if(	!collectResults(hit_bits, tmp_dir, get_one_slave_id) )
 			continue;
 
 		//同步种子
-		pullSeeds(use_argv, get_one_slave_id);
+		pullSeeds(use_argv, (u8*)get_one_slave_id);
 
 		//3. 计算rarity,将 branch_id 保存到 master下的task目录下
 		u8* master_task_dir;
 		master_task_dir=alloc_printf("%s/task", out_dir);
-		calculateRarity(master_task_dir);
+		calculateRarity(hit_bits,master_task_dir);
 		//ck_free(task_dir);
 
 		//4.下发任务
@@ -9236,7 +9238,7 @@ else{
 
 	while(1){
 		//0.等待任务
-		targe_id=waitTask();
+		target_id=waitTask(out_dir);
 
 		//1. 从master同步
 		if (!stop_soon && sync_id && !skipped_fuzz) {
@@ -9307,7 +9309,7 @@ else{
 		}//结束一轮
 
 		//3. 保存执行结果本地 hit_bits
-		handoverResults(out_dir);
+		handoverResults(hit_bits,out_dir);
 
   }
 
