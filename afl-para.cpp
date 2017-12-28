@@ -50,6 +50,12 @@ u32 waitFreeSlaves(const char* freeDir)
                 freeIDs.insert(id);
                 freeID = id;
                 cout << "Name is " << id << std::endl;
+
+                char full_name[256];
+                memset(full_name, 0, 256);
+                sprintf(full_name, "%s/%s", freeDir, dirp->d_name);
+                unlink(full_name);
+
                 break;
             }
         }
@@ -229,6 +235,14 @@ u8 calculateRarity(u64* bit_hits, const char* masterTaskDir)
     return 1;
 }
 
+void notifyMaster4Free(const char* freeDir, u32 slaveID)
+{
+    char freeFile[256];
+    memset(freeFile, 0, 256);
+    sprintf(freeFile, "%s/%d", freeDir, slaveID);
+    ofstream free_file (freeFile, fstream::trunc);
+    free_file.close();
+}
 #ifdef LOCAL_DEBUG
 int main()
 {
