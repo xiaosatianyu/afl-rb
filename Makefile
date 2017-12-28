@@ -27,7 +27,7 @@ MISC_PATH   = $(PREFIX)/share/afl
 PROGS       = afl-gcc afl-fuzz   #afl-showmap afl-tmin  afl-gotcpu afl-analyze
 SH_PROGS    = afl-plot afl-cmin afl-whatsup
 
-CFLAGS     ?= -O0 -funroll-loops -std=c99
+CFLAGS     ?= -O0  -g -ggdb -funroll-loops -std=c99
 CFLAGS     += -Wall -D_FORTIFY_SOURCE=2 -g -Wno-pointer-sign \
 	      -DAFL_PATH=\"$(HELPER_PATH)\" -DDOC_PATH=\"$(DOC_PATH)\" \
 	      -DBIN_PATH=\"$(BIN_PATH)\"
@@ -87,7 +87,7 @@ afl-gotcpu: afl-gotcpu.c $(COMM_HDR) | test_x86
 	$(CC) $(CFLAGS) $@.c -o $@ $(LDFLAGS)
 
 afl-para:afl-para.cpp $(COMM_HDR)
-	$(CXX) $(CFLAGS) $@.cpp -o $@
+	$(CXX) $(CFLAGS) -c -g -ggdb -O0 $@.cpp -o $@
 
 ifndef AFL_NO_X86
 

@@ -4115,6 +4115,14 @@ static void maybe_delete_out_dir(void) {
   if (delete_files(fn, CASE_PREFIX)) goto dir_cleanup_failed;
   ck_free(fn);
 
+  fn = alloc_printf("%s/task", out_dir);
+  if (delete_files(fn, NULL)) goto dir_cleanup_failed;
+  ck_free(fn);
+
+  fn = alloc_printf("%s/free", out_dir);
+  if (delete_files(fn, NULL)) goto dir_cleanup_failed;
+  ck_free(fn);
+
   /* All right, let's do <out_dir>/crashes/id:* and <out_dir>/hangs/id:*. */
 
   if (!in_place_resume) {
@@ -4207,6 +4215,11 @@ static void maybe_delete_out_dir(void) {
   fn = alloc_printf("%s/plot_data", out_dir);
   if (unlink(fn) && errno != ENOENT) goto dir_cleanup_failed;
   ck_free(fn);
+
+  	fn = alloc_printf("%s/task", out_dir);
+	if (unlink(fn) && errno != ENOENT) goto dir_cleanup_failed;
+	ck_free(fn);
+
 
   OKF("Output dir cleanup successful.");
 
@@ -8351,7 +8364,7 @@ EXP_ST void setup_dirs_fds(void) {
   ck_free(tmp);
 
   //新建free目录
-  tmp = alloc_printf("%s/../free", out_dir);
+  tmp = alloc_printf("%s/free", out_dir);
   if (mkdir(tmp, 0700)) PFATAL("Unable to create '%s'", tmp);
   ck_free(tmp);
 
@@ -9200,9 +9213,9 @@ if(id==Master){
 
 	u8 get_one_slave_id=1;
 	while(1){
-		//1. 读取空闲的slave. 阻塞等待
+		//1. 读取空闲的slave. 阻塞等待 ok
 		u8* free_dir;
-		free_dir=alloc_printf("%s/../free", out_dir);
+		free_dir=alloc_printf("%s/free", out_dir);
 		get_one_slave_id=waitFreeSlaves(free_dir); //得到slave的id, 比如 1 2 3 4
 		ck_free(free_dir);
 
