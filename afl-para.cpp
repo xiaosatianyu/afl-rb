@@ -173,7 +173,7 @@ void handoverResults(u64* rareMap, const char* out_dir)
     sprintf(fname, "%s/branch-hits.bin", out_dir);
     fd = fopen(fname, "wb");
 
-    if (fd < 0) {
+    if (!fd) {
         cout << "Unable to open " << fname << "\n";
         exit(-1);
     }
@@ -189,7 +189,7 @@ u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID)
     memset(binfile, 0, 256);
     sprintf(binfile, "%s/%s/branch-hits.bin", out_dir, slaveID); //FIXME:
     FILE *fbin = fopen(binfile, "rb");
-    if (fbin < 0) {
+    if (!fbin) {
         cout << "Cannot open file: " << binfile << "\n";
         exit(-1);
     }

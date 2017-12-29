@@ -9287,66 +9287,70 @@ else{
   //进入slave
 	u64 target_id;
 	u8 skipped_fuzz;
-
+    static isFirstLoop = 1;
 	while(1){
-        //4. 通知Master节点
-        u8* free_dir;
-		free_dir=alloc_printf("%s/../master/free", out_dir);
-        notifyMaster4Free(free_dir, atoi(sync_id));
+        if (!isFirstLoop) {
+            // 通知Master节点
+            u8* free_dir;
+            free_dir=alloc_printf("%s/../master/free", out_dir);
+            notifyMaster4Free(free_dir, atoi(sync_id));
 
 
-		//0.等待任务
-		target_id=waitTask(out_dir);
+            //0.等待任务
+            target_id=waitTask(out_dir);
 
-		//1. 从master同步
-		if (!stop_soon && sync_id && !skipped_fuzz) {
-			if (!(sync_interval_cnt++ % SYNC_INTERVAL))
-				//sync_fuzzers(use_argv);
-				//u8 * master_queue_dir=alloc_printf("%s/../master/queue");
-				pullSeeds(use_argv, "master");
-		}
+            //1. 从master同步
+            if (!stop_soon && sync_id && !skipped_fuzz) {
+                if (!(sync_interval_cnt++ % SYNC_INTERVAL))
+                    //sync_fuzzers(use_argv);
+                    //u8 * master_queue_dir=alloc_printf("%s/../master/queue");
+                    pullSeeds(use_argv, "master");
+            }
+        } else {
+            isFirstLoop = 0;
+        }
+
 		//2.进行新的一轮
-//		if (!queue_cur) {
-//			DEBUG1("Entering new queueing cycle\n");
-//			if (prev_cycle_wo_new && (bootstrap == 3)) {
-//				// only bootstrap for 1 cycle
-//				prev_cycle_wo_new = 0;
-//			} else {
-//				prev_cycle_wo_new = cycle_wo_new;
-//			}
-//			cycle_wo_new = 1;
-//
-//			//queue_cycle++;
-//			current_entry = 0;
-//			cur_skipped_paths = 0;
-//			queue_cur = queue;
-//
-//			while (seek_to) {
-//				current_entry++;
-//				seek_to--;
-//				queue_cur = queue_cur->next;
-//			}
-//
-//			show_stats();
-//
-//			if (not_on_tty) {
-//				ACTF("Entering queue cycle %llu.", queue_cycle);
-//				fflush(stdout);
-//			}
-//
-//			/* If we had a full queue cycle with no new finds, try
-//			 recombination strategies next. */
-//			if (queued_paths == prev_queued) {
-//				if (use_splicing)
-//					cycles_wo_finds++;
-//				else
-//					use_splicing = 1;
-//			} else
-//				cycles_wo_finds = 0;
-//			prev_queued = queued_paths;
-//			if (sync_id && queue_cycle == 1 && getenv("AFL_IMPORT_FIRST"))
-//				sync_fuzzers(use_argv);
-//		}
+  		if (!queue_cur) {
+  			DEBUG1("Entering new queueing cycle\n");
+  			if (prev_cycle_wo_new && (bootstrap == 3)) {
+  				   //only bootstrap for 1 cycle
+  				prev_cycle_wo_new = 0;
+  			} else {
+  				prev_cycle_wo_new = cycle_wo_new;
+  			}
+  			cycle_wo_new = 1;
+  
+  			queue_cycle++;
+  			current_entry = 0;
+  			cur_skipped_paths = 0;
+  			queue_cur = queue;
+  
+  			while (seek_to) {
+  				current_entry++;
+  				seek_to--;
+  				queue_cur = queue_cur->next;
+  			}
+  
+  			show_stats();
+  
+  			if (not_on_tty) {
+  				ACTF("Entering queue cycle %llu.", queue_cycle);
+  				fflush(stdout);
+  			}
+  
+//  			/* If we had a full queue cycle with no new finds, try
+//  			 recombination strategies next. */
+//  			if (queued_paths == prev_queued) {
+//  				if (use_splicing)
+//  					cycles_wo_finds++;
+//  				else
+//  					use_splicing = 1;
+//  			} else
+//  				cycles_wo_finds = 0;
+//  			prev_queued = queued_paths;
+  		    //}
+        }
 		queue_cur=queue;
 		while (queue_cur) {
 			cull_queue(); //在这里会处理trace_mini
