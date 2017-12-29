@@ -9278,6 +9278,12 @@ else{
 	u8 skipped_fuzz;
 
 	while(1){
+        //4. 通知Master节点
+        u8* free_dir;
+		free_dir=alloc_printf("%s/../master/free", out_dir);
+        notifyMaster4Free(free_dir, atoi(sync_id));
+
+
 		//0.等待任务
 		target_id=waitTask(out_dir);
 
@@ -9351,11 +9357,6 @@ else{
 
 		//3. 保存执行结果本地 hit_bits
 		handoverResults(hit_bits,out_dir);
-
-        //4. 通知Master节点
-        u8* free_dir;
-		free_dir=alloc_printf("%s/../free", out_dir);
-        notifyMaster4Free(free_dir, atoi(sync_id));
 
   }
 
