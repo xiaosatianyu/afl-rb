@@ -4374,9 +4374,16 @@ static void show_stats(void) {
   banner_pad = (80 - banner_len) / 2;
   memset(tmp, ' ', banner_pad);
 
-  sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
+  if (id=Master){
+	  sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
           " (%s)",  crash_mode ? cPIN "peruvian were-rabbit" : 
-          cYEL "american fuzzy lop-rb", use_banner);
+          cYEL "american fuzzy lop-master", use_banner);
+  }
+  else{
+	  sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
+	            " (%s)",  crash_mode ? cPIN "peruvian were-rabbit" :
+	            cYEL "american fuzzy lop-slave", use_banner);
+  }
 
   SAYF("\n%s\n\n", tmp);
 
@@ -9230,7 +9237,7 @@ int main(int argc, char** argv) {
   }
 
 //判定进入哪个while循环
-
+u8 master_init=0;
 if(id==Master){
 //	if	( !distributeInitSeeds(out_dir, 4) ){
 //		FATAL("distributeInitSeeds error \n");
@@ -9240,10 +9247,13 @@ if(id==Master){
 	u8* get_one_slave_id="1";
 	while(1){
 		//1. 读取空闲的slave. 阻塞等待 ok
-		u8* free_dir;
-		free_dir=alloc_printf("%s/free", out_dir);
-		get_one_slave_id=waitFreeSlaves(free_dir); //得到slave的id, 比如 1 2 3 4
-		ck_free(free_dir);
+		if (master_init!=0){
+			u8* free_dir;
+			free_dir=alloc_printf("%s/free", out_dir);
+			get_one_slave_id=waitFreeSlaves(free_dir); //得到slave的id, 比如 1 2 3 4
+			ck_free(free_dir);
+		}
+		master_init++;
 
 		//2. 收集对应slave的result到master下的hit_bits
 		u8* work_dir;
@@ -9268,6 +9278,7 @@ if(id==Master){
 		distributeRareSeeds(master_task_dir, salve_task_dir); //从master的task到 slave的task
 		ck_free(master_task_dir);
 		ck_free(salve_task_dir);
+
 
 		if (stop_soon) goto stop_fuzzing;
 	}
