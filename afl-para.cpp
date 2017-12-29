@@ -26,13 +26,13 @@ using namespace std;
 //}
 
 
-u8* waitFreeSlaves(const char* freeDir)
+u32 waitFreeSlaves(const char* freeDir)
 {
     DIR *dp;
     struct dirent *dirp;
 
-    std::set<u8*> freeIDs;
-    u8*  freeID;
+    std::set<u32> freeIDs;
+    u32  freeID;
     while (1) {
         if((dp  = opendir(freeDir)) == NULL) {
             cout << "Error(" << errno << ") opening " << freeDir << endl;
@@ -43,8 +43,7 @@ u8* waitFreeSlaves(const char* freeDir)
             if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
                 continue;
             else {
-                //u8* id = atoi(dirp->d_name);
-            	u8* id = (u8*)dirp->d_name;
+                u32 id = atoi(dirp->d_name);
                 if (!id) {
                     cout << "Unknown id name\n";
                     continue;
@@ -53,8 +52,8 @@ u8* waitFreeSlaves(const char* freeDir)
                 freeIDs.insert(id);
                 freeID = id;
                 cout << "Name is " << id << std::endl;
-                char * full_name;
-                memset(full_name, 0, 256);
+                char full_name[256];
+		memset(full_name, 0, 256);
                 sprintf(full_name, "%s/%s", freeDir, dirp->d_name);
                 unlink(full_name);
 
@@ -66,7 +65,7 @@ u8* waitFreeSlaves(const char* freeDir)
         if (freeIDs.size())
             break;
 
-        sleep(5);
+        sleep(WAIT_FREE);
     }
 
     return freeID;
@@ -91,7 +90,7 @@ void distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir)
 //	ck_free(fn);
 
     u32 touched = 0;
-	while ((dirp = readdir(dp)) != NULL && taskNum--) {
+	while ((dirp = readdir(dp)) != NULL && taskNum) {
 		if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
 			continue;
 		else {
@@ -101,6 +100,7 @@ void distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir)
 			ofstream task (newName.c_str(), fstream::trunc);
 			task.close();
 			touched++;
+			taskNum -= 1;
 		}
 	}
 
@@ -156,7 +156,7 @@ u64 waitTask(const char *out_dir)
         if (branchIDs.size())
             break;
 
-        sleep(5);
+        sleep(WAIT_TASK);
     }
 
     return branchID;

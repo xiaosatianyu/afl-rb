@@ -345,6 +345,9 @@
    but do not use them as seeds for fuzzing. This is useful for conveniently
    measuring coverage that could be attained by a "dumb" fuzzing algorithm: */
 
-// #define IGNORE_FINDS
+// #define IGNORE_FIND
+
+#define WAIT_TASK 0.1
+#define WAIT_FREE 0.1
 
 #endif /* ! _HAVE_CONFIG_H */

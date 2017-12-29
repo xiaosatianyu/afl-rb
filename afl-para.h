@@ -23,7 +23,7 @@ extern "C" {
  * Arg1 (const char*): free directory
  * Ret  (u32)        : free ID.
  */
-u8 * waitFreeSlaves(const char* freeDir);
+u32 waitFreeSlaves(const char* freeDir);
 
 /*
  * Collect bit_hits results from work node.

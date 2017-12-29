@@ -9244,13 +9244,33 @@ if(id==Master){
 //		exit(1);
 //	}
 
-	u8* get_one_slave_id="1";
+	u8 get_one_slave_id[256];
+	memset(get_one_slave_id, 0, 256);
+	u32 free_slave_ID;
 	while(1){
+		if (!queue_cur) {
+  			DEBUG1("Entering new queueing cycle\n");
+  			if (prev_cycle_wo_new && (bootstrap == 3)) {
+  				   //only bootstrap for 1 cycle
+  				prev_cycle_wo_new = 0;
+  			} else {
+  				prev_cycle_wo_new = cycle_wo_new;
+  			}
+  			cycle_wo_new = 1;
+  
+  			queue_cycle++;
+  			current_entry = 0;
+  			cur_skipped_paths = 0;
+  			queue_cur = queue;
+  		}
+
 		//1. 读取空闲的slave. 阻塞等待 ok
 		u8* free_dir;
 		free_dir=alloc_printf("%s/free", out_dir);
-		get_one_slave_id=waitFreeSlaves(free_dir); //得到slave的id, 比如 1 2 3 4
+		free_slave_ID = waitFreeSlaves(free_dir); //得到slave的id, 比如 1 2 3 4
 		ck_free(free_dir);
+
+		sprintf(get_one_slave_id, "%d", free_slave_ID);
 
 		//2. 收集对应slave的result到master下的hit_bits
 		u8* work_dir;
@@ -9270,11 +9290,11 @@ if(id==Master){
 		//ck_free(task_dir);
 
 		//4.下发任务
-		u8 * salve_task_dir;
-		salve_task_dir=alloc_printf("%s/../%s/task", out_dir, get_one_slave_id);
-		distributeRareSeeds(master_task_dir, salve_task_dir); //从master的task到 slave的task
+		u8 * slave_task_dir;
+		slave_task_dir=alloc_printf("%s/../%s/task", out_dir, get_one_slave_id);
+		distributeRareSeeds(master_task_dir, slave_task_dir); //从master的task到 slave的task
 		ck_free(master_task_dir);
-		ck_free(salve_task_dir);
+		ck_free(slave_task_dir);
 
 		if (stop_soon) goto stop_fuzzing;
 	}
@@ -9307,47 +9327,8 @@ else{
         }
 
 		//2.进行新的一轮
-  		if (!queue_cur) {
-  			DEBUG1("Entering new queueing cycle\n");
-  			if (prev_cycle_wo_new && (bootstrap == 3)) {
-  				   //only bootstrap for 1 cycle
-  				prev_cycle_wo_new = 0;
-  			} else {
-  				prev_cycle_wo_new = cycle_wo_new;
-  			}
-  			cycle_wo_new = 1;
-  
-  			queue_cycle++;
-  			current_entry = 0;
-  			cur_skipped_paths = 0;
-  			queue_cur = queue;
-  
-  			while (seek_to) {
-  				current_entry++;
-  				seek_to--;
-  				queue_cur = queue_cur->next;
-  			}
-  
-  			show_stats();
-  
-  			if (not_on_tty) {
-  				ACTF("Entering queue cycle %llu.", queue_cycle);
-  				fflush(stdout);
-  			}
-  
-//  			/* If we had a full queue cycle with no new finds, try
-//  			 recombination strategies next. */
-//  			if (queued_paths == prev_queued) {
-//  				if (use_splicing)
-//  					cycles_wo_finds++;
-//  				else
-//  					use_splicing = 1;
-//  			} else
-//  				cycles_wo_finds = 0;
-//  			prev_queued = queued_paths;
-  		    //}
-        }
 		queue_cur=queue;
+		queue_cycle++;
 		while (queue_cur) {
 			cull_queue(); //在这里会处理trace_mini
 			skipped_fuzz = fuzz_one(use_argv);
@@ -9365,7 +9346,6 @@ else{
 			write_stats_file(0, 0, 0);
 			save_auto();
 		}//结束一轮
-
 		//3. 保存执行结果本地 hit_bits
 		handoverResults(hit_bits,out_dir);
 
