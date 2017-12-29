@@ -9247,19 +9247,16 @@ if(id==Master){
 	u8* get_one_slave_id="1";
 	while(1){
 		//1. 读取空闲的slave. 阻塞等待 ok
-		if (master_init!=0){
-			u8* free_dir;
-			free_dir=alloc_printf("%s/free", out_dir);
-			get_one_slave_id=waitFreeSlaves(free_dir); //得到slave的id, 比如 1 2 3 4
-			ck_free(free_dir);
-		}
-		master_init++;
+		u8* free_dir;
+		free_dir=alloc_printf("%s/free", out_dir);
+		get_one_slave_id=waitFreeSlaves(free_dir); //得到slave的id, 比如 1 2 3 4
+		ck_free(free_dir);
 
 		//2. 收集对应slave的result到master下的hit_bits
 		u8* work_dir;
 		work_dir=alloc_printf("%s/..", out_dir);
-		if(	!collectResults(hit_bits, work_dir, get_one_slave_id) )
-			continue;
+		if( !collectResults(hit_bits, work_dir, get_one_slave_id) )
+		   continue;
 		ck_free(work_dir);
 
 		//同步种子
@@ -9278,7 +9275,6 @@ if(id==Master){
 		distributeRareSeeds(master_task_dir, salve_task_dir); //从master的task到 slave的task
 		ck_free(master_task_dir);
 		ck_free(salve_task_dir);
-
 
 		if (stop_soon) goto stop_fuzzing;
 	}
