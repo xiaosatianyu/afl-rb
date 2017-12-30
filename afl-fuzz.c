@@ -35,6 +35,7 @@
 #define DEBUG3 fileonly3
 #define DEBUG4 fileonly4
 #define DEBUG5 fileonly5
+#define DEBUG_Seed_Times fileonly6
 //end
 
 #include "config.h"
@@ -283,7 +284,9 @@ struct queue_entry {
                      *next_100;       /* 100 elements ahead               */
   //@rd@
   double distance;                    /* Distance to targets              */
+  double distance_attri;                 // distance 属性
   u64 trace_rarity_seed;                 /* the absolute number of the rarity*/
+  double rarity_attri;					// rarity 属性
   int *branch_ids;					/*save some the minimum branch index*/
   u64 *branch_rrs;					/*save the branch rarity of the corresponding index*/
   u64 executed_num_havoc;					/*记录havoc阶段执行次数,本次测试所有的*/
@@ -575,6 +578,20 @@ void fileonly5 (char const *fmt, ...) {
     fflush(f);
 }
 
+//用于收集每个测试用例执行的次数以及对应的rarity和distance属性
+void fileonly6 (char const *fmt, ...) {
+    static FILE *f = NULL;
+    if (f == NULL) {
+      u8 * fn = alloc_printf("%s/seed_times", out_dir);
+      f= fopen(fn, "w");
+      ck_free(fn);
+    }
+    va_list ap;
+    va_start(ap, fmt);
+    vfprintf(f, fmt, ap);
+    va_end(ap);
+    fflush(f);
+}
 
 /* at the end of execution, dump the number of inputs hitting
    each branch to log */
@@ -895,14 +912,18 @@ static u32 cal_power_factor(struct queue_entry * q){
 	distance=q->distance;
 	seed_rarity=get_trace_rarity(q,1,0);
 
-	//2.归一化处理
+	//2.距离归一化处理
 	if (max_distance==min_distance){
 		normal_d=1;
+		queue_cur->distance_attri=normal_d;
 	}
 	else{
 		normal_d=(distance-min_distance)/(max_distance-min_distance);
+		queue_cur->distance_attri=normal_d;
 	}
 	normal_r=(double)seed_rarity/max_seed_rarity;
+	queue_cur->rarity_attri=normal_r;
+
 
 	//3. pr和pd 的计算
 	pr=(1-normal_r)*(1-normal_r);
@@ -940,15 +961,16 @@ static u8 check_if_keep_distance( struct queue_entry * q){
 	//返回 0 表示距离变差
 	double increment_rate;
 	if(q->distance>10000)
-		increment_rate=0.1;
+		increment_rate=0.05;
 	else if (q->distance>5000)
 		increment_rate=0.05;
 	else if (q->distance >1000)
-		increment_rate=0.02;
+		increment_rate=0.05;
 	else
-		increment_rate=0.01;
+		increment_rate=0.05;
 
-	if (cur_distance > q->distance*(1+increment_rate) )  //这里需要改动!
+	//if (cur_distance > q->distance*(1+increment_rate) )  //这里需要改动!
+	if (cur_distance > q->distance+increment_rate*(max_distance-min_distance) )
 		//距离变差
 		return 0;
 	return 1;
@@ -6250,10 +6272,9 @@ static u32 calculate_score(struct queue_entry* q) {
   //@rd@
   //放到外面用于测试
   double power_factor = 1.0;
-  power_factor=cal_power_factor(queue_cur);
   if (check_if_open_power_control()){
+	  power_factor=cal_power_factor(queue_cur);
 	  perf_score=perf_score*power_factor;
-
   }
 
 
@@ -6261,6 +6282,11 @@ static u32 calculate_score(struct queue_entry* q) {
   /* Make sure that we don't go over limit. */
   if (perf_score > HAVOC_MAX_MULT * 100) perf_score = HAVOC_MAX_MULT * 100;
 
+  DEBUG_Seed_Times("%s will be executed for %d times, its rarity is %.4f, its distance is %.4f,"
+		  " when distance_max is %0.0f, distance_min is %0.0f, cur distance is %0.0f\n",
+		  queue_cur->fname,perf_score, queue_cur->rarity_attri,queue_cur->distance_attri,
+		  max_distance, min_distance, queue_cur->distance
+		  );
   return perf_score;
 
 }
