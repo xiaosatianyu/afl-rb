@@ -53,7 +53,7 @@
 #include <stdbool.h>
 #include <stdarg.h>
 #include <limits.h>
-
+#include <assert.h>
 
 #include <sys/wait.h>
 #include <sys/time.h>
@@ -4482,6 +4482,7 @@ static void show_stats(void) {
      together, but then cram them into a fixed-width field - so we need to
      put them in a temporary buffer first. */
 
+  assert(queue_cur && "Holly shit!!!");
   sprintf(tmp, "%s%s (%0.02f%%)", DI(current_entry),
           queue_cur->favored ? "" : "*",
           ((double)current_entry * 100) / queued_paths);
@@ -9305,6 +9306,12 @@ else{
 	u8 skipped_fuzz;
     static isFirstLoop = 1;
 	while(1){
+        if (!queue_cur) {
+          queue_cycle++;
+          queue_cur = queue;
+          current_entry = 0;
+        }
+
         if (!isFirstLoop) {
             // 通知Master节点
             u8* free_dir;
@@ -9327,8 +9334,6 @@ else{
         }
 
 		//2.进行新的一轮
-		queue_cur=queue;
-		queue_cycle++;
 		while (queue_cur) {
 			cull_queue(); //在这里会处理trace_mini
 			skipped_fuzz = fuzz_one(use_argv);
