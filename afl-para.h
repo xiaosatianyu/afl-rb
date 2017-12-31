@@ -46,9 +46,9 @@ u8 calculateRarity(u64* bit_hits, const char* masterTaskDir);
  * Distribute rare seeds to each work node.
  * Arg1 (const char*) : task directory of master node
  * Arg2 (const char*) : task directory of slave node
- * Ret  (void)    :None.
+ * Ret  (u64)         : task branch ID.
  */
-void distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir);
+u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir);
 
 /*
  * Wait for new task seeds.

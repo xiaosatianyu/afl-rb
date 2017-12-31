@@ -1015,6 +1015,45 @@ static u32 * is_rb_hit_mini(u8* trace_bits_mini){
 
 }
 
+// 带目标选择的判断方法
+static u32 * is_rb_target_hit_mini(u8* trace_bits_mini, u64 target_id){
+  int rarest_branches[2];
+  rarest_branches[0] = target_id;
+  rarest_branches[1] = -1;
+  u32 * branch_ids = ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES); //保存对应rare的id(但是加了1,和0区别出来)
+  u32 * branch_cts = ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES); //保存对应rare的执行次数
+  int min_hit_index = 0;  //记录现在有多少个记录的rare branch
+  //判断当前测试用例的轨迹中是否有 rare branch
+  for (int i = 0; i < MAP_SIZE ; i ++){
+
+      if (unlikely (trace_bits_mini[i >> 3]  & (1 <<(i & 7)) )){
+        int cur_index = i; //第i个元组关系被执行了
+        int is_rare = (cur_index == rarest_branches[0]);
+        if (is_rare) {
+          // at loop initialization, set min_branch_hit properly
+        	//第一次初始化 branch_cts 和 branch_ids,第一次就不用检查是否更小
+          if (!min_hit_index) {
+            branch_cts[min_hit_index] = hit_bits[cur_index]; //保存执行对应branch的测试用例数量
+            branch_ids[min_hit_index] = cur_index + 1;  //为什么要加1? 和0区别出来
+          }
+          min_hit_index++;//指向下一个位置
+          break;
+        }
+      }
+
+  }
+  ck_free(branch_cts);
+  if (min_hit_index == 0){
+      ck_free(branch_ids);
+      branch_ids = NULL;
+  } else {
+    // 0 terminate the array
+    branch_ids[min_hit_index] = 0; //end添加0,表示结束了
+  }
+  return branch_ids; //返回rare branch的ids,注意被加了1
+
+}
+
 /* get a random modifiable position (i.e. where branch_mask & mod_type) 
    for both overwriting and removal we want to make sure we are overwriting
    or removing parts within the branch mask
@@ -5441,7 +5480,7 @@ static u8 could_be_interest(u32 old_val, u32 new_val, u8 blen, u8 check_le) {
    function is a tad too long... returns 0 if fuzzed successfully, 1 if
    skipped or bailed out. */
 
-static u8 fuzz_one(char** argv) {
+static u8 fuzz_one(char** argv, u64 target_id) {
 
   s32 len, fd, temp_len, i, j;
   u8  *in_buf, *out_buf, *orig_in, *ex_tmp, *eff_map = 0;
@@ -5531,11 +5570,17 @@ static u8 fuzz_one(char** argv) {
 	  //新的判断策略, rb判断策略
     skip_deterministic_bootstrap = 0;
     //判断当前测试用例是否击中了 rare branch (rb), min_branch_hits是总的rare branch列表
-    u32 * min_branch_hits = is_rb_hit_mini(queue_cur->trace_mini); //参数是当前测试用例的trace_mini
+    u32 * min_branch_hits;
+    if (queue_cycle == 1) 
+        min_branch_hits = is_rb_hit_mini(queue_cur->trace_mini); //参数是当前测试用例的trace_mini
+    else
+        min_branch_hits = is_rb_target_hit_mini(queue_cur->trace_mini, target_id); //参数是当前测试用例的trace_mini
+
     if (min_branch_hits == NULL){
       // not a rare hit. don't fuzz.
       return 1;
     } else { 
+        DEBUG1("Find seed %s that hits branch id: %d\n", queue_cur->fname, target_id);
       int ii;
       for (ii = 0; min_branch_hits[ii] != 0; ii++){
         rb_fuzzing = min_branch_hits[ii]; //得到rare branch的id,注意是加了1
@@ -7819,7 +7864,7 @@ static void pullSeeds(char** argv, u8* source_id) {
     if (sd_ent->d_name[0] == '.' || !strcmp(sync_id, sd_ent->d_name)) continue;
 
     //只同步master
-    if (! strcmp(sd_ent->d_name , source_id ) ) continue;
+    if (strcmp(sd_ent->d_name , source_id ) ) continue;
 
     /* Skip anything that doesn't have a queue/ subdirectory. */
 
@@ -8900,6 +8945,7 @@ static void save_rare_branch(){
 	//保存到mater下的task目录
 	for (i=0; i<MAX_RARE_BRANCHES && rarest_branches[i]!=-1; i++ ){
 		u8* fn = alloc_printf("%s/task/%d", out_dir, rarest_branches[i]);
+        DEBUG1("Saving task branch ID: %d\n", rarest_branches[i]);
 		unlink(fn); /* Ignore errors */
 		out_fd = open(fn, O_RDWR | O_CREAT | O_EXCL, 0600);
 		if (out_fd < 0) PFATAL("Unable to create '%s'", fn);
@@ -9271,16 +9317,22 @@ if(id==Master){
 		free_slave_ID = waitFreeSlaves(free_dir); //得到slave的id, 比如 1 2 3 4
 		ck_free(free_dir);
 
+        DEBUG1("[Parallel] Find free slave id: %d\n", free_slave_ID);
+
 		sprintf(get_one_slave_id, "%d", free_slave_ID);
 
 		//2. 收集对应slave的result到master下的hit_bits
 		u8* work_dir;
+
+        DEBUG1("[Parallel] Collecting hit_bits from slave id: %d\n", free_slave_ID);
 		work_dir=alloc_printf("%s/..", out_dir);
 		if( !collectResults(hit_bits, work_dir, get_one_slave_id) )
 		   continue;
+
 		ck_free(work_dir);
 
 		//同步种子
+        DEBUG1("[Parallel] Collecting seeds from slave id: %d\n", free_slave_ID);
 		pullSeeds(use_argv, get_one_slave_id);
 
 		//3. 计算rarity,将 branch_id 保存到 master下的task目录下
@@ -9292,8 +9344,14 @@ if(id==Master){
 
 		//4.下发任务
 		u8 * slave_task_dir;
+        u64 task_branch_ID;
 		slave_task_dir=alloc_printf("%s/../%s/task", out_dir, get_one_slave_id);
-		distributeRareSeeds(master_task_dir, slave_task_dir); //从master的task到 slave的task
+		task_branch_ID = distributeRareSeeds(master_task_dir, slave_task_dir); //从master的task到 slave的task
+        DEBUG1("[Parallel] Distributed seed branch id: %d to slave id: %d\n", task_branch_ID, free_slave_ID);
+
+        //5.保存bit_hits到Slave文件夹
+		handoverResults(hit_bits, slave_task_dir);
+
 		ck_free(master_task_dir);
 		ck_free(slave_task_dir);
 
@@ -9316,13 +9374,28 @@ else{
             // 通知Master节点
             u8* free_dir;
             free_dir=alloc_printf("%s/../master/free", out_dir);
+            DEBUG1("[Parrallel] Notify master I'm free now\n");
             notifyMaster4Free(free_dir, atoi(sync_id));
 
 
-            //0.等待任务
+            // 等待任务
             target_id=waitTask(out_dir);
+            DEBUG1("[Parrallel] Get task branch ID %d from master\n", target_id);
 
-            //1. 从master同步
+            // 同步bit_hits
+            char binfile[256];
+            memset(binfile, 0, 256);
+            sprintf(binfile, "%s/task/branch-hits.bin", out_dir); 
+            FILE *fbin = fopen(binfile, "rb");
+            if (!fbin) {
+                DEBUG1("Cannot open file: %s\n", binfile);
+                exit(-1);
+            }
+
+            fread(hit_bits, sizeof(u64), MAP_SIZE, fbin);
+            fclose(fbin);
+
+            // 同步种子
             if (!stop_soon && sync_id && !skipped_fuzz) {
                 if (!(sync_interval_cnt++ % SYNC_INTERVAL))
                     //sync_fuzzers(use_argv);
@@ -9336,7 +9409,7 @@ else{
 		//2.进行新的一轮
 		while (queue_cur) {
 			cull_queue(); //在这里会处理trace_mini
-			skipped_fuzz = fuzz_one(use_argv);
+			skipped_fuzz = fuzz_one(use_argv, target_id);
 			if (!stop_soon && exit_1)
 				stop_soon = 2;
 
@@ -9352,6 +9425,7 @@ else{
 			save_auto();
 		}//结束一轮
 		//3. 保存执行结果本地 hit_bits
+        DEBUG1("[Parallel] Saving hit_bits\n");
 		handoverResults(hit_bits,out_dir);
 
   }

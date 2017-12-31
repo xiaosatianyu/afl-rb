@@ -71,12 +71,13 @@ u32 waitFreeSlaves(const char* freeDir)
     return freeID;
 }
 
-void distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir)
+u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir)
 {
     u32 taskNum = 1; // Currently we distribute only one task each time
     DIR *dp;
     struct dirent *dirp;
 
+    u64 taskBranchID;
     if((dp  = opendir(masterTaskDir)) == NULL) {
         cout << "Error(" << errno << ") opening " << masterTaskDir << endl;
         exit(-1);
@@ -97,6 +98,7 @@ void distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir)
 			string newName = string(slaveTaskDir);
 			newName += "/";
 			newName += string(dirp->d_name);
+            taskBranchID = atoi(dirp->d_name);
 			ofstream task (newName.c_str(), fstream::trunc);
 			task.close();
 			touched++;
@@ -111,7 +113,7 @@ void distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir)
         exit(-1);
     }
 
-    return;
+    return taskBranchID;
 }
 
 u64 waitTask(const char *out_dir)
@@ -133,6 +135,9 @@ u64 waitTask(const char *out_dir)
         while ((dirp = readdir(dp)) != NULL) {
             if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
                 continue;
+            else if (!strcmp(dirp->d_name, "branch-hits.bin")) {
+                continue;
+            }
             else {
                 u32 id = atoi(dirp->d_name);
                 if (!id) {
