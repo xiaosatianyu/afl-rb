@@ -379,6 +379,7 @@ enum{
 	/* 01 */ Slave
 };
 u8 id;   //默认是master
+u8 isPulling; //判断当前是否在同步
 //end for para
 
 
@@ -1018,7 +1019,7 @@ static u32 * is_rb_hit_mini(u8* trace_bits_mini){
 // 带目标选择的判断方法
 static u32 * is_rb_target_hit_mini(u8* trace_bits_mini, u64 target_id){
   int rarest_branches[2];
-  rarest_branches[0] = target_id-1; //because it comes from master, and it has been add 1 
+  rarest_branches[0] = target_id;
   rarest_branches[1] = -1;
   u32 * branch_ids = ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES); //保存对应rare的id(但是加了1,和0区别出来)
   u32 * branch_cts = ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES); //保存对应rare的执行次数
@@ -3529,7 +3530,9 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
   if (fault == crash_mode) {
 
     /* @RB@ in shadow mode, don't increment hit bits*/
-    if (!shadow_mode) increment_hit_bits();	 //所有执行过的测试用例的轨迹都会记录
+    if (!isPulling) {
+      if (!shadow_mode) increment_hit_bits();	 //所有执行过的测试用例的轨迹都会记录
+    }
 
     /* Keep only if there are new bits in the map, add to queue for
        future fuzzing, etc. */
@@ -7945,7 +7948,9 @@ static void pullSeeds(char** argv, u8* source_id) {
         if (stop_soon) return;
 
         syncing_party = sd_ent->d_name;
+        isPulling = 1;
         queued_imported += save_if_interesting(argv, mem, st.st_size, fault);
+        isPulling = 0;
         syncing_party = 0;
 
         munmap(mem, st.st_size);
@@ -9343,16 +9348,18 @@ if(id==Master){
 		//calculateRarity(hit_bits,master_task_dir);
 		//ck_free(task_dir);
 
+        
 		//4.下发任务
 		u8 * slave_task_dir;
         u64 task_branch_ID;
 		slave_task_dir=alloc_printf("%s/../%s/task", out_dir, get_one_slave_id);
-		task_branch_ID = distributeRareSeeds(master_task_dir, slave_task_dir); //从master的task到 slave的task
-        DEBUG1("[Parallel] Distributed seed branch id: %d to slave id: %d\n", task_branch_ID, free_slave_ID);
-
         //5.保存bit_hits到Slave文件夹
 		handoverResults(hit_bits, slave_task_dir);
 
+		task_branch_ID = distributeRareSeeds(master_task_dir, slave_task_dir); //从master的task到 slave的task
+        DEBUG1("[Parallel] Distributed seed branch id: %d to slave id: %d\n", task_branch_ID, free_slave_ID);
+
+    
 		ck_free(master_task_dir);
 		ck_free(slave_task_dir);
 

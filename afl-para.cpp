@@ -110,7 +110,6 @@ u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir)
 
     if (!touched) {
         cout << "There's no task in master's task directory!!!!" << "\n";
-        exit(-1);
     }
 
     return taskBranchID;
