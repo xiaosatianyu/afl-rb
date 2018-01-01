@@ -9397,12 +9397,7 @@ else{
             fclose(fbin);
 
             // 同步种子
-            if (!stop_soon && sync_id && !skipped_fuzz) {
-                if (!(sync_interval_cnt++ % SYNC_INTERVAL))
-                    //sync_fuzzers(use_argv);
-                    //u8 * master_queue_dir=alloc_printf("%s/../master/queue");
-                    pullSeeds(use_argv, "master");
-            }
+            pullSeeds(use_argv, "master");
         } else {
             isFirstLoop = 0;
         }
