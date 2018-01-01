@@ -128,7 +128,7 @@ ORIG_CPU_TARGET="$CPU_TARGET"
 
 test "$CPU_TARGET" = "" && CPU_TARGET="`uname -m`"
 test "$CPU_TARGET" = "i686" && CPU_TARGET="i386"
-
+CPU_TARGET="i386"
 echo "[*] Configuring QEMU for $CPU_TARGET..."
 
 cd qemu-2.3.0 || exit 1
@@ -141,7 +141,7 @@ echo "[+] Configuration complete."
 
 echo "[*] Attempting to build QEMU (fingers crossed!)..."
 
-make -j4|| exit 1
+make -j8|| exit 1
 
 
 echo "[+] Build process successful!"

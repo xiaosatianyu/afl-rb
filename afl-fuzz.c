@@ -53,7 +53,7 @@
 #include <stdbool.h>
 #include <stdarg.h>
 #include <limits.h>
-
+#include <assert.h>
 
 #include <sys/wait.h>
 #include <sys/time.h>
@@ -64,6 +64,8 @@
 #include <sys/mman.h>
 #include <sys/ioctl.h>
 #include <sys/file.h>
+
+#include "afl-para.h"
 
 #if defined(__APPLE__) || defined(__FreeBSD__) || defined (__OpenBSD__)
 #  include <sys/sysctl.h>
@@ -370,6 +372,15 @@ enum {
   /* 04 */ FAULT_NOINST,
   /* 05 */ FAULT_NOBITS
 };
+
+//-------for para
+enum{
+	/* 00 */ Master,
+	/* 01 */ Slave
+};
+u8 id;   //默认是master
+u8 isPulling; //判断当前是否在同步
+//end for para
 
 
 /* create a new branch mask of the specified size */
@@ -994,6 +1005,45 @@ static u32 * is_rb_hit_mini(u8* trace_bits_mini){
   }
   ck_free(branch_cts);
   ck_free(rarest_branches);
+  if (min_hit_index == 0){
+      ck_free(branch_ids);
+      branch_ids = NULL;
+  } else {
+    // 0 terminate the array
+    branch_ids[min_hit_index] = 0; //end添加0,表示结束了
+  }
+  return branch_ids; //返回rare branch的ids,注意被加了1
+
+}
+
+// 带目标选择的判断方法
+static u32 * is_rb_target_hit_mini(u8* trace_bits_mini, u64 target_id){
+  int rarest_branches[2];
+  rarest_branches[0] = target_id;
+  rarest_branches[1] = -1;
+  u32 * branch_ids = ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES); //保存对应rare的id(但是加了1,和0区别出来)
+  u32 * branch_cts = ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES); //保存对应rare的执行次数
+  int min_hit_index = 0;  //记录现在有多少个记录的rare branch
+  //判断当前测试用例的轨迹中是否有 rare branch
+  for (int i = 0; i < MAP_SIZE ; i ++){
+
+      if (unlikely (trace_bits_mini[i >> 3]  & (1 <<(i & 7)) )){
+        int cur_index = i; //第i个元组关系被执行了
+        int is_rare = (cur_index == rarest_branches[0]);
+        if (is_rare) {
+          // at loop initialization, set min_branch_hit properly
+        	//第一次初始化 branch_cts 和 branch_ids,第一次就不用检查是否更小
+          if (!min_hit_index) {
+            branch_cts[min_hit_index] = hit_bits[cur_index]; //保存执行对应branch的测试用例数量
+            branch_ids[min_hit_index] = cur_index + 1;  //为什么要加1? 和0区别出来
+          }
+          min_hit_index++;//指向下一个位置
+          break;
+        }
+      }
+
+  }
+  ck_free(branch_cts);
   if (min_hit_index == 0){
       ck_free(branch_ids);
       branch_ids = NULL;
@@ -3480,7 +3530,9 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
   if (fault == crash_mode) {
 
     /* @RB@ in shadow mode, don't increment hit bits*/
-    if (!shadow_mode) increment_hit_bits();	 //所有执行过的测试用例的轨迹都会记录
+    if (!isPulling) {
+      if (!shadow_mode) increment_hit_bits();	 //所有执行过的测试用例的轨迹都会记录
+    }
 
     /* Keep only if there are new bits in the map, add to queue for
        future fuzzing, etc. */
@@ -4105,6 +4157,14 @@ static void maybe_delete_out_dir(void) {
   if (delete_files(fn, CASE_PREFIX)) goto dir_cleanup_failed;
   ck_free(fn);
 
+  fn = alloc_printf("%s/task", out_dir);
+  if (delete_files(fn, NULL)) goto dir_cleanup_failed;
+  ck_free(fn);
+
+  fn = alloc_printf("%s/free", out_dir);
+  if (delete_files(fn, NULL)) goto dir_cleanup_failed;
+  ck_free(fn);
+
   /* All right, let's do <out_dir>/crashes/id:* and <out_dir>/hangs/id:*. */
 
   if (!in_place_resume) {
@@ -4197,6 +4257,11 @@ static void maybe_delete_out_dir(void) {
   fn = alloc_printf("%s/plot_data", out_dir);
   if (unlink(fn) && errno != ENOENT) goto dir_cleanup_failed;
   ck_free(fn);
+
+  	fn = alloc_printf("%s/task", out_dir);
+	if (unlink(fn) && errno != ENOENT) goto dir_cleanup_failed;
+	ck_free(fn);
+
 
   OKF("Output dir cleanup successful.");
 
@@ -4351,9 +4416,16 @@ static void show_stats(void) {
   banner_pad = (80 - banner_len) / 2;
   memset(tmp, ' ', banner_pad);
 
-  sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
+  if (id=Master){
+	  sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
           " (%s)",  crash_mode ? cPIN "peruvian were-rabbit" : 
-          cYEL "american fuzzy lop-rb", use_banner);
+          cYEL "american fuzzy lop-master", use_banner);
+  }
+  else{
+	  sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
+	            " (%s)",  crash_mode ? cPIN "peruvian were-rabbit" :
+	            cYEL "american fuzzy lop-slave", use_banner);
+  }
 
   SAYF("\n%s\n\n", tmp);
 
@@ -4452,6 +4524,7 @@ static void show_stats(void) {
      together, but then cram them into a fixed-width field - so we need to
      put them in a temporary buffer first. */
 
+  assert(queue_cur && "Holly shit!!!");
   sprintf(tmp, "%s%s (%0.02f%%)", DI(current_entry),
           queue_cur->favored ? "" : "*",
           ((double)current_entry * 100) / queued_paths);
@@ -5410,7 +5483,7 @@ static u8 could_be_interest(u32 old_val, u32 new_val, u8 blen, u8 check_le) {
    function is a tad too long... returns 0 if fuzzed successfully, 1 if
    skipped or bailed out. */
 
-static u8 fuzz_one(char** argv) {
+static u8 fuzz_one(char** argv, u64 target_id) {
 
   s32 len, fd, temp_len, i, j;
   u8  *in_buf, *out_buf, *orig_in, *ex_tmp, *eff_map = 0;
@@ -5500,11 +5573,17 @@ static u8 fuzz_one(char** argv) {
 	  //新的判断策略, rb判断策略
     skip_deterministic_bootstrap = 0;
     //判断当前测试用例是否击中了 rare branch (rb), min_branch_hits是总的rare branch列表
-    u32 * min_branch_hits = is_rb_hit_mini(queue_cur->trace_mini); //参数是当前测试用例的trace_mini
+    u32 * min_branch_hits;
+    if (queue_cycle == 1) 
+        min_branch_hits = is_rb_hit_mini(queue_cur->trace_mini); //参数是当前测试用例的trace_mini
+    else
+        min_branch_hits = is_rb_target_hit_mini(queue_cur->trace_mini, target_id); //参数是当前测试用例的trace_mini
+
     if (min_branch_hits == NULL){
       // not a rare hit. don't fuzz.
       return 1;
     } else { 
+        DEBUG1("Find seed %s that hits branch id: %d\n", queue_cur->fname, target_id);
       int ii;
       for (ii = 0; min_branch_hits[ii] != 0; ii++){
         rb_fuzzing = min_branch_hits[ii]; //得到rare branch的id,注意是加了1
@@ -7757,6 +7836,147 @@ static void sync_fuzzers(char** argv) {
 
 }
 
+//用于slave下的同步
+static void pullSeeds(char** argv, u8* source_id) {
+
+  DIR* sd;
+  struct dirent* sd_ent;
+  u32 sync_cnt = 0;
+
+  sd = opendir(sync_dir);
+  if (!sd) PFATAL("Unable to open '%s'", sync_dir);
+
+  stage_max = stage_cur = 0;
+  cur_depth = 0;
+
+  /* Look at the entries created for every other fuzzer in the sync directory. */
+
+  while ((sd_ent = readdir(sd))) {
+
+    static u8 stage_tmp[128];
+
+    DIR* qd;
+    struct dirent* qd_ent;
+    u8 *qd_path, *qd_synced_path;
+    u32 min_accept = 0, next_min_accept;
+
+    s32 id_fd;
+
+    /* Skip dot files and our own output directory. */
+
+    if (sd_ent->d_name[0] == '.' || !strcmp(sync_id, sd_ent->d_name)) continue;
+
+    //只同步master
+    if (strcmp(sd_ent->d_name , source_id ) ) continue;
+
+    /* Skip anything that doesn't have a queue/ subdirectory. */
+
+    qd_path = alloc_printf("%s/%s/queue", sync_dir, sd_ent->d_name);
+
+    if (!(qd = opendir(qd_path))) {
+      ck_free(qd_path);
+      continue;
+    }
+
+    /* Retrieve the ID of the last seen test case. */
+
+    qd_synced_path = alloc_printf("%s/.synced/%s", out_dir, sd_ent->d_name);
+
+    id_fd = open(qd_synced_path, O_RDWR | O_CREAT, 0600);
+
+    if (id_fd < 0) PFATAL("Unable to create '%s'", qd_synced_path);
+
+    if (read(id_fd, &min_accept, sizeof(u32)) > 0)
+      lseek(id_fd, 0, SEEK_SET);
+
+    next_min_accept = min_accept;
+
+    /* Show stats */
+
+    sprintf(stage_tmp, "sync %u", ++sync_cnt);
+    stage_name = stage_tmp;
+    stage_cur  = 0;
+    stage_max  = 0;
+
+    /* For every file queued by this fuzzer, parse ID and see if we have looked at
+       it before; exec a test case if not. */
+
+    while ((qd_ent = readdir(qd))) {
+
+      u8* path;
+      s32 fd;
+      struct stat st;
+
+      if (qd_ent->d_name[0] == '.' ||
+          sscanf(qd_ent->d_name, CASE_PREFIX "%06u", &syncing_case) != 1 ||
+          syncing_case < min_accept) continue;
+
+      /* OK, sounds like a new one. Let's give it a try. */
+
+      if (syncing_case >= next_min_accept)
+        next_min_accept = syncing_case + 1;
+
+      path = alloc_printf("%s/%s", qd_path, qd_ent->d_name);
+
+      /* Allow this to fail in case the other fuzzer is resuming or so... */
+
+      fd = open(path, O_RDONLY);
+
+      if (fd < 0) {
+         ck_free(path);
+         continue;
+      }
+
+      if (fstat(fd, &st)) PFATAL("fstat() failed");
+
+      /* Ignore zero-sized or oversized files. */
+
+      if (st.st_size && st.st_size <= MAX_FILE) {
+
+        u8  fault;
+        u8* mem = mmap(0, st.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+
+        if (mem == MAP_FAILED) PFATAL("Unable to mmap '%s'", path);
+
+        /* See what happens. We rely on save_if_interesting() to catch major
+           errors and save the test case. */
+
+        write_to_testcase(mem, st.st_size);
+
+        fault = run_target(argv, exec_tmout);
+
+        if (stop_soon) return;
+
+        syncing_party = sd_ent->d_name;
+        isPulling = 1;
+        queued_imported += save_if_interesting(argv, mem, st.st_size, fault);
+        isPulling = 0;
+        syncing_party = 0;
+
+        munmap(mem, st.st_size);
+
+        if (!(stage_cur++ % stats_update_freq)) show_stats();
+
+      }
+
+      ck_free(path);
+      close(fd);
+
+    }
+
+    ck_write(id_fd, &next_min_accept, sizeof(u32), qd_synced_path);
+
+    close(id_fd);
+    closedir(qd);
+    ck_free(qd_path);
+    ck_free(qd_synced_path);
+
+  }
+
+  closedir(sd);
+
+}
+
 
 /* Handle stop signal (Ctrl-C, etc). */
 
@@ -8195,6 +8415,17 @@ EXP_ST void setup_dirs_fds(void) {
   fd = open(tmp, O_WRONLY | O_CREAT | O_EXCL, 0600);
   if (fd < 0) PFATAL("Unable to create '%s'", tmp);
   ck_free(tmp);
+
+  //新建task目录
+  tmp = alloc_printf("%s/task", out_dir);
+  if (mkdir(tmp, 0700)) PFATAL("Unable to create '%s'", tmp);
+  ck_free(tmp);
+
+  //新建free目录
+  tmp = alloc_printf("%s/free", out_dir);
+  if (mkdir(tmp, 0700)) PFATAL("Unable to create '%s'", tmp);
+  ck_free(tmp);
+
 
   plot_file = fdopen(fd, "w");
   if (!plot_file) PFATAL("fdopen() failed");
@@ -8701,6 +8932,34 @@ static void save_cmdline(u32 argc, char** argv) {
 
 }
 
+//function for para
+static void save_rare_branch(){
+
+
+	int * rarest_branches = get_lowest_hit_branch_ids(); //从所有轨迹中得到rare brach的一个数组
+	int i;
+
+	//先清空原来的task
+	u8 * fn;
+	fn = alloc_printf("%s/task", out_dir);
+	if (delete_files(fn, NULL)) PFATAL("Unable to remove '%s'", fn);
+	if (mkdir(fn, 0700)) PFATAL("Unable to create '%s'", fn);
+	ck_free(fn);
+
+
+	//保存到mater下的task目录
+	for (i=0; i<MAX_RARE_BRANCHES && rarest_branches[i]!=-1; i++ ){
+		u8* fn = alloc_printf("%s/task/%d", out_dir, rarest_branches[i]);
+        DEBUG1("Saving task branch ID: %d\n", rarest_branches[i]);
+		unlink(fn); /* Ignore errors */
+		s32 task_fd = open(fn, O_RDWR | O_CREAT | O_EXCL, 0600);
+		if (task_fd < 0) PFATAL("Unable to create '%s'", fn);
+        ck_free(fn);
+        close(task_fd);
+	}
+
+}
+
 
 #ifndef AFL_LIB
 
@@ -8770,6 +9029,7 @@ int main(int argc, char** argv) {
 
           if (sync_id) FATAL("Multiple -S or -M options not supported");
           sync_id = ck_strdup(optarg);
+          id=Master;
 
           if ((c = strchr(sync_id, ':'))) {
 
@@ -8791,6 +9051,7 @@ int main(int argc, char** argv) {
 
         if (sync_id) FATAL("Multiple -S or -M options not supported");
         sync_id = ck_strdup(optarg);
+        id=Slave;
         break;
 
       case 'f': /* target file */
@@ -9028,78 +9289,151 @@ int main(int argc, char** argv) {
     if (stop_soon) goto stop_fuzzing;
   }
 
-  while (1) {
+//判定进入哪个while循环
+u8 master_init=0;
+if(id==Master){
+//	if	( !distributeInitSeeds(out_dir, 4) ){
+//		FATAL("distributeInitSeeds error \n");
+//		exit(1);
+//	}
 
-    u8 skipped_fuzz;
-    cull_queue(); //在这里会处理trace_mini
+	u8 get_one_slave_id[256];
+	memset(get_one_slave_id, 0, 256);
+	u32 free_slave_ID;
+	while(1){
+		if (!queue_cur) {
+  			DEBUG1("Entering new queueing cycle\n");
+  			if (prev_cycle_wo_new && (bootstrap == 3)) {
+  				   //only bootstrap for 1 cycle
+  				prev_cycle_wo_new = 0;
+  			} else {
+  				prev_cycle_wo_new = cycle_wo_new;
+  			}
+  			cycle_wo_new = 1;
+  
+  			queue_cycle++;
+  			current_entry = 0;
+  			cur_skipped_paths = 0;
+  			queue_cur = queue;
+  		}
 
-    if (!queue_cur) {
-      DEBUG1("Entering new queueing cycle\n");
-      if (prev_cycle_wo_new && (bootstrap == 3)){
-        // only bootstrap for 1 cycle
-        prev_cycle_wo_new = 0;
-      } else {
-        prev_cycle_wo_new = cycle_wo_new;
-      }
-      cycle_wo_new = 1;
+		//1. 读取空闲的slave. 阻塞等待 ok
+		u8* free_dir;
+		free_dir=alloc_printf("%s/free", out_dir);
+		free_slave_ID = waitFreeSlaves(free_dir); //得到slave的id, 比如 1 2 3 4
+		ck_free(free_dir);
 
-      queue_cycle++;
-      current_entry     = 0;
-      cur_skipped_paths = 0;
-      queue_cur         = queue;
+        DEBUG1("[Parallel] Find free slave id: %d\n", free_slave_ID);
 
-      while (seek_to) {
-        current_entry++;
-        seek_to--;
-        queue_cur = queue_cur->next;
-      }
+		sprintf(get_one_slave_id, "%d", free_slave_ID);
 
-      show_stats();
+		//2. 收集对应slave的result到master下的hit_bits
+		u8* work_dir;
 
-      if (not_on_tty) {
-        ACTF("Entering queue cycle %llu.", queue_cycle);
-        fflush(stdout);
-      }
+        DEBUG1("[Parallel] Collecting hit_bits from slave id: %d\n", free_slave_ID);
+		work_dir=alloc_printf("%s/..", out_dir);
+		if( !collectResults(hit_bits, work_dir, get_one_slave_id) )
+		   continue;
 
-      /* If we had a full queue cycle with no new finds, try
-         recombination strategies next. */
+		ck_free(work_dir);
 
-      if (queued_paths == prev_queued) {
+		//同步种子
+        DEBUG1("[Parallel] Collecting seeds from slave id: %d\n", free_slave_ID);
+		pullSeeds(use_argv, get_one_slave_id);
 
-        if (use_splicing) cycles_wo_finds++; else use_splicing = 1;
+		//3. 计算rarity,将 branch_id 保存到 master下的task目录下
+		u8* master_task_dir;
+		master_task_dir=alloc_printf("%s/task", out_dir);
+		save_rare_branch();
+		//calculateRarity(hit_bits,master_task_dir);
+		//ck_free(task_dir);
 
-      } else cycles_wo_finds = 0;
+        
+		//4.下发任务
+		u8 * slave_task_dir;
+        u64 task_branch_ID;
+		slave_task_dir=alloc_printf("%s/../%s/task", out_dir, get_one_slave_id);
+        //5.保存bit_hits到Slave文件夹
+		handoverResults(hit_bits, slave_task_dir);
 
-      prev_queued = queued_paths;
+		task_branch_ID = distributeRareSeeds(master_task_dir, slave_task_dir); //从master的task到 slave的task
+        DEBUG1("[Parallel] Distributed seed branch id: %d to slave id: %d\n", task_branch_ID, free_slave_ID);
 
-      if (sync_id && queue_cycle == 1 && getenv("AFL_IMPORT_FIRST"))
-        sync_fuzzers(use_argv);
+    
+		ck_free(master_task_dir);
+		ck_free(slave_task_dir);
 
-    }
+		if (stop_soon) goto stop_fuzzing;
+	}
+} //end master
+else{
+  //进入slave
+	u64 target_id;
+	u8 skipped_fuzz;
+    static isFirstLoop = 1;
+	while(1){
+        if (!queue_cur) {
+          queue_cycle++;
+          queue_cur = queue;
+          current_entry = 0;
+        }
 
-    skipped_fuzz = fuzz_one(use_argv);
+        if (!isFirstLoop) {
+            // 通知Master节点
+            u8* free_dir;
+            free_dir=alloc_printf("%s/../master/free", out_dir);
+            DEBUG1("[Parrallel] Notify master I'm free now\n");
+            notifyMaster4Free(free_dir, atoi(sync_id));
 
-    if (!stop_soon && sync_id && !skipped_fuzz) {
-      
-      if (!(sync_interval_cnt++ % SYNC_INTERVAL))
-        sync_fuzzers(use_argv);
 
-    }
+            // 等待任务
+            target_id=waitTask(out_dir);
+            DEBUG1("[Parrallel] Get task branch ID %d from master\n", target_id);
 
-    if (!stop_soon && exit_1) stop_soon = 2;
+            // 同步bit_hits
+            char binfile[256];
+            memset(binfile, 0, 256);
+            sprintf(binfile, "%s/task/branch-hits.bin", out_dir); 
+            FILE *fbin = fopen(binfile, "rb");
+            if (!fbin) {
+                DEBUG1("Cannot open file: %s\n", binfile);
+                exit(-1);
+            }
 
-    if (stop_soon) break;
+            fread(hit_bits, sizeof(u64), MAP_SIZE, fbin);
+            fclose(fbin);
 
-    queue_cur = queue_cur->next;
-    current_entry++;
+            // 同步种子
+            pullSeeds(use_argv, "master");
+        } else {
+            isFirstLoop = 0;
+        }
+
+		//2.进行新的一轮
+		while (queue_cur) {
+			cull_queue(); //在这里会处理trace_mini
+			skipped_fuzz = fuzz_one(use_argv, target_id);
+			if (!stop_soon && exit_1)
+				stop_soon = 2;
+
+			if (stop_soon)
+				break;
+			queue_cur = queue_cur->next;
+			current_entry++;
+
+			if (queue_cur)	show_stats();
+
+			write_bitmap();
+			write_stats_file(0, 0, 0);
+			save_auto();
+		}//结束一轮
+		//3. 保存执行结果本地 hit_bits
+        DEBUG1("[Parallel] Saving hit_bits\n");
+		handoverResults(hit_bits,out_dir);
 
   }
 
-  if (queue_cur) show_stats();
-
-  write_bitmap();
-  write_stats_file(0, 0, 0);
-  save_auto();
+} //end slave
 
 stop_fuzzing:
 
