@@ -8947,10 +8947,10 @@ static void save_rare_branch(){
 		u8* fn = alloc_printf("%s/task/%d", out_dir, rarest_branches[i]);
         DEBUG1("Saving task branch ID: %d\n", rarest_branches[i]);
 		unlink(fn); /* Ignore errors */
-		out_fd = open(fn, O_RDWR | O_CREAT | O_EXCL, 0600);
-		if (out_fd < 0) PFATAL("Unable to create '%s'", fn);
-		close(fn);
+		s32 task_fd = open(fn, O_RDWR | O_CREAT | O_EXCL, 0600);
+		if (task_fd < 0) PFATAL("Unable to create '%s'", fn);
         ck_free(fn);
+        close(task_fd);
 	}
 
 }
