@@ -114,7 +114,7 @@ u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir)
 
     return taskBranchID;
 }
-
+// slave
 u64 waitTask(const char *out_dir)
 {
     DIR *dp;
