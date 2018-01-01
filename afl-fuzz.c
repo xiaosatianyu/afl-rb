@@ -1018,7 +1018,7 @@ static u32 * is_rb_hit_mini(u8* trace_bits_mini){
 // 带目标选择的判断方法
 static u32 * is_rb_target_hit_mini(u8* trace_bits_mini, u64 target_id){
   int rarest_branches[2];
-  rarest_branches[0] = target_id;
+  rarest_branches[0] = target_id-1; //because it comes from master, and it has been add 1 
   rarest_branches[1] = -1;
   u32 * branch_ids = ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES); //保存对应rare的id(但是加了1,和0区别出来)
   u32 * branch_cts = ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES); //保存对应rare的执行次数
@@ -8949,7 +8949,8 @@ static void save_rare_branch(){
 		unlink(fn); /* Ignore errors */
 		out_fd = open(fn, O_RDWR | O_CREAT | O_EXCL, 0600);
 		if (out_fd < 0) PFATAL("Unable to create '%s'", fn);
-		ck_free(fn);
+		close(fn);
+        ck_free(fn);
 	}
 
 }

@@ -147,7 +147,7 @@ u64 waitTask(const char *out_dir)
 
                 branchIDs.insert(id);
                 branchID = id;
-                cout << "Name is " << id << std::endl;
+                cout << "Name is " << id<<", branch id is "<< branchID << std::endl;
 
                 char full_name[256];
                 memset(full_name, 0, 256);
