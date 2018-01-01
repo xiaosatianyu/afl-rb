@@ -8940,11 +8940,11 @@ static void save_rare_branch(){
 	int i;
 
 	//先清空原来的task
-	u8 * fn;
-	fn = alloc_printf("%s/task", out_dir);
-	if (delete_files(fn, NULL)) PFATAL("Unable to remove '%s'", fn);
-	if (mkdir(fn, 0700)) PFATAL("Unable to create '%s'", fn);
-	ck_free(fn);
+	//u8 * fn;
+	//fn = alloc_printf("%s/task", out_dir);
+	//if (delete_files(fn, NULL)) PFATAL("Unable to remove '%s'", fn);
+	//if (mkdir(fn, 0700)) PFATAL("Unable to create '%s'", fn);
+	//ck_free(fn);
 
 
 	//保存到mater下的task目录
