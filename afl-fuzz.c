@@ -9019,26 +9019,30 @@ static void save_cmdline(u32 argc, char** argv) {
 //function for para
 // 返回1表明重新进行了rarest_branches计算
 static u8 save_rare_branch(){
-    DIR *dp;
-    struct dirent *dirp;
-    
+   
     u8 * fn;
 	fn = alloc_printf("%s/task", out_dir);
-    if( (dp  = opendir(fn)) == NULL) {
-        PFATAL("Unable to open '%s'", fn);
-    }
+    if (delete_files(fn, NULL)) PFATAL("Unable to delete '%s'", fn);;
+    if (mkdir(fn, 0700)) PFATAL("Unable to create '%s'", fn);
 	ck_free(fn);
+    
+//    DIR *dp;
+//    struct dirent *dirp;
+//    
+//    if( (dp  = opendir(fn)) == NULL) {
+//        PFATAL("Unable to open '%s'", fn);
+//    }
+//    while ((dirp = readdir(dp)) != NULL) {
+//        if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
+//            continue;
+//        else {
+//            DEBUG1("[Parallel] There are some old task, do not calculate new task\n");
+//            return 0;
+//        }
+//    }
+//    DEBUG1("[Parallel] all tasks have been fuzzed, calculate new tasks\n");
 
-    while ((dirp = readdir(dp)) != NULL) {
-        if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
-            continue;
-        else {
-            DEBUG1("[Parallel] There are some old task, do not calculate new task\n");
-            return ;
-        }
-    }
-    DEBUG1("[Parallel] all tasks have been fuzzed, calculate new tasks\n");
-	int * rarest_branches = get_lowest_hit_branch_ids(); //从所有轨迹中得到rare brach的一个数组
+    int * rarest_branches = get_lowest_hit_branch_ids(); //从所有轨迹中得到rare brach的一个数组
 	int i;
 	//保存到mater下的task目录
 	for (i=0; i<MAX_RARE_BRANCHES && rarest_branches[i]!=-1; i++ ){
