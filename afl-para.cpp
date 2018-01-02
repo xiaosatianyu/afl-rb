@@ -122,6 +122,12 @@ u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir, u32
     ofstream task (newName.c_str(), fstream::trunc);
     task.close();
 
+    // remove task from master 
+    string oldName = string(masterTaskDir);
+    oldName += "/";
+    oldName += std::to_string(taskBranchID);
+    unlink(oldName.c_str());
+
     if (nodeTask.find(slaveID) == nodeTask.end()) {
         nodeTask.insert(std::make_pair(slaveID, taskBranchID));
     } else {

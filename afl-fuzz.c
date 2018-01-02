@@ -9397,18 +9397,8 @@ else{
             target_id=waitTask(out_dir);
             DEBUG1("[Parrallel] Get task branch ID %d from master\n", target_id);
 
-            // 同步bit_hits
-            char binfile[256];
-            memset(binfile, 0, 256);
-            sprintf(binfile, "%s/task/branch-hits.bin", out_dir); 
-            FILE *fbin = fopen(binfile, "rb");
-            if (!fbin) {
-                DEBUG1("Cannot open file: %s\n", binfile);
-                exit(-1);
-            }
-
-            fread(hit_bits, sizeof(u64), MAP_SIZE, fbin);
-            fclose(fbin);
+            // 重新初始化bit_hits
+            memset(hit_bits, 0, sizeof(hit_bits));
 
             // 同步种子
             pullSeeds(use_argv, "master");
