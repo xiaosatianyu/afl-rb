@@ -336,6 +336,7 @@ static u8 skip_deterministic_bootstrap = 0;
 
 static int trim_for_branch = 0;
 
+static slave_first_loop = 1;  //表示slave的第一轮
 
 /* Interesting values, as per config.h */
 
@@ -5288,6 +5289,9 @@ static u32 calculate_score(struct queue_entry* q) {
   u32 avg_bitmap_size = total_bitmap_size / total_bitmap_entries;
   u32 perf_score = 100;
 
+  if(slave_first_loop)
+      perf_score=10;
+
   /* Adjust score based on execution speed of this path, compared to the
      global average. Multiplier ranges from 0.1x to 3x. Fast inputs are
      less expensive to fuzz, so we're giving them more air time. */
@@ -7599,7 +7603,7 @@ havoc_stage:
 
     if (queued_paths != havoc_queued) {
 
-      if (perf_score <= HAVOC_MAX_MULT * 100) {
+      if (perf_score <= HAVOC_MAX_MULT * 100 && !slave_first_loop) {
         stage_max  *= 2;
         perf_score *= 2;
       }
@@ -9468,7 +9472,6 @@ else{
   //进入slave
 	u64 target_id;
 	u8 skipped_fuzz;
-    static isFirstLoop = 1;
 	while(1){
         if (!queue_cur) {
           queue_cycle++;
@@ -9476,8 +9479,8 @@ else{
           current_entry = 0;
         }
 
-        if (!isFirstLoop) {
-            // 通知Master节点
+        if (!slave_first_loop) {
+            // 通知Master节
             u8* free_dir;
             free_dir=alloc_printf("%s/../master/free", out_dir);
             DEBUG1("[Parrallel] Notify master I'm free now\n");
@@ -9504,11 +9507,8 @@ else{
                 prev_cycle_wo_new = 0;
             }
 
-        } else {
-            isFirstLoop = 0;
         }
-
-        u32 new_branches = 0;
+                u32 new_branches = 0;
 		//2.进行新的一轮
 		while (queue_cur) {
 			cull_queue(); //在这里会处理trace_mini
@@ -9549,6 +9549,12 @@ else{
 		//3. 保存执行结果本地 hit_bits
         DEBUG1("[Parallel] Saving hit_bits\n");
 		handoverResults(hit_bits,out_dir);
+        
+        if(slave_first_loop)
+        {
+            slave_first_loop = 0;
+        }
+
 
   }
 
