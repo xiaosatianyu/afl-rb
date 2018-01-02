@@ -3,6 +3,8 @@
 #include <errno.h>
 #include <set>
 #include <map>
+#include <vector>
+#include <algorithm>
 #include <string>
 #include <string.h>
 #include <unistd.h>
@@ -79,52 +81,55 @@ u32 waitFreeSlaves(const char* freeDir)
 // Master node method
 u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir, u32 slaveID)
 {
-    u32 taskNum = 1; // Currently we distribute only one task each time
     DIR *dp;
     struct dirent *dirp;
 
+    std::vector<u64> taskIDs;
     u64 taskBranchID;
     if((dp  = opendir(masterTaskDir)) == NULL) {
         cout << "Error(" << errno << ") opening " << masterTaskDir << endl;
         exit(-1);
     }
 
-    u32 touched = 0;
-	while ((dirp = readdir(dp)) != NULL && taskNum) {
+	while ((dirp = readdir(dp)) != NULL) {
 		if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
 			continue;
 		else {
-			string newName = string(slaveTaskDir);
-			newName += "/";
-			newName += string(dirp->d_name);
-            taskBranchID = atoi(dirp->d_name);
-
+            u64 _ID = atoi(dirp->d_name);
             // If `taskBranchID` is now fuzzed by other slave, then continue.
-            //if (busyRBIDs.find(taskBranchID) != busyRBIDs.end()) {
-            //    continue;
-            //}
-
-			ofstream task (newName.c_str(), fstream::trunc);
-			task.close();
-			touched++;
-			taskNum -= 1;
+            if (busyRBIDs.find(_ID) != busyRBIDs.end()) {
+                continue;
+            }
+            taskIDs.push_back(_ID);
 		}
 	}
 
     closedir(dp);
-
-    if (!touched) {
+    if (!taskIDs.size()) {
         cout << "There's no task in master's task directory!!!!" << "\n";
+        // choose one from now-fuzzing IDs
+        u32 index = rand() % busyRBIDs.size();
+        std::set<u64>::const_iterator it(busyRBIDs.begin());
+        advance(it, index);
+        taskBranchID = *it;
     } else {
-        if (nodeTask.find(slaveID) == nodeTask.end()) {
-            nodeTask.insert(std::make_pair(slaveID, taskBranchID));
-        } else {
-            nodeTask[slaveID] = taskBranchID;
-        }
-
-        // mark taskBranchID as busy
-        busyRBIDs.insert(taskBranchID);
+        u32 index = rand() % (taskIDs.size());
+        taskBranchID = taskIDs[index];
     }
+    string newName = string(slaveTaskDir);
+    newName += "/";
+    newName += std::to_string(taskBranchID);
+    ofstream task (newName.c_str(), fstream::trunc);
+    task.close();
+
+    if (nodeTask.find(slaveID) == nodeTask.end()) {
+        nodeTask.insert(std::make_pair(slaveID, taskBranchID));
+    } else {
+        nodeTask[slaveID] = taskBranchID;
+    }
+
+    // mark taskBranchID as busy
+    busyRBIDs.insert(taskBranchID);
 
     return taskBranchID;
 }
