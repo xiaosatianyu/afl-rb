@@ -391,6 +391,7 @@ enum{
 };
 u8 id;   //默认是master
 u8 isPulling; //判断当前是否在同步
+u8 round_new_branches; //在重新计算rare前是否发现新分支
 //end for para
 
 
@@ -411,6 +412,7 @@ static inline u8* alloc_branch_mask(u32 size) {
 
 }
 
+//TODO: 限制cache长度，防止内存过度消耗
 void add_to_branch_mask_cache(struct queue_entry * q, u64 rbID, u8* branch_mask)
 {
     if (!q) { return; }
@@ -5537,7 +5539,7 @@ static u8 could_be_interest(u32 old_val, u32 new_val, u8 blen, u8 check_le) {
    function is a tad too long... returns 0 if fuzzed successfully, 1 if
    skipped or bailed out. */
 
-static u8 fuzz_one(char** argv, u64 target_id) {
+static u8 fuzz_one(char** argv, u64 target_id, u32* new_branches) {
 
   s32 len, fd, temp_len, i, j;
   u8  *in_buf, *out_buf, *orig_in, *ex_tmp, *eff_map = 0;
@@ -6181,6 +6183,11 @@ skip_simple_bitflip:
   DEBUG1("%scalib stage: %i new branches in %i total execs\n", shadow_prefix, queued_with_cov-orig_queued_with_cov, total_execs-orig_total_execs);
   successful_branch_tries = 0;
   total_branch_tries = 0;
+  *new_branches += queued_with_cov-orig_queued_with_cov;
+  // 把branch_mask收集到cache中
+  u8* _branch_mask = ck_alloc(len + 1);
+  memcpy(_branch_mask, branch_mask, len+1);
+  add_to_branch_mask_cache(queue_cur, rb_fuzzing-1, _branch_mask);
 
   // @RB@ TODO: skip to havoc (or dictionary add?) if can't modify any bytes 
 
@@ -7088,10 +7095,7 @@ skip_extras:
 
   successful_branch_tries = 0;
   total_branch_tries = 0;
-
-
-
-
+  *new_branches += queued_with_cov-orig_queued_with_cov;
 
   /****************
    * RANDOM HAVOC *
@@ -7746,6 +7750,9 @@ abandon_entry:
   total_branch_tries = 0;
   DEBUG1("%shavoc stage: %i new coverage in %i total execs\n", shadow_prefix, queued_discovered-orig_queued_discovered, total_execs-orig_total_execs);
   DEBUG1("%shavoc stage: %i new branches in %i total execs\n", shadow_prefix, queued_with_cov-orig_queued_with_cov, total_execs-orig_total_execs);
+
+  *new_branches += queued_with_cov-orig_queued_with_cov;
+
   if (shadow_mode) goto re_run;
   //如果这一轮发现新的路径了, 就重设 一下几个变量  prev_cycle_wo_new 和 cycle_wo_new 什么用?
   if (queued_with_cov-orig_queued_with_cov){
@@ -9006,7 +9013,8 @@ static void save_cmdline(u32 argc, char** argv) {
 }
 
 //function for para
-static void save_rare_branch(){
+// 返回1表明重新进行了rarest_branches计算
+static u8 save_rare_branch(){
     DIR *dp;
     struct dirent *dirp;
     
@@ -9039,6 +9047,7 @@ static void save_rare_branch(){
         ck_free(fn);
 	}
 
+    return 1;
 }
 
 
@@ -9413,7 +9422,7 @@ if(id==Master){
 
         DEBUG1("[Parallel] Collecting hit_bits from slave id: %d\n", free_slave_ID);
 		work_dir=alloc_printf("%s/..", out_dir);
-		if( !collectResults(hit_bits, work_dir, get_one_slave_id) )
+		if( !collectResults(hit_bits, work_dir, get_one_slave_id, &round_new_branches) )
 		   continue;
 
 		ck_free(work_dir);
@@ -9425,9 +9434,17 @@ if(id==Master){
 		//3. 计算rarity,将 branch_id 保存到 master下的task目录下
 		u8* master_task_dir;
 		master_task_dir=alloc_printf("%s/task", out_dir);
-		save_rare_branch();
-		//calculateRarity(hit_bits,master_task_dir);
-		//ck_free(task_dir);
+		u8 new_calced = save_rare_branch();
+
+        // 如果重新计算了一次，且之前未发现任何新分支，则通知当前free的slave进入vanilla AFL模式
+        if (new_calced) {
+            DEBUG1("Totally triggered %d new branches in one round\n", round_new_branches);
+            if (!round_new_branches) {
+                notifySlaveVanillaAFL(out_dir, get_one_slave_id);
+            } else {
+                round_new_branches = 0;
+            }
+        }
 
         
 		//4.下发任务
@@ -9479,9 +9496,10 @@ else{
 
             // 判断是否需要回退到AFL逻辑
             // 所有task都被测试过，且都未发现任何新的branch则回退到AFL
-            u8 regular_AFL = needRegularAFL();
+            u8 regular_AFL = needRegularAFL(out_dir);
             if (regular_AFL) {
                 prev_cycle_wo_new = 1;
+                DEBUG1("Entering vanilla AFL...\n");
             } else {
                 prev_cycle_wo_new = 0;
             }
@@ -9490,10 +9508,11 @@ else{
             isFirstLoop = 0;
         }
 
+        u32 new_branches = 0;
 		//2.进行新的一轮
 		while (queue_cur) {
 			cull_queue(); //在这里会处理trace_mini
-			skipped_fuzz = fuzz_one(use_argv, target_id);
+			skipped_fuzz = fuzz_one(use_argv, target_id, &new_branches);
 			if (!stop_soon && exit_1)
 				stop_soon = 2;
 
@@ -9508,6 +9527,25 @@ else{
 			write_stats_file(0, 0, 0);
 			save_auto();
 		}//结束一轮
+
+          // 写入新分支数量到文件中
+          {
+              char fname[256];
+              FILE* fd;
+
+              memset(fname, 0, 256);
+              sprintf(fname, "%s/newbranches", out_dir);
+              fd = fopen(fname, "wb");
+
+              if (fd) {
+                  char buff[256];
+                  memset(buff, 0, 256);
+                  sprintf(buff, "%d", new_branches);
+                  fwrite(buff, sizeof(char), 256, fd);
+                  fclose(fd);
+              }
+          }
+
 		//3. 保存执行结果本地 hit_bits
         DEBUG1("[Parallel] Saving hit_bits\n");
 		handoverResults(hit_bits,out_dir);
