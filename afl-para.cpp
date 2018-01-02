@@ -2,6 +2,7 @@
 #include <dirent.h>
 #include <errno.h>
 #include <set>
+#include <map>
 #include <string>
 #include <string.h>
 #include <unistd.h>
@@ -9,6 +10,11 @@
 #include <iostream>
 
 #include "types.h"
+
+/* These variables should be only modified in master node! Should above `afl-para.h` */
+std::map<u32, u64> nodeTask;   // Node ID ---- Branch ID
+std::set<u64>      busyRBIDs;  // all busy branch IDs
+
 extern "C" {
 #ifndef LOCAL_DEBUG
 #include "afl-para.h"
@@ -16,16 +22,10 @@ extern "C" {
 #include "config.h"
 }
 
-
-
 using namespace std;
 
-//u8 distributeInitSeeds(char* masterInputDir, char* slaveInputDir, u32 numWorkNodes)
-//{
-//    return 1;
-//}
 
-
+// Master node method
 u32 waitFreeSlaves(const char* freeDir)
 {
     DIR *dp;
@@ -53,7 +53,7 @@ u32 waitFreeSlaves(const char* freeDir)
                 freeID = id;
                 cout << "Name is " << id << std::endl;
                 char full_name[256];
-		memset(full_name, 0, 256);
+                memset(full_name, 0, 256);
                 sprintf(full_name, "%s/%s", freeDir, dirp->d_name);
                 unlink(full_name);
 
@@ -68,10 +68,16 @@ u32 waitFreeSlaves(const char* freeDir)
         sleep(WAIT_FREE);
     }
 
+    // mark target branch ID as free
+    auto it = nodeTask.find(freeID);
+    u64 rbID = it->second;
+    busyRBIDs.erase(rbID);
+
     return freeID;
 }
 
-u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir)
+// Master node method
+u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir, u32 slaveID)
 {
     u32 taskNum = 1; // Currently we distribute only one task each time
     DIR *dp;
@@ -83,13 +89,6 @@ u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir)
         exit(-1);
     }
 
-    //先清空原来的task
-//	u8 * fn;
-//	fn = alloc_printf("%s/task", out_dir);
-//	if (delete_files(fn, NULL)) PFATAL("Unable to remove '%s'", fn);
-//	if (mkdir(fn, 0700)) PFATAL("Unable to create '%s'", fn);
-//	ck_free(fn);
-
     u32 touched = 0;
 	while ((dirp = readdir(dp)) != NULL && taskNum) {
 		if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
@@ -99,6 +98,12 @@ u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir)
 			newName += "/";
 			newName += string(dirp->d_name);
             taskBranchID = atoi(dirp->d_name);
+
+            // If `taskBranchID` is now fuzzed by other slave, then continue.
+            if (busyRBIDs.find(taskBranchID) != busyRBIDs.end()) {
+                continue;
+            }
+
 			ofstream task (newName.c_str(), fstream::trunc);
 			task.close();
 			touched++;
@@ -110,11 +115,21 @@ u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir)
 
     if (!touched) {
         cout << "There's no task in master's task directory!!!!" << "\n";
+    } else {
+        if (nodeTask.find(slaveID) == nodeTask.end()) {
+            nodeTask.insert(std::make_pair(slaveID, taskBranchID));
+        } else {
+            nodeTask[slaveID] = taskBranchID;
+        }
+
+        // mark taskBranchID as busy
+        busyRBIDs.insert(taskBranchID);
     }
 
     return taskBranchID;
 }
-// slave
+
+// Slave node method
 u64 waitTask(const char *out_dir)
 {
     DIR *dp;
@@ -167,7 +182,7 @@ u64 waitTask(const char *out_dir)
 
 }
 
-
+// Master & slave node method
 void handoverResults(u64* rareMap, const char* out_dir)
 {
     char fname[256];
@@ -186,6 +201,7 @@ void handoverResults(u64* rareMap, const char* out_dir)
     fclose(fd);
 }
 
+// Master node method
 u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID)
 {
     // 1st: read sizeof(u64)*MAP_SIZE into buffer
@@ -218,6 +234,7 @@ u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID)
     return 1;
 }
 
+// Master node method
 u8 calculateRarity(u64* bit_hits, const char* masterTaskDir)
 {
     DIR *dp;
@@ -252,6 +269,7 @@ u8 calculateRarity(u64* bit_hits, const char* masterTaskDir)
     return 1;
 }
 
+// Slave node method
 void notifyMaster4Free(const char* freeDir, u32 slaveID)
 {
     char freeFile[256];
@@ -260,6 +278,14 @@ void notifyMaster4Free(const char* freeDir, u32 slaveID)
     ofstream free_file (freeFile, fstream::trunc);
     free_file.close();
 }
+
+// Slave node method
+u8 needRegularAFL()
+{
+
+    return 0;
+}
+
 #ifdef LOCAL_DEBUG
 int main()
 {

@@ -46,9 +46,10 @@ u8 calculateRarity(u64* bit_hits, const char* masterTaskDir);
  * Distribute rare seeds to each work node.
  * Arg1 (const char*) : task directory of master node
  * Arg2 (const char*) : task directory of slave node
+ * Arg3 (u32)         : slave node ID
  * Ret  (u64)         : task branch ID.
  */
-u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir);
+u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir, u32 slaveID);
 
 /*
  * Wait for new task seeds.
@@ -72,6 +73,13 @@ void handoverResults(u64* rareMap, const char* out_dir);
  * Ret  (void)        : None
  */
 void notifyMaster4Free(const char* freeDir, u32 slaveID);
+
+/*
+ * Check whether to use vanilla AFL.
+ * Arg (void): None
+ * Ret (u8)  : Return 1 if need to.
+ */
+u8 needRegularAFL(void);
 
 #ifdef _cplusplus
 }
