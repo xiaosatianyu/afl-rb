@@ -1,5 +1,6 @@
 #include <sys/types.h>
 #include <dirent.h>
+#include <stdarg.h>
 #include <errno.h>
 #include <set>
 #include <map>
@@ -16,6 +17,21 @@
 /* These variables should be only modified in master node! Should above `afl-para.h` */
 std::map<u32, u64> nodeTask;   // Node ID ---- Branch ID
 std::set<u64>      busyRBIDs;  // all busy branch IDs
+typedef std::map<u64,u64> ID_HOT;
+
+int cmp(const std::pair<u64, u64>& x, const std::pair<u64, u64>& y)    
+{    
+    return x.second < y.second;    
+}  
+void sortMapByValue(ID_HOT& tMap, std::vector<std::pair<u64, u64> >& tVector)    
+{    
+    for (auto curr = tMap.begin(); curr != tMap.end(); curr++)     
+        tVector.push_back(std::make_pair(curr->first, curr->second));      
+         
+    std::sort(tVector.begin(), tVector.end(), cmp);    
+} 
+
+ID_HOT fuzzedIDs; //key is the ID, value is the cycle that this ID has been fuzzed
 
 extern "C" {
 #ifndef LOCAL_DEBUG
@@ -25,7 +41,21 @@ extern "C" {
 }
 
 using namespace std;
-
+#define DEBUG fileonly
+void fileonly (char const *fmt, ...) { 
+    static FILE *f = NULL;
+    if (f == NULL) {
+      char fn[256];
+      memset(fn, 0, 256);
+      sprintf(fn, "%s/para-test", "/tmp");
+      f= fopen(fn, "w");
+    }
+    va_list ap;
+    va_start(ap, fmt);
+    vfprintf(f, fmt, ap);
+    va_end(ap);
+    fflush(f);
+}
 
 // Master node method
 u32 waitFreeSlaves(const char* freeDir)
@@ -78,44 +108,83 @@ u32 waitFreeSlaves(const char* freeDir)
     return freeID;
 }
 
-// Master node method
-u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir, u32 slaveID)
-{
+// get a id from task
+  
+u64 getTaskId(const char* masterTaskDir){
+    
     DIR *dp;
     struct dirent *dirp;
-
-    std::vector<u64> taskIDs;
-    u64 taskBranchID;
+    //std::vector<u64> taskIDs; 
+    u8 newflag = 0; 
+    u64 targetID=0;
+    //1. read ids from task poll
     if((dp  = opendir(masterTaskDir)) == NULL) {
         cout << "Error(" << errno << ") opening " << masterTaskDir << endl;
         exit(-1);
     }
-
-	while ((dirp = readdir(dp)) != NULL) {
+    while ((dirp = readdir(dp)) != NULL) {
 		if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
 			continue;
 		else {
             u64 _ID = atoi(dirp->d_name);
-            // If `taskBranchID` is now fuzzed by other slave, then continue.
-            if (busyRBIDs.find(_ID) != busyRBIDs.end()) {
-                continue;
+            // check if it is a new id
+            if ( fuzzedIDs.find(_ID) == fuzzedIDs.end() )
+            {   
+                // it a new id
+                newflag=1;
+                targetID=_ID;
+                break;
             }
-            taskIDs.push_back(_ID);
+            //taskIDs.push_back(_ID);
 		}
 	}
-
-    closedir(dp);
-    if (!taskIDs.size()) {
-        cout << "There's no task in master's task directory!!!!" << "\n";
-        // choose one from now-fuzzing IDs
-        u32 index = rand() % busyRBIDs.size();
-        std::set<u64>::const_iterator it(busyRBIDs.begin());
-        advance(it, index);
-        taskBranchID = *it;
-    } else {
-        u32 index = rand() % (taskIDs.size());
-        taskBranchID = taskIDs[index];
+    
+    if (newflag){
+        // it is a new id
+        DEBUG("Finding new rare branch %d\n", targetID);
+        fuzzedIDs.insert(std::make_pair(targetID,1));
     }
+    else{
+        // there is no new id ,return a least executed id
+        std::vector<std::pair<u64, u64> > sortedFuzzedIDs;    
+        sortMapByValue(fuzzedIDs, sortedFuzzedIDs);   
+        // use sortedFuzzedIDs below
+        auto it = sortedFuzzedIDs.end();
+        u64 ID = it->first;
+        u64 hot = it->second;
+        targetID=ID;
+        fuzzedIDs[targetID] += 1;
+        DEBUG("Using prev rare branch %d with hot: %d\n", ID, hot);
+    }
+
+    return targetID;
+} 
+
+
+// Master node method
+u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir, u32 slaveID)
+{
+
+    
+    u64 taskBranchID;
+
+    taskBranchID = getTaskId(masterTaskDir); 
+	
+//
+//    closedir(dp);
+//    if (!taskIDs.size()) {
+//        cout << "There's no task in master's task directory!!!!" << "\n";
+//        // choose one from now-fuzzing IDs
+//        u32 index = rand() % busyRBIDs.size();
+//        std::set<u64>::const_iterator it(busyRBIDs.begin());
+//        advance(it, index);
+//        taskBranchID = *it;
+//    } else {
+//        u32 index = rand() % (taskIDs.size());
+//        taskBranchID = taskIDs[index];
+//    }
+//
+
     string newName = string(slaveTaskDir);
     newName += "/";
     newName += std::to_string(taskBranchID);
