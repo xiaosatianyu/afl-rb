@@ -1,7 +1,7 @@
 #!/bin/sh
 
 AFL_FUZZ="/home/binzhang/git/afl-rb/afl-fuzz"
-SEED="/home/binzhang/git/afl-rb/script/seed"
+SEED="/home/binzhang/Desktop/tiff2pdf/seed"
 OUT_PUT="/tmp/out-aflpara"
 EXE_STR="/home/binzhang/Desktop/tiff2pdf/tiff2pdf @@ -o /dev/null"
 
