@@ -242,6 +242,14 @@ static s32 cpu_aff = -1;       	      /* Selected CPU core                */
 
 static FILE* plot_file;               /* Gnuplot output file              */
 
+// branch mask缓存
+struct mask_cache {
+    u64 rbID;
+    u8* branch_mask;
+
+    struct mask_cache *next;
+};
+
 struct queue_entry {
 
   u8* fname;                          /* File name for the test case      */
@@ -267,6 +275,9 @@ struct queue_entry {
   u32 tc_ref;                         /* Trace bytes ref count            */
 
   u8* fuzzed_branches;                /* @RB@ which branches have been done */  //记录已经被fuzz过的branch? 在rare branch筛选中记录的
+
+  struct mask_cache * mc;             /* 记录所有的branch_mask            */
+  struct mask_cache * mc_top;         /* 最后一个branch_mask              */
 
   struct queue_entry *next,           /* Next element, if any             */
                      *next_100;       /* 100 elements ahead               */
@@ -398,6 +409,38 @@ static inline u8* alloc_branch_mask(u32 size) {
 
   return mem;
 
+}
+
+void add_to_branch_mask_cache(struct queue_entry * q, u64 rbID, u8* branch_mask)
+{
+    if (!q) { return; }
+    struct mask_cache * mc = ck_alloc(sizeof(struct mask_cache));
+    if (!mc) { return; }
+   
+    mc->rbID = rbID;
+    mc->branch_mask = branch_mask;
+    mc->next = NULL;
+
+    if (!q->mc_top) {
+       q->mc = mc;
+       q->mc_top = mc;
+    } else {
+        q->mc_top->next = mc;
+        q->mc_top = mc;
+    }
+}
+
+u8* find_rb_branch_mask_cache(struct queue_entry *q, u64 rbID)
+{
+    struct mask_cache *_tmp_mc = q->mc;
+    while (_tmp_mc) {
+        if (_tmp_mc->rbID == rbID) {
+            return _tmp_mc->branch_mask;
+        }
+
+        _tmp_mc = _tmp_mc->next;
+    }
+    return NULL;
 }
 
 // @LFB@ functions for logging
@@ -1205,6 +1248,16 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det) {
 }
 
 
+void destroy_branch_mask_cache(struct queue_entry* q)
+{
+    struct mask_cache *mc = q->mc, *n;
+    while (mc) {
+        n = q->next;
+        ck_free(mc);
+        mc = n;
+    }
+}
+
 /* Destroy the entire queue. */
 
 EXP_ST void destroy_queue(void) {
@@ -1216,6 +1269,7 @@ EXP_ST void destroy_queue(void) {
     ck_free(q->fname);
     ck_free(q->trace_mini);
     ck_free(q->fuzzed_branches);
+    destroy_branch_mask_cache(q);
     ck_free(q);
     q = n;
 
@@ -5809,6 +5863,14 @@ re_run: // re-run when running in shadow mode  这里只有shadow mode 才会进
   if ((!rb_fuzzing && skip_deterministic) || skip_deterministic_bootstrap || (vanilla_afl && queue_cur->was_fuzzed ) || (vanilla_afl && queue_cur->passed_det))
     goto havoc_stage;
 
+  // 如果找到了对应的branch_mask，那么直接飞起来
+  u8* cached_branch_mask = find_rb_branch_mask_cache(queue_cur, rb_fuzzing - 1);
+  if (cached_branch_mask) {
+      memcpy(branch_mask, cached_branch_mask, sizeof(len + 1));
+      DEBUG1("[Parallel] Cache hit! Skip calculating branch mask!\n");
+      goto havoc_stage;
+  }
+
   /* Skip deterministic fuzzing if exec path checksum puts this out of scope
      for this master instance. */
 
@@ -7020,6 +7082,10 @@ skip_extras:
   successful_branch_tries = 0;
   total_branch_tries = 0;
 
+  // 把branch_mask收集到cache中
+  u8* _branch_mask = ck_alloc(len + 1);
+  memcpy(_branch_mask, branch_mask, len+1);
+  add_to_branch_mask_cache(queue_cur, rb_fuzzing-1, _branch_mask);
   /****************
    * RANDOM HAVOC *
    ****************/
