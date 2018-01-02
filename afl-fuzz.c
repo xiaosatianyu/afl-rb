@@ -4416,7 +4416,7 @@ static void show_stats(void) {
   banner_pad = (80 - banner_len) / 2;
   memset(tmp, ' ', banner_pad);
 
-  if (id=Master){
+  if (id==Master){
 	  sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
           " (%s)",  crash_mode ? cPIN "peruvian were-rabbit" : 
           cYEL "american fuzzy lop-master", use_banner);
@@ -8940,7 +8940,7 @@ static void save_rare_branch(){
 	int i;
 
 	//先清空原来的task
-	u8 * fn;
+    u8 * fn;
 	fn = alloc_printf("%s/task", out_dir);
 	if (delete_files(fn, NULL)) PFATAL("Unable to remove '%s'", fn);
 	if (mkdir(fn, 0700)) PFATAL("Unable to create '%s'", fn);
