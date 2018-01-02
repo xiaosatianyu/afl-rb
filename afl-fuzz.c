@@ -8934,19 +8934,26 @@ static void save_cmdline(u32 argc, char** argv) {
 
 //function for para
 static void save_rare_branch(){
+    DIR *dp;
+    struct dirent *dirp;
 
+    u8 * fn;
+	fn = alloc_printf("%s/task", out_dir);
+    if( (dp  = opendir(fn)) == NULL) {
+        PFATAL("Unable to open '%s'", fn);
+    }
+	ck_free(fn);
+
+    while ((dirp = readdir(dp)) != NULL) {
+        if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
+            continue;
+        else {
+            return ;
+        }
+    }
 
 	int * rarest_branches = get_lowest_hit_branch_ids(); //从所有轨迹中得到rare brach的一个数组
 	int i;
-
-	//先清空原来的task
-    u8 * fn;
-	fn = alloc_printf("%s/task", out_dir);
-	if (delete_files(fn, NULL)) PFATAL("Unable to remove '%s'", fn);
-	if (mkdir(fn, 0700)) PFATAL("Unable to create '%s'", fn);
-	ck_free(fn);
-
-
 	//保存到mater下的task目录
 	for (i=0; i<MAX_RARE_BRANCHES && rarest_branches[i]!=-1; i++ ){
 		u8* fn = alloc_printf("%s/task/%d", out_dir, rarest_branches[i]);
@@ -8955,7 +8962,6 @@ static void save_rare_branch(){
 		s32 task_fd = open(fn, O_RDWR | O_CREAT | O_EXCL, 0600);
 		if (task_fd < 0) PFATAL("Unable to create '%s'", fn);
         ck_free(fn);
-        close(task_fd);
 	}
 
 }

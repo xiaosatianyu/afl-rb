@@ -100,9 +100,9 @@ u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir, u32
             taskBranchID = atoi(dirp->d_name);
 
             // If `taskBranchID` is now fuzzed by other slave, then continue.
-            if (busyRBIDs.find(taskBranchID) != busyRBIDs.end()) {
-                continue;
-            }
+            //if (busyRBIDs.find(taskBranchID) != busyRBIDs.end()) {
+            //    continue;
+            //}
 
 			ofstream task (newName.c_str(), fstream::trunc);
 			task.close();
