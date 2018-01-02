@@ -8936,7 +8936,7 @@ static void save_cmdline(u32 argc, char** argv) {
 static void save_rare_branch(){
     DIR *dp;
     struct dirent *dirp;
-
+    
     u8 * fn;
 	fn = alloc_printf("%s/task", out_dir);
     if( (dp  = opendir(fn)) == NULL) {
@@ -8961,6 +8961,7 @@ static void save_rare_branch(){
 		unlink(fn); /* Ignore errors */
 		s32 task_fd = open(fn, O_RDWR | O_CREAT | O_EXCL, 0600);
 		if (task_fd < 0) PFATAL("Unable to create '%s'", fn);
+        close(task_fd);
         ck_free(fn);
 	}
 
