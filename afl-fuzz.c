@@ -9021,10 +9021,11 @@ static void save_rare_branch(){
         if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
             continue;
         else {
+            DEBUG1("[Parallel] There are some old task, do not calculate new task\n");
             return ;
         }
     }
-
+    DEBUG1("[Parallel] all tasks have been fuzzed, calculate new tasks\n");
 	int * rarest_branches = get_lowest_hit_branch_ids(); //从所有轨迹中得到rare brach的一个数组
 	int i;
 	//保存到mater下的task目录
