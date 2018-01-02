@@ -9356,7 +9356,7 @@ if(id==Master){
         //5.保存bit_hits到Slave文件夹
 		handoverResults(hit_bits, slave_task_dir);
 
-		task_branch_ID = distributeRareSeeds(master_task_dir, slave_task_dir); //从master的task到 slave的task
+		task_branch_ID = distributeRareSeeds(master_task_dir, slave_task_dir, free_slave_ID); //从master的task到 slave的task
         DEBUG1("[Parallel] Distributed seed branch id: %d to slave id: %d\n", task_branch_ID, free_slave_ID);
 
     
@@ -9405,6 +9405,16 @@ else{
 
             // 同步种子
             pullSeeds(use_argv, "master");
+
+            // 判断是否需要回退到AFL逻辑
+            // 所有task都被测试过，且都未发现任何新的branch则回退到AFL
+            u8 regular_AFL = needRegularAFL();
+            if (regular_AFL) {
+                prev_cycle_wo_new = 1;
+            } else {
+                prev_cycle_wo_new = 0;
+            }
+
         } else {
             isFirstLoop = 0;
         }
