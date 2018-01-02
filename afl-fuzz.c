@@ -6154,6 +6154,13 @@ skip_simple_bitflip:
     // save the original branch mask for after the havoc stage 
     memcpy (orig_branch_mask, branch_mask, len + 1); //保存 brach_mask
   }
+  
+  // 把有效branch_mask收集到cache中
+  if(!vanilla_afl){
+    u8* _branch_mask = ck_alloc(len + 1);
+    memcpy(_branch_mask, branch_mask, len+1);
+    add_to_branch_mask_cache(queue_cur, rb_fuzzing-1, _branch_mask);
+  }
 
   if (rb_fuzzing && (successful_branch_tries == 0)){
     if (blacklist_pos >= blacklist_size -1){  //如果有黑名单
@@ -7082,10 +7089,10 @@ skip_extras:
   successful_branch_tries = 0;
   total_branch_tries = 0;
 
-  // 把branch_mask收集到cache中
-  u8* _branch_mask = ck_alloc(len + 1);
-  memcpy(_branch_mask, branch_mask, len+1);
-  add_to_branch_mask_cache(queue_cur, rb_fuzzing-1, _branch_mask);
+
+
+
+
   /****************
    * RANDOM HAVOC *
    ****************/
