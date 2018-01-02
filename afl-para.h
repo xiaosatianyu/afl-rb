@@ -28,10 +28,11 @@ u32 waitFreeSlaves(const char* freeDir);
 /*
  * Collect bit_hits results from work node.
  * Arg1 (u64*)   : bit_hits array
- * Arg2 (u32)    : slave ID
+ * Arg2 (u8*)    : slave ID in char array
+ * Arg3 (u32*)   : round_new_branches
  * Ret  (u8)     : return 1 if succeed.
  */
-u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID);
+u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID, u32* round_new_branches);
 
 /*
  * Calculate the rarity values and store all branch IDs 
@@ -76,10 +77,18 @@ void notifyMaster4Free(const char* freeDir, u32 slaveID);
 
 /*
  * Check whether to use vanilla AFL.
- * Arg (void): None
- * Ret (u8)  : Return 1 if need to.
+ * Arg (const char*) : out_dir of slave
+ * Ret (u8)          : Return 1 if need to.
  */
-u8 needRegularAFL(void);
+u8 needRegularAFL(const char * out_dir);
+
+/*
+ * Notify slave to run in vanilla AFL mode.
+ * Arg1 (const char*)  : out_dir of master
+ * Arg2 (u8*)          : slave ID in char array
+ * Ret  (void)         : None
+ */
+void notifySlaveVanillaAFL(const char* out_dir, u8* slaveID);
 
 #ifdef _cplusplus
 }

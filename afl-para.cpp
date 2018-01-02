@@ -213,12 +213,12 @@ void handoverResults(u64* rareMap, const char* out_dir)
 }
 
 // Master node method
-u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID)
+u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID, u32* round_new_branches)
 {
     // 1st: read sizeof(u64)*MAP_SIZE into buffer
     char binfile[256];
     memset(binfile, 0, 256);
-    sprintf(binfile, "%s/%s/branch-hits.bin", out_dir, slaveID); //FIXME:
+    sprintf(binfile, "%s/%s/branch-hits.bin", out_dir, slaveID);
     FILE *fbin = fopen(binfile, "rb");
     if (!fbin) {
         cout << "Cannot open file: " << binfile << "\n";
@@ -242,6 +242,26 @@ u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID)
     }
 
     free(slaveData);
+
+    // 3rd: collect new branches
+    memset(binfile, 0, 256);
+    sprintf(binfile, "%s/%s/newbranches", out_dir, slaveID);
+    fbin = fopen(binfile, "rb");
+    if (!fbin) {
+        cout << "Cannot open file: " << binfile << "\n";
+        return 1;
+    }
+
+    char buff[256];
+    memset(buff, 0, 256);
+    fread(buff, 1, 256, fbin);
+
+    u32 new_branches = atoi(buff);
+    *round_new_branches += new_branches;
+
+    fclose(fbin);
+    unlink(binfile);
+
     return 1;
 }
 
@@ -291,10 +311,28 @@ void notifyMaster4Free(const char* freeDir, u32 slaveID)
 }
 
 // Slave node method
-u8 needRegularAFL()
+u8 needRegularAFL(const char* out_dir)
 {
+    char notifyFile[256];
+    memset(notifyFile, 0, 256);
+    sprintf(notifyFile, "%s/vanilla.AFL", out_dir);
+
+    if (access(notifyFile, F_OK ) != -1) {
+        unlink(notifyFile);
+        return 1;
+    }
 
     return 0;
+}
+
+// Master node method
+void notifySlaveVanillaAFL(const char* out_dir, u8* slaveID)
+{
+    char binfile[256];
+    memset(binfile, 0, 256);
+    sprintf(binfile, "%s/../%s/vanilla.AFL", out_dir, slaveID);
+    ofstream notify_file (binfile, fstream::trunc);
+    notify_file.close();
 }
 
 #ifdef LOCAL_DEBUG
