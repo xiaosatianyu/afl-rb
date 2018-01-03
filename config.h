@@ -349,7 +349,7 @@
 
 #define WAIT_TASK 0.1
 #define WAIT_FREE 0.1
-#define CHECK_RARE_THRESHOLD 20
+#define CHECK_RARE_THRESHOLD 10
 #define DEBUG_mode
 #endif /* ! _HAVE_CONFIG_H */
 
