@@ -4486,9 +4486,16 @@ static void show_stats(void) {
   }
   else{
       if (rb_fuzzing){
-	        sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
-	            " (%s)",  crash_mode ? cPIN "peruvian were-rabbit" :
-	            cYEL "american fuzzy lop-slave_rb", use_banner);
+            if (AFL_mode == Fairfuzz){
+                sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
+	              " (%s)",  crash_mode ? cPIN "peruvian were-rabbit" :
+	              cYEL "american fuzzy lop-slave_rb-fairfuzz", use_banner);
+            }
+            else if (AFL_mode == AFLpara){
+                 sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
+	              " (%s)",  crash_mode ? cPIN "peruvian were-rabbit" :
+	                cYEL "american fuzzy lop-slave_rb-aflpara", use_banner);
+            }
       }
       else{
 	        sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
@@ -9096,7 +9103,7 @@ static u8 checkTargetID(u64 targetID){
         q=q->next;    
     }
 
-    if (hit_num*100/total_num > 20){
+    if (hit_num*100/total_num > CHECK_RARE_THRESHOLD ){
         //it is reviewed as a not rare branch
         return 0;
     }
