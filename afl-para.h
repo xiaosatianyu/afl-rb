@@ -68,6 +68,14 @@ u64 waitTask(const char *out_dir);
 void handoverResults(u64* rareMap, const char* out_dir);
 
 /*
+ * Hand over total executions in one cycle.
+ * Arg1 (u64)         : total_execs in this cycle
+ * Arg2 (const char*) : out_dir
+ * Ret  (void)        : None
+ */
+void handoverCycleTotalExecs(u64 cycleExecs, const char* out_dir);
+
+/*
  * Notify master node I'm free.
  * Arg1 (const char*) : free directory
  * Arg2 (u32)         : my ID
@@ -89,6 +97,16 @@ u8 needRegularAFL(const char * out_dir);
  * Ret  (void)         : None
  */
 void notifySlaveVanillaAFL(const char* out_dir, u8* slaveID);
+
+/*
+ * Normalize hit bits.
+ * Arg1 (u64*)        : slave data
+ * Arg2 (u64*)        : hit_bits
+ * Arg3 (const char*) : out_dir
+ * Arg4 (u8*)         : slave ID in char array
+ * Ret  (void)        : None
+ */
+void normalizeHitBits(u64* slaveData, u64* hit_bits, const char* out_dir, u8* slaveID);
 
 #ifdef _cplusplus
 }

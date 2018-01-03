@@ -41,6 +41,10 @@ extern "C" {
 }
 
 using namespace std;
+
+double nmHitBits[MAP_SIZE];
+
+
 #define DEBUG fileonly
 void fileonly (char const *fmt, ...) { 
     static FILE *f = NULL;
@@ -279,6 +283,67 @@ void handoverResults(u64* rareMap, const char* out_dir)
 
     fwrite(rareMap, sizeof(u64), MAP_SIZE, fd);
     fclose(fd);
+
+   
+}
+
+// Slave node method
+// TODO: Use macro to avoid duplication.
+void handoverCycleTotalExecs(u64 cycleExecs, const char* out_dir)
+{
+    char fname[256];
+    FILE* fd;
+
+    memset(fname, 0, 256);
+    sprintf(fname, "%s/cycle_execs", out_dir);
+    fd = fopen(fname, "wb");
+
+    if (!fd) {
+        cout << "Unable to open " << fname << "\n";
+        exit(-1);
+    }
+
+    char buff[256];
+    memset(buff, 0, 256);
+    sprintf(buff, "%llu", cycleExecs);
+    fwrite(buff, sizeof(char), 256, fd);
+    fclose(fd);
+}
+
+void normalizeHitBits(u64* slaveData, u64* hit_bits, const char* out_dir, u8* slaveID)
+{
+    char fname[256];
+    FILE* fd;
+
+    memset(fname, 0, 256);
+    sprintf(fname, "%s/%s/cycle_execs", out_dir, slaveID);
+    fd = fopen(fname, "r");
+    if (!fd) {
+        DEBUG("unable to open %s\n", fname);
+        exit(-1);
+    }
+
+    char buff[256];
+    memset(buff, 0, 256);
+    fread(buff, sizeof(char), 256, fd);
+    fclose(fd);
+    unlink(fname);
+
+    u64 cycle_execs = atoi(buff);
+    if (!cycle_execs) {
+        DEBUG("Slave %s runs 0 test cases in one cycle!!!!\n", slaveID);
+        exit(-1);
+    }
+    DEBUG("Slave %s runs %llu test cases in one cycle.\n", slaveID, cycle_execs);
+
+#define EXPAND_FACTOR 1e+12 //FIXME: we assume that 1e+12 is the maximum number in one cycle
+    for (u64 i=0; i < MAP_SIZE; i++) {
+        nmHitBits[i] += slaveData[i] / ((double) cycle_execs);
+        hit_bits[i]  =  (u64)(nmHitBits[i] * EXPAND_FACTOR);
+    }
+#undef EXPAND_FACOTR
+    
+    return;
 }
 
 // Master node method
@@ -299,17 +364,13 @@ u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID, u32* round_ne
         cout << "Malloc for reading slave data failed\n";
         exit(0);
     }
-    memset((void*)slaveData, 1, sizeof(u64)*MAP_SIZE);
+    memset((void*)slaveData, 0, sizeof(u64)*MAP_SIZE);
 
     fread(slaveData, sizeof(u64), MAP_SIZE, fbin);
     fclose(fbin);
 
-    // 2nd: merge together
-    u32 i = 0;
-    for (; i < MAP_SIZE; i++) {
-        *(hit_bits+i) += *(slaveData+i);
-    }
-
+    // normalize slave data get more accurate hit_bits
+    normalizeHitBits(slaveData, hit_bits, out_dir, slaveID);
     free(slaveData);
 
     // 3rd: collect new branches
