@@ -111,7 +111,7 @@ u64 getTaskId(const char* masterTaskDir){
     
     DIR *dp;
     struct dirent *dirp;
-    //std::vector<u64> taskIDs; 
+    std::set<u64> taskIDs;  // current task IDs
     u8 newflag = 0; 
     u64 targetID=0;
     //1. read ids from task poll
@@ -119,20 +119,21 @@ u64 getTaskId(const char* masterTaskDir){
         cout << "Error(" << errno << ") opening " << masterTaskDir << endl;
         exit(-1);
     }
+    u64 _ID;
     while ((dirp = readdir(dp)) != NULL) {
 		if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
 			continue;
 		else {
-            u64 _ID = atoi(dirp->d_name);
+             _ID = atoi(dirp->d_name);
             // check if it is a new id
             if ( fuzzedIDs.find(_ID) == fuzzedIDs.end() )
             {   
-                // it a new id
+                // it is a new id
                 newflag=1;
                 targetID=_ID;
                 break;
             }
-            //taskIDs.push_back(_ID);
+            taskIDs.insert(_ID);
 		}
 	}
     
@@ -142,16 +143,41 @@ u64 getTaskId(const char* masterTaskDir){
         fuzzedIDs.insert(std::make_pair(targetID,1));
     }
     else{
-        // there is no new id ,return a least executed id
+//        // there is no new id ,return a least executed id
+//        std::vector<std::pair<u64, u64> > sortedFuzzedIDs;    
+//        sortMapByValue(fuzzedIDs, sortedFuzzedIDs);   
+//        // use sortedFuzzedIDs below
+//        auto it = sortedFuzzedIDs[sortedFuzzedIDs.size()-1];
+//        u64 ID = it.first;
+//        u64 hot = it.second;
+//        targetID=ID;
+//        fuzzedIDs[targetID] += 1;
+//        DEBUG("Using prev rare branch %d with hot: %d\n", ID, hot);
+
+        // find a task acoording the hot and it must in the current tasks
+        // and it must be an old id, e.g it is in the fuzzedIDs
+        DEBUG("ALL tasks in master are old, try to select a ID both in current tasks and old tasks\n");
         std::vector<std::pair<u64, u64> > sortedFuzzedIDs;    
-        sortMapByValue(fuzzedIDs, sortedFuzzedIDs);   
-        // use sortedFuzzedIDs below
-        auto it = sortedFuzzedIDs[sortedFuzzedIDs.size()-1];
-        u64 ID = it.first;
-        u64 hot = it.second;
-        targetID=ID;
-        fuzzedIDs[targetID] += 1;
-        DEBUG("Using prev rare branch %d with hot: %d\n", ID, hot);
+        sortMapByValue(fuzzedIDs, sortedFuzzedIDs);
+        int size=sortedFuzzedIDs.size();
+        u64 ID;
+        u64 hot;
+        while(size){
+            auto it = sortedFuzzedIDs[size-1];
+            ID = it.first;
+            hot = it.second;
+            if ( taskIDs.find(ID) != taskIDs.end() ){
+                targetID = ID;
+                fuzzedIDs[targetID] += 1;
+                DEBUG("Using prev rare branch %d with hot: %d\n", ID, hot);
+                break;
+            }
+            else{
+                targetID=0;
+                 DEBUG("[para] why here, in getTaskId function--------------------------");
+            }
+            size--; 
+        }
     }
 
     return targetID;
