@@ -148,9 +148,9 @@ u64 getTaskId(const char* masterTaskDir){
         std::vector<std::pair<u64, u64> > sortedFuzzedIDs;    
         sortMapByValue(fuzzedIDs, sortedFuzzedIDs);   
         // use sortedFuzzedIDs below
-        auto it = sortedFuzzedIDs.end();
-        u64 ID = it->first;
-        u64 hot = it->second;
+        auto it = sortedFuzzedIDs[sortedFuzzedIDs.size()-1];
+        u64 ID = it.first;
+        u64 hot = it.second;
         targetID=ID;
         fuzzedIDs[targetID] += 1;
         DEBUG("Using prev rare branch %d with hot: %d\n", ID, hot);
