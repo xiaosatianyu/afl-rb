@@ -344,6 +344,12 @@ static s8  interesting_8[]  = { INTERESTING_8 };
 static s16 interesting_16[] = { INTERESTING_8, INTERESTING_16 };
 static s32 interesting_32[] = { INTERESTING_8, INTERESTING_16, INTERESTING_32 };
 
+enum{
+  /* 00 */ AFL,
+  /* 01 */ Fairfuzz 
+}
+static AFL_mode=AFL;
+
 /* Fuzzing stages */
 
 enum {
@@ -9509,7 +9515,11 @@ else{
             }
 
         }
-                u32 new_branches = 0;
+        else{
+            prev_cycle_wo_new=1;
+        }
+        
+        u32 new_branches = 0;
 		//2.进行新的一轮
 		while (queue_cur) {
 			cull_queue(); //在这里会处理trace_mini
