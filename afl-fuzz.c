@@ -5314,10 +5314,9 @@ static u32 calculate_score(struct queue_entry* q) {
   u32 avg_exec_us = total_cal_us / total_cal_cycles;
   u32 avg_bitmap_size = total_bitmap_size / total_bitmap_entries;
   u32 perf_score = 100;
-#ifdef DEBUG_mode
-     perf_score = 5;
-#endif
-
+  if (slave_first_loop){
+    perf_score = 5;
+  }
   /* Adjust score based on execution speed of this path, compared to the
      global average. Multiplier ranges from 0.1x to 3x. Fast inputs are
      less expensive to fuzz, so we're giving them more air time. */
@@ -7632,11 +7631,9 @@ havoc_stage:
 
     if (queued_paths != havoc_queued) {
 
-      if (perf_score <= HAVOC_MAX_MULT * 100 ) {
-            #ifndef DEBUG_mode
+      if (perf_score <= HAVOC_MAX_MULT * 100 && ! slave_first_loop) {
             stage_max  *= 2;
             perf_score *= 2;
-            #endif
       }
 
       havoc_queued = queued_paths;
@@ -9611,13 +9608,16 @@ else{
 			save_auto();
 		
             if (stop_soon) goto stop_fuzzing;
-#if 0 
-            if (enough_rare_branch )
-            {
-                queue_cur=NULL;
-               break;
+
+            //  sync
+            if (!stop_soon && sync_id && !skipped_fuzz){
+                if(!(sync_interval_cnt++ % SYNC_INTERVAL))
+                {
+                    sync_fuzzers(use_argv);
+                }
             }
-#endif
+                 
+
 		}//结束一轮
 
           // 写入新分支数量到文件中
