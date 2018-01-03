@@ -398,7 +398,9 @@ enum{
 };
 u8 id;   //默认是master
 u8 isPulling; //判断当前是否在同步
-u8 round_new_branches; //在重新计算rare前是否发现新分支
+u8 round_new_branches; //在重新计算rare前是否发现新分支//
+u8 enough_rare_branch=0;  // indicate if there is engouth rare branch 0: indicate not engout ; 1: engouth
+
 //end for para
 
 
@@ -996,6 +998,10 @@ static int* get_lowest_hit_branch_ids(){
   }
 
   rare_branch_ids[ret_list_size] = -1;
+  if (ret_list_size>15)
+    enough_rare_branch=1;
+  else 
+    enough_rare_branch=0;
   return rare_branch_ids;
 
 }
@@ -9607,6 +9613,9 @@ else{
 			save_auto();
 		
             if (stop_soon) goto stop_fuzzing;
+            
+            if (enough_rare_branch )
+                    break;
 		}//结束一轮
 
           // 写入新分支数量到文件中
