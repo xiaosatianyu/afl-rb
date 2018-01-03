@@ -80,11 +80,6 @@ u32 waitFreeSlaves(const char* freeDir)
                 continue;
             else {
                 u32 id = atoi(dirp->d_name);
-                if (!id) {
-                    cout << "Unknown id name\n";
-                    continue;
-                }
-
                 freeIDs.insert(id);
                 freeID = id;
                 cout << "Name is " << id << std::endl;

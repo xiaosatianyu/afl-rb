@@ -399,6 +399,7 @@ enum{
 u8 id;   //默认是master
 u8 isPulling; //判断当前是否在同步
 u8 round_new_branches; //在重新计算rare前是否发现新分支//
+u8 enough_rare_branch=0;  // indicate if there is engouth rare branch 0: indicate not engout ; 1: engouth
 
 //end for para
 
@@ -997,6 +998,10 @@ static int* get_lowest_hit_branch_ids(){
   }
 
   rare_branch_ids[ret_list_size] = -1;
+  if (ret_list_size>15)
+    enough_rare_branch=1;
+  else 
+    enough_rare_branch=0;
   return rare_branch_ids;
 
 }
@@ -9516,11 +9521,7 @@ if(id==Master){
 		u8 * slave_task_dir;
         u64 task_branch_ID;
 		slave_task_dir=alloc_printf("%s/../%s/task", out_dir, get_one_slave_id);
-        
-        //5.保存bit_hits到Slave文件夹
-		handoverResults(hit_bits, slave_task_dir);
-
-		task_branch_ID = distributeRareSeeds(master_task_dir, slave_task_dir, free_slave_ID); //从master的task到 slave的task
+       	task_branch_ID = distributeRareSeeds(master_task_dir, slave_task_dir, free_slave_ID); //从master的task到 slave的task
         DEBUG1("[Parallel] Distributed seed branch id: %d to slave id: %d\n", task_branch_ID, free_slave_ID);
 
     
@@ -9539,6 +9540,7 @@ else{
           queue_cycle++;
           queue_cur = queue;
           current_entry = 0;
+          enough_rare_branch = 0;
         }
 
         if (!slave_first_loop) {
@@ -9609,6 +9611,13 @@ else{
 			save_auto();
 		
             if (stop_soon) goto stop_fuzzing;
+#if 0 
+            if (enough_rare_branch )
+            {
+                queue_cur=NULL;
+               break;
+            }
+#endif
 		}//结束一轮
 
           // 写入新分支数量到文件中
