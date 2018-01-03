@@ -9457,7 +9457,7 @@ if(id==Master){
 
 	u8 get_one_slave_id[256];
 	memset(get_one_slave_id, 0, 256);
-	u32 free_slave_ID;
+    s32 free_slave_ID;
 	while(1){
 		if (!queue_cur) {
   			DEBUG1("Entering new queueing cycle\n");
@@ -9475,11 +9475,21 @@ if(id==Master){
   			queue_cur = queue;
   		}
 
-		//1. 读取空闲的slave. 阻塞等待 ok
-		u8* free_dir;
-		free_dir=alloc_printf("%s/free", out_dir);
-		free_slave_ID = waitFreeSlaves(free_dir); //得到slave的id, 比如 1 2 3 4
-		ck_free(free_dir);
+        //1. 读取空闲的slave. 阻塞等待 ok
+        if(!(sync_interval_cnt++ % SYNC_INTERVAL))
+        {
+            sync_fuzzers(use_argv);
+        }
+		
+        u8* free_dir;
+        free_dir=alloc_printf("%s/free", out_dir);
+        free_slave_ID = waitFreeSlaves(free_dir); //得到slave的id, 比如 1 2 3 4
+        ck_free(free_dir);
+
+        if (free_slave_ID == -1) {
+                sleep(0.5);
+                continue;
+        }
 
         DEBUG1("[Parallel] Find free slave id: %d\n", free_slave_ID);
 

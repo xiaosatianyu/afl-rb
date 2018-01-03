@@ -62,7 +62,7 @@ void fileonly (char const *fmt, ...) {
 }
 
 // Master node method
-u32 waitFreeSlaves(const char* freeDir)
+s32 waitFreeSlaves(const char* freeDir)
 {
     DIR *dp;
     struct dirent *dirp;
@@ -87,7 +87,6 @@ u32 waitFreeSlaves(const char* freeDir)
                 memset(full_name, 0, 256);
                 sprintf(full_name, "%s/%s", freeDir, dirp->d_name);
                 unlink(full_name);
-
                 break;
             }
         }
@@ -95,8 +94,7 @@ u32 waitFreeSlaves(const char* freeDir)
         closedir(dp);
         if (freeIDs.size())
             break;
-
-        sleep(WAIT_FREE);
+        return -1; 
     }
 
     // mark target branch ID as free

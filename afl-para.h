@@ -21,9 +21,9 @@ extern "C" {
 /*
  * Wait for finish signal from work node.
  * Arg1 (const char*): free directory
- * Ret  (u32)        : free ID.
+ * Ret  (s32)        : free ID.
  */
-u32 waitFreeSlaves(const char* freeDir);
+s32 waitFreeSlaves(const char* freeDir);
 
 /*
  * Collect bit_hits results from work node.
