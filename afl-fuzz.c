@@ -9592,7 +9592,8 @@ else{
             AFL_mode=Fairfuzz;
         }
         
-        u32 new_branches = 0;
+    u32 new_branches = 0;
+    u64 cache_total_execs = total_execs;
 
 		//2.进行新的一轮
 		while (queue_cur) {
@@ -9640,6 +9641,9 @@ else{
         DEBUG1("[Parallel] Saving hit_bits\n");
 		handoverResults(hit_bits,out_dir);
         
+        // 保存当前cycle的执行次数
+        DEBUG1("[Parallel] Saving cycle execution counts\n");
+        handoverCycleTotalExecs((total_execs - cache_total_execs), out_dir);
         if(slave_first_loop)
         {
             slave_first_loop = 0;
