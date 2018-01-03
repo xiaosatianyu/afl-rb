@@ -5308,6 +5308,9 @@ static u32 calculate_score(struct queue_entry* q) {
   u32 avg_exec_us = total_cal_us / total_cal_cycles;
   u32 avg_bitmap_size = total_bitmap_size / total_bitmap_entries;
   u32 perf_score = 100;
+#ifdef DEBUG_mode
+     perf_score = 5;
+#endif
 
   /* Adjust score based on execution speed of this path, compared to the
      global average. Multiplier ranges from 0.1x to 3x. Fast inputs are
@@ -7624,8 +7627,10 @@ havoc_stage:
     if (queued_paths != havoc_queued) {
 
       if (perf_score <= HAVOC_MAX_MULT * 100 ) {
-        stage_max  *= 2;
-        perf_score *= 2;
+            #ifndef DEBUG_mode
+            stage_max  *= 2;
+            perf_score *= 2;
+            #endif
       }
 
       havoc_queued = queued_paths;
