@@ -4485,9 +4485,16 @@ static void show_stats(void) {
           cYEL "american fuzzy lop-master", use_banner);
   }
   else{
-	  sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
+      if (rb_fuzzing){
+	        sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
 	            " (%s)",  crash_mode ? cPIN "peruvian were-rabbit" :
-	            cYEL "american fuzzy lop-slave", use_banner);
+	            cYEL "american fuzzy lop-slave_rb", use_banner);
+      }
+      else{
+	        sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
+	            " (%s)",  crash_mode ? cPIN "peruvian were-rabbit" :
+	            cYEL "american fuzzy lop-slave_AFL", use_banner);
+      }
   }
 
   SAYF("\n%s\n\n", tmp);
