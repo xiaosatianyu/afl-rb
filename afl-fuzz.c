@@ -9544,6 +9544,7 @@ else{
           queue_cycle++;
           queue_cur = queue;
           current_entry = 0;
+          enough_rare_branch = 0;
         }
 
         if (!slave_first_loop) {
@@ -9615,7 +9616,10 @@ else{
             if (stop_soon) goto stop_fuzzing;
             
             if (enough_rare_branch )
-                    break;
+            {
+                queue_cur=NULL;
+               break;
+            }
 		}//结束一轮
 
           // 写入新分支数量到文件中
