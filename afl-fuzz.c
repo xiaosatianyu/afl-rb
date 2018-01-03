@@ -9633,6 +9633,16 @@ else{
             if ( new_branches && AFL_mode == Fairfuzz && !slave_first_loop ){
                 queue_cur = NULL;
             }
+            
+            //check if it is a rare branch. if not, quit this cycle
+            u8 israreflag = 1; //default it is a rare branch  
+            if(!(sync_interval_cnt++ % SYNC_INTERVAL*2)){
+                israreflag = checkTargetID( target_id );
+                if (!israreflag){
+                    queue_cur = NULL;
+                    DEBUG1("[para]Entering farifuzz mode...\n");
+                }
+           }
 		}//结束一轮
 
           // 写入新分支数量到文件中
