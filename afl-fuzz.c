@@ -345,10 +345,10 @@ static s16 interesting_16[] = { INTERESTING_8, INTERESTING_16 };
 static s32 interesting_32[] = { INTERESTING_8, INTERESTING_16, INTERESTING_32 };
 
 enum{
-  /* 00 */ AFL,
-  /* 01 */ Fairfuzz 
+  /* 00 */ Fairfuzz,  //calculate rare by itself
+  /* 01 */ AFLpara    // do the task from master
 }
-static AFL_mode=AFL;
+static AFL_mode=Fairfuzz;   //default it is Fairfuzz
 
 /* Fuzzing stages */
 
@@ -5576,7 +5576,8 @@ static u8 fuzz_one(char** argv, u64 target_id, u32* new_branches) {
   u32 orig_queued_with_cov = queued_with_cov;
   u32 orig_queued_discovered = queued_discovered;
   u32 orig_total_execs = total_execs;
-  
+ 
+  bootstrap = 2;
   if (!vanilla_afl){
 	// vanilla_afl 为0 进入 准备新的判断策略
     if (prev_cycle_wo_new && bootstrap){
@@ -5584,10 +5585,8 @@ static u8 fuzz_one(char** argv, u64 target_id, u32* new_branches) {
       rb_fuzzing = 0;
       if (bootstrap == 2){
         skip_deterministic_bootstrap = 1;
-
       }
     }
-
   }
 
  if (skip_deterministic){
@@ -5644,10 +5643,14 @@ static u8 fuzz_one(char** argv, u64 target_id, u32* new_branches) {
     skip_deterministic_bootstrap = 0;
     //判断当前测试用例是否击中了 rare branch (rb), min_branch_hits是总的rare branch列表
     u32 * min_branch_hits;
-    if (queue_cycle == 1) 
+    if (AFL_mode == Fairfuzz) 
         min_branch_hits = is_rb_hit_mini(queue_cur->trace_mini); //参数是当前测试用例的trace_mini
-    else
+    else if (AFL_mode == AFLpara)
         min_branch_hits = is_rb_target_hit_mini(queue_cur->trace_mini, target_id); //参数是当前测试用例的trace_mini
+    else{
+        DEBUG1("[para] why here?---------------------");
+    }
+
 
     if (min_branch_hits == NULL){
       // not a rare hit. don't fuzz.
@@ -9068,6 +9071,38 @@ static u8 save_rare_branch(){
     return 1;
 }
 
+//0: it is not a rare branch
+//1: it is a rare branch
+static u8 checkTargetID(u64 targetID){
+    
+    u64 total_num=0;
+    u64 hit_num=0;
+    struct queue_entry * q;
+
+    //1. go through, check how many inputs hits
+    int i=0;
+    q=queue;
+    while(q){
+        //判断当前测试用例的轨迹中是否有 rare branch
+        for ( i = 0; i < MAP_SIZE ; i ++){
+            if (unlikely ( q->trace_mini[i >> 3]  & (1 <<(i & 7)) )){
+                if ( targetID == i ){
+                    hit_num++;
+                    break;
+                }
+            }
+        }
+        total_num++;
+        q=q->next;    
+    }
+
+    if (hit_num*100/total_num > 20){
+        //it is reviewed as a not rare branch
+        return 0;
+    }
+    return 1;
+}
+
 
 #ifndef AFL_LIB
 
@@ -9464,11 +9499,11 @@ if(id==Master){
             }
         }
 
-        
 		//4.下发任务
 		u8 * slave_task_dir;
         u64 task_branch_ID;
 		slave_task_dir=alloc_printf("%s/../%s/task", out_dir, get_one_slave_id);
+        
         //5.保存bit_hits到Slave文件夹
 		handoverResults(hit_bits, slave_task_dir);
 
@@ -9500,10 +9535,11 @@ else{
             DEBUG1("[Parrallel] Notify master I'm free now\n");
             notifyMaster4Free(free_dir, atoi(sync_id));
 
-
             // 等待任务
             target_id=waitTask(out_dir);
             DEBUG1("[Parrallel] Get task branch ID %d from master\n", target_id);
+            AFL_mode=AFLpara;
+            DEBUG1("[para] go into AFLpara mode\n");
 
             // 重新初始化bit_hits
             memset(hit_bits, 0, sizeof(hit_bits));
@@ -9511,12 +9547,23 @@ else{
             // 同步种子
             pullSeeds(use_argv, "master");
 
-            // 判断是否需要回退到AFL逻辑
+            //2.check if it is a rare branch. if not, go to AFL
+            u8 israreflag = 1; //default it is a rare branch  
+            israreflag = checkTargetID( target_id );
+            if (!israreflag){
+                prev_cycle_wo_new = 1;
+                AFL_mode=Fairfuzz;
+                DEBUG1("[para] %d is not a rare branch, go to fairfuzz mode\n",target_id);
+                DEBUG1("[para]Entering farifuzz mode...\n");
+            }
+
             // 所有task都被测试过，且都未发现任何新的branch则回退到AFL
             u8 regular_AFL = needRegularAFL(out_dir);
             if (regular_AFL) {
                 prev_cycle_wo_new = 1;
-                DEBUG1("Entering vanilla AFL...\n");
+                AFL_mode=Fairfuzz;
+                DEBUG1("[para] all tasks have been fuzzed and no new branch, go to vanilla AFL\n");
+                DEBUG1("[para]Entering vanilla AFL...\n");
             } else {
                 prev_cycle_wo_new = 0;
             }
@@ -9524,9 +9571,11 @@ else{
         }
         else{
             prev_cycle_wo_new=1;
+            AFL_mode=Fairfuzz;
         }
         
         u32 new_branches = 0;
+
 		//2.进行新的一轮
 		while (queue_cur) {
 			cull_queue(); //在这里会处理trace_mini
@@ -9544,6 +9593,8 @@ else{
 			write_bitmap();
 			write_stats_file(0, 0, 0);
 			save_auto();
+		
+            if (stop_soon) goto stop_fuzzing;
 		}//结束一轮
 
           // 写入新分支数量到文件中
@@ -9572,7 +9623,6 @@ else{
         {
             slave_first_loop = 0;
         }
-
 
   }
 
