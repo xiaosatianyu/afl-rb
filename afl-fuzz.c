@@ -9626,6 +9626,13 @@ else{
                     sync_fuzzers(use_argv);
                 }
             }
+
+            //  quit this cycle if detect some new branch in Fairfuzz mode
+            //  tell the master we want quit Farifuzz and go into AFLpara 
+            //  if it is in the first cycle, do not quit this cycle
+            if ( new_branches && AFL_mode == Fairfuzz && !slave_first_loop ){
+                queue_cur = NULL;
+            }
 		}//结束一轮
 
           // 写入新分支数量到文件中
@@ -9658,13 +9665,6 @@ else{
             slave_first_loop = 0;
         }
         
-        //  quit this cycle if detect some new branch in Fairfuzz mode
-        //  tell the master we want quit Farifuzz and go into AFLpara 
-        //  if it is in the first cycle, do not quit this cycle
-        if ( new_branches && AFL_mode == Fairfuzz && !slave_first_loop ){
-            queue_cur = NULL;
-            break;
-        }
   }
 
 } //end slave
