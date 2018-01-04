@@ -9740,7 +9740,7 @@ else{
             AFL_mode=Fairfuzz;
         }
         
-        u32 new_branches = 0;
+        static u32 new_branches = 0;
         u64 cache_total_execs = total_execs;
 
 		//2.进行新的一轮
@@ -9775,8 +9775,9 @@ else{
             //  quit this cycle if detect some new branch in Fairfuzz mode
             //  tell the master we want quit Farifuzz and go into AFLpara 
             //  if it is in the first cycle, do not quit this cycle
-            if ( new_branches  && AFL_mode == Fairfuzz && !slave_first_loop ){
+            if ( new_branches > 5  && AFL_mode == Fairfuzz && !slave_first_loop ){
                 queue_cur = NULL;
+                new_branches = 0;
             }
             
             //check if it is a rare branch. if not, quit this cycle
