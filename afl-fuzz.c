@@ -29,6 +29,7 @@
 #define _FILE_OFFSET_BITS 64
 
 #define DEBUG1 fileonly
+#define DEBUGY fileonlyy
 
 #include "config.h"
 #include "types.h"
@@ -475,6 +476,19 @@ void fileonly (char const *fmt, ...) {
     static FILE *f = NULL;
     if (f == NULL) {
       u8 * fn = alloc_printf("%s/min-branch-fuzzing.log", out_dir);
+      f= fopen(fn, "w");
+      ck_free(fn);
+    }
+    va_list ap;
+    va_start(ap, fmt);
+    vfprintf(f, fmt, ap);
+    va_end(ap);
+    fflush(f);
+}
+void fileonlyy (char const *fmt, ...) { 
+    static FILE *f = NULL;
+    if (f == NULL) {
+      u8 * fn = alloc_printf("%s/yyy.log", out_dir);
       f= fopen(fn, "w");
       ck_free(fn);
     }
