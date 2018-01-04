@@ -3,7 +3,7 @@
 AFL_FUZZ="../../afl-fuzz"
 SEED="../seed"
 OUT_PUT="/tmp/out-aflpara"
-EXE_STR="../tiff2pdf @@ -o /dev/null"
+EXE_STR="../tiff2pdf-noasan @@ -o /dev/null"
 
 rm -rf  $OUT_PUT
 mkdir -p $OUT_PUT
