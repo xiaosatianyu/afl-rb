@@ -1,7 +1,7 @@
 #!/bin/sh
 
 AFL_FUZZ=./fairfuzz
-OUT_OUT=/tmp/aflrb
+OUT_OUT=/tmp/out-fairfuzz
 SEED=../seed
 
 
