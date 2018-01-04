@@ -59,6 +59,7 @@
 #include <sys/wait.h>
 #include <sys/time.h>
 #include <sys/shm.h>
+#include <sys/sem.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/resource.h>
@@ -153,6 +154,8 @@ EXP_ST u8* trace_bits;                /* SHM with instrumentation bitmap  */  //
 
 
 static u64 hit_bits[MAP_SIZE];        /* @RB@ Hits to every basic block transition */ //记录执行该元组的测试用例数量? 还是执行次数?
+static u64 *shm_hit_bits;        /* @RB@ Hits to every basic block transition */ //记录执行该元组的测试用例数量? 还是执行次数?
+
 
 EXP_ST u8  virgin_bits[MAP_SIZE],     /* Regions yet untouched by fuzzing */
            virgin_tmout[MAP_SIZE],    /* Bits we haven't seen in tmouts   */
@@ -401,6 +404,81 @@ u8 id;   //默认是master
 u8 isPulling; //判断当前是否在同步
 u8 round_new_branches; //在重新计算rare前是否发现新分支//
 u8 enough_rare_branch=0;  // indicate if there is engouth rare branch 0: indicate not engout ; 1: engouth
+
+int sem_id; // 共享内存同步的信号量
+int shmid; // 共享内存标识符
+void *shm; // 共享内存指针
+
+union semun  
+{  
+    int val;  
+    struct semid_ds *buf;  
+    unsigned short *arry;  
+}; 
+
+int set_semvalue()  
+{  
+    //用于初始化信号量，在使用信号量前必须这样做  
+    union semun sem_union;  
+  
+    sem_union.val = 1;  
+    if(semctl(sem_id, 0, SETVAL, sem_union) == -1)  
+        return 0;  
+    return 1;  
+}  
+  
+void del_semvalue()  
+{  
+    //删除信号量  
+    union semun sem_union;  
+  
+    if(semctl(sem_id, 0, IPC_RMID, sem_union) == -1)  
+        fprintf(stderr, "Failed to delete semaphore\n");  
+}  
+int semaphore_p()
+{
+    struct sembuf sem_b;  
+    sem_b.sem_num = 0;  
+    sem_b.sem_op = -1;//P()  
+    sem_b.sem_flg = SEM_UNDO;  
+    if(semop(sem_id, &sem_b, 1) == -1)  
+    {  
+        fprintf(stderr, "semaphore_p failed\n");  
+        return 0;  
+    }  
+    return 1;   
+}
+int semaphore_v()
+{
+    struct sembuf sem_b;  
+    sem_b.sem_num = 0;  
+    sem_b.sem_op = 1;//V()  
+    sem_b.sem_flg = SEM_UNDO;  
+    if(semop(sem_id, &sem_b, 1) == -1)  
+    {  
+        fprintf(stderr, "semaphore_v failed\n");  
+        return 0;  
+    }  
+    return 1;  
+}
+
+static void shm_fini()
+{
+    del_semvalue();
+
+    //把共享内存从当前进程中分离
+    if(shmdt(shm)==-1)
+    {
+        DEBUGY("shmdt failed\n");
+        exit(EXIT_FAILURE);
+    }
+    //删除共享内存
+    if(shmctl(shmid,IPC_RMID,0)==-1)
+    {
+        DEBUGY("shmctl(IPC_RMID) failed");
+        exit(EXIT_FAILURE);
+    }
+}
 
 //end for para
 
@@ -1216,6 +1294,43 @@ static void init_hit_bits() {
   close(branch_hit_fd);
   OKF("Init'ed hit_bits.");
 }
+
+// 创建共享内存
+static void init_shm_hit_bits() {
+    //创建共享内存
+    shmid = shmget((key_t)1234, sizeof(u64)*MAP_SIZE, 0666|IPC_CREAT);
+    if(shmid==-1)
+    {
+        fprintf(stderr, "shmget failed\n");
+        exit(EXIT_FAILURE);
+    }
+    //将共享内存连接到当前进程的地址空间
+    shm = shmat(shmid,0,0);
+    if(shm==(void*)-1)
+    {
+        fprintf(stderr, "shmat failed\n");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("memory attached at %x\n",(int)shm);
+    //设置共享内存
+    shm_hit_bits = (u64*)shm;
+    memset(shm_hit_bits, 0, sizeof(u64)*MAP_SIZE);
+
+    //新建信号量
+    sem_id = semget((key_t)1234, 1 ,0666|IPC_CREAT);
+
+    //信号量初始化
+    if(!set_semvalue())
+    {
+        fprintf(stderr, "init failed.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("[parallel] Shared hit_bits is initialized successfully!\n");
+    return;
+}
+
 
 // @RB@ moved up here so we can use it in add_to_queue 
 /* Compact trace bytes into a smaller bitmap. We effectively just drop the
@@ -3590,10 +3705,22 @@ static void write_crash_readme(void) {
 /* increment hit bits by 1 for every element of trace_bits that has been hit.
  effectively counts that one input has hit each element of trace_bits */
 static void increment_hit_bits(){
+  // 申请共享内存访问所有权
+  if(!semaphore_p()) {
+    DEBUGY("[parallel] Shit, Can't get share memory to write when incrementing hit_bits\n");
+    exit(EXIT_FAILURE);
+  }
+
   for (int i = 0; i < MAP_SIZE; i++){
     if ( (trace_bits[i] > 0) && (hit_bits[i] < ULONG_MAX)) //trace_bits是每次的轨迹图,0表示没有执行
-      hit_bits[i]++; //记录执行当前基本块的测试用例数量,而非测试用例的执行次数
+      shm_hit_bits[i]++; //记录执行当前基本块的测试用例数量,而非测试用例的执行次数
   }
+
+  if(!semaphore_v()) {
+    DEBUGY("[parallel] Shit, Can't release share memory when incrementing hit_bits\n");
+    exit(EXIT_FAILURE);
+  }
+
 }
 
 /* Check if the result of an execve() during routine fuzzing is interesting,
@@ -9424,6 +9551,7 @@ int main(int argc, char** argv) {
     init_hit_bits();
   }
 
+  init_shm_hit_bits();
   setup_dirs_fds();
   read_testcases();
   load_auto();
@@ -9514,6 +9642,20 @@ int main(int argc, char** argv) {
 		if( !collectResults(hit_bits, work_dir, get_one_slave_id, &round_new_branches) )
 		   continue;
 		ck_free(work_dir);
+
+        // 首先将共享内存的数据直接拷贝到我们的hit_bits中，
+        // 尽早释放所有权，防止计算rare branch的时候耗时过长，从而
+        // 造成其它各个slave节点等待
+        if(!semaphore_p()) {
+            DEBUGY("[parallel] Shit, can't get semaphore to read !!\n");
+            exit(EXIT_FAILURE);
+        }
+
+        memcpy(hit_bits, shm_hit_bits, sizeof(u64)*MAP_SIZE);
+        if(!semaphore_v()) {
+            DEBUGY("[parallel] Shit, can't release semaphore for others !!\n");
+            exit(EXIT_FAILURE);
+        }
 
 		//4. 计算rarity,将 branch_id 保存到 master下的task目录下
 		u8* master_task_dir;
@@ -9668,8 +9810,8 @@ else{
         }
 
 		//4. 保存执行结果本地 hit_bits
-        DEBUGY("[Parallel] Saving hit_bits\n");
-		handoverResults(hit_bits,out_dir);
+        //DEBUGY("[Parallel] Saving hit_bits\n");
+		//handoverResults(hit_bits,out_dir);
         
         //5. 保存当前cycle的执行次数
         DEBUGY("[Parallel] Saving cycle execution counts\n");
@@ -9707,6 +9849,8 @@ stop_fuzzing:
   ck_free(sync_id);
 
   alloc_report();
+
+  shm_fini();
 
   OKF("We're done here. Have a nice day!\n");
 

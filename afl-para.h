@@ -35,15 +35,6 @@ s32 waitFreeSlaves(const char* freeDir);
 u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID, u32* round_new_branches);
 
 /*
- * Calculate the rarity values and store all branch IDs 
- * in master task direcotry.
- * Arg1 (u64*)        : bit_hits array
- * Arg2 (const char*) : master task directory
- * Ret  (u8)          : return 1 if succeed.
- */
-u8 calculateRarity(u64* bit_hits, const char* masterTaskDir);
-
-/*
  * Distribute rare seeds to each work node.
  * Arg1 (const char*) : task directory of master node
  * Arg2 (const char*) : task directory of slave node

@@ -44,7 +44,6 @@ using namespace std;
 
 double nmHitBits[MAP_SIZE];
 
-
 #define DEBUG fileonly
 void fileonly (char const *fmt, ...) { 
     static FILE *f = NULL;
@@ -302,8 +301,6 @@ void handoverResults(u64* rareMap, const char* out_dir)
 
     fwrite(rareMap, sizeof(u64), MAP_SIZE, fd);
     fclose(fd);
-
-   
 }
 
 // Slave node method
@@ -371,6 +368,8 @@ u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID, u32* round_ne
 {
     // 1st: read sizeof(u64)*MAP_SIZE into buffer
     char binfile[256];
+    FILE *fbin;
+#if 0 // Do nothing since we use shared memory to update hit_bits.
     memset(binfile, 0, 256);
     sprintf(binfile, "%s/%s/branch-hits.bin", out_dir, slaveID);
     FILE *fbin = fopen(binfile, "rb");
@@ -392,7 +391,7 @@ u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID, u32* round_ne
     // normalize slave data get more accurate hit_bits
     normalizeHitBits(slaveData, hit_bits, out_dir, slaveID);
     free(slaveData);
-
+#endif 
     // 3rd: collect new branches
     memset(binfile, 0, 256);
     sprintf(binfile, "%s/%s/newbranches", out_dir, slaveID);
@@ -412,41 +411,6 @@ u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID, u32* round_ne
     fclose(fbin);
     unlink(binfile);
 
-    return 1;
-}
-
-// Master node method
-u8 calculateRarity(u64* bit_hits, const char* masterTaskDir)
-{
-    DIR *dp;
-    struct dirent *dirp;
-
-    if((dp  = opendir(masterTaskDir)) == NULL) {
-        cout << "Error(" << errno << ") opening " << masterTaskDir << endl;
-        exit(-1);
-    }
-
-    while ((dirp = readdir(dp)) != NULL) {
-        if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
-            continue;
-        else {
-            char full_name[256];
-            memset(full_name, 0, 256);
-            sprintf(full_name, "%s/%s", masterTaskDir, dirp->d_name);
-            unlink(full_name);
-        }
-    }
- 
-    //TODO: Use real get_lowest_hit_branch_ids.
-    u8 i = 10;
-    char task[256];
-    while (i--) {
-        u32 id = rand() % MAP_SIZE;
-        memset(task, 0, 256);
-        sprintf(task, "%s/%d", masterTaskDir, id);
-        ofstream task_file (task, fstream::trunc);
-        task_file.close();
-    }
     return 1;
 }
 
