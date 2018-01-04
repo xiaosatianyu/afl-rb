@@ -366,6 +366,7 @@ void normalizeHitBits(u64* slaveData, u64* hit_bits, const char* out_dir, u8* sl
 }
 
 // Master node method
+//round_new_branches is set as the number of the new branch detected in this cycle of the slave
 u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID, u32* round_new_branches)
 {
     // 1st: read sizeof(u64)*MAP_SIZE into buffer
@@ -460,6 +461,7 @@ void notifyMaster4Free(const char* freeDir, u32 slaveID)
 }
 
 // Slave node method
+// read from current dir
 u8 needRegularAFL(const char* out_dir)
 {
     char notifyFile[256];
@@ -475,6 +477,7 @@ u8 needRegularAFL(const char* out_dir)
 }
 
 // Master node method
+// save a file in the slave dir
 void notifySlaveVanillaAFL(const char* out_dir, u8* slaveID)
 {
     char binfile[256];

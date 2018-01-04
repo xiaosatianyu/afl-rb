@@ -29,7 +29,7 @@
 #define _FILE_OFFSET_BITS 64
 
 #define DEBUG1 fileonly
-#define DEBUGY fileonlyy
+#define DEBUGY fileonly-debug
 
 #include "config.h"
 #include "types.h"
@@ -485,10 +485,10 @@ void fileonly (char const *fmt, ...) {
     va_end(ap);
     fflush(f);
 }
-void fileonlyy (char const *fmt, ...) { 
+void fileonly-debug (char const *fmt, ...) { 
     static FILE *f = NULL;
     if (f == NULL) {
-      u8 * fn = alloc_printf("%s/yyy.log", out_dir);
+      u8 * fn = alloc_printf("%s/debug.log", out_dir);
       f= fopen(fn, "w");
       ck_free(fn);
     }
@@ -5328,9 +5328,7 @@ static u32 calculate_score(struct queue_entry* q) {
   u32 avg_exec_us = total_cal_us / total_cal_cycles;
   u32 avg_bitmap_size = total_bitmap_size / total_bitmap_entries;
   u32 perf_score = 100;
-  if (slave_first_loop){
-    perf_score = 5;
-  }
+  
   /* Adjust score based on execution speed of this path, compared to the
      global average. Multiplier ranges from 0.1x to 3x. Fast inputs are
      less expensive to fuzz, so we're giving them more air time. */
@@ -5669,6 +5667,9 @@ static u8 fuzz_one(char** argv, u64 target_id, u32* new_branches) {
   /* select inputs which hit rare branches */  //什么时候进入 当vanilla_afl为0的时候进入,使用另外一种判断
   if (!vanilla_afl) { //如果上一轮有新的发现,这一轮肯定是rb fuzzing
 	  //新的判断策略, rb判断策略
+    if ( ! queue_cur->favored ){
+        return 1 ;
+    }  
     skip_deterministic_bootstrap = 0;
     //判断当前测试用例是否击中了 rare branch (rb), min_branch_hits是总的rare branch列表
     u32 * min_branch_hits;
@@ -7645,7 +7646,7 @@ havoc_stage:
 
     if (queued_paths != havoc_queued) {
 
-      if (perf_score <= HAVOC_MAX_MULT * 100 && ! slave_first_loop) {
+      if (perf_score <= HAVOC_MAX_MULT * 100 ) {
             stage_max  *= 2;
             perf_score *= 2;
       }
@@ -9125,7 +9126,13 @@ static u8 checkTargetID(u64 targetID){
         q=q->next;    
     }
 
-    if (hit_num*100/total_num > CHECK_RARE_THRESHOLD ){
+    double rate=0;
+    if ( total_num > 1000)
+            rate=0.005;
+    else
+        rate=0.05;
+
+    if (hit_num*100/total_num > 100*rate ){
         //it is reviewed as a not rare branch
         return 0;
     }
@@ -9461,26 +9468,17 @@ int main(int argc, char** argv) {
     if (stop_soon) goto stop_fuzzing;
   }
 
-    //判定进入哪个while循环
+  //判定进入哪个while循环
   u8 master_init=0;
   if(id==Master){
-  //	if	( !distributeInitSeeds(out_dir, 4) ){
-  //		FATAL("distributeInitSeeds error \n");
-  //		exit(1);
-  //	}
 
 	u8 get_one_slave_id[256];
 	memset(get_one_slave_id, 0, 256);
     s32 free_slave_ID;
 	while(1){
 		if (!queue_cur) {
-  			DEBUG1("Entering new queueing cycle\n");
-  			if (prev_cycle_wo_new && (bootstrap == 3)) {
-  				   //only bootstrap for 1 cycle
-  				prev_cycle_wo_new = 0;
-  			} else {
-  				prev_cycle_wo_new = cycle_wo_new;
-  			}
+  			DEBUGY("Entering new queueing cycle\n");
+  			prev_cycle_wo_new = 1;
   			cycle_wo_new = 1;
   
   			queue_cycle++;
@@ -9489,48 +9487,42 @@ int main(int argc, char** argv) {
   			queue_cur = queue;
   		}
 
-        //1. 读取空闲的slave. 阻塞等待 ok
+		//1.同步种子
         if(!(sync_interval_cnt++ % SYNC_INTERVAL))
         {
             sync_fuzzers(use_argv);
         }
 		
+        //2. 读取空闲的slave. 阻塞等待 ok
         u8* free_dir;
         free_dir=alloc_printf("%s/free", out_dir);
         free_slave_ID = waitFreeSlaves(free_dir); //得到slave的id, 比如 1 2 3 4
         ck_free(free_dir);
-
         if (free_slave_ID == -1) {
                 sleep(0.5);
                 continue;
         }
 
-        DEBUG1("[Parallel] Find free slave id: %d\n", free_slave_ID);
 
+        DEBUGY("[Parallel] Find free slave id: %d\n", free_slave_ID);
 		sprintf(get_one_slave_id, "%d", free_slave_ID);
 
-		//2. 收集对应slave的result到master下的hit_bits
+		//3. 收集对应slave的result到master下的hit_bits
 		u8* work_dir;
-
-        DEBUG1("[Parallel] Collecting hit_bits from slave id: %d\n", free_slave_ID);
+        DEBUGY("[Parallel] Collecting hit_bits from slave id: %d\n", free_slave_ID);
 		work_dir=alloc_printf("%s/..", out_dir);
 		if( !collectResults(hit_bits, work_dir, get_one_slave_id, &round_new_branches) )
 		   continue;
-
 		ck_free(work_dir);
 
-		//同步种子
-        DEBUG1("[Parallel] Collecting seeds from slave id: %d\n", free_slave_ID);
-		pullSeeds(use_argv, get_one_slave_id);
-
-		//3. 计算rarity,将 branch_id 保存到 master下的task目录下
+		//4. 计算rarity,将 branch_id 保存到 master下的task目录下
 		u8* master_task_dir;
 		master_task_dir=alloc_printf("%s/task", out_dir);
 		u8 new_calced = save_rare_branch();
 
-        // 如果重新计算了一次，且之前未发现任何新分支，则通知当前free的slave进入vanilla AFL模式
+        //5. 如果重新计算了一次，且之前未发现任何新分支，则通知当前free的slave进入vanilla AFL模式
         if (new_calced) {
-            DEBUG1("Totally triggered %d new branches in one round\n", round_new_branches);
+            DEBUGY("Totally triggered %d new branches in one round in slave %d\n", round_new_branches,free_slave_ID);
             if (!round_new_branches) {
                 notifySlaveVanillaAFL(out_dir, get_one_slave_id);
             } else {
@@ -9538,12 +9530,12 @@ int main(int argc, char** argv) {
             }
         }
 
-		//4.下发任务
+		//6. 下发任务
 		u8 * slave_task_dir;
         u64 task_branch_ID;
 		slave_task_dir=alloc_printf("%s/../%s/task", out_dir, get_one_slave_id);
        	task_branch_ID = distributeRareSeeds(master_task_dir, slave_task_dir, free_slave_ID); //从master的task到 slave的task
-        DEBUG1("[Parallel] Distributed seed branch id: %d to slave id: %d\n", task_branch_ID, free_slave_ID);
+        DEBUGY("[Parallel] Distributed seed branch id: %d to slave id: %d\n", task_branch_ID, free_slave_ID);
 
     
 		ck_free(master_task_dir);
@@ -9555,51 +9547,47 @@ int main(int argc, char** argv) {
 else{
   //进入slave
 	u64 target_id;
-	u8 skipped_fuzz;
+	u8 skipped_fuzz=1;
 	while(1){
         if (!queue_cur) {
           queue_cycle++;
           queue_cur = queue;
           current_entry = 0;
-          enough_rare_branch = 0;
         }
 
         if (!slave_first_loop) {
-            // 通知Master节
+            // 1.通知Master节
             u8* free_dir;
             free_dir=alloc_printf("%s/../master/free", out_dir);
-            DEBUG1("[Parrallel] Notify master I'm free now\n");
+            DEBUGY("[Parrallel] Notify master I'm free now\n");
             notifyMaster4Free(free_dir, atoi(sync_id));
 
-            // 等待任务
+            // 2.等待任务
             target_id=waitTask(out_dir);
-            DEBUG1("[Parrallel] Get task branch ID %d from master\n", target_id);
+            DEBUGY("[Parrallel] Get task branch ID %d from master\n", target_id);
             AFL_mode=AFLpara;
-            DEBUG1("[para] go into AFLpara mode\n");
+            DEBUGY("[para] go into AFLpara mode\n");
 
             // 重新初始化bit_hits
-            memset(hit_bits, 0, sizeof(hit_bits));
+            //memset(hit_bits, 0, sizeof(hit_bits));
 
-            // 同步种子
-            pullSeeds(use_argv, "master");
-
-            //2.check if it is a rare branch. if not, go to AFL
+            //3.check if it is a rare branch. if not, go to Fairfuzz, calculate by itself
             u8 israreflag = 1; //default it is a rare branch  
             israreflag = checkTargetID( target_id );
             if (!israreflag){
-                prev_cycle_wo_new = 1;
+                //prev_cycle_wo_new = 1;
                 AFL_mode=Fairfuzz;
-                DEBUG1("[para] %d is not a rare branch, go to fairfuzz mode\n",target_id);
-                DEBUG1("[para]Entering farifuzz mode...\n");
+                DEBUGY("[para] %d is not a rare branch, go to fairfuzz mode\n",target_id);
+                DEBUGY("[para]Entering farifuzz mode...\n");
             }
 
-            // 所有task都被测试过，且都未发现任何新的branch则回退到AFL
+            // 所有task都被测试过，且都未发现任何新的branch则回退到Farifuzz 且认为上一轮没有发现新的
             u8 regular_AFL = needRegularAFL(out_dir);
             if (regular_AFL) {
                 prev_cycle_wo_new = 1;
                 AFL_mode=Fairfuzz;
-                DEBUG1("[para] all tasks have been fuzzed and no new branch, go to vanilla AFL\n");
-                DEBUG1("[para]Entering vanilla AFL...\n");
+                DEBUGY("[para] all tasks have been fuzzed and no new branch, go to vanilla AFL\n");
+                DEBUGY("[para]Entering vanilla AFL...\n");
             } else {
                 prev_cycle_wo_new = 0;
             }
@@ -9615,7 +9603,16 @@ else{
 
 		//2.进行新的一轮
 		while (queue_cur) {
-			cull_queue(); //在这里会处理trace_mini
+            
+            //  sync
+            if (!stop_soon && sync_id && !skipped_fuzz){
+                if(!(sync_interval_cnt++ % SYNC_INTERVAL))
+                {
+                    sync_fuzzers(use_argv);
+                }
+            }
+			
+            cull_queue(); //在这里会处理trace_mini
 			skipped_fuzz = fuzz_one(use_argv, target_id, &new_branches);
 			if (!stop_soon && exit_1)
 				stop_soon = 2;
@@ -9633,56 +9630,49 @@ else{
 		
             if (stop_soon) goto stop_fuzzing;
 
-            //  sync
-            if (!stop_soon && sync_id && !skipped_fuzz){
-                if(!(sync_interval_cnt++ % SYNC_INTERVAL))
-                {
-                    sync_fuzzers(use_argv);
-                }
-            }
-
             //  quit this cycle if detect some new branch in Fairfuzz mode
             //  tell the master we want quit Farifuzz and go into AFLpara 
             //  if it is in the first cycle, do not quit this cycle
-            if ( new_branches && AFL_mode == Fairfuzz && !slave_first_loop ){
+            if ( new_branches  && AFL_mode == Fairfuzz && !slave_first_loop ){
                 queue_cur = NULL;
             }
             
             //check if it is a rare branch. if not, quit this cycle
-            u8 israreflag = 1; //default it is a rare branch  
-            if(!(sync_interval_cnt++ % SYNC_INTERVAL*2)){
-                israreflag = checkTargetID( target_id );
-                if (!israreflag){
-                    queue_cur = NULL;
-                    DEBUG1("[para]Entering farifuzz mode...\n");
-                }
-           }
-		}//结束一轮
+//            u8 israreflag = 1; //default it is a rare branch  
+//            if(!(sync_interval_cnt++ % SYNC_INTERVAL*2)){
+//                israreflag = checkTargetID( target_id );
+//                if (!israreflag){
+//                    queue_cur = NULL;
+//                    DEBUGY("[para]Entering farifuzz mode...\n");
+//                }
+//           }
+		
+        
+        }//end while
 
-          // 写入新分支数量到文件中
-          {
-              char fname[256];
-              FILE* fd;
+        // 3.写入新分支数量到文件中
+        {
+            char fname[256];
+            FILE* fd;
+            memset(fname, 0, 256);
+            sprintf(fname, "%s/newbranches", out_dir);
+            fd = fopen(fname, "wb");
 
-              memset(fname, 0, 256);
-              sprintf(fname, "%s/newbranches", out_dir);
-              fd = fopen(fname, "wb");
+            if (fd) {
+               char buff[256];
+               memset(buff, 0, 256);
+               sprintf(buff, "%d", new_branches);
+               fwrite(buff, sizeof(char), 256, fd);
+               fclose(fd);
+            }
+        }
 
-              if (fd) {
-                  char buff[256];
-                  memset(buff, 0, 256);
-                  sprintf(buff, "%d", new_branches);
-                  fwrite(buff, sizeof(char), 256, fd);
-                  fclose(fd);
-              }
-          }
-
-		//3. 保存执行结果本地 hit_bits
-        DEBUG1("[Parallel] Saving hit_bits\n");
+		//4. 保存执行结果本地 hit_bits
+        DEBUGY("[Parallel] Saving hit_bits\n");
 		handoverResults(hit_bits,out_dir);
         
-        // 保存当前cycle的执行次数
-        DEBUG1("[Parallel] Saving cycle execution counts\n");
+        //5. 保存当前cycle的执行次数
+        DEBUGY("[Parallel] Saving cycle execution counts\n");
         handoverCycleTotalExecs((total_execs - cache_total_execs), out_dir);
         if(slave_first_loop)
         {
