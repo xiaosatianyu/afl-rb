@@ -29,7 +29,7 @@
 #define _FILE_OFFSET_BITS 64
 
 #define DEBUG1 fileonly
-#define DEBUGY fileonly-debug
+#define DEBUGY fileonly_debug
 
 #include "config.h"
 #include "types.h"
@@ -485,7 +485,7 @@ void fileonly (char const *fmt, ...) {
     va_end(ap);
     fflush(f);
 }
-void fileonly-debug (char const *fmt, ...) { 
+void fileonly_debug (char const *fmt, ...) { 
     static FILE *f = NULL;
     if (f == NULL) {
       u8 * fn = alloc_printf("%s/debug.log", out_dir);
