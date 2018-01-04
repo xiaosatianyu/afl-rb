@@ -7,7 +7,7 @@ fi
 num=$1
 
 x-terminal-emulator -e "`pwd`/startafl-para.sh 0 " &
-
+sleep 5
 while [ $num -ge 1 ]
 do
 	echo $num
