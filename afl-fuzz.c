@@ -9749,17 +9749,14 @@ else{
 		while (queue_cur) {
             
             //  sync
-            /*
-            if (!stop_soon && sync_id && !skipped_fuzz){
+            if (!stop_soon && sync_id/* && !skipped_fuzz*/){
                 if(!(sync_interval_cnt++ % SYNC_INTERVAL))
                 {
+                    DEBUGY("Syncing......\n");
                     sync_fuzzers(use_argv);
                 }
-            }
-            */
+            } 
 			
-            sync_fuzzers(use_argv); // 强制同步 
-
             cull_queue(); //在这里会处理trace_mini
 			skipped_fuzz = fuzz_one(use_argv, target_id, &new_branches);
 			if (!stop_soon && exit_1)
@@ -9844,7 +9841,6 @@ else{
         {
             slave_first_loop = 0;
         }
-        
   }
 
 } //end slave
