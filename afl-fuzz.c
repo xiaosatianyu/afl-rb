@@ -3705,21 +3705,10 @@ static void write_crash_readme(void) {
 /* increment hit bits by 1 for every element of trace_bits that has been hit.
  effectively counts that one input has hit each element of trace_bits */
 static void increment_hit_bits(){
-  if(!semaphore_p()) {
-    DEBUGY("[parallel] Shit, can't get semaphore to read !!\n");
-    exit(EXIT_FAILURE);
-  }
-
   for (int i = 0; i < MAP_SIZE; i++){
     if ( (trace_bits[i] > 0) && (hit_bits[i] < ULONG_MAX)) //trace_bits是每次的轨迹图,0表示没有执行
-      shm_hit_bits[i]++; //记录执行当前基本块的测试用例数量,而非测试用例的执行次数
+      hit_bits[i]++; //记录执行当前基本块的测试用例数量,而非测试用例的执行次数
   }
-
-  if(!semaphore_v()) {
-    DEBUGY("[parallel] Shit, can't release semaphore for others !!\n");
-    exit(EXIT_FAILURE);
-  }
-
 }
 
 /* Check if the result of an execve() during routine fuzzing is interesting,
@@ -5813,6 +5802,7 @@ static u8 fuzz_one(char** argv, u64 target_id, u32* new_branches) {
         }
 
         min_branch_hits = is_rb_hit_mini(queue_cur->trace_mini); //参数是当前测试用例的trace_mini
+        memset(hit_bits, 0, sizeof(u64)*MAP_SIZE); // 重新置位hit_bits
     }
     else if (AFL_mode == AFLpara)
         min_branch_hits = is_rb_target_hit_mini(queue_cur->trace_mini, target_id); //参数是当前测试用例的trace_mini
@@ -9759,13 +9749,17 @@ else{
 		while (queue_cur) {
             
             //  sync
+            /*
             if (!stop_soon && sync_id && !skipped_fuzz){
                 if(!(sync_interval_cnt++ % SYNC_INTERVAL))
                 {
                     sync_fuzzers(use_argv);
                 }
             }
+            */
 			
+            sync_fuzzers(use_argv); // 强制同步 
+
             cull_queue(); //在这里会处理trace_mini
 			skipped_fuzz = fuzz_one(use_argv, target_id, &new_branches);
 			if (!stop_soon && exit_1)
@@ -9777,6 +9771,23 @@ else{
 			current_entry++;
 
 			if (queue_cur)	show_stats();
+
+            // 将缓存的bit_hits更新到共享内存中，
+            // 仅在fuzz_one后更新，避免对共享内存的过度频繁加锁
+            if(!semaphore_p()) {
+                DEBUGY("[parallel] Shit, can't get semaphore when flushing bit_hits !!\n");
+                exit(EXIT_FAILURE);
+            }
+            for (u64 i = 0; i < MAP_SIZE; i++) {
+                shm_hit_bits[i] += hit_bits[i];
+            }
+            if(!semaphore_v()) {
+                DEBUGY("[parallel] Shit, can't release semaphore for others !!\n");
+                exit(EXIT_FAILURE);
+            }
+
+            // 清空hit_bits，以便后续继续缓存
+            memset(hit_bits, 0, sizeof(u64)*MAP_SIZE);
 
 			write_bitmap();
 			write_stats_file(0, 0, 0);
