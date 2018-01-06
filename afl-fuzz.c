@@ -154,6 +154,7 @@ EXP_ST u8* trace_bits;                /* SHM with instrumentation bitmap  */  //
 
 
 static u64 hit_bits[MAP_SIZE];        /* @RB@ Hits to every basic block transition */ //记录执行该元组的测试用例数量? 还是执行次数?
+static u8  cached_hit[MAP_SIZE];
 static u64 *shm_hit_bits;        /* @RB@ Hits to every basic block transition */ //记录执行该元组的测试用例数量? 还是执行次数?
 
 
@@ -1343,7 +1344,10 @@ static void minimize_bits(u8* dst, u8* src) {
 
   while (i < MAP_SIZE) {
 
-    if (*(src++)) dst[i >> 3] |= 1 << (i & 7);
+    if (*(src++)) {
+        dst[i >> 3] |= 1 << (i & 7);
+        cached_hit[i] = 1; // 记录下被命中的位置
+    }
     i++;
 
   }
@@ -5782,7 +5786,7 @@ static u8 fuzz_one(char** argv, u64 target_id, u32* new_branches) {
   /* select inputs which hit rare branches */  //什么时候进入 当vanilla_afl为0的时候进入,使用另外一种判断
   if (!vanilla_afl) { //如果上一轮有新的发现,这一轮肯定是rb fuzzing
 	  //新的判断策略, rb判断策略
-    if ( ! queue_cur->favored ){
+    if ( pending_favored && ! queue_cur->favored ){
         return 1 ;
     }  
     skip_deterministic_bootstrap = 0;
@@ -9548,6 +9552,7 @@ int main(int argc, char** argv) {
   init_count_class16();
 
   memset(hit_bits, 0, sizeof(hit_bits));
+  memset(cached_hit, 0, sizeof(cached_hit));
   if (in_place_resume) {
     vanilla_afl = 0;
     init_hit_bits();
@@ -9702,7 +9707,10 @@ else{
         if (slave_first_loop) {
             prev_cycle_wo_new=1;
             AFL_mode=Fairfuzz;
+        } else {
+            skipped_fuzz = 0;
         }
+
 		//2.进行新的一轮
 		while (queue_cur) {
              static u32 new_branches = 0;
@@ -9714,12 +9722,22 @@ else{
                 free_dir=alloc_printf("%s/../master/free", out_dir);
                 DEBUGY("[Parrallel] Notify master I'm free now\n");
                 notifyMaster4Free(free_dir, atoi(sync_id));
+                ck_free(free_dir);
 
                 // 2.等待任务
                 target_id=waitTask(out_dir);
                 DEBUGY("[Parrallel] Get task branch ID %d from master\n", target_id);
                 AFL_mode=AFLpara;
                 DEBUGY("[para] go into AFLpara mode\n");
+
+                // 预先判断如果拿到的branchID没有被任何测试用例hit到，则同步一次，可有效避免挂空挡
+                if (!cached_hit[target_id]) {
+                    DEBUGY("[Parallel] Branch ID %d seems hasn't been hit in my queue, syncing...\n", target_id);
+                    sync_fuzzers(use_argv);
+                    if (!cached_hit[target_id]) {
+                        DEBUGY("[Parallel] Shit, who hits branch ID %d !?!?\n", target_id);
+                    }
+                }
 
                 // 所有task都被测试过，且都未发现任何新的branch则回退到Farifuzz 且认为上一轮没有发现新的
                 u8 regular_AFL = needRegularAFL(out_dir);
@@ -9731,28 +9749,18 @@ else{
                 } else {
                     prev_cycle_wo_new = 0;
                 }
-
             }
             
-           
-            //  sync
-            /*
-            if (!stop_soon && sync_id && !skipped_fuzz){
-                if(!(sync_interval_cnt++ % SYNC_INTERVAL))
-                {
-                    DEBUGY("Syncing......\n");
-                    sync_fuzzers(use_argv);
-                }
-            } 
-            */
-			
             cull_queue(); //在这里会处理trace_mini
 			skipped_fuzz = fuzz_one(use_argv, target_id, &new_branches);
-
-            if (skipped_fuzz) {
-                sync_fuzzers(use_argv);
+          
+            if (!skipped_fuzz) {
+                if(!(sync_interval_cnt++ % SYNC_INTERVAL))
+                {
+                    sync_fuzzers(use_argv);
+                }
             }
-
+                    
 			if (!stop_soon && exit_1)
 				stop_soon = 2;
 
@@ -9777,9 +9785,10 @@ else{
                 exit(EXIT_FAILURE);
             }
 
-            // 清空hit_bits，以便后续继续缓存
-            memset(hit_bits, 0, sizeof(u64)*MAP_SIZE);
-
+            if (AFL_mode == AFLpara || unlikely(!queue_cur)) { // 只有在para并行模式或着FairFuzz模式的一轮结尾下才清空
+                // 清空hit_bits，以便后续继续缓存
+                memset(hit_bits, 0, sizeof(u64)*MAP_SIZE);
+            }
 			write_bitmap();
 			write_stats_file(0, 0, 0);
 			save_auto();
@@ -9795,7 +9804,7 @@ else{
             }
 
              // 3.写入新分支数量到文件中
-            {
+            if (AFL_mode == AFLpara || unlikely(!queue_cur)) { // 只有在para并行模式或着FairFuzz模式的一轮结尾下才写入新分支数量
                 char fname[256];
                 FILE* fd;
                 memset(fname, 0, 256);
@@ -9810,8 +9819,6 @@ else{
                    fclose(fd);
                 }
             }
-               
-            DEBUGY("[Parallel] Saving cycle execution counts: %llu\n", (total_execs - cache_total_execs));
         }//end while
 
         slave_first_loop = 0;

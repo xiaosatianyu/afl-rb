@@ -81,7 +81,7 @@ s32 waitFreeSlaves(const char* freeDir)
                 u32 id = atoi(dirp->d_name);
                 freeIDs.insert(id);
                 freeID = id;
-                cout << "Name is " << id << std::endl;
+                DEBUG("Free slave ID is %d\n", id);
                 char full_name[256];
                 memset(full_name, 0, 256);
                 sprintf(full_name, "%s/%s", freeDir, dirp->d_name);
@@ -263,7 +263,7 @@ u64 waitTask(const char *out_dir)
 
                 branchIDs.insert(id);
                 branchID = id;
-                cout << "Name is " << id<<", branch id is "<< branchID << std::endl;
+                DEBUG("Task ID is %d\n", branchID);
 
                 char full_name[256];
                 memset(full_name, 0, 256);
