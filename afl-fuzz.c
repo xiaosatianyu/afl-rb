@@ -9614,17 +9614,13 @@ int main(int argc, char** argv) {
             }
 
             //1.同步种子, only run a total fuzz_one would sync_interval_cnt ++
-//            if(free_slave_ID != -1 && skip_flag){ 
-//                if(!(sync_interval_cnt++ % SYNC_INTERVAL))
-//                {
-//                    sync_fuzzers(use_argv);
-//                }
-//            }
-            //测试显示,快速同步
-            if(!(sync_interval_cnt++ % SYNC_INTERVAL))
+            if(free_slave_ID != -1 && skip_flag){ 
+                if(!(sync_interval_cnt++ % SYNC_INTERVAL))
                 {
                     sync_fuzzers(use_argv);
                 }
+            }
+            //测试显示,快速同步
             sleep(0.1);
 
             //2. 读取空闲的slave. 循环等待

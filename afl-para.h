@@ -48,7 +48,7 @@ u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir, u32
  * Arg1 (const char*)  : out_dir
  * Ret  (u64)  : branch ID
  */
-u64 waitTask(const char *out_dir);
+u64 waitTask(const char *out_dir, u8* get_task_flag);
 
 /*
  * Hand over fuzzing results in one cycle.
