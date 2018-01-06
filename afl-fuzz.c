@@ -9643,12 +9643,14 @@ int main(int argc, char** argv) {
 		sprintf(get_one_slave_id, "%d", free_slave_ID);
 
 		//3. 收集对应slave的result到master下的hit_bits
+        /*
 		u8* work_dir;
         DEBUGY("[Parallel] Collecting hit_bits from slave id: %d\n", free_slave_ID);
 		work_dir=alloc_printf("%s/..", out_dir);
 		if( !collectResults(hit_bits, work_dir, get_one_slave_id, &round_new_branches) )
 		   continue;
 		ck_free(work_dir);
+        */
 
         // 首先将共享内存的数据直接拷贝到我们的hit_bits中，
         // 尽早释放所有权，防止计算rare branch的时候耗时过长，从而
@@ -9670,6 +9672,7 @@ int main(int argc, char** argv) {
 		u8 new_calced = save_rare_branch();
 
         //5. 如果重新计算了一次，且之前未发现任何新分支，则通知当前free的slave进入vanilla AFL模式
+        /*
         if (new_calced) {
             DEBUGY("Totally triggered %d new branches in one round in slave %d\n", round_new_branches,free_slave_ID);
             if (!round_new_branches) {
@@ -9678,6 +9681,7 @@ int main(int argc, char** argv) {
                 round_new_branches = 0;
             }
         }
+        */
 
 		//6. 下发任务
 		u8 * slave_task_dir;
@@ -9779,16 +9783,14 @@ else{
             }
             for (u64 i = 0; i < MAP_SIZE; i++) {
                 shm_hit_bits[i] += hit_bits[i];
+                hit_bits[i] = 0;
             }
             if(!semaphore_v()) {
                 DEBUGY("[parallel] Shit, can't release semaphore for others !!\n");
                 exit(EXIT_FAILURE);
             }
 
-            if (AFL_mode == AFLpara || unlikely(!queue_cur)) { // 只有在para并行模式或着FairFuzz模式的一轮结尾下才清空
-                // 清空hit_bits，以便后续继续缓存
-                memset(hit_bits, 0, sizeof(u64)*MAP_SIZE);
-            }
+            
 			write_bitmap();
 			write_stats_file(0, 0, 0);
 			save_auto();
@@ -9803,22 +9805,6 @@ else{
                 new_branches = 0;
             }
 
-             // 3.写入新分支数量到文件中
-            if (AFL_mode == AFLpara || unlikely(!queue_cur)) { // 只有在para并行模式或着FairFuzz模式的一轮结尾下才写入新分支数量
-                char fname[256];
-                FILE* fd;
-                memset(fname, 0, 256);
-                sprintf(fname, "%s/newbranches", out_dir);
-                fd = fopen(fname, "wb");
-
-                if (fd) {
-                   char buff[256];
-                   memset(buff, 0, 256);
-                   sprintf(buff, "%d", new_branches);
-                   fwrite(buff, sizeof(char), 256, fd);
-                   fclose(fd);
-                }
-            }
         }//end while
 
         slave_first_loop = 0;
