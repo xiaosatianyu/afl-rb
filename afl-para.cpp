@@ -61,45 +61,43 @@ void fileonly (char const *fmt, ...) {
 }
 
 // Master node method
+// return -1 if there is no free slave
 s32 waitFreeSlaves(const char* freeDir)
 {
     DIR *dp;
     struct dirent *dirp;
+    u8 get_slave=0;
+    u32  freeID ; // means the slave id
 
-    std::set<u32> freeIDs;
-    u32  freeID;
-    while (1) {
-        if((dp  = opendir(freeDir)) == NULL) {
-            cout << "Error(" << errno << ") opening " << freeDir << endl;
-            exit(-1);
-        }
-
-        while ((dirp = readdir(dp)) != NULL) {
-            if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
-                continue;
-            else {
-                u32 id = atoi(dirp->d_name);
-                freeIDs.insert(id);
-                freeID = id;
-                DEBUG("Free slave ID is %d\n", id);
-                char full_name[256];
-                memset(full_name, 0, 256);
-                sprintf(full_name, "%s/%s", freeDir, dirp->d_name);
-                unlink(full_name);
-                break;
-            }
-        }
-
-        closedir(dp);
-        if (freeIDs.size())
-            break;
-        return -1; 
+    if((dp  = opendir(freeDir)) == NULL) {
+        cout << "Error(" << errno << ") opening " << freeDir << endl;
+        exit(-1);
     }
+
+    while ((dirp = readdir(dp)) != NULL) {
+        if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
+            continue;
+        else {
+            u32 id = atoi(dirp->d_name);
+            freeID = id;
+            DEBUG("Free slave ID is %d\n", id);
+            char full_name[256];
+            memset(full_name, 0, 256);
+            sprintf(full_name, "%s/%s", freeDir, dirp->d_name);
+            unlink(full_name);
+            get_slave=1;
+            break;
+        }
+    }
+    closedir(dp);
+
+    if (!get_slave)
+        return -1;  // there is no new tasks
 
     // mark target branch ID as free
     auto it = nodeTask.find(freeID);
     u64 rbID = it->second;
-    busyRBIDs.erase(rbID);
+    busyRBIDs.erase(rbID); //remove the prev branch id of this slave
 
     return freeID;
 }
@@ -113,6 +111,7 @@ u64 getTaskId(const char* masterTaskDir){
     std::set<u64> taskIDs;  // current task IDs
     u8 newflag = 0; 
     u64 targetID=0;
+    
     //1. read ids from task poll
     if((dp  = opendir(masterTaskDir)) == NULL) {
         cout << "Error(" << errno << ") opening " << masterTaskDir << endl;
@@ -142,16 +141,7 @@ u64 getTaskId(const char* masterTaskDir){
         fuzzedIDs.insert(std::make_pair(targetID,1));
     }
     else{
-//        // there is no new id ,return a least executed id
-//        std::vector<std::pair<u64, u64> > sortedFuzzedIDs;    
-//        sortMapByValue(fuzzedIDs, sortedFuzzedIDs);   
-//        // use sortedFuzzedIDs below
-//        auto it = sortedFuzzedIDs[sortedFuzzedIDs.size()-1];
-//        u64 ID = it.first;
-//        u64 hot = it.second;
-//        targetID=ID;
-//        fuzzedIDs[targetID] += 1;
-//        DEBUG("Using prev rare branch %d with hot: %d\n", ID, hot);
+        // there is no new id ,return a least executed id
 
         // find a task acoording the hot and it must in the current tasks
         // and it must be an old id, e.g it is in the fuzzedIDs
@@ -161,7 +151,7 @@ u64 getTaskId(const char* masterTaskDir){
         int size=sortedFuzzedIDs.size();
         u64 ID;
         u64 hot;
-        while(size){
+        while(size--){
             auto it = sortedFuzzedIDs[size-1];
             ID = it.first;
             hot = it.second;
@@ -175,7 +165,6 @@ u64 getTaskId(const char* masterTaskDir){
                 targetID=0;
                  DEBUG("[para] why here, in getTaskId function--------------------------");
             }
-            size--; 
         }
     }
 
@@ -187,26 +176,9 @@ u64 getTaskId(const char* masterTaskDir){
 u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir, u32 slaveID)
 {
 
-    
     u64 taskBranchID;
-
     taskBranchID = getTaskId(masterTaskDir); 
 	
-//
-//    closedir(dp);
-//    if (!taskIDs.size()) {
-//        cout << "There's no task in master's task directory!!!!" << "\n";
-//        // choose one from now-fuzzing IDs
-//        u32 index = rand() % busyRBIDs.size();
-//        std::set<u64>::const_iterator it(busyRBIDs.begin());
-//        advance(it, index);
-//        taskBranchID = *it;
-//    } else {
-//        u32 index = rand() % (taskIDs.size());
-//        taskBranchID = taskIDs[index];
-//    }
-//
-
     string newName = string(slaveTaskDir);
     newName += "/";
     newName += std::to_string(taskBranchID);
@@ -240,8 +212,9 @@ u64 waitTask(const char *out_dir)
     memset(taskDir, 0, 256);
     sprintf(taskDir, "%s/task", out_dir);
 
-    std::set<u32> branchIDs;
-    u64 branchID;
+    u64 branchID =0;//default is 0
+    u8 get_task_flag=0; // 0 is fault, 1 is succe
+    u32 id;
     while (1) {
         if((dp  = opendir(taskDir)) == NULL) {
             cout << "Error(" << errno << ") opening " << taskDir << endl;
@@ -255,33 +228,37 @@ u64 waitTask(const char *out_dir)
                 continue;
             }
             else {
-                u32 id = atoi(dirp->d_name);
-                if (!id) {
+                id = atoi(dirp->d_name);
+                // read a task and check, remove it no matter if it is right
+                if (id<0 || id > 65535) {
                     cout << "Unknown id name\n";
-                    continue;
+                    cout << "id is not between 0,65535\n";
+                    cout << "remove this stragne task\n";    
+                }
+                else{
+                    branchID = id;
+                    get_task_flag =1 ; //get a task from master
+                    DEBUG("Task ID is %d\n", branchID);
                 }
 
-                branchIDs.insert(id);
-                branchID = id;
-                DEBUG("Task ID is %d\n", branchID);
-
+                //remove the task file
                 char full_name[256];
                 memset(full_name, 0, 256);
                 sprintf(full_name, "%s/%s", taskDir, dirp->d_name);
                 unlink(full_name);
-                break;
+                
+                if ( get_task_flag)
+                    break;
             }
         }
-
         closedir(dp);
-        if (branchIDs.size())
-            break;
 
-        sleep(WAIT_TASK);
-    }
-
+        if ( !get_task_flag){
+            cout << "there is no task, wait for some time\n";
+            sleep(WAIT_TASK);
+        }
+    }//end while
     return branchID;
-
 }
 
 // Master & slave node method
@@ -364,6 +341,7 @@ void normalizeHitBits(u64* slaveData, u64* hit_bits, const char* out_dir, u8* sl
 
 // Master node method
 //round_new_branches is set as the number of the new branch detected in this cycle of the slave
+//return 0 if the slave skip the fuzz_one function, return 1 if collect info success.
 u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID, u32* round_new_branches)
 {
     // 1st: read sizeof(u64)*MAP_SIZE into buffer
@@ -397,8 +375,9 @@ u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID, u32* round_ne
     sprintf(binfile, "%s/%s/newbranches", out_dir, slaveID);
     fbin = fopen(binfile, "rb");
     if (!fbin) {
-        cout << "Cannot open file: " << binfile << "\n";
-        return 1;
+        //cout << "Cannot open file: " << binfile << "\n";
+        cout << slaveID << " skip a fuzz_one fucntion\n"; 
+        return 0;
     }
 
     char buff[256];
@@ -406,7 +385,7 @@ u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID, u32* round_ne
     fread(buff, 1, 256, fbin);
 
     u32 new_branches = atoi(buff);
-    *round_new_branches += new_branches;
+    *round_new_branches = new_branches;
 
     fclose(fbin);
     unlink(binfile);
