@@ -204,7 +204,7 @@ u64 distributeRareSeeds(const char* masterTaskDir, const char* slaveTaskDir, u32
 }
 
 // Slave node method
-u64 waitTask(const char *out_dir)
+u64 waitTask(const char *out_dir, u8* get_task_flag)
 {
     DIR *dp;
     struct dirent *dirp;
@@ -213,9 +213,10 @@ u64 waitTask(const char *out_dir)
     sprintf(taskDir, "%s/task", out_dir);
 
     u64 branchID =0;//default is 0
-    u8 get_task_flag=0; // 0 is fault, 1 is succe
     u32 id;
-    while (1) {
+    *get_task_flag =0;
+    u8 wait_num=2;
+    while (wait_num--) {
         if((dp  = opendir(taskDir)) == NULL) {
             cout << "Error(" << errno << ") opening " << taskDir << endl;
             exit(-1);
@@ -237,7 +238,7 @@ u64 waitTask(const char *out_dir)
                 }
                 else{
                     branchID = id;
-                    get_task_flag =1 ; //get a task from master
+                    *get_task_flag = 1 ;
                     DEBUG("Task ID is %d\n", branchID);
                 }
 
@@ -248,17 +249,19 @@ u64 waitTask(const char *out_dir)
                 unlink(full_name);
                 
                 if ( get_task_flag)
-                    break;
+                {
+                   return branchID;
+                }
             }
         }
         closedir(dp);
 
-        if ( !get_task_flag){
-            cout << "there is no task, wait for some time\n";
-            sleep(WAIT_TASK);
-        }
+        cout << "there is no task, wait for some time\n";
+        sleep(WAIT_TASK);
+
     }//end while
-    return branchID;
+    
+    return 0; // 这里0不是指branch0,实在要返回一个,所以没办法,还要根据get_task_flag一起判定
 }
 
 // Master & slave node method
@@ -377,7 +380,7 @@ u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID, u32* round_ne
     if (!fbin) {
         //cout << "Cannot open file: " << binfile << "\n";
         cout << slaveID << " skip a fuzz_one fucntion\n"; 
-        return 0;
+        return 1; //skip
     }
 
     char buff[256];
@@ -390,7 +393,7 @@ u8 collectResults(u64* hit_bits, const char* out_dir, u8* slaveID, u32* round_ne
     fclose(fbin);
     unlink(binfile);
 
-    return 1;
+    return 0; //get 
 }
 
 // Slave node method

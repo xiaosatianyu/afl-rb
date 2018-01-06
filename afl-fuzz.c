@@ -9599,7 +9599,7 @@ int main(int argc, char** argv) {
         u8* master_task_dir;
         master_task_dir=alloc_printf("%s/task", out_dir);
 
-        u8 collect_flag = 0 ; // indicate if the slave skip the fuzz_one function
+        u8 skip_flag = 0 ; // indicate if the slave skip the fuzz_one function
         u8 fuzz_one_num_wo_new = 0; // indicate the number of the total executed fuzz_one function that does not detect new branches
         while(1){
             if (!queue_cur) {
@@ -9614,12 +9614,17 @@ int main(int argc, char** argv) {
             }
 
             //1.同步种子, only run a total fuzz_one would sync_interval_cnt ++
-            if(free_slave_ID != -1 && collect_flag){ 
-                if(!(sync_interval_cnt++ % SYNC_INTERVAL*10))
+//            if(free_slave_ID != -1 && skip_flag){ 
+//                if(!(sync_interval_cnt++ % SYNC_INTERVAL))
+//                {
+//                    sync_fuzzers(use_argv);
+//                }
+//            }
+            //测试显示,快速同步
+            if(!(sync_interval_cnt++ % SYNC_INTERVAL))
                 {
                     sync_fuzzers(use_argv);
                 }
-            }
             sleep(0.1);
 
             //2. 读取空闲的slave. 循环等待
@@ -9635,11 +9640,10 @@ int main(int argc, char** argv) {
             //3. 收集对应slave的result到master下的hit_bits
             DEBUGY("[Parallel] Collecting hit_bits from slave id: %d\n", free_slave_ID);
             //round_new_brnaches is the new branches detected in the last fuzz_one function, note only one fuzz_one function, and do not accumulated.
-            collect_flag = collectResults(hit_bits, work_dir, get_one_slave_id, &round_new_branches);
-            if ( ! collect_flag ) continue;
+            skip_flag = collectResults(hit_bits, work_dir, get_one_slave_id, &round_new_branches);
             
             // 之后都是跑过完整fuzz_one函数的
-            if ( round_new_branches == 0)
+            if ( round_new_branches == 0 && !skip_flag)
                 fuzz_one_num_wo_new++; // add one if a total executed fuzz_one do not detect any new branches
             else
                 fuzz_one_num_wo_new = 0; //只统计连续的
@@ -9647,14 +9651,17 @@ int main(int argc, char** argv) {
             // 首先将共享内存的数据直接拷贝到我们的hit_bits中，
             // 尽早释放所有权，防止计算rare branch的时候耗时过长，从而
             // 造成其它各个slave节点等待
-            if(!semaphore_p()) {
-                DEBUGY("[parallel] Shit, can't get semaphore to read !!\n");
-                exit(EXIT_FAILURE);
-            }
-            memcpy(hit_bits, shm_hit_bits, sizeof(u64)*MAP_SIZE);// copy the memory
-            if(!semaphore_v()) {
-                DEBUGY("[parallel] Shit, can't release semaphore for others !!\n");
-                exit(EXIT_FAILURE);
+            // 只有
+            if (skip_flag){
+                if(!semaphore_p()) {
+                    DEBUGY("[parallel] Shit, can't get semaphore to read !!\n");
+                    exit(EXIT_FAILURE);
+                }
+                memcpy(hit_bits, shm_hit_bits, sizeof(u64)*MAP_SIZE);// copy the memory
+                if(!semaphore_v()) {
+                    DEBUGY("[parallel] Shit, can't release semaphore for others !!\n");
+                    exit(EXIT_FAILURE);
+                }
             }
 
             //5. 计算rarity,将 branch_id 保存到 master下的task目录下
@@ -9707,6 +9714,7 @@ int main(int argc, char** argv) {
             }
 
             //进行一轮
+            u8 get_task_flag=0; //0 表示当前没有task,1 表示当前有task
             while (queue_cur) {
                 u64 cache_total_execs = total_execs;
 
@@ -9716,17 +9724,27 @@ int main(int argc, char** argv) {
                     notifyMaster4Free(free_dir, atoi(sync_id));
 
                     // 2.等待任务
-                    target_id=waitTask(out_dir);
-                    DEBUGY("[Parrallel] Get task branch ID %d from master\n", target_id);
-                    AFL_mode=AFLpara;
-                    DEBUGY("[para] go into AFLpara mode\n");
+                    target_id=waitTask(out_dir,&get_task_flag);
+                    if (!get_task_flag){
+                        //表示没有获取到任务
+                        DEBUGY("[Parrallel] can not Get a task branch ID %d from master\n", target_id);
+                        //只能开启fairfuzz模式
+                        AFL_mode=Fairfuzz;
+                    }
+                    else{
+                        DEBUGY("[Parrallel] Get task branch ID %d from master\n", target_id);
+                        AFL_mode=AFLpara;
+                        DEBUGY("[para] go into AFLpara mode\n");
+                    }
 
                     //3.如果该branchID没有被任何测试用例hit到，则立刻同步一次，可有效避免挂空挡
+                    //cached_hit在什么时候统计的
                     if (!cached_hit[target_id]) {
                         DEBUGY("[Parallel] Branch ID %d seems hasn't been hit in my queue, syncing...\n", target_id);
                         sync_fuzzers(use_argv);
                         if (!cached_hit[target_id]) {
                             DEBUGY("[Parallel] Shit, who hits branch ID %d !?!?-------------------\n", target_id);
+                            AFL_mode= Fairfuzz;
                         }
                     }
 
@@ -9796,9 +9814,11 @@ int main(int argc, char** argv) {
                     stop_soon = 2;
                 if (stop_soon)
                     break;
-
-                queue_cur = queue_cur->next;
-                current_entry++;
+                // 如果是null了,表示准备退出了
+                if(queue_cur){
+                    queue_cur = queue_cur->next;
+                    current_entry++;
+                }
                 if (queue_cur)	show_stats();
 
                 // 7.将缓存的bit_hits更新到共享内存,仅在fuzz_one后更新，避免对共享内存的过度频繁加锁
