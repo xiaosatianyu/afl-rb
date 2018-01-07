@@ -5781,7 +5781,7 @@ static u8 fuzz_one(char** argv, u64 target_id, u32* new_branches) {
   /* select inputs which hit rare branches */  //什么时候进入 当vanilla_afl为0的时候进入,使用另外一种判断
   if (!vanilla_afl) { //如果上一轮有新的发现,这一轮肯定是rb fuzzing
 	  //新的判断策略, rb判断策略
-    if ( pending_favored && ! queue_cur->favored ){
+   if ( pending_favored && ! queue_cur->favored ){
         return 1 ;
     }  
     skip_deterministic_bootstrap = 0;
@@ -7963,8 +7963,9 @@ static void sync_fuzzers(char** argv) {
   u32 sync_cnt = 0;
 
   sd = opendir(sync_dir);
-  if (!sd) PFATAL("Unable to open '%s'", sync_dir);
-
+  if (!sd){
+     PFATAL("Unable to open '%s'", sync_dir);
+  }
   stage_max = stage_cur = 0;
   cur_depth = 0;
 
@@ -9786,10 +9787,10 @@ int main(int argc, char** argv) {
                 //  quit this cycle if detect some new branch in Fairfuzz mode
                 //  tell the master we want quit Farifuzz and go into AFLpara 
                 //  if it is in the first cycle, do not quit this cycle
-                if ( new_branches > 10  && AFL_mode == Fairfuzz && !slave_first_loop ){
-                    queue_cur = NULL;
-                    new_branches = 0;
-                }
+                //if ( new_branches > 10  && AFL_mode == Fairfuzz && !slave_first_loop ){
+                //    queue_cur = NULL;
+                //    new_branches = 0;
+                //}
                 
                 // 6.写入当前fuzz_one函数发现新分支的数量
                 // skipped_fuzz的不写任何文件

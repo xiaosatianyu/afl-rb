@@ -172,6 +172,7 @@ u64 getTaskId(const char* masterTaskDir){
         }
     }
 
+    if (dp) closedir(dp);
     return targetID;
 } 
 
@@ -254,12 +255,14 @@ u64 waitTask(const char *out_dir, u8* get_task_flag)
                 unlink(full_name);
                 
                 if ( get_task_flag)
-                {
-                   return branchID;
-                }
+                    break;
             }
         }
-        if (!dp) closedir(dp);
+        if (dp) closedir(dp);
+
+        if (get_task_flag) {
+            return branchID; 
+        }
 
         cout << "there is no task, wait for some time\n";
         sleep(WAIT_TASK);
