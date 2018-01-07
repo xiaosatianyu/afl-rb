@@ -9601,6 +9601,7 @@ int main(int argc, char** argv) {
 
         u8 skip_flag = 0 ; // indicate if the slave skip the fuzz_one function
         u8 fuzz_one_num_wo_new = 0; // indicate the number of the total executed fuzz_one function that does not detect new branches
+        u32 sync_time = 0; //count when wait free slave
         while(1){
             if (!queue_cur) {
                 DEBUGY("Entering new queueing cycle\n");
@@ -9613,12 +9614,16 @@ int main(int argc, char** argv) {
                 queue_cur = queue;
             }
 
-            //1.同步种子, only run a total fuzz_one would sync_interval_cnt ++
-            if(free_slave_ID != -1 && skip_flag){ 
-                if(!(sync_interval_cnt++ % SYNC_INTERVAL))
-                {
+            //1.同步种子, 在一个fuzz_one被执行后,立刻同步; 在等待slave时,每10秒同步一次
+            if( !skip_flag){ 
+                sync_fuzzers(use_argv);
+            }
+            else{
+                sleep(1);
+                sync_time = sync_time % 10;
+                if (sync_time == 0)
                     sync_fuzzers(use_argv);
-                }
+                sync_time++;
             }
             //测试显示,快速同步
             sleep(0.1);
