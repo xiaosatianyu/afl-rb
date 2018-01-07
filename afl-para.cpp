@@ -71,7 +71,8 @@ s32 waitFreeSlaves(const char* freeDir)
 
     if((dp  = opendir(freeDir)) == NULL) {
         cout << "Error(" << errno << ") opening " << freeDir << endl;
-        exit(-1);
+        cout << "can not open free dir\n";
+        return -1;
     }
 
     while ((dirp = readdir(dp)) != NULL) {
@@ -115,10 +116,13 @@ u64 getTaskId(const char* masterTaskDir){
     //1. read ids from task poll
     if((dp  = opendir(masterTaskDir)) == NULL) {
         cout << "Error(" << errno << ") opening " << masterTaskDir << endl;
-        exit(-1);
+        cout << "can not oepn task dir\n";
+        DEBUG("can not open task dir\n");
+        //return -1;
+        //exit(-1);
     }
     u64 _ID;
-    while ((dirp = readdir(dp)) != NULL) {
+    while ( dp!= NULL && (dirp = readdir(dp)) != NULL) {
 		if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
 			continue;
 		else {
@@ -219,10 +223,11 @@ u64 waitTask(const char *out_dir, u8* get_task_flag)
     while (wait_num--) {
         if((dp  = opendir(taskDir)) == NULL) {
             cout << "Error(" << errno << ") opening " << taskDir << endl;
-            exit(-1);
+            cout << "can not open task dir in slave";
+            //exit(-1);
         }
 
-        while ((dirp = readdir(dp)) != NULL) {
+        while ( dp!= NULL && (dirp = readdir(dp)) != NULL) {
             if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
                 continue;
             else if (!strcmp(dirp->d_name, "branch-hits.bin")) {
@@ -254,93 +259,95 @@ u64 waitTask(const char *out_dir, u8* get_task_flag)
                 }
             }
         }
-        closedir(dp);
+        if (!dp) closedir(dp);
 
         cout << "there is no task, wait for some time\n";
         sleep(WAIT_TASK);
 
     }//end while
     
+    cout << "do not get a task from master, save itself\n";
     return 0; // 这里0不是指branch0,实在要返回一个,所以没办法,还要根据get_task_flag一起判定
 }
 
 // Master & slave node method
-void handoverResults(u64* rareMap, const char* out_dir)
-{
-    char fname[256];
-    FILE* fd;
-
-    memset(fname, 0, 256);
-    sprintf(fname, "%s/branch-hits.bin", out_dir);
-    fd = fopen(fname, "wb");
-
-    if (!fd) {
-        cout << "Unable to open " << fname << "\n";
-        exit(-1);
-    }
-
-    fwrite(rareMap, sizeof(u64), MAP_SIZE, fd);
-    fclose(fd);
-}
+//void handoverResults(u64* rareMap, const char* out_dir)
+//{
+//    char fname[256];
+//    FILE* fd;
+//
+//    memset(fname, 0, 256);
+//    sprintf(fname, "%s/branch-hits.bin", out_dir);
+//    fd = fopen(fname, "wb");
+//
+//    if (!fd) {
+//        cout << "Unable to open " << fname << "\n";
+//        exit(-1);
+//    }
+//
+//    fwrite(rareMap, sizeof(u64), MAP_SIZE, fd);
+//    fclose(fd);
+//}
 
 // Slave node method
 // TODO: Use macro to avoid duplication.
-void handoverCycleTotalExecs(u64 cycleExecs, const char* out_dir)
-{
-    char fname[256];
-    FILE* fd;
+//void handoverCycleTotalExecs(u64 cycleExecs, const char* out_dir)
+//{
+//    char fname[256];
+//    FILE* fd;
+//
+//    memset(fname, 0, 256);
+//    sprintf(fname, "%s/cycle_execs", out_dir);
+//    fd = fopen(fname, "wb");
+//
+//    if (!fd) {
+//        cout << "Unable to open " << fname << "\n";
+//        cout << "can not open cycle_execs";
+//        exit(-1);
+//    }
+//
+//    char buff[256];
+//    memset(buff, 0, 256);
+//    sprintf(buff, "%llu", cycleExecs);
+//    fwrite(buff, sizeof(char), 256, fd);
+//    fclose(fd);
+//}
 
-    memset(fname, 0, 256);
-    sprintf(fname, "%s/cycle_execs", out_dir);
-    fd = fopen(fname, "wb");
-
-    if (!fd) {
-        cout << "Unable to open " << fname << "\n";
-        exit(-1);
-    }
-
-    char buff[256];
-    memset(buff, 0, 256);
-    sprintf(buff, "%llu", cycleExecs);
-    fwrite(buff, sizeof(char), 256, fd);
-    fclose(fd);
-}
-
-void normalizeHitBits(u64* slaveData, u64* hit_bits, const char* out_dir, u8* slaveID)
-{
-    char fname[256];
-    FILE* fd;
-
-    memset(fname, 0, 256);
-    sprintf(fname, "%s/%s/cycle_execs", out_dir, slaveID);
-    fd = fopen(fname, "r");
-    if (!fd) {
-        DEBUG("unable to open %s\n", fname);
-        exit(-1);
-    }
-
-    char buff[256];
-    memset(buff, 0, 256);
-    fread(buff, sizeof(char), 256, fd);
-    fclose(fd);
-    unlink(fname);
-
-    u64 cycle_execs = atoi(buff);
-    if (!cycle_execs) {
-        DEBUG("Slave %s runs 0 test cases in one cycle!!!!\n", slaveID);
-        exit(-1);
-    }
-    DEBUG("Slave %s runs %llu test cases in one cycle.\n", slaveID, cycle_execs);
-
-#define EXPAND_FACTOR 1e+12 //FIXME: we assume that 1e+12 is the maximum number in one cycle
-    for (u64 i=0; i < MAP_SIZE; i++) {
-        nmHitBits[i] += slaveData[i] / ((double) cycle_execs);
-        hit_bits[i]  =  (u64)(nmHitBits[i] * EXPAND_FACTOR);
-    }
-#undef EXPAND_FACOTR
-    
-    return;
-}
+//void normalizeHitBits(u64* slaveData, u64* hit_bits, const char* out_dir, u8* slaveID)
+//{
+//    char fname[256];
+//    FILE* fd;
+//
+//    memset(fname, 0, 256);
+//    sprintf(fname, "%s/%s/cycle_execs", out_dir, slaveID);
+//    fd = fopen(fname, "r");
+//    if (!fd) {
+//        DEBUG("unable to open %s\n", fname);
+//        exit(-1);
+//    }
+//
+//    char buff[256];
+//    memset(buff, 0, 256);
+//    fread(buff, sizeof(char), 256, fd);
+//    fclose(fd);
+//    unlink(fname);
+//
+//    u64 cycle_execs = atoi(buff);
+//    if (!cycle_execs) {
+//        DEBUG("Slave %s runs 0 test cases in one cycle!!!!\n", slaveID);
+//        exit(-1);
+//    }
+//    DEBUG("Slave %s runs %llu test cases in one cycle.\n", slaveID, cycle_execs);
+//
+//#define EXPAND_FACTOR 1e+12 //FIXME: we assume that 1e+12 is the maximum number in one cycle
+//    for (u64 i=0; i < MAP_SIZE; i++) {
+//        nmHitBits[i] += slaveData[i] / ((double) cycle_execs);
+//        hit_bits[i]  =  (u64)(nmHitBits[i] * EXPAND_FACTOR);
+//    }
+//#undef EXPAND_FACOTR
+//    
+//    return;
+//}
 
 // Master node method
 //round_new_branches is set as the number of the new branch detected in this cycle of the slave
