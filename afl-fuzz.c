@@ -694,24 +694,6 @@ static u8 check_if_enough_data_with_distance(){
 	return 0;
 }
 
-//check if give up this testcase with small rarity attribution
-// 1: give up ; 0 :keep on
-static u8 check_if_give_up(){
-	//d的数据很少时 都不放弃
-	if (!check_if_enough_data_with_distance())
-		return 0;
-
-	//判断queue_cur是否是小d
-	if (queue_cur->distance_attri >0.8 && queue_cur->distance_attri!=-1)
-		return 1; //以一定的错误概率跑大d 可以修正
-//	DEBUG_TEST("check if give up %s,"
-//			"its distance is %.0f, distance_attri is %0.4f, "
-//			"its rarity is %llu,rarity_attri is %0.4f \n",
-//			queue_cur->fname,
-//			queue_cur->distance,queue_cur->distance_attri,
-//			queue_cur->trace_rarity_seed, queue_cur->rarity_attri);
-	return 0;
-}
 
 //将rb_fuzzing 添加到blacklist
 static void add_into_blacklist(){
@@ -6629,13 +6611,14 @@ static u8 fuzz_one(char** argv) {
   u8 fit_flag=0;
   fit_flag = fitness(queue_cur);
     
- 
   //4.根据不同的模式,进行策略配置
   if (fit_flag == SDSR){
     // 小d 小r 启用raritymask 和distance mask, 使用rb_fuzzing的模式运行
+    open_rarity_mask = 1;
+    open_distance_mask = 1;
+    vanilla_afl = 0;
   }
-  
-  if (fit_flag == SDBR){
+  else if (fit_flag == SDBR){
     // 小d 大r 只启用distance mask,使用 vanilla_afl的模式运行
     vanilla_afl = 1;
     rb_fuzzing = 0;
@@ -6643,18 +6626,17 @@ static u8 fuzz_one(char** argv) {
     u8 ret =  check_if_open_distance_mask(queue_cur); //判断是否开启distance_fuzzing 如果开启,在函数中将 open_distance_mask=1
     open_distance_mask =  use_distance_mask & ret;
   }
-  
-  if (fit_flag == BDSR){
+  else if (fit_flag == BDSR){
     // 大d 小r 只启用rarity mask, 使用rb_fuzzing的模式运行
     vanilla_afl = 0;
     open_rarity_mask = 1;
-    //这个在fitness中应该会有计算
-    u32 * min_branch_hits = is_rb_hit_mini(queue_cur->trace_mini); //计算出当前测试用例击中的rare branch 如果没有,表示非小r测试用例
-
   }
-
-  if (fit_flag = BDBR ) return 1; //do not run this testcase
-
+  else if (fit_flag = BDBR ) return 1; //do not run this testcase
+  else { 
+       //why here
+       DEBUG_TEST ("what is the fit-flag, why here---------------\n");
+       return 1;
+  } 
 
   //判断越过的变异阶段,只留mask的计算阶段,后面再判断
   if (skip_deterministic){
@@ -6662,7 +6644,7 @@ static u8 fuzz_one(char** argv) {
  	 skip_simple_bitflip = 1;
   }
 
-  //1. 如果粒子群算法卡主了,陷入局部最优化, 这里需要进行一定的判定
+  //如果粒子群算法卡主了,陷入局部最优化, 这里需要进行一定的判定
   if (!vanilla_afl ){
 	  if(go_back_to_AFL){ //如果允许回到AFL ,回到AFL去太慢了,但是发现不了新的时候,还是得回去!
 		if ( (prev_cycle_wo_new && bootstrap) ){  // prev_cycle_wo_new: 0表示有发现, without是false
@@ -6681,7 +6663,7 @@ static u8 fuzz_one(char** argv) {
   if (queue_cur-> depth > 1) return 1;
 #else
   // @RB@
-  //2.常规afl的筛选策略 AFL 跑一个fuzz_one
+  //常规afl的筛选策略 AFL 跑一个fuzz_one
   if (vanilla_afl){
     if (pending_favored) {
       /* If we have any favored, non-fuzzed new arrivals in the queue,
@@ -6703,7 +6685,7 @@ static u8 fuzz_one(char** argv) {
 #endif /* ^IGNORE_FINDS */
 
   /* select inputs which hit rare branches */
-  //启动rb_fuzzing模式
+  //rb_fuzing的策略
   if (!vanilla_afl ) {
     skip_deterministic_bootstrap = 0;
 
@@ -6714,6 +6696,7 @@ static u8 fuzz_one(char** argv) {
    
     // 到这里了, 说明一定是要rbfuzzing的
     if(queue_cur->min_branch_hits == NULL ){
+        DEBUG_TEST("in the rbfuzzing, but there is no rare branch in this test");
         return 1;
     }
     else {
@@ -6783,7 +6766,7 @@ static u8 fuzz_one(char** argv) {
          //ck_free(rarest_branches);
     }
   }
-  // 粒子群分配测试用例结束 -----------------------------------------------------------------------------------------------------------------------------
+  // 粒子群分配测试用例结束 -----------------------------------------
 
   if (not_on_tty) {
 	  ACTF("Fuzzing test case #%u (%u total, %llu uniq crashes found)...",
