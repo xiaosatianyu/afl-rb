@@ -1046,6 +1046,7 @@ static u8 check_if_open_distance_mask(struct queue_entry * q) {
 			//用相对距离的模拟退火算法,关闭 distance_fuzzing
 		}
 	}
+    return 0;
 }
 
 
@@ -4927,7 +4928,7 @@ static void maybe_update_plot_file(double bitmap_cvg, double eps) {
      execs_per_sec */
 
   fprintf(plot_file, 
-          "%llu, %llu, %u, %u, %u, %u, %0.02f%%, %llu, %llu, %u, %0.02f\n",
+          "%llu, %llu, %u, %u, %u, %u, %0.02f%%, %llu, %llu, %u, %0.02f, %.0f, %.0f\n",
           get_cur_time() / 1000, queue_cycle - 1, current_entry, queued_paths,
           pending_not_fuzzed, pending_favored, bitmap_cvg, unique_crashes,
           unique_hangs, max_depth, eps, max_distance, min_distance); /* ignore errors */
@@ -6631,7 +6632,7 @@ static u8 fuzz_one(char** argv) {
     vanilla_afl = 0;
     open_rarity_mask = 1;
   }
-  else if (fit_flag = BDBR ) return 1; //do not run this testcase
+  else if (fit_flag == BDBR ) return 1; //do not run this testcase
   else { 
        //why here
        DEBUG_TEST ("what is the fit-flag, why here---------------\n");
@@ -6849,7 +6850,7 @@ static u8 fuzz_one(char** argv) {
   /***************
   *  @RB@ TRIM  *
   ***************/
-//增加了一个trim过程 这个会影响 vanilla_afl
+  //增加了一个trim过程 这个会影响 vanilla_afl
   u32 orig_bitmap_size = queue_cur->bitmap_size;
   u64 orig_exec_us = queue_cur->exec_us;
   //添加了一个trim过程
@@ -6912,9 +6913,9 @@ static u8 fuzz_one(char** argv) {
 //@RD@ 这里是为了判定mask的有效性而增加的,先跑shadow模式,再跑mask模式 这里运行会改变 vanilla_afl
 // rb_fuzzing的变量,但是rb_fuzzing表示当前的rb fuzzing的按个点
 re_run: // re-run when running in shadow mode  这里只有shadow mode 才会进去
-    if (rb_fuzzing || open_distance_mask){
+    if (open_rarity_mask || open_distance_mask){
       if (run_with_shadow && !shadow_mode){
-       shadow_mode = 1; //只有这里会开启 shadow模式, 针对同一个测试用例,先跑shadow模式
+        shadow_mode = 1; //只有这里会开启 shadow模式, 针对同一个测试用例,先跑shadow模式
         virgin_virgin_bits = ck_alloc(MAP_SIZE);
         memcpy(virgin_virgin_bits, virgin_bits, MAP_SIZE);
         shadow_prefix = "shadow AFL: ";
@@ -6945,7 +6946,7 @@ re_run: // re-run when running in shadow mode  这里只有shadow mode 才会进
   else{
 	  rarity_mask = ck_alloc(len + 1);
 	  orig_rarity_mask = ck_alloc(len + 1);
-	  }
+  }
 
   //@rd@
   //增加distance_mask
@@ -7258,7 +7259,7 @@ skip_simple_bitflip:
       if (common_fuzz_stuff(argv, tmp_buf, len - 1)) goto abandon_entry;
 
       //计算rarity_mask
-      if( open_rarity_mask && rb_fuzzing ){
+      if (rb_fuzzing && !shadow_mode && open_rarity_mask > 0){
     	  /* if even with this byte deleted we hit the branch, can delete here */
 			if (hits_branch(rb_fuzzing - 1)){
 			  if (rarity_mask[stage_cur]==0 )  rarity_mask_num++;
@@ -7266,7 +7267,7 @@ skip_simple_bitflip:
 			}
       }
       //计算distance-mask
-      if( open_distance_mask ){
+      if( open_distance_mask && !shadow_mode ){
     	  if (check_if_keep_distance(queue_cur)) {
     		  if (distance_mask[stage_cur]==0 )  distance_mask_num++;
     		  distance_mask[stage_cur] += 2;
@@ -7289,7 +7290,7 @@ skip_simple_bitflip:
       if (common_fuzz_stuff(argv, tmp_buf, len + 1)) goto abandon_entry;
 
       //计算rarity_mask
-      if( rb_fuzzing && open_rarity_mask){
+      if (rb_fuzzing && !shadow_mode && open_rarity_mask > 0){
     	  /* if adding before still hit branch, can add */
     	  if (hits_branch(rb_fuzzing - 1)){
     		  if (rarity_mask[stage_cur]==0 )  rarity_mask_num++;
@@ -7297,7 +7298,7 @@ skip_simple_bitflip:
     	  }
       }
       //计算distance_mask
-      if( open_distance_mask ){
+      if( open_distance_mask && !shadow_mode){
     	  if (check_if_keep_distance(queue_cur)) {
     		  if (distance_mask[stage_cur]==0 )  distance_mask_num++;
     		  distance_mask[stage_cur] += 4;
@@ -7362,9 +7363,9 @@ skip_simple_bitflip:
 
     stage_cur_byte = stage_cur >> 3;
 
-    if (rb_fuzzing && open_rarity_mask){ //&& use_mask()){
+    if (rb_fuzzing && open_rarity_mask){
       // only run modified case if it won't produce garbage
-    //如果 branch_mask[stage_cur_byte] 为0 则表示这个位置不能动
+      //如果 branch_mask[stage_cur_byte] 为0 则表示这个位置不能动
       if (!(rarity_mask[stage_cur_byte] & 1)) {  //只有branch_mask[stage_cur_byte] 包含1,即表示当前字节可以修改
         stage_max--;
         continue;
@@ -7381,7 +7382,7 @@ skip_simple_bitflip:
     //@RD@
     if (open_distance_mask){
       // only run modified case if it won't produce garbage
-    	//如果 distance_mask[stage_cur_byte] 为0 则表示这个位置不能动
+      //如果 distance_mask[stage_cur_byte] 为0 则表示这个位置不能动
       if (!(distance_mask[stage_cur_byte] & 1)) {
         stage_max--;
         continue;
@@ -8477,7 +8478,6 @@ havoc_stage:
       switch (UR(15 + ((extras_cnt + a_extras_cnt) ? 2 : 0))) {
 
         case 0:
-        //ok
           /* Flip a single bit somewhere. Spooky! */
         	//修改一个bit
           if((posn = get_random_modifiable_posn(1, 1, temp_len, rarity_mask, distance_mask, position_map)) == 0xffffffff) break;
@@ -8486,226 +8486,141 @@ havoc_stage:
           break;
 
         case 1: 
-
           /* Set byte to interesting value. */
-        //ok
           if((posn = get_random_modifiable_posn(8, 1, temp_len, rarity_mask, distance_mask, position_map)) == 0xffffffff) break;
           out_buf[posn] = interesting_8[UR(sizeof(interesting_8))];
 
           break;
 
         case 2:
-
           /* Set word to interesting value, randomly choosing endian. */
-
           if (temp_len < 2) break;
           //这里是修改连续的2个字节
           if((posn = get_random_modifiable_posn(16, 1, temp_len, rarity_mask, distance_mask, position_map)) == 0xffffffff) break;
           if (UR(2)) {
-
-            *(u16*)(out_buf + posn) =
-
-              interesting_16[UR(sizeof(interesting_16) >> 1)];
-
+            *(u16*)(out_buf + posn) =  interesting_16[UR(sizeof(interesting_16) >> 1)];
           } else {
-
-            *(u16*)(out_buf + posn) = SWAP16(
-              interesting_16[UR(sizeof(interesting_16) >> 1)]);
+            *(u16*)(out_buf + posn) = SWAP16(interesting_16[UR(sizeof(interesting_16) >> 1)]);
 
           }
 
           break;
 
         case 3:
-
           /* Set dword to interesting value, randomly choosing endian. */
-
           if (temp_len < 4) break;
-
           if((posn = get_random_modifiable_posn(32, 1, temp_len, rarity_mask, distance_mask, position_map)) == 0xffffffff) break;
           if (UR(2)) {
-  
-            *(u32*)(out_buf + posn) =
-              interesting_32[UR(sizeof(interesting_32) >> 2)];
-
+            *(u32*)(out_buf + posn) = interesting_32[UR(sizeof(interesting_32) >> 2)];
           } else {
-
-
-            *(u32*)(out_buf + posn) = SWAP32(
-              interesting_32[UR(sizeof(interesting_32) >> 2)]);
-
+            *(u32*)(out_buf + posn) = SWAP32(interesting_32[UR(sizeof(interesting_32) >> 2)]);
           }
-
           break;
 
         case 4:
-
           /* Randomly subtract from byte. */
-
           if((posn = get_random_modifiable_posn(8, 1, temp_len, rarity_mask, distance_mask, position_map)) == 0xffffffff) break;
           out_buf[posn] -= 1 + UR(ARITH_MAX);
-
           break;
 
         case 5:
-
           /* Randomly add to byte. */
-
           if((posn = get_random_modifiable_posn(8, 1, temp_len, rarity_mask, distance_mask, position_map)) == 0xffffffff) break;
           out_buf[posn] += 1 + UR(ARITH_MAX);
           break;
 
         case 6:
-
           /* Randomly subtract from word, random endian. */
-
           if (temp_len < 2) break;
-
           if((posn = get_random_modifiable_posn(16, 1, temp_len, rarity_mask, distance_mask, position_map)) == 0xffffffff) break;
-
           if (UR(2)) {
-
             *(u16*)(out_buf + posn) -= 1 + UR(ARITH_MAX);
-
           } else {
-    
             u16 num = 1 + UR(ARITH_MAX);
-
-            *(u16*)(out_buf + posn) =
-              SWAP16(SWAP16(*(u16*)(out_buf + posn)) - num);
-
+            *(u16*)(out_buf + posn) = SWAP16(SWAP16(*(u16*)(out_buf + posn)) - num);
           }
 
           break;
 
         case 7:
-
           /* Randomly add to word, random endian. */
-
           if (temp_len < 2) break;
-
           if((posn = get_random_modifiable_posn(16, 1, temp_len, rarity_mask, distance_mask, position_map)) == 0xffffffff) break;
-
           if (UR(2)) {
-
             *(u16*)(out_buf + posn) += 1 + UR(ARITH_MAX);
-
           } else {
-
             u16 num = 1 + UR(ARITH_MAX);
-
-            *(u16*)(out_buf + posn) =
-              SWAP16(SWAP16(*(u16*)(out_buf + posn)) + num);
-
-
+            *(u16*)(out_buf + posn) =  SWAP16(SWAP16(*(u16*)(out_buf + posn)) + num);
           }
 
           break;
 
         case 8:
-
           /* Randomly subtract from dword, random endian. */
-
           if (temp_len < 4) break;
-
           if((posn = get_random_modifiable_posn(32, 1, temp_len, rarity_mask, distance_mask, position_map)) == 0xffffffff) break;
-
           if (UR(2)) {
-
             *(u32*)(out_buf + posn) -= 1 + UR(ARITH_MAX);
-
           } else {
-
             u32 num = 1 + UR(ARITH_MAX);
-
-            *(u32*)(out_buf + posn) =
-              SWAP32(SWAP32(*(u32*)(out_buf + posn)) - num);
-
+            *(u32*)(out_buf + posn) =  SWAP32(SWAP32(*(u32*)(out_buf + posn)) - num);
           }
 
           break;
 
         case 9:
-
           /* Randomly add to dword, random endian. */
-
           if (temp_len < 4) break;
-
           if((posn = get_random_modifiable_posn(32, 1, temp_len, rarity_mask, distance_mask, position_map)) == 0xffffffff) break;
-
           if (UR(2)) {
-
             *(u32*)(out_buf + posn) += 1 + UR(ARITH_MAX);
-
           } else {
-
             u32 num = 1 + UR(ARITH_MAX);
-
-            *(u32*)(out_buf + posn) =
-              SWAP32(SWAP32(*(u32*)(out_buf + posn)) + num);
-
-
+            *(u32*)(out_buf + posn) =  SWAP32(SWAP32(*(u32*)(out_buf + posn)) + num);
           }
 
           break;
 
         case 10:
-
           /* Just set a random byte to a random value. Because,
              why not. We use XOR with 1-255 to eliminate the
              possibility of a no-op. */
-
           if((posn = get_random_modifiable_posn(8, 1, temp_len, rarity_mask, distance_mask, position_map)) == 0xffffffff) break;
           out_buf[posn] ^= 1 + UR(255);
           break;
 
-
         case 11 ... 12: {
-            
             /* Delete bytes. We're making this a bit more likely
                than insertion (the next option) in hopes of keeping
                files reasonably small. */
-
             u32 del_from, del_len;
-
             if (temp_len < 2) break;
-
             /* Don't delete too much. */
-
             del_len = choose_block_len(temp_len - 1); //在当前条件下,随机返回一个长度,字节数
             //根据 branch_mask 得到?  这里要选择一个删除起点,是不是找一个能够删除del_len长度的地方; position_map 什么用呢?
             del_from = get_random_modifiable_posn(del_len*8, 2, temp_len, rarity_mask, distance_mask, position_map);
             if (del_from == 0xffffffff) break;
-
-            memmove(out_buf + del_from, out_buf + del_from + del_len,
-                    temp_len - del_from - del_len); //生成新的测试用例
+            memmove(out_buf + del_from, out_buf + del_from + del_len, temp_len - del_from - del_len); //生成新的测试用例
             // remove that data from the branch mask
             // the +1 copies over the last part of branch_mask
-            memmove(rarity_mask + del_from, rarity_mask + del_from + del_len,
-                    temp_len - del_from - del_len + 1); //将branch_mask也做同样的操作,删除对应的一段内容
-
-
+            memmove(rarity_mask + del_from, rarity_mask + del_from + del_len,temp_len - del_from - del_len + 1);
+            //将branch_mask也做同样的操作,删除对应的一段内容
             temp_len -= del_len;
-
             break;
 
           }
 
         case 13:
-          
           if (temp_len + HAVOC_BLK_XL < MAX_FILE) {
             /* Clone bytes (75%) or insert a block of constant bytes (25%). */
-  
             u8 actually_clone = UR(4);
             u32 clone_from, clone_to, clone_len;
             u8* new_buf;
             u8* new_branch_mask; 
 
             if (actually_clone) {
-
               clone_len  = choose_block_len(temp_len);
               clone_from = UR(temp_len - clone_len + 1);
-
             } else {
               clone_len = choose_block_len(HAVOC_BLK_LARGE);
               clone_from = 0;
@@ -8731,10 +8646,8 @@ havoc_stage:
                      UR(2) ? UR(256) : out_buf[UR(temp_len)], clone_len);
 
             /* Tail */
-            memcpy(new_buf + clone_to + clone_len, out_buf + clone_to,
-                   temp_len - clone_to);
-            memcpy(new_branch_mask + clone_to + clone_len, rarity_mask + clone_to,
-                   temp_len - clone_to + 1);
+            memcpy(new_buf + clone_to + clone_len, out_buf + clone_to, temp_len - clone_to);
+            memcpy(new_branch_mask + clone_to + clone_len, rarity_mask + clone_to,temp_len - clone_to + 1);
 
             ck_free(out_buf);
             ck_free(rarity_mask);
@@ -8752,7 +8665,6 @@ havoc_stage:
           break;
 
         case 14: {
-
             /* Overwrite bytes with a randomly selected chunk (75%) or fixed
                bytes (25%). */
 
@@ -8774,8 +8686,7 @@ havoc_stage:
               if (copy_from != copy_to)
                 memmove(out_buf + copy_to, out_buf + copy_from, copy_len);
 
-            } else memset(out_buf + copy_to,
-                          UR(2) ? UR(256) : out_buf[UR(temp_len)], copy_len);
+            } else memset(out_buf + copy_to, UR(2) ? UR(256) : out_buf[UR(temp_len)], copy_len);
 
             break;
 
@@ -8875,11 +8786,9 @@ havoc_stage:
             }
 
             /* Tail */
-            memcpy(new_buf + insert_at + extra_len, out_buf + insert_at,
-                   temp_len - insert_at);
+            memcpy(new_buf + insert_at + extra_len, out_buf + insert_at,temp_len - insert_at);
 
-            memcpy(new_branch_mask + insert_at + extra_len, rarity_mask + insert_at,
-                   temp_len - insert_at + 1);
+            memcpy(new_branch_mask + insert_at + extra_len, rarity_mask + insert_at,temp_len - insert_at + 1);
 
             ck_free(out_buf);
             ck_free(rarity_mask);
