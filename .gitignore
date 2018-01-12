@@ -30,3 +30,5 @@ afl-qemu-trace
 /aflgo/afl-showmap
 afl-tmin
 as
+/testenv/output/
+/testenv/input/
