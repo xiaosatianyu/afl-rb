@@ -1,4 +1,3 @@
-target="HTML_filter_INTOverflow_eip_1"
 
 #--------------------------------
 GNUPLOT=`which gnuplot 2>/dev/null`
@@ -10,13 +9,13 @@ if [ "$GNUPLOT" = "" ]; then
 
 fi
 
-rm -r './距离变化.png'
+#rm -r './min_distance.png'
 echo "[*] Generating plots..."
 
 (
 cat <<_EOF_
 set terminal png truecolor enhanced size 1000,350 font "Times New Roman,16" #butt 
-set output './距离变化.png' 
+set output './mini_distance.png' 
 
 #设置x轴
 set xdata time 		#设置x轴为时间
@@ -51,12 +50,10 @@ set key inside  bottom Right font "DejaVu Sans,18"
 
 #set title "the min_distance "
 
-  
-plot './output/plot_data'   using 1:13 with lines title 'rdfuzz'   linewidth 4 linetype 3, \\
-	 
+plot './output-rd/plot_data'   using 1:13 with lines title 'rdfuzz'   linewidth 4 linetype 3, \\
+     './output-aflrb/plot_data'  using 1:13 with lines title 'fairfuzz'    linewidth 4 linetype 6 
 	  
 #plot  '/tmp/output-yyy-cgc-more/plot_data' using 1:7 with lines title 'aflfast-cgc'   linewidth 4 linetype 5  ,\\
-      #'/tmp/output-yyy-cgc/plot_data'  using 1:7 with lines title 'aflyyy-cgc'    linewidth 4 linetype 6
 
 ######end the high_freq.png
 

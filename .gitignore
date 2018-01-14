@@ -35,4 +35,4 @@ as
 /testenv/.gdb_history
 /testenv/output-*/
 /testenv/peda-session-*.txt
-
+/testenv/mini_distance.png

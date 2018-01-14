@@ -6638,12 +6638,7 @@ static u8 fuzz_one(char** argv) {
   u8 fit_flag=0;
   fit_flag = fitness(queue_cur);
   
-  if (init_run){
-    fit_flag = BDBR;
-    vanilla_afl = 1000;
-  }
-
-    
+     
   //4.根据不同的模式,进行策略配置
   if (fit_flag == SDSR){
     // 小d 小r 启用raritymask 和distance mask, 使用rb_fuzzing的模式运行
@@ -6669,12 +6664,13 @@ static u8 fuzz_one(char** argv) {
   }
   else if (fit_flag == BDBR )
   {
-      // the last selection
-      if (vanilla_afl){
+    if (init_run){
+        vanilla_afl = 1000;
         DEBUG_TEST("%s is a BDBR\n", queue_cur->fname);
-      }
-      else 
-          return 1;
+    }
+    // the last selection
+    else 
+        return 1;
   }
    else { 
        //why here
