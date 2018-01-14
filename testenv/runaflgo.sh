@@ -3,7 +3,7 @@
 TARGET=tiff2pdf-distance-noasan
 AFL_HOME=../aflgo
 INPUT=`pwd`/input
-OUTPUT=`pwd`/output-aflgo
+OUTPUT=/tmp/output-aflgo
 
 
 # Create test environment for a CB
@@ -32,6 +32,6 @@ if [ ! -f $REAL_TARGET ]; then
 fi
 
 echo $REAL_TARGET
-$AFL_HOME/afl-fuzz -m none -i $INPUT -o $OUTPUT -d -z exp -c 180m  $REAL_TARGET -o /dev/null @@
-#gdb --args $AFL_HOME/afl-fuzz -m none -i $INPUT  -o $OUTPUT  -d -z exp -c 180m $REAL_TARGET -o /dev/null @@
+$AFL_HOME/afl-fuzz -m none -i $INPUT -o $OUTPUT -d -z exp -c 180m  $REAL_TARGET @@ -o /dev/null
+#gdb --args $AFL_HOME/afl-fuzz -m none -i $INPUT  -o $OUTPUT  -d -z exp -c 180m $REAL_TARGET @@ -o /dev/null
 

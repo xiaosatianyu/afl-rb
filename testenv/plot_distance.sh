@@ -50,8 +50,10 @@ set key inside  bottom Right font "DejaVu Sans,18"
 
 #set title "the min_distance "
 
-plot './output-rd/plot_data'   using 1:13 with lines title 'rdfuzz'   linewidth 4 linetype 3, \\
-     './output-aflrb/plot_data'  using 1:13 with lines title 'fairfuzz'    linewidth 4 linetype 6 
+plot '/tmp/output-rd/plot_data'   using 1:13 with lines title 'rdfuzz'   linewidth 4 linetype 3, \\
+     '/tmp/output-aflrb/plot_data'  using 1:13 with lines title 'fairfuzz'    linewidth 4 linetype 6 ,\\
+     '/tmp/output-aflgo/plot_data'  using 1:13 with lines title 'aflgo'    linewidth 4 linetype 8,\\
+     '/tmp/output-afl2.5.2/plot_data'  using 1:13 with lines title 'afl2.5.2'    linewidth 4 linetype 10
 	  
 #plot  '/tmp/output-yyy-cgc-more/plot_data' using 1:7 with lines title 'aflfast-cgc'   linewidth 4 linetype 5  ,\\
 
