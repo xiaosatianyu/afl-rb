@@ -32,5 +32,5 @@ if [ ! -f $REAL_TARGET ]; then
 fi
 
 echo $REAL_TARGET
-$AFL_HOME/fairfuzz -m none -i $INPUT -d -o $OUTPUT -r -q 2 $REAL_TARGET -o /dev/null @@
-#gdb --args $AFL_HOME/fairfuzz -m none -i $INPUT  -o $OUTPUT  -d -r -q 2 $REAL_TARGET -o /dev/null @@
+#$AFL_HOME/fairfuzz -m none -i $INPUT -d -o $OUTPUT -r -q 2 $REAL_TARGET -o /dev/null @@
+gdb --args $AFL_HOME/fairfuzz -m none -i $INPUT  -o $OUTPUT  -d -r -q 2 $REAL_TARGET -o /dev/null @@
