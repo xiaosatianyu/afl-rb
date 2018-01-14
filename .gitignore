@@ -18,8 +18,7 @@ afl-qemu-trace
 /qemu_mode/yybuild_qemu_support.sh
 .fuse_*
 /qemu_mode/qemu-2.3.0/
-afl-tmin
-as
+
 
 /aflgo/afl-analyze
 /aflgo/afl-as
@@ -31,15 +30,15 @@ as
 /aflgo/afl-gotcpu
 /aflgo/afl-showmap
 
-/afl/afl-analyze
-/afl/afl-as
-/afl/afl-clang
-/afl/afl-clang++
-/afl/afl-fuzz
-/afl/afl-g++
-/afl/afl-gcc
-/afl/afl-gotcpu
-/afl/afl-showmap
+/afl2.5.2/afl-analyze
+/afl2.5.2/afl-as
+/afl2.5.2/afl-clang
+/afl2.5.2/afl-clang++
+/afl2.5.2/afl-fuzz
+/afl2.5.2/afl-g++
+/afl2.5.2/afl-gcc
+/afl2.5.2/afl-gotcpu
+/afl2.5.2/afl-showmap
 
 /aflrb/afl-analyze
 /aflrb/afl-as
