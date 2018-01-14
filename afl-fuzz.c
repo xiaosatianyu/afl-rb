@@ -6630,7 +6630,7 @@ static u8 fuzz_one(char** argv) {
   }
   //4.根据不同的模式,进行策略配置
   if (fit_flag == SDSR){
-    // 小d 小r 启用raritymask 和distance mask, 使用rb_fuzzing的模式运行
+     // 小d 小r 启用raritymask 和distance mask, 使用rb_fuzzing的模式运行
      open_rarity_mask = 1;
      //这里还要根据一些情况判定是否开启
      u8 ret =  check_if_open_distance_mask(queue_cur); 
@@ -8850,13 +8850,13 @@ havoc_stage:
     /* If we're finding new stuff, let's run for a bit longer, limits
        permitting. */
     //这里会改变分值, 如果发现新的就翻倍, 在shadow模式下就不会了
-    if (queued_paths != havoc_queued) {
-      if (perf_score <= HAVOC_MAX_MULT * 100) {
-        stage_max  *= 2;
-        perf_score *= 2;
-      }
-      havoc_queued = queued_paths;
-    }
+//    if (queued_paths != havoc_queued) {
+//      if (perf_score <= HAVOC_MAX_MULT * 100) {
+//        stage_max  *= 2;
+//        perf_score *= 2;
+//      }
+//      havoc_queued = queued_paths;
+//    }
   }//end havoc变异循环
 
   //@RD@ 记录havoc执行次数

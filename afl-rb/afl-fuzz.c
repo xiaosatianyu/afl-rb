@@ -7497,16 +7497,16 @@ havoc_stage:
     /* If we're finding new stuff, let's run for a bit longer, limits
        permitting. */
 
-    if (queued_paths != havoc_queued) {
-
-      if (perf_score <= HAVOC_MAX_MULT * 100) {
-        stage_max  *= 2;
-        perf_score *= 2;
-      }
-
-      havoc_queued = queued_paths;
-
-    }
+//    if (queued_paths != havoc_queued) {
+//
+//      if (perf_score <= HAVOC_MAX_MULT * 100) {
+//        stage_max  *= 2;
+//        perf_score *= 2;
+//      }
+//
+//      havoc_queued = queued_paths;
+//
+//    }
 
   }
 
