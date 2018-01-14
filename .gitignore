@@ -32,3 +32,7 @@ afl-tmin
 as
 /testenv/output/
 /testenv/input/
+/testenv/.gdb_history
+/testenv/output-*/
+/testenv/peda-session-*.txt
+

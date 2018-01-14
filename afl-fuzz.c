@@ -331,11 +331,6 @@ static int blacklist_size = 1024;
 static int blacklist_pos;
 
 static u32 rb_fuzzing = 0;           /* @RB@ non-zero branch index + 1 if fuzzing is being done with that branch constant*/ //得到 rare branch的 index+1的数值
-//@rd@
-static u32 open_distance_mask=0;   //默认不开启
-static u8 open_power_control = 0; //控制power, 默认关闭
-static u8 go_back_to_AFL=0;     //控制,如果前一轮没有发现测试用例,下一轮知否需要回到AFL
-//end rd
 
 static u32 total_rarity_tries = 0;  //  每一轮总的rarity导向测试次数
 static u32 successful_rarity_tries = 0;  //每一轮 根据rare branch导向变异后,仍然击中rare branch的数据
@@ -405,14 +400,17 @@ static u32 g_total_distance_shadow_havoc=0;
 static u8 shadow_mode = 0;        /* @RB@ shadow AFL run -- do not modify */ //表示当前选择的模式, 0 表示关闭; 1表示开启
 static u8 run_with_shadow = 0;   // 1 表示选择使用shadow模式
 
-
 static u8 use_rarity_mask = 1; //默认开启的,由参数指定关闭
-//@rd@
-static u8 use_distance_mask = 0;
+static u8 use_distance_mask = 1; //
 
+static u8 open_distance_mask =0 ;
+static u8 open_rarity_mask =0 ;
+static u8 open_power_control = 0; //控制power, 默认关闭
+static u8 go_back_to_AFL=0;     //控制,如果前一轮没有发现测试用例,下一轮知否需要回到AFL
+static u8 init_run = 1;  // means the first run of AFL
 //end rd
 
-static int prev_cycle_wo_new = 0;  //上一轮, 0 表示发现了新路径; 1 表示没有发现新路径
+static int prev_cycle_wo_new = 0;  //上一轮, 0 表示发现了新路径; 1 表示没有发现新路径, 默认是发现新的路径,为了尽可能的去探索
 static int cycle_wo_new = 0;   // 本轮, 0 表示发现了新路径; 1 表示没有发现新路径
 
 static int bootstrap = 0; /* @RB@ */
@@ -677,22 +675,7 @@ static void cal_branch_level_rarity(){
 
 }
 
-//判断是否有充分distance数据, 自定义的一个函数 返回1 表示true,有充分信息
-static u8 check_if_enough_data_with_distance(){
-	u32 rate_in_max_min=0;
-	u32 rate_dis_num_in_all=0;
 
-	//1. 所有测试用例中 占有distance数据的比例
-	rate_dis_num_in_all=100*data_num_with_dis/queued_paths;
-
-	//2. 最大值和最小值的差值 比例
-	rate_in_max_min=(max_distance-min_distance)*100/min_distance ;
-
-	//3. 判断
-	if (rate_in_max_min > MIN_RATE_IN_MAX_MIN  && rate_dis_num_in_all > MIN_RATE_NUM_IN_ALL)
-		return 1;
-	return 0;
-}
 
 
 //将rb_fuzzing 添加到blacklist
@@ -896,6 +879,22 @@ static int get_trace_rarity(struct queue_entry* q,  u8 trace_flag, u8 readtest_f
 //}
 
 
+//return 1 enough; 0 not enough
+static u8 check_if_enough_distance_data(){
+	u32 rate_in_max_min=0;
+	u32 rate_dis_num_in_all=0;
+
+	//1. 所有测试用例中带有distance数据的比例
+	rate_dis_num_in_all = 100*data_num_with_dis/queued_paths;
+
+	//2. 最大值和最小值的差值 比例
+	rate_in_max_min=(max_distance-min_distance)*100/min_distance ;
+
+	//3. 判断  (这里的判定方法应该还要提高)
+	if (rate_in_max_min > MIN_RATE_IN_MAX_MIN  && rate_dis_num_in_all > MIN_RATE_NUM_IN_ALL)
+		return 1;
+	return 0;
+}
 
 //返回对当前trace计算的一个银子
 static u32 cal_power_factor(struct queue_entry * q){
@@ -945,7 +944,7 @@ static u32 cal_power_factor(struct queue_entry * q){
 
 	//4. 系数的计算
 	int check=0;
-	check=check_if_enough_data_with_distance();
+	check=check_if_enough_distance_data();
 	if (check){
 		ed=3*(0.6-normal_d);
 		er=1;
@@ -1031,19 +1030,17 @@ static void update_attri(struct queue_entry * q){
 	q->rarity_attri=r_attr;
 }
 
-//判断是否启动distance_fuzzing 这里的算法很关键
-//在距离信息充分的情况下,只考虑近距离的测试用例
-//判断是否开启distance mask, return 0 不开启; return 1 开启, 
-//需要修改
+
+// return 0 不开启; return 1 开启, 
 static u8 check_if_open_distance_mask(struct queue_entry * q) {
 	//0. 判断距离信息是否充分
-	if ( !check_if_enough_data_with_distance() )
-		return 1 ;
+	if ( !check_if_enough_distance_data() )
+		return 0 ;
 	// 只对近的测试用例 open distance mask
 	if (min_distance < max_distance && use_distance_mask) {
-		if (100 * (q->distance - min_distance)/(max_distance - min_distance)< THRESHOLD_FOR_DISTANCE_FUZZING) {
-			open_distance_mask = 1; // 只有这里1个地方开启,其他地方都是关闭
-			//用相对距离的模拟退火算法,关闭 distance_fuzzing
+        //只对前40%的测试用例启用
+		if (100 * (q->distance - min_distance) / (max_distance - min_distance)< THRESHOLD_FOR_DISTANCE_FUZZING) {
+            return 1;
 		}
 	}
     return 0;
@@ -2068,7 +2065,7 @@ static u8  fitness(struct queue_entry* q){
     u8 fit_flag=0; //total flag
     // rarity check
     u32 * min_branch_hits = is_rb_hit_mini(q->trace_mini);
-    if(!min_branch_hits){
+    if(min_branch_hits){
         ck_free(q->min_branch_hits);
         q->min_branch_hits = min_branch_hits;
         r_flag = 1;
@@ -2083,12 +2080,14 @@ static u8  fitness(struct queue_entry* q){
     if ( d_flag==1 ){
         if( r_flag==1 )
             fit_flag=SDSR;
-        fit_flag=SDBR;
+        else
+            fit_flag=SDBR;
     }
     else {
         if( r_flag==1 )
             fit_flag=BDSR;
-        fit_flag=BDBR;
+        else
+            fit_flag=BDBR;
     }
 
     return fit_flag; 
@@ -5440,14 +5439,22 @@ static void show_stats(void) {
   banner_pad = (80 - banner_len) / 2;
   memset(tmp, ' ', banner_pad);
 
-  if (rb_fuzzing)
-	  sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
-          " (%s)",  crash_mode ? cPIN "peruvian were-rabbit" : 
-          cYEL "american fuzzy lop-rdfuzz-rb", use_banner);
-  else
-	  sprintf(tmp + banner_pad, "%s " cLCY VERSION cLGN
-	            " (%s)",  crash_mode ? cPIN "peruvian were-rabbit" :
-	            cYEL "american fuzzy lop-rdfuzz-AFL", use_banner);
+  u8 * temp;
+  temp= alloc_printf("AFL");
+  if (rb_fuzzing) {
+    temp=alloc_printf("%s-rb",temp);
+  }
+  if (open_distance_mask){
+    temp=alloc_printf("%s-dm", temp);
+  }
+  if (open_rarity_mask){
+    temp =alloc_printf("%s-rm",temp);
+  }
+
+  sprintf(tmp + banner_pad, "%s%s " cLCY VERSION cLGN
+	        " (%s)",  crash_mode ? cPIN "peruvian were-rabbit" :
+	          cYEL "american fuzzy lop-rd", temp, use_banner);
+ ck_free(temp);
   SAYF("\n%s\n\n", tmp);
 
   /* "Handy" shortcuts for drawing boxes... */
@@ -6594,57 +6601,17 @@ static u8 fuzz_one(char** argv) {
   u32 orig_total_execs = total_execs;
   
   stage_state=DET;
-  u8 open_distance_mask = 0; //本轮distance mask 开关 默认是关闭
-  u8 open_rarity_mask = 0; // 本轮rarity mask开关,默认是关闭  rarity maks和rb_fuzzing是捆绑在一起的
-
-  //1. 首先只在favor的测试用例中进行筛选,到后面没有favor之后,再在全局范围内进行筛选
-  if (pending_favored && ! queue_cur->favored){
-     return 1;
-  }
-    
-  //这个最好只计算一次,返回当前测试用例击中的rare branch的数量
-  u32 * min_branch_hits  = is_rb_hit_mini(queue_cur->trace_mini); //计算出当前测试用例击中的rare branch 如果没有,表示非小r测试用例
-
-  //2.每次进入fuzz_one后,先计算当前测试用的rarity和distance属性, 并保存到对应的queue结构下
-  update_attri(queue_cur);
   
-  //3. 计算fitness,判定是否运行,如果运行,则分配何种策略
-  u8 fit_flag=0;
-  fit_flag = fitness(queue_cur);
-    
-  //4.根据不同的模式,进行策略配置
-  if (fit_flag == SDSR){
-    // 小d 小r 启用raritymask 和distance mask, 使用rb_fuzzing的模式运行
-    open_rarity_mask = 1;
-    open_distance_mask = 1;
-    vanilla_afl = 0;
-  }
-  else if (fit_flag == SDBR){
-    // 小d 大r 只启用distance mask,使用 vanilla_afl的模式运行
-    vanilla_afl = 1;
-    rb_fuzzing = 0;
-    //这里还要根据一些情况判定是否开启
-    u8 ret =  check_if_open_distance_mask(queue_cur); //判断是否开启distance_fuzzing 如果开启,在函数中将 open_distance_mask=1
-    open_distance_mask =  use_distance_mask & ret;
-  }
-  else if (fit_flag == BDSR){
-    // 大d 小r 只启用rarity mask, 使用rb_fuzzing的模式运行
-    vanilla_afl = 0;
-    open_rarity_mask = 1;
-  }
-  else if (fit_flag == BDBR ) return 1; //do not run this testcase
-  else { 
-       //why here
-       DEBUG_TEST ("what is the fit-flag, why here---------------\n");
-       return 1;
-  } 
+  // set 0 for this fuzz_one fucntio 
+  open_distance_mask = 0; //本轮distance mask 开关 默认是关闭
+  open_rarity_mask = 0; // 本轮rarity mask开关,默认是关闭  rarity maks和rb_fuzzing是捆绑在一起的
 
-  //判断越过的变异阶段,只留mask的计算阶段,后面再判断
+  //判断确定性阶段变异阶段,只留mask的计算阶段,后面再判断
   if (skip_deterministic){
  	 mask_skip_deterministic = 1;
  	 skip_simple_bitflip = 1;
   }
-
+  
   //如果粒子群算法卡主了,陷入局部最优化, 这里需要进行一定的判定
   if (!vanilla_afl ){
 	  if(go_back_to_AFL){ //如果允许回到AFL ,回到AFL去太慢了,但是发现不了新的时候,还是得回去!
@@ -6657,7 +6624,64 @@ static u8 fuzz_one(char** argv) {
 		}
 	  }
   }
+  
+  //begin PSO inputs selection
+  //1. 首先只在favor的测试用例中进行筛选,到后面没有favor之后,再在全局范围内进行筛选
+  if (pending_favored && ! queue_cur->favored){
+     return 1;
+  }
+  
+  //2.每次进入fuzz_one后,先计算当前测试用的rarity和distance属性, 并保存到对应的queue结构下
+  update_attri(queue_cur);
 
+  //3. 计算fitness,判定是否运行,如果运行,则分配何种策略
+  u8 fit_flag=0;
+  fit_flag = fitness(queue_cur);
+  
+  if (init_run){
+    fit_flag = BDBR;
+    vanilla_afl = 1000;
+  }
+
+    
+  //4.根据不同的模式,进行策略配置
+  if (fit_flag == SDSR){
+    // 小d 小r 启用raritymask 和distance mask, 使用rb_fuzzing的模式运行
+     open_rarity_mask = 1;
+     open_distance_mask = 1;
+     vanilla_afl = 0;
+     DEBUG_TEST("%s is a SDSR\n", queue_cur->fname);
+  }
+  else if (fit_flag == SDBR){
+     // 小d 大r 只启用distance mask,使用 vanilla_afl的模式运行
+     vanilla_afl = 1;
+     rb_fuzzing = 0;
+     //这里还要根据一些情况判定是否开启
+     u8 ret =  check_if_open_distance_mask(queue_cur); 
+     open_distance_mask =  use_distance_mask & ret;
+     DEBUG_TEST("%s is a SDBR\n", queue_cur->fname);
+  }
+  else if (fit_flag == BDSR){
+    // 大d 小r 只启用rarity mask, 使用rb_fuzzing的模式运行
+     vanilla_afl = 0;
+     open_rarity_mask = 1;
+     DEBUG_TEST("%s is a BDSR\n", queue_cur->fname);
+  }
+  else if (fit_flag == BDBR )
+  {
+      // the last selection
+      if (vanilla_afl){
+        DEBUG_TEST("%s is a BDBR\n", queue_cur->fname);
+      }
+      else 
+          return 1;
+  }
+   else { 
+       //why here
+       DEBUG_TEST ("what is the fit-flag, why here---------------\n");
+       return 1;
+  } 
+ 
 
 #ifdef IGNORE_FINDS
   /* In IGNORE_FINDS mode, skip any entries that weren't in the initial data set. */
@@ -10489,7 +10513,7 @@ int main(int argc, char** argv) {
       } else {
         prev_cycle_wo_new = cycle_wo_new;//prev_cycle_wo_new 只有可能在这里赋值为1,表示上一个大轮完全没有发现测试用例
       }
-      cycle_wo_new = 1; //表示这个大循环还没有发现新的测试用例
+      cycle_wo_new = 1; //为新的大循环赋值,表示新循环中还没有发现
 
       queue_cycle++;
       current_entry     = 0;
