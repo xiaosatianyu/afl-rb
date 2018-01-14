@@ -31,6 +31,16 @@ as
 /aflgo/afl-gotcpu
 /aflgo/afl-showmap
 
+/afl/afl-analyze
+/afl/afl-as
+/afl/afl-clang
+/afl/afl-clang++
+/afl/afl-fuzz
+/afl/afl-g++
+/afl/afl-gcc
+/afl/afl-gotcpu
+/afl/afl-showmap
+
 /aflrb/afl-analyze
 /aflrb/afl-as
 /aflrb/afl-clang
