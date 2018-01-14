@@ -1,4 +1,4 @@
-/* a
+/*
    american fuzzy lop - fuzzer code
    --------------------------------
 
@@ -4010,14 +4010,14 @@ static void show_stats(void) {
 
   SAYF(TERM_HOME);
 
-  if (term_too_small) {
-
-    SAYF(cBRI "Your terminal is too small to display the UI.\n"
-         "Please resize terminal window to at least 80x25.\n" cRST);
-
-    return;
-
-  }
+//  if (term_too_small) {
+//
+//    SAYF(cBRI "Your terminal is too small to display the UI.\n"
+//         "Please resize terminal window to at least 80x25.\n" cRST);
+//
+//    return;
+//
+//  }
 
   /* Let's start by drawing a centered banner. */
 
@@ -8017,8 +8017,8 @@ int main(int argc, char** argv) {
   /* Woop woop woop */
 
   if (!not_on_tty) {
-    sleep(4);
-    start_time += 4000;
+    sleep(0.1);
+    start_time += 100;
     if (stop_soon) goto stop_fuzzing;
   }
 
