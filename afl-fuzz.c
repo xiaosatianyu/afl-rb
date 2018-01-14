@@ -6638,12 +6638,18 @@ static u8 fuzz_one(char** argv) {
   u8 fit_flag=0;
   fit_flag = fitness(queue_cur);
   
-     
+  if (init_run){
+    vanilla_afl = 1000;
+    fit_flag = BDBR;
+    DEBUG_TEST("%s is a BDBR\n", queue_cur->fname);
+  }
   //4.根据不同的模式,进行策略配置
   if (fit_flag == SDSR){
     // 小d 小r 启用raritymask 和distance mask, 使用rb_fuzzing的模式运行
      open_rarity_mask = 1;
-     open_distance_mask = 1;
+     //这里还要根据一些情况判定是否开启
+     u8 ret =  check_if_open_distance_mask(queue_cur); 
+     open_distance_mask =  use_distance_mask & ret;
      vanilla_afl = 0;
      DEBUG_TEST("%s is a SDSR\n", queue_cur->fname);
   }
@@ -6654,7 +6660,10 @@ static u8 fuzz_one(char** argv) {
      //这里还要根据一些情况判定是否开启
      u8 ret =  check_if_open_distance_mask(queue_cur); 
      open_distance_mask =  use_distance_mask & ret;
-     DEBUG_TEST("%s is a SDBR\n", queue_cur->fname);
+     //DEBUG_TEST("%s is a SDBR\n", queue_cur->fname);
+     return 1;
+     //do not run here. 
+
   }
   else if (fit_flag == BDSR){
     // 大d 小r 只启用rarity mask, 使用rb_fuzzing的模式运行
@@ -6667,6 +6676,7 @@ static u8 fuzz_one(char** argv) {
     if (init_run){
         vanilla_afl = 1000;
         DEBUG_TEST("%s is a BDBR\n", queue_cur->fname);
+        init_run =0;
     }
     // the last selection
     else 
@@ -7330,7 +7340,7 @@ skip_simple_bitflip:
     // save the original branch mask for after the havoc stage 
     memcpy (orig_rarity_mask, rarity_mask, len + 1); //保存 brach_mask
   }
-  DEBUG_TEST("%s, distance_attri is %.3f, rarity_attri is %0.3f,distance mask is %d; rariy_mask is %d, in %d\n",
+  DEBUG_TEST("%s, distance_attri is %.3f, rarity_attri is %0.3f,distance mask is %d; rariy_mask is %d, in %d\n\n",
       		queue_cur->fname, queue_cur->distance_attri, queue_cur->rarity_attri,distance_mask_num,rarity_mask_num,len);
 
   //添加 某个 rarity 到黑名单, 在计算mask时,所有的子测试用例,都没有击中这个rare branch,就添加到黑名单
