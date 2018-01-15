@@ -45,7 +45,7 @@ set border #linecolor rgb '#50c0f0'
 set grid 
 
 #设置图例
-set key inside  bottom Right font "DejaVu Sans,18" 
+set key outside  Right font "DejaVu Sans,18"  #bottom
 #set label "ddd" at 0.5,0.5
 
 #set title "the min_distance "

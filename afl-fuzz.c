@@ -676,8 +676,6 @@ static void cal_branch_level_rarity(){
 }
 
 
-
-
 //将rb_fuzzing 添加到blacklist
 static void add_into_blacklist(){
 	// 如果黑名单太多了
@@ -694,7 +692,6 @@ static void add_into_blacklist(){
 	DEBUG1("adding branch %i to blacklist\n", rb_fuzzing - 1);
 
 }
-
 
 
 //从trace中提取最小的NUM_BRANCH_FOR_SEED_RARITY branch
@@ -825,7 +822,7 @@ static u64 cal_trace_rarity(u64 *branch_rrs){
 
 }
 
-//这个待写?
+//这个函数不太对,但是也没有用到
 //计算对应测试用例的绝对rarity值
 static int get_trace_rarity(struct queue_entry* q,  u8 trace_flag, u8 readtest_flag){
 	// trace_flag 0: meaning the mutation trace, use the mut_branch_ids and mut_branch_rrs
@@ -850,7 +847,6 @@ static int get_trace_rarity(struct queue_entry* q,  u8 trace_flag, u8 readtest_f
 				max_seed_rarity=trace_rarity; //保存最大的seed_level_rarity
 		}
 
-
 	}
 	else{
 		//根据trace,获取数据,保存在指定位置
@@ -864,20 +860,6 @@ static int get_trace_rarity(struct queue_entry* q,  u8 trace_flag, u8 readtest_f
 
 	return trace_rarity;
 }
-
-////// 更新一下所有测试用例的seed-rarity
-//static void update_all_seed_rarity(u8 readtest_flag){
-//	struct queue_entry *q;
-//	int trace_new_rarity=-1;
-//	q=queue;
-//	while(q){
-//		trace_new_rarity=get_trace_rarity(q,1,readtest_flag);
-//		if (trace_new_rarity!=-1)
-//			q->trace_rarity_seed=trace_new_rarity;
-//		q=q->next;
-//	}
-//}
-
 
 //return 1 enough; 0 not enough
 static u8 check_if_enough_distance_data(){
@@ -1002,33 +984,6 @@ static u8 check_if_augment_distance( struct queue_entry * q){
 	return 0;
 }
 
-//计算对应测试用例的属性
-static void update_attri(struct queue_entry * q){
-	double distance = -1;
-    u64    seed_rarity = -1;
-	double d_attr = -1, r_attr = -1;
-
-	//1. d_attr
-	distance=q->distance;
-    if (distance == -1){
-        DEBUG_TEST("%s distance is -1\n",q->fname);  
-        q->distance_attri=-1;
-    }
-    else {
-        if (max_distance==min_distance){
-            q->distance_attri=1;
-        }
-        else{
-            d_attr=(distance-min_distance)/(max_distance-min_distance);
-            q->distance_attri=d_attr;
-        }
-    }
-
-	//2. r_attr
-	seed_rarity=get_trace_rarity(q,1,0);
-	r_attr=(double)seed_rarity/max_seed_rarity;
-	q->rarity_attri=r_attr;
-}
 
 
 // return 0 不开启; return 1 开启, 
@@ -1036,16 +991,15 @@ static u8 check_if_open_distance_mask(struct queue_entry * q) {
 	//0. 判断距离信息是否充分
 	if ( !check_if_enough_distance_data() )
 		return 0 ;
-	// 只对近的测试用例 open distance mask
-	if (min_distance < max_distance && use_distance_mask) {
-        //只对前40%的测试用例启用
-		if (100 * (q->distance - min_distance) / (max_distance - min_distance)< THRESHOLD_FOR_DISTANCE_FUZZING) {
-            return 1;
-		}
-	}
-    return 0;
+    return 1;
+    // 在这里判定的都是小于门限的d
+//	if (min_distance < max_distance && use_distance_mask) {
+//        //只对前40%的测试用例启用
+//		if (100 * (q->distance - min_distance) / (max_distance - min_distance)< THRESHOLD_FOR_DISTANCE_FUZZING) {
+//            return 1;
+//		}
+//	}
 }
-
 
 
 //记录rarity_mask相关
@@ -2055,24 +2009,62 @@ static void init_hit_bits() {
   OKF("Init'ed hit_bits.");
 }
 
+//更新对应测试用例的属性
+static void update_attri(struct queue_entry * q){
+	
+    double distance = -1;
+    u64    seed_rarity = -1;
+	double d_attr = -1, r_attr = -1;
+
+	//1. d_attr
+	distance=q->distance;
+    if (distance == -1){
+        DEBUG_TEST("%s distance is -1\n",q->fname);  
+        q->distance_attri=-1;
+    }
+    else {
+        if (max_distance==min_distance){
+            q->distance_attri=1;
+        }
+        else{
+            d_attr=(distance-min_distance)/(max_distance-min_distance);
+            q->distance_attri=d_attr;
+        }
+    }
+
+	//2. r_attr
+    u32 * min_branch_hits = is_rb_hit_mini(q->trace_mini);
+    if(min_branch_hits){
+        if (q->min_branch_hits){
+            ck_free(q->min_branch_hits);
+        }
+        q->min_branch_hits = min_branch_hits;
+    }
+    else{
+        if(q->min_branch_hits)
+            ck_free(q->min_branch_hits); // 表示当前测试用例没有击中rare branch, q->min_branch_hits需要为0
+    }
+
+	//seed_rarity=get_trace_rarity(q,1,0);
+	//r_attr=(double)seed_rarity/max_seed_rarity;
+	//q->rarity_attri=r_attr;
+}
 
 //@RD@
-//对queue_cur计算一个适应度值,筛选粒子
 static u8  fitness(struct queue_entry* q){
+    //1. 计算fitness之前,先更新一下当前测试用例的属性
+    update_attri( q );
 	
     u8 r_flag=0; //0 is big, 1 is small
     u8 d_flag=0; // 0 is big, 1 is small
     u8 fit_flag=0; //total flag
     // rarity check
-    u32 * min_branch_hits = is_rb_hit_mini(q->trace_mini);
-    if(min_branch_hits){
-        ck_free(q->min_branch_hits);
-        q->min_branch_hits = min_branch_hits;
+    if(q->min_branch_hits){
         r_flag = 1;
     }
 
-    //这个距离的门限能否动态,这里先设定为静态 
-    if (q->distance_attri<0.3){
+    //d check, 这里先设定为静态
+    if (q->distance_attri<0.4){
       d_flag=1;
    	}
 
@@ -6616,23 +6608,21 @@ static u8 fuzz_one(char** argv) {
      return 1;
   }
   
-  //2.每次进入fuzz_one后,先计算当前测试用的rarity和distance属性, 并保存到对应的queue结构下
-  update_attri(queue_cur);
-
-  //3. 计算fitness,判定是否运行,如果运行,则分配何种策略
+  //2. 计算fitness,会更新一下每个测试用例的属性,判定是否运行,如果运行,则分配何种策略
   u8 fit_flag=0;
   fit_flag = fitness(queue_cur);
   
+  // for the first fuzz_one, it would execute vallina afl
   if (init_run){
     vanilla_afl = 1000;
     fit_flag = BDBR;
-    DEBUG_TEST("%s is a BDBR\n", queue_cur->fname);
+    //DEBUG_TEST("%s is a BDBR\n", queue_cur->fname);
   }
+  
   //4.根据不同的模式,进行策略配置
   if (fit_flag == SDSR){
      // 小d 小r 启用raritymask 和distance mask, 使用rb_fuzzing的模式运行
      open_rarity_mask = 1;
-     //这里还要根据一些情况判定是否开启
      u8 ret =  check_if_open_distance_mask(queue_cur); 
      open_distance_mask =  use_distance_mask & ret;
      vanilla_afl = 0;
@@ -6642,13 +6632,10 @@ static u8 fuzz_one(char** argv) {
      // 小d 大r 只启用distance mask,使用 vanilla_afl的模式运行
      vanilla_afl = 1;
      rb_fuzzing = 0;
-     //这里还要根据一些情况判定是否开启
      u8 ret =  check_if_open_distance_mask(queue_cur); 
      open_distance_mask =  use_distance_mask & ret;
      //DEBUG_TEST("%s is a SDBR\n", queue_cur->fname);
      return 1;
-     //do not run here. 
-
   }
   else if (fit_flag == BDSR){
     // 大d 小r 只启用rarity mask, 使用rb_fuzzing的模式运行
@@ -6658,14 +6645,16 @@ static u8 fuzz_one(char** argv) {
   }
   else if (fit_flag == BDBR )
   {
+    // only the first run 
     if (init_run){
         vanilla_afl = 1000;
         DEBUG_TEST("%s is a BDBR\n", queue_cur->fname);
         init_run =0;
     }
-    // the last selection
-    else 
+    else {
+        // would no execute BDBR seeds any more
         return 1;
+    }
   }
    else { 
        //why here
