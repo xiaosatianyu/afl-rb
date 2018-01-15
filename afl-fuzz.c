@@ -8850,13 +8850,13 @@ havoc_stage:
     /* If we're finding new stuff, let's run for a bit longer, limits
        permitting. */
     //这里会改变分值, 如果发现新的就翻倍, 在shadow模式下就不会了
-//    if (queued_paths != havoc_queued) {
-//      if (perf_score <= HAVOC_MAX_MULT * 100) {
-//        stage_max  *= 2;
-//        perf_score *= 2;
-//      }
-//      havoc_queued = queued_paths;
-//    }
+    if (queued_paths != havoc_queued) {
+      if (perf_score <= HAVOC_MAX_MULT * 100) {
+        stage_max  *= 2;
+        perf_score *= 2;
+      }
+      havoc_queued = queued_paths;
+    }
   }//end havoc变异循环
 
   //@RD@ 记录havoc执行次数
