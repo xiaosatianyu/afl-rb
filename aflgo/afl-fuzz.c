@@ -2630,31 +2630,27 @@ static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,
 
     cksum = hash32(trace_bits, MAP_SIZE, HASH_CONST);
 
-    /* This is relevant when test cases are added w/out save_if_interesting */
-
-    if (q->distance <= 0) {
-
-      /* This calculates cur_distance */
-      has_new_bits(virgin_bits);
-
-      q->distance = cur_distance;
-      if (cur_distance > 0) {
-
-        if (max_distance <= 0) {
-          max_distance = cur_distance;
-          min_distance = cur_distance;
-        }
-        if (cur_distance > max_distance) max_distance = cur_distance;
-        if (cur_distance < min_distance) min_distance = cur_distance;
-
-      }
-
-    }
-
+    
     if (q->exec_cksum != cksum) {
 
       u8 hnb = has_new_bits(virgin_bits);
       if (hnb > new_bits) new_bits = hnb;
+
+        //收集初始测试用例
+        if (q->distance <= 0) {
+          q->distance = cur_distance;
+          if (cur_distance > 0) {
+
+            if (max_distance <= 0) {
+              max_distance = cur_distance;
+              min_distance = cur_distance;
+            }
+            if (cur_distance > max_distance) max_distance = cur_distance;
+            if (cur_distance < min_distance) min_distance = cur_distance;
+
+          }
+
+        }
 
       if (q->exec_cksum) {
 
