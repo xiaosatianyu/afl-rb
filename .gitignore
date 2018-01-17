@@ -29,6 +29,9 @@ afl-qemu-trace
 /aflgo/afl-gcc
 /aflgo/afl-gotcpu
 /aflgo/afl-showmap
+/aflgo/afl-clang-fast
+/aflgo/afl-clang-fast++
+/aflgo/afl-llvm-pass.so
 
 /afl2.5.2/afl-analyze
 /afl2.5.2/afl-as
@@ -56,3 +59,8 @@ afl-qemu-trace
 /testenv/output-*/
 /testenv/peda-session-*.txt
 /testenv/mini_distance.png
+
+/testenv/binary-test/CVE-2017-5969/libxml2/
+/testenv/binary-test/CVE-2017-5969/temp/
+
+
