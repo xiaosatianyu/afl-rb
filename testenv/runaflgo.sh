@@ -35,4 +35,4 @@ echo $REAL_TARGET
 #$AFL_HOME/afl-fuzz -m none -i $INPUT -o $OUTPUT  -d $REAL_TARGET  @@ -o /dev/null
 #gdb --args $AFL_HOME/afl-fuzz -m none -i $INPUT  -o $OUTPUT  -d  $REAL_TARGET @@ -o /dev/null
 
-$AFL_HOME/afl-fuzz -m none -i $INPUT -o $OUTPUT  -d $1
+$AFL_HOME/afl-fuzz -m none -i $INPUT -o $OUTPUT  -d   -z exp -c 180m $1

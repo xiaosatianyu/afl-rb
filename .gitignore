@@ -62,5 +62,7 @@ afl-qemu-trace
 
 /testenv/binary-test/CVE-2017-5969/libxml2/
 /testenv/binary-test/CVE-2017-5969/temp/
+/testenv/binary-test/CVE-2016-10094/tiff-4.0.7/
+/testenv/binary-test/CVE-2016-10094/temp/
 
 
