@@ -6634,8 +6634,8 @@ static u8 fuzz_one(char** argv) {
      rb_fuzzing = 0;
      u8 ret =  check_if_open_distance_mask(queue_cur); 
      open_distance_mask =  use_distance_mask & ret;
-     //DEBUG_TEST("%s is a SDBR\n", queue_cur->fname);
-     return 1;
+     DEBUG_TEST("%s is a SDBR\n", queue_cur->fname);
+     //return 1;
   }
   else if (fit_flag == BDSR){
     // 大d 小r 只启用rarity mask, 使用rb_fuzzing的模式运行
