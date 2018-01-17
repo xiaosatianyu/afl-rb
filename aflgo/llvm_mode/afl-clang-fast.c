@@ -99,6 +99,14 @@ static void edit_params(u32 argc, char** argv) {
   u8 fortify_set = 0, asan_set = 0, x_set = 0, maybe_linking = 1, bit_mode = 0;
   u8 *name;
 
+  u8 is_assembly_code=0;
+  for (int i =1; i < argc; i++) {
+    if (strstr(argv[i], ".s") || strstr(argv[i], ".S")) {
+      is_assembly_code = 1;
+      break;
+    }
+  }
+
   cc_params = ck_alloc((argc + 128) * sizeof(u8*));
 
   name = strrchr(argv[0], '/');
@@ -136,15 +144,56 @@ static void edit_params(u32 argc, char** argv) {
   /* Detect stray -v calls from ./configure scripts. */
 
   if (argc == 1 && !strcmp(argv[1], "-v")) maybe_linking = 0;
+		
+		//为了解决相同的参数出现多次的情况
+		u8 distance_times=0;
+		u8 target_times=0;
+		u8 outdir_times=0;
+		u8 hittarget_times=0;
 
   while (--argc) {
     u8* cur = *(++argv);
 
-    if (!strncmp(cur, "-distance", 9)
-        || !strncmp(cur, "-targets", 8)
-        || !strncmp(cur, "-outdir", 7))
-      cc_params[cc_par_cnt++] = "-mllvm";
+    if (!strncmp(cur, "-distance", 9) ){
+			if (distance_times) continue;
+			if(!is_assembly_code) {
+				cc_params[cc_par_cnt++] = "-mllvm";
+				distance_times++;
+      } else {
+        continue;
+      }
+		}
 
+		if (!strncmp(cur, "-targets", 8) ){
+			if (target_times) continue;
+			if(!is_assembly_code) {
+				cc_params[cc_par_cnt++] = "-mllvm";
+				target_times++;
+      } else {
+        continue;
+      }
+		}
+
+		if (!strncmp(cur, "-outdir", 7) ){
+			if (outdir_times) continue;
+			if(!is_assembly_code) {
+				cc_params[cc_par_cnt++] = "-mllvm";
+				outdir_times++;
+      } else {
+        continue;
+      }
+		}
+
+		if (!strncmp(cur, "-hittargets", 11)){
+			if (hittarget_times) continue;
+			if(!is_assembly_code) {
+				cc_params[cc_par_cnt++] = "-mllvm";
+				hittarget_times++;
+      } else {
+        continue;
+      }
+		}
+  
     if (!strcmp(cur, "-m32")) bit_mode = 32;
     if (!strcmp(cur, "-m64")) bit_mode = 64;
 
@@ -210,10 +259,10 @@ static void edit_params(u32 argc, char** argv) {
     FATAL("AFL_INST_RATIO not available at compile time with 'trace-pc'.");
 
 #endif /* USE_TRACE_PC */
-
+	
+	cc_params[cc_par_cnt++] = "-g";
+	cc_params[cc_par_cnt++] = "-ggdb";
   if (!getenv("AFL_DONT_OPTIMIZE")) {
-
-    cc_params[cc_par_cnt++] = "-g";
     cc_params[cc_par_cnt++] = "-O3";
     cc_params[cc_par_cnt++] = "-funroll-loops";
 
@@ -354,7 +403,10 @@ int main(int argc, char** argv) {
   find_obj(argv[0]);
 
   edit_params(argc, argv);
-
+  //显示命令
+//  for (int i=0; i<=argc;i++){
+//	  printf("%s\n",cc_params[i]);
+//  }
   execvp(cc_params[0], (char**)cc_params);
 
   FATAL("Oops, failed to execute '%s' - check your PATH", cc_params[0]);
