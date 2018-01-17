@@ -2037,16 +2037,8 @@ static void update_attri(struct queue_entry * q){
     
 	//2. r_attr
     u32 * min_branch_hits = is_rb_hit_mini(q->trace_mini);
-    if(min_branch_hits){
-        if (q->min_branch_hits){
-            ck_free(q->min_branch_hits);
-        }
-        q->min_branch_hits = min_branch_hits;
-    }
-    else{
-        if(q->min_branch_hits)
-            ck_free(q->min_branch_hits); // 表示当前测试用例没有击中rare branch, q->min_branch_hits需要为0
-    }
+    ck_free(q->min_branch_hits);
+    q->min_branch_hits = min_branch_hits;
 
 
     //3.更新距离门限
@@ -2080,13 +2072,6 @@ static void update_attri(struct queue_entry * q){
         }
         q_temp = q_temp->next;
     }
-
-
-
-
-	//seed_rarity=get_trace_rarity(q,1,0);
-	//r_attr=(double)seed_rarity/max_seed_rarity;
-	//q->rarity_attri=r_attr;
 }
 
 //@RD@
@@ -2098,7 +2083,7 @@ static u8  fitness(struct queue_entry* q){
     u8 d_flag=0; // 0 is big, 1 is small
     u8 fit_flag=0; //total flag
     // rarity check
-    if(q->min_branch_hits){
+    if(q->min_branch_hits[0] !=0 ){ //最后一个用0 表示结束
         r_flag = 1;
     }
 
@@ -2149,7 +2134,7 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det, u8 readtest_flag) {
   	q->executed_num_havoc=-1; // 初始为-1
   	q->trace_rarity_seed=-1; //初始为-1
   	q->rarity_attri = 1; //初始为1
-    q->min_branch_hits=NULL;
+    q->min_branch_hits=ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES);
   //end rd
 
     //更新最大最小距离
@@ -6772,6 +6757,9 @@ static u8 fuzz_one(char** argv) {
     	//选择一个rare branch
 		for (ii = 0; queue_cur->min_branch_hits[ii] != 0; ii++) {
 			rb_fuzzing = queue_cur->min_branch_hits[ii]; //得到rare branch的id,注意是加了1, 最后1个是0
+            if (rb_fuzzing > 65536){
+                //why here?
+            }
 			if (rb_fuzzing) { //转换一种表达方式
 				int byte_offset = (rb_fuzzing - 1) >> 3; //
 				int bit_offset = (rb_fuzzing - 1) & 7;   //
