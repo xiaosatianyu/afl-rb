@@ -1298,7 +1298,7 @@ static void output_power_info(){
 }
 
 //@RD@
-//输出最大最小距离变化的情况
+//输出最大最小距离变化的情况,这个比plot更加精确一点
 static void out_distance_change(){
 	DEBUG4("%llu,%.0f,%.0f\n", get_cur_time() / 1000-start_time/1000, max_distance, min_distance);
 }
@@ -4564,6 +4564,9 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
       return 0;
     }   
 
+    
+
+
 #ifndef SIMPLE_FILES
 
     fn = alloc_printf("%s/queue/id:%06u,%s", out_dir, queued_paths,
@@ -4612,6 +4615,25 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
     keeping = 1;
 
   }
+
+  //记录一下非queue下的距离
+    if (cur_distance > 0) {
+        data_num_with_dis++;//表示含有距离的数量
+        if (max_distance <= 0) {
+            max_distance = cur_distance;
+            min_distance = cur_distance;
+            //out_distance_change();
+        }
+        if (cur_distance > max_distance){
+            max_distance = cur_distance;
+            //out_distance_change();
+        }
+        if (cur_distance < min_distance){
+            min_distance = cur_distance;
+            //out_distance_change();
+        }
+    }
+
 
   switch (fault) {
 

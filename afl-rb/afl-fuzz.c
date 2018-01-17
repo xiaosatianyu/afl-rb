@@ -3589,6 +3589,17 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
 
   }
 
+  //增加非queue下的距离收集
+  if (cur_distance > 0) {
+      if (max_distance <= 0) {
+          max_distance = cur_distance;
+          min_distance = cur_distance;
+      }
+      if (cur_distance > max_distance) max_distance = cur_distance;
+      if (cur_distance < min_distance) min_distance = cur_distance;
+  }
+
+
   switch (fault) {
 
     case FAULT_TMOUT:
