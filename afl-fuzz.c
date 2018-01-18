@@ -401,7 +401,7 @@ static u8 shadow_mode = 0;        /* @RB@ shadow AFL run -- do not modify */ //�
 static u8 run_with_shadow = 0;   // 1 表示选择使用shadow模式
 
 static u8 use_rarity_mask = 1; //默认开启的,由参数指定关闭
-static u8 use_distance_mask = 1; //
+static u8 use_distance_mask = 0; //
 
 static u8 open_distance_mask =0 ;
 static u8 open_rarity_mask =0 ;
@@ -2037,8 +2037,11 @@ static void update_attri(struct queue_entry * q){
     
 	//2. r_attr
     u32 * min_branch_hits = is_rb_hit_mini(q->trace_mini);
-    ck_free(q->min_branch_hits);
-    q->min_branch_hits = min_branch_hits;
+    if ( min_branch_hits != NULL){
+        if(q->min_branch_hits !=NULL)
+            ck_free(q->min_branch_hits);
+        q->min_branch_hits = min_branch_hits;
+    }
 
 
     //3.更新距离门限
@@ -2083,12 +2086,12 @@ static u8  fitness(struct queue_entry* q){
     u8 d_flag=0; // 0 is big, 1 is small
     u8 fit_flag=0; //total flag
     // rarity check
-    if(q->min_branch_hits[0] !=0 ){ //最后一个用0 表示结束
+    if(q->min_branch_hits != NULL ){ //表示有击中rare branch
         r_flag = 1;
     }
 
-    //d check, 这里先设定为静态
-    if (q->distance_attri<0.4){
+    //门限控制,动态
+    if (q->distance_attri< distance_threshold){
       d_flag=1;
    	}
 
@@ -2134,7 +2137,7 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det, u8 readtest_flag) {
   	q->executed_num_havoc=-1; // 初始为-1
   	q->trace_rarity_seed=-1; //初始为-1
   	q->rarity_attri = 1; //初始为1
-    q->min_branch_hits=ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES);
+    q->min_branch_hits = NULL;
   //end rd
 
     //更新最大最小距离
@@ -6687,7 +6690,7 @@ static u8 fuzz_one(char** argv) {
     // 大d 小r 只启用rarity mask, 使用rb_fuzzing的模式运行
      vanilla_afl = 0;
      open_rarity_mask = 1;
-     //DEBUG_TEST("%s is a BDSR\n", queue_cur->fname);
+     DEBUG_TEST("abandon: %s is a BDSR\n", queue_cur->fname);
      return 1 ;
   }
   else if (fit_flag == BDBR )
@@ -6700,6 +6703,7 @@ static u8 fuzz_one(char** argv) {
     }
     else {
         // would no execute BDBR seeds any more
+        DEBUG_TEST("abandon:%s is a BDBR\n", queue_cur->fname);
         return 1;
     }
   }
@@ -10222,13 +10226,13 @@ int main(int argc, char** argv) {
         use_rarity_mask = 0;
         break;
 
-      case 'k': /* 开启distance mask*/
-    	  use_distance_mask=1;
-    	  break;
-
-      case 'p': /* 开启 power 控制机制 */
-    	  open_power_control=1;
-		  break;
+//      case 'k': /* 开启distance mask*/
+//    	  use_distance_mask=1;
+//    	  break;
+//
+//      case 'p': /* 开启 power 控制机制 */
+//    	  open_power_control=1;
+//		  break;
 
       case 's': /* run with shadow mode */
 		 run_with_shadow = 1;
