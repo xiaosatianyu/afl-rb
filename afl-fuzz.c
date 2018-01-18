@@ -2043,13 +2043,13 @@ static void update_attri(struct queue_entry * q){
         q->min_branch_hits = min_branch_hits;
     }
 
-
     //3.更新距离门限
     //只对最小低的20%进行测试
+    // 是否需要考虑距离门限增大
     struct queue_entry * q_temp;
     q_temp = queue;
     u64 num_under_distance_threshold = 0;  //低于门限值的测试用例数量
-    while(q_temp && distance_threshold){
+    while(q_temp && distance_threshold && queued_paths > 500){
         if (max_distance==min_distance){
             q_temp->distance_attri=1;
         }
@@ -2062,18 +2062,17 @@ static void update_attri(struct queue_entry * q){
             num_under_distance_threshold++;
         }  
 
-        //当测试用例大于500条的时候再判断距离门限
-        if (queued_paths > 500){
-            if( num_under_distance_threshold > queued_paths * 0.2 || num_under_distance_threshold > 600){
-                num_under_distance_threshold = 0;
-                distance_threshold -=0.05; //缩小门限
-                if(distance_threshold < 0) distance_threshold =0;
-                q_temp = queue ;// 重新开始循环
-                DEBUG_TEST("距离门限缩小至%0.3f\n", distance_threshold);
-                continue;
-            }
+        if( num_under_distance_threshold > queued_paths * 0.2 || num_under_distance_threshold > 600){
+            num_under_distance_threshold = 0;
+            distance_threshold -=0.03; //缩小门限 门限缩小的力度
+            if(distance_threshold < 0) distance_threshold =0;
+            q_temp = queue ;// 重新开始循环
+            DEBUG_TEST("距离门限缩小至%0.3f\n", distance_threshold);
+            continue;
         }
+        
         q_temp = q_temp->next;
+
     }
 }
 
