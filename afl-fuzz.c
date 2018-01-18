@@ -475,6 +475,9 @@ static u64 max_seed_rarity=0;          /*record the max seed rarity*/
 static double max_power_factor=0;      /*the max power factor*/
 static int data_num_with_dis;      /*meanint the number of inputs with distance in the queue*/
 static u64 all_executed_num_havoc;  //记录整个fuzz过程,havoc的执行的次数
+
+static double distance_threshold = 0.4; //默认的筛选distance门限
+
 //end rd
 
 /* create a new branch mask of the specified size */
@@ -1298,7 +1301,7 @@ static void output_power_info(){
 }
 
 //@RD@
-//输出最大最小距离变化的情况
+//输出最大最小距离变化的情况,这个比plot更加精确一点
 static void out_distance_change(){
 	DEBUG4("%llu,%.0f,%.0f\n", get_cur_time() / 1000-start_time/1000, max_distance, min_distance);
 }
@@ -2020,7 +2023,7 @@ static void update_attri(struct queue_entry * q){
 	distance=q->distance;
     if (distance == -1){
         DEBUG_TEST("%s distance is -1\n",q->fname);  
-        q->distance_attri=-1;
+        q->distance_attri = 1;
     }
     else {
         if (max_distance==min_distance){
@@ -2031,23 +2034,44 @@ static void update_attri(struct queue_entry * q){
             q->distance_attri=d_attr;
         }
     }
-
+    
 	//2. r_attr
     u32 * min_branch_hits = is_rb_hit_mini(q->trace_mini);
-    if(min_branch_hits){
-        if (q->min_branch_hits){
-            ck_free(q->min_branch_hits);
-        }
-        q->min_branch_hits = min_branch_hits;
-    }
-    else{
-        if(q->min_branch_hits)
-            ck_free(q->min_branch_hits); // 表示当前测试用例没有击中rare branch, q->min_branch_hits需要为0
-    }
+    ck_free(q->min_branch_hits);
+    q->min_branch_hits = min_branch_hits;
 
-	//seed_rarity=get_trace_rarity(q,1,0);
-	//r_attr=(double)seed_rarity/max_seed_rarity;
-	//q->rarity_attri=r_attr;
+
+    //3.更新距离门限
+    //只对最小低的20%进行测试
+    struct queue_entry * q_temp;
+    q_temp = queue;
+    u64 num_under_distance_threshold = 0;  //低于门限值的测试用例数量
+    while(q_temp && distance_threshold){
+        if (max_distance==min_distance){
+            q_temp->distance_attri=1;
+        }
+        else{
+            d_attr=(distance-min_distance)/(max_distance-min_distance);
+            q_temp->distance_attri=d_attr;
+        }            
+       
+        if (q_temp->distance_attri < distance_threshold){
+            num_under_distance_threshold++;
+        }  
+
+        //当测试用例大于500条的时候再判断距离门限
+        if (queued_paths > 500){
+            if( num_under_distance_threshold > queued_paths * 0.2 || num_under_distance_threshold > 600){
+                num_under_distance_threshold = 0;
+                distance_threshold -=0.05; //缩小门限
+                if(distance_threshold < 0) distance_threshold =0;
+                q_temp = queue ;// 重新开始循环
+                DEBUG_TEST("距离门限缩小至%0.3f\n", distance_threshold);
+                continue;
+            }
+        }
+        q_temp = q_temp->next;
+    }
 }
 
 //@RD@
@@ -2059,7 +2083,7 @@ static u8  fitness(struct queue_entry* q){
     u8 d_flag=0; // 0 is big, 1 is small
     u8 fit_flag=0; //total flag
     // rarity check
-    if(q->min_branch_hits){
+    if(q->min_branch_hits[0] !=0 ){ //最后一个用0 表示结束
         r_flag = 1;
     }
 
@@ -2105,14 +2129,15 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det, u8 readtest_flag) {
 
   //@rd@  //readtest 阶段是赋初始值
   	q->distance = cur_distance;
-  	q->distance_attri=-1; //默认添加的是-1, 避免和真正的0距离搞错
+  	q->distance_attri = 1; //默认添加的是1
   	q->fuzzed_branches = ck_alloc(MAP_SIZE >>3);
   	q->executed_num_havoc=-1; // 初始为-1
   	q->trace_rarity_seed=-1; //初始为-1
-  	q->rarity_attri =-1; //初始为-1
-    q->min_branch_hits=NULL;
+  	q->rarity_attri = 1; //初始为1
+    q->min_branch_hits=ck_alloc(sizeof(u32) * MAX_RARE_BRANCHES);
   //end rd
 
+    //更新最大最小距离
   	if (cur_distance > 0) {
   		data_num_with_dis++;//表示含有距离的数量
   		if (max_distance <= 0) {
@@ -3972,36 +3997,35 @@ static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,
     cksum = hash32(trace_bits, MAP_SIZE, HASH_CONST);
 
 
-    //@rd@
-	/* This is relevant when test cases are added w/out save_if_interesting */
-	if (q->distance <= 0) {
-		/* This calculates cur_distance */
-		has_new_bits(virgin_bits);
-		q->distance = cur_distance;
-		if (cur_distance > 0) {
-			if (max_distance <= 0) {
-				max_distance = cur_distance;
-				min_distance = cur_distance;
-				out_distance_change();
-			}
-			if (cur_distance > max_distance){
-				max_distance = cur_distance;
-				out_distance_change();
-			}
-			if (cur_distance < min_distance){
-				min_distance = cur_distance;
-				out_distance_change();
-			}
-		}
-	}
-	//end
-
     if (q->exec_cksum != cksum) {
 
       u8 hnb = has_new_bits(virgin_bits);
       if (hnb > new_bits) new_bits = hnb;
 
-      if (q->exec_cksum) {
+        //@rd@
+        /* This is relevant when test cases are added w/out save_if_interesting */
+        if (q->distance <= 0) {
+            /* This calculates cur_distance */
+            q->distance = cur_distance;
+            if (cur_distance > 0) {
+                if (max_distance <= 0) {
+                    max_distance = cur_distance;
+                    min_distance = cur_distance;
+                    out_distance_change();
+                }
+                if (cur_distance > max_distance){
+                    max_distance = cur_distance;
+                    out_distance_change();
+                }
+                if (cur_distance < min_distance){
+                    min_distance = cur_distance;
+                    out_distance_change();
+                }
+            }
+        }
+        //end
+    
+    if (q->exec_cksum) {
 
         u32 i;
 
@@ -4564,6 +4588,9 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
       return 0;
     }   
 
+    
+
+
 #ifndef SIMPLE_FILES
 
     fn = alloc_printf("%s/queue/id:%06u,%s", out_dir, queued_paths,
@@ -4612,6 +4639,25 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
     keeping = 1;
 
   }
+
+  //记录一下非queue下的距离
+    if (cur_distance > 0) {
+        data_num_with_dis++;//表示含有距离的数量
+        if (max_distance <= 0) {
+            max_distance = cur_distance;
+            min_distance = cur_distance;
+            //out_distance_change();
+        }
+        if (cur_distance > max_distance){
+            max_distance = cur_distance;
+            //out_distance_change();
+        }
+        if (cur_distance < min_distance){
+            min_distance = cur_distance;
+            //out_distance_change();
+        }
+    }
+
 
   switch (fault) {
 
@@ -6641,7 +6687,8 @@ static u8 fuzz_one(char** argv) {
     // 大d 小r 只启用rarity mask, 使用rb_fuzzing的模式运行
      vanilla_afl = 0;
      open_rarity_mask = 1;
-     DEBUG_TEST("%s is a BDSR\n", queue_cur->fname);
+     //DEBUG_TEST("%s is a BDSR\n", queue_cur->fname);
+     return 1 ;
   }
   else if (fit_flag == BDBR )
   {
@@ -6710,6 +6757,9 @@ static u8 fuzz_one(char** argv) {
     	//选择一个rare branch
 		for (ii = 0; queue_cur->min_branch_hits[ii] != 0; ii++) {
 			rb_fuzzing = queue_cur->min_branch_hits[ii]; //得到rare branch的id,注意是加了1, 最后1个是0
+            if (rb_fuzzing > 65536){
+                //why here?
+            }
 			if (rb_fuzzing) { //转换一种表达方式
 				int byte_offset = (rb_fuzzing - 1) >> 3; //
 				int bit_offset = (rb_fuzzing - 1) & 7;   //

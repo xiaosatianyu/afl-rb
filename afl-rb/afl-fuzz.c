@@ -2641,7 +2641,7 @@ static u8 run_target(char** argv, u32 timeout) {
      must prevent any earlier operations from venturing into that
      territory. */
 
-  memset(trace_bits, 0, MAP_SIZE); //每次执行轨迹
+  memset(trace_bits, 0, MAP_SIZE+16); //每次执行轨迹
   MEM_BARRIER();
 
   /* If we're running in "dumb" mode, we can't rely on the fork server
@@ -2957,11 +2957,14 @@ static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,
 
     cksum = hash32(trace_bits, MAP_SIZE, HASH_CONST);
 
-    if (q->distance <= 0) {
+   
+    if (q->exec_cksum != cksum) {
 
-          /* This calculates cur_distance */
-          has_new_bits(virgin_bits);
+      u8 hnb = has_new_bits(virgin_bits);
+      if (hnb > new_bits) new_bits = hnb;
 
+      //增加初始测试用例的距离
+      if (q->distance <= 0) {
           q->distance = cur_distance;
           if (cur_distance > 0) {
 
@@ -2974,13 +2977,9 @@ static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,
 
           }
 
-        }
+       }
 
 
-    if (q->exec_cksum != cksum) {
-
-      u8 hnb = has_new_bits(virgin_bits);
-      if (hnb > new_bits) new_bits = hnb;
 
       if (q->exec_cksum) {
 
@@ -3588,6 +3587,17 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
     keeping = 1;
 
   }
+
+  //增加非queue下的距离收集
+  if (cur_distance > 0) {
+      if (max_distance <= 0) {
+          max_distance = cur_distance;
+          min_distance = cur_distance;
+      }
+      if (cur_distance > max_distance) max_distance = cur_distance;
+      if (cur_distance < min_distance) min_distance = cur_distance;
+  }
+
 
   switch (fault) {
 
