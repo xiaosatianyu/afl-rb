@@ -286,10 +286,10 @@ struct queue_entry {
   //@rd@
   double distance;                    /* Distance to targets              */
   double distance_attri;                 // distance 属性
-  u64 trace_rarity_seed;                 /* the absolute number of the rarity*/
+  s64 seed_rarity;                 /* the absolute number of the rarity*/
   double rarity_attri;					// rarity 属性
-  int *branch_ids;					/*save some the minimum branch index*/
-  u64 *branch_rrs;					/*save the branch rarity of the corresponding index*/
+  //int *branch_ids;					/*save some the minimum branch index*/
+  //u64 *branch_rrs;					/*save the branch rarity of the corresponding index*/
   u64 executed_num_havoc;					/*记录havoc阶段执行次数,本次测试所有的*/
   u32 * min_branch_hits;
   //end
@@ -471,11 +471,12 @@ static double max_distance = -1.0;     /* Maximal distance for any input   */
 static double min_distance = -1.0;     /* Minimal distance for any input   */
 static int *mut_branch_ids;				/*save some the minimum branch index when in nutation*/
 static u64 *mut_branch_rrs;				/*save the branch rarity of the corresponding index*/
-static u64 max_seed_rarity=0;          /*record the max seed rarity*/
+static u64 max_seed_rarity=0;          /*record the max seed rarity */ //旧的
 static double max_power_factor=0;      /*the max power factor*/
 static int data_num_with_dis;      /*meanint the number of inputs with distance in the queue*/
 static u64 all_executed_num_havoc;  //记录整个fuzz过程,havoc的执行的次数
 
+static double distance_ts_default=0.4;
 static double distance_threshold = 0.4; //默认的筛选distance门限
 
 //end rd
@@ -665,8 +666,7 @@ static u64 get_cur_time_us(void) {
 
 //function for rdfuzz
 //将hit-bits中的值转换成power格式,用于计算branch-level rarity
-//最好到用到了再算
-static void cal_branch_level_rarity(){
+static void change_branch_rarity_to_power(){
 	int index;
 	u64 hit_times=0;
 	for (index=0; index< MAP_SIZE;index++){
@@ -697,172 +697,136 @@ static void add_into_blacklist(){
 }
 
 
-//从trace中提取最小的NUM_BRANCH_FOR_SEED_RARITY branch
-//结果保存在q中或者,全局变量中
-//计算当前轨迹包含有的rare branches, 保存到queue_entry结构下 这里的计算量太大
-//只在计算power的时候调用一次
-//找出当前路径执行次数最少的基本块
-static u8 get_some_branch_rarity_from_trace(u8* trace, u8 seed_flag, struct queue_entry* q){
-	// seed_flag 0: meaning use trace_bits
-	// seed_flag 1: meaning use trace_mini
-	/*return the absolute seed-level*/
-
-	//0. 将执行次数,转换成branch-level-rarity
-	cal_branch_level_rarity();
-
-	//these data defautl are 0
-	int upper_num_record=NUM_BRANCH_FOR_SEED_RARITY;
-	int * branch_ids = ck_alloc(sizeof(u32) * upper_num_record);  //记录 MAX_NUM_MIN_BRANCHES 个最小branch的index
-	u64 * branch_rrs = ck_alloc(sizeof(u64) * upper_num_record);  //记录 MAX_NUM_MIN_BRANCHES 个最小branch的rarity
-	int min_num = 0;  //记录branch_ids中有几个branch了
-	int rarity_min=0;
-	int rarity_max=0;
-	int cur_rarity=0;
-	u8  get_flag=0;
-
-
-	//1. check if trace is 0
-	if (trace == 0 && seed_flag) {
-		//trace is the trace_mini
-		trace = ck_alloc(MAP_SIZE >> 3);
-		//generate the trace_mini, save in the q
-		minimize_bits(trace, trace_bits);
-	}
-
-	//2. go through the trace, 选出最小的rare_branch
-	int index;
-	for (index = 0; index < MAP_SIZE; index++){
-		if (seed_flag){
-			// 1: trace_mini
-			if ( (trace[index>>3] & (1<<(index&7))) ==0 )	continue;
-		}
-		else{
-			// 0: trace_bits
-			if (trace_bits[index] ==0)	continue;
-		}
-
-		cur_rarity=hit_bits_power[index]; //可以为0
-
-//		if (cur_rarity==0){
-//			DEBUG1("It is a init seed do not increment the hit_bits");
-//			break;
+////从trace中提取最小的NUM_BRANCH_FOR_SEED_RARITY branch
+////结果保存在q中或者,全局变量中
+////计算当前轨迹包含有的rare branches, 保存到queue_entry结构下 这里的计算量太大
+////只在计算power的时候调用一次
+////找出当前路径执行次数最少的基本块
+//static u8 get_some_branch_rarity_from_trace(u8* trace, u8 seed_flag, struct queue_entry* q){
+//	// seed_flag 0: meaning use trace_bits
+//	// seed_flag 1: meaning use trace_mini
+//	/*return the absolute seed-level*/
+//
+//	//0. 将执行次数,转换成branch-level-rarity
+//	change_branch_rarity_to_power();
+//
+//	//these data defautl are 0
+//	int upper_num_record=NUM_BRANCH_FOR_SEED_RARITY;
+//	int * branch_ids = ck_alloc(sizeof(u32) * upper_num_record);  //记录 MAX_NUM_MIN_BRANCHES 个最小branch的index
+//	u64 * branch_rrs = ck_alloc(sizeof(u64) * upper_num_record);  //记录 MAX_NUM_MIN_BRANCHES 个最小branch的rarity
+//	int min_num = 0;  //记录branch_ids中有几个branch了
+//	int rarity_min=0;
+//	int rarity_max=0;
+//	int cur_rarity=0;
+//	u8  get_flag=0;
+//
+//
+//	//1. check if trace is 0
+//	if (trace == 0 && seed_flag) {
+//		//trace is the trace_mini
+//		trace = ck_alloc(MAP_SIZE >> 3);
+//		//generate the trace_mini, save in the q
+//		minimize_bits(trace, trace_bits);
+//	}
+//
+//	//2. go through the trace, 选出最小的rare_branch
+//	int index;
+//	for (index = 0; index < MAP_SIZE; index++){
+//		if (seed_flag){
+//			// 1: trace_mini
+//			if ( (trace[index>>3] & (1<<(index&7))) ==0 )	continue;
 //		}
+//		else{
+//			// 0: trace_bits
+//			if (trace_bits[index] ==0)	continue;
+//		}
+//
+//		cur_rarity=hit_bits_power[index]; //可以为0
+//
+////		if (cur_rarity==0){
+////			DEBUG1("It is a init seed do not increment the hit_bits");
+////			break;
+////		}
+//
+//		//2.1 calculate the min and the max rarity in the trace
+//		if (rarity_min==0){
+//			rarity_min=cur_rarity;
+//			rarity_max=cur_rarity;
+//		}
+//		if (cur_rarity>rarity_max)
+//			rarity_max=cur_rarity;
+//		if (cur_rarity<rarity_min)
+//			rarity_min=cur_rarity;
+//
+//		//2.2 记录最小的upper_num_record个branch rarity
+//		//if the first record
+//		if (!min_num) {
+//			branch_rrs[min_num] = hit_bits_power[index];
+//			branch_ids[min_num] = index;
+//			min_num++;
+//			min_num=min_num>upper_num_record ? upper_num_record : min_num;
+//			continue;
+//		}
+//
+//		//after the first, add on the last
+//		int j;
+//		for (j = 0 ; j < upper_num_record; j++){
+//			//进行比较,小的在当前位置插入,大的往后挪,超出的不要
+//			if (hit_bits_power[index] < branch_rrs[j]){
+//				//the tail move back 1 byte
+//				if (j < upper_num_record-1){
+//					//将内容往后挪,注意不要超出
+//					memmove(branch_rrs + j + 1, branch_rrs + j, upper_num_record -j-1);
+//					memmove(branch_ids + j + 1, branch_ids + j, upper_num_record -j-1);
+//				}
+//				// record the new one
+//				branch_rrs[j] = hit_bits_power[index];
+//				branch_ids[j] = index ;
+//				min_num++;
+//				min_num=min_num>upper_num_record ? upper_num_record:min_num;
+//				break;
+//			}
+//			//表示还没有写入
+//			if (branch_rrs[j]==0){
+//				branch_rrs[j] = hit_bits_power[index];
+//				branch_ids[j] = index ;
+//				min_num++;
+//				min_num=min_num>upper_num_record ? upper_num_record:min_num;
+//				get_flag=1;
+//				break;
+//			}
+//		}
+//	}
+//
+//	//3.save the information
+//	if ( seed_flag && min_num>0)	{
+//		// seed_flag:1 meaning trace_mini
+//		q->branch_ids=branch_ids;
+//		q->branch_rrs=branch_rrs;
+//	}
+//	if (!seed_flag && min_num>0){
+//		//flag 0 : meaning the mutate test
+//		if (mut_branch_rrs!=0){
+//			ck_free(mut_branch_rrs);
+//			ck_free(mut_branch_ids);
+//		}
+//		mut_branch_rrs=branch_rrs;
+//		mut_branch_ids=branch_ids;
+//	}
+//	return get_flag;
+//}
 
-		//2.1 calculate the min and the max rarity in the trace
-		if (rarity_min==0){
-			rarity_min=cur_rarity;
-			rarity_max=cur_rarity;
-		}
-		if (cur_rarity>rarity_max)
-			rarity_max=cur_rarity;
-		if (cur_rarity<rarity_min)
-			rarity_min=cur_rarity;
+//static u64 cal_trace_rarity(u64 *branch_rrs){
+//	//自定义的seed 计算方法
+//	//这里先采用最小值
+//	if (branch_rrs==0)
+//		return -1;
+//	return branch_rrs[0]; //最小值
+//
+//}
 
-		//2.2 记录最小的upper_num_record个branch rarity
-		//if the first record
-		if (!min_num) {
-			branch_rrs[min_num] = hit_bits_power[index];
-			branch_ids[min_num] = index;
-			min_num++;
-			min_num=min_num>upper_num_record ? upper_num_record : min_num;
-			continue;
-		}
 
-		//after the first, add on the last
-		int j;
-		for (j = 0 ; j < upper_num_record; j++){
-			//进行比较,小的在当前位置插入,大的往后挪,超出的不要
-			if (hit_bits_power[index] < branch_rrs[j]){
-				//the tail move back 1 byte
-				if (j < upper_num_record-1){
-					//将内容往后挪,注意不要超出
-					memmove(branch_rrs + j + 1, branch_rrs + j, upper_num_record -j-1);
-					memmove(branch_ids + j + 1, branch_ids + j, upper_num_record -j-1);
-				}
-				// record the new one
-				branch_rrs[j] = hit_bits_power[index];
-				branch_ids[j] = index ;
-				min_num++;
-				min_num=min_num>upper_num_record ? upper_num_record:min_num;
-				break;
-			}
-			//表示还没有写入
-			if (branch_rrs[j]==0){
-				branch_rrs[j] = hit_bits_power[index];
-				branch_ids[j] = index ;
-				min_num++;
-				min_num=min_num>upper_num_record ? upper_num_record:min_num;
-				get_flag=1;
-				break;
-			}
-		}
-	}
 
-	//3.save the information
-	if ( seed_flag && min_num>0)	{
-		// seed_flag:1 meaning trace_mini
-		q->branch_ids=branch_ids;
-		q->branch_rrs=branch_rrs;
-	}
-	if (!seed_flag && min_num>0){
-		//flag 0 : meaning the mutate test
-		if (mut_branch_rrs!=0){
-			ck_free(mut_branch_rrs);
-			ck_free(mut_branch_ids);
-		}
-		mut_branch_rrs=branch_rrs;
-		mut_branch_ids=branch_ids;
-	}
-	return get_flag;
-}
-
-static u64 cal_trace_rarity(u64 *branch_rrs){
-	//自定义的seed 计算方法
-	//这里先采用最小值
-	if (branch_rrs==0)
-		return -1;
-	return branch_rrs[0]; //最小值
-
-}
-
-//这个函数不太对,但是也没有用到
-//计算对应测试用例的绝对rarity值
-static int get_trace_rarity(struct queue_entry* q,  u8 trace_flag, u8 readtest_flag){
-	// trace_flag 0: meaning the mutation trace, use the mut_branch_ids and mut_branch_rrs
-	// trace_flag 1: meaning the seed trace (但是不适用于 read testcase)
-
-	// read_test 1: 表示是readtest 阶段,不用算
-	// read_test 0: 表示不是readtest阶段,需要算
-
-	if (readtest_flag)	return -1; // readtest阶段不处理
-
-	int trace_rarity=-1;
-	int get_flag=0;
-
-	if (trace_flag){
-		//根据trace_mini,获取数据
-		get_flag=get_some_branch_rarity_from_trace(q->trace_mini,trace_flag,q);
-		if (get_flag){
-			//调用trace_rarity计算方法
-			trace_rarity=cal_trace_rarity(q->branch_rrs); //可能会是0
-			q->trace_rarity_seed=trace_rarity;
-			if (trace_rarity>max_seed_rarity)
-				max_seed_rarity=trace_rarity; //保存最大的seed_level_rarity
-		}
-
-	}
-	else{
-		//根据trace,获取数据,保存在指定位置
-		get_some_branch_rarity_from_trace(trace_bits,trace_flag,0);
-		//调用trace_rarity计算方法
-		trace_rarity=cal_trace_rarity(mut_branch_rrs);
-	}
-
-	if (get_flag==0)
-		return -1;
-
-	return trace_rarity;
-}
 
 //return 1 enough; 0 not enough
 static u8 check_if_enough_distance_data(){
@@ -881,77 +845,77 @@ static u8 check_if_enough_distance_data(){
 	return 0;
 }
 
-//返回对当前trace计算的一个银子
-static u32 cal_power_factor(struct queue_entry * q){
-
-	// 表示 这是第一次,使用traditional AFL Fuzzing
-	if (vanilla_afl>100){
-		// indicate this is the first tradition AFL fuzzing
-		return 1;
-	}
-
-	//0.初始化
-	double distance=-1;
-	int seed_rarity=-1;
-	double power_factor=1;
-	//归一化变量
-	double normal_d=1.0;
-	double normal_r=1.0;
-	//power因子
-	double pr=0;
-	double pd=0;
-	//系数
-	double er=1;
-	double ed=1;
-	//最后的p
-	double p=0;
-
-	//1. 读取绝对值
-	distance=q->distance;
-	seed_rarity=get_trace_rarity(q,1,0);
-
-	//2.距离归一化处理
-	if (max_distance==min_distance){
-		normal_d=1;
-		queue_cur->distance_attri=normal_d;
-	}
-	else{
-		normal_d=(distance-min_distance)/(max_distance-min_distance);
-		queue_cur->distance_attri=normal_d;
-	}
-	normal_r=(double)seed_rarity/max_seed_rarity;
-	queue_cur->rarity_attri=normal_r;
-
-
-	//3. pr和pd 的计算
-	pr=(1-normal_r)*(1-normal_r);
-	pd=1-normal_d;
-
-	//4. 系数的计算
-	int check=0;
-	check=check_if_enough_distance_data();
-	if (check){
-		ed=3*(0.6-normal_d);
-		er=1;
-	}
-	else{
-		ed=0.5;
-		er=2;
-	}
-
-	//5. 得到系数
-	p=pr*er+pd*ed;
-
-	power_factor=pow(2,(3*p));
-
-	if (power_factor>max_power_factor)
-	{
-		max_power_factor=power_factor;
-	}
-	//参数的系数和d成反比
-
-	return power_factor;
-}
+////返回对当前trace计算的一个银子
+//static u32 cal_power_factor(struct queue_entry * q){
+//
+//	// 表示 这是第一次,使用traditional AFL Fuzzing
+//	if (vanilla_afl>100){
+//		// indicate this is the first tradition AFL fuzzing
+//		return 1;
+//	}
+//
+//	//0.初始化
+//	double distance=-1;
+//	int seed_rarity=-1;
+//	double power_factor=1;
+//	//归一化变量
+//	double normal_d=1.0;
+//	double normal_r=1.0;
+//	//power因子
+//	double pr=0;
+//	double pd=0;
+//	//系数
+//	double er=1;
+//	double ed=1;
+//	//最后的p
+//	double p=0;
+//
+//	//1. 读取绝对值
+//	distance=q->distance;
+//	seed_rarity=get_trace_rarity(q,1,0);
+//
+//	//2.距离归一化处理
+//	if (max_distance==min_distance){
+//		normal_d=1;
+//		queue_cur->distance_attri=normal_d;
+//	}
+//	else{
+//		normal_d=(distance-min_distance)/(max_distance-min_distance);
+//		queue_cur->distance_attri=normal_d;
+//	}
+//	normal_r=(double)seed_rarity/max_seed_rarity;
+//	queue_cur->rarity_attri=normal_r;
+//
+//
+//	//3. pr和pd 的计算
+//	pr=(1-normal_r)*(1-normal_r);
+//	pd=1-normal_d;
+//
+//	//4. 系数的计算
+//	int check=0;
+//	check=check_if_enough_distance_data();
+//	if (check){
+//		ed=3*(0.6-normal_d);
+//		er=1;
+//	}
+//	else{
+//		ed=0.5;
+//		er=2;
+//	}
+//
+//	//5. 得到系数
+//	p=pr*er+pd*ed;
+//
+//	power_factor=pow(2,(3*p));
+//
+//	if (power_factor>max_power_factor)
+//	{
+//		max_power_factor=power_factor;
+//	}
+//	//参数的系数和d成反比
+//
+//	return power_factor;
+//}
 
 //判断距离维持情况, 在计算mask的时候用到
 static u8 check_if_keep_distance( struct queue_entry * q){
@@ -995,13 +959,6 @@ static u8 check_if_open_distance_mask(struct queue_entry * q) {
 	if ( !check_if_enough_distance_data() )
 		return 0 ;
     return 1;
-    // 在这里判定的都是小于门限的d
-//	if (min_distance < max_distance && use_distance_mask) {
-//        //只对前40%的测试用例启用
-//		if (100 * (q->distance - min_distance) / (max_distance - min_distance)< THRESHOLD_FOR_DISTANCE_FUZZING) {
-//            return 1;
-//		}
-//	}
 }
 
 
@@ -1218,11 +1175,11 @@ static u64 output_power_rarity_info(){
 	struct queue_entry * q;
 	q=queue;
 	while(q){
-		if ( (q->trace_rarity_seed==-1) || (q->executed_num_havoc == -1) ){
+		if ( (q->seed_rarity==-1) || (q->executed_num_havoc == -1) ){
 			q=q->next;
 			continue; //表示还没有执行过
 		}
-		if (1000* q->trace_rarity_seed/max_seed_rarity < 300){
+		if (1000* q->seed_rarity/max_seed_rarity < 300){
 			execute_time_havoc=+q->executed_num_havoc;
 		}
 		q=q->next;
@@ -1241,7 +1198,7 @@ static u64 output_power_distance_info(){
 	struct queue_entry * q;
 	q=queue;
 	while(q){
-		if ( (q->trace_rarity_seed==-1) || (q->executed_num_havoc == -1) ){
+		if ( (q->seed_rarity==-1) || (q->executed_num_havoc == -1) ){
 			q=q->next;
 			continue; //表示还没有执行过
 		}
@@ -1266,12 +1223,12 @@ static u64 output_power_rarity_and_distance_info(){
 	struct queue_entry * q;
 	q=queue;
 	while(q){
-		if ( (q->trace_rarity_seed==-1) || (q->executed_num_havoc == -1) ){
+		if ( (q->seed_rarity==-1) || (q->executed_num_havoc == -1) ){
 			q=q->next;
 			continue; //表示还没有执行过
 		}
 		if ( (1000* (q->distance-min_distance)/(max_distance-min_distance) < 300) &&
-				(1000* q->trace_rarity_seed/max_seed_rarity < 300) ){
+				(1000* q->seed_rarity/max_seed_rarity < 300) ){
 			execute_time_havoc=+q->executed_num_havoc;
 		}
 		q=q->next;
@@ -1992,8 +1949,6 @@ static void increment_hit_bits(){
     if ( (trace_bits[i] > 0) && (hit_bits[i] < ULONG_MAX)) //trace_bits是每次的轨迹图,0表示没有执行
       hit_bits[i]++; //记录执行当前基本块的测试用例数量,而非测试用例的执行次数
   }
-  //不用每次都算吧?
-  //cal_branch_level_rarity();
 }
 
 // when resuming re-increment hit bits
@@ -2012,15 +1967,37 @@ static void init_hit_bits() {
   OKF("Init'ed hit_bits.");
 }
 
+// 计算某个seed的rarity attribution
+static void cal_rarity_attri(struct queue_entry * q){
+    if (q->min_branch_hits == NULL){
+       q->rarity_attri = 1;
+       return ;
+    }
+
+    change_branch_rarity_to_power();
+    // 选取击中的最小branch 的branch id 的次数
+    int i=0; // 最后一个是0
+    u32 min_id = q->min_branch_hits[0]-1; //初始化是0, 没事
+    while ( q->min_branch_hits[i] !=0 ){
+       if ( hit_bits[q->min_branch_hits[i]-1] < hit_bits[min_id]  )
+           min_id = q->min_branch_hits[i]-1;
+       i++;
+    }
+
+    //当前测试用例中执行次数最少的branch id 是 min_id
+    q->seed_rarity = hit_bits_power[min_id];  //表示当前测试用例的 seed_rarity
+    if (q ->seed_rarity > max_seed_rarity) max_seed_rarity = q->seed_rarity;
+    q->rarity_attri = q->seed_rarity / max_seed_rarity;
+}
+
+
 //更新对应测试用例的属性
 static void update_attri(struct queue_entry * q){
 	
-    double distance = -1;
-    u64    seed_rarity = -1;
-	double d_attr = -1, r_attr = -1;
-
 	//1. d_attr
-	distance=q->distance;
+    double distance = -1;
+    distance=q->distance;
+    double d_attri = -1;
     if (distance == -1){
         DEBUG_TEST("%s distance is -1\n",q->fname);  
         q->distance_attri = 1;
@@ -2030,8 +2007,8 @@ static void update_attri(struct queue_entry * q){
             q->distance_attri=1;
         }
         else{
-            d_attr=(distance-min_distance)/(max_distance-min_distance);
-            q->distance_attri=d_attr;
+            d_attri = (distance-min_distance)/(max_distance-min_distance);
+            q->distance_attri=d_attri;
         }
     }
     
@@ -2041,6 +2018,8 @@ static void update_attri(struct queue_entry * q){
         if(q->min_branch_hits !=NULL)
             ck_free(q->min_branch_hits);
         q->min_branch_hits = min_branch_hits;
+        // 添加rarity属性的计算
+        cal_rarity_attri(q);
     }
 
     //3.更新距离门限
@@ -2054,8 +2033,8 @@ static void update_attri(struct queue_entry * q){
             q_temp->distance_attri=1;
         }
         else{
-            d_attr=(distance-min_distance)/(max_distance-min_distance);
-            q_temp->distance_attri=d_attr;
+            d_attri=(distance-min_distance)/(max_distance-min_distance);
+            q_temp->distance_attri=d_attri;
         }            
        
         if (q_temp->distance_attri < distance_threshold){
@@ -2074,6 +2053,9 @@ static void update_attri(struct queue_entry * q){
         q_temp = q_temp->next;
 
     }
+
+    
+
 }
 
 //@RD@
@@ -2134,12 +2116,12 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det, u8 readtest_flag) {
   	q->distance_attri = 1; //默认添加的是1
   	q->fuzzed_branches = ck_alloc(MAP_SIZE >>3);
   	q->executed_num_havoc=-1; // 初始为-1
-  	q->trace_rarity_seed=-1; //初始为-1
+  	q->seed_rarity= -1; //初始为-1
   	q->rarity_attri = 1; //初始为1
     q->min_branch_hits = NULL;
   //end rd
 
-    //更新最大最小距离
+    //更新最大最小距离, 同时恢复门限
   	if (cur_distance > 0) {
   		data_num_with_dis++;//表示含有距离的数量
   		if (max_distance <= 0) {
@@ -2148,10 +2130,12 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det, u8 readtest_flag) {
   			out_distance_change();
   		}
   		if (cur_distance > max_distance){
+            distance_threshold = distance_ts_default;
   			max_distance = cur_distance;
   			out_distance_change();
   		}
   		if (cur_distance < min_distance){
+            distance_threshold = distance_ts_default;
   			min_distance = cur_distance;
   			out_distance_change();
   		}
@@ -2195,8 +2179,8 @@ EXP_ST void destroy_queue(void) {
     ck_free(q->trace_mini);
     ck_free(q->fuzzed_branches);
     //@rd@
-    ck_free(q->branch_ids);
-    ck_free(q->branch_rrs);
+    //ck_free(q->branch_ids);
+    //ck_free(q->branch_rrs);
     if (q->min_branch_hits){
         ck_free(q->min_branch_hits);
     }
@@ -4016,10 +4000,12 @@ static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,
                     out_distance_change();
                 }
                 if (cur_distance > max_distance){
+                    distance_threshold = distance_ts_default;
                     max_distance = cur_distance;
                     out_distance_change();
                 }
                 if (cur_distance < min_distance){
+                    distance_threshold = distance_ts_default;
                     min_distance = cur_distance;
                     out_distance_change();
                 }
@@ -4651,10 +4637,12 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
             //out_distance_change();
         }
         if (cur_distance > max_distance){
+            distance_threshold = distance_ts_default;
             max_distance = cur_distance;
             //out_distance_change();
         }
         if (cur_distance < min_distance){
+            distance_threshold = distance_ts_default;
             min_distance = cur_distance;
             //out_distance_change();
         }
@@ -6390,6 +6378,9 @@ static u32 calculate_score(struct queue_entry* q) {
     default:        perf_score *= 5;
 
   }
+
+  //根据属性调整power
+
 
   /* Make sure that we don't go over limit. */
   if (perf_score > HAVOC_MAX_MULT * 100) perf_score = HAVOC_MAX_MULT * 100;
