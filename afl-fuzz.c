@@ -473,11 +473,10 @@ static int *mut_branch_ids;				/*save some the minimum branch index when in nuta
 static u64 *mut_branch_rrs;				/*save the branch rarity of the corresponding index*/
 static u64 max_seed_rarity=0;          /*record the max seed rarity */ //旧的
 static double max_power_factor=0;      /*the max power factor*/
-static int data_num_with_dis;      /*meanint the number of inputs with distance in the queue*/
 static u64 all_executed_num_havoc;  //记录整个fuzz过程,havoc的执行的次数
 
-static double distance_ts_default=0.4;
-static double distance_threshold = 0.4; //默认的筛选distance门限
+static double distance_ts_default=0.7;
+static double distance_threshold = 0.7; //默认的筛选distance门限
 
 //end rd
 
@@ -831,16 +830,12 @@ static void add_into_blacklist(){
 //return 1 enough; 0 not enough
 static u8 check_if_enough_distance_data(){
 	u32 rate_in_max_min=0;
-	u32 rate_dis_num_in_all=0;
-
-	//1. 所有测试用例中带有distance数据的比例
-	rate_dis_num_in_all = 100*data_num_with_dis/queued_paths;
 
 	//2. 最大值和最小值的差值 比例
 	rate_in_max_min=(max_distance-min_distance)*100/min_distance ;
 
 	//3. 判断  (这里的判定方法应该还要提高)
-	if (rate_in_max_min > MIN_RATE_IN_MAX_MIN  && rate_dis_num_in_all > MIN_RATE_NUM_IN_ALL)
+	if (rate_in_max_min > MIN_RATE_IN_MAX_MIN )
 		return 1;
 	return 0;
 }
@@ -1990,28 +1985,98 @@ static void cal_rarity_attri(struct queue_entry * q){
     q->rarity_attri = q->seed_rarity / max_seed_rarity;
 }
 
+//更新所有测试用例的距离属性,在每次max或者min变化的时候
+static void update_all_d_attri(){
+	
+    struct queue_entry *q;
+    q=queue;
+
+    //1.根性所有测试用例的距离属性
+    while(q){
+        double distance = -1;
+        distance = q->distance;
+        double d_attri = -1;
+        if (distance == -1){
+            DEBUG_TEST("%s distance is -1\n",q->fname);  
+            q->distance_attri = 1;
+        }
+        else {
+            if (max_distance==min_distance){
+                q->distance_attri=1;
+            }
+            else{
+                d_attri = (distance-min_distance)/(max_distance-min_distance);
+                q->distance_attri=d_attri;
+            }
+        }
+        q = q->next;
+    }
+    
+    DEBUG_TEST("更新所有测试用例的距离属性---------------------------------------\n");
+    
+    //2.更新距离门限
+    //只对最小低的20%进行测试
+    q = queue;
+    u64 num_under_distance_threshold = 0;  //低于门限值的测试用例数量
+    while(q && distance_threshold > 0 && queued_paths > 500){
+       
+        if (q->distance_attri < distance_threshold){
+            num_under_distance_threshold++;
+            //DEBUG_TEST("%s 的距离属性为%.4f,小于门限\n", q->fname,q->distance_attri );
+        } 
+        else{
+            //DEBUG_TEST("%s 的距离属性为%.4f,大于门限\n", q->fname,q->distance_attri );
+        } 
+
+        if( num_under_distance_threshold > queued_paths * 0.2 || num_under_distance_threshold > 600){
+            distance_threshold -=0.03; //缩小门限 门限缩小的力度
+            if(distance_threshold < 0)
+                distance_threshold =0;
+            q = queue ;// 重新开始循环
+            num_under_distance_threshold = 0;
+            // DEBUG_TEST("\n距离门限缩小至%0.3f\n", distance_threshold);
+            continue;
+        }
+        q = q->next;
+    }
+
+    DEBUG_TEST("更新距离门限为%.3f\n", distance_threshold );
+
+}
+
+
+//更新一下最大最小距离
+static void update_max_min_distance(){
+   
+    if (cur_distance > 0) {
+        if (max_distance <= 0) {
+            max_distance = cur_distance;
+            min_distance = cur_distance;
+            out_distance_change();
+        }
+        if (cur_distance > max_distance){
+            distance_threshold = distance_ts_default;
+            max_distance = cur_distance;
+            update_all_d_attri();
+            out_distance_change();
+        }
+        if (cur_distance < min_distance){
+            distance_threshold = distance_ts_default;
+            min_distance = cur_distance;
+            update_all_d_attri();
+            out_distance_change();
+        }
+    }
+
+}
+
 
 //更新对应测试用例的属性
 static void update_attri(struct queue_entry * q){
 	
-	//1. d_attr
-    double distance = -1;
-    distance=q->distance;
-    double d_attri = -1;
-    if (distance == -1){
-        DEBUG_TEST("%s distance is -1\n",q->fname);  
-        q->distance_attri = 1;
-    }
-    else {
-        if (max_distance==min_distance){
-            q->distance_attri=1;
-        }
-        else{
-            d_attri = (distance-min_distance)/(max_distance-min_distance);
-            q->distance_attri=d_attri;
-        }
-    }
-    
+	//1. 更新档期内测试用例的距离属性d_attr
+    //这里不用更新距离属性了
+
 	//2. r_attr
     u32 * min_branch_hits = is_rb_hit_mini(q->trace_mini);
     if ( min_branch_hits != NULL){
@@ -2022,41 +2087,9 @@ static void update_attri(struct queue_entry * q){
         cal_rarity_attri(q);
     }
 
-    //3.更新距离门限
-    //只对最小低的20%进行测试
-    // 是否需要考虑距离门限增大
-    struct queue_entry * q_temp;
-    q_temp = queue;
-    u64 num_under_distance_threshold = 0;  //低于门限值的测试用例数量
-    while(q_temp && distance_threshold && queued_paths > 500){
-        if (max_distance==min_distance){
-            q_temp->distance_attri=1;
-        }
-        else{
-            d_attri=(distance-min_distance)/(max_distance-min_distance);
-            q_temp->distance_attri=d_attri;
-        }            
-       
-        if (q_temp->distance_attri < distance_threshold){
-            num_under_distance_threshold++;
-        }  
-
-        if( num_under_distance_threshold > queued_paths * 0.2 || num_under_distance_threshold > 600){
-            num_under_distance_threshold = 0;
-            distance_threshold -=0.03; //缩小门限 门限缩小的力度
-            if(distance_threshold < 0) distance_threshold =0;
-            q_temp = queue ;// 重新开始循环
-            DEBUG_TEST("距离门限缩小至%0.3f\n", distance_threshold);
-            continue;
-        }
-        
-        q_temp = q_temp->next;
-
-    }
-
-    
-
+    DEBUG_TEST("[attri]%s的距离属性是%.8f,rarity属性是%.4f\n", q->fname, q->distance_attri, q->rarity_attri);
 }
+
 
 //@RD@
 static u8  fitness(struct queue_entry* q){
@@ -2112,36 +2145,18 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det, u8 readtest_flag) {
   q->passed_det   = passed_det;
 
   //@rd@  //readtest 阶段是赋初始值
-  	q->distance = cur_distance;
-  	q->distance_attri = 1; //默认添加的是1
-  	q->fuzzed_branches = ck_alloc(MAP_SIZE >>3);
-  	q->executed_num_havoc=-1; // 初始为-1
-  	q->seed_rarity= -1; //初始为-1
-  	q->rarity_attri = 1; //初始为1
-    q->min_branch_hits = NULL;
+  q->distance = cur_distance;
+  q->distance_attri = 1; //默认添加的是1
+  q->fuzzed_branches = ck_alloc(MAP_SIZE >>3);
+  q->executed_num_havoc=-1; // 初始为-1
+  q->seed_rarity= -1; //初始为-1
+  q->rarity_attri = 1; //初始为1
+   q->min_branch_hits = NULL;
   //end rd
 
-    //更新最大最小距离, 同时恢复门限
-  	if (cur_distance > 0) {
-  		data_num_with_dis++;//表示含有距离的数量
-  		if (max_distance <= 0) {
-  			max_distance = cur_distance;
-  			min_distance = cur_distance;
-  			out_distance_change();
-  		}
-  		if (cur_distance > max_distance){
-            distance_threshold = distance_ts_default;
-  			max_distance = cur_distance;
-  			out_distance_change();
-  		}
-  		if (cur_distance < min_distance){
-            distance_threshold = distance_ts_default;
-  			min_distance = cur_distance;
-  			out_distance_change();
-  		}
-  	}
-  	//end
-
+  //更新最大最小距离
+  update_max_min_distance();
+  
   if (q->depth > max_depth) max_depth = q->depth;
 
   if (queue_top) {
@@ -3988,30 +4003,9 @@ static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,
       u8 hnb = has_new_bits(virgin_bits);
       if (hnb > new_bits) new_bits = hnb;
 
-        //@rd@
-        /* This is relevant when test cases are added w/out save_if_interesting */
-        if (q->distance <= 0) {
-            /* This calculates cur_distance */
-            q->distance = cur_distance;
-            if (cur_distance > 0) {
-                if (max_distance <= 0) {
-                    max_distance = cur_distance;
-                    min_distance = cur_distance;
-                    out_distance_change();
-                }
-                if (cur_distance > max_distance){
-                    distance_threshold = distance_ts_default;
-                    max_distance = cur_distance;
-                    out_distance_change();
-                }
-                if (cur_distance < min_distance){
-                    distance_threshold = distance_ts_default;
-                    min_distance = cur_distance;
-                    out_distance_change();
-                }
-            }
-        }
-        //end
+      //更新一下距离和最大最小距离
+      q->distance = cur_distance;
+      update_max_min_distance();//更新一下最大最小距离
     
     if (q->exec_cksum) {
 
@@ -4628,26 +4622,8 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
 
   }
 
-  //记录一下非queue下的距离
-    if (cur_distance > 0) {
-        data_num_with_dis++;//表示含有距离的数量
-        if (max_distance <= 0) {
-            max_distance = cur_distance;
-            min_distance = cur_distance;
-            //out_distance_change();
-        }
-        if (cur_distance > max_distance){
-            distance_threshold = distance_ts_default;
-            max_distance = cur_distance;
-            //out_distance_change();
-        }
-        if (cur_distance < min_distance){
-            distance_threshold = distance_ts_default;
-            min_distance = cur_distance;
-            //out_distance_change();
-        }
-    }
-
+  //更新一下非queue下的最大最小距离
+  update_max_min_distance();
 
   switch (fault) {
 
@@ -6643,9 +6619,9 @@ static u8 fuzz_one(char** argv) {
   
   //begin PSO inputs selection
   //1. 首先只在favor的测试用例中进行筛选,到后面没有favor之后,再在全局范围内进行筛选
-  if (pending_favored && ! queue_cur->favored){
-     return 1;
-  }
+  //if (pending_favored && ! queue_cur->favored){
+  //   return 1;
+  //}
   
   //2. 计算fitness,会更新一下每个测试用例的属性,判定是否运行,如果运行,则分配何种策略
   u8 fit_flag=0;
@@ -6665,7 +6641,7 @@ static u8 fuzz_one(char** argv) {
      u8 ret =  check_if_open_distance_mask(queue_cur); 
      open_distance_mask =  use_distance_mask & ret;
      vanilla_afl = 0;
-     DEBUG_TEST("%s is a SDSR\n", queue_cur->fname);
+     DEBUG_TEST("[run]%s is a SDSR\n", queue_cur->fname);
   }
   else if (fit_flag == SDBR){
      // 小d 大r 只启用distance mask,使用 vanilla_afl的模式运行
@@ -6673,14 +6649,14 @@ static u8 fuzz_one(char** argv) {
      rb_fuzzing = 0;
      u8 ret =  check_if_open_distance_mask(queue_cur); 
      open_distance_mask =  use_distance_mask & ret;
-     DEBUG_TEST("%s is a SDBR\n", queue_cur->fname);
+     DEBUG_TEST("[run]%s is a SDBR\n", queue_cur->fname);
      //return 1;
   }
   else if (fit_flag == BDSR){
     // 大d 小r 只启用rarity mask, 使用rb_fuzzing的模式运行
      vanilla_afl = 0;
      open_rarity_mask = 1;
-     DEBUG_TEST("abandon: %s is a BDSR\n", queue_cur->fname);
+     //DEBUG_TEST("abandon: %s is a BDSR\n", queue_cur->fname);
      return 1 ;
   }
   else if (fit_flag == BDBR )
@@ -6693,7 +6669,7 @@ static u8 fuzz_one(char** argv) {
     }
     else {
         // would no execute BDBR seeds any more
-        DEBUG_TEST("abandon:%s is a BDBR\n", queue_cur->fname);
+        //DEBUG_TEST("abandon:%s is a BDBR\n", queue_cur->fname);
         return 1;
     }
   }
@@ -7358,7 +7334,7 @@ skip_simple_bitflip:
     // save the original branch mask for after the havoc stage 
     memcpy (orig_rarity_mask, rarity_mask, len + 1); //保存 brach_mask
   }
-  DEBUG_TEST("%s, distance_attri is %.3f, rarity_attri is %0.3f,distance mask is %d; rariy_mask is %d, in %d\n\n",
+  DEBUG_TEST("[run]%s, distance_attri is %.3f, rarity_attri is %0.3f,distance mask is %d; rariy_mask is %d, in %d\n\n",
       		queue_cur->fname, queue_cur->distance_attri, queue_cur->rarity_attri,distance_mask_num,rarity_mask_num,len);
 
   //添加 某个 rarity 到黑名单, 在计算mask时,所有的子测试用例,都没有击中这个rare branch,就添加到黑名单
