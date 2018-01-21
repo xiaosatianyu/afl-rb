@@ -62,7 +62,7 @@ afl-qemu-trace
 
 /testenv/binary-test/CVE-2017-5969/libxml2/
 /testenv/binary-test/CVE-2017-5969/temp/dot-files
-/testenv/binary-test/CVE-2017-5969/temp/step
+/testenv/binary-test/CVE-2017-5969/temp/state
 /testenv/binary-test/CVE-2017-5969/temp/step1.log
 /testenv/binary-test/CVE-2017-5969/temp/step2.log
 /testenv/binary-test/CVE-2017-5969/mini_distance.png
