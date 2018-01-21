@@ -112,9 +112,9 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 	}
 
 	std::list < std::string > targets;  //记录所有目标
-	std::list < std::string > hittargets;  //记录所有目标
-	std::map<std::string, int> bb_to_dis; //记录对应行和目标距离的一个map
-	std::vector < std::string > basic_blocks; //记录所有的行
+	std::list < std::string > hittargets;  //记录所有目标 和目标目标是一致的
+	std::map<std::string, int> bb_to_dis; //记录对应行和目标距离
+	std::vector < std::string > basic_blocks; //记录所有的行基本块?
 
 	if (!TargetsFile.empty()) {
 
@@ -140,14 +140,12 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 			std::string line;
 			while (getline(cf, line)) {
 
-				std::size_t pos = line.find(",");  //前一个表示行或者函数,后面一个表示和目标的距离
-				std::string bb_name = line.substr(0, pos);  // bb_name 表示行号
-				int bb_dis = (int) (100.0
-						* atof(line.substr(pos + 1, line.length()).c_str())); //得到该行和目标之间的距离
+				std::size_t pos = line.find(",");  //前一个表示文件和行数,后面一个表示和目标的距离
+				std::string bb_name = line.substr(0, pos);  // bb_name 表示文件和行号
+				int bb_dis = (int) (100.0  * atof(line.substr(pos + 1, line.length()).c_str())); //得到该行和目标之间的距离
 				bb_to_dis.insert(std::pair<std::string, int>(bb_name, bb_dis));
-				basic_blocks.push_back(bb_name); //记录所有的bb_name ,这里的是一个行
-
-			}
+				basic_blocks.push_back(bb_name); //读取所有基本块(文件和行号的表现形式)
+            }
 			cf.close();
 
 			is_aflgo = true;
@@ -262,6 +260,7 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 			if (-1 == dir_err)
 				FATAL("Could not create directory %s.", dotfiles.c_str());
 		}
+
 		//遍历每个函数,得到cfg 这个是for else
 		for (auto &F : M) {
 
@@ -278,18 +277,17 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 				"calloc",
 				"realloc"
 			};
-			for (std::vector<std::string>::size_type i = 0;
-					i < blacklist.size(); i++)
+			for (std::vector<std::string>::size_type i = 0;	i < blacklist.size(); i++)
 				if (!funcName.compare(0, blacklist[i].size(), blacklist[i]))
 					continue;
 
 			bool is_target = false;
 			//遍历函数下的所有BB
 			for (auto &BB : F) {
-				TerminatorInst *TI = BB.getTerminator(); //得到最后一条指令
-				IRBuilder<> Builder(TI);
+				TerminatorInst *TI = BB.getTerminator(); //得到退出指令
+				IRBuilder<> Builder(TI);//在退出指令之前进行插桩
 
-				std::string bb_name(""); //只会记录每个基本块的第一行
+				std::string bb_name(""); //只会记录每个基本块的第一行?
 				std::string filename;
 				unsigned line;
 				//遍历所有指令
@@ -326,24 +324,23 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 
 						/* Don't worry about external libs */
 						std::string Xlibs("/usr/");
-						if (filename.empty() || line == 0
-								|| !filename.compare(0, Xlibs.size(), Xlibs))
+						if (filename.empty() || line == 0 || !filename.compare(0, Xlibs.size(), Xlibs))
 							continue;
 
+                        //只要当bb_name为空才会进行,所以只统计了每个基本块的第一个指令的信息
 						if (bb_name.empty()) {
 
 							std::size_t found = filename.find_last_of("/\\");
 							if (found != std::string::npos)
 								filename = filename.substr(found + 1);
 
-							bb_name = filename + ":" + std::to_string(line);
+							bb_name = filename + ":" + std::to_string(line); //形成文件名加行的组合
 
 						}
-						//判断当前的指令所在行号所在位置是否是目标, 结果放在 is_target
+						
+                        //判断目标是否在当前基本块中, 结果放在 is_target 会对每条指令都进行判定
 						if (!is_target) {
-							for (std::list<std::string>::iterator it =
-									targets.begin(); it != targets.end();
-									++it) {
+							for (std::list<std::string>::iterator it = targets.begin(); it != targets.end(); ++it) {
 
 								std::string target = *it;
 								std::size_t found = target.find_last_of("/\\");
@@ -358,11 +355,10 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 								if (!target_file.compare(filename)
 										&& target_line == line)
 									is_target = true;
-
 							}
 						}
 
-						//如果当前指令是call指令,即调用别的函数
+						//如果当前指令是call指令,即调用别的函数, 这里记录了所有的call指令
 						if (auto *c = dyn_cast < CallInst > (&I)) {
 
 							std::size_t found = filename.find_last_of("/\\");
@@ -370,14 +366,11 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 								filename = filename.substr(found + 1);
 
 							if (c->getCalledFunction()) {
-								std::string called =
-										c->getCalledFunction()->getName().str();
+								std::string called = c->getCalledFunction()->getName().str();
 
 								bool blacklisted = false;
-								for (std::vector<std::string>::size_type i = 0;
-										i < blacklist.size(); i++) {
-									if (!called.compare(0, blacklist[i].size(),
-											blacklist[i])) {
+								for (std::vector<std::string>::size_type i = 0;	i < blacklist.size(); i++) {
+									if (!called.compare(0, blacklist[i].size(),	blacklist[i])) {
 										blacklisted = true;
 										break;
 									}
@@ -386,11 +379,12 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 									bbcalls << bb_name << "," << called << "\n"; //表示某一行调用的函数  记录在某一行,与目标的距离,调用某个函数
 							}
 						}
+
 					}
 				} //end for (auto &I : BB)
-
+                
+                //这里保存每个基本块第一条指令的位置信息
 				if (!bb_name.empty()) {
-
 					BB.setName(bb_name + ":");
 					if (!BB.hasName()) {
 						std::string newname = bb_name + ":";
@@ -399,7 +393,6 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 						StringRef NameRef = t.toStringRef(NameData);
 						BB.setValueName(ValueName::Create(NameRef));
 					}
-
 					bbnames << BB.getName().str() << "\n";
 					has_BBs = true;
 
@@ -412,23 +405,19 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 					Constant *instrumented = M.getOrInsertFunction("llvm_profiling_call", FTy);
 					Builder.CreateCall(instrumented, {bbnameVal});
 #endif
-
 				}
 			}
 			//end  for (auto &BB : F)
 
-			//如果识别基本块的话
+			//输出CFG和 Ftargets
 			if (has_BBs) {
 				/* Print CFG */
-				std::string cfgFileName = dotfiles + "/cfg." + funcName
-						+ ".dot";
+				std::string cfgFileName = dotfiles + "/cfg." + funcName	+ ".dot";
 				struct stat buffer;
 				if (stat(cfgFileName.c_str(), &buffer) != 0) {
 					FILE *cfgFILE = fopen(cfgFileName.c_str(), "w");
 					if (cfgFILE) {
-						raw_ostream *cfgFile = new llvm::raw_fd_ostream(
-								fileno(cfgFILE), false, true);
-
+						raw_ostream *cfgFile = new llvm::raw_fd_ostream(fileno(cfgFILE), false, true);
 						WriteGraph(*cfgFile, (const Function*) &F, true); //这函数内部应该会有处理, 比如名称啥的
 						fflush(cfgFILE);
 						fclose(cfgFILE);
@@ -447,7 +436,7 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 		ftargets.close();
 
 	} else {
-		//根据距离,进行编译
+		//根据距离,进行插桩
 		for (auto &F : M) {
 
 			int distance = -1;
@@ -461,8 +450,7 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 					IRBuilder<> Builder(TI);
 
 					std::string bb_name;
-					// 根据行号读取distance, 随便根据一个基本块中的一个行号,得到当前基本块和目标之间的距离
-
+                    std::string inst_name;
 					//判定是否已对这个基本块插桩
 					int add_this_bb=0;
 
@@ -503,18 +491,24 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 							if (found != std::string::npos) //std::string::npos 表示strig的结束位
 								filename = filename.substr(found + 1);
 
+                            //在一个基本块中只会统计一次
 							if(add_this_bb==0){
 								bb_name = filename + ":" + std::to_string(line); // 基本块第一个指令,得到bb_name 文件名:行号
 								add_this_bb=1;
-								//break; //得到一个  bb_name 就退出? 即当前基本块的距离 基本块所在第一行的距离 取代基本块的距离
+								//break; //得到当前基本块的第一个指令的信息,就可以退出了
 							}
 
 							//check if hit hittargets
 							if (hittargets.empty()){
 								continue;
 							}
-							if ( find(hittargets.begin(), hittargets.end(), bb_name) != hittargets.end()){
+                            //如果当前基本块中是否有 hittarget指定地址的指令
+                            //这里不能用 bb_name bb_name表示的是基本块
+
+                            inst_name = filename + ":" + std::to_string(line); //得到当前指令的表现方式 文件名加行号
+							if ( find(hittargets.begin(), hittargets.end(), inst_name) != hittargets.end()){
 								//发现目标
+                                //在下一个共享内存的位置赋值1,表示击中目标行所在的基本块
 								SAYF("进入hit---------------------------------\n");
 								//0. 生成IRB
 								BasicBlock::iterator IP = BB.getFirstInsertionPt(); //得到一个iterator,指向第一个指令,可以方便的插入non-PHI指令
@@ -527,10 +521,10 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 								//2 读取hit的位置
 				#ifdef __x86_64__
 								IntegerType *LargestType = Int64Ty; //表示8个字节
-								ConstantInt *MapHitLoc = ConstantInt::get(LargestType,	MAP_SIZE+16); //从这里开始 记录一个数据,记录距离总和
+								ConstantInt *MapHitLoc = ConstantInt::get(LargestType,	MAP_SIZE+16); //从这里开始 记录击中次数
 				#else
 								IntegerType *LargestType = Int32Ty; //表示4个字节
-								ConstantInt *MapHitLoc = ConstantInt::get(LargestType,	MAP_SIZE+8); //从这里开始 记录一个数据,记录距离总和
+								ConstantInt *MapHitLoc = ConstantInt::get(LargestType,	MAP_SIZE+8); //从这里开始 记录击中次数
 				#endif
 								// read the old number
 								Value *MapHitPtr = IRB.CreateGEP(MapPtr, MapHitLoc); // 指向对应的位置
@@ -546,16 +540,12 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 
 					} // end for (auto &I : BB)
 
+                    // 寻找当前基本块,并添加距离
 					if (!bb_name.empty()) {
-
-						if (find(basic_blocks.begin(), basic_blocks.end(),
-								bb_name) == basic_blocks.end()) {
-
+						if (find(basic_blocks.begin(), basic_blocks.end(),	bb_name) == basic_blocks.end()) {
 							if (is_selective)
 								continue;
-
 						} else {
-
 							/* Find distance for BB */
 							//读取对应行的距离,作为基本块的距离
 							if (AFL_R(100) < dinst_ratio) {
@@ -564,14 +554,12 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 										it != bb_to_dis.end(); ++it)
 									if (it->first.compare(bb_name) == 0)
 										distance = it->second;
-
 								/* DEBUG */
 								// ACTF("Distance for %s\t: %d", bb_name.c_str(), distance);
 							}
 						}
 					}
 
-					
 				} // end if (is_aflgo), get a  new distance
 
 				BasicBlock::iterator IP = BB.getFirstInsertionPt(); //得到一个iterator,指向第一个指令,可以方便的插入non-PHI指令
@@ -617,11 +605,9 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 				Store->setMetadata(M.getMDKindID("nosanitize"),
 						MDNode::get(C, None));
 
-				//这里是新加的,前面都没有变
+				//新加距离插桩
 				if (distance >= 0) {
-
 					unsigned int udistance = (unsigned) distance;
-
 #ifdef __x86_64__
 					IntegerType *LargestType = Int64Ty; //表示8个字节
 					ConstantInt *MapDistLoc = ConstantInt::get(LargestType, MAP_SIZE);
@@ -629,29 +615,24 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 					ConstantInt *Distance = ConstantInt::get(LargestType, udistance);
 #else
 					IntegerType *LargestType = Int32Ty; //表示4个字节
-					ConstantInt *MapDistLoc = ConstantInt::get(LargestType,
-					MAP_SIZE); //从这里开始 记录一个数据,记录距离总和
-					ConstantInt *MapCntLoc = ConstantInt::get(LargestType,
-					MAP_SIZE + 4); //从这里开始也记录一个数据,记录数量总和
-					ConstantInt *Distance = ConstantInt::get(LargestType,
-							udistance);
+					ConstantInt *MapDistLoc = ConstantInt::get(LargestType,	MAP_SIZE); //从这里开始 记录一个数据,记录距离总和
+					ConstantInt *MapCntLoc = ConstantInt::get(LargestType,	MAP_SIZE + 4); //从这里开始也记录一个数据,记录数量总和
+					ConstantInt *Distance = ConstantInt::get(LargestType,	udistance);
 #endif
 
 					/* Add distance to shm[MAPSIZE] */
 
 					Value *MapDistPtr = IRB.CreateGEP(MapPtr, MapDistLoc); // 指向对应的位置
 #ifdef LLVM_OLD_DEBUG_API
-							LoadInst *MapDist = IRB.CreateLoad(MapDistPtr);
-							MapDist->mutateType(LargestType);
+					LoadInst *MapDist = IRB.CreateLoad(MapDistPtr);
+					MapDist->mutateType(LargestType);
 #else
 					LoadInst *MapDist = IRB.CreateLoad(LargestType, MapDistPtr); //读取MapDistPtr位置的数据
 #endif
 					//update bitmap according the distance
-					MapDist->setMetadata(M.getMDKindID("nosanitize"),
-							MDNode::get(C, None));
+					MapDist->setMetadata(M.getMDKindID("nosanitize"),MDNode::get(C, None));
 					Value *IncrDist = IRB.CreateAdd(MapDist, Distance); //在指定位置 添加distance距离; 编译的时候,距离已经写入了执行程序中
-					IRB.CreateStore(IncrDist, MapDistPtr)->setMetadata(
-							M.getMDKindID("nosanitize"), MDNode::get(C, None)); //保存
+					IRB.CreateStore(IncrDist, MapDistPtr)->setMetadata(	M.getMDKindID("nosanitize"), MDNode::get(C, None)); //保存
 
 					/* Increase count at to shm[MAPSIZE + (4 or 8)] */
 
@@ -662,12 +643,9 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 #else
 					LoadInst *MapCnt = IRB.CreateLoad(LargestType, MapCntPtr);
 #endif
-					MapCnt->setMetadata(M.getMDKindID("nosanitize"),
-							MDNode::get(C, None));
-					Value *IncrCnt = IRB.CreateAdd(MapCnt,
-							ConstantInt::get(LargestType, 1)); //添加的距离数量加1,方便后面求平均值
-					IRB.CreateStore(IncrCnt, MapCntPtr)->setMetadata(
-							M.getMDKindID("nosanitize"), MDNode::get(C, None));
+					MapCnt->setMetadata(M.getMDKindID("nosanitize"),MDNode::get(C, None));
+					Value *IncrCnt = IRB.CreateAdd(MapCnt,	ConstantInt::get(LargestType, 1)); //添加的距离数量加1,方便后面求平均值
+					IRB.CreateStore(IncrCnt, MapCntPtr)->setMetadata(M.getMDKindID("nosanitize"), MDNode::get(C, None));
 
 				}
 

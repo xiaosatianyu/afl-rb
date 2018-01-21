@@ -294,7 +294,7 @@ static u32 a_extras_cnt;              /* Total number of tokens available */
 
 static u8* (*post_handler)(u8* buf, u32* len);
 
-
+static double hit_target = 0;  //表示当前测试用例是否击中目标
 static double cur_distance = -1.0;     /* Distance of executed input       */
 static double max_distance = -1.0;     /* Maximal distance for any input   */
 static double min_distance = -1.0;     /* Minimal distance for any input   */
@@ -377,6 +377,23 @@ enum {
   /* 05 */ FAULT_NOBITS
 };
 
+//更新最大最小距离
+static void update_max_min_dis(){
+    if (cur_distance > 0) {
+        if (max_distance <= 0) {
+        max_distance = cur_distance;
+        min_distance = cur_distance;
+        }
+        if (cur_distance > max_distance) max_distance = cur_distance;
+        if (cur_distance < min_distance) min_distance = cur_distance;
+    }
+    
+    //如果击中目标,就把最小值简化为0
+    if (hit_target){
+        min_distance =0;
+        hit_target =0; //这个用完要记得置为0
+    }
+}
 
 /* create a new branch mask of the specified size */
 
@@ -1137,14 +1154,7 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det) {
   q->passed_det   = passed_det;
 
   q->distance = cur_distance;
-  if (cur_distance > 0) {
-      if (max_distance <= 0) {
-          max_distance = cur_distance;
-          min_distance = cur_distance;
-      }
-      if (cur_distance > max_distance) max_distance = cur_distance;
-      if (cur_distance < min_distance) min_distance = cur_distance;
-  }
+  update_max_min_dis(); //更新最大最小距离
 
   if (q->depth > max_depth) max_depth = q->depth;
 
@@ -1250,9 +1260,13 @@ static inline u8 has_new_bits(u8* virgin_map) {
   /* Calculate distance of current input to targets */
   u64* total_distance = (u64*) (trace_bits + MAP_SIZE);
   u64* total_count = (u64*) (trace_bits + MAP_SIZE + 8);
+  u64* hit_count = (u64*) (trace_bits + MAP_SIZE + 16);
 
-  if (*total_count > 0)
+  if (*total_count > 0){
+    if (*hit_count)
+        hit_target =1 ;// 表示击中目标 会不会影响后面的判定距离门限
     cur_distance = (double) (*total_distance) / (double) (*total_count);
+  }
   else
     cur_distance = -1.0;
 
@@ -1717,7 +1731,7 @@ EXP_ST void setup_shm(void) {
   memset(virgin_tmout, 255, MAP_SIZE);
   memset(virgin_crash, 255, MAP_SIZE);
 
-  shm_id = shmget(IPC_PRIVATE, MAP_SIZE+16, IPC_CREAT | IPC_EXCL | 0600);
+  shm_id = shmget(IPC_PRIVATE, MAP_SIZE+24, IPC_CREAT | IPC_EXCL | 0600);
 
   if (shm_id < 0) PFATAL("shmget() failed");
 
@@ -2641,7 +2655,8 @@ static u8 run_target(char** argv, u32 timeout) {
      must prevent any earlier operations from venturing into that
      territory. */
 
-  memset(trace_bits, 0, MAP_SIZE+16); //每次执行轨迹
+  memset(trace_bits, 0, MAP_SIZE+24); //每次执行轨迹
+  hit_target =0;
   MEM_BARRIER();
 
   /* If we're running in "dumb" mode, we can't rely on the fork server
@@ -2966,20 +2981,8 @@ static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,
       //增加初始测试用例的距离
       if (q->distance <= 0) {
           q->distance = cur_distance;
-          if (cur_distance > 0) {
-
-            if (max_distance <= 0) {
-              max_distance = cur_distance;
-              min_distance = cur_distance;
-            }
-            if (cur_distance > max_distance) max_distance = cur_distance;
-            if (cur_distance < min_distance) min_distance = cur_distance;
-
-          }
-
+          update_max_min_dis(); //更新最大最小距离
        }
-
-
 
       if (q->exec_cksum) {
 
@@ -3589,15 +3592,7 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
   }
 
   //增加非queue下的距离收集
-  if (cur_distance > 0) {
-      if (max_distance <= 0) {
-          max_distance = cur_distance;
-          min_distance = cur_distance;
-      }
-      if (cur_distance > max_distance) max_distance = cur_distance;
-      if (cur_distance < min_distance) min_distance = cur_distance;
-  }
-
+  update_max_min_dis(); //更新最大最小距离
 
   switch (fault) {
 

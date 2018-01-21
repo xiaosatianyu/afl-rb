@@ -465,6 +465,7 @@ enum {
 
 
 //@rd@ variable for rd
+static double hit_target =0;  //表示当前测试用例是否击中目标
 static double cur_distance = -1.0;     /* Distance of executed input       */
 static int cur_hit = 0;     /* 0表示没有击中,1表示击中       */
 static double max_distance = -1.0;     /* Maximal distance for any input   */
@@ -2068,6 +2069,12 @@ static void update_max_min_distance(){
         }
     }
 
+    //如果击中目标,就把最小值简化为0
+    if (hit_target){
+        min_distance =0;
+        hit_target =0; //这个用完要记得置为0
+    }
+
 }
 
 
@@ -2270,10 +2277,13 @@ static inline u8 has_new_bits(u8* virgin_map) {
 	/* Calculate distance of current input to targets */
 	u64* total_distance = (u64*) (trace_bits + MAP_SIZE);
 	u64* total_count = (u64*) (trace_bits + MAP_SIZE + 8);
-	u64* check_hit= (u64*) (trace_bits + MAP_SIZE + 16);
-
-	if (*total_count > 0)
-		cur_distance = (double) (*total_distance) / (double) (*total_count);
+	u64* hit_count = (u64*) (trace_bits + MAP_SIZE + 16);
+    
+    if (*total_count > 0){
+        if (*hit_count)
+            hit_target =1 ;// 表示击中目标 会不会影响后面的判定距离门限
+        cur_distance = (double) (*total_distance) / (double) (*total_count);
+    }
 	else
 		cur_distance = -1.0;
 	//end
@@ -2346,18 +2356,6 @@ static inline u8 has_new_bits(u8* virgin_map) {
   }
 
   if (ret && virgin_map == virgin_bits) bitmap_changed = 1;
-
-  	//@RD@ 判断是否命中
-	cur_hit=0;//表示没有击中
-	if ( (double)*check_hit){
-		//表示击中了,
-		cur_hit=1;
-		if(ret){//没有击中
-			DEBUG5("一个冗余的测试用例击中了\n");
-			exit(1);
-		}
-	  }
-	//end rd
 
   return ret;
 
@@ -2755,7 +2753,6 @@ EXP_ST void setup_shm(void) {
 
 	//@rd@
 	shm_id = shmget(IPC_PRIVATE, MAP_SIZE + 24, IPC_CREAT | IPC_EXCL | 0600);
-	//shm_id = shmget(IPC_PRIVATE, MAP_SIZE, IPC_CREAT | IPC_EXCL | 0600);
 	//end
 
   if (shm_id < 0) PFATAL("shmget() failed");
@@ -3680,7 +3677,8 @@ static u8 run_target(char** argv, u32 timeout) {
      must prevent any earlier operations from venturing into that
      territory. */
   //@rd@
-  memset(trace_bits, 0, MAP_SIZE+16);
+  memset(trace_bits, 0, MAP_SIZE+24);
+  hit_target =0;
   //end
   MEM_BARRIER();
 
