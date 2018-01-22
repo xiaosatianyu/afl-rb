@@ -476,8 +476,8 @@ static u64 max_seed_rarity=0;          /*record the max seed rarity */ //旧的
 static double max_power_factor=0;      /*the max power factor*/
 static u64 all_executed_num_havoc;  //记录整个fuzz过程,havoc的执行的次数
 
-static double distance_ts_default=0.7;
-static double distance_threshold = 0.7; //默认的筛选distance门限
+static double distance_ts_default=1;
+static double distance_threshold = 1; //默认的筛选distance门限
 
 //end rd
 
@@ -2112,7 +2112,7 @@ static u8  fitness(struct queue_entry* q){
     }
 
     //门限控制,动态
-    if (q->distance_attri< distance_threshold){
+    if (q->distance_attri <= distance_threshold){
       d_flag=1;
    	}
 
