@@ -2015,7 +2015,7 @@ static void update_all_d_attri(){
     
     DEBUG_TEST("更新所有测试用例的距离属性---------------------------------------\n");
     
-    //2.更新距离门限
+    //2.更新距离门限 需要变大变小
     //只对最小低的20%进行测试
     q = queue;
     u64 num_under_distance_threshold = 0;  //低于门限值的测试用例数量
@@ -2025,9 +2025,9 @@ static void update_all_d_attri(){
             num_under_distance_threshold++;
             //DEBUG_TEST("%s 的距离属性为%.4f,小于门限\n", q->fname,q->distance_attri );
         } 
-        else{
-            //DEBUG_TEST("%s 的距离属性为%.4f,大于门限\n", q->fname,q->distance_attri );
-        } 
+        //else{
+        //    DEBUG_TEST("%s 的距离属性为%.4f,大于门限\n", q->fname,q->distance_attri );
+        //} 
 
         if( num_under_distance_threshold > queued_paths * 0.2 || num_under_distance_threshold > 600){
             distance_threshold -=0.03; //缩小门限 门限缩小的力度
@@ -2039,6 +2039,13 @@ static void update_all_d_attri(){
             continue;
         }
         q = q->next;
+        
+        //扩大一点
+        if(q==NULL && num_under_distance_threshold ==0 ){
+            distance_threshold +=0.01;
+            q = queue;
+        }
+        
     }
 
     DEBUG_TEST("更新距离门限为%.3f\n", distance_threshold );
