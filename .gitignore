@@ -68,12 +68,12 @@ afl-qemu-trace
 /testenv/binary-test/CVE-2017-5969/mini_distance.png
 
 
-/testenv/binary-test/CVE-2016-10094/tiff-4.0.7/
-/testenv/binary-test/CVE-2016-10094/temp/dot-files
-/testenv/binary-test/CVE-2016-10094/temp/step
-/testenv/binary-test/CVE-2016-10094/temp/step1.log
-/testenv/binary-test/CVE-2016-10094/temp/step2.log
-/testenv/binary-test/CVE-2016-10094/mini_distance.png
+/testenv/binary-test/CVE-2016-10094(no)/tiff-4.0.7/
+/testenv/binary-test/CVE-2016-10094(no)/temp/dot-files
+/testenv/binary-test/CVE-2016-10094(no)/temp/step
+/testenv/binary-test/CVE-2016-10094(no)/temp/step1.log
+/testenv/binary-test/CVE-2016-10094(no)/temp/step2.log
+/testenv/binary-test/CVE-2016-10094(no)/mini_distance.png
 
 /testenv/binary-test/CVE-2015-7497/libxml2/
 /testenv/binary-test/CVE-2015-7497/temp/dot-files
