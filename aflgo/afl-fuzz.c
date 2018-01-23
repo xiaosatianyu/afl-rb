@@ -926,8 +926,8 @@ static inline u8 has_new_bits(u8* virgin_map) {
   u64* hit_count = (u64*) (trace_bits + MAP_SIZE + 16);
   
   if (*total_count > 0){
-    if (*hit_count)
-        hit_target =1 ;// 表示击中目标 会不会影响后面的判定距离门限
+    //if (*hit_count)
+    //    hit_target =1 ;// 表示击中目标 会不会影响后面的判定距离门限
     cur_distance = (double) (*total_distance) / (double) (*total_count);
   }
   else

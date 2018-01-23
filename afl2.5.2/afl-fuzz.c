@@ -917,8 +917,8 @@ static inline u8 has_new_bits(u8* virgin_map) {
   u64* hit_count =(u64*)(trace_bits + MAP_SIZE + 16);
 
   if (*total_count > 0){
-     if(*hit_count)
-        hit_target=1;
+     //if(*hit_count)
+     //   hit_target=1;
      cur_distance = (double) (*total_distance) / (double) (*total_count);
   }
 else
