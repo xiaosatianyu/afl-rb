@@ -329,19 +329,15 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 
                         //只要当bb_name为空才会进行,所以只统计了每个基本块的第一个指令的信息
 						if (bb_name.empty()) {
-
 							std::size_t found = filename.find_last_of("/\\");
 							if (found != std::string::npos)
 								filename = filename.substr(found + 1);
-
 							bb_name = filename + ":" + std::to_string(line); //形成文件名加行的组合
-
 						}
 						
                         //判断目标是否在当前基本块中, 结果放在 is_target 会对每条指令都进行判定
 						if (!is_target) {
 							for (std::list<std::string>::iterator it = targets.begin(); it != targets.end(); ++it) {
-
 								std::string target = *it;
 								std::size_t found = target.find_last_of("/\\");
 								if (found != std::string::npos)
@@ -360,14 +356,11 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 
 						//如果当前指令是call指令,即调用别的函数, 这里记录了所有的call指令
 						if (auto *c = dyn_cast < CallInst > (&I)) {
-
 							std::size_t found = filename.find_last_of("/\\");
 							if (found != std::string::npos)
 								filename = filename.substr(found + 1);
-
 							if (c->getCalledFunction()) {
 								std::string called = c->getCalledFunction()->getName().str();
-
 								bool blacklisted = false;
 								for (std::vector<std::string>::size_type i = 0;	i < blacklist.size(); i++) {
 									if (!called.compare(0, blacklist[i].size(),	blacklist[i])) {
@@ -376,14 +369,13 @@ bool AFLCoverage::runOnModule(Module &M) {  //这里是将整个系统都当做�
 									}
 								}
 								if (!blacklisted)
-									bbcalls << bb_name << "," << called << "\n"; //表示某一行调用的函数  记录在某一行,与目标的距离,调用某个函数
+									bbcalls << bb_name << "," << called << "\n"; //某一行,与目标的距离,调用某个函数
 							}
 						}
-
 					}
 				} //end for (auto &I : BB)
                 
-                //这里保存每个基本块第一条指令的位置信息
+                //这里保存每个基本块第一条指令的位置信息,只会输出每个基本块第一个指令的位置信息
 				if (!bb_name.empty()) {
 					BB.setName(bb_name + ":");
 					if (!BB.hasName()) {
