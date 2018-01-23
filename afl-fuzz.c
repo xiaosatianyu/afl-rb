@@ -408,6 +408,7 @@ static u8 open_rarity_mask =0 ;
 static u8 open_power_control = 0; //控制power, 默认关闭
 static u8 go_back_to_AFL=0;     //控制,如果前一轮没有发现测试用例,下一轮知否需要回到AFL
 static u8 init_run = 1;  // means the first run of AFL
+static u8 power_factor=1; //power的因子,默认是1,每次fuzz_one的时候设置为1
 //end rd
 
 static int prev_cycle_wo_new = 0;  //上一轮, 0 表示发现了新路径; 1 表示没有发现新路径, 默认是发现新的路径,为了尽可能的去探索
@@ -2021,7 +2022,7 @@ static void update_all_d_attri(){
     u64 num_under_distance_threshold = 0;  //低于门限值的测试用例数量
     while(q && distance_threshold > 0 && queued_paths > 500){
        
-        if (q->distance_attri < distance_threshold){
+        if (q->distance_attri <= distance_threshold){
             num_under_distance_threshold++;
             //DEBUG_TEST("%s 的距离属性为%.4f,小于门限\n", q->fname,q->distance_attri );
         } 
@@ -2110,6 +2111,7 @@ static u8  fitness(struct queue_entry* q){
     // rarity check
     if(q->min_branch_hits != NULL ){ //表示有击中rare branch
         r_flag = 1;
+        power_factor*=2;
     }
 
     //门限控制,动态
@@ -2117,10 +2119,16 @@ static u8  fitness(struct queue_entry* q){
       d_flag=1;
    	}
 
+    //调整power
+    if  (q->distance_attri <0.1) power_factor*=2;
+    if  (0.1 <= q->distance_attri <0.2) power_factor*=1.5;
+    
+    
     //total flag
     if ( d_flag==1 ){
-        if( r_flag==1 )
+        if( r_flag==1 ){
             fit_flag=SDSR;
+        }
         else
             fit_flag=SDBR;
     }
@@ -6581,6 +6589,7 @@ static u8 fuzz_one(char** argv) {
   u8 * distance_mask=0;
   u64 distance_mask_num=-1; //表示当前测试用例中,被标记distance mask的基本块数量
   u8 * orig_distance_mask = 0;
+  power_factor = 1; //每次fuzz_one开始设置为1
   //end
 
   /* RB Vars*/
@@ -6654,7 +6663,6 @@ static u8 fuzz_one(char** argv) {
      u8 ret =  check_if_open_distance_mask(queue_cur); 
      open_distance_mask =  use_distance_mask & ret;
      DEBUG_TEST("[run]%s is a SDBR\n", queue_cur->fname);
-     //return 1;
   }
   else if (fit_flag == BDSR){
     // 大d 小r 只启用rarity mask, 使用rb_fuzzing的模式运行
