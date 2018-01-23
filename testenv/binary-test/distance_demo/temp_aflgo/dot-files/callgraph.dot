@@ -1,0 +1,30 @@
+digraph "Call graph" {
+	label="Call graph";
+
+	Node0x2e45cd0 [shape=record,label="{external node}"];
+	Node0x2e45cd0 -> Node0x2e47170;
+	Node0x2e45cd0 -> Node0x2e47210;
+	Node0x2e45cd0 -> Node0x2e471a0;
+	Node0x2e45cd0 -> Node0x2e473a0;
+	Node0x2e45cd0 -> Node0x2e47410;
+	Node0x2e45cd0 -> Node0x2e47440;
+	Node0x2e45cd0 -> Node0x2e46740;
+	Node0x2e46740 [shape=record,label="{main}"];
+	Node0x2e46740 -> Node0x2e47170;
+	Node0x2e46740 -> Node0x2e471a0;
+	Node0x2e46740 -> Node0x2e473a0;
+	Node0x2e46740 -> Node0x2e47410;
+	Node0x2e46740 -> Node0x2e47440;
+	Node0x2e47210 [shape=record,label="{llvm.dbg.declare}"];
+	Node0x2e47170 [shape=record,label="{add}"];
+	Node0x2e47410 [shape=record,label="{cal1}"];
+	Node0x2e47410 -> Node0x2e47170;
+	Node0x2e47410 -> Node0x2e471a0;
+	Node0x2e47410 -> Node0x2e473a0;
+	Node0x2e47440 [shape=record,label="{cal2}"];
+	Node0x2e47440 -> Node0x2e47410;
+	Node0x2e47440 -> Node0x2e47170;
+	Node0x2e47440 -> Node0x2e471a0;
+	Node0x2e471a0 [shape=record,label="{minus}"];
+	Node0x2e473a0 [shape=record,label="{multiple}"];
+}

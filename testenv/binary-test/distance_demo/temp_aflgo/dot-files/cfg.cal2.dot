@@ -1,0 +1,5 @@
+digraph "CFG for 'cal2' function" {
+	label="CFG for 'cal2' function";
+
+	Node0x393c020 [shape=record,label="{test.c:24:}"];
+}

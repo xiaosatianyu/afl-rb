@@ -1,0 +1,11 @@
+test.c:16,add
+test.c:16,minus
+test.c:16,multiple
+test.c:24,add
+test.c:24,cal1
+test.c:24,minus
+test.c:33,add
+test.c:33,cal1
+test.c:33,cal2
+test.c:33,minus
+test.c:33,multiple

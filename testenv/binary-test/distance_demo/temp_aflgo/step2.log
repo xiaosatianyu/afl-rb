@@ -1,0 +1,90 @@
+
+Parsing /home/xiaosatianyu/workspace/git/fuzz/RDFUZZ/testenv/binary-test/distance_demo/temp_aflgo/dot-files/callgraph.dot ..
+Name: Call graph
+Type: DiGraph
+Number of nodes: 8
+Number of edges: 18
+Average in degree:   2.2500
+Average out degree:   2.2500
+
+Working in CG mode..
+Loading targets..
+Calculating distance..
+
+Parsing /home/xiaosatianyu/workspace/git/fuzz/RDFUZZ/testenv/binary-test/distance_demo/temp_aflgo/dot-files/cfg.add.dot ..
+Name: CFG for 'add' function
+Type: DiGraph
+Number of nodes: 1
+Number of edges: 0
+Average in degree:   0.0000
+Average out degree:   0.0000
+
+Working in CFG mode..
+Loading cg_distance for function 'add'..
+Adding target BBs (if any)..
+Calculating distance..
+
+Parsing /home/xiaosatianyu/workspace/git/fuzz/RDFUZZ/testenv/binary-test/distance_demo/temp_aflgo/dot-files/cfg.cal1.dot ..
+Name: CFG for 'cal1' function
+Type: DiGraph
+Number of nodes: 1
+Number of edges: 0
+Average in degree:   0.0000
+Average out degree:   0.0000
+
+Working in CFG mode..
+Loading cg_distance for function 'cal1'..
+Adding target BBs (if any)..
+Calculating distance..
+
+Parsing /home/xiaosatianyu/workspace/git/fuzz/RDFUZZ/testenv/binary-test/distance_demo/temp_aflgo/dot-files/cfg.cal2.dot ..
+Name: CFG for 'cal2' function
+Type: DiGraph
+Number of nodes: 1
+Number of edges: 0
+Average in degree:   0.0000
+Average out degree:   0.0000
+
+Working in CFG mode..
+Loading cg_distance for function 'cal2'..
+Adding target BBs (if any)..
+Calculating distance..
+
+Parsing /home/xiaosatianyu/workspace/git/fuzz/RDFUZZ/testenv/binary-test/distance_demo/temp_aflgo/dot-files/cfg.main.dot ..
+Name: CFG for 'main' function
+Type: DiGraph
+Number of nodes: 1
+Number of edges: 0
+Average in degree:   0.0000
+Average out degree:   0.0000
+
+Working in CFG mode..
+Loading cg_distance for function 'main'..
+Adding target BBs (if any)..
+Calculating distance..
+
+Parsing /home/xiaosatianyu/workspace/git/fuzz/RDFUZZ/testenv/binary-test/distance_demo/temp_aflgo/dot-files/cfg.minus.dot ..
+Name: CFG for 'minus' function
+Type: DiGraph
+Number of nodes: 1
+Number of edges: 0
+Average in degree:   0.0000
+Average out degree:   0.0000
+
+Working in CFG mode..
+Loading cg_distance for function 'minus'..
+Adding target BBs (if any)..
+Calculating distance..
+
+Parsing /home/xiaosatianyu/workspace/git/fuzz/RDFUZZ/testenv/binary-test/distance_demo/temp_aflgo/dot-files/cfg.multiple.dot ..
+Name: CFG for 'multiple' function
+Type: DiGraph
+Number of nodes: 1
+Number of edges: 0
+Average in degree:   0.0000
+Average out degree:   0.0000
+
+Working in CFG mode..
+Loading cg_distance for function 'multiple'..
+Adding target BBs (if any)..
+Calculating distance..

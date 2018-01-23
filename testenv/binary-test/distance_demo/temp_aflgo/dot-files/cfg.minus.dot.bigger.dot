@@ -1,0 +1,5 @@
+digraph "CFG for 'minus' function" {
+	label="CFG for 'minus' function";
+
+	Node0x3918ad0 [shape=record,label="{test.c:8:}"];
+}

@@ -1,0 +1,5 @@
+digraph "CFG for 'multiple' function" {
+	label="CFG for 'multiple' function";
+
+	Node0x38e5740 [shape=record,label="{test.c:12:}"];
+}

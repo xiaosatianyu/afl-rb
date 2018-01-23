@@ -57,6 +57,32 @@ def distance (name):
     out.write (str (distance))
     out.write ("\n")
 
+##加载目标函数
+def load_target(targets_file):
+    print ("Loading targets..")
+    with open(targets_file, "r") as f:
+        targets = []
+        for line in f.readlines ():
+            line = line.strip ()
+            for target in find_nodes(line):
+                targets.append (target)
+    
+    if (len (targets) == 0):
+        print ("No targets available")
+        exit(1)
+
+    return targets
+
+#计算每个函数的距离
+def cal_dis(out_file, names_file):
+    print ("Calculating distance..")
+    with open(out_file, "w") as out:
+        with open(names_file, "r") as f:
+            for line in f.readlines():
+                line = line.strip()
+                distance (line)
+
+
 # Main function
 if __name__ == '__main__':
   parser = argparse.ArgumentParser ()
@@ -76,26 +102,8 @@ if __name__ == '__main__':
   is_cg = 1 if "Name: Call graph" in nx.info(G) else 0
   print ("\nWorking in %s mode.." % ("CG" if is_cg else "CFG"))
 
-  # Process as ControlFlowGraph
-  caller = ""
-  cg_distance = {}
-  bb_distance = {}
-  # Process as CallGraph
-  print ("Loading targets..")
-  with open(args.targets, "r") as f:
-    targets = []
-    for line in f.readlines ():
-        line = line.strip ()
-        for target in find_nodes(line):
-            targets.append (target)
-
-  if (len (targets) == 0 and is_cg):
-    print ("No targets available")
-    exit(1)
-
-  print ("Calculating distance..")
-  with open(args.out, "w") as out:
-    with open(args.names, "r") as f:
-      for line in f.readlines():
-        line = line.strip()
-        distance (line)
+  #1. load target
+  targets = load_target(args.targets)
+  #2. calculate distance
+  cal_dis(args.out, args.name)
+ 

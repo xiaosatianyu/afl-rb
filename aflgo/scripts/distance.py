@@ -123,7 +123,7 @@ if __name__ == '__main__':
           line = s[len(s) - 1]
           nodes = find_nodes(line)
           if len(nodes) > 0:
-            bb_distance[line] = 0
+            bb_distance[line] = 0   #当前基本块距离为0 表示命中
             print ("Added target BB!")
 
   # Process as CallGraph

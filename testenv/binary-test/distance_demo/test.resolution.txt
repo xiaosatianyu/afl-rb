@@ -1,0 +1,9 @@
+/tmp/test-dd2e07.o
+-r=/tmp/test-dd2e07.o,add,pl
+-r=/tmp/test-dd2e07.o,minus,pl
+-r=/tmp/test-dd2e07.o,multiple,pl
+-r=/tmp/test-dd2e07.o,cal1,pl
+-r=/tmp/test-dd2e07.o,cal2,pl
+-r=/tmp/test-dd2e07.o,main,plx
+-r=/tmp/test-dd2e07.o,__afl_area_ptr,l
+-r=/tmp/test-dd2e07.o,__afl_prev_loc,l
