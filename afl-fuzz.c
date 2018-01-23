@@ -2076,12 +2076,6 @@ static void update_max_min_distance(){
         }
     }
 
-    //如果击中目标,就把最小值简化为0
-    if (hit_target){
-        min_distance =0;
-        hit_target =0; //这个用完要记得置为0
-    }
-
 }
 
 
@@ -2287,8 +2281,8 @@ static inline u8 has_new_bits(u8* virgin_map) {
 	u64* hit_count = (u64*) (trace_bits + MAP_SIZE + 16);
     
     if (*total_count > 0){
-        //if (*hit_count)
-        //    hit_target =1 ;// 表示击中目标 会不会影响后面的判定距离门限
+        if (*hit_count)
+            hit_target =1 ;// 表示击中目标 会不会影响后面的判定距离门限
         cur_distance = (double) (*total_distance) / (double) (*total_count);
     }
 	else
@@ -4629,6 +4623,11 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
 
   //更新一下非queue下的最大最小距离
   update_max_min_distance();
+  //如果击中目标,就把最小值简化为0, cransh
+  if ( hit_target && fault==FAULT_CRASH){
+    min_distance =0;
+    hit_target =0; //这个用完要记得置为0
+   }
 
   switch (fault) {
 
