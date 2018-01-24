@@ -401,7 +401,7 @@ static u8 shadow_mode = 0;        /* @RB@ shadow AFL run -- do not modify */ //�
 static u8 run_with_shadow = 0;   // 1 表示选择使用shadow模式
 
 static u8 use_rarity_mask = 1; //默认开启的,由参数指定关闭
-static u8 use_distance_mask = 0; //
+static u8 use_distance_mask = 1; //
 
 static u8 open_distance_mask =0 ;
 static u8 open_rarity_mask =0 ;
@@ -827,8 +827,6 @@ static void add_into_blacklist(){
 //}
 
 
-
-
 //return 1 enough; 0 not enough
 static u8 check_if_enough_distance_data(){
 	u32 rate_in_max_min=0;
@@ -841,6 +839,7 @@ static u8 check_if_enough_distance_data(){
 		return 1;
 	return 0;
 }
+
 
 ////返回对当前trace计算的一个银子
 //static u32 cal_power_factor(struct queue_entry * q){
@@ -953,7 +952,7 @@ static u8 check_if_augment_distance( struct queue_entry * q){
 // return 0 不开启; return 1 开启, 
 static u8 check_if_open_distance_mask(struct queue_entry * q) {
 	//0. 判断距离信息是否充分
-	if ( !check_if_enough_distance_data() )
+	if ( !check_if_enough_distance_data()  && q->distance_attri <= 0.15)
 		return 0 ;
     return 1;
 }
@@ -2009,12 +2008,13 @@ static void update_all_d_attri(){
             else{
                 d_attri = (distance-min_distance)/(max_distance-min_distance);
                 q->distance_attri=d_attri;
+                DEBUG_TEST("%s distance is %.0f, d_attri is %0.3f\n",q->fname,q->distance, q->distance_attri);  
             }
         }
         q = q->next;
     }
     
-    DEBUG_TEST("更新所有测试用例的距离属性---------------------------------------\n");
+    DEBUG_TEST("更新完所有测试用例的距离属性---------------------------------------\n");
     
     //2.更新距离门限 需要变大变小
     //只对最小低的20%进行测试
@@ -6653,6 +6653,8 @@ static u8 fuzz_one(char** argv) {
      open_rarity_mask = 1;
      u8 ret =  check_if_open_distance_mask(queue_cur); 
      open_distance_mask =  use_distance_mask & ret;
+     if(open_distance_mask)
+        DEBUG_TEST("%s open distance_mask", queue_cur->fname); 
      vanilla_afl = 0;
      DEBUG_TEST("[run]%s is a SDSR\n", queue_cur->fname);
   }
@@ -6662,6 +6664,8 @@ static u8 fuzz_one(char** argv) {
      rb_fuzzing = 0;
      u8 ret =  check_if_open_distance_mask(queue_cur); 
      open_distance_mask =  use_distance_mask & ret;
+     if(open_distance_mask)
+        DEBUG_TEST("%s open distance_mask", queue_cur->fname); 
      DEBUG_TEST("[run]%s is a SDBR\n", queue_cur->fname);
   }
   else if (fit_flag == BDSR){
