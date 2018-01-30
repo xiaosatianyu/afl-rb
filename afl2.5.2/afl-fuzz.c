@@ -329,7 +329,7 @@ enum {
 
 static void show_stats(void);
 //更新最大最小距离
-static void update_max_min_dis( u8 out_flag){
+static void update_max_min_dis( u8 out_flag, u8 crash_flag){
     if (cur_distance > 0) {
         if (max_distance <= 0) {
             max_distance = cur_distance;
@@ -347,7 +347,7 @@ static void update_max_min_dis( u8 out_flag){
     }
 
     // 如果命中目标
-    if (hit_target == 1){
+    if (hit_target == 1  && crash_flag){
         min_distance = 0;
         hit_target = 0;
        if (out_flag)  show_stats();
@@ -817,7 +817,6 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det) {
   q->passed_det   = passed_det;
 
   q->distance = cur_distance;
-  update_max_min_dis(1);//更新最大最小距离  
 
   if (q->depth > max_depth) max_depth = q->depth;
 
@@ -912,7 +911,7 @@ EXP_ST void read_bitmap(u8* fname) {
    This function is called after every exec() on a fairly large buffer, so
    it needs to be fast. We do this in 32-bit and 64-bit flavors. */
 
-static inline u8 has_new_bits(u8* virgin_map) {
+static inline u8 has_new_bits(u8* virgin_map, u8 cal_flag) {
 
 #ifdef __x86_64__
 
@@ -927,8 +926,8 @@ static inline u8 has_new_bits(u8* virgin_map) {
   u64* hit_count =(u64*)(trace_bits + MAP_SIZE + 16);
 
   if (*total_count > 0){
-     //if(*hit_count)
-     //   hit_target=1;
+     if(*hit_count)
+        hit_target=1;
      cur_distance = (double) (*total_distance) / (double) (*total_count);
   }
 else
@@ -998,7 +997,11 @@ else
   }
 
   if (ret && virgin_map == virgin_bits) bitmap_changed = 1;
-
+ 
+  if( cal_flag ) 
+    update_max_min_dis(0,0);//更新最大最小距离  
+  else
+    update_max_min_dis(1,0);//更新最大最小距离  
   return ret;
 
 }
@@ -2645,14 +2648,12 @@ static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,
 
     if (q->exec_cksum != cksum) {
 
-      u8 hnb = has_new_bits(virgin_bits);
+      u8 hnb = has_new_bits(virgin_bits, 1);
       if (hnb > new_bits) new_bits = hnb;
 
-      //判断增加的测试用例的距离  
       /* This is relevant when test cases are added w/out save_if_interesting */
       if (q->distance <= 0) {
           q->distance = cur_distance;
-          update_max_min_dis(0);//更新最大最小距离  
       }
 
       if (q->exec_cksum) {
@@ -3189,7 +3190,7 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
     /* Keep only if there are new bits in the map, add to queue for
        future fuzzing, etc. */
 
-    if (!(hnb = has_new_bits(virgin_bits))) {
+    if (!(hnb = has_new_bits(virgin_bits, 0))) {
       if (crash_mode) total_crashes++;
       return 0;
     }    
@@ -3231,12 +3232,7 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
 
   }
 
-  //增加非queue下的距离收集
-  update_max_min_dis(1);//更新最大最小距离  
-  //如果击中目标,就把最小值简化为0
-  if (hit_target && fault==FAULT_CRASH){
-        update_max_min_dis(1);
-  }
+  
 
   switch (fault) {
 
@@ -3259,7 +3255,7 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
         simplify_trace((u32*)trace_bits);
 #endif /* ^__x86_64__ */
 
-        if (!has_new_bits(virgin_tmout)) return keeping;
+        if (!has_new_bits(virgin_tmout, 0)) return keeping;
 
       }
 
@@ -3315,10 +3311,13 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
         simplify_trace((u32*)trace_bits);
 #endif /* ^__x86_64__ */
 
-        if (!has_new_bits(virgin_crash)) return keeping;
-
+        if (!has_new_bits(virgin_crash, 0)) {
+            update_max_min_dis(1,1);
+            return keeping;
+        }
       }
 
+      update_max_min_dis(1,1);
       if (!unique_crashes) write_crash_readme();
 
 #ifndef SIMPLE_FILES
@@ -3355,6 +3354,9 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
   close(fd);
 
   ck_free(fn);
+  
+  
+
 
   return keeping;
 

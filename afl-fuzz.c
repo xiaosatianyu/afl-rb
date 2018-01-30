@@ -468,7 +468,6 @@ enum {
 //@rd@ variable for rd
 static double hit_target =0;  //表示当前测试用例是否击中目标
 static double cur_distance = -1.0;     /* Distance of executed input       */
-static int cur_hit = 0;     /* 0表示没有击中,1表示击中       */
 static double max_distance = -1.0;     /* Maximal distance for any input   */
 static double min_distance = -1.0;     /* Minimal distance for any input   */
 static int *mut_branch_ids;				/*save some the minimum branch index when in nutation*/
@@ -2055,7 +2054,7 @@ static void update_all_d_attri(){
 
 static void show_stats(void);
 //更新一下最大最小距离
-static void update_max_min_distance(u8 out_flag ){
+static void update_max_min_distance(u8 out_flag , u8 crash_flag){
    
     if (cur_distance > 0) {
         if (max_distance <= 0) {
@@ -2080,7 +2079,7 @@ static void update_max_min_distance(u8 out_flag ){
         }
     }
     // 如果命中了,把最小距离设为0
-    if( hit_target == 1 ){
+    if( hit_target == 1 && crash_flag ){
             distance_threshold = distance_ts_default;
             min_distance = 0;
             update_all_d_attri();
@@ -2133,7 +2132,7 @@ static u8  fitness(struct queue_entry* q){
 
     //调整power
     if  (q->distance_attri <0.1) power_factor*=2;
-    if  (0.1 <= q->distance_attri <0.2) power_factor*=1.5;
+    if  (0.1 <= q->distance_attri && q->distance_attri <0.2) power_factor*=1.5;
     
     
     //total flag
@@ -2182,9 +2181,6 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det, u8 readtest_flag) {
    q->min_branch_hits = NULL;
   //end rd
 
-  //更新最大最小距离
-  update_max_min_distance(1);
-  
   if (q->depth > max_depth) max_depth = q->depth;
 
   if (queue_top) {
@@ -2284,7 +2280,7 @@ EXP_ST void read_bitmap(u8* fname) {
    This function is called after every exec() on a fairly large buffer, so
    it needs to be fast. We do this in 32-bit and 64-bit flavors. */
 
-static inline u8 has_new_bits(u8* virgin_map) {
+static inline u8 has_new_bits(u8* virgin_map, u8 cal_flag) {
 
 
 #ifdef __x86_64__
@@ -2377,6 +2373,11 @@ static inline u8 has_new_bits(u8* virgin_map) {
   }
 
   if (ret && virgin_map == virgin_bits) bitmap_changed = 1;
+   
+  if (cal_flag)
+    update_max_min_distance(0,0);
+  else
+    update_max_min_distance(1,0);
 
   return ret;
 
@@ -4019,12 +4020,11 @@ static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,
 
     if (q->exec_cksum != cksum) {
 
-      u8 hnb = has_new_bits(virgin_bits);
+      u8 hnb = has_new_bits(virgin_bits, 1);
       if (hnb > new_bits) new_bits = hnb;
 
       //更新一下距离和最大最小距离
       q->distance = cur_distance;
-      update_max_min_distance(0);//更新一下最大最小距离
     
     if (q->exec_cksum) {
 
@@ -4583,7 +4583,7 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
     /* Keep only if there are new bits in the map, add to queue for
        future fuzzing, etc. */
 
-    if (!(hnb = has_new_bits(virgin_bits))) {
+    if (!(hnb = has_new_bits(virgin_bits,0))) {
 
       if (crash_mode) total_crashes++;
       return 0;
@@ -4606,13 +4606,6 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
     /* @RB@ in shadow mode, don't actuallly add to queue */  //shadow模式只是再跑一遍,用来表示对比,不记录结果
     if (!shadow_mode) { 
       add_to_queue(fn, len, 0, 0);
-      //@RD@ 如果有新的测试用例击中目标了,就输出
-      	if ( cur_hit){
-      		//表示击中
-      		DEBUG5("%s击中了目标, 时间:%llu\n",fn, get_cur_time()-start_time);
-      		exit(1);
-      	}
-      //end rd
 
       if (hnb == 2) {
         queue_top->has_new_cov = 1;
@@ -4641,12 +4634,6 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
 
   }
 
-  //更新一下非queue下的最大最小距离
-  update_max_min_distance(1);
-  //如果击中目标,就把最小值简化为0, cransh
-  if ( hit_target && fault==FAULT_CRASH){
-    update_max_min_distance(1);
-  }
 
   switch (fault) {
 
@@ -4670,7 +4657,7 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
         simplify_trace((u32*)trace_bits);
 #endif /* ^__x86_64__ */
 
-        if (!has_new_bits(virgin_tmout)) return keeping;
+        if (!has_new_bits(virgin_tmout,0)) return keeping;
 
       }
 
@@ -4734,10 +4721,14 @@ keep_as_crash:
         simplify_trace((u32*)trace_bits);
 #endif /* ^__x86_64__ */
 
-        if (!has_new_bits(virgin_crash)) return keeping;
-
+        if (!has_new_bits(virgin_crash,0)){
+            update_max_min_distance(1,1);
+            return keeping;
+        }
       }
-
+      
+      update_max_min_distance(1,1);
+        
       if (!unique_crashes) write_crash_readme();
 
 #ifndef SIMPLE_FILES
