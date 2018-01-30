@@ -2053,27 +2053,30 @@ static void update_all_d_attri(){
 
 }
 
-
+static void show_stats(void);
 //更新一下最大最小距离
-static void update_max_min_distance(){
+static void update_max_min_distance(u8 out_flag ){
    
     if (cur_distance > 0) {
         if (max_distance <= 0) {
             max_distance = cur_distance;
             min_distance = cur_distance;
             out_distance_change();
+            if (out_flag)  show_stats();
         }
         if (cur_distance > max_distance){
             distance_threshold = distance_ts_default;
             max_distance = cur_distance;
             update_all_d_attri();
             out_distance_change();
+            if (out_flag)  show_stats();
         }
         if (cur_distance < min_distance){
             distance_threshold = distance_ts_default;
             min_distance = cur_distance;
             update_all_d_attri();
             out_distance_change();
+            if (out_flag)  show_stats();
         }
     }
     // 如果命中了,把最小距离设为0
@@ -2083,6 +2086,7 @@ static void update_max_min_distance(){
             update_all_d_attri();
             out_distance_change();
             hit_target = 0;
+            if (out_flag)  show_stats();
     }
 
 }
@@ -2179,7 +2183,7 @@ static void add_to_queue(u8* fname, u32 len, u8 passed_det, u8 readtest_flag) {
   //end rd
 
   //更新最大最小距离
-  update_max_min_distance();
+  update_max_min_distance(1);
   
   if (q->depth > max_depth) max_depth = q->depth;
 
@@ -3946,7 +3950,7 @@ static void write_with_gap(void* mem, u32 len, u32 skip_at, u32 skip_len) {
 }
 
 
-static void show_stats(void);
+
 
 /* Calibrate a new test case. This is done when processing the input directory
    to warn about flaky or otherwise problematic test cases early on; and when
@@ -4020,7 +4024,7 @@ static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,
 
       //更新一下距离和最大最小距离
       q->distance = cur_distance;
-      update_max_min_distance();//更新一下最大最小距离
+      update_max_min_distance(0);//更新一下最大最小距离
     
     if (q->exec_cksum) {
 
@@ -4638,10 +4642,10 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
   }
 
   //更新一下非queue下的最大最小距离
-  update_max_min_distance();
+  update_max_min_distance(1);
   //如果击中目标,就把最小值简化为0, cransh
   if ( hit_target && fault==FAULT_CRASH){
-    update_max_min_distance();
+    update_max_min_distance(1);
   }
 
   switch (fault) {
