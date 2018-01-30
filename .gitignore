@@ -100,23 +100,20 @@ afl-qemu-trace
 /testenv/binary-test/CVE-2016-9828(no)/mini_distance.png
 
 #CVE-2017-9050
-/testenv/binary-test/CVE-2017-9050/libxml2/
-/testenv/binary-test/CVE-2017-9050/temp*/dot-files
-/testenv/binary-test/CVE-2017-9050/temp*/state
-/testenv/binary-test/CVE-2017-9050/temp*/step1.log
-/testenv/binary-test/CVE-2017-9050/temp*/step2.log
-/testenv/binary-test/CVE-2017-9050/temp_aflgo/dot-files
-/testenv/binary-test/CVE-2017-9050/temp_aflgo/state
-/testenv/binary-test/CVE-2017-9050/temp_aflgo/step1.log
-/testenv/binary-test/CVE-2017-9050/temp_aflgo/step2.log
+/testenv/binary-test/CVE-2017-9050*/libxml2/
+/testenv/binary-test/CVE-2017-9050*/temp*/dot-files
+/testenv/binary-test/CVE-2017-9050*/temp*/state
+/testenv/binary-test/CVE-2017-9050*/temp*/step1.log
+/testenv/binary-test/CVE-2017-9050*/temp*/step2.log
 /testenv/binary-test/CVE-2017-9050/mini_distance.png
 
-/testenv/binary-test/CVE-2017-9049/libxml2/
-/testenv/binary-test/CVE-2017-9049/temp/dot-files
-/testenv/binary-test/CVE-2017-9049/temp/step
-/testenv/binary-test/CVE-2017-9049/temp/step1.log
-/testenv/binary-test/CVE-2017-9049/temp/step2.log
-/testenv/binary-test/CVE-2017-9049/mini_distance.png
+#CVE-2017-9049
+/testenv/binary-test/CVE-2017-9049*/libxml2/
+/testenv/binary-test/CVE-2017-9049*/temp*/dot-files
+/testenv/binary-test/CVE-2017-9049*/temp*/step
+/testenv/binary-test/CVE-2017-9049*/temp*/step1.log
+/testenv/binary-test/CVE-2017-9049*/temp*/step2.log
+/testenv/binary-test/CVE-2017-9049*/mini_distance.png
 
 /testenv/binary-test/CVE-2017-9048/libxml2/
 /testenv/binary-test/CVE-2017-9048/temp/dot-files
