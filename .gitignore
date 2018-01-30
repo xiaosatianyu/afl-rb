@@ -20,113 +20,43 @@ afl-qemu-trace
 /qemu_mode/qemu-2.3.0/
 
 
-/aflgo/afl-analyze
-/aflgo/afl-as
-/aflgo/afl-clang
-/aflgo/afl-clang++
-/aflgo/afl-fuzz
-/aflgo/afl-g++
-/aflgo/afl-gcc
-/aflgo/afl-gotcpu
-/aflgo/afl-showmap
-/aflgo/afl-clang-fast
-/aflgo/afl-clang-fast++
-/aflgo/afl-llvm-pass.so
-
-/afl2.5.2/afl-analyze
-/afl2.5.2/afl-as
-/afl2.5.2/afl-clang
-/afl2.5.2/afl-clang++
-/afl2.5.2/afl-fuzz
-/afl2.5.2/afl-g++
-/afl2.5.2/afl-gcc
-/afl2.5.2/afl-gotcpu
-/afl2.5.2/afl-showmap
-
-/aflrb/afl-analyze
-/aflrb/afl-as
-/aflrb/afl-clang
-/aflrb/afl-clang++
-/aflrb/afl-fuzz
-/aflrb/afl-g++
-/aflrb/afl-gcc
-/aflrb/afl-gotcpu
-/aflrb/afl-showmap
+/*/afl-analyze
+/*/afl-as
+/*/afl-clang
+/*/afl-clang++
+/*/afl-fuzz
+/*/afl-g++
+/*/afl-gcc
+/*/afl-gotcpu
+/*/afl-showmap
+/*/afl-clang-fast
+/*/afl-clang-fast++
+/*/afl-llvm-pass.so
 
 /testenv/output/
 /testenv/input/
 /testenv/.gdb_history
 /testenv/output-*/
 /testenv/peda-session-*.txt
-/testenv/mini_distance.png
 
-/testenv/binary-test/CVE-2017-5969/libxml2/
-/testenv/binary-test/CVE-2017-5969/temp/dot-files
-/testenv/binary-test/CVE-2017-5969/temp/state
-/testenv/binary-test/CVE-2017-5969/temp/step1.log
-/testenv/binary-test/CVE-2017-5969/temp/step2.log
-/testenv/binary-test/CVE-2017-5969/mini_distance.png
+/testenv/binary-test/CVE*/libxml2/
+/testenv/binary-test/CVE*/libming/
+/testenv/binary-test/CVE*/libpng-1.6.15/
+/testenv/binary-test/CVE*/tiff-4.0.7/
+/testenv/binary-test/CVE*/*.tar.gz
+/testenv/binary-test/rd-fast/libxml2
 
+/testenv/binary-test/CVE*/temp*/dot-files
+/testenv/binary-test/CVE*/temp*/state
+/testenv/binary-test/CVE*/temp*/step1.log
+/testenv/binary-test/CVE*/temp*/step2.log
+/testenv/binary-test/CVE*/mini_distance.png
 
-/testenv/binary-test/CVE-2016-10094-no/tiff-4.0.7/
-/testenv/binary-test/CVE-2016-10094-no/temp_aflgo/dot-files
-/testenv/binary-test/CVE-2016-10094-no/temp_aflgo/state
-/testenv/binary-test/CVE-2016-10094-no/temp_aflgo/step1.log
-/testenv/binary-test/CVE-2016-10094-no/temp_aflgo/step2.log
-/testenv/binary-test/CVE-2016-10094-no/mini_distance.png
-
-/testenv/binary-test/CVE-2015-7497-yes/libxml2/
-/testenv/binary-test/CVE-2015-7497-yes/temp/dot-files
-/testenv/binary-test/CVE-2015-7497-yes/temp/step
-/testenv/binary-test/CVE-2015-7497-yes/temp/step1.log
-/testenv/binary-test/CVE-2015-7497-yes/temp/step2.log
-/testenv/binary-test/CVE-2015-7497-yes/mini_distance.png
+testenv/binary-test/bin/*
 
 
 
-/testenv/binary-test/CVE-2014-9495(no)/libpng-1.6.15/
-/testenv/binary-test/CVE-2014-9495(no)/temp/dot-files
-/testenv/binary-test/CVE-2014-9495(no)/temp/step
-/testenv/binary-test/CVE-2014-9495(no)/temp/step1.log
-/testenv/binary-test/CVE-2014-9495(no)/temp/step2.log
-/testenv/binary-test/CVE-2014-9495(no)/mini_distance.png
 
 
-/testenv/binary-test/CVE-2016-9828(no)/libming/
-/testenv/binary-test/CVE-2016-9828(no)/temp/dot-files
-/testenv/binary-test/CVE-2016-9828(no)/temp/step
-/testenv/binary-test/CVE-2016-9828(no)/temp/step1.log
-/testenv/binary-test/CVE-2016-9828(no)/temp/step2.log
-/testenv/binary-test/CVE-2016-9828(no)/mini_distance.png
-
-#CVE-2017-9050
-/testenv/binary-test/CVE-2017-9050*/libxml2/
-/testenv/binary-test/CVE-2017-9050*/temp*/dot-files
-/testenv/binary-test/CVE-2017-9050*/temp*/state
-/testenv/binary-test/CVE-2017-9050*/temp*/step1.log
-/testenv/binary-test/CVE-2017-9050*/temp*/step2.log
-/testenv/binary-test/CVE-2017-9050/mini_distance.png
-
-#CVE-2017-9049
-/testenv/binary-test/CVE-2017-9049*/libxml2/
-/testenv/binary-test/CVE-2017-9049*/temp*/dot-files
-/testenv/binary-test/CVE-2017-9049*/temp*/step
-/testenv/binary-test/CVE-2017-9049*/temp*/step1.log
-/testenv/binary-test/CVE-2017-9049*/temp*/step2.log
-/testenv/binary-test/CVE-2017-9049*/mini_distance.png
-
-/testenv/binary-test/CVE-2017-9048/libxml2/
-/testenv/binary-test/CVE-2017-9048/temp/dot-files
-/testenv/binary-test/CVE-2017-9048/temp/step
-/testenv/binary-test/CVE-2017-9048/temp/step1.log
-/testenv/binary-test/CVE-2017-9048/temp/step2.log
-/testenv/binary-test/CVE-2017-9048/mini_distance.png
-
-/testenv/binary-test/CVE-2017-9047/libxml2/
-/testenv/binary-test/CVE-2017-9047/temp/dot-files
-/testenv/binary-test/CVE-2017-9047/temp/step
-/testenv/binary-test/CVE-2017-9047/temp/step1.log
-/testenv/binary-test/CVE-2017-9047/temp/step2.log
-/testenv/binary-test/CVE-2017-9047/mini_distance.png
 
 
