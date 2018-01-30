@@ -2076,6 +2076,14 @@ static void update_max_min_distance(){
             out_distance_change();
         }
     }
+    // 如果命中了,把最小距离设为0
+    if( hit_target == 1 ){
+            distance_threshold = distance_ts_default;
+            min_distance = 0;
+            update_all_d_attri();
+            out_distance_change();
+            hit_target = 0;
+    }
 
 }
 
@@ -4633,9 +4641,8 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
   update_max_min_distance();
   //如果击中目标,就把最小值简化为0, cransh
   if ( hit_target && fault==FAULT_CRASH){
-    min_distance =0;
-    hit_target =0; //这个用完要记得置为0
-   }
+    update_max_min_distance();
+  }
 
   switch (fault) {
 
