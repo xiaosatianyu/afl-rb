@@ -6654,9 +6654,9 @@ static u8 fuzz_one(char** argv) {
      u8 ret =  check_if_open_distance_mask(queue_cur); 
      open_distance_mask =  use_distance_mask & ret;
      if(open_distance_mask)
-        DEBUG_TEST("%s open distance_mask", queue_cur->fname); 
+        DEBUG_TEST("%s open distance_mask\n", queue_cur->fname); 
      vanilla_afl = 0;
-     DEBUG_TEST("[run]%s is a SDSR\n", queue_cur->fname);
+     DEBUG_TEST("[select]%s is a SDSR\n", queue_cur->fname);
   }
   else if (fit_flag == SDBR){
      // 小d 大r 只启用distance mask,使用 vanilla_afl的模式运行
@@ -6665,8 +6665,8 @@ static u8 fuzz_one(char** argv) {
      u8 ret =  check_if_open_distance_mask(queue_cur); 
      open_distance_mask =  use_distance_mask & ret;
      if(open_distance_mask)
-        DEBUG_TEST("%s open distance_mask", queue_cur->fname); 
-     DEBUG_TEST("[run]%s is a SDBR\n", queue_cur->fname);
+        DEBUG_TEST("%s open distance_mask\n", queue_cur->fname); 
+     DEBUG_TEST("[select]%s is a SDBR\n", queue_cur->fname);
   }
   else if (fit_flag == BDSR){
     // 大d 小r 只启用rarity mask, 使用rb_fuzzing的模式运行
@@ -6680,7 +6680,7 @@ static u8 fuzz_one(char** argv) {
     // only the first run 
     if (init_run){
         vanilla_afl = 1000;
-        DEBUG_TEST("%s is a BDBR\n", queue_cur->fname);
+        DEBUG_TEST("[select]%s is a BDBR\n", queue_cur->fname);
         init_run =0;
     }
     else {
