@@ -1,0 +1,7 @@
+process_file
+process_object
+process_unwind
+arm_process_unwind
+dump_arm_unwind
+decode_arm_unwind
+decode_tic6x_unwind_bytecode

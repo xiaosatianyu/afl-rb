@@ -401,7 +401,7 @@ static u8 shadow_mode = 0;        /* @RB@ shadow AFL run -- do not modify */ //�
 static u8 run_with_shadow = 0;   // 1 表示选择使用shadow模式
 
 static u8 use_rarity_mask = 1; //默认开启的,由参数指定关闭
-static u8 use_distance_mask = 1; //
+static u8 use_distance_mask = 0; //
 
 static u8 open_distance_mask =0 ;
 static u8 open_rarity_mask =0 ;
@@ -6686,9 +6686,9 @@ static u8 fuzz_one(char** argv) {
         init_run =0;
     }
     else {
-        // would no execute BDBR seeds any more
-        //DEBUG_TEST("abandon:%s is a BDBR\n", queue_cur->fname);
-        return 1;
+        if (!prev_cycle_wo_new)
+            return 1;
+        vanilla_afl =1;
     }
   }
    else { 
