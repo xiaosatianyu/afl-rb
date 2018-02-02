@@ -6690,7 +6690,7 @@ static u8 fuzz_one(char** argv) {
   //4.根据不同的模式,进行策略配置
   if (fit_flag == SDSR){
      // 小d 小r 启用raritymask 和distance mask, 使用rb_fuzzing的模式运行
-     open_rarity_mask = 1;
+     open_rarity_mask = 1 && use_rarity_mask;
      u8 ret =  check_if_open_distance_mask(queue_cur); 
      open_distance_mask =  use_distance_mask & ret;
      if(open_distance_mask)
@@ -6711,7 +6711,7 @@ static u8 fuzz_one(char** argv) {
   else if (fit_flag == BDSR){
     // 大d 小r 只启用rarity mask, 使用rb_fuzzing的模式运行
      vanilla_afl = 0;
-     open_rarity_mask = 1;
+     open_rarity_mask = 1 && use_rarity_mask;
      //DEBUG_TEST("abandon: %s is a BDSR\n", queue_cur->fname);
      //return 1 ;
   }
