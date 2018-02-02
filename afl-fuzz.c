@@ -2008,6 +2008,7 @@ static void update_all_d_attri(){
     //2.更新距离门限 需要变大变小  提取出20%的测试用例
     q = queue;
     u64 num_under_distance_threshold_20 = 0;  //低于门限值的测试用例数量
+    u8 add_num_20=0;
     while(q && distance_threshold_20 > 0 && queued_paths > 200){
        
         if (q->distance_attri <= distance_threshold_20){
@@ -2017,22 +2018,30 @@ static void update_all_d_attri(){
         //else{
         //    DEBUG_TEST("%s 的距离属性为%.4f,大于门限\n", q->fname,q->distance_attri );
         //} 
-
-        if( num_under_distance_threshold_20 > queued_paths * 0.2 || num_under_distance_threshold_20 > 200){
+        //如果最小距离值占据了20%以上,会卡主
+        if( num_under_distance_threshold_20 > queued_paths * 0.2){
             distance_threshold_20 -=0.03; //缩小门限 门限缩小的力度
             if(distance_threshold_20 < 0)
                 distance_threshold_20 =0;
             q = queue ;// 重新开始循环
             num_under_distance_threshold_20 = 0;
-            // DEBUG_TEST("\n距离门限缩小至%0.3f\n", distance_threshold_20);
+            DEBUG_TEST("\n距离门限缩小至%0.3f\n", distance_threshold_20);
             continue;
         }
         q = q->next;
         
         //扩大一点
+        //如果门限太小了,没有测试用例,又会增大
+        //第二次增大的时候,恢复
         if(q==NULL && num_under_distance_threshold_20 ==0 ){
+            if(add_num_20){
+                distance_threshold_20 += 0.03;
+                break;
+             } 
             distance_threshold_20 +=0.01;
-            q = queue;
+            add_num_20++;
+            DEBUG_TEST("\n距离门限扩大至%0.3f\n", distance_threshold_20);            q = queue;
+            continue;
         }
         
     }
@@ -2042,6 +2051,7 @@ static void update_all_d_attri(){
     //3.更新距离门限 需要变大变小 提取出10%的测试用例
     q = queue;
     u64  num_under_distance_threshold_10 = 0;  //低于门限值的测试用例数量
+    u8 add_num_10=0;
     while(q && distance_threshold_10 > 0 && queued_paths > 200){
        
         if (q->distance_attri <= distance_threshold_10){
@@ -2052,7 +2062,7 @@ static void update_all_d_attri(){
         //    DEBUG_TEST("%s 的距离属性为%.4f,大于门限\n", q->fname,q->distance_attri );
         //} 
 
-        if( num_under_distance_threshold_10 > queued_paths * 0.1 || num_under_distance_threshold_10 > 200){
+        if( num_under_distance_threshold_10 > queued_paths * 0.1 ){
             distance_threshold_10 -=0.03; //缩小门限 门限缩小的力度
             if(distance_threshold_10 < 0)
                 distance_threshold_10 =0;
@@ -2065,8 +2075,14 @@ static void update_all_d_attri(){
         
         //扩大一点
         if(q==NULL && num_under_distance_threshold_10 ==0 ){
+            if(add_num_10){
+                distance_threshold_10 += 0.03;
+                break;   
+            }
+            add_num_10++;
             distance_threshold_10 +=0.01;
             q = queue;
+            continue;
         }
         
     }
@@ -7032,7 +7048,7 @@ re_run: // re-run when running in shadow mode  这里只有shadow mode 才会进
   /* Skip right away if -d is given, if we have done deterministic fuzzing
    * on this entry ourselves (was_fuzzed), or if it has gone through deterministic
      testing in earlier, resumed runs (passed_det). */
-  //对于不使用 distance_mask和rarity_mask,且要跳过确定性变异的可以直接goto havoc
+  //对于不使用 distance_mask和rarity_mask,且要跳过确定性变异的可以直接goto havoc, 在shadow下的rerun
 	if ( (!rb_fuzzing && skip_deterministic)
          || skip_deterministic_bootstrap
 	     || (!rb_fuzzing && queue_cur->was_fuzzed)
@@ -7181,7 +7197,8 @@ re_run: // re-run when running in shadow mode  这里只有shadow mode 才会进
 
   /* @RB@ */
   if(rb_fuzzing)
-	  DEBUG1("%swhile bitflipping, %i of %i tries hit branch %i\n", shadow_prefix, successful_rarity_tries, total_rarity_tries, rb_fuzzing - 1);
+	  DEBUG1("%swhile bitflipping, %i of %i tries hit branch %i\n", 
+            shadow_prefix, successful_rarity_tries, total_rarity_tries, rb_fuzzing - 1);
   //@RD@
   if(open_distance_mask)
 	  DEBUG1("%swhile bitflipping, %i of %i keep distance\n", shadow_prefix, keep_distance_tries, total_distance_tries);
