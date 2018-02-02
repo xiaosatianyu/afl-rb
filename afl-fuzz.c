@@ -477,8 +477,8 @@ static double max_power_factor=0;      /*the max power factor*/
 static u64 all_executed_num_havoc;  //记录整个fuzz过程,havoc的执行的次数
 
 static double distance_ts_default=1;
-static double distance_threshold = 1; //默认的筛选distance门限
-
+static double distance_threshold_20 = 1; //默认的筛选distance门限
+static double distance_threshold_10 = 1; //默认的筛选distance门限
 //end rd
 
 /* create a new branch mask of the specified size */
@@ -941,7 +941,7 @@ static u8 check_if_augment_distance( struct queue_entry * q){
 // return 0 不开启; return 1 开启, 
 static u8 check_if_open_distance_mask(struct queue_entry * q) {
 	//0. 判断距离信息是否充分
-	if ( check_if_enough_distance_data()  && q->distance_attri <= 0.15)
+	if ( check_if_enough_distance_data()  && q->distance_attri <= distance_threshold_10)
 		return 1 ;
     return 0;
 }
@@ -2005,40 +2005,74 @@ static void update_all_d_attri(){
     
     DEBUG_TEST("更新完所有测试用例的距离属性---------------------------------------\n");
     
-    //2.更新距离门限 需要变大变小
-    //只对最小低的20%进行测试
+    //2.更新距离门限 需要变大变小  提取出20%的测试用例
     q = queue;
-    u64 num_under_distance_threshold = 0;  //低于门限值的测试用例数量
-    while(q && distance_threshold > 0 && queued_paths > 200){
+    u64 num_under_distance_threshold_20 = 0;  //低于门限值的测试用例数量
+    while(q && distance_threshold_20 > 0 && queued_paths > 200){
        
-        if (q->distance_attri <= distance_threshold){
-            num_under_distance_threshold++;
+        if (q->distance_attri <= distance_threshold_20){
+            num_under_distance_threshold_20++;
             //DEBUG_TEST("%s 的距离属性为%.4f,小于门限\n", q->fname,q->distance_attri );
         } 
         //else{
         //    DEBUG_TEST("%s 的距离属性为%.4f,大于门限\n", q->fname,q->distance_attri );
         //} 
 
-        if( num_under_distance_threshold > queued_paths * 0.2 || num_under_distance_threshold > 600){
-            distance_threshold -=0.03; //缩小门限 门限缩小的力度
-            if(distance_threshold < 0)
-                distance_threshold =0;
+        if( num_under_distance_threshold_20 > queued_paths * 0.2 || num_under_distance_threshold_20 > 200){
+            distance_threshold_20 -=0.03; //缩小门限 门限缩小的力度
+            if(distance_threshold_20 < 0)
+                distance_threshold_20 =0;
             q = queue ;// 重新开始循环
-            num_under_distance_threshold = 0;
-            // DEBUG_TEST("\n距离门限缩小至%0.3f\n", distance_threshold);
+            num_under_distance_threshold_20 = 0;
+            // DEBUG_TEST("\n距离门限缩小至%0.3f\n", distance_threshold_20);
             continue;
         }
         q = q->next;
         
         //扩大一点
-        if(q==NULL && num_under_distance_threshold ==0 ){
-            distance_threshold +=0.01;
+        if(q==NULL && num_under_distance_threshold_20 ==0 ){
+            distance_threshold_20 +=0.01;
             q = queue;
         }
         
     }
 
-    DEBUG_TEST("更新距离门限为%.3f\n", distance_threshold );
+    DEBUG_TEST("更新20%距离门限为%.3f\n", distance_threshold_20 );
+
+    //3.更新距离门限 需要变大变小 提取出10%的测试用例
+    q = queue;
+    u64  num_under_distance_threshold_10 = 0;  //低于门限值的测试用例数量
+    while(q && distance_threshold_10 > 0 && queued_paths > 200){
+       
+        if (q->distance_attri <= distance_threshold_10){
+            num_under_distance_threshold_10++;
+            //DEBUG_TEST("%s 的距离属性为%.4f,小于门限\n", q->fname,q->distance_attri );
+        } 
+        //else{
+        //    DEBUG_TEST("%s 的距离属性为%.4f,大于门限\n", q->fname,q->distance_attri );
+        //} 
+
+        if( num_under_distance_threshold_10 > queued_paths * 0.1 || num_under_distance_threshold_10 > 200){
+            distance_threshold_10 -=0.03; //缩小门限 门限缩小的力度
+            if(distance_threshold_10 < 0)
+                distance_threshold_10 =0;
+            q = queue ;// 重新开始循环
+            num_under_distance_threshold_10 = 0;
+            // DEBUG_TEST("\n距离门限缩小至%0.3f\n", distance_threshold_10);
+            continue;
+        }
+        q = q->next;
+        
+        //扩大一点
+        if(q==NULL && num_under_distance_threshold_10 ==0 ){
+            distance_threshold_10 +=0.01;
+            q = queue;
+        }
+        
+    }
+
+    DEBUG_TEST("更新10%距离门限为%.3f\n", distance_threshold_10 );
+
 
 }
 
@@ -2054,14 +2088,14 @@ static void update_max_min_distance(u8 out_flag , u8 crash_flag){
             if (out_flag)  show_stats();
         }
         if (cur_distance > max_distance){
-            distance_threshold = distance_ts_default;
+            distance_threshold_20 = distance_ts_default;
             max_distance = cur_distance;
             update_all_d_attri();
             out_distance_change();
             if (out_flag)  show_stats();
         }
         if (cur_distance < min_distance){
-            distance_threshold = distance_ts_default;
+            distance_threshold_20 = distance_ts_default;
             min_distance = cur_distance;
             update_all_d_attri();
             out_distance_change();
@@ -2070,7 +2104,7 @@ static void update_max_min_distance(u8 out_flag , u8 crash_flag){
     }
     // 如果命中了,把最小距离设为0
     if( hit_target == 1 && crash_flag ){
-            distance_threshold = distance_ts_default;
+            distance_threshold_20 = distance_ts_default;
             min_distance = 0;
             update_all_d_attri();
             out_distance_change();
@@ -2116,7 +2150,7 @@ static u8  fitness(struct queue_entry* q){
     }
 
     //门限控制,动态
-    if (q->distance_attri <= distance_threshold){
+    if (q->distance_attri <= distance_threshold_20){
       d_flag=1;
    	}
 
