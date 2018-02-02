@@ -31,7 +31,7 @@
 #define DEBUG1 fileonly
 
 //@RD@
-#define DEBUG2 fileonly2
+#define DEBUG_MASK fileonly2
 #define DEBUG3 fileonly3
 #define DEBUG4 fileonly4
 #define DEBUG5 fileonly5
@@ -401,7 +401,7 @@ static u8 shadow_mode = 0;        /* @RB@ shadow AFL run -- do not modify */ //�
 static u8 run_with_shadow = 0;   // 1 表示选择使用shadow模式
 
 static u8 use_rarity_mask = 1; //默认开启的,由参数指定关闭
-static u8 use_distance_mask = 0; //
+static u8 use_distance_mask = 0; //默认关闭,需要参数开启
 
 static u8 open_distance_mask =0 ;
 static u8 open_rarity_mask =0 ;
@@ -917,17 +917,7 @@ static u8 check_if_keep_distance( struct queue_entry * q){
 	//返回 1 表示距离维持
 	//返回 0 表示距离变差
 	double increment_rate;
-	if(q->distance>10000)
-		increment_rate=0.05;
-	else if (q->distance>5000)
-		increment_rate=0.05;
-	else if (q->distance >1000)
-		increment_rate=0.05;
-	else
-		increment_rate=0.05;
-
-	// increment_rate 最好是动态的 由松至紧,
-
+    increment_rate=0.05;
 	//if (cur_distance > q->distance*(1+increment_rate) )  //这里需要改动!
 	if (cur_distance > q->distance+increment_rate*(max_distance-min_distance) )
 		//距离变差
@@ -1054,36 +1044,36 @@ static void output_rarity_mask_info(){
 	if (g_total_rarity_tries_det==0 || g_total_rarity_tries_havoc==0)
 		return;
 
-	DEBUG2("rarity_mask:-----\n");
+	DEBUG_MASK("rarity_mask:-----\n");
 	// 1. shadow 下的det
 	if (g_total_rarity_shadow_det!=0)
 		rate=100*g_successful_rarity_shadow_det/g_total_rarity_shadow_det;
 	else
 		rate=0;
-	DEBUG2("shadow det:, %i in %i, the rate is %i\n", g_successful_rarity_shadow_det, g_total_rarity_shadow_det, rate);
+	DEBUG_MASK("shadow det:, %i in %i, the rate is %i\n", g_successful_rarity_shadow_det, g_total_rarity_shadow_det, rate);
 
 	// 2. shadow下的havoc
 	if (g_total_rarity_shadow_havoc!=0)
 		rate=100*g_successful_rarity_shadow_havoc/g_total_rarity_shadow_havoc;
 	else
 		rate=0;
-	DEBUG2("shadow havoc:, %i in %i, the rate is %i\n", g_successful_rarity_shadow_havoc, g_total_rarity_shadow_havoc, rate);
+	DEBUG_MASK("shadow havoc:, %i in %i, the rate is %i\n", g_successful_rarity_shadow_havoc, g_total_rarity_shadow_havoc, rate);
 
 	// 3. 非shadow下的det
 	if (g_total_rarity_tries_det!=0)
 		rate=100*g_successful_rarity_tries_det/g_total_rarity_tries_det;
 	else
 		rate=0;
-	DEBUG2("mask det: %i in %i, the rate is %i\n", g_successful_rarity_tries_det, g_total_rarity_tries_det, rate);
+	DEBUG_MASK("mask det: %i in %i, the rate is %i\n", g_successful_rarity_tries_det, g_total_rarity_tries_det, rate);
 
 	// 4. 非shadow下的havoc
 	if (g_total_rarity_tries_havoc!=0)
 		rate=100*g_successful_rarity_tries_havoc/g_total_rarity_tries_havoc;
 	else
 		rate=0;
-	DEBUG2("mask havoc: %i in %i, the rate is %i\n", g_successful_rarity_tries_havoc, g_total_rarity_tries_havoc, rate);
+	DEBUG_MASK("mask havoc: %i in %i, the rate is %i\n", g_successful_rarity_tries_havoc, g_total_rarity_tries_havoc, rate);
 
-	DEBUG2("\n");
+	DEBUG_MASK("\n");
 }
 
 static void output_distance_mask_info(){
@@ -1093,34 +1083,34 @@ static void output_distance_mask_info(){
 		return;
 
 	//shadow 对比------------------------------------------
-	DEBUG2("distance_mask:-----\n");
+	DEBUG_MASK("distance_mask:-----\n");
 	// 1. shadow 下的det keep distance
 	if (g_total_distance_shadow_det!=0)
 		rate=100*g_keep_distance_shadow_det/g_total_distance_shadow_det;
 	else
 		rate=0;
-	DEBUG2("shadow det keep:: %i in %i, the rate is %i\n", g_keep_distance_shadow_det, g_total_distance_shadow_det, rate);
+	DEBUG_MASK("shadow det keep:: %i in %i, the rate is %i\n", g_keep_distance_shadow_det, g_total_distance_shadow_det, rate);
 
 	// 2. shadow下的havoc keep distance
 	if (g_total_distance_shadow_havoc!=0)
 		rate=100*g_keep_distance_shadow_havoc/g_total_distance_shadow_havoc;
 	else
 		rate=0;
-	DEBUG2("shadow havoc keep: %i in %i, the rate is %i\n", g_keep_distance_shadow_havoc, g_total_distance_shadow_havoc, rate);
+	DEBUG_MASK("shadow havoc keep: %i in %i, the rate is %i\n", g_keep_distance_shadow_havoc, g_total_distance_shadow_havoc, rate);
 
 	// 3. shadow 下的det aug distance
 	if (g_total_distance_shadow_det!=0)
 		rate=100*g_aug_distance_shadow_det/g_total_distance_shadow_det;
 	else
 		rate=0;
-	DEBUG2("shadow det aug:: %i in %i, the rate is %i\n", g_aug_distance_shadow_det, g_total_distance_shadow_det, rate);
+	DEBUG_MASK("shadow det aug:: %i in %i, the rate is %i\n", g_aug_distance_shadow_det, g_total_distance_shadow_det, rate);
 
 	// 4. shadow下的havoc aug distance
 	if (g_total_distance_shadow_havoc!=0)
 		rate=100*g_aug_distance_shadow_havoc/g_total_distance_shadow_havoc;
 	else
 		rate=0;
-	DEBUG2("shadow havoc aug: %i in %i, the rate is %i\n", g_aug_distance_shadow_havoc, g_total_distance_shadow_havoc, rate);
+	DEBUG_MASK("shadow havoc aug: %i in %i, the rate is %i\n", g_aug_distance_shadow_havoc, g_total_distance_shadow_havoc, rate);
 
 	//非shadow 对比------------------------------------------
 	// 5. 非shadow下的det, keep distance
@@ -1128,29 +1118,29 @@ static void output_distance_mask_info(){
 		rate=100*g_keep_distance_tries_det/g_total_distance_tries_det;
 	else
 		rate=0;
-	DEBUG2("mask det keep: %i in %i, the rate is %i\n", g_keep_distance_tries_det, g_total_distance_tries_det, rate);
+	DEBUG_MASK("mask det keep: %i in %i, the rate is %i\n", g_keep_distance_tries_det, g_total_distance_tries_det, rate);
 
 	// 6. 非shadow下的havoc, keep distance
 	if (g_total_distance_tries_havoc!=0)
 		rate=100*g_keep_distance_tries_havoc/g_total_distance_tries_havoc;
 	else
 		rate=0;
-	DEBUG2("mask havoc keep: %i in %i, the rate is %i\n", g_keep_distance_tries_havoc, g_total_distance_tries_havoc, rate);
+	DEBUG_MASK("mask havoc keep: %i in %i, the rate is %i\n", g_keep_distance_tries_havoc, g_total_distance_tries_havoc, rate);
 
 	// 7. 非shadow下的det, aug distance
 	if (g_total_distance_tries_det!=0)
 		rate=100*g_aug_distance_tries_det/g_total_distance_tries_det;
 	else
 		rate=0;
-	DEBUG2("mask det aug: %i in %i, the rate is %i\n", g_aug_distance_tries_det, g_total_distance_tries_det, rate);
+	DEBUG_MASK("mask det aug: %i in %i, the rate is %i\n", g_aug_distance_tries_det, g_total_distance_tries_det, rate);
 
 	// 8. 非shadow下的havoc, aug distance
 	if (g_total_distance_tries_havoc!=0)
 		rate=100*g_aug_distance_tries_havoc/g_total_distance_tries_havoc;
 	else
 		rate=0;
-	DEBUG2("mask havoc aug: %i in %i, the rate is %i\n", g_aug_distance_tries_havoc, g_total_distance_tries_havoc, rate);
-	DEBUG2("\n");
+	DEBUG_MASK("mask havoc aug: %i in %i, the rate is %i\n", g_aug_distance_tries_havoc, g_total_distance_tries_havoc, rate);
+	DEBUG_MASK("\n");
 }
 
 //输出mask相关的有效信息
@@ -1287,25 +1277,25 @@ static void print_cur_mode(){
 	// use_power_control	由参数 -p控制, -p表示开启,默认关闭
 
 	if (run_with_shadow)
-		DEBUG2("开启shadow mode\n");
+		DEBUG_MASK("开启shadow mode\n");
 	else
-		DEBUG2("关闭shadow mode\n");
+		DEBUG_MASK("关闭shadow mode\n");
 
 	if(use_distance_mask)
-		DEBUG2("开启distance_mask\n");
+		DEBUG_MASK("开启distance_mask\n");
 	else
-		DEBUG2("关闭distance_mask\n");
+		DEBUG_MASK("关闭distance_mask\n");
 
 	if(use_rarity_mask)
-		DEBUG2("开启rarity_mask\n");
+		DEBUG_MASK("开启rarity_mask\n");
 	else
-		DEBUG2("关闭rarity_mask\n");
+		DEBUG_MASK("关闭rarity_mask\n");
 
 	//power schedule
 	if(open_power_control)
-		DEBUG2("开启power机制\n");
+		DEBUG_MASK("开启power机制\n");
 	else
-		DEBUG2("关闭power机制\n");
+		DEBUG_MASK("关闭power机制\n");
 
 }
 
@@ -2114,7 +2104,7 @@ static void update_attri(struct queue_entry * q){
 //@RD@
 static u8  fitness(struct queue_entry* q){
     //1. 计算fitness之前,先更新一下当前测试用例的属性
-    update_attri( q );
+    update_attri(q);
 	
     u8 r_flag=0; //0 is big, 1 is small
     u8 d_flag=0; // 0 is big, 1 is small
@@ -6105,15 +6095,16 @@ EXP_ST u8 common_fuzz_stuff(char** argv, u8* out_buf, u32 len) {
   //统计rarity_mask的有效性  只有rb_fuzzing中才有rare branches
   if (rb_fuzzing){
     total_rarity_tries++; //本轮总的导向测试次数
-    //区分有没有在shadow 模式下
+    
+    //记录总的次数
     if (shadow_mode)
     	increment_total_succ(1,1,1);
     else
     	increment_total_succ(0,1,1);
 
+    //记录成功的次数
     if (hits_branch(rb_fuzzing - 1)){
     	successful_rarity_tries++; //每次根据rare branch导向进行的一次测试,successful_branch_tries的次数就加1
-		//区分有没有在shadow 模式下
 		if (shadow_mode)
 			increment_total_succ(1,0,1);
 		else
@@ -6128,24 +6119,23 @@ EXP_ST u8 common_fuzz_stuff(char** argv, u8* out_buf, u32 len) {
   //统计disance_mask的有效性, 要在 save_if_interesting 后面, 更新了距离
    if(open_distance_mask){
 	   total_distance_tries++;
-	   //区分有没有在shadow 模式下
+       //记录总的次数
 	   if (shadow_mode)
 		   increment_total_succ(1,1,0);
 	   else
 		   increment_total_succ(0,1,0);
-	   //判断距离保持的情况
+	   
+       //记录成功的次数
 	   if( check_if_keep_distance(queue_cur)){
  		  keep_distance_tries++;
- 		 //区分有没有在shadow 模式下
-		 if (shadow_mode)
+		  if (shadow_mode)
 			 increment_total_succ(1,0,0);
-		 else
+		  else
 			 increment_total_succ(0,0,0);
- 	  }
+ 	   }
 	   //判断距离增强的情况
 	   if (check_if_augment_distance(queue_cur)){
 		   augment_distance_tries++;
-		   //区分有没有在shadow 模式下
 		   if (shadow_mode)
 			   increment_total_succ(1,2,0);
 		   else
@@ -6592,12 +6582,10 @@ static u8 fuzz_one(char** argv) {
   u64 distance_mask_num=-1; //表示当前测试用例中,被标记distance mask的基本块数量
   u8 * orig_distance_mask = 0;
   power_factor = 1; //每次fuzz_one开始设置为1
-  //end
-
-  /* RB Vars*/
   u8 * rarity_mask = 0; //一个指针,指向测试用例长度的空间
   u64 rarity_mask_num=-1;  //表示当前测试用例中,被标记rarity mask的基本块数量
   u8 * orig_rarity_mask = 0;
+
   u8 mask_skip_deterministic = 0; //产生mask,然后再跳过确定性变异
   u8 skip_simple_bitflip = 0;  //跳过第一部分的bitflip阶段,后面接着计算masks
   u8 * virgin_virgin_bits = 0;
@@ -6675,13 +6663,14 @@ static u8 fuzz_one(char** argv) {
      vanilla_afl = 0;
      open_rarity_mask = 1;
      //DEBUG_TEST("abandon: %s is a BDSR\n", queue_cur->fname);
-     return 1 ;
+     //return 1 ;
   }
   else if (fit_flag == BDBR )
   {
     // only the first run 
     if (init_run){
         vanilla_afl = 1000;
+        rb_fuzzing=0;
         DEBUG_TEST("[select]%s is a BDBR\n", queue_cur->fname);
         init_run =0;
     }
@@ -6689,6 +6678,7 @@ static u8 fuzz_one(char** argv) {
         if (!prev_cycle_wo_new)
             return 1;
         vanilla_afl =1;
+        rb_fuzzing = 0;
     }
   }
    else { 
@@ -7163,6 +7153,7 @@ re_run: // re-run when running in shadow mode  这里只有shadow mode 才会进
 	  DEBUG1("%swhile bitflipping, %i of %i keep distance\n", shadow_prefix, keep_distance_tries, total_distance_tries);
 
 skip_simple_bitflip:
+  //重置值
   //统计rarity_mask的有效性
   successful_rarity_tries = 0;
   total_rarity_tries = 0;
@@ -7214,8 +7205,8 @@ skip_simple_bitflip:
     //制作rarity_mask 正常情况下也能用,全部可以修改
     if (rb_fuzzing && !shadow_mode && open_rarity_mask > 0)
       if (hits_branch(rb_fuzzing - 1)){
-    	if (rarity_mask[stage_cur]==0 )  rarity_mask_num++;
-        rarity_mask[stage_cur] = 1; //标记非关键byte,当前byte保证
+          if (rarity_mask[stage_cur]==0 )  rarity_mask_num++;
+          rarity_mask[stage_cur] = 1; //标记非关键byte,当前byte保证
       }
 
     //@rd 制作distance_mask, 是否rewrite
@@ -7352,6 +7343,7 @@ skip_simple_bitflip:
     // save the original branch mask for after the havoc stage 
     memcpy (orig_rarity_mask, rarity_mask, len + 1); //保存 brach_mask
   }
+
   DEBUG_TEST("[run]%s, distance_attri is %.3f, rarity_attri is %0.3f,distance mask is %d; rariy_mask is %d, in %d\n\n",
       		queue_cur->fname, queue_cur->distance_attri, queue_cur->rarity_attri,distance_mask_num,rarity_mask_num,len);
 
@@ -7374,16 +7366,22 @@ skip_simple_bitflip:
 
   /* @RB@ reset stats for debugging*/
   if(rb_fuzzing)
-	  DEBUG1("%swhile calibrating, %i of %i tries hit branch %i\n", shadow_prefix, successful_rarity_tries, total_rarity_tries, rb_fuzzing - 1);
+	  DEBUG1("%swhile calibrating, %i of %i tries hit branch %i\n", 
+            shadow_prefix, successful_rarity_tries, total_rarity_tries, rb_fuzzing - 1);
+  
+  //重置值
   successful_rarity_tries = 0;
   total_rarity_tries = 0;
 
-  DEBUG1("%scalib stage: %i new coverage in %i total execs\n", shadow_prefix, queued_discovered-orig_queued_discovered, total_execs-orig_total_execs);
-  DEBUG1("%scalib stage: %i new branches in %i total execs\n", shadow_prefix, queued_with_cov-orig_queued_with_cov, total_execs-orig_total_execs);
+  DEBUG1("%scalib stage: %i new coverage in %i total execs\n", 
+        shadow_prefix, queued_discovered-orig_queued_discovered, total_execs-orig_total_execs);
+  DEBUG1("%scalib stage: %i new branches in %i total execs\n",
+         shadow_prefix, queued_with_cov-orig_queued_with_cov, total_execs-orig_total_execs);
 
   //@RD@
   if(open_distance_mask)
-	  DEBUG1("%swhile calibrating, %i of %i tries using distance_feature\n", shadow_prefix, keep_distance_tries, total_distance_tries);
+	  DEBUG1("%swhile calibrating, %i of %i tries using distance_feature\n",
+             shadow_prefix, keep_distance_tries, total_distance_tries);
   augment_distance_tries=0;
   keep_distance_tries=0;
   total_distance_tries=0;
@@ -8448,16 +8446,23 @@ skip_extras:
 
   /* @RB@ reset stats for debugging*/
   if(rb_fuzzing)
-	  DEBUG1("%sIn deterministic stage, %i of %i tries hit branch %i\n", shadow_prefix, successful_rarity_tries, total_rarity_tries, rb_fuzzing - 1);
+	  DEBUG1("%sIn deterministic stage, %i of %i tries hit branch %i\n", 
+            shadow_prefix, successful_rarity_tries, total_rarity_tries, rb_fuzzing - 1);
+  
+  //重置值
   successful_rarity_tries = 0;
   total_rarity_tries = 0;
 
-  DEBUG1("%sdet stage: %i new coverage in %i total execs\n", shadow_prefix, queued_discovered-orig_queued_discovered, total_execs-orig_total_execs);
-  DEBUG1("%sdet stage: %i new branches in %i total execs\n", shadow_prefix, queued_with_cov-orig_queued_with_cov, total_execs-orig_total_execs);
+  DEBUG1("%sdet stage: %i new coverage in %i total execs\n", 
+        shadow_prefix, queued_discovered-orig_queued_discovered, total_execs-orig_total_execs);
+  DEBUG1("%sdet stage: %i new branches in %i total execs\n",
+        shadow_prefix, queued_with_cov-orig_queued_with_cov, total_execs-orig_total_execs);
 
   //@RD@
   if(open_distance_mask)
 	  DEBUG1("%sIn deterministic stage, %i of %i tries using distance\n", shadow_prefix, keep_distance_tries, total_distance_tries);
+
+  //重置值
   augment_distance_tries=0;
   keep_distance_tries=0;
   total_distance_tries=0;
@@ -8645,8 +8650,11 @@ havoc_stage:
             memmove(out_buf + del_from, out_buf + del_from + del_len, temp_len - del_from - del_len); //生成新的测试用例
             // remove that data from the branch mask
             // the +1 copies over the last part of branch_mask
-            memmove(rarity_mask + del_from, rarity_mask + del_from + del_len,temp_len - del_from - del_len + 1);
+
             //将branch_mask也做同样的操作,删除对应的一段内容
+            memmove(rarity_mask + del_from, rarity_mask + del_from + del_len,temp_len - del_from - del_len + 1);
+            memmove(distance_mask + del_from, distance_mask + del_from + del_len,temp_len - del_from - del_len + 1);
+            
             temp_len -= del_len;
             break;
 
@@ -8659,6 +8667,7 @@ havoc_stage:
             u32 clone_from, clone_to, clone_len;
             u8* new_buf;
             u8* new_branch_mask; 
+            u8* new_distance_mask;
 
             if (actually_clone) {
               clone_len  = choose_block_len(temp_len);
@@ -8674,10 +8683,12 @@ havoc_stage:
 
             new_buf = ck_alloc_nozero(temp_len + clone_len); //这里有问题
             new_branch_mask = alloc_branch_mask(temp_len + clone_len + 1);
+            new_distance_mask =  alloc_branch_mask(temp_len + clone_len + 1);
 
             /* Head */
             memcpy(new_buf, out_buf, clone_to);
             memcpy(new_branch_mask, rarity_mask, clone_to);
+            memcpy(new_distance_mask, distance_mask, clone_to);
 
             /* Inserted part */
 
@@ -8690,12 +8701,15 @@ havoc_stage:
             /* Tail */
             memcpy(new_buf + clone_to + clone_len, out_buf + clone_to, temp_len - clone_to);
             memcpy(new_branch_mask + clone_to + clone_len, rarity_mask + clone_to,temp_len - clone_to + 1);
+            memcpy(new_distance_mask + clone_to + clone_len, distance_mask + clone_to,temp_len - clone_to + 1);
 
             ck_free(out_buf);
             ck_free(rarity_mask);
+            ck_free(distance_mask);
 
             out_buf = new_buf;
             rarity_mask = new_branch_mask;
+            distance_mask = new_distance_mask;
 
             temp_len += clone_len;
 
@@ -8784,6 +8798,7 @@ havoc_stage:
             u32 use_extra, extra_len, insert_at = get_random_insert_posn(temp_len, rarity_mask, distance_mask, position_map);
              if (insert_at == 0xffffffff) break;
             u8* new_buf, * new_branch_mask;
+            u8* new_distance_mask;
 
             /* Insert an extra. Do the same dice-rolling stuff as for the
                previous case. */
@@ -8797,10 +8812,13 @@ havoc_stage:
 
               new_buf = ck_alloc_nozero(temp_len + extra_len);
               new_branch_mask = alloc_branch_mask(temp_len + extra_len + 1);
+              new_distance_mask = alloc_branch_mask(temp_len + extra_len + 1);
 
               /* Head */
               memcpy(new_buf, out_buf, insert_at);
               memcpy(new_branch_mask, rarity_mask, insert_at);
+              memcpy(new_distance_mask, distance_mask, insert_at);
+
 
               /* Inserted part */
               memcpy(new_buf + insert_at, a_extras[use_extra].data, extra_len);
@@ -8820,7 +8838,7 @@ havoc_stage:
               /* Head */
               memcpy(new_buf, out_buf, insert_at);
               memcpy(new_branch_mask, rarity_mask, insert_at);
-
+              memcpy(new_distance_mask, distance_mask, insert_at);
 
               /* Inserted part */
               memcpy(new_buf + insert_at, extras[use_extra].data, extra_len);
@@ -8829,12 +8847,15 @@ havoc_stage:
 
             /* Tail */
             memcpy(new_buf + insert_at + extra_len, out_buf + insert_at,temp_len - insert_at);
-
             memcpy(new_branch_mask + insert_at + extra_len, rarity_mask + insert_at,temp_len - insert_at + 1);
-
+            memcpy(new_distance_mask + insert_at + extra_len, distance_mask + insert_at,temp_len - insert_at + 1);
+            
             ck_free(out_buf);
             ck_free(rarity_mask);
+            ck_free(distance_mask);
+
             rarity_mask = new_branch_mask;
+            distance_mask = new_distance_mask;
 
             out_buf   = new_buf;
             temp_len += extra_len;
@@ -8859,9 +8880,8 @@ havoc_stage:
     if (temp_len < len) {
       out_buf = ck_realloc(out_buf, len);
       rarity_mask = ck_realloc(rarity_mask, len + 1);
-      //@RD@
       distance_mask = ck_realloc(distance_mask, len + 1);
-      //end
+      
       position_map = ck_realloc(position_map, sizeof (u32) * (len + 1));
       if (!position_map)
         PFATAL("Failure resizing position_map.\n");
@@ -8869,9 +8889,7 @@ havoc_stage:
     temp_len = len;
     memcpy(out_buf, in_buf, len);
     memcpy(rarity_mask, orig_rarity_mask, len + 1);
-    //@RD
     memcpy(distance_mask, orig_distance_mask, len + 1);
-    //end
 
 
     /* If we're finding new stuff, let's run for a bit longer, limits
@@ -8922,9 +8940,7 @@ retry_splicing:
     struct queue_entry* target;
     u32 tid, split_at;
     u8* new_buf, *new_rarity_mask;
-    //@RD@
     u8*  new_distance_mask;
-    //end
 
     s32 f_diff, l_diff;
 
@@ -9003,14 +9019,12 @@ retry_splicing:
     memcpy (orig_rarity_mask, rarity_mask, len + 1);
 
     //重新布置 distance_mask
-    //@RD@
     new_distance_mask = alloc_branch_mask(len + 1);
     memcpy(new_distance_mask, distance_mask, MIN(split_at, temp_len + 1));
     ck_free(distance_mask);
     distance_mask = new_distance_mask;
     ck_free(orig_distance_mask);
     orig_distance_mask = ck_alloc(len +1);
-    //ck_realloc(orig_branch_mask, len + 1);
     memcpy (orig_distance_mask, distance_mask, len + 1);
     //end
 
@@ -9041,20 +9055,24 @@ abandon_entry:
 
   /* @RB@ reset stats for debugging*/
   if(rb_fuzzing)
-	  DEBUG1("%sIn havoc stage, %i of %i tries hit branch %i\n", shadow_prefix, successful_rarity_tries, total_rarity_tries, rb_fuzzing - 1);
+	  DEBUG1("%sIn havoc stage, %i of %i tries hit branch %i\n",
+                 shadow_prefix, successful_rarity_tries, total_rarity_tries, rb_fuzzing - 1);
   successful_rarity_tries = 0;
   total_rarity_tries = 0;
 
   //@RD@
   if(open_distance_mask)
-	  DEBUG1("%sIn havoc stage, %i of %i tries using distance_feature\n", shadow_prefix, keep_distance_tries, total_distance_tries);
+	  DEBUG1("%sIn havoc stage, %i of %i tries using distance_feature\n",
+         shadow_prefix, keep_distance_tries, total_distance_tries);
   augment_distance_tries=0;
   keep_distance_tries=0;
   total_distance_tries=0;
   //end
 
-  DEBUG1("%shavoc stage: %i new coverage in %i total execs\n", shadow_prefix, queued_discovered-orig_queued_discovered, total_execs-orig_total_execs);
-  DEBUG1("%shavoc stage: %i new branches in %i total execs\n", shadow_prefix, queued_with_cov-orig_queued_with_cov, total_execs-orig_total_execs);
+  DEBUG1("%shavoc stage: %i new coverage in %i total execs\n", 
+        shadow_prefix, queued_discovered-orig_queued_discovered, total_execs-orig_total_execs);
+  DEBUG1("%shavoc stage: %i new branches in %i total execs\n", 
+        shadow_prefix, queued_with_cov-orig_queued_with_cov, total_execs-orig_total_execs);
 
   if (shadow_mode) goto re_run; //如果是shadow模式,就返回过去重新跑一遍, 用来统计没有用rarity_mask时的效果
 
@@ -10210,10 +10228,10 @@ int main(int argc, char** argv) {
         use_rarity_mask = 0;
         break;
 
-//      case 'k': /* 开启distance mask*/
-//    	  use_distance_mask=1;
-//    	  break;
-//
+      case 'k': /* 开启distance mask*/
+    	  use_distance_mask=1;
+    	  break;
+
 //      case 'p': /* 开启 power 控制机制 */
 //    	  open_power_control=1;
 //		  break;
