@@ -6744,7 +6744,7 @@ static u8 fuzz_one(char** argv) {
 #else
   // @RB@
   //常规afl的筛选策略 AFL 跑一个fuzz_one 这个需要吗?
-  if (vanilla_afl){
+  if (vanilla_afl && 0){
         if (pending_favored) {
               /* If we have any favored, non-fuzzed new arrivals in the queue,
                  possibly skip to them at the expense of already-fuzzed or non-favored
