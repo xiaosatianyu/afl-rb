@@ -941,9 +941,9 @@ static u8 check_if_augment_distance( struct queue_entry * q){
 // return 0 不开启; return 1 开启, 
 static u8 check_if_open_distance_mask(struct queue_entry * q) {
 	//0. 判断距离信息是否充分
-	if ( !check_if_enough_distance_data()  && q->distance_attri <= 0.15)
-		return 0 ;
-    return 1;
+	if ( check_if_enough_distance_data()  && q->distance_attri <= 0.15)
+		return 1 ;
+    return 0;
 }
 
 
@@ -2009,7 +2009,7 @@ static void update_all_d_attri(){
     //只对最小低的20%进行测试
     q = queue;
     u64 num_under_distance_threshold = 0;  //低于门限值的测试用例数量
-    while(q && distance_threshold > 0 && queued_paths > 500){
+    while(q && distance_threshold > 0 && queued_paths > 200){
        
         if (q->distance_attri <= distance_threshold){
             num_under_distance_threshold++;
@@ -6693,24 +6693,24 @@ static u8 fuzz_one(char** argv) {
   if (queue_cur-> depth > 1) return 1;
 #else
   // @RB@
-  //常规afl的筛选策略 AFL 跑一个fuzz_one
+  //常规afl的筛选策略 AFL 跑一个fuzz_one 这个需要吗?
   if (vanilla_afl){
-    if (pending_favored) {
-      /* If we have any favored, non-fuzzed new arrivals in the queue,
-         possibly skip to them at the expense of already-fuzzed or non-favored
-         cases. */
-      if ((queue_cur->was_fuzzed || !queue_cur->favored) &&
-          UR(100) < SKIP_TO_NEW_PROB) return 1;
-    } else if (!dumb_mode && !queue_cur->favored && queued_paths > 10) {
-      /* Otherwise, still possibly skip non-favored cases, albeit less often.
-         The odds of skipping stuff are higher for already-fuzzed inputs and
-         lower for never-fuzzed entries. */
-      if (queue_cycle > 1 && !queue_cur->was_fuzzed) {
-        if (UR(100) < SKIP_NFAV_NEW_PROB) return 1;
-      } else {
-        if (UR(100) < SKIP_NFAV_OLD_PROB) return 1;
-      }
-    }
+        if (pending_favored) {
+              /* If we have any favored, non-fuzzed new arrivals in the queue,
+                 possibly skip to them at the expense of already-fuzzed or non-favored
+                 cases. */
+              if ((queue_cur->was_fuzzed || !queue_cur->favored) &&  UR(100) < SKIP_TO_NEW_PROB) return 1;
+        }
+        else if (!dumb_mode && !queue_cur->favored && queued_paths > 10) {
+              /* Otherwise, still possibly skip non-favored cases, albeit less often.
+                 The odds of skipping stuff are higher for already-fuzzed inputs and
+                 lower for never-fuzzed entries. */
+              if (queue_cycle > 1 && !queue_cur->was_fuzzed) {
+                if (UR(100) < SKIP_NFAV_NEW_PROB) return 1;
+              } else {
+                if (UR(100) < SKIP_NFAV_OLD_PROB) return 1;
+              }
+        }
   }
 #endif /* ^IGNORE_FINDS */
 
