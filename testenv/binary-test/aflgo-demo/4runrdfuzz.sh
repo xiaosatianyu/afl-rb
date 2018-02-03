@@ -2,7 +2,7 @@
 
 AFL_HOME=`pwd`/../../../
 INPUT=`pwd`/input
-OUTPUT=/tmp/output-rd
+OUTPUT=/tmp/output-rd4
 target="./xmllint --valid --recover  @@"
 
 # Create test environment for a CB
