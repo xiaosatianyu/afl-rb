@@ -831,8 +831,11 @@ static u8 check_if_enough_distance_data(){
 	u32 rate_in_max_min=0;
 
 	//2. 最大值和最小值的差值 比例
-	rate_in_max_min=(max_distance-min_distance)*100/min_distance ;
-
+    if (min_distance == 0)
+        rate_in_max_min =100;
+	else 
+        rate_in_max_min=(max_distance-min_distance)*100/min_distance ;
+    
 	//3. 判断  (这里的判定方法应该还要提高)
 	if (rate_in_max_min > MIN_RATE_IN_MAX_MIN )
 		return 1;
@@ -2025,23 +2028,16 @@ static void update_all_d_attri(){
                 distance_threshold_20 =0;
             q = queue ;// 重新开始循环
             num_under_distance_threshold_20 = 0;
-            DEBUG_TEST("\n距离门限缩小至%0.3f\n", distance_threshold_20);
+            DEBUG_TEST("\n20%距离门限缩小至%0.3f\n", distance_threshold_20);
             continue;
         }
         q = q->next;
         
-        //扩大一点
-        //如果门限太小了,没有测试用例,又会增大
-        //第二次增大的时候,恢复
+        //如果门限太小了,没有测试用例,又会增大 则恢复到上一个
         if(q==NULL && num_under_distance_threshold_20 ==0 ){
-            if(add_num_20){
-                distance_threshold_20 += 0.03;
-                break;
-             } 
-            distance_threshold_20 +=0.01;
-            add_num_20++;
-            DEBUG_TEST("\n距离门限扩大至%0.3f\n", distance_threshold_20);            q = queue;
-            continue;
+            distance_threshold_20 +=0.03;
+            //DEBUG_TEST("\n20%距离门限扩大至%0.3f\n", distance_threshold_20);   
+            break;
         }
         
     }
@@ -2051,7 +2047,6 @@ static void update_all_d_attri(){
     //3.更新距离门限 需要变大变小 提取出10%的测试用例
     q = queue;
     u64  num_under_distance_threshold_10 = 0;  //低于门限值的测试用例数量
-    u8 add_num_10=0;
     while(q && distance_threshold_10 > 0 && queued_paths > 200){
        
         if (q->distance_attri <= distance_threshold_10){
@@ -2068,21 +2063,15 @@ static void update_all_d_attri(){
                 distance_threshold_10 =0;
             q = queue ;// 重新开始循环
             num_under_distance_threshold_10 = 0;
-            // DEBUG_TEST("\n距离门限缩小至%0.3f\n", distance_threshold_10);
+            DEBUG_TEST("\n10%距离门限缩小至%0.3f\n", distance_threshold_10);
             continue;
         }
         q = q->next;
         
         //扩大一点
         if(q==NULL && num_under_distance_threshold_10 ==0 ){
-            if(add_num_10){
-                distance_threshold_10 += 0.03;
-                break;   
-            }
-            add_num_10++;
-            distance_threshold_10 +=0.01;
-            q = queue;
-            continue;
+            distance_threshold_10 +=0.03;
+            break;
         }
         
     }
@@ -2106,14 +2095,14 @@ static void update_max_min_distance(u8 out_flag , u8 crash_flag){
         if (cur_distance > max_distance){
             distance_threshold_20 = distance_ts_default;
             max_distance = cur_distance;
-            update_all_d_attri();
+            //update_all_d_attri();
             out_distance_change();
             if (out_flag)  show_stats();
         }
         if (cur_distance < min_distance){
             distance_threshold_20 = distance_ts_default;
             min_distance = cur_distance;
-            update_all_d_attri();
+            //update_all_d_attri();
             out_distance_change();
             if (out_flag)  show_stats();
         }
@@ -2122,7 +2111,7 @@ static void update_max_min_distance(u8 out_flag , u8 crash_flag){
     if( hit_target == 1 && crash_flag ){
             distance_threshold_20 = distance_ts_default;
             min_distance = 0;
-            update_all_d_attri();
+            //update_all_d_attri();
             out_distance_change();
             hit_target = 0;
             if (out_flag)  show_stats();
@@ -2135,7 +2124,7 @@ static void update_max_min_distance(u8 out_flag , u8 crash_flag){
 static void update_attri(struct queue_entry * q){
 	
 	//1. 更新档期内测试用例的距离属性d_attr
-    //这里不用更新距离属性了
+    update_all_d_attri();
 
 	//2. r_attr
     u32 * min_branch_hits = is_rb_hit_mini(q->trace_mini);
