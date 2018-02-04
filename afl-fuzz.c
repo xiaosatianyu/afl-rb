@@ -921,7 +921,7 @@ static u8 check_if_keep_distance( struct queue_entry * q){
 	//返回 0 表示距离变差
 	double increment_rate;
     increment_rate=0.05;
-	//if (cur_distance > q->distance*(1+increment_rate) )  //这里需要改动!
+    if (q->distance< 1000) increment_rate = 0;
 	if (cur_distance > q->distance+increment_rate*(max_distance-min_distance) )
 		//距离变差
 		return 0;
@@ -2011,8 +2011,7 @@ static void update_all_d_attri(){
     //2.更新距离门限 需要变大变小  提取出20%的测试用例
     q = queue;
     u64 num_under_distance_threshold_20 = 0;  //低于门限值的测试用例数量
-    u8 add_num_20=0;
-    while(q && distance_threshold_20 > 0 && queued_paths > 200){
+    while(q && distance_threshold_20 > 0.05 && queued_paths > 200){
        
         if (q->distance_attri <= distance_threshold_20){
             num_under_distance_threshold_20++;
@@ -2024,8 +2023,7 @@ static void update_all_d_attri(){
         //如果最小距离值占据了20%以上,会卡主
         if( num_under_distance_threshold_20 > queued_paths * 0.2){
             distance_threshold_20 -=0.03; //缩小门限 门限缩小的力度
-            if(distance_threshold_20 < 0)
-                distance_threshold_20 =0;
+            
             q = queue ;// 重新开始循环
             num_under_distance_threshold_20 = 0;
             DEBUG_TEST("\n20%距离门限缩小至%0.3f\n", distance_threshold_20);
@@ -2041,13 +2039,15 @@ static void update_all_d_attri(){
         }
         
     }
-
+    if(distance_threshold_20 < 0.05){
+        distance_threshold_20 =0.05;
+    }
     DEBUG_TEST("更新20%距离门限为%.3f\n", distance_threshold_20 );
 
     //3.更新距离门限 需要变大变小 提取出10%的测试用例
     q = queue;
     u64  num_under_distance_threshold_10 = 0;  //低于门限值的测试用例数量
-    while(q && distance_threshold_10 > 0 && queued_paths > 200){
+    while(q && distance_threshold_10 > 0.05 && queued_paths > 200){
        
         if (q->distance_attri <= distance_threshold_10){
             num_under_distance_threshold_10++;
@@ -2059,8 +2059,6 @@ static void update_all_d_attri(){
 
         if( num_under_distance_threshold_10 > queued_paths * 0.1 ){
             distance_threshold_10 -=0.03; //缩小门限 门限缩小的力度
-            if(distance_threshold_10 < 0)
-                distance_threshold_10 =0;
             q = queue ;// 重新开始循环
             num_under_distance_threshold_10 = 0;
             DEBUG_TEST("\n10%距离门限缩小至%0.3f\n", distance_threshold_10);
@@ -2075,6 +2073,8 @@ static void update_all_d_attri(){
         }
         
     }
+    if(distance_threshold_10 < 0.05)
+        distance_threshold_10 =0.05;
 
     DEBUG_TEST("更新10%距离门限为%.3f\n", distance_threshold_10 );
 
