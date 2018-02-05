@@ -40,17 +40,18 @@ afl-qemu-trace
 /testenv/peda-session-*.txt
 
 
-/testenv/binary-test/CVE*/libxml2/
+/testenv/binary-test/CVE*/libxml2*/
 /testenv/binary-test/CVE*/libming/
-/testenv/binary-test/CVE*/libpng-1.6.15/
-/testenv/binary-test/CVE*/tiff-4.0.7/
-/testenv/binary-test/CVE*/dwarf-20161001/
-/testenv/binary-test/CVE*/libming-ming-0_4_7/
+/testenv/binary-test/CVE*/libpng*/
+/testenv/binary-test/CVE*/tiff*/
+/testenv/binary-test/CVE*/dwarf*/
 /testenv/binary-test/CVE*/binutils-2.25/
-/testenv/binary-test/CVE*/libwmf-0.2.8.4/
-/testenv/binary-test/CVE*/libarchive/
+/testenv/binary-test/CVE*/libwmf*/
+/testenv/binary-test/CVE*/libarchive*/
+/testenv/binary-test/CVE*/w3m
+
 /testenv/binary-test/CVE*/*.tar.gz
-/testenv/binary-test/aflgo-demo/libxml2
+/testenv/binary-test/aflgo-demo/libxml2*
 
 /testenv/binary-test/CVE*/temp*/dot-files
 /testenv/binary-test/CVE*/temp*/state
@@ -59,17 +60,19 @@ afl-qemu-trace
 /testenv/binary-test/CVE*/mini_distance.png
 
 
-/testenv/binary-test/*/CVE*/libxml2/
-/testenv/binary-test/*/CVE*/libming/
-/testenv/binary-test/*/CVE*/libpng-1.6.15/
-/testenv/binary-test/*/CVE*/tiff-4.0.7/
-/testenv/binary-test/*/CVE*/dwarf-20161001/
-/testenv/binary-test/*/CVE*/libming-ming-0_4_7/
+/testenv/binary-test/*/CVE*/libxml2*/
+/testenv/binary-test/*/CVE*/libming*/
+/testenv/binary-test/*/CVE*/libpng*/
+/testenv/binary-test/*/CVE*/tiff*/
+/testenv/binary-test/*/CVE*/dwarf*/
 /testenv/binary-test/*/CVE*/binutils-2.25/
-/testenv/binary-test/*/CVE*/libwmf-0.2.8.4/
-/testenv/binary-test/*/CVE*/libarchive/
+/testenv/binary-test/*/CVE*/libwmf*/
+/testenv/binary-test/*/CVE*/libarchive*/
+/testenv/binary-test/*/CVE*/w3m*
+
+
 /testenv/binary-test/*/CVE*/*.tar.gz
-/testenv/binary-test/*/aflgo-demo/libxml2
+/testenv/binary-test/*/aflgo-demo/libxml2*
 
 /testenv/binary-test/*/CVE*/temp*/dot-files
 /testenv/binary-test/*/CVE*/temp*/state
