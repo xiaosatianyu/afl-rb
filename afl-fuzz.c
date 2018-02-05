@@ -2022,7 +2022,7 @@ static void update_all_d_attri(){
         //} 
         //如果最小距离值占据了20%以上,会卡主
         if( num_under_distance_threshold_20 > queued_paths * 0.2){
-            distance_threshold_20 -=0.03; //缩小门限 门限缩小的力度
+            distance_threshold_20 -=0.01; //缩小门限 门限缩小的力度
             
             q = queue ;// 重新开始循环
             num_under_distance_threshold_20 = 0;
@@ -2058,7 +2058,7 @@ static void update_all_d_attri(){
         //} 
 
         if( num_under_distance_threshold_10 > queued_paths * 0.1 ){
-            distance_threshold_10 -=0.03; //缩小门限 门限缩小的力度
+            distance_threshold_10 -=0.01; //缩小门限 门限缩小的力度
             q = queue ;// 重新开始循环
             num_under_distance_threshold_10 = 0;
             DEBUG_TEST("\n10%距离门限缩小至%0.3f\n", distance_threshold_10);
@@ -6696,6 +6696,7 @@ static u8 fuzz_one(char** argv) {
      if(open_distance_mask)
         DEBUG_TEST("%s open distance_mask\n", queue_cur->fname); 
      DEBUG_TEST("[select]%s is a SDBR\n", queue_cur->fname);
+     return 1;
   }
   else if (fit_flag == BDSR){
     // 大d 小r 只启用rarity mask, 使用rb_fuzzing的模式运行
