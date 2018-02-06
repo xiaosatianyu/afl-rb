@@ -53,7 +53,7 @@ set key outside  Right font "DejaVu Sans,18"  #bottom
 plot '/tmp/output-aflgo/plot_data'  using 1:13 with lines title 'aflgo'    linewidth 4 linetype 8,\\
      '/tmp/output-fairfuzz/plot_data'  using 1:13 with lines title 'fairfuzz'    linewidth 4 linetype 6 ,\\
      '/tmp/output-afl/plot_data'  using 1:13 with lines title 'afl2.5.2'    linewidth 4 linetype 10,\\
-     '/tmp/output-rd/plot_data'   using 1:13 with lines title 'rdfuzz'   linewidth 4 linetype 2, \\
+     '/tmp/output-rd4/plot_data'   using 1:13 with lines title 'rdfuzz'   linewidth 4 linetype 2, \\
 ######end the high_freq.png
 
 

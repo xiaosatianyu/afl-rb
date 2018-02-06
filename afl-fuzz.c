@@ -339,6 +339,11 @@ static u32 successful_rarity_tries = 0;  //每一轮 根据rare branch导向变�
 static u32 total_distance_tries = 0;  //  每一轮总的distance导向测试次数
 static u32 augment_distance_tries = 0;  //每一轮 根据distance导向变异后,增强distance
 static u32 keep_distance_tries = 0;  //每一轮 根据distance导向变异后,仍然保持distance
+static u64 global_distance_input_len=0;  //所有计算distance_mask的测试用例长度
+static u64 global_distance_mask_len=0;  //所有mask的长度,即关键字段的比例
+
+static u64 global_rarity_input_len =0 ; //所有计算rarity_mask的测试用例长度
+static u64 global_rarity_mask_len = 0;  //所有mask的长度,即关键字段的比例
 //end rd
 
 //@RD@
@@ -1075,7 +1080,12 @@ static void output_rarity_mask_info(){
 	else
 		rate=0;
 	DEBUG_MASK("mask havoc: %i in %i, the rate is %i\n", g_successful_rarity_tries_havoc, g_total_rarity_tries_havoc, rate);
-
+    
+    //比例
+    if (global_rarity_input_len >0)
+	    DEBUG_MASK("rarity not key is %u, len is %u, rate is %.3f\n",
+                global_rarity_mask_len, global_rarity_input_len, (double)global_rarity_mask_len/global_rarity_input_len);
+    
 	DEBUG_MASK("\n");
 }
 
@@ -1143,6 +1153,12 @@ static void output_distance_mask_info(){
 	else
 		rate=0;
 	DEBUG_MASK("mask havoc aug: %i in %i, the rate is %i\n", g_aug_distance_tries_havoc, g_total_distance_tries_havoc, rate);
+
+    //比例
+    if (global_distance_input_len >0)
+	    DEBUG_MASK("distance not key is %u, len is %u, rate is %.3f\n",
+                global_distance_mask_len, global_distance_input_len, (double)global_distance_mask_len/global_distance_input_len);
+
 	DEBUG_MASK("\n");
 }
 
@@ -2132,8 +2148,6 @@ static void update_attri(struct queue_entry * q){
         if(q->min_branch_hits !=NULL)
             ck_free(q->min_branch_hits);
         q->min_branch_hits = min_branch_hits;
-        // 添加rarity属性的计算
-        cal_rarity_attri(q);
     }
 
     DEBUG_TEST("[attri]%s的距离属性是%.8f,rarity属性是%.4f\n", q->fname, q->distance_attri, q->rarity_attri);
@@ -2151,7 +2165,7 @@ static u8  fitness(struct queue_entry* q){
     // rarity check
     if(q->min_branch_hits != NULL ){ //表示有击中rare branch
         r_flag = 1;
-        power_factor*=2;
+        power_factor*=1;
     }
 
     //门限控制,动态
@@ -2161,7 +2175,7 @@ static u8  fitness(struct queue_entry* q){
 
     //调整power
     if  (q->distance_attri <0.1) power_factor*=2;
-    if  (0.1 <= q->distance_attri && q->distance_attri <0.2) power_factor*=1.5;
+    if  (0.1 <= q->distance_attri && q->distance_attri <0.2) power_factor*=1;
     
     
     //total flag
@@ -6398,9 +6412,6 @@ static u32 calculate_score(struct queue_entry* q) {
 
   }
 
-  //根据属性调整power
-
-
   /* Make sure that we don't go over limit. */
   if (perf_score > HAVOC_MAX_MULT * 100) perf_score = HAVOC_MAX_MULT * 100;
 
@@ -6618,11 +6629,11 @@ static u8 fuzz_one(char** argv) {
 
   //@rd@
   u8 * distance_mask=0;
-  u64 distance_mask_num=-1; //表示当前测试用例中,被标记distance mask的基本块数量
+  u64 distance_mask_num= 0; //表示当前测试用例中,被标记distance mask的基本块数量
   u8 * orig_distance_mask = 0;
   power_factor = 1; //每次fuzz_one开始设置为1
   u8 * rarity_mask = 0; //一个指针,指向测试用例长度的空间
-  u64 rarity_mask_num=-1;  //表示当前测试用例中,被标记rarity mask的基本块数量
+  u64 rarity_mask_num= 0;  //表示当前测试用例中,被标记rarity mask的基本块数量
   u8 * orig_rarity_mask = 0;
 
   u8 mask_skip_deterministic = 0; //产生mask,然后再跳过确定性变异
@@ -6702,9 +6713,9 @@ static u8 fuzz_one(char** argv) {
     // 大d 小r 只启用rarity mask, 使用rb_fuzzing的模式运行
      vanilla_afl = 0;
      open_rarity_mask = 1 && use_rarity_mask;
-     //DEBUG_TEST("abandon: %s is a BDSR\n", queue_cur->fname);
-     //return 1 ;
+     DEBUG_TEST("abandon: %s is a BDSR\n", queue_cur->fname);
   }
+
   else if (fit_flag == BDBR )
   {
     // only the first run 
@@ -6734,7 +6745,7 @@ static u8 fuzz_one(char** argv) {
 #else
   // @RB@
   //常规afl的筛选策略 AFL 跑一个fuzz_one 这个需要吗?
-  if (vanilla_afl && 0){
+  if (vanilla_afl ){
         if (pending_favored) {
               /* If we have any favored, non-fuzzed new arrivals in the queue,
                  possibly skip to them at the expense of already-fuzzed or non-favored
@@ -7068,16 +7079,14 @@ re_run: // re-run when running in shadow mode  这里只有shadow mode 才会进
       skip_simple_bitflip=1;
     }
   }  
-
-  doing_det = 1;
-  stage_state=DET;
-
-  /* Skip simple bitflip if we've done it already */
+    /* Skip simple bitflip if we've done it already */
   if (skip_simple_bitflip) {
     new_hit_cnt = queued_paths + unique_crashes;
     goto skip_simple_bitflip; //如果已经fuzz过了,就不在进行这一步
   }
-
+  
+  doing_det =1;
+  stage_state=DET;
 
   /*********************************************
    * SIMPLE BITFLIP (+dictionary construction) *
@@ -7383,6 +7392,19 @@ skip_simple_bitflip:
     ck_free(tmp_buf);
     // save the original branch mask for after the havoc stage 
     memcpy (orig_rarity_mask, rarity_mask, len + 1); //保存 brach_mask
+    memcpy (orig_distance_mask, distance_mask, len + 1); //保存 brach_mask  
+
+    if (distance_mask_num !=0) {
+        global_distance_input_len += len;
+        global_distance_mask_len  += distance_mask_num;
+    }
+    
+    if(rarity_mask_num !=0 ){
+        global_rarity_input_len +=len;
+        global_rarity_mask_len  += rarity_mask_num;
+    }
+
+
   }
 
   DEBUG_TEST("[run]%s, distance_attri is %.3f, rarity_attri is %0.3f,distance mask is %d; rariy_mask is %d, in %d\n\n",
