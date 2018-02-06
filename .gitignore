@@ -19,6 +19,9 @@ afl-qemu-trace
 .fuse_*
 /qemu_mode/qemu-2.3.0/
 
+*-asan
+*-no-asan
+
 
 /*/afl-analyze
 /*/afl-as
