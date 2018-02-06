@@ -36,52 +36,30 @@ afl-qemu-trace
 /*/afl-clang-fast++
 /*/afl-llvm-pass.so
 
-/testenv/output/
-/testenv/input/
-/testenv/.gdb_history
-/testenv/output-*/
-/testenv/peda-session-*.txt
+
+/testenv/*/CVE*/libxml2*/
+/testenv/*/CVE*/libming/
+/testenv/*/CVE*/libpng*/
+/testenv/*/CVE*/tiff*/
+/testenv/*/CVE*/dwarf*/
+/testenv/*/CVE*/binutils-2.25/
+/testenv/*/CVE*/libwmf*/
+/testenv/*/CVE*/libarchive*/
+/testenv/*/CVE*/w3m
+/testenv/*/CVE*/*.tar.gz
+/testenv/*/CVE*/*-asan
+
+/testenv/*/aflgo-demo/libxml2*
+/testenv/*/aflgo-demo/*-asan
 
 
-/testenv/binary-test/CVE*/libxml2*/
-/testenv/binary-test/CVE*/libming/
-/testenv/binary-test/CVE*/libpng*/
-/testenv/binary-test/CVE*/tiff*/
-/testenv/binary-test/CVE*/dwarf*/
-/testenv/binary-test/CVE*/binutils-2.25/
-/testenv/binary-test/CVE*/libwmf*/
-/testenv/binary-test/CVE*/libarchive*/
-/testenv/binary-test/CVE*/w3m
+/testenv/*/CVE*/temp*/dot-files
+/testenv/*/CVE*/temp*/state
+/testenv/*/CVE*/temp*/step1.log
+/testenv/*/CVE*/temp*/step2.log
+/testenv/*/CVE*/mini_distance.png
+/testenv/*/CVE*/*-asan
 
-/testenv/binary-test/CVE*/*.tar.gz
-/testenv/binary-test/aflgo-demo/libxml2*
-
-/testenv/binary-test/CVE*/temp*/dot-files
-/testenv/binary-test/CVE*/temp*/state
-/testenv/binary-test/CVE*/temp*/step1.log
-/testenv/binary-test/CVE*/temp*/step2.log
-/testenv/binary-test/CVE*/mini_distance.png
-
-
-/testenv/binary-test/*/CVE*/libxml2*/
-/testenv/binary-test/*/CVE*/libming*/
-/testenv/binary-test/*/CVE*/libpng*/
-/testenv/binary-test/*/CVE*/tiff*/
-/testenv/binary-test/*/CVE*/dwarf*/
-/testenv/binary-test/*/CVE*/binutils-2.25/
-/testenv/binary-test/*/CVE*/libwmf*/
-/testenv/binary-test/*/CVE*/libarchive*/
-/testenv/binary-test/*/CVE*/w3m*
-
-
-/testenv/binary-test/*/CVE*/*.tar.gz
-/testenv/binary-test/*/aflgo-demo/libxml2*
-
-/testenv/binary-test/*/CVE*/temp*/dot-files
-/testenv/binary-test/*/CVE*/temp*/state
-/testenv/binary-test/*/CVE*/temp*/step1.log
-/testenv/binary-test/*/CVE*/temp*/step2.log
-/testenv/binary-test/*/CVE*/mini_distance.png
 
 
 

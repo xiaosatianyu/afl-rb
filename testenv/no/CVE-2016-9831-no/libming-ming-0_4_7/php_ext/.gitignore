@@ -1,0 +1,8 @@
+.AppleDouble
+Makefile.in
+Makefile
+tmp
+.deps
+.libs
+*.la
+*.lo
