@@ -13,4 +13,4 @@ create_env () {
 
 create_env
 
- $AFL_HOME/afl-fuzz -m none -i $INPUT -o $OUTPUT  -r -q 2 -d $target
+  $AFL_HOME/afl-fuzz -m none -i $INPUT -o $OUTPUT  -r -q 2 -d -k $target

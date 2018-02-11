@@ -2025,6 +2025,9 @@ static void update_all_d_attri(){
     DEBUG_TEST("更新完所有测试用例的距离属性---------------------------------------\n");
     
     //2.更新距离门限 需要变大变小  提取出20%的测试用例
+    //这里的20%不是固定的
+    // 0-200 不筛选
+    // 200-500 30
     q = queue;
     u64 num_under_distance_threshold_20 = 0;  //低于门限值的测试用例数量
     while(q && distance_threshold_20 > 0.05 && queued_paths > 200){
@@ -2099,6 +2102,7 @@ static void update_all_d_attri(){
 
 static void show_stats(void);
 //更新一下最大最小距离
+//击中目标判断在这里
 static void update_max_min_distance(u8 out_flag , u8 crash_flag){
    
     if (cur_distance > 0) {
@@ -2110,6 +2114,7 @@ static void update_max_min_distance(u8 out_flag , u8 crash_flag){
         }
         if (cur_distance > max_distance){
             distance_threshold_20 = distance_ts_default;
+            distance_threshold_10 = distance_ts_default;
             max_distance = cur_distance;
             //update_all_d_attri();
             out_distance_change();
@@ -2117,6 +2122,7 @@ static void update_max_min_distance(u8 out_flag , u8 crash_flag){
         }
         if (cur_distance < min_distance){
             distance_threshold_20 = distance_ts_default;
+            distance_threshold_10 = distance_ts_default;
             min_distance = cur_distance;
             //update_all_d_attri();
             out_distance_change();
@@ -2124,8 +2130,11 @@ static void update_max_min_distance(u8 out_flag , u8 crash_flag){
         }
     }
     // 如果命中了,把最小距离设为0
+    //
+    //if( hit_target == 1  ){
     if( hit_target == 1 && crash_flag ){
             distance_threshold_20 = distance_ts_default;
+            distance_threshold_10 = distance_ts_default;
             min_distance = 0;
             //update_all_d_attri();
             out_distance_change();
@@ -2169,12 +2178,15 @@ static u8  fitness(struct queue_entry* q){
     }
 
     //门限控制,动态
-    if (q->distance_attri <= distance_threshold_20){
-      d_flag=1;
-   	}
+    //if (q->distance_attri <= distance_threshold_20){
+    //  d_flag=1;
+   	//}
+
+    if (q->distance < min_distance+0.2*(max_distance-min_distance))
+        d_flag=1;
 
     //调整power
-    if  (q->distance_attri <0.1) power_factor*=2;
+    if  (q->distance_attri <0.1) power_factor*=3;
     if  (0.1 <= q->distance_attri && q->distance_attri <0.2) power_factor*=1;
     
     
@@ -6671,12 +6683,8 @@ static u8 fuzz_one(char** argv) {
   }
   
   //begin PSO inputs selection
-  //1. 首先只在favor的测试用例中进行筛选,到后面没有favor之后,再在全局范围内进行筛选
-  //if (pending_favored && ! queue_cur->favored){
-  //   return 1;
-  //}
   
-  //2. 计算fitness,会更新一下每个测试用例的属性,判定是否运行,如果运行,则分配何种策略
+  //1. 计算fitness,会更新一下每个测试用例的属性,判定是否运行,如果运行,则分配何种策略
   u8 fit_flag=0;
   fit_flag = fitness(queue_cur);
   
@@ -6696,10 +6704,13 @@ static u8 fuzz_one(char** argv) {
      if(open_distance_mask)
         DEBUG_TEST("%s open distance_mask\n", queue_cur->fname); 
      vanilla_afl = 0;
+     power_factor*=3;
      DEBUG_TEST("[select]%s is a SDSR\n", queue_cur->fname);
   }
   else if (fit_flag == SDBR){
      // 小d 大r 只启用distance mask,使用 vanilla_afl的模式运行
+     if (  queued_paths < 1000)
+        return 1;
      vanilla_afl = 1;
      rb_fuzzing = 0;
      u8 ret =  check_if_open_distance_mask(queue_cur); 
@@ -6707,7 +6718,6 @@ static u8 fuzz_one(char** argv) {
      if(open_distance_mask)
         DEBUG_TEST("%s open distance_mask\n", queue_cur->fname); 
      DEBUG_TEST("[select]%s is a SDBR\n", queue_cur->fname);
-     return 1;
   }
   else if (fit_flag == BDSR){
     // 大d 小r 只启用rarity mask, 使用rb_fuzzing的模式运行
