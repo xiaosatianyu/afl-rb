@@ -1,5 +1,0 @@
-digraph "CFG for 'commentCallback' function" {
-	label="CFG for 'commentCallback' function";
-
-	Node0x53293d0 [shape=record,label="{testlimits.c:1104:}"];
-}

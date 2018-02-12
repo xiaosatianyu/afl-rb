@@ -1,5 +1,0 @@
-digraph "CFG for 'libxml_xmlInitializePredefinedEntities' function" {
-	label="CFG for 'libxml_xmlInitializePredefinedEntities' function";
-
-	Node0x582a780 [shape=record,label="{libxml2-py.c:3295:}"];
-}

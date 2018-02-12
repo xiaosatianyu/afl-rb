@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlXPathNewParserContext' function" {
-	label="CFG for 'test_xmlXPathNewParserContext' function";
-
-	Node0x6ce7260 [shape=record,label="{testapi.c:48577:}"];
-}

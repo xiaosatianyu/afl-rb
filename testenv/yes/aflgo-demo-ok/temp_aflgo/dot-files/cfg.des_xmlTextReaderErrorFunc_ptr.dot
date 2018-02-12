@@ -1,5 +1,0 @@
-digraph "CFG for 'des_xmlTextReaderErrorFunc_ptr' function" {
-	label="CFG for 'des_xmlTextReaderErrorFunc_ptr' function";
-
-	Node0x63ba0b0 [shape=record,label="{testapi.c:31251:}"];
-}

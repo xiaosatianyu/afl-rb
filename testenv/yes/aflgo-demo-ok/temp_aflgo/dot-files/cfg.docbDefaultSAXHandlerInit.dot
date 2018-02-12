@@ -1,5 +1,0 @@
-digraph "CFG for 'docbDefaultSAXHandlerInit' function" {
-	label="CFG for 'docbDefaultSAXHandlerInit' function";
-
-	Node0x4a9fb70 [shape=record,label="{SAX2.c:3040:}"];
-}

@@ -1,7 +1,0 @@
-debugXML.c:1932,87.0
-debugXML.c:1937,86.0
-debugXML.c:1938,85.0
-debugXML.c:1941,84.0
-debugXML.c:1944,82.0
-debugXML.c:1945,83.0
-debugXML.c:1946,81.0

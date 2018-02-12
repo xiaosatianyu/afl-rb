@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlNanoHTTPRedir' function" {
-	label="CFG for 'test_xmlNanoHTTPRedir' function";
-
-	Node0x5942460 [shape=record,label="{testapi.c:12447:}"];
-}

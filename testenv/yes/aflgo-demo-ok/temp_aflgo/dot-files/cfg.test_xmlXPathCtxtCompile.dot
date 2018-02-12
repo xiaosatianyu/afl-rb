@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlXPathCtxtCompile' function" {
-	label="CFG for 'test_xmlXPathCtxtCompile' function";
-
-	Node0x6bf9020 [shape=record,label="{testapi.c:46641:}"];
-}

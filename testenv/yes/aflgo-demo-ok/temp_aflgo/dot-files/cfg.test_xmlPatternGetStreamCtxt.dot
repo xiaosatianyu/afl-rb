@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlPatternGetStreamCtxt' function" {
-	label="CFG for 'test_xmlPatternGetStreamCtxt' function";
-
-	Node0x5bf17b0 [shape=record,label="{testapi.c:16848:}"];
-}

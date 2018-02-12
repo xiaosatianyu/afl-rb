@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlSetStructuredErrorFunc' function" {
-	label="CFG for 'xmlSetStructuredErrorFunc' function";
-
-	Node0x37d1f20 [shape=record,label="{error.c:134:}"];
-}

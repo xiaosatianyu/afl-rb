@@ -1,5 +1,0 @@
-digraph "CFG for 'des_xmlURIPtr' function" {
-	label="CFG for 'des_xmlURIPtr' function";
-
-	Node0x6046120 [shape=record,label="{testapi.c:24536:}"];
-}

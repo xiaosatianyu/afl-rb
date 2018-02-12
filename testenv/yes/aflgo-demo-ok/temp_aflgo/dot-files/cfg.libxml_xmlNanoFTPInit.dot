@@ -1,5 +1,0 @@
-digraph "CFG for 'libxml_xmlNanoFTPInit' function" {
-	label="CFG for 'libxml_xmlNanoFTPInit' function";
-
-	Node0x5889050 [shape=record,label="{libxml2-py.c:3715:}"];
-}

@@ -1,6 +1,0 @@
-xmlschemas.c:28497,64.0
-xmlschemas.c:28505,63.0
-xmlschemas.c:28506,63.0
-xmlschemas.c:28507,63.0
-xmlschemas.c:28511,62.0
-xmlschemas.c:28512,61.0

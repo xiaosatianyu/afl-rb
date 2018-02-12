@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlXPathCompile' function" {
-	label="CFG for 'xmlXPathCompile' function";
-
-	Node0x49428f0 [shape=record,label="{xpath.c:14866:}"];
-}

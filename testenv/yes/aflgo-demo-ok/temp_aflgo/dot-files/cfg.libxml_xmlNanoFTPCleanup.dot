@@ -1,5 +1,0 @@
-digraph "CFG for 'libxml_xmlNanoFTPCleanup' function" {
-	label="CFG for 'libxml_xmlNanoFTPCleanup' function";
-
-	Node0x5018910 [shape=record,label="{libxml2-py.c:3705:}"];
-}

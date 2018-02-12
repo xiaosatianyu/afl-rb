@@ -1,4 +1,0 @@
-debugXML.c:2309,74.0
-debugXML.c:2318,73.0
-debugXML.c:2322,72.0
-debugXML.c:2327,71.0

@@ -1,5 +1,0 @@
-digraph "CFG for 'warningCallback' function" {
-	label="CFG for 'warningCallback' function";
-
-	Node0x5329ed0 [shape=record,label="{testlimits.c:1121:}"];
-}

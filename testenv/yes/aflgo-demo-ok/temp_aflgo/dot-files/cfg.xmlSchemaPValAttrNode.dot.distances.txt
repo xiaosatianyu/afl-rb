@@ -1,5 +1,0 @@
-xmlschemas.c:6337,45.0
-xmlschemas.c:6345,43.0
-xmlschemas.c:6348,42.0
-xmlschemas.c:6350,42.0
-xmlschemas.c:6352,41.0

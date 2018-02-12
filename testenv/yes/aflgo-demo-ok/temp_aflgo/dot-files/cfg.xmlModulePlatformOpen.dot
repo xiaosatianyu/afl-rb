@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlModulePlatformOpen' function" {
-	label="CFG for 'xmlModulePlatformOpen' function";
-
-	Node0x47e71a0 [shape=record,label="{xmlmodule.c:218:}"];
-}

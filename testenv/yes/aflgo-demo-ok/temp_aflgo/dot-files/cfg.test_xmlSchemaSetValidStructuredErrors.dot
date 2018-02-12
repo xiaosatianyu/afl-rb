@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlSchemaSetValidStructuredErrors' function" {
-	label="CFG for 'test_xmlSchemaSetValidStructuredErrors' function";
-
-	Node0x65ad320 [shape=record,label="{testapi.c:34638:}"];
-}

@@ -1,5 +1,0 @@
-digraph "CFG for 'libxml_xmlInitGlobals' function" {
-	label="CFG for 'libxml_xmlInitGlobals' function";
-
-	Node0x5815ad0 [shape=record,label="{libxml2-py.c:3242:}"];
-}

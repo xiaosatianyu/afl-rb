@@ -1,3 +1,0 @@
-xmlschemas.c:16577,103.00000000000001
-xmlschemas.c:16587,102.0
-xmlschemas.c:16590,101.0

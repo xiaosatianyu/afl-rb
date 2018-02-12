@@ -1,5 +1,0 @@
-digraph "CFG for 'des_xmlSAXHandler_ptr' function" {
-	label="CFG for 'des_xmlSAXHandler_ptr' function";
-
-	Node0x54f1560 [shape=record,label="{testapi.c:4586:}"];
-}

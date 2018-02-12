@@ -1,3 +1,0 @@
-xmlsave.c:2616,53.0
-xmlsave.c:2621,52.0
-xmlsave.c:2625,51.0

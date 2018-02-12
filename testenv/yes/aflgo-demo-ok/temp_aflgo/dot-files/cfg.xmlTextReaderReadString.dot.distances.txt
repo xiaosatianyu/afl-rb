@@ -1,4 +1,0 @@
-xmlreader.c:1789,96.0
-xmlreader.c:1793,95.0
-xmlreader.c:1796,92.0
-xmlreader.c:1803,91.0

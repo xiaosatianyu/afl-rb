@@ -1,5 +1,0 @@
-digraph "CFG for 'gen_const_xmlParserNodeInfoSeqPtr' function" {
-	label="CFG for 'gen_const_xmlParserNodeInfoSeqPtr' function";
-
-	Node0x5a8db30 [shape=record,label="{testapi.c:14292:}"];
-}

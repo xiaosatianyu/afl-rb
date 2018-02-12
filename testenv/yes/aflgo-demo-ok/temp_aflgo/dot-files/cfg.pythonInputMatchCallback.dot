@@ -1,5 +1,0 @@
-digraph "CFG for 'pythonInputMatchCallback' function" {
-	label="CFG for 'pythonInputMatchCallback' function";
-
-	Node0x55c3420 [shape=record,label="{libxml.c:801:}"];
-}

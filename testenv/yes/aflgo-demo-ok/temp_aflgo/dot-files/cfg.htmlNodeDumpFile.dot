@@ -1,5 +1,0 @@
-digraph "CFG for 'htmlNodeDumpFile' function" {
-	label="CFG for 'htmlNodeDumpFile' function";
-
-	Node0x55703d0 [shape=record,label="{HTMLtree.c:537:}"];
-}

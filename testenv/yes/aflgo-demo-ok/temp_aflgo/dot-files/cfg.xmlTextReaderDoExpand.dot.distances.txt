@@ -1,9 +1,0 @@
-xmlreader.c:1205,89.0
-xmlreader.c:1208,87.0
-xmlreader.c:1210,86.0
-xmlreader.c:1211,85.0
-xmlreader.c:1213,84.0
-xmlreader.c:1215,83.0
-xmlreader.c:1217,82.0
-xmlreader.c:1219,81.0
-xmlreader.c:1224,86.0

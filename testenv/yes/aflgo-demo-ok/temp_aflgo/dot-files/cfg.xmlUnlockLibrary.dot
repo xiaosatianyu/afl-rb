@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlUnlockLibrary' function" {
-	label="CFG for 'xmlUnlockLibrary' function";
-
-	Node0x4e41aa0 [shape=record,label="{threads.c:853:}"];
-}

@@ -1,5 +1,0 @@
-digraph "CFG for 'gen_xmlTextReaderLocatorPtr' function" {
-	label="CFG for 'gen_xmlTextReaderLocatorPtr' function";
-
-	Node0x63f0220 [shape=record,label="{testapi.c:31685:}"];
-}

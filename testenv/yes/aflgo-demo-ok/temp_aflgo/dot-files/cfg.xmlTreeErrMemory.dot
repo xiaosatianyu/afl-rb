@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlTreeErrMemory' function" {
-	label="CFG for 'xmlTreeErrMemory' function";
-
-	Node0x4347190 [shape=record,label="{tree.c:72:}"];
-}

@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlGetBufferAllocationScheme' function" {
-	label="CFG for 'xmlGetBufferAllocationScheme' function";
-
-	Node0x3db9b10 [shape=record,label="{tree.c:708:}"];
-}

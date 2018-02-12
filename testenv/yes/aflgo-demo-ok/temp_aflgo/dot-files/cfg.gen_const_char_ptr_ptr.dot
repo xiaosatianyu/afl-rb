@@ -1,5 +1,0 @@
-digraph "CFG for 'gen_const_char_ptr_ptr' function" {
-	label="CFG for 'gen_const_char_ptr_ptr' function";
-
-	Node0x59b84a0 [shape=record,label="{testapi.c:13133:}"];
-}

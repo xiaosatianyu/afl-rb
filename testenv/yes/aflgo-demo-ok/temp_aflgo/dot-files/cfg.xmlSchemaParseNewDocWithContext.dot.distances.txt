@@ -1,8 +1,0 @@
-xmlschemas.c:10097,48.26530612244898
-xmlschemas.c:10116,48.26530612244898
-xmlschemas.c:10117,47.25
-xmlschemas.c:10127,47.25
-xmlschemas.c:10131,47.25
-xmlschemas.c:10134,46.234042553191486
-xmlschemas.c:10141,52.0
-xmlschemas.c:10143,51.0

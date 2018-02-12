@@ -1,5 +1,0 @@
-digraph "CFG for 'des_xmlNotationTablePtr' function" {
-	label="CFG for 'des_xmlNotationTablePtr' function";
-
-	Node0x60ca2c0 [shape=record,label="{testapi.c:25081:}"];
-}

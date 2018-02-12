@@ -1,4 +1,0 @@
-xmlschemas.c:16101,97.1897435897436
-xmlschemas.c:16106,96.74226804123711
-xmlschemas.c:16107,91.0
-xmlschemas.c:16109,101.0

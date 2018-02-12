@@ -1,5 +1,0 @@
-digraph "CFG for 'xlinkSetDefaultHandler' function" {
-	label="CFG for 'xlinkSetDefaultHandler' function";
-
-	Node0x47bd3f0 [shape=record,label="{xlink.c:74:}"];
-}

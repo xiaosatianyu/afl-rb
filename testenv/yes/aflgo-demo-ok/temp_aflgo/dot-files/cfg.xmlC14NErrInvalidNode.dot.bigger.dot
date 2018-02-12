@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlC14NErrInvalidNode' function" {
-	label="CFG for 'xmlC14NErrInvalidNode' function";
-
-	Node0x528b160 [shape=record,label="{c14n.c:185:}"];
-}

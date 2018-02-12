@@ -1,5 +1,0 @@
-digraph "CFG for 'gen_xmlSchemaFacetPtr' function" {
-	label="CFG for 'gen_xmlSchemaFacetPtr' function";
-
-	Node0x5c487e0 [shape=record,label="{testapi.c:34991:}"];
-}

@@ -1,6 +1,0 @@
-xinclude.c:664,65.0
-xinclude.c:689,64.0
-xinclude.c:705,63.0
-xinclude.c:718,62.0
-xinclude.c:719,64.0
-xinclude.c:727,61.0

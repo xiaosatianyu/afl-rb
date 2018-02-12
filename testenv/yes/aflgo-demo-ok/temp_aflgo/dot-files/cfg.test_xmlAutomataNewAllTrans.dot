@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlAutomataNewAllTrans' function" {
-	label="CFG for 'test_xmlAutomataNewAllTrans' function";
-
-	Node0x49d46e0 [shape=record,label="{testapi.c:29313:}"];
-}

@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlSchemaValidateLengthFacetWhtsp' function" {
-	label="CFG for 'xmlSchemaValidateLengthFacetWhtsp' function";
-
-	Node0x55fab60 [shape=record,label="{xmlschemastypes.c:5272:}"];
-}

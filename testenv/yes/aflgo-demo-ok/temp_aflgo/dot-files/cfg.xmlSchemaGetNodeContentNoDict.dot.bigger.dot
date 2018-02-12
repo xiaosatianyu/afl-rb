@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlSchemaGetNodeContentNoDict' function" {
-	label="CFG for 'xmlSchemaGetNodeContentNoDict' function";
-
-	Node0x5051150 [shape=record,label="{xmlschemas.c:4685:}"];
-}

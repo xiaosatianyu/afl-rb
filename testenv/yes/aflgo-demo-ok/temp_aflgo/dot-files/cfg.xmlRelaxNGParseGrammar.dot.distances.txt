@@ -1,9 +1,0 @@
-relaxng.c:6567,83.0
-relaxng.c:6582,82.0
-relaxng.c:6584,84.0
-relaxng.c:6586,83.0
-relaxng.c:6588,84.0
-relaxng.c:6589,85.0
-relaxng.c:6590,83.0
-relaxng.c:6592,82.0
-relaxng.c:6594,81.0

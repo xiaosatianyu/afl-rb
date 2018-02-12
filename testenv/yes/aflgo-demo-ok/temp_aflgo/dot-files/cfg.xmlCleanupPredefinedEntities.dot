@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlCleanupPredefinedEntities' function" {
-	label="CFG for 'xmlCleanupPredefinedEntities' function";
-
-	Node0x4d3fa00 [shape=record,label="{legacy.c:86:}"];
-}

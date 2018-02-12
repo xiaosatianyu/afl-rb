@@ -1,5 +1,0 @@
-digraph "CFG for 'gen_xmlSchemaSAXPlugPtr' function" {
-	label="CFG for 'gen_xmlSchemaSAXPlugPtr' function";
-
-	Node0x65a4a90 [shape=record,label="{testapi.c:34523:}"];
-}

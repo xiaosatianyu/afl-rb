@@ -1,5 +1,0 @@
-digraph "CFG for 'des_xmlBufferAllocationScheme' function" {
-	label="CFG for 'des_xmlBufferAllocationScheme' function";
-
-	Node0x5d72830 [shape=record,label="{testapi.c:1044:}"];
-}

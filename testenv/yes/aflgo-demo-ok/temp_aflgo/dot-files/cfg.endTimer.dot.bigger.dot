@@ -1,5 +1,0 @@
-digraph "CFG for 'endTimer' function" {
-	label="CFG for 'endTimer' function";
-
-	Node0x50434d0 [shape=record,label="{xmllint.c:453:}"];
-}

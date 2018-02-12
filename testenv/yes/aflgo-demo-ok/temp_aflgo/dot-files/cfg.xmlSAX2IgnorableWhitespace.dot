@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlSAX2IgnorableWhitespace' function" {
-	label="CFG for 'xmlSAX2IgnorableWhitespace' function";
-
-	Node0x4a54fc0 [shape=record,label="{SAX2.c:2644:}"];
-}

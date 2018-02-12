@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlFreeNotationTable' function" {
-	label="CFG for 'xmlFreeNotationTable' function";
-
-	Node0x3dcaf50 [shape=record,label="{valid.c:2419:}"];
-}

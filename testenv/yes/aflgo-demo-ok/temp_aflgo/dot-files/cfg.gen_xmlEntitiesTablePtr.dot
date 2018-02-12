@@ -1,5 +1,0 @@
-digraph "CFG for 'gen_xmlEntitiesTablePtr' function" {
-	label="CFG for 'gen_xmlEntitiesTablePtr' function";
-
-	Node0x57e36f0 [shape=record,label="{testapi.c:9307:}"];
-}

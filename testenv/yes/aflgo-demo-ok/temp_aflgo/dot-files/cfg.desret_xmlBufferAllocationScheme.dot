@@ -1,5 +1,0 @@
-digraph "CFG for 'desret_xmlBufferAllocationScheme' function" {
-	label="CFG for 'desret_xmlBufferAllocationScheme' function";
-
-	Node0x5e31840 [shape=record,label="{testapi.c:1047:}"];
-}

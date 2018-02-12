@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlEntitiesErrMemory' function" {
-	label="CFG for 'xmlEntitiesErrMemory' function";
-
-	Node0x40ff490 [shape=record,label="{entities.c:74:}"];
-}

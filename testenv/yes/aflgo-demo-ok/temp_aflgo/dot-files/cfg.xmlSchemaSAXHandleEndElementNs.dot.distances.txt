@@ -1,8 +1,0 @@
-xmlschemas.c:27424,64.0
-xmlschemas.c:27436,66.0
-xmlschemas.c:27440,65.0
-xmlschemas.c:27441,64.0
-xmlschemas.c:27445,63.0
-xmlschemas.c:27446,62.0
-xmlschemas.c:27447,62.0
-xmlschemas.c:27450,61.0

@@ -1,6 +1,0 @@
-relaxng.c:5116,55.0
-relaxng.c:5125,54.0
-relaxng.c:5134,53.0
-relaxng.c:5138,53.0
-relaxng.c:5140,52.0
-relaxng.c:5141,51.0

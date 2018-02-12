@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlSchemaCustomErr' function" {
-	label="CFG for 'xmlSchemaCustomErr' function";
-
-	Node0x4eb9870 [shape=record,label="{xmlschemas.c:2340:}"];
-}

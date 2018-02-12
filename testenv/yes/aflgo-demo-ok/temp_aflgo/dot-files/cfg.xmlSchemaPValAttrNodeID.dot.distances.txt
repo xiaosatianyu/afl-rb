@@ -1,6 +1,0 @@
-xmlschemas.c:5937,15.0
-xmlschemas.c:5944,14.0
-xmlschemas.c:5950,13.0
-xmlschemas.c:5951,12.0
-xmlschemas.c:5960,12.0
-xmlschemas.c:5963,11.0

@@ -1,5 +1,0 @@
-digraph "CFG for 'trio_signbit' function" {
-	label="CFG for 'trio_signbit' function";
-
-	Node0x49f73f0 [shape=record,label="{trionan.c:733:}"];
-}

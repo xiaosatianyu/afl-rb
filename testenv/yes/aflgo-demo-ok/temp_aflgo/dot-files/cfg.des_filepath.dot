@@ -1,5 +1,0 @@
-digraph "CFG for 'des_filepath' function" {
-	label="CFG for 'des_filepath' function";
-
-	Node0x530d0e0 [shape=record,label="{testapi.c:417:}"];
-}

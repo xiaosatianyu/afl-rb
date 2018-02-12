@@ -1,7 +1,0 @@
-catalog.c:3789,125.0
-catalog.c:3795,125.0
-catalog.c:3797,124.0
-catalog.c:3798,124.0
-catalog.c:3803,122.99999999999999
-catalog.c:3809,122.0
-catalog.c:3810,121.0

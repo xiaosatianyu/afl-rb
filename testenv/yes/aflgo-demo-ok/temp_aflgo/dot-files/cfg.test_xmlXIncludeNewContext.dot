@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlXIncludeNewContext' function" {
-	label="CFG for 'test_xmlXIncludeNewContext' function";
-
-	Node0x61c1770 [shape=record,label="{testapi.c:27324:}"];
-}

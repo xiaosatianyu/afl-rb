@@ -1,3 +1,0 @@
-catalog.c:3308,132.0
-catalog.c:3312,132.0
-catalog.c:3314,131.0

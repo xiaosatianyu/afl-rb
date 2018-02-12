@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlPedanticParserDefault' function" {
-	label="CFG for 'xmlPedanticParserDefault' function";
-
-	Node0x3cb3270 [shape=record,label="{parserInternals.c:2059:}"];
-}

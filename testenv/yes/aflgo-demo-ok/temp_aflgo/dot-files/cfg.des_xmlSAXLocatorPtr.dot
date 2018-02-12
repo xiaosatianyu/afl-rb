@@ -1,5 +1,0 @@
-digraph "CFG for 'des_xmlSAXLocatorPtr' function" {
-	label="CFG for 'des_xmlSAXLocatorPtr' function";
-
-	Node0x5533510 [shape=record,label="{testapi.c:4955:}"];
-}

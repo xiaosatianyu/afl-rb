@@ -1,5 +1,0 @@
-digraph "CFG for 'externalSubsetCallback' function" {
-	label="CFG for 'externalSubsetCallback' function";
-
-	Node0x532d8a0 [shape=record,label="{testlimits.c:765:}"];
-}

@@ -1,8 +1,0 @@
-xmlschemas.c:18838,55.0
-xmlschemas.c:18848,54.0
-xmlschemas.c:18855,55.0
-xmlschemas.c:18857,54.0
-xmlschemas.c:18858,53.0
-xmlschemas.c:18859,52.0
-xmlschemas.c:18860,51.0
-xmlschemas.c:18862,53.0

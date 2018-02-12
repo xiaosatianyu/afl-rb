@@ -1,5 +1,0 @@
-digraph "CFG for 'desret_const_char_ptr' function" {
-	label="CFG for 'desret_const_char_ptr' function";
-
-	Node0x5655dc0 [shape=record,label="{testapi.c:769:}"];
-}

@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlXPtrLocationSetCreate' function" {
-	label="CFG for 'test_xmlXPtrLocationSetCreate' function";
-
-	Node0x4a83340 [shape=record,label="{testapi.c:51553:}"];
-}

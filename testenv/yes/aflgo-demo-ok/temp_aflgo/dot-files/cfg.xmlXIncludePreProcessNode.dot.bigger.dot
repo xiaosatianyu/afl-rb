@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlXIncludePreProcessNode' function" {
-	label="CFG for 'xmlXIncludePreProcessNode' function";
-
-	Node0x4b92650 [shape=record,label="{xinclude.c:2012:}"];
-}

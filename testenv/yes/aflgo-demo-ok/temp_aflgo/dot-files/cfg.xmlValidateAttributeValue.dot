@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlValidateAttributeValue' function" {
-	label="CFG for 'xmlValidateAttributeValue' function";
-
-	Node0x3d9eeb0 [shape=record,label="{valid.c:3807:}"];
-}

@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlWalkValidateList' function" {
-	label="CFG for 'xmlWalkValidateList' function";
-
-	Node0x4187f10 [shape=record,label="{valid.c:6519:}"];
-}

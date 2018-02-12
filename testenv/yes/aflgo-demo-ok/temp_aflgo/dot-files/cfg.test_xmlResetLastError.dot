@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlResetLastError' function" {
-	label="CFG for 'test_xmlResetLastError' function";
-
-	Node0x62feae0 [shape=record,label="{testapi.c:29823:}"];
-}

@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlCatalogCleanup' function" {
-	label="CFG for 'test_xmlCatalogCleanup' function";
-
-	Node0x55ddc00 [shape=record,label="{testapi.c:5944:}"];
-}

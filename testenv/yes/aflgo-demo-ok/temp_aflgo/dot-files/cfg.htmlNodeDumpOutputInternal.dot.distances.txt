@@ -1,8 +1,0 @@
-xmlsave.c:841,44.0
-xmlsave.c:853,46.0
-xmlsave.c:855,45.0
-xmlsave.c:856,46.0
-xmlsave.c:857,46.0
-xmlsave.c:859,44.0
-xmlsave.c:861,42.0
-xmlsave.c:862,41.0

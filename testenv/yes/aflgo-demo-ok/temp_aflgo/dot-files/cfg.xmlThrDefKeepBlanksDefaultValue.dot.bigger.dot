@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlThrDefKeepBlanksDefaultValue' function" {
-	label="CFG for 'xmlThrDefKeepBlanksDefaultValue' function";
-
-	Node0x377ea50 [shape=record,label="{globals.c:957:}"];
-}

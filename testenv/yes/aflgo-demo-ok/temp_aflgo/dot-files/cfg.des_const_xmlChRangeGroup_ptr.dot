@@ -1,5 +1,0 @@
-digraph "CFG for 'des_const_xmlChRangeGroup_ptr' function" {
-	label="CFG for 'des_const_xmlChRangeGroup_ptr' function";
-
-	Node0x562dfb0 [shape=record,label="{testapi.c:6599:}"];
-}

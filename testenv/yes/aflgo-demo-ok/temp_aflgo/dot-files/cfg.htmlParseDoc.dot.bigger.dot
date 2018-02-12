@@ -1,5 +1,0 @@
-digraph "CFG for 'htmlParseDoc' function" {
-	label="CFG for 'htmlParseDoc' function";
-
-	Node0x44ed7f0 [shape=record,label="{HTMLparser.c:6264:}"];
-}

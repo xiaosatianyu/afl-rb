@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlAutomataGetInitState' function" {
-	label="CFG for 'test_xmlAutomataGetInitState' function";
-
-	Node0x5aba910 [shape=record,label="{testapi.c:29259:}"];
-}

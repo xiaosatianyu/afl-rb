@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlSchemaParse' function" {
-	label="CFG for 'test_xmlSchemaParse' function";
-
-	Node0x659bd80 [shape=record,label="{testapi.c:34493:}"];
-}

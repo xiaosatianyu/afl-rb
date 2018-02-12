@@ -1,5 +1,0 @@
-digraph "CFG for 'des_char_ptr' function" {
-	label="CFG for 'des_char_ptr' function";
-
-	Node0x56caf80 [shape=record,label="{testapi.c:7493:}"];
-}

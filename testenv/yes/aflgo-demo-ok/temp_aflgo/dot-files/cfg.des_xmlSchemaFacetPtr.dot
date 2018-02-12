@@ -1,5 +1,0 @@
-digraph "CFG for 'des_xmlSchemaFacetPtr' function" {
-	label="CFG for 'des_xmlSchemaFacetPtr' function";
-
-	Node0x5c595c0 [shape=record,label="{testapi.c:34994:}"];
-}

@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlDumpNotationDeclScan' function" {
-	label="CFG for 'xmlDumpNotationDeclScan' function";
-
-	Node0x40af0b0 [shape=record,label="{valid.c:2507:}"];
-}

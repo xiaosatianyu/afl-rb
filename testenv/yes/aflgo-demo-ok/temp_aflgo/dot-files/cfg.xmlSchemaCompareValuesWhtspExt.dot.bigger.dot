@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlSchemaCompareValuesWhtspExt' function" {
-	label="CFG for 'xmlSchemaCompareValuesWhtspExt' function";
-
-	Node0x58e1810 [shape=record,label="{xmlschemastypes.c:4983:}"];
-}

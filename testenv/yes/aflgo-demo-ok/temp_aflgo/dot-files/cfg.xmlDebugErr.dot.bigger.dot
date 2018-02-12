@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlDebugErr' function" {
-	label="CFG for 'xmlDebugErr' function";
-
-	Node0x49360f0 [shape=record,label="{debugXML.c:158:}"];
-}

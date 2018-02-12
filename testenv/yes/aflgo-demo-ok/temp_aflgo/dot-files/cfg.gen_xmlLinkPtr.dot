@@ -1,5 +1,0 @@
-digraph "CFG for 'gen_xmlLinkPtr' function" {
-	label="CFG for 'gen_xmlLinkPtr' function";
-
-	Node0x586ee00 [shape=record,label="{testapi.c:10723:}"];
-}

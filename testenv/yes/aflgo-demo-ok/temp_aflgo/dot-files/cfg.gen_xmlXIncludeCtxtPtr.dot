@@ -1,5 +1,0 @@
-digraph "CFG for 'gen_xmlXIncludeCtxtPtr' function" {
-	label="CFG for 'gen_xmlXIncludeCtxtPtr' function";
-
-	Node0x61d9ec0 [shape=record,label="{testapi.c:27457:}"];
-}

@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlSetEntityReferenceFunc' function" {
-	label="CFG for 'test_xmlSetEntityReferenceFunc' function";
-
-	Node0x5bac2c0 [shape=record,label="{testapi.c:16403:}"];
-}

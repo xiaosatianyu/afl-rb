@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlListWalk' function" {
-	label="CFG for 'test_xmlListWalk' function";
-
-	Node0x58d3d10 [shape=record,label="{testapi.c:11461:}"];
-}

@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlC14NErrParam' function" {
-	label="CFG for 'xmlC14NErrParam' function";
-
-	Node0x51add50 [shape=record,label="{c14n.c:155:}"];
-}

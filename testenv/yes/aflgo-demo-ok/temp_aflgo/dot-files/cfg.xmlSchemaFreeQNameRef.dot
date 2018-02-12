@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlSchemaFreeQNameRef' function" {
-	label="CFG for 'xmlSchemaFreeQNameRef' function";
-
-	Node0x4eff870 [shape=record,label="{xmlschemas.c:3843:}"];
-}

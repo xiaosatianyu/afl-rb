@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlTextWriterWriteFormatAttribute' function" {
-	label="CFG for 'test_xmlTextWriterWriteFormatAttribute' function";
-
-	Node0x5e8adb0 [shape=record,label="{testapi.c:45326:}"];
-}

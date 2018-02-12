@@ -1,5 +1,0 @@
-digraph "CFG for 'gen_xmlGenericErrorFunc_ptr' function" {
-	label="CFG for 'gen_xmlGenericErrorFunc_ptr' function";
-
-	Node0x62e3700 [shape=record,label="{testapi.c:29559:}"];
-}

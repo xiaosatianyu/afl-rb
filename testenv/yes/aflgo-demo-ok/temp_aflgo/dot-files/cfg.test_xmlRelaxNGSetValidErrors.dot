@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlRelaxNGSetValidErrors' function" {
-	label="CFG for 'test_xmlRelaxNGSetValidErrors' function";
-
-	Node0x57d1150 [shape=record,label="{testapi.c:17676:}"];
-}

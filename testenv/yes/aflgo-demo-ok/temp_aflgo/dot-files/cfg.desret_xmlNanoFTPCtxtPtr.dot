@@ -1,5 +1,0 @@
-digraph "CFG for 'desret_xmlNanoFTPCtxtPtr' function" {
-	label="CFG for 'desret_xmlNanoFTPCtxtPtr' function";
-
-	Node0x58fcc30 [shape=record,label="{testapi.c:872:}"];
-}

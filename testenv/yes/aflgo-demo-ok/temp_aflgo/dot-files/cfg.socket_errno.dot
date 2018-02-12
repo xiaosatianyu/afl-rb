@@ -1,5 +1,0 @@
-digraph "CFG for 'socket_errno' function" {
-	label="CFG for 'socket_errno' function";
-
-	Node0x3a0ec80 [shape=record,label="{nanohttp.c:187:}"];
-}

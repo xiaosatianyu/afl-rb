@@ -1,5 +1,0 @@
-digraph "CFG for 'des_xmlRelaxNGValidityWarningFunc_ptr' function" {
-	label="CFG for 'des_xmlRelaxNGValidityWarningFunc_ptr' function";
-
-	Node0x57b40b0 [shape=record,label="{testapi.c:17373:}"];
-}

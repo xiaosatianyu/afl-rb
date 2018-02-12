@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlSaveToBuffer' function" {
-	label="CFG for 'test_xmlSaveToBuffer' function";
-
-	Node0x655be40 [shape=record,label="{testapi.c:34071:}"];
-}

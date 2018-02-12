@@ -1,6 +1,0 @@
-xmllint.c:2076,77.0
-xmllint.c:2079,76.0
-xmllint.c:2084,75.0
-xmllint.c:2089,74.0
-xmllint.c:2095,72.0
-xmllint.c:2096,71.0

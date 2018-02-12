@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlListFront' function" {
-	label="CFG for 'test_xmlListFront' function";
-
-	Node0x55d21e0 [shape=record,label="{testapi.c:10940:}"];
-}

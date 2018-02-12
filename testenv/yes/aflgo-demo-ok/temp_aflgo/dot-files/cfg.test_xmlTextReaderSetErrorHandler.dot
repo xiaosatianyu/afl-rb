@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlTextReaderSetErrorHandler' function" {
-	label="CFG for 'test_xmlTextReaderSetErrorHandler' function";
-
-	Node0x64a4bf0 [shape=record,label="{testapi.c:32703:}"];
-}

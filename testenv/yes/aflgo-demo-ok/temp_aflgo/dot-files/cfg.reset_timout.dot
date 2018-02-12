@@ -1,5 +1,0 @@
-digraph "CFG for 'reset_timout' function" {
-	label="CFG for 'reset_timout' function";
-
-	Node0x52faed0 [shape=record,label="{testlimits.c:49:}"];
-}

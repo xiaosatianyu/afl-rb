@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlNormalizeWindowsPath' function" {
-	label="CFG for 'xmlNormalizeWindowsPath' function";
-
-	Node0x48922e0 [shape=record,label="{xmlIO.c:504:}"];
-}

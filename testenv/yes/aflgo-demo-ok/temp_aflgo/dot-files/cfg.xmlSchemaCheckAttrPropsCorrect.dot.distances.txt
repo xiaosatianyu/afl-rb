@@ -1,4 +1,0 @@
-xmlschemas.c:19488,44.0
-xmlschemas.c:19503,43.0
-xmlschemas.c:19504,42.0
-xmlschemas.c:19530,41.0

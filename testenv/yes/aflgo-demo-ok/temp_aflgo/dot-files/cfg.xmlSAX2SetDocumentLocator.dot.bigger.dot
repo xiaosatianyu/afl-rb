@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlSAX2SetDocumentLocator' function" {
-	label="CFG for 'xmlSAX2SetDocumentLocator' function";
-
-	Node0x4940190 [shape=record,label="{SAX2.c:966:}"];
-}

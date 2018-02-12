@@ -1,5 +1,0 @@
-digraph "CFG for 'hello_world' function" {
-	label="CFG for 'hello_world' function";
-
-	Node0x41af040 [shape=record,label="{testdso.c:10:}"];
-}

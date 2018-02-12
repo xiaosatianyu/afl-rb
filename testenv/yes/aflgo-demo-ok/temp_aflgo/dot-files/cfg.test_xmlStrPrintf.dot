@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlStrPrintf' function" {
-	label="CFG for 'test_xmlStrPrintf' function";
-
-	Node0x6716560 [shape=record,label="{testapi.c:36442:}"];
-}

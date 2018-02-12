@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlHTTPErrMemory' function" {
-	label="CFG for 'xmlHTTPErrMemory' function";
-
-	Node0x3a38a90 [shape=record,label="{nanohttp.c:175:}"];
-}

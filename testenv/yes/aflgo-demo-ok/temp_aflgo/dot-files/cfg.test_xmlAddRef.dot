@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlAddRef' function" {
-	label="CFG for 'test_xmlAddRef' function";
-
-	Node0x609bcf0 [shape=record,label="{testapi.c:24954:}"];
-}

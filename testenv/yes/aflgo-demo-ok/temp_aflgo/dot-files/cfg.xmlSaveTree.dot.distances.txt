@@ -1,3 +1,0 @@
-xmlsave.c:1953,63.0
-xmlsave.c:1957,62.0
-xmlsave.c:1958,61.0

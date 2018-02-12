@@ -1,5 +1,0 @@
-digraph "CFG for 'desret_const_xmlParserNodeInfo_ptr' function" {
-	label="CFG for 'desret_const_xmlParserNodeInfo_ptr' function";
-
-	Node0x5a87130 [shape=record,label="{testapi.c:987:}"];
-}

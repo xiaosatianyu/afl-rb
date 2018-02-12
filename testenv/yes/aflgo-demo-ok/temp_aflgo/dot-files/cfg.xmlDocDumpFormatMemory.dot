@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlDocDumpFormatMemory' function" {
-	label="CFG for 'xmlDocDumpFormatMemory' function";
-
-	Node0x4f89f70 [shape=record,label="{xmlsave.c:2513:}"];
-}

@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlCopyElementTable' function" {
-	label="CFG for 'test_xmlCopyElementTable' function";
-
-	Node0x60a2f60 [shape=record,label="{testapi.c:25059:}"];
-}

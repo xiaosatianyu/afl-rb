@@ -1,5 +1,0 @@
-digraph "CFG for 'desret_xmlDictPtr' function" {
-	label="CFG for 'desret_xmlDictPtr' function";
-
-	Node0x54d1710 [shape=record,label="{testapi.c:781:}"];
-}

@@ -1,9 +1,0 @@
-catalog.c:888,86.0
-catalog.c:905,85.0
-catalog.c:911,84.0
-catalog.c:917,83.0
-catalog.c:922,83.0
-catalog.c:923,83.0
-catalog.c:924,82.0
-catalog.c:925,82.0
-catalog.c:926,81.0

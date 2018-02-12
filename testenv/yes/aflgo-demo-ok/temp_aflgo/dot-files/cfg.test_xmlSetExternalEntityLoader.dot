@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlSetExternalEntityLoader' function" {
-	label="CFG for 'test_xmlSetExternalEntityLoader' function";
-
-	Node0x5b005e0 [shape=record,label="{testapi.c:15218:}"];
-}

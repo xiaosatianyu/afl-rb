@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlParseExternalEntity' function" {
-	label="CFG for 'xmlParseExternalEntity' function";
-
-	Node0x4588a30 [shape=record,label="{parser.c:13407:}"];
-}

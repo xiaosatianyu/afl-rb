@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlTextWriterWriteFormatElementNS' function" {
-	label="CFG for 'xmlTextWriterWriteFormatElementNS' function";
-
-	Node0x40b9a80 [shape=record,label="{xmlwriter.c:2273:}"];
-}

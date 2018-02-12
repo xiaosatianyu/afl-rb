@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlAddNotationDecl' function" {
-	label="CFG for 'test_xmlAddNotationDecl' function";
-
-	Node0x609b030 [shape=record,label="{testapi.c:24944:}"];
-}

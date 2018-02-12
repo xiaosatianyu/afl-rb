@@ -1,5 +1,0 @@
-digraph "CFG for 'gen_xmlSchematronValidCtxtPtr' function" {
-	label="CFG for 'gen_xmlSchematronValidCtxtPtr' function";
-
-	Node0x5cc8590 [shape=record,label="{testapi.c:18080:}"];
-}

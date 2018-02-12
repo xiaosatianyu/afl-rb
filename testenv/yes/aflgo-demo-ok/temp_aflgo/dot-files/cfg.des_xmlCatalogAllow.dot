@@ -1,5 +1,0 @@
-digraph "CFG for 'des_xmlCatalogAllow' function" {
-	label="CFG for 'des_xmlCatalogAllow' function";
-
-	Node0x561c660 [shape=record,label="{testapi.c:1060:}"];
-}

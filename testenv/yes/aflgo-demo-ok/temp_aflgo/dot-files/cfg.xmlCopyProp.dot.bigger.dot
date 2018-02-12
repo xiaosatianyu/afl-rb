@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlCopyProp' function" {
-	label="CFG for 'xmlCopyProp' function";
-
-	Node0x40109d0 [shape=record,label="{tree.c:4102:}"];
-}

@@ -1,5 +1,0 @@
-xinclude.c:2477,65.0
-xinclude.c:2481,64.0
-xinclude.c:2482,63.0
-xinclude.c:2485,62.0
-xinclude.c:2488,61.0

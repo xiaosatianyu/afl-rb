@@ -1,5 +1,0 @@
-digraph "CFG for 'gen_xmlSchemaParserCtxtPtr' function" {
-	label="CFG for 'gen_xmlSchemaParserCtxtPtr' function";
-
-	Node0x656c8b0 [shape=record,label="{testapi.c:34200:}"];
-}

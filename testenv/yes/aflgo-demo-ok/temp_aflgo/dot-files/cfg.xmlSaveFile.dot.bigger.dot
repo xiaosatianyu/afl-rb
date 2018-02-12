@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlSaveFile' function" {
-	label="CFG for 'xmlSaveFile' function";
-
-	Node0x4fab770 [shape=record,label="{xmlsave.c:2781:}"];
-}

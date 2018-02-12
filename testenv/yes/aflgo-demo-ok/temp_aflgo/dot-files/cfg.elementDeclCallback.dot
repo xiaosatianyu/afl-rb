@@ -1,5 +1,0 @@
-digraph "CFG for 'elementDeclCallback' function" {
-	label="CFG for 'elementDeclCallback' function";
-
-	Node0x5320100 [shape=record,label="{testlimits.c:885:}"];
-}

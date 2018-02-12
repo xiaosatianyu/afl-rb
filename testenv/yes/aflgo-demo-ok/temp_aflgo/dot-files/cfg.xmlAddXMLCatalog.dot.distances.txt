@@ -1,5 +1,0 @@
-catalog.c:1498,114.0
-catalog.c:1505,113.0
-catalog.c:1506,113.0
-catalog.c:1508,112.0
-catalog.c:1509,111.0

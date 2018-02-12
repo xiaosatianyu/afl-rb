@@ -1,4 +1,0 @@
-HTMLparser.c:6958,174.0
-HTMLparser.c:6965,173.0
-HTMLparser.c:6967,172.0
-HTMLparser.c:6975,171.0

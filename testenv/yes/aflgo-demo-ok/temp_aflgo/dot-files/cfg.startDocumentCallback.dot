@@ -1,5 +1,0 @@
-digraph "CFG for 'startDocumentCallback' function" {
-	label="CFG for 'startDocumentCallback' function";
-
-	Node0x5324ec0 [shape=record,label="{testlimits.c:957:}"];
-}

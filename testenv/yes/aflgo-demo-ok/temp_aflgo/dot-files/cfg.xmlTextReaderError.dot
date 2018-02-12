@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlTextReaderError' function" {
-	label="CFG for 'xmlTextReaderError' function";
-
-	Node0x4614db0 [shape=record,label="{xmlreader.c:4854:}"];
-}

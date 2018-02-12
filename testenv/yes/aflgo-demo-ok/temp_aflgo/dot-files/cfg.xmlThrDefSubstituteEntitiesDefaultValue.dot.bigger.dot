@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlThrDefSubstituteEntitiesDefaultValue' function" {
-	label="CFG for 'xmlThrDefSubstituteEntitiesDefaultValue' function";
-
-	Node0x378cd20 [shape=record,label="{globals.c:1068:}"];
-}

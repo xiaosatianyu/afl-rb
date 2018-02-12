@@ -1,2 +1,0 @@
-HTMLparser.c:4653,152.0
-HTMLparser.c:4655,151.0

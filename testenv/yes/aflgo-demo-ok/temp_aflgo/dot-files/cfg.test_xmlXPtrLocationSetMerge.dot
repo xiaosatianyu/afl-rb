@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlXPtrLocationSetMerge' function" {
-	label="CFG for 'test_xmlXPtrLocationSetMerge' function";
-
-	Node0x6e3e9a0 [shape=record,label="{testapi.c:51602:}"];
-}

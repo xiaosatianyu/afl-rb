@@ -1,5 +1,0 @@
-digraph "CFG for 'usage' function" {
-	label="CFG for 'usage' function";
-
-	Node0x4fe9b30 [shape=record,label="{xmllint.c:2986:}"];
-}

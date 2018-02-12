@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlIOErr' function" {
-	label="CFG for 'xmlIOErr' function";
-
-	Node0x4a11970 [shape=record,label="{xmlIO.c:446:}"];
-}

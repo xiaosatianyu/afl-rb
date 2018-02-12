@@ -1,5 +1,0 @@
-schematron.c:1077,103.4975845410628
-schematron.c:1087,102.49756097560976
-schematron.c:1093,101.0
-schematron.c:1103,102.0
-schematron.c:1104,101.0

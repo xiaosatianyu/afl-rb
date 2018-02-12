@@ -1,5 +1,0 @@
-digraph "CFG for 'gen_const_xmlBuffer_ptr' function" {
-	label="CFG for 'gen_const_xmlBuffer_ptr' function";
-
-	Node0x5d49320 [shape=record,label="{testapi.c:18745:}"];
-}

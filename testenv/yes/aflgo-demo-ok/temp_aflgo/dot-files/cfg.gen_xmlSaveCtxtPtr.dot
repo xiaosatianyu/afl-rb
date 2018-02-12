@@ -1,5 +1,0 @@
-digraph "CFG for 'gen_xmlSaveCtxtPtr' function" {
-	label="CFG for 'gen_xmlSaveCtxtPtr' function";
-
-	Node0x654b260 [shape=record,label="{testapi.c:33932:}"];
-}

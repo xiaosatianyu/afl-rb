@@ -1,5 +1,0 @@
-digraph "CFG for 'gen_xmlXPathCompExprPtr' function" {
-	label="CFG for 'gen_xmlXPathCompExprPtr' function";
-
-	Node0x6bde850 [shape=record,label="{testapi.c:46379:}"];
-}

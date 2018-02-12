@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlParseElementChildrenContentDecl' function" {
-	label="CFG for 'xmlParseElementChildrenContentDecl' function";
-
-	Node0x45c50d0 [shape=record,label="{parser.c:6585:}"];
-}

@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlParseFile' function" {
-	label="CFG for 'xmlParseFile' function";
-
-	Node0x44637c0 [shape=record,label="{parser.c:14362:}"];
-}

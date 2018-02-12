@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlSchemaNewQNameValue' function" {
-	label="CFG for 'test_xmlSchemaNewQNameValue' function";
-
-	Node0x66a6f30 [shape=record,label="{testapi.c:35568:}"];
-}

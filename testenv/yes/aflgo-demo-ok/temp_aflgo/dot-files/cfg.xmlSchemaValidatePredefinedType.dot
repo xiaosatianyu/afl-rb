@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlSchemaValidatePredefinedType' function" {
-	label="CFG for 'xmlSchemaValidatePredefinedType' function";
-
-	Node0x54b3d50 [shape=record,label="{xmlschemastypes.c:3395:}"];
-}

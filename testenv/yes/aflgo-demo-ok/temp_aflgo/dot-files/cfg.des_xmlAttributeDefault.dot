@@ -1,5 +1,0 @@
-digraph "CFG for 'des_xmlAttributeDefault' function" {
-	label="CFG for 'des_xmlAttributeDefault' function";
-
-	Node0x608a480 [shape=record,label="{testapi.c:1020:}"];
-}

@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlXPtrErrMemory' function" {
-	label="CFG for 'xmlXPtrErrMemory' function";
-
-	Node0x483b8a0 [shape=record,label="{xpointer.c:73:}"];
-}

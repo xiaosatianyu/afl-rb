@@ -1,2 +1,0 @@
-relaxng.c:6793,52.0
-relaxng.c:6800,51.0

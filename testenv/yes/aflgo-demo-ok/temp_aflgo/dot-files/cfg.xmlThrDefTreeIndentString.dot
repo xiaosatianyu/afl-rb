@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlThrDefTreeIndentString' function" {
-	label="CFG for 'xmlThrDefTreeIndentString' function";
-
-	Node0x377cee0 [shape=record,label="{globals.c:940:}"];
-}

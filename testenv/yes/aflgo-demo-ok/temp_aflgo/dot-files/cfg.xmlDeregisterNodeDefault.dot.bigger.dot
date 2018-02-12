@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlDeregisterNodeDefault' function" {
-	label="CFG for 'xmlDeregisterNodeDefault' function";
-
-	Node0x37584b0 [shape=record,label="{globals.c:633:}"];
-}

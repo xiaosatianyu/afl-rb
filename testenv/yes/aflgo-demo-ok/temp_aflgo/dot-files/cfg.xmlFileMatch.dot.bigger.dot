@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlFileMatch' function" {
-	label="CFG for 'xmlFileMatch' function";
-
-	Node0x48a7fb0 [shape=record,label="{xmlIO.c:882:}"];
-}

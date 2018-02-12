@@ -1,5 +1,0 @@
-digraph "CFG for 'xmlHashLookup' function" {
-	label="CFG for 'xmlHashLookup' function";
-
-	Node0x4a8da30 [shape=record,label="{hash.c:447:}"];
-}

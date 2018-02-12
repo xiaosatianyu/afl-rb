@@ -1,5 +1,0 @@
-digraph "CFG for 'test_xmlNanoFTPGetConnection' function" {
-	label="CFG for 'test_xmlNanoFTPGetConnection' function";
-
-	Node0x58f0b40 [shape=record,label="{testapi.c:11691:}"];
-}

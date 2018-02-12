@@ -1,5 +1,0 @@
-digraph "CFG for 'gen_xmlNodeSetPtr' function" {
-	label="CFG for 'gen_xmlNodeSetPtr' function";
-
-	Node0x5415df0 [shape=record,label="{testapi.c:940:}"];
-}

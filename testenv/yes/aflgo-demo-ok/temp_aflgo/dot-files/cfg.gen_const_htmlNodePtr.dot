@@ -1,5 +1,0 @@
-digraph "CFG for 'gen_const_htmlNodePtr' function" {
-	label="CFG for 'gen_const_htmlNodePtr' function";
-
-	Node0x5362000 [shape=record,label="{testapi.c:900:}"];
-}

@@ -1,5 +1,0 @@
-HTMLparser.c:6994,175.0
-HTMLparser.c:7002,174.0
-HTMLparser.c:7004,173.0
-HTMLparser.c:7013,172.0
-HTMLparser.c:7019,171.0
