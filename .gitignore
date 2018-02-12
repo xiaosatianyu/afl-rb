@@ -37,29 +37,28 @@ afl-qemu-trace
 /*/afl-llvm-pass.so
 
 
-/testenv/*/CVE*/libxml2*/
-/testenv/*/CVE*/libming/
-/testenv/*/CVE*/libpng*/
-/testenv/*/CVE*/tiff*/
-/testenv/*/CVE*/dwarf*/
-/testenv/*/CVE*/binutils-2.25/
-/testenv/*/CVE*/libwmf*/
-/testenv/*/CVE*/libarchive*/
-/testenv/*/CVE*/w3m
-/testenv/*/CVE*/*.tar.gz
-/testenv/*/CVE*/*-asan
+/testenv/*/*/libxml2*/
+/testenv/*/*/libming/
+/testenv/*/*/libpng*/
+/testenv/*/*/tiff*/
+/testenv/*/*/dwarf*/
+/testenv/*/*/binutils-2.25/
+/testenv/*/*/libwmf*/
+/testenv/*/*/libarchive*/
+/testenv/*/*/w3m
+/testenv/*/*/*.tar.gz
+/testenv/*/*/*-asan
 
-/testenv/*/aflgo-demo/libxml2*
-/testenv/*/aflgo-demo/temp*/dot-files
-/testenv/*/aflgo-demo/temp*/*-asan
+/testenv/*/*/temp*/dot-files
+/testenv/*/*/temp*/*-asan
 
 
-/testenv/*/CVE*/temp*/dot-files
-/testenv/*/CVE*/temp*/state
-/testenv/*/CVE*/temp*/step1.log
-/testenv/*/CVE*/temp*/step2.log
-/testenv/*/CVE*/mini_distance.png
-/testenv/*/CVE*/*-asan
+/testenv/*/*/temp*/dot-files
+/testenv/*/*/temp*/state
+/testenv/*/*/temp*/step1.log
+/testenv/*/*/temp*/step2.log
+/testenv/*/*/mini_distance.png
+/testenv/*/*/*-asan
 
 
 
