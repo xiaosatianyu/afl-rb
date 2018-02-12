@@ -2174,7 +2174,6 @@ static u8  fitness(struct queue_entry* q){
     // rarity check
     if(q->min_branch_hits != NULL ){ //表示有击中rare branch
         r_flag = 1;
-        power_factor*=1;
     }
 
     //门限控制,动态
@@ -2182,15 +2181,10 @@ static u8  fitness(struct queue_entry* q){
     //  d_flag=1;
    	//}
 
-    if (q->distance < min_distance+0.2*(max_distance-min_distance))
+    if ( (q->distance < min_distance+0.2*(max_distance-min_distance)) && q->distance_attri < distance_threshold_20)
         d_flag=1;
-
-    //调整power
-    if  (q->distance_attri <0.1) power_factor*=3;
-    if  (0.1 <= q->distance_attri && q->distance_attri <0.2) power_factor*=1;
     
-    
-    //total flag
+    //total flag 
     if ( d_flag==1 ){
         if( r_flag==1 ){
             fit_flag=SDSR;
@@ -6697,10 +6691,13 @@ static u8 fuzz_one(char** argv) {
   
   //4.根据不同的模式,进行策略配置
   if (fit_flag == SDSR){
+     if (queue_cycle <2)
+        return 1;
      // 小d 小r 启用raritymask 和distance mask, 使用rb_fuzzing的模式运行
      open_rarity_mask = 1 && use_rarity_mask;
      u8 ret =  check_if_open_distance_mask(queue_cur); 
-     open_distance_mask =  use_distance_mask & ret;
+     if(queue_cycle >1) 
+        open_distance_mask =  use_distance_mask & ret;
      if(open_distance_mask)
         DEBUG_TEST("%s open distance_mask\n", queue_cur->fname); 
      vanilla_afl = 0;
@@ -6709,12 +6706,13 @@ static u8 fuzz_one(char** argv) {
   }
   else if (fit_flag == SDBR){
      // 小d 大r 只启用distance mask,使用 vanilla_afl的模式运行
-     if (  queued_paths < 1000)
+     if (  queued_paths < 1000 && queue_cycle <2)
         return 1;
      vanilla_afl = 1;
      rb_fuzzing = 0;
      u8 ret =  check_if_open_distance_mask(queue_cur); 
-     open_distance_mask =  use_distance_mask & ret;
+     if (queue_cycle>1)
+        open_distance_mask =  use_distance_mask & ret;
      if(open_distance_mask)
         DEBUG_TEST("%s open distance_mask\n", queue_cur->fname); 
      DEBUG_TEST("[select]%s is a SDBR\n", queue_cur->fname);

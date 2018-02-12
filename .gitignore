@@ -50,7 +50,8 @@ afl-qemu-trace
 /testenv/*/CVE*/*-asan
 
 /testenv/*/aflgo-demo/libxml2*
-/testenv/*/aflgo-demo/*-asan
+/testenv/*/aflgo-demo/temp*/dot-files
+/testenv/*/aflgo-demo/temp*/*-asan
 
 
 /testenv/*/CVE*/temp*/dot-files

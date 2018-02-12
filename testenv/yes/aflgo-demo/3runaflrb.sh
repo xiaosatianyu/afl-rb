@@ -3,7 +3,7 @@
 AFL_HOME=`pwd`/../../../afl-rb
 INPUT=`pwd`/input
 OUTPUT=/tmp/output-fairfuzz
-target="./xmllint --valid --recover  @@"
+target="./temp_aflgo/xmllint-no-asan --valid --recover  @@"
 
 # Create test environment for a CB
 create_env () {
