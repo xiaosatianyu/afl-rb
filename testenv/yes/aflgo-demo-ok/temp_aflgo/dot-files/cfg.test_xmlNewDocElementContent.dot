@@ -1,0 +1,37 @@
+digraph "CFG for 'test_xmlNewDocElementContent' function" {
+	label="CFG for 'test_xmlNewDocElementContent' function";
+
+	Node0x60f80b0 [shape=record,label="{testapi.c:25735:}"];
+	Node0x60f80b0 -> Node0x6104790;
+	Node0x6104790 [shape=record,label="{testapi.c:25746:|{<s0>T|<s1>F}}"];
+	Node0x6104790:s0 -> Node0x6104a70;
+	Node0x6104790:s1 -> Node0x61045f0;
+	Node0x6104a70 [shape=record,label="{testapi.c:25747:}"];
+	Node0x6104a70 -> Node0x6104e60;
+	Node0x6104e60 [shape=record,label="{testapi.c:25747:|{<s0>T|<s1>F}}"];
+	Node0x6104e60:s0 -> Node0x61050e0;
+	Node0x6104e60:s1 -> Node0x6104d40;
+	Node0x61050e0 [shape=record,label="{testapi.c:25748:}"];
+	Node0x61050e0 -> Node0x61054d0;
+	Node0x61054d0 [shape=record,label="{testapi.c:25748:|{<s0>T|<s1>F}}"];
+	Node0x61054d0:s0 -> Node0x6105750;
+	Node0x61054d0:s1 -> Node0x61053b0;
+	Node0x6105750 [shape=record,label="{testapi.c:25749:|{<s0>T|<s1>F}}"];
+	Node0x6105750:s0 -> Node0x61081b0;
+	Node0x6105750:s1 -> Node0x6108200;
+	Node0x61081b0 [shape=record,label="{testapi.c:25764:}"];
+	Node0x61081b0 -> Node0x6108200;
+	Node0x6108200 [shape=record,label="{testapi.c:25771:}"];
+	Node0x6108200 -> Node0x61056c0;
+	Node0x61056c0 [shape=record,label="{testapi.c:25748:}"];
+	Node0x61056c0 -> Node0x61054d0;
+	Node0x61053b0 [shape=record,label="{testapi.c:25772:}"];
+	Node0x61053b0 -> Node0x6105050;
+	Node0x6105050 [shape=record,label="{testapi.c:25747:}"];
+	Node0x6105050 -> Node0x6104e60;
+	Node0x6104d40 [shape=record,label="{testapi.c:25773:}"];
+	Node0x6104d40 -> Node0x61049e0;
+	Node0x61049e0 [shape=record,label="{testapi.c:25746:}"];
+	Node0x61049e0 -> Node0x6104790;
+	Node0x61045f0 [shape=record,label="{testapi.c:25774:}"];
+}

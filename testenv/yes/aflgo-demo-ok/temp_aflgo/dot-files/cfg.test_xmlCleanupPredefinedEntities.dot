@@ -1,0 +1,10 @@
+digraph "CFG for 'test_xmlCleanupPredefinedEntities' function" {
+	label="CFG for 'test_xmlCleanupPredefinedEntities' function";
+
+	Node0x551ecc0 [shape=record,label="{testapi.c:9281:|{<s0>T|<s1>F}}"];
+	Node0x551ecc0:s0 -> Node0x57e22f0;
+	Node0x551ecc0:s1 -> Node0x57e2750;
+	Node0x57e22f0 [shape=record,label="{testapi.c:9294:}"];
+	Node0x57e22f0 -> Node0x57e2750;
+	Node0x57e2750 [shape=record,label="{testapi.c:9298:}"];
+}

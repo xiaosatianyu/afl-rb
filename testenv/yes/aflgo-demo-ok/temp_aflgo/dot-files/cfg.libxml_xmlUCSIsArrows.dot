@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsArrows' function" {
+	label="CFG for 'libxml_xmlUCSIsArrows' function";
+
+	Node0x5e059d0 [shape=record,label="{libxml2-py.c:9129:|{<s0>T|<s1>F}}"];
+	Node0x5e059d0:s0 -> Node0x5e06a00;
+	Node0x5e059d0:s1 -> Node0x5e069b0;
+	Node0x5e069b0 [shape=record,label="{libxml2-py.c:9135:}"];
+	Node0x5e069b0 -> Node0x5e05260;
+	Node0x5e06a00 [shape=record,label="{libxml2-py.c:9137:}"];
+	Node0x5e06a00 -> Node0x5e05260;
+	Node0x5e05260 [shape=record,label="{libxml2-py.c:9140:}"];
+}

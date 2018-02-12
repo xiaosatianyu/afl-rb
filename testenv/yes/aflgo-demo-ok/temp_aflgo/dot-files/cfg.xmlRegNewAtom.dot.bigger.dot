@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlRegNewAtom' function" {
+	label="CFG for 'xmlRegNewAtom' function";
+
+	Node0x3901000 [shape=record,label="{xmlregexp.c:787:|{<s0>T|<s1>F}}"];
+	Node0x3901000:s0 -> Node0x3cd12b0;
+	Node0x3901000:s1 -> Node0x3cd1300;
+	Node0x3cd12b0 [shape=record,label="{xmlregexp.c:792:}"];
+	Node0x3cd12b0 -> Node0x3cd0640;
+	Node0x3cd1300 [shape=record,label="{xmlregexp.c:795:}"];
+	Node0x3cd1300 -> Node0x3cd0640;
+	Node0x3cd0640 [shape=record,label="{xmlregexp.c:801:}"];
+}

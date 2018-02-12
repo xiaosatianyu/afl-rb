@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlExpIsNillable' function" {
+	label="CFG for 'xmlExpIsNillable' function";
+
+	Node0x39e95f0 [shape=record,label="{xmlregexp.c:7070:|{<s0>T|<s1>F}}"];
+	Node0x39e95f0:s0 -> Node0x39e7210;
+	Node0x39e95f0:s1 -> Node0x39e7260;
+	Node0x39e7210 [shape=record,label="{xmlregexp.c:7072:}"];
+	Node0x39e7210 -> Node0x39e9720;
+	Node0x39e7260 [shape=record,label="{xmlregexp.c:7073:}"];
+	Node0x39e7260 -> Node0x39e9720;
+	Node0x39e9720 [shape=record,label="{xmlregexp.c:7074:}"];
+}

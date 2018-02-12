@@ -1,0 +1,22 @@
+digraph "CFG for 'xmlC14NNsCompare' function" {
+	label="CFG for 'xmlC14NNsCompare' function";
+
+	Node0x516b4d0 [shape=record,label="{c14n.c:516:|{<s0>T|<s1>F}}"];
+	Node0x516b4d0:s0 -> Node0x51ce280;
+	Node0x516b4d0:s1 -> Node0x520e550;
+	Node0x51ce280 [shape=record,label="{c14n.c:519:}"];
+	Node0x51ce280 -> Node0x51d3f30;
+	Node0x520e550 [shape=record,label="{c14n.c:520:|{<s0>T|<s1>F}}"];
+	Node0x520e550:s0 -> Node0x52108a0;
+	Node0x520e550:s1 -> Node0x52108f0;
+	Node0x52108a0 [shape=record,label="{c14n.c:521:}"];
+	Node0x52108a0 -> Node0x51d3f30;
+	Node0x52108f0 [shape=record,label="{c14n.c:522:|{<s0>T|<s1>F}}"];
+	Node0x52108f0:s0 -> Node0x5210e20;
+	Node0x52108f0:s1 -> Node0x5210e70;
+	Node0x5210e20 [shape=record,label="{c14n.c:523:}"];
+	Node0x5210e20 -> Node0x51d3f30;
+	Node0x5210e70 [shape=record,label="{c14n.c:525:}"];
+	Node0x5210e70 -> Node0x51d3f30;
+	Node0x51d3f30 [shape=record,label="{c14n.c:526:}"];
+}

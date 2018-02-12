@@ -1,0 +1,12 @@
+digraph "CFG for 'addEntity' function" {
+	label="CFG for 'addEntity' function";
+
+	Node0x40c1f40 [shape=record,label="{runsuite.c:110:|{<s0>T|<s1>F}}"];
+	Node0x40c1f40:s0 -> Node0x40c2400;
+	Node0x40c1f40:s1 -> Node0x40c2450;
+	Node0x40c2400 [shape=record,label="{runsuite.c:112:}"];
+	Node0x40c2400 -> Node0x40c3f20;
+	Node0x40c2450 [shape=record,label="{runsuite.c:115:}"];
+	Node0x40c2450 -> Node0x40c3f20;
+	Node0x40c3f20 [shape=record,label="{runsuite.c:119:}"];
+}

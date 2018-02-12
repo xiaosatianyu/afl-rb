@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlSchemaValidCtxtGetOptions' function" {
+	label="CFG for 'libxml_xmlSchemaValidCtxtGetOptions' function";
+
+	Node0x5bd7d40 [shape=record,label="{libxml2-py.c:7006:|{<s0>T|<s1>F}}"];
+	Node0x5bd7d40:s0 -> Node0x5bdbcd0;
+	Node0x5bd7d40:s1 -> Node0x5bdbc80;
+	Node0x5bdbc80 [shape=record,label="{libxml2-py.c:7013:}"];
+	Node0x5bdbc80 -> Node0x5bd8120;
+	Node0x5bdbcd0 [shape=record,label="{libxml2-py.c:7014:|{<s0>T|<s1>F}}"];
+	Node0x5bdbcd0:s0 -> Node0x5bdc500;
+	Node0x5bdbcd0:s1 -> Node0x5bdc550;
+	Node0x5bdc500 [shape=record,label="{libxml2-py.c:7014:}"];
+	Node0x5bdc500 -> Node0x5bdc5a0;
+	Node0x5bdc550 [shape=record,label="{libxml2-py.c:7014:}"];
+	Node0x5bdc550 -> Node0x5bdc5a0;
+	Node0x5bdc5a0 [shape=record,label="{libxml2-py.c:7014:}"];
+	Node0x5bdc5a0 -> Node0x5bd8120;
+	Node0x5bd8120 [shape=record,label="{libxml2-py.c:7019:}"];
+}

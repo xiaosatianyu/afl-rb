@@ -1,0 +1,17 @@
+digraph "CFG for 'xmlDOMWrapFreeCtxt' function" {
+	label="CFG for 'xmlDOMWrapFreeCtxt' function";
+
+	Node0x4265070 [shape=record,label="{tree.c:8018:|{<s0>T|<s1>F}}"];
+	Node0x4265070 -> Node0x4265290;
+	Node0x4265070 -> Node0x4264a80;
+	Node0x4265290 [shape=record,label="{tree.c:8021:}"];
+	Node0x4265290 -> Node0x4265360;
+	Node0x4264a80 [shape=record,label="{tree.c:8022:|{<s0>T|<s1>F}}"];
+	Node0x4264a80 -> Node0x4264ea0;
+	Node0x4264a80 -> Node0x4264ef0;
+	Node0x4264ea0 [shape=record,label="{tree.c:8023:}"];
+	Node0x4264ea0 -> Node0x4264ef0;
+	Node0x4264ef0 [shape=record,label="{tree.c:8027:}"];
+	Node0x4264ef0 -> Node0x4265360;
+	Node0x4265360 [shape=record,label="{tree.c:8028:}"];
+}

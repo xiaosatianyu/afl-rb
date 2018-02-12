@@ -1,0 +1,17 @@
+digraph "CFG for 'xmlXPathFreeContext' function" {
+	label="CFG for 'xmlXPathFreeContext' function";
+
+	Node0x44bbff0 [shape=record,label="{xpath.c:6160:|{<s0>T|<s1>F}}"];
+	Node0x44bbff0:s0 -> Node0x44b8730;
+	Node0x44bbff0:s1 -> Node0x44b8780;
+	Node0x44b8730 [shape=record,label="{xpath.c:6161:}"];
+	Node0x44b8730 -> Node0x44bc0e0;
+	Node0x44b8780 [shape=record,label="{xpath.c:6163:|{<s0>T|<s1>F}}"];
+	Node0x44b8780:s0 -> Node0x42f9b40;
+	Node0x44b8780:s1 -> Node0x44bc320;
+	Node0x42f9b40 [shape=record,label="{xpath.c:6164:}"];
+	Node0x42f9b40 -> Node0x44bc320;
+	Node0x44bc320 [shape=record,label="{xpath.c:6165:}"];
+	Node0x44bc320 -> Node0x44bc0e0;
+	Node0x44bc0e0 [shape=record,label="{xpath.c:6170:}"];
+}

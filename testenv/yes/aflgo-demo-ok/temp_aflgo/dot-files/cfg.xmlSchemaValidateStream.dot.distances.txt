@@ -1,0 +1,6 @@
+xmlschemas.c:28783,76.0
+xmlschemas.c:28793,75.0
+xmlschemas.c:28799,74.0
+xmlschemas.c:28802,73.0
+xmlschemas.c:28817,72.0
+xmlschemas.c:28829,71.0

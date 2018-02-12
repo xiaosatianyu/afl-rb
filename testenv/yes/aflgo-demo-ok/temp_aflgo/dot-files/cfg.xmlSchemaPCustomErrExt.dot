@@ -1,0 +1,23 @@
+digraph "CFG for 'xmlSchemaPCustomErrExt' function" {
+	label="CFG for 'xmlSchemaPCustomErrExt' function";
+
+	Node0x50f1280 [shape=record,label="{xmlschemas.c:2920:|{<s0>T|<s1>F}}"];
+	Node0x50f1280 -> Node0x50f4280;
+	Node0x50f1280 -> Node0x50f4230;
+	Node0x50f4280 [shape=record,label="{xmlschemas.c:2935:|{<s0>T|<s1>F}}"];
+	Node0x50f4280 -> Node0x50f41e0;
+	Node0x50f4280 -> Node0x50f4230;
+	Node0x50f41e0 [shape=record,label="{xmlschemas.c:2936:}"];
+	Node0x50f41e0 -> Node0x50f4230;
+	Node0x50f4230 [shape=record,label="{xmlschemas.c:2937:|{<s0>T|<s1>F}}"];
+	Node0x50f4230 -> Node0x50f5000;
+	Node0x50f4230 -> Node0x50f51f0;
+	Node0x50f5000 [shape=record,label="{xmlschemas.c:2939:}"];
+	Node0x50f5000 -> Node0x50f51f0;
+	Node0x50f51f0 [shape=record,label="{xmlschemas.c:2940:|{<s0>T|<s1>F}}"];
+	Node0x50f51f0 -> Node0x50f56f0;
+	Node0x50f51f0 -> Node0x50f5740;
+	Node0x50f56f0 [shape=record,label="{xmlschemas.c:2940:}"];
+	Node0x50f56f0 -> Node0x50f5740;
+	Node0x50f5740 [shape=record,label="{xmlschemas.c:2941:}"];
+}

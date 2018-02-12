@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsLinearBIdeograms' function" {
+	label="CFG for 'libxml_xmlUCSIsLinearBIdeograms' function";
+
+	Node0x5a3ca00 [shape=record,label="{libxml2-py.c:10843:|{<s0>T|<s1>F}}"];
+	Node0x5a3ca00:s0 -> Node0x5a3da60;
+	Node0x5a3ca00:s1 -> Node0x5a3da10;
+	Node0x5a3da10 [shape=record,label="{libxml2-py.c:10849:}"];
+	Node0x5a3da10 -> Node0x5a3b000;
+	Node0x5a3da60 [shape=record,label="{libxml2-py.c:10851:}"];
+	Node0x5a3da60 -> Node0x5a3b000;
+	Node0x5a3b000 [shape=record,label="{libxml2-py.c:10854:}"];
+}

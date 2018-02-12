@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlThrDefLoadExtDtdDefaultValue' function" {
+	label="CFG for 'libxml_xmlThrDefLoadExtDtdDefaultValue' function";
+
+	Node0x5de3640 [shape=record,label="{libxml2-py.c:8948:|{<s0>T|<s1>F}}"];
+	Node0x5de3640:s0 -> Node0x5de46a0;
+	Node0x5de3640:s1 -> Node0x5de4650;
+	Node0x5de4650 [shape=record,label="{libxml2-py.c:8954:}"];
+	Node0x5de4650 -> Node0x5de1bc0;
+	Node0x5de46a0 [shape=record,label="{libxml2-py.c:8956:}"];
+	Node0x5de46a0 -> Node0x5de1bc0;
+	Node0x5de1bc0 [shape=record,label="{libxml2-py.c:8959:}"];
+}

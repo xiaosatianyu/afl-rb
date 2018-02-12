@@ -1,0 +1,37 @@
+digraph "CFG for 'xmlXPathStringFunction' function" {
+	label="CFG for 'xmlXPathStringFunction' function";
+
+	Node0x4726430 [shape=record,label="{xpath.c:8922:|{<s0>T|<s1>F}}"];
+	Node0x4726430 -> Node0x4716f90;
+	Node0x4726430 -> Node0x4726ec0;
+	Node0x4716f90 [shape=record,label="{xpath.c:8925:}"];
+	Node0x4716f90 -> Node0x4726760;
+	Node0x4726ec0 [shape=record,label="{xpath.c:8926:|{<s0>T|<s1>F}}"];
+	Node0x4726ec0 -> Node0x47272e0;
+	Node0x4726ec0 -> Node0x4727330;
+	Node0x47272e0 [shape=record,label="{xpath.c:8927:}"];
+	Node0x47272e0 -> Node0x4726760;
+	Node0x4727330 [shape=record,label="{xpath.c:8933:|{<s0>T|<s1>F}}"];
+	Node0x4727330 -> Node0x4727f80;
+	Node0x4727330 -> Node0x47282b0;
+	Node0x4727f80 [shape=record,label="{xpath.c:8933:}"];
+	Node0x4727f80 -> Node0x4726760;
+	Node0x47282b0 [shape=record,label="{xpath.c:8933:|{<s0>T|<s1>F}}"];
+	Node0x47282b0 -> Node0x4728a50;
+	Node0x47282b0 -> Node0x4728aa0;
+	Node0x4728a50 [shape=record,label="{xpath.c:8933:}"];
+	Node0x4728a50 -> Node0x4726760;
+	Node0x4728aa0 [shape=record,label="{xpath.c:8933:|{<s0>T|<s1>F}}"];
+	Node0x4728aa0 -> Node0x4728dc0;
+	Node0x4728aa0 -> Node0x4728e10;
+	Node0x4728dc0 [shape=record,label="{xpath.c:8933:}"];
+	Node0x4728dc0 -> Node0x4726760;
+	Node0x4728e10 [shape=record,label="{xpath.c:8934:|{<s0>T|<s1>F}}"];
+	Node0x4728e10 -> Node0x4729640;
+	Node0x4728e10 -> Node0x4729690;
+	Node0x4729640 [shape=record,label="{xpath.c:8935:}"];
+	Node0x4729640 -> Node0x4726760;
+	Node0x4729690 [shape=record,label="{xpath.c:8936:}"];
+	Node0x4729690 -> Node0x4726760;
+	Node0x4726760 [shape=record,label="{xpath.c:8937:}"];
+}

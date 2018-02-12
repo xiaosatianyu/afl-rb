@@ -1,0 +1,19 @@
+digraph "CFG for 'nameNsPop' function" {
+	label="CFG for 'nameNsPop' function";
+
+	Node0x4ded7e0 [shape=record,label="{parser.c:1864:|{<s0>T|<s1>F}}"];
+	Node0x4ded7e0:s0 -> Node0x4ded870;
+	Node0x4ded7e0:s1 -> Node0x4ded8c0;
+	Node0x4ded870 [shape=record,label="{parser.c:1869:}"];
+	Node0x4ded870 -> Node0x4df06d0;
+	Node0x4ded8c0 [shape=record,label="{parser.c:1870:|{<s0>T|<s1>F}}"];
+	Node0x4ded8c0:s0 -> Node0x4df54a0;
+	Node0x4ded8c0:s1 -> Node0x4df5540;
+	Node0x4df54a0 [shape=record,label="{parser.c:1872:}"];
+	Node0x4df54a0 -> Node0x4df54f0;
+	Node0x4df5540 [shape=record,label="{parser.c:1874:}"];
+	Node0x4df5540 -> Node0x4df54f0;
+	Node0x4df54f0 [shape=record,label="{parser.c:1875:}"];
+	Node0x4df54f0 -> Node0x4df06d0;
+	Node0x4df06d0 [shape=record,label="{parser.c:1878:}"];
+}

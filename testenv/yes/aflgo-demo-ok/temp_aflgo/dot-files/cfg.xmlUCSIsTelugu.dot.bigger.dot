@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsTelugu' function" {
+	label="CFG for 'xmlUCSIsTelugu' function";
+
+	Node0x4fe2160 [shape=record,label="{xmlunicode.c:2499:|{<s0>T|<s1>F}}"];
+	Node0x4fe2160:s0 -> Node0x4fe26f0;
+	Node0x4fe2160:s1 -> Node0x4fe26a0;
+	Node0x4fe26f0 [shape=record,label="{xmlunicode.c:2500:}"];
+	Node0x4fe26f0 -> Node0x4fe26a0;
+	Node0x4fe26a0 [shape=record,label="{xmlunicode.c:2500:}"];
+}

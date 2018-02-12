@@ -1,0 +1,27 @@
+digraph "CFG for 'xmlXPtrOriginFunction' function" {
+	label="CFG for 'xmlXPtrOriginFunction' function";
+
+	Node0x48c00f0 [shape=record,label="{xpointer.c:1761:|{<s0>T|<s1>F}}"];
+	Node0x48c00f0 -> Node0x48c0440;
+	Node0x48c00f0 -> Node0x48c0490;
+	Node0x48c0440 [shape=record,label="{xpointer.c:1762:}"];
+	Node0x48c0440 -> Node0x48c23a0;
+	Node0x48c0490 [shape=record,label="{xpointer.c:1762:|{<s0>T|<s1>F}}"];
+	Node0x48c0490 -> Node0x48c2c90;
+	Node0x48c0490 -> Node0x48c2ce0;
+	Node0x48c2c90 [shape=record,label="{xpointer.c:1762:}"];
+	Node0x48c2c90 -> Node0x48c23a0;
+	Node0x48c2ce0 [shape=record,label="{xpointer.c:1762:|{<s0>T|<s1>F}}"];
+	Node0x48c2ce0 -> Node0x48c30b0;
+	Node0x48c2ce0 -> Node0x48c3100;
+	Node0x48c30b0 [shape=record,label="{xpointer.c:1762:}"];
+	Node0x48c30b0 -> Node0x48c23a0;
+	Node0x48c3100 [shape=record,label="{xpointer.c:1764:|{<s0>T|<s1>F}}"];
+	Node0x48c3100 -> Node0x48c3840;
+	Node0x48c3100 -> Node0x48c3890;
+	Node0x48c3840 [shape=record,label="{xpointer.c:1765:}"];
+	Node0x48c3840 -> Node0x48c23a0;
+	Node0x48c3890 [shape=record,label="{xpointer.c:1767:}"];
+	Node0x48c3890 -> Node0x48c23a0;
+	Node0x48c23a0 [shape=record,label="{xpointer.c:1768:}"];
+}

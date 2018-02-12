@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsKanbun' function" {
+	label="CFG for 'xmlUCSIsKanbun' function";
+
+	Node0x4f99910 [shape=record,label="{xmlunicode.c:1769:|{<s0>T|<s1>F}}"];
+	Node0x4f99910:s0 -> Node0x4f983f0;
+	Node0x4f99910:s1 -> Node0x4f996d0;
+	Node0x4f983f0 [shape=record,label="{xmlunicode.c:1770:}"];
+	Node0x4f983f0 -> Node0x4f996d0;
+	Node0x4f996d0 [shape=record,label="{xmlunicode.c:1770:}"];
+}

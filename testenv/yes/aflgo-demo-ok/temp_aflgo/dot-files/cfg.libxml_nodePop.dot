@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_nodePop' function" {
+	label="CFG for 'libxml_nodePop' function";
+
+	Node0x5585a50 [shape=record,label="{libxml2-py.c:832:|{<s0>T|<s1>F}}"];
+	Node0x5585a50:s0 -> Node0x558e310;
+	Node0x5585a50:s1 -> Node0x558e2c0;
+	Node0x558e2c0 [shape=record,label="{libxml2-py.c:839:}"];
+	Node0x558e2c0 -> Node0x5587bc0;
+	Node0x558e310 [shape=record,label="{libxml2-py.c:840:|{<s0>T|<s1>F}}"];
+	Node0x558e310:s0 -> Node0x558eb00;
+	Node0x558e310:s1 -> Node0x558eb50;
+	Node0x558eb00 [shape=record,label="{libxml2-py.c:840:}"];
+	Node0x558eb00 -> Node0x558eba0;
+	Node0x558eb50 [shape=record,label="{libxml2-py.c:840:}"];
+	Node0x558eb50 -> Node0x558eba0;
+	Node0x558eba0 [shape=record,label="{libxml2-py.c:840:}"];
+	Node0x558eba0 -> Node0x5587bc0;
+	Node0x5587bc0 [shape=record,label="{libxml2-py.c:845:}"];
+}

@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsBengali' function" {
+	label="CFG for 'xmlUCSIsBengali' function";
+
+	Node0x4f559c0 [shape=record,label="{xmlunicode.c:1080:|{<s0>T|<s1>F}}"];
+	Node0x4f559c0:s0 -> Node0x4f55300;
+	Node0x4f559c0:s1 -> Node0x4f552b0;
+	Node0x4f55300 [shape=record,label="{xmlunicode.c:1081:}"];
+	Node0x4f55300 -> Node0x4f552b0;
+	Node0x4f552b0 [shape=record,label="{xmlunicode.c:1081:}"];
+}

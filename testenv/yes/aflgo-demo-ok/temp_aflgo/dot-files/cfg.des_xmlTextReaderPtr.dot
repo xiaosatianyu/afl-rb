@@ -1,0 +1,10 @@
+digraph "CFG for 'des_xmlTextReaderPtr' function" {
+	label="CFG for 'des_xmlTextReaderPtr' function";
+
+	Node0x634fcf0 [shape=record,label="{testapi.c:592:|{<s0>T|<s1>F}}"];
+	Node0x634fcf0:s0 -> Node0x6352200;
+	Node0x634fcf0:s1 -> Node0x6352250;
+	Node0x6352200 [shape=record,label="{testapi.c:593:}"];
+	Node0x6352200 -> Node0x6352250;
+	Node0x6352250 [shape=record,label="{testapi.c:594:}"];
+}

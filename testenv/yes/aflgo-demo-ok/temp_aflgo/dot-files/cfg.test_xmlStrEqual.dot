@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlStrEqual' function" {
+	label="CFG for 'test_xmlStrEqual' function";
+
+	Node0x6712c70 [shape=record,label="{testapi.c:36403:}"];
+	Node0x6712c70 -> Node0x671c340;
+	Node0x671c340 [shape=record,label="{testapi.c:36412:|{<s0>T|<s1>F}}"];
+	Node0x671c340:s0 -> Node0x671c620;
+	Node0x671c340:s1 -> Node0x671c1a0;
+	Node0x671c620 [shape=record,label="{testapi.c:36413:}"];
+	Node0x671c620 -> Node0x671ca10;
+	Node0x671ca10 [shape=record,label="{testapi.c:36413:|{<s0>T|<s1>F}}"];
+	Node0x671ca10:s0 -> Node0x671cc90;
+	Node0x671ca10:s1 -> Node0x671c8f0;
+	Node0x671cc90 [shape=record,label="{testapi.c:36414:|{<s0>T|<s1>F}}"];
+	Node0x671cc90:s0 -> Node0x671dd50;
+	Node0x671cc90:s1 -> Node0x671e770;
+	Node0x671dd50 [shape=record,label="{testapi.c:36426:}"];
+	Node0x671dd50 -> Node0x671e770;
+	Node0x671e770 [shape=record,label="{testapi.c:36432:}"];
+	Node0x671e770 -> Node0x671cc00;
+	Node0x671cc00 [shape=record,label="{testapi.c:36413:}"];
+	Node0x671cc00 -> Node0x671ca10;
+	Node0x671c8f0 [shape=record,label="{testapi.c:36433:}"];
+	Node0x671c8f0 -> Node0x671c590;
+	Node0x671c590 [shape=record,label="{testapi.c:36412:}"];
+	Node0x671c590 -> Node0x671c340;
+	Node0x671c1a0 [shape=record,label="{testapi.c:36434:}"];
+}

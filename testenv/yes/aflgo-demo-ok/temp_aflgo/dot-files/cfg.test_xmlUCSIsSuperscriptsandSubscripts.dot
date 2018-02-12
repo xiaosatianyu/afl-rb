@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsSuperscriptsandSubscripts' function" {
+	label="CFG for 'test_xmlUCSIsSuperscriptsandSubscripts' function";
+
+	Node0x69c3b70 [shape=record,label="{testapi.c:42175:}"];
+	Node0x69c3b70 -> Node0x69cb4d0;
+	Node0x69cb4d0 [shape=record,label="{testapi.c:42183:|{<s0>T|<s1>F}}"];
+	Node0x69cb4d0:s0 -> Node0x69cb7b0;
+	Node0x69cb4d0:s1 -> Node0x69cb330;
+	Node0x69cb7b0 [shape=record,label="{testapi.c:42184:|{<s0>T|<s1>F}}"];
+	Node0x69cb7b0:s0 -> Node0x69cc610;
+	Node0x69cb7b0:s1 -> Node0x69ccde0;
+	Node0x69cc610 [shape=record,label="{testapi.c:42194:}"];
+	Node0x69cc610 -> Node0x69ccde0;
+	Node0x69ccde0 [shape=record,label="{testapi.c:42199:}"];
+	Node0x69ccde0 -> Node0x69cb720;
+	Node0x69cb720 [shape=record,label="{testapi.c:42183:}"];
+	Node0x69cb720 -> Node0x69cb4d0;
+	Node0x69cb330 [shape=record,label="{testapi.c:42200:}"];
+}

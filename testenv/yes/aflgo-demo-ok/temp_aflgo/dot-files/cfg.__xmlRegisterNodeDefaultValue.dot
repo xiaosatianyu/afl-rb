@@ -1,0 +1,12 @@
+digraph "CFG for '__xmlRegisterNodeDefaultValue' function" {
+	label="CFG for '__xmlRegisterNodeDefaultValue' function";
+
+	Node0x3792340 [shape=record,label="{globals.c:1080:|{<s0>T|<s1>F}}"];
+	Node0x3792340 -> Node0x3790580;
+	Node0x3792340 -> Node0x35a6e60;
+	Node0x3790580 [shape=record,label="{globals.c:1081:}"];
+	Node0x3790580 -> Node0x3792670;
+	Node0x35a6e60 [shape=record,label="{globals.c:1083:}"];
+	Node0x35a6e60 -> Node0x3792670;
+	Node0x3792670 [shape=record,label="{globals.c:1084:}"];
+}

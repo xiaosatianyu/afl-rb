@@ -1,0 +1,19 @@
+digraph "CFG for 'channel' function" {
+	label="CFG for 'channel' function";
+
+	Node0x47f9f00 [shape=record,label="{runtest.c:267:|{<s0>T|<s1>F}}"];
+	Node0x47f9f00:s0 -> Node0x4835c20;
+	Node0x47f9f00:s1 -> Node0x4835c70;
+	Node0x4835c20 [shape=record,label="{runtest.c:272:}"];
+	Node0x4835c20 -> Node0x481e940;
+	Node0x4835c70 [shape=record,label="{runtest.c:273:|{<s0>T|<s1>F}}"];
+	Node0x4835c70:s0 -> Node0x48385d0;
+	Node0x4835c70:s1 -> Node0x4838670;
+	Node0x48385d0 [shape=record,label="{runtest.c:280:}"];
+	Node0x48385d0 -> Node0x4838620;
+	Node0x4838670 [shape=record,label="{runtest.c:283:}"];
+	Node0x4838670 -> Node0x4838620;
+	Node0x4838620 [shape=record,label="{runtest.c:285:}"];
+	Node0x4838620 -> Node0x481e940;
+	Node0x481e940 [shape=record,label="{runtest.c:286:}"];
+}

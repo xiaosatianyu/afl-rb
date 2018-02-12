@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlNextChar' function" {
+	label="CFG for 'libxml_xmlNextChar' function";
+
+	Node0x5937fb0 [shape=record,label="{libxml2-py.c:4361:|{<s0>T|<s1>F}}"];
+	Node0x5937fb0:s0 -> Node0x5702040;
+	Node0x5937fb0:s1 -> Node0x5701ff0;
+	Node0x5701ff0 [shape=record,label="{libxml2-py.c:4366:}"];
+	Node0x5701ff0 -> Node0x56fffe0;
+	Node0x5702040 [shape=record,label="{libxml2-py.c:4367:|{<s0>T|<s1>F}}"];
+	Node0x5702040:s0 -> Node0x5702800;
+	Node0x5702040:s1 -> Node0x5702850;
+	Node0x5702800 [shape=record,label="{libxml2-py.c:4367:}"];
+	Node0x5702800 -> Node0x57028a0;
+	Node0x5702850 [shape=record,label="{libxml2-py.c:4367:}"];
+	Node0x5702850 -> Node0x57028a0;
+	Node0x57028a0 [shape=record,label="{libxml2-py.c:4367:}"];
+	Node0x57028a0 -> Node0x56fffe0;
+	Node0x56fffe0 [shape=record,label="{libxml2-py.c:4372:}"];
+}

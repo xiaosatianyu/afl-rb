@@ -1,0 +1,12 @@
+digraph "CFG for '__xmlStructuredError' function" {
+	label="CFG for '__xmlStructuredError' function";
+
+	Node0x37718d0 [shape=record,label="{globals.c:874:|{<s0>T|<s1>F}}"];
+	Node0x37718d0 -> Node0x376e250;
+	Node0x37718d0 -> Node0x3771e80;
+	Node0x376e250 [shape=record,label="{globals.c:875:}"];
+	Node0x376e250 -> Node0x376e3b0;
+	Node0x3771e80 [shape=record,label="{globals.c:877:}"];
+	Node0x3771e80 -> Node0x376e3b0;
+	Node0x376e3b0 [shape=record,label="{globals.c:878:}"];
+}

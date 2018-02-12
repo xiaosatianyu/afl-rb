@@ -1,0 +1,19 @@
+digraph "CFG for 'compute_minrun' function" {
+	label="CFG for 'compute_minrun' function";
+
+	Node0x42f5fb0 [shape=record,label="{timsort.h:78:|{<s0>T|<s1>F}}"];
+	Node0x42f5fb0:s0 -> Node0x42fcdb0;
+	Node0x42f5fb0:s1 -> Node0x42fce00;
+	Node0x42fcdb0 [shape=record,label="{timsort.h:81:}"];
+	Node0x42fcdb0 -> Node0x42fce50;
+	Node0x42fce00 [shape=record,label="{timsort.h:81:}"];
+	Node0x42fce00 -> Node0x42fce50;
+	Node0x42fce50 [shape=record,label="{timsort.h:81:|{<s0>T|<s1>F}}"];
+	Node0x42fce50:s0 -> Node0x42fe1a0;
+	Node0x42fce50:s1 -> Node0x42fe1f0;
+	Node0x42fe1a0 [shape=record,label="{timsort.h:84:}"];
+	Node0x42fe1a0 -> Node0x42f6af0;
+	Node0x42fe1f0 [shape=record,label="{timsort.h:85:}"];
+	Node0x42fe1f0 -> Node0x42f6af0;
+	Node0x42f6af0 [shape=record,label="{timsort.h:86:}"];
+}

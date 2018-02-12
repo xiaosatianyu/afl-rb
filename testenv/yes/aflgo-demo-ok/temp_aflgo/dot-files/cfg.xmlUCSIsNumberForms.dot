@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsNumberForms' function" {
+	label="CFG for 'xmlUCSIsNumberForms' function";
+
+	Node0x4fb8780 [shape=record,label="{xmlunicode.c:2133:|{<s0>T|<s1>F}}"];
+	Node0x4fb8780 -> Node0x4fb8d10;
+	Node0x4fb8780 -> Node0x4fb8cc0;
+	Node0x4fb8d10 [shape=record,label="{xmlunicode.c:2134:}"];
+	Node0x4fb8d10 -> Node0x4fb8cc0;
+	Node0x4fb8cc0 [shape=record,label="{xmlunicode.c:2134:}"];
+}

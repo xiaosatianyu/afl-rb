@@ -1,0 +1,19 @@
+digraph "CFG for 'xmlNanoFTPSendUser' function" {
+	label="CFG for 'xmlNanoFTPSendUser' function";
+
+	Node0x3afdd00 [shape=record,label="{nanoftp.c:763:|{<s0>T|<s1>F}}"];
+	Node0x3afdd00:s0 -> Node0x3afffd0;
+	Node0x3afdd00:s1 -> Node0x3b00070;
+	Node0x3afffd0 [shape=record,label="{nanoftp.c:770:}"];
+	Node0x3afffd0 -> Node0x3b00020;
+	Node0x3b00070 [shape=record,label="{nanoftp.c:772:}"];
+	Node0x3b00070 -> Node0x3b00020;
+	Node0x3b00020 [shape=record,label="{nanoftp.c:773:|{<s0>T|<s1>F}}"];
+	Node0x3b00020:s0 -> Node0x3b01810;
+	Node0x3b00020:s1 -> Node0x3b01860;
+	Node0x3b01810 [shape=record,label="{nanoftp.c:780:}"];
+	Node0x3b01810 -> Node0x3aff060;
+	Node0x3b01860 [shape=record,label="{nanoftp.c:783:}"];
+	Node0x3b01860 -> Node0x3aff060;
+	Node0x3aff060 [shape=record,label="{nanoftp.c:784:}"];
+}

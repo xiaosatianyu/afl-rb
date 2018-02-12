@@ -1,0 +1,27 @@
+digraph "CFG for 'xmlACatalogRemove' function" {
+	label="CFG for 'xmlACatalogRemove' function";
+
+	Node0x47113f0 [shape=record,label="{catalog.c:2995:|{<s0>T|<s1>F}}"];
+	Node0x47113f0 -> Node0x47150b0;
+	Node0x47113f0 -> Node0x4716880;
+	Node0x4716880 [shape=record,label="{catalog.c:2998:|{<s0>T|<s1>F}}"];
+	Node0x4716880 -> Node0x47150b0;
+	Node0x4716880 -> Node0x4713910;
+	Node0x47150b0 [shape=record,label="{catalog.c:2999:}"];
+	Node0x47150b0 -> Node0x47139f0;
+	Node0x4713910 [shape=record,label="{catalog.c:3001:|{<s0>T|<s1>F}}"];
+	Node0x4713910 -> Node0x4716fb0;
+	Node0x4713910 -> Node0x4717050;
+	Node0x4716fb0 [shape=record,label="{catalog.c:3002:}"];
+	Node0x4716fb0 -> Node0x4717000;
+	Node0x4717050 [shape=record,label="{catalog.c:3004:|{<s0>T|<s1>F}}"];
+	Node0x4717050 -> Node0x4717dd0;
+	Node0x4717050 -> Node0x4718910;
+	Node0x4717dd0 [shape=record,label="{catalog.c:3007:}"];
+	Node0x4717dd0 -> Node0x4718910;
+	Node0x4718910 [shape=record,label="{%26}"];
+	Node0x4718910 -> Node0x4717000;
+	Node0x4717000 [shape=record,label="{catalog.c:3009:}"];
+	Node0x4717000 -> Node0x47139f0;
+	Node0x47139f0 [shape=record,label="{catalog.c:3010:}"];
+}

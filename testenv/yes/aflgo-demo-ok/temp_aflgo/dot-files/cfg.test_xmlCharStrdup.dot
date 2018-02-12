@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlCharStrdup' function" {
+	label="CFG for 'test_xmlCharStrdup' function";
+
+	Node0x66fc400 [shape=record,label="{testapi.c:36261:}"];
+	Node0x66fc400 -> Node0x670ac20;
+	Node0x670ac20 [shape=record,label="{testapi.c:36268:|{<s0>T|<s1>F}}"];
+	Node0x670ac20:s0 -> Node0x670af00;
+	Node0x670ac20:s1 -> Node0x670ab50;
+	Node0x670af00 [shape=record,label="{testapi.c:36269:|{<s0>T|<s1>F}}"];
+	Node0x670af00:s0 -> Node0x670bdc0;
+	Node0x670af00:s1 -> Node0x670c590;
+	Node0x670bdc0 [shape=record,label="{testapi.c:36279:}"];
+	Node0x670bdc0 -> Node0x670c590;
+	Node0x670c590 [shape=record,label="{testapi.c:36284:}"];
+	Node0x670c590 -> Node0x670ae70;
+	Node0x670ae70 [shape=record,label="{testapi.c:36268:}"];
+	Node0x670ae70 -> Node0x670ac20;
+	Node0x670ab50 [shape=record,label="{testapi.c:36285:}"];
+}

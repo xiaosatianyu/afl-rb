@@ -1,0 +1,46 @@
+digraph "CFG for 'example4' function" {
+	label="CFG for 'example4' function";
+
+	Node0x3c432d0 [shape=record,label="{xpath2.c:85:|{<s0>T|<s1>F}}"];
+	Node0x3c432d0:s0 -> Node0x3c63ff0;
+	Node0x3c432d0:s1 -> Node0x3c64040;
+	Node0x3c63ff0 [shape=record,label="{xpath2.c:90:}"];
+	Node0x3c63ff0 -> Node0x3c64090;
+	Node0x3c64040 [shape=record,label="{xpath2.c:90:}"];
+	Node0x3c64760 [shape=record,label="{xpath2.c:90:}"];
+	Node0x3c64760 -> Node0x3c64090;
+	Node0x3c64090 [shape=record,label="{xpath2.c:91:|{<s0>T|<s1>F}}"];
+	Node0x3c64090:s0 -> Node0x3c64840;
+	Node0x3c64090:s1 -> Node0x3c64890;
+	Node0x3c64840 [shape=record,label="{xpath2.c:91:}"];
+	Node0x3c64840 -> Node0x3c648e0;
+	Node0x3c64890 [shape=record,label="{xpath2.c:91:}"];
+	Node0x39e8190 [shape=record,label="{xpath2.c:91:}"];
+	Node0x39e8190 -> Node0x3c648e0;
+	Node0x3c648e0 [shape=record,label="{xpath2.c:92:|{<s0>T|<s1>F}}"];
+	Node0x3c648e0:s0 -> Node0x39e8270;
+	Node0x3c648e0:s1 -> Node0x39e82c0;
+	Node0x39e8270 [shape=record,label="{xpath2.c:92:}"];
+	Node0x39e8270 -> Node0x39e8310;
+	Node0x39e82c0 [shape=record,label="{xpath2.c:92:}"];
+	Node0x3c65840 [shape=record,label="{xpath2.c:92:}"];
+	Node0x3c65840 -> Node0x39e8310;
+	Node0x39e8310 [shape=record,label="{xpath2.c:95:|{<s0>T|<s1>F}}"];
+	Node0x39e8310:s0 -> Node0x3c661d0;
+	Node0x39e8310:s1 -> Node0x3c66560;
+	Node0x3c661d0 [shape=record,label="{xpath2.c:97:}"];
+	Node0x3c661d0 -> Node0x3c43710;
+	Node0x3c66560 [shape=record,label="{xpath2.c:102:|{<s0>T|<s1>F}}"];
+	Node0x3c66560:s0 -> Node0x3c67450;
+	Node0x3c66560:s1 -> Node0x3c677e0;
+	Node0x3c67450 [shape=record,label="{xpath2.c:104:}"];
+	Node0x3c67450 -> Node0x3c43710;
+	Node0x3c677e0 [shape=record,label="{xpath2.c:110:|{<s0>T|<s1>F}}"];
+	Node0x3c677e0:s0 -> Node0x3c680a0;
+	Node0x3c677e0:s1 -> Node0x3c68910;
+	Node0x3c680a0 [shape=record,label="{xpath2.c:112:}"];
+	Node0x3c680a0 -> Node0x3c43710;
+	Node0x3c68910 [shape=record,label="{xpath2.c:119:}"];
+	Node0x3c68910 -> Node0x3c43710;
+	Node0x3c43710 [shape=record,label="{xpath2.c:134:}"];
+}

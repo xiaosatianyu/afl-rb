@@ -1,0 +1,12 @@
+digraph "CFG for 'hugeClose' function" {
+	label="CFG for 'hugeClose' function";
+
+	Node0x4640a80 [shape=record,label="{testrecurse.c:218:|{<s0>T|<s1>F}}"];
+	Node0x4640a80:s0 -> Node0x4614a50;
+	Node0x4640a80:s1 -> Node0x4614aa0;
+	Node0x4614a50 [shape=record,label="{testrecurse.c:219:}"];
+	Node0x4614a50 -> Node0x4614d00;
+	Node0x4614aa0 [shape=record,label="{testrecurse.c:220:}"];
+	Node0x4614aa0 -> Node0x4614d00;
+	Node0x4614d00 [shape=record,label="{testrecurse.c:221:}"];
+}

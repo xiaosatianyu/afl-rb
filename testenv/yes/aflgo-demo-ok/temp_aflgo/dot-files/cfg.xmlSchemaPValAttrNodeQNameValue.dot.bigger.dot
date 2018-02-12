@@ -1,0 +1,43 @@
+digraph "CFG for 'xmlSchemaPValAttrNodeQNameValue' function" {
+	label="CFG for 'xmlSchemaPValAttrNodeQNameValue' function";
+
+	Node0x51dfb60 [shape=record,label="{xmlschemas.c:5790:|{<s0>T|<s1>F}}"];
+	Node0x51dfb60:s0 -> Node0x51e7ab0;
+	Node0x51dfb60:s1 -> Node0x51e7ea0;
+	Node0x51e7ab0 [shape=record,label="{xmlschemas.c:5806:}"];
+	Node0x51e7ab0 -> Node0x51e2e60;
+	Node0x51e7ea0 [shape=record,label="{xmlschemas.c:5813:|{<s0>T|<s1>F}}"];
+	Node0x51e7ea0:s0 -> Node0x51e85f0;
+	Node0x51e7ea0:s1 -> Node0x51e8640;
+	Node0x51e85f0 [shape=record,label="{xmlschemas.c:5814:}"];
+	Node0x51e85f0 -> Node0x51e2e60;
+	Node0x51e8640 [shape=record,label="{%38}"];
+	Node0x51e8640 -> Node0x51e7e50;
+	Node0x51e7e50 [shape=record,label="{xmlschemas.c:5816:|{<s0>T|<s1>F}}"];
+	Node0x51e7e50:s0 -> Node0x51e8be0;
+	Node0x51e7e50:s1 -> Node0x51e8b90;
+	Node0x51e8b90 [shape=record,label="{xmlschemas.c:5817:|{<s0>T|<s1>F}}"];
+	Node0x51e8b90:s0 -> Node0x51e94d0;
+	Node0x51e8b90:s1 -> Node0x51ea200;
+	Node0x51e94d0 [shape=record,label="{xmlschemas.c:5819:}"];
+	Node0x51e94d0 -> Node0x51e9800;
+	Node0x51ea200 [shape=record,label="{xmlschemas.c:5820:|{<s0>T|<s1>F}}"];
+	Node0x51ea200:s0 -> Node0x51ea8e0;
+	Node0x51ea200:s1 -> Node0x51ea930;
+	Node0x51ea8e0 [shape=record,label="{xmlschemas.c:5827:}"];
+	Node0x51ea8e0 -> Node0x51ea930;
+	Node0x51ea930 [shape=record,label="{%68}"];
+	Node0x51ea930 -> Node0x51e9800;
+	Node0x51e9800 [shape=record,label="{xmlschemas.c:5829:}"];
+	Node0x51e9800 -> Node0x51e2e60;
+	Node0x51e8be0 [shape=record,label="{xmlschemas.c:5835:|{<s0>T|<s1>F}}"];
+	Node0x51e8be0:s0 -> Node0x51ebdd0;
+	Node0x51e8be0:s1 -> Node0x51ecf60;
+	Node0x51ebdd0 [shape=record,label="{xmlschemas.c:5840:}"];
+	Node0x51ebdd0 -> Node0x51e2e60;
+	Node0x51ecf60 [shape=record,label="{xmlschemas.c:5848:}"];
+	Node0x51ecf60 -> Node0x51ecf10;
+	Node0x51ecf10 [shape=record,label="{xmlschemas.c:5850:}"];
+	Node0x51ecf10 -> Node0x51e2e60;
+	Node0x51e2e60 [shape=record,label="{xmlschemas.c:5851:}"];
+}

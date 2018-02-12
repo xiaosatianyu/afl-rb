@@ -1,0 +1,34 @@
+digraph "CFG for 'htmlAutoCloseTag' function" {
+	label="CFG for 'htmlAutoCloseTag' function";
+
+	Node0x42bd0a0 [shape=record,label="{HTMLparser.c:1437:|{<s0>T|<s1>F}}"];
+	Node0x42bd0a0:s0 -> Node0x42c5a50;
+	Node0x42bd0a0:s1 -> Node0x42c5aa0;
+	Node0x42c5a50 [shape=record,label="{HTMLparser.c:1440:}"];
+	Node0x42c5a50 -> Node0x42bd050;
+	Node0x42c5aa0 [shape=record,label="{HTMLparser.c:1441:|{<s0>T|<s1>F}}"];
+	Node0x42c5aa0:s0 -> Node0x42c5fd0;
+	Node0x42c5aa0:s1 -> Node0x42c6020;
+	Node0x42c5fd0 [shape=record,label="{HTMLparser.c:1441:}"];
+	Node0x42c5fd0 -> Node0x42bd050;
+	Node0x42c6020 [shape=record,label="{HTMLparser.c:1442:|{<s0>T|<s1>F}}"];
+	Node0x42c6020:s0 -> Node0x42c68b0;
+	Node0x42c6020:s1 -> Node0x42c6be0;
+	Node0x42c68b0 [shape=record,label="{HTMLparser.c:1442:}"];
+	Node0x42c68b0 -> Node0x42bd050;
+	Node0x42c6be0 [shape=record,label="{HTMLparser.c:1443:}"];
+	Node0x42c6be0 -> Node0x42c71d0;
+	Node0x42c71d0 [shape=record,label="{HTMLparser.c:1444:|{<s0>T|<s1>F}}"];
+	Node0x42c71d0:s0 -> Node0x42c7be0;
+	Node0x42c71d0:s1 -> Node0x42c7440;
+	Node0x42c7be0 [shape=record,label="{HTMLparser.c:1445:|{<s0>T|<s1>F}}"];
+	Node0x42c7be0:s0 -> Node0x42c7d20;
+	Node0x42c7be0:s1 -> Node0x42c7d70;
+	Node0x42c7d20 [shape=record,label="{HTMLparser.c:1445:}"];
+	Node0x42c7d20 -> Node0x42bd050;
+	Node0x42c7d70 [shape=record,label="{HTMLparser.c:1446:}"];
+	Node0x42c7d70 -> Node0x42c71d0;
+	Node0x42c7440 [shape=record,label="{HTMLparser.c:1448:}"];
+	Node0x42c7440 -> Node0x42bd050;
+	Node0x42bd050 [shape=record,label="{HTMLparser.c:1449:}"];
+}

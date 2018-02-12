@@ -1,0 +1,26 @@
+digraph "CFG for 'libxml_xmlSetTreeDoc' function" {
+	label="CFG for 'libxml_xmlSetTreeDoc' function";
+
+	Node0x5c1f700 [shape=record,label="{libxml2-py.c:7280:|{<s0>T|<s1>F}}"];
+	Node0x5c1f700:s0 -> Node0x5c23870;
+	Node0x5c1f700:s1 -> Node0x5c23820;
+	Node0x5c23820 [shape=record,label="{libxml2-py.c:7287:}"];
+	Node0x5c23820 -> Node0x5c21b20;
+	Node0x5c23870 [shape=record,label="{libxml2-py.c:7288:|{<s0>T|<s1>F}}"];
+	Node0x5c23870:s0 -> Node0x5c24100;
+	Node0x5c23870:s1 -> Node0x5c24150;
+	Node0x5c24100 [shape=record,label="{libxml2-py.c:7288:}"];
+	Node0x5c24100 -> Node0x5c241a0;
+	Node0x5c24150 [shape=record,label="{libxml2-py.c:7288:}"];
+	Node0x5c24150 -> Node0x5c241a0;
+	Node0x5c241a0 [shape=record,label="{libxml2-py.c:7288:|{<s0>T|<s1>F}}"];
+	Node0x5c241a0:s0 -> Node0x5c247d0;
+	Node0x5c241a0:s1 -> Node0x5c24820;
+	Node0x5c247d0 [shape=record,label="{libxml2-py.c:7289:}"];
+	Node0x5c247d0 -> Node0x5c24870;
+	Node0x5c24820 [shape=record,label="{libxml2-py.c:7289:}"];
+	Node0x5c24820 -> Node0x5c24870;
+	Node0x5c24870 [shape=record,label="{libxml2-py.c:7289:}"];
+	Node0x5c24870 -> Node0x5c21b20;
+	Node0x5c21b20 [shape=record,label="{libxml2-py.c:7294:}"];
+}

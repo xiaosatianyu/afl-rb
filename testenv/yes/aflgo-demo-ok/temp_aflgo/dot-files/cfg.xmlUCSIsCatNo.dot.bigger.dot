@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlUCSIsCatNo' function" {
+	label="CFG for 'xmlUCSIsCatNo' function";
+
+	Node0x500a2c0 [shape=record,label="{xmlunicode.c:2912:}"];
+}

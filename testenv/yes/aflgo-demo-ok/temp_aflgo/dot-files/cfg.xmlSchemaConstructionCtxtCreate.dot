@@ -1,0 +1,22 @@
+digraph "CFG for 'xmlSchemaConstructionCtxtCreate' function" {
+	label="CFG for 'xmlSchemaConstructionCtxtCreate' function";
+
+	Node0x4fc6390 [shape=record,label="{xmlschemas.c:9909:|{<s0>T|<s1>F}}"];
+	Node0x4fc6390 -> Node0x4fc7050;
+	Node0x4fc6390 -> Node0x4fc70a0;
+	Node0x4fc7050 [shape=record,label="{xmlschemas.c:9916:}"];
+	Node0x4fc7050 -> Node0x4fc66c0;
+	Node0x4fc70a0 [shape=record,label="{xmlschemas.c:9920:|{<s0>T|<s1>F}}"];
+	Node0x4fc70a0 -> Node0x4fc7db0;
+	Node0x4fc70a0 -> Node0x4fc7e00;
+	Node0x4fc7db0 [shape=record,label="{xmlschemas.c:9924:}"];
+	Node0x4fc7db0 -> Node0x4fc66c0;
+	Node0x4fc7e00 [shape=record,label="{xmlschemas.c:9929:|{<s0>T|<s1>F}}"];
+	Node0x4fc7e00 -> Node0x4fc8c50;
+	Node0x4fc7e00 -> Node0x4fc8ca0;
+	Node0x4fc8c50 [shape=record,label="{xmlschemas.c:9931:}"];
+	Node0x4fc8c50 -> Node0x4fc66c0;
+	Node0x4fc8ca0 [shape=record,label="{xmlschemas.c:9936:}"];
+	Node0x4fc8ca0 -> Node0x4fc66c0;
+	Node0x4fc66c0 [shape=record,label="{xmlschemas.c:9939:}"];
+}

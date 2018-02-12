@@ -1,0 +1,37 @@
+digraph "CFG for 'test_xmlDocDumpMemory' function" {
+	label="CFG for 'test_xmlDocDumpMemory' function";
+
+	Node0x5df8c30 [shape=record,label="{testapi.c:20128:}"];
+	Node0x5df8c30 -> Node0x5e0edf0;
+	Node0x5e0edf0 [shape=record,label="{testapi.c:20139:|{<s0>T|<s1>F}}"];
+	Node0x5e0edf0:s0 -> Node0x5e0f0d0;
+	Node0x5e0edf0:s1 -> Node0x5e0ec50;
+	Node0x5e0f0d0 [shape=record,label="{testapi.c:20140:}"];
+	Node0x5e0f0d0 -> Node0x5e0f4c0;
+	Node0x5e0f4c0 [shape=record,label="{testapi.c:20140:|{<s0>T|<s1>F}}"];
+	Node0x5e0f4c0:s0 -> Node0x5e0f740;
+	Node0x5e0f4c0:s1 -> Node0x5e0f3a0;
+	Node0x5e0f740 [shape=record,label="{testapi.c:20141:}"];
+	Node0x5e0f740 -> Node0x5e0fb30;
+	Node0x5e0fb30 [shape=record,label="{testapi.c:20141:|{<s0>T|<s1>F}}"];
+	Node0x5e0fb30:s0 -> Node0x5e0fdb0;
+	Node0x5e0fb30:s1 -> Node0x5e0fa10;
+	Node0x5e0fdb0 [shape=record,label="{testapi.c:20142:|{<s0>T|<s1>F}}"];
+	Node0x5e0fdb0:s0 -> Node0x5e11080;
+	Node0x5e0fdb0:s1 -> Node0x5e113b0;
+	Node0x5e11080 [shape=record,label="{testapi.c:20155:}"];
+	Node0x5e11080 -> Node0x5e113b0;
+	Node0x5e113b0 [shape=record,label="{testapi.c:20162:}"];
+	Node0x5e113b0 -> Node0x5e0fd20;
+	Node0x5e0fd20 [shape=record,label="{testapi.c:20141:}"];
+	Node0x5e0fd20 -> Node0x5e0fb30;
+	Node0x5e0fa10 [shape=record,label="{testapi.c:20163:}"];
+	Node0x5e0fa10 -> Node0x5e0f6b0;
+	Node0x5e0f6b0 [shape=record,label="{testapi.c:20140:}"];
+	Node0x5e0f6b0 -> Node0x5e0f4c0;
+	Node0x5e0f3a0 [shape=record,label="{testapi.c:20164:}"];
+	Node0x5e0f3a0 -> Node0x5e0f040;
+	Node0x5e0f040 [shape=record,label="{testapi.c:20139:}"];
+	Node0x5e0f040 -> Node0x5e0edf0;
+	Node0x5e0ec50 [shape=record,label="{testapi.c:20165:}"];
+}

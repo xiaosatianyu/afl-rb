@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsOpticalCharacterRecognition' function" {
+	label="CFG for 'test_xmlUCSIsOpticalCharacterRecognition' function";
+
+	Node0x6998110 [shape=record,label="{testapi.c:41767:}"];
+	Node0x6998110 -> Node0x699fb10;
+	Node0x699fb10 [shape=record,label="{testapi.c:41775:|{<s0>T|<s1>F}}"];
+	Node0x699fb10:s0 -> Node0x699fdf0;
+	Node0x699fb10:s1 -> Node0x699f970;
+	Node0x699fdf0 [shape=record,label="{testapi.c:41776:|{<s0>T|<s1>F}}"];
+	Node0x699fdf0:s0 -> Node0x69a0c50;
+	Node0x699fdf0:s1 -> Node0x69a0f80;
+	Node0x69a0c50 [shape=record,label="{testapi.c:41786:}"];
+	Node0x69a0c50 -> Node0x69a0f80;
+	Node0x69a0f80 [shape=record,label="{testapi.c:41791:}"];
+	Node0x69a0f80 -> Node0x699fd60;
+	Node0x699fd60 [shape=record,label="{testapi.c:41775:}"];
+	Node0x699fd60 -> Node0x699fb10;
+	Node0x699f970 [shape=record,label="{testapi.c:41792:}"];
+}

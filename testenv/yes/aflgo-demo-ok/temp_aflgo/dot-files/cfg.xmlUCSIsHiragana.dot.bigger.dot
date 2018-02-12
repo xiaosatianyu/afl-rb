@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsHiragana' function" {
+	label="CFG for 'xmlUCSIsHiragana' function";
+
+	Node0x4f6e1a0 [shape=record,label="{xmlunicode.c:1730:|{<s0>T|<s1>F}}"];
+	Node0x4f6e1a0:s0 -> Node0x4f6e680;
+	Node0x4f6e1a0:s1 -> Node0x4ec8920;
+	Node0x4f6e680 [shape=record,label="{xmlunicode.c:1731:}"];
+	Node0x4f6e680 -> Node0x4ec8920;
+	Node0x4ec8920 [shape=record,label="{xmlunicode.c:1731:}"];
+}

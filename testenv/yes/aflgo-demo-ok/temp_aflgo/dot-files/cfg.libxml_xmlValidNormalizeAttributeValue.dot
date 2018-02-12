@@ -1,0 +1,26 @@
+digraph "CFG for 'libxml_xmlValidNormalizeAttributeValue' function" {
+	label="CFG for 'libxml_xmlValidNormalizeAttributeValue' function";
+
+	Node0x601efc0 [shape=record,label="{libxml2-py.c:12255:|{<s0>T|<s1>F}}"];
+	Node0x601efc0:s0 -> Node0x6025e70;
+	Node0x601efc0:s1 -> Node0x6025e20;
+	Node0x6025e20 [shape=record,label="{libxml2-py.c:12266:}"];
+	Node0x6025e20 -> Node0x6023bf0;
+	Node0x6025e70 [shape=record,label="{libxml2-py.c:12267:|{<s0>T|<s1>F}}"];
+	Node0x6025e70:s0 -> Node0x6026800;
+	Node0x6025e70:s1 -> Node0x6026850;
+	Node0x6026800 [shape=record,label="{libxml2-py.c:12267:}"];
+	Node0x6026800 -> Node0x60268a0;
+	Node0x6026850 [shape=record,label="{libxml2-py.c:12267:}"];
+	Node0x6026850 -> Node0x60268a0;
+	Node0x60268a0 [shape=record,label="{libxml2-py.c:12267:|{<s0>T|<s1>F}}"];
+	Node0x60268a0:s0 -> Node0x6026f30;
+	Node0x60268a0:s1 -> Node0x6026f80;
+	Node0x6026f30 [shape=record,label="{libxml2-py.c:12268:}"];
+	Node0x6026f30 -> Node0x6026fd0;
+	Node0x6026f80 [shape=record,label="{libxml2-py.c:12268:}"];
+	Node0x6026f80 -> Node0x6026fd0;
+	Node0x6026fd0 [shape=record,label="{libxml2-py.c:12268:}"];
+	Node0x6026fd0 -> Node0x6023bf0;
+	Node0x6023bf0 [shape=record,label="{libxml2-py.c:12273:}"];
+}

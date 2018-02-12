@@ -1,0 +1,17 @@
+digraph "CFG for 'xmlXPathNewCompExpr' function" {
+	label="CFG for 'xmlXPathNewCompExpr' function";
+
+	Node0x4a6fdf0 [shape=record,label="{xpath.c:990:|{<s0>T|<s1>F}}"];
+	Node0x4a6fdf0:s0 -> Node0x4a5dcf0;
+	Node0x4a6fdf0:s1 -> Node0x4a70620;
+	Node0x4a5dcf0 [shape=record,label="{xpath.c:994:}"];
+	Node0x4a5dcf0 -> Node0x4a5d840;
+	Node0x4a70620 [shape=record,label="{xpath.c:997:|{<s0>T|<s1>F}}"];
+	Node0x4a70620:s0 -> Node0x4a71b10;
+	Node0x4a70620:s1 -> Node0x4a71b60;
+	Node0x4a71b10 [shape=record,label="{xpath.c:1003:}"];
+	Node0x4a71b10 -> Node0x4a5d840;
+	Node0x4a71b60 [shape=record,label="{xpath.c:1007:}"];
+	Node0x4a71b60 -> Node0x4a5d840;
+	Node0x4a5d840 [shape=record,label="{xpath.c:1013:}"];
+}

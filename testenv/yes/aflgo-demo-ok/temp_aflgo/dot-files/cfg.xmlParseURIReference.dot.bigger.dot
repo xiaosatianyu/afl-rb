@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlParseURIReference' function" {
+	label="CFG for 'xmlParseURIReference' function";
+
+	Node0x3cfa6b0 [shape=record,label="{uri.c:961:}"];
+}

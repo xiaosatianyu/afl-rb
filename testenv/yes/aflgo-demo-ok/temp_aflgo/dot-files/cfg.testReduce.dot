@@ -1,0 +1,26 @@
+digraph "CFG for 'testReduce' function" {
+	label="CFG for 'testReduce' function";
+
+	Node0x4983c60 [shape=record,label="{testRegexp.c:185:|{<s0>T|<s1>F}}"];
+	Node0x4983c60:s0 -> Node0x49863e0;
+	Node0x4983c60:s1 -> Node0x4986430;
+	Node0x49863e0 [shape=record,label="{testRegexp.c:192:}"];
+	Node0x49863e0 -> Node0x4979380;
+	Node0x4986430 [shape=record,label="{testRegexp.c:195:|{<s0>T|<s1>F}}"];
+	Node0x4986430:s0 -> Node0x4987c00;
+	Node0x4986430:s1 -> Node0x4987ee0;
+	Node0x4987c00 [shape=record,label="{testRegexp.c:200:}"];
+	Node0x4987c00 -> Node0x4979380;
+	Node0x4987ee0 [shape=record,label="{testRegexp.c:203:|{<s0>T|<s1>F}}"];
+	Node0x4987ee0:s0 -> Node0x49376b0;
+	Node0x4987ee0:s1 -> Node0x4937750;
+	Node0x49376b0 [shape=record,label="{testRegexp.c:207:}"];
+	Node0x49376b0 -> Node0x4937700;
+	Node0x4937750 [shape=record,label="{testRegexp.c:210:}"];
+	Node0x4937750 -> Node0x4937700;
+	Node0x4937700 [shape=record,label="{testRegexp.c:211:}"];
+	Node0x4937700 -> Node0x4987f30;
+	Node0x4987f30 [shape=record,label="{testRegexp.c:213:}"];
+	Node0x4987f30 -> Node0x4979380;
+	Node0x4979380 [shape=record,label="{testRegexp.c:214:}"];
+}

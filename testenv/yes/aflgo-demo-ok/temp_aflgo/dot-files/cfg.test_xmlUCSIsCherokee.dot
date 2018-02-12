@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsCherokee' function" {
+	label="CFG for 'test_xmlUCSIsCherokee' function";
+
+	Node0x68a22e0 [shape=record,label="{testapi.c:39489:}"];
+	Node0x68a22e0 -> Node0x68b0dd0;
+	Node0x68b0dd0 [shape=record,label="{testapi.c:39497:|{<s0>T|<s1>F}}"];
+	Node0x68b0dd0:s0 -> Node0x68b10b0;
+	Node0x68b0dd0:s1 -> Node0x68b0c30;
+	Node0x68b10b0 [shape=record,label="{testapi.c:39498:|{<s0>T|<s1>F}}"];
+	Node0x68b10b0:s0 -> Node0x68b1f00;
+	Node0x68b10b0:s1 -> Node0x68b2230;
+	Node0x68b1f00 [shape=record,label="{testapi.c:39508:}"];
+	Node0x68b1f00 -> Node0x68b2230;
+	Node0x68b2230 [shape=record,label="{testapi.c:39513:}"];
+	Node0x68b2230 -> Node0x68b1020;
+	Node0x68b1020 [shape=record,label="{testapi.c:39497:}"];
+	Node0x68b1020 -> Node0x68b0dd0;
+	Node0x68b0c30 [shape=record,label="{testapi.c:39514:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlBoolToText' function" {
+	label="CFG for 'test_xmlBoolToText' function";
+
+	Node0x564ee60 [shape=record,label="{testapi.c:6918:}"];
+	Node0x564ee60 -> Node0x565cc40;
+	Node0x565cc40 [shape=record,label="{testapi.c:6926:|{<s0>T|<s1>F}}"];
+	Node0x565cc40:s0 -> Node0x565ce40;
+	Node0x565cc40:s1 -> Node0x565cb70;
+	Node0x565ce40 [shape=record,label="{testapi.c:6927:|{<s0>T|<s1>F}}"];
+	Node0x565ce40:s0 -> Node0x565dd00;
+	Node0x565ce40:s1 -> Node0x565e600;
+	Node0x565dd00 [shape=record,label="{testapi.c:6937:}"];
+	Node0x565dd00 -> Node0x565e600;
+	Node0x565e600 [shape=record,label="{testapi.c:6942:}"];
+	Node0x565e600 -> Node0x565cdf0;
+	Node0x565cdf0 [shape=record,label="{testapi.c:6926:}"];
+	Node0x565cdf0 -> Node0x565cc40;
+	Node0x565cb70 [shape=record,label="{testapi.c:6943:}"];
+}

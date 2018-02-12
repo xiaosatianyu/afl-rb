@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_htmlCtxtUseOptions' function" {
+	label="CFG for 'libxml_htmlCtxtUseOptions' function";
+
+	Node0x54eb3a0 [shape=record,label="{libxml2-py.c:186:|{<s0>T|<s1>F}}"];
+	Node0x54eb3a0:s0 -> Node0x54ecd00;
+	Node0x54eb3a0:s1 -> Node0x54eccb0;
+	Node0x54eccb0 [shape=record,label="{libxml2-py.c:194:}"];
+	Node0x54eccb0 -> Node0x54d1160;
+	Node0x54ecd00 [shape=record,label="{libxml2-py.c:195:|{<s0>T|<s1>F}}"];
+	Node0x54ecd00:s0 -> Node0x54d8af0;
+	Node0x54ecd00:s1 -> Node0x54d8b40;
+	Node0x54d8af0 [shape=record,label="{libxml2-py.c:195:}"];
+	Node0x54d8af0 -> Node0x54d8b90;
+	Node0x54d8b40 [shape=record,label="{libxml2-py.c:195:}"];
+	Node0x54d8b40 -> Node0x54d8b90;
+	Node0x54d8b90 [shape=record,label="{libxml2-py.c:195:}"];
+	Node0x54d8b90 -> Node0x54d1160;
+	Node0x54d1160 [shape=record,label="{libxml2-py.c:200:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlSetDocCompressMode' function" {
+	label="CFG for 'libxml_xmlSetDocCompressMode' function";
+
+	Node0x5c11870 [shape=record,label="{libxml2-py.c:7188:|{<s0>T|<s1>F}}"];
+	Node0x5c11870:s0 -> Node0x5c12fa0;
+	Node0x5c11870:s1 -> Node0x5c12f50;
+	Node0x5c12f50 [shape=record,label="{libxml2-py.c:7194:}"];
+	Node0x5c12f50 -> Node0x5c04ea0;
+	Node0x5c12fa0 [shape=record,label="{libxml2-py.c:7195:|{<s0>T|<s1>F}}"];
+	Node0x5c12fa0:s0 -> Node0x5c13840;
+	Node0x5c12fa0:s1 -> Node0x5c13890;
+	Node0x5c13840 [shape=record,label="{libxml2-py.c:7195:}"];
+	Node0x5c13840 -> Node0x5c138e0;
+	Node0x5c13890 [shape=record,label="{libxml2-py.c:7195:}"];
+	Node0x5c13890 -> Node0x5c138e0;
+	Node0x5c138e0 [shape=record,label="{libxml2-py.c:7195:}"];
+	Node0x5c138e0 -> Node0x5c04ea0;
+	Node0x5c04ea0 [shape=record,label="{libxml2-py.c:7200:}"];
+}

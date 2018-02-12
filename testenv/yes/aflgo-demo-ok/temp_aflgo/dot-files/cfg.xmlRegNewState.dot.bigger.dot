@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlRegNewState' function" {
+	label="CFG for 'xmlRegNewState' function";
+
+	Node0x3af9e60 [shape=record,label="{xmlregexp.c:876:|{<s0>T|<s1>F}}"];
+	Node0x3af9e60:s0 -> Node0x3afd640;
+	Node0x3af9e60:s1 -> Node0x3afd690;
+	Node0x3afd640 [shape=record,label="{xmlregexp.c:881:}"];
+	Node0x3afd640 -> Node0x3afcd10;
+	Node0x3afd690 [shape=record,label="{xmlregexp.c:884:}"];
+	Node0x3afd690 -> Node0x3afcd10;
+	Node0x3afcd10 [shape=record,label="{xmlregexp.c:888:}"];
+}

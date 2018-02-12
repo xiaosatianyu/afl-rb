@@ -1,0 +1,27 @@
+digraph "CFG for 'gen_xmlElementContentType' function" {
+	label="CFG for 'gen_xmlElementContentType' function";
+
+	Node0x60d7bc0 [shape=record,label="{testapi.c:1086:|{<s0>T|<s1>F}}"];
+	Node0x60d7bc0:s0 -> Node0x6106780;
+	Node0x60d7bc0:s1 -> Node0x6106420;
+	Node0x6106780 [shape=record,label="{testapi.c:1087:}"];
+	Node0x6106780 -> Node0x60fd020;
+	Node0x6106420 [shape=record,label="{testapi.c:1088:|{<s0>T|<s1>F}}"];
+	Node0x6106420:s0 -> Node0x610a5b0;
+	Node0x6106420:s1 -> Node0x610a600;
+	Node0x610a5b0 [shape=record,label="{testapi.c:1088:}"];
+	Node0x610a5b0 -> Node0x60fd020;
+	Node0x610a600 [shape=record,label="{testapi.c:1089:|{<s0>T|<s1>F}}"];
+	Node0x610a600:s0 -> Node0x610aa90;
+	Node0x610a600:s1 -> Node0x610aae0;
+	Node0x610aa90 [shape=record,label="{testapi.c:1089:}"];
+	Node0x610aa90 -> Node0x60fd020;
+	Node0x610aae0 [shape=record,label="{testapi.c:1090:|{<s0>T|<s1>F}}"];
+	Node0x610aae0:s0 -> Node0x610af70;
+	Node0x610aae0:s1 -> Node0x610afc0;
+	Node0x610af70 [shape=record,label="{testapi.c:1090:}"];
+	Node0x610af70 -> Node0x60fd020;
+	Node0x610afc0 [shape=record,label="{testapi.c:1091:}"];
+	Node0x610afc0 -> Node0x60fd020;
+	Node0x60fd020 [shape=record,label="{testapi.c:1092:}"];
+}

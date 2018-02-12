@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlXPathPopString' function" {
+	label="CFG for 'test_xmlXPathPopString' function";
+
+	Node0x6d8e790 [shape=record,label="{testapi.c:50036:}"];
+	Node0x6d8e790 -> Node0x6d99b30;
+	Node0x6d99b30 [shape=record,label="{testapi.c:50044:|{<s0>T|<s1>F}}"];
+	Node0x6d99b30:s0 -> Node0x6d99e10;
+	Node0x6d99b30:s1 -> Node0x6d99990;
+	Node0x6d99e10 [shape=record,label="{testapi.c:50045:|{<s0>T|<s1>F}}"];
+	Node0x6d99e10:s0 -> Node0x6d9ac60;
+	Node0x6d99e10:s1 -> Node0x6d9b430;
+	Node0x6d9ac60 [shape=record,label="{testapi.c:50055:}"];
+	Node0x6d9ac60 -> Node0x6d9b430;
+	Node0x6d9b430 [shape=record,label="{testapi.c:50060:}"];
+	Node0x6d9b430 -> Node0x6d99d80;
+	Node0x6d99d80 [shape=record,label="{testapi.c:50044:}"];
+	Node0x6d99d80 -> Node0x6d99b30;
+	Node0x6d99990 [shape=record,label="{testapi.c:50061:}"];
+}

@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlCatalogResolveSystem' function" {
+	label="CFG for 'xmlCatalogResolveSystem' function";
+
+	Node0x473c580 [shape=record,label="{catalog.c:3308:|{<s0>T|<s1>F}}"];
+	Node0x473c580:s0 -> Node0x473c790;
+	Node0x473c580:s1 -> Node0x473a440;
+	Node0x473a440 [shape=record,label="{catalog.c:3312:}"];
+	Node0x473a440 -> Node0x473c790;
+	Node0x473c790 [shape=record,label="{catalog.c:3314:}"];
+}

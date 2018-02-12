@@ -1,0 +1,40 @@
+digraph "CFG for 'xmlTextReaderPreservePattern' function" {
+	label="CFG for 'xmlTextReaderPreservePattern' function";
+
+	Node0x443add0 [shape=record,label="{xmlreader.c:3988:|{<s0>T|<s1>F}}"];
+	Node0x443add0:s0 -> Node0x443c3c0;
+	Node0x443add0:s1 -> Node0x443c460;
+	Node0x443c460 [shape=record,label="{xmlreader.c:3993:|{<s0>T|<s1>F}}"];
+	Node0x443c460:s0 -> Node0x443c3c0;
+	Node0x443c460:s1 -> Node0x443c410;
+	Node0x443c3c0 [shape=record,label="{xmlreader.c:3994:}"];
+	Node0x443c3c0 -> Node0x44327f0;
+	Node0x443c410 [shape=record,label="{xmlreader.c:3996:|{<s0>T|<s1>F}}"];
+	Node0x443c410:s0 -> Node0x443d4c0;
+	Node0x443c410:s1 -> Node0x443d9f0;
+	Node0x443d4c0 [shape=record,label="{xmlreader.c:3998:}"];
+	Node0x443d4c0 -> Node0x44327f0;
+	Node0x443d9f0 [shape=record,label="{xmlreader.c:4000:|{<s0>T|<s1>F}}"];
+	Node0x443d9f0:s0 -> Node0x443dd00;
+	Node0x443d9f0:s1 -> Node0x443dd50;
+	Node0x443dd00 [shape=record,label="{xmlreader.c:4001:|{<s0>T|<s1>F}}"];
+	Node0x443dd00:s0 -> Node0x443ec30;
+	Node0x443dd00:s1 -> Node0x443ec80;
+	Node0x443ec30 [shape=record,label="{xmlreader.c:4005:}"];
+	Node0x443ec30 -> Node0x44327f0;
+	Node0x443ec80 [shape=record,label="{xmlreader.c:4008:}"];
+	Node0x443ec80 -> Node0x443dd50;
+	Node0x443dd50 [shape=record,label="{xmlreader.c:4009:|{<s0>T|<s1>F}}"];
+	Node0x443dd50:s0 -> Node0x443f870;
+	Node0x443dd50:s1 -> Node0x443f8c0;
+	Node0x443f870 [shape=record,label="{xmlreader.c:4010:|{<s0>T|<s1>F}}"];
+	Node0x443f870:s0 -> Node0x4440ec0;
+	Node0x443f870:s1 -> Node0x4440f10;
+	Node0x4440ec0 [shape=record,label="{xmlreader.c:4016:}"];
+	Node0x4440ec0 -> Node0x44327f0;
+	Node0x4440f10 [shape=record,label="{xmlreader.c:4020:}"];
+	Node0x4440f10 -> Node0x443f8c0;
+	Node0x443f8c0 [shape=record,label="{xmlreader.c:4022:}"];
+	Node0x443f8c0 -> Node0x44327f0;
+	Node0x44327f0 [shape=record,label="{xmlreader.c:4024:}"];
+}

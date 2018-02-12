@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlURIGetPort' function" {
+	label="CFG for 'libxml_xmlURIGetPort' function";
+
+	Node0x5fa5000 [shape=record,label="{libxml2-py.c:11783:|{<s0>T|<s1>F}}"];
+	Node0x5fa5000:s0 -> Node0x5fa8700;
+	Node0x5fa5000:s1 -> Node0x5fa86b0;
+	Node0x5fa86b0 [shape=record,label="{libxml2-py.c:11790:}"];
+	Node0x5fa86b0 -> Node0x5fa4fb0;
+	Node0x5fa8700 [shape=record,label="{libxml2-py.c:11791:|{<s0>T|<s1>F}}"];
+	Node0x5fa8700:s0 -> Node0x5fa8f20;
+	Node0x5fa8700:s1 -> Node0x5fa8f70;
+	Node0x5fa8f20 [shape=record,label="{libxml2-py.c:11791:}"];
+	Node0x5fa8f20 -> Node0x5fa8fc0;
+	Node0x5fa8f70 [shape=record,label="{libxml2-py.c:11791:}"];
+	Node0x5fa8f70 -> Node0x5fa8fc0;
+	Node0x5fa8fc0 [shape=record,label="{libxml2-py.c:11791:}"];
+	Node0x5fa8fc0 -> Node0x5fa4fb0;
+	Node0x5fa4fb0 [shape=record,label="{libxml2-py.c:11796:}"];
+}

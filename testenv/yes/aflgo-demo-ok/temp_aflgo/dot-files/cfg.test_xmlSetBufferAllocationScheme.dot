@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlSetBufferAllocationScheme' function" {
+	label="CFG for 'test_xmlSetBufferAllocationScheme' function";
+
+	Node0x5fc6100 [shape=record,label="{testapi.c:23454:}"];
+	Node0x5fc6100 -> Node0x5fd31a0;
+	Node0x5fd31a0 [shape=record,label="{testapi.c:23460:|{<s0>T|<s1>F}}"];
+	Node0x5fd31a0:s0 -> Node0x5fd3480;
+	Node0x5fd31a0:s1 -> Node0x5fd3000;
+	Node0x5fd3480 [shape=record,label="{testapi.c:23461:|{<s0>T|<s1>F}}"];
+	Node0x5fd3480:s0 -> Node0x5fd4280;
+	Node0x5fd3480:s1 -> Node0x5fd48e0;
+	Node0x5fd4280 [shape=record,label="{testapi.c:23470:}"];
+	Node0x5fd4280 -> Node0x5fd48e0;
+	Node0x5fd48e0 [shape=record,label="{testapi.c:23475:}"];
+	Node0x5fd48e0 -> Node0x5fd33f0;
+	Node0x5fd33f0 [shape=record,label="{testapi.c:23460:}"];
+	Node0x5fd33f0 -> Node0x5fd31a0;
+	Node0x5fd3000 [shape=record,label="{testapi.c:23476:}"];
+}

@@ -1,0 +1,34 @@
+digraph "CFG for 'xmlExpNewCtxt' function" {
+	label="CFG for 'xmlExpNewCtxt' function";
+
+	Node0x37325e0 [shape=record,label="{xmlregexp.c:6355:|{<s0>T|<s1>F}}"];
+	Node0x37325e0:s0 -> Node0x3735d30;
+	Node0x37325e0:s1 -> Node0x3735d80;
+	Node0x3735d30 [shape=record,label="{xmlregexp.c:6360:}"];
+	Node0x3735d30 -> Node0x3735d80;
+	Node0x3735d80 [shape=record,label="{xmlregexp.c:6362:|{<s0>T|<s1>F}}"];
+	Node0x3735d80:s0 -> Node0x37365c0;
+	Node0x3735d80:s1 -> Node0x3736610;
+	Node0x37365c0 [shape=record,label="{xmlregexp.c:6364:}"];
+	Node0x37365c0 -> Node0x3732910;
+	Node0x3736610 [shape=record,label="{xmlregexp.c:6365:|{<s0>T|<s1>F}}"];
+	Node0x3736610:s0 -> Node0x3737a30;
+	Node0x3736610:s1 -> Node0x3737a80;
+	Node0x3737a30 [shape=record,label="{xmlregexp.c:6371:}"];
+	Node0x3737a30 -> Node0x3732910;
+	Node0x3737a80 [shape=record,label="{xmlregexp.c:6374:|{<s0>T|<s1>F}}"];
+	Node0x3737a80:s0 -> Node0x39a0620;
+	Node0x3737a80:s1 -> Node0x39a06c0;
+	Node0x39a0620 [shape=record,label="{xmlregexp.c:6376:|{<s0>T|<s1>F}}"];
+	Node0x39a0620:s0 -> Node0x39a1650;
+	Node0x39a0620:s1 -> Node0x39a1a00;
+	Node0x39a1650 [shape=record,label="{xmlregexp.c:6378:}"];
+	Node0x39a1650 -> Node0x3732910;
+	Node0x39a1a00 [shape=record,label="{xmlregexp.c:6382:}"];
+	Node0x39a1a00 -> Node0x39a0670;
+	Node0x39a06c0 [shape=record,label="{xmlregexp.c:6383:}"];
+	Node0x39a06c0 -> Node0x39a0670;
+	Node0x39a0670 [shape=record,label="{xmlregexp.c:6386:}"];
+	Node0x39a0670 -> Node0x3732910;
+	Node0x3732910 [shape=record,label="{xmlregexp.c:6387:}"];
+}

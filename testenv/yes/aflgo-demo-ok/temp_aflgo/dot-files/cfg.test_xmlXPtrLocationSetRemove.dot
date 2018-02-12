@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlXPtrLocationSetRemove' function" {
+	label="CFG for 'test_xmlXPtrLocationSetRemove' function";
+
+	Node0x6e39270 [shape=record,label="{testapi.c:51612:}"];
+	Node0x6e39270 -> Node0x6e462d0;
+	Node0x6e462d0 [shape=record,label="{testapi.c:51621:|{<s0>T|<s1>F}}"];
+	Node0x6e462d0:s0 -> Node0x6e465b0;
+	Node0x6e462d0:s1 -> Node0x6e46130;
+	Node0x6e465b0 [shape=record,label="{testapi.c:51622:}"];
+	Node0x6e465b0 -> Node0x6e469a0;
+	Node0x6e469a0 [shape=record,label="{testapi.c:51622:|{<s0>T|<s1>F}}"];
+	Node0x6e469a0:s0 -> Node0x6e46c20;
+	Node0x6e469a0:s1 -> Node0x6e46880;
+	Node0x6e46c20 [shape=record,label="{testapi.c:51623:|{<s0>T|<s1>F}}"];
+	Node0x6e46c20:s0 -> Node0x6e47d20;
+	Node0x6e46c20:s1 -> Node0x6e48050;
+	Node0x6e47d20 [shape=record,label="{testapi.c:51634:}"];
+	Node0x6e47d20 -> Node0x6e48050;
+	Node0x6e48050 [shape=record,label="{testapi.c:51640:}"];
+	Node0x6e48050 -> Node0x6e46b90;
+	Node0x6e46b90 [shape=record,label="{testapi.c:51622:}"];
+	Node0x6e46b90 -> Node0x6e469a0;
+	Node0x6e46880 [shape=record,label="{testapi.c:51641:}"];
+	Node0x6e46880 -> Node0x6e46520;
+	Node0x6e46520 [shape=record,label="{testapi.c:51621:}"];
+	Node0x6e46520 -> Node0x6e462d0;
+	Node0x6e46130 [shape=record,label="{testapi.c:51642:}"];
+}

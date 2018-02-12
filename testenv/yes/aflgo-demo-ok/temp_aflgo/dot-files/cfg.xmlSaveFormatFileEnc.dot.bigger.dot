@@ -1,0 +1,37 @@
+digraph "CFG for 'xmlSaveFormatFileEnc' function" {
+	label="CFG for 'xmlSaveFormatFileEnc' function";
+
+	Node0x4fa2ee0 [shape=record,label="{xmlsave.c:2692:|{<s0>T|<s1>F}}"];
+	Node0x4fa2ee0:s0 -> Node0x4fa4a70;
+	Node0x4fa2ee0:s1 -> Node0x4fa4ac0;
+	Node0x4fa4a70 [shape=record,label="{xmlsave.c:2700:}"];
+	Node0x4fa4a70 -> Node0x4fa3210;
+	Node0x4fa4ac0 [shape=record,label="{xmlsave.c:2702:|{<s0>T|<s1>F}}"];
+	Node0x4fa4ac0:s0 -> Node0x4fa4ff0;
+	Node0x4fa4ac0:s1 -> Node0x4fa5040;
+	Node0x4fa4ff0 [shape=record,label="{xmlsave.c:2703:}"];
+	Node0x4fa4ff0 -> Node0x4fa5040;
+	Node0x4fa5040 [shape=record,label="{xmlsave.c:2705:|{<s0>T|<s1>F}}"];
+	Node0x4fa5040:s0 -> Node0x4fa5690;
+	Node0x4fa5040:s1 -> Node0x4fa56e0;
+	Node0x4fa5690 [shape=record,label="{xmlsave.c:2707:|{<s0>T|<s1>F}}"];
+	Node0x4fa5690:s0 -> Node0x4fa5c70;
+	Node0x4fa5690:s1 -> Node0x4fa5cc0;
+	Node0x4fa5c70 [shape=record,label="{xmlsave.c:2709:}"];
+	Node0x4fa5c70 -> Node0x4fa3210;
+	Node0x4fa5cc0 [shape=record,label="{xmlsave.c:2710:}"];
+	Node0x4fa5cc0 -> Node0x4fa56e0;
+	Node0x4fa56e0 [shape=record,label="{xmlsave.c:2713:|{<s0>T|<s1>F}}"];
+	Node0x4fa56e0:s0 -> Node0x4fa6270;
+	Node0x4fa56e0:s1 -> Node0x4fa62c0;
+	Node0x4fa6270 [shape=record,label="{xmlsave.c:2713:}"];
+	Node0x4fa6270 -> Node0x4fa62c0;
+	Node0x4fa62c0 [shape=record,label="{xmlsave.c:2718:|{<s0>T|<s1>F}}"];
+	Node0x4fa62c0:s0 -> Node0x4fa6f90;
+	Node0x4fa62c0:s1 -> Node0x4fa72c0;
+	Node0x4fa6f90 [shape=record,label="{xmlsave.c:2719:}"];
+	Node0x4fa6f90 -> Node0x4fa3210;
+	Node0x4fa72c0 [shape=record,label="{xmlsave.c:2720:}"];
+	Node0x4fa72c0 -> Node0x4fa3210;
+	Node0x4fa3210 [shape=record,label="{xmlsave.c:2733:}"];
+}

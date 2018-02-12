@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlNewTextWriterMemory' function" {
+	label="CFG for 'test_xmlNewTextWriterMemory' function";
+
+	Node0x6a34a10 [shape=record,label="{testapi.c:43243:}"];
+	Node0x6a34a10 -> Node0x6a3b4a0;
+	Node0x6a3b4a0 [shape=record,label="{testapi.c:43253:|{<s0>T|<s1>F}}"];
+	Node0x6a3b4a0:s0 -> Node0x6a3b780;
+	Node0x6a3b4a0:s1 -> Node0x6a3b300;
+	Node0x6a3b780 [shape=record,label="{testapi.c:43254:}"];
+	Node0x6a3b780 -> Node0x6a3bb70;
+	Node0x6a3bb70 [shape=record,label="{testapi.c:43254:|{<s0>T|<s1>F}}"];
+	Node0x6a3bb70:s0 -> Node0x6a3bdf0;
+	Node0x6a3bb70:s1 -> Node0x6a3ba50;
+	Node0x6a3bdf0 [shape=record,label="{testapi.c:43255:|{<s0>T|<s1>F}}"];
+	Node0x6a3bdf0:s0 -> Node0x6a3cf40;
+	Node0x6a3bdf0:s1 -> Node0x6a3d270;
+	Node0x6a3cf40 [shape=record,label="{testapi.c:43267:}"];
+	Node0x6a3cf40 -> Node0x6a3d270;
+	Node0x6a3d270 [shape=record,label="{testapi.c:43273:}"];
+	Node0x6a3d270 -> Node0x6a3bd60;
+	Node0x6a3bd60 [shape=record,label="{testapi.c:43254:}"];
+	Node0x6a3bd60 -> Node0x6a3bb70;
+	Node0x6a3ba50 [shape=record,label="{testapi.c:43274:}"];
+	Node0x6a3ba50 -> Node0x6a3b6f0;
+	Node0x6a3b6f0 [shape=record,label="{testapi.c:43253:}"];
+	Node0x6a3b6f0 -> Node0x6a3b4a0;
+	Node0x6a3b300 [shape=record,label="{testapi.c:43275:}"];
+}

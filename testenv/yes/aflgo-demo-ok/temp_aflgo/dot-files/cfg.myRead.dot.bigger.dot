@@ -1,0 +1,5 @@
+digraph "CFG for 'myRead' function" {
+	label="CFG for 'myRead' function";
+
+	Node0x5106fc0 [shape=record,label="{xmllint.c:832:}"];
+}

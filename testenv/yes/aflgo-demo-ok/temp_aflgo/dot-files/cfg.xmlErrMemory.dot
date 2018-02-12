@@ -1,0 +1,28 @@
+digraph "CFG for 'xmlErrMemory' function" {
+	label="CFG for 'xmlErrMemory' function";
+
+	Node0x3b1ed50 [shape=record,label="{parserInternals.c:109:|{<s0>T|<s1>F}}"];
+	Node0x3b1ed50 -> Node0x3b48200;
+	Node0x3b1ed50 -> Node0x3b48130;
+	Node0x3b48200 [shape=record,label="{parserInternals.c:111:|{<s0>T|<s1>F}}"];
+	Node0x3b48200 -> Node0x3b48180;
+	Node0x3b48200 -> Node0x3b48130;
+	Node0x3b48180 [shape=record,label="{parserInternals.c:112:|{<s0>T|<s1>F}}"];
+	Node0x3b48180 -> Node0x3b480e0;
+	Node0x3b48180 -> Node0x3b48130;
+	Node0x3b480e0 [shape=record,label="{parserInternals.c:113:}"];
+	Node0x3b480e0 -> Node0x3b5d540;
+	Node0x3b48130 [shape=record,label="{parserInternals.c:114:|{<s0>T|<s1>F}}"];
+	Node0x3b48130 -> Node0x3b12450;
+	Node0x3b48130 -> Node0x3b124a0;
+	Node0x3b12450 [shape=record,label="{parserInternals.c:115:}"];
+	Node0x3b12450 -> Node0x3b124a0;
+	Node0x3b124a0 [shape=record,label="{parserInternals.c:119:|{<s0>T|<s1>F}}"];
+	Node0x3b124a0 -> Node0x3b5d4f0;
+	Node0x3b124a0 -> Node0x3b5d590;
+	Node0x3b5d4f0 [shape=record,label="{parserInternals.c:120:}"];
+	Node0x3b5d4f0 -> Node0x3b5d540;
+	Node0x3b5d590 [shape=record,label="{parserInternals.c:125:}"];
+	Node0x3b5d590 -> Node0x3b5d540;
+	Node0x3b5d540 [shape=record,label="{parserInternals.c:128:}"];
+}

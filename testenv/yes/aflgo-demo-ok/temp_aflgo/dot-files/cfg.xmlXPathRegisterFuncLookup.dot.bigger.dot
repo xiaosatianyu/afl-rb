@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlXPathRegisterFuncLookup' function" {
+	label="CFG for 'xmlXPathRegisterFuncLookup' function";
+
+	Node0x453ff20 [shape=record,label="{xpath.c:4887:|{<s0>T|<s1>F}}"];
+	Node0x453ff20:s0 -> Node0x45440a0;
+	Node0x453ff20:s1 -> Node0x45440f0;
+	Node0x45440a0 [shape=record,label="{xpath.c:4891:}"];
+	Node0x45440a0 -> Node0x4542e90;
+	Node0x45440f0 [shape=record,label="{xpath.c:4892:}"];
+	Node0x45440f0 -> Node0x4542e90;
+	Node0x4542e90 [shape=record,label="{xpath.c:4894:}"];
+}

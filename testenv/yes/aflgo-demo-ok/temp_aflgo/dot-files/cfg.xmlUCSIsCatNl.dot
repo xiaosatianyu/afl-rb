@@ -1,0 +1,34 @@
+digraph "CFG for 'xmlUCSIsCatNl' function" {
+	label="CFG for 'xmlUCSIsCatNl' function";
+
+	Node0x5007eb0 [shape=record,label="{xmlunicode.c:2894:|{<s0>T|<s1>F}}"];
+	Node0x5007eb0 -> Node0x5008160;
+	Node0x5007eb0 -> Node0x50080e0;
+	Node0x5008160 [shape=record,label="{xmlunicode.c:2895:|{<s0>T|<s1>F}}"];
+	Node0x5008160 -> Node0x5004960;
+	Node0x5008160 -> Node0x50080e0;
+	Node0x50080e0 [shape=record,label="{xmlunicode.c:2896:|{<s0>T|<s1>F}}"];
+	Node0x50080e0 -> Node0x5008c00;
+	Node0x50080e0 -> Node0x5008060;
+	Node0x5008c00 [shape=record,label="{xmlunicode.c:2896:|{<s0>T|<s1>F}}"];
+	Node0x5008c00 -> Node0x5004960;
+	Node0x5008c00 -> Node0x5008060;
+	Node0x5008060 [shape=record,label="{xmlunicode.c:2897:|{<s0>T|<s1>F}}"];
+	Node0x5008060 -> Node0x5004960;
+	Node0x5008060 -> Node0x5007fe0;
+	Node0x5007fe0 [shape=record,label="{xmlunicode.c:2898:|{<s0>T|<s1>F}}"];
+	Node0x5007fe0 -> Node0x5009310;
+	Node0x5007fe0 -> Node0x5007f90;
+	Node0x5009310 [shape=record,label="{xmlunicode.c:2898:|{<s0>T|<s1>F}}"];
+	Node0x5009310 -> Node0x5004960;
+	Node0x5009310 -> Node0x5007f90;
+	Node0x5007f90 [shape=record,label="{xmlunicode.c:2899:|{<s0>T|<s1>F}}"];
+	Node0x5007f90 -> Node0x5009810;
+	Node0x5007f90 -> Node0x5007f40;
+	Node0x5009810 [shape=record,label="{xmlunicode.c:2899:|{<s0>T|<s1>F}}"];
+	Node0x5009810 -> Node0x5004960;
+	Node0x5009810 -> Node0x5007f40;
+	Node0x5007f40 [shape=record,label="{xmlunicode.c:2900:}"];
+	Node0x5007f40 -> Node0x5004960;
+	Node0x5004960 [shape=record,label="{xmlunicode.c:2899:}"];
+}

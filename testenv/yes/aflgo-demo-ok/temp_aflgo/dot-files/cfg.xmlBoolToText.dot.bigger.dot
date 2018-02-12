@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlBoolToText' function" {
+	label="CFG for 'xmlBoolToText' function";
+
+	Node0x47ec5e0 [shape=record,label="{debugXML.c:1795:|{<s0>T|<s1>F}}"];
+	Node0x47ec5e0:s0 -> Node0x475f7c0;
+	Node0x47ec5e0:s1 -> Node0x475f860;
+	Node0x475f7c0 [shape=record,label="{debugXML.c:1798:}"];
+	Node0x475f7c0 -> Node0x475fac0;
+	Node0x475f860 [shape=record,label="{debugXML.c:1800:}"];
+	Node0x475f860 -> Node0x475fac0;
+	Node0x475fac0 [shape=record,label="{debugXML.c:1801:}"];
+}

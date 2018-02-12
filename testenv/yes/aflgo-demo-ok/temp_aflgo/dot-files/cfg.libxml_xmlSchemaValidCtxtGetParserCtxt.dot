@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlSchemaValidCtxtGetParserCtxt' function" {
+	label="CFG for 'libxml_xmlSchemaValidCtxtGetParserCtxt' function";
+
+	Node0x5bdae20 [shape=record,label="{libxml2-py.c:7024:|{<s0>T|<s1>F}}"];
+	Node0x5bdae20:s0 -> Node0x5bdea00;
+	Node0x5bdae20:s1 -> Node0x5bde9b0;
+	Node0x5bde9b0 [shape=record,label="{libxml2-py.c:7031:}"];
+	Node0x5bde9b0 -> Node0x5bdcee0;
+	Node0x5bdea00 [shape=record,label="{libxml2-py.c:7032:|{<s0>T|<s1>F}}"];
+	Node0x5bdea00:s0 -> Node0x5862060;
+	Node0x5bdea00:s1 -> Node0x58620b0;
+	Node0x5862060 [shape=record,label="{libxml2-py.c:7032:}"];
+	Node0x5862060 -> Node0x5862100;
+	Node0x58620b0 [shape=record,label="{libxml2-py.c:7032:}"];
+	Node0x58620b0 -> Node0x5862100;
+	Node0x5862100 [shape=record,label="{libxml2-py.c:7032:}"];
+	Node0x5862100 -> Node0x5bdcee0;
+	Node0x5bdcee0 [shape=record,label="{libxml2-py.c:7037:}"];
+}

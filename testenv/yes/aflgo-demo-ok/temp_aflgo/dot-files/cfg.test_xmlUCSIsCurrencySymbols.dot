@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsCurrencySymbols' function" {
+	label="CFG for 'test_xmlUCSIsCurrencySymbols' function";
+
+	Node0x68a5bb0 [shape=record,label="{testapi.c:39693:}"];
+	Node0x68a5bb0 -> Node0x68c62f0;
+	Node0x68c62f0 [shape=record,label="{testapi.c:39701:|{<s0>T|<s1>F}}"];
+	Node0x68c62f0:s0 -> Node0x68c65d0;
+	Node0x68c62f0:s1 -> Node0x68c6150;
+	Node0x68c65d0 [shape=record,label="{testapi.c:39702:|{<s0>T|<s1>F}}"];
+	Node0x68c65d0:s0 -> Node0x68c7420;
+	Node0x68c65d0:s1 -> Node0x68c7bf0;
+	Node0x68c7420 [shape=record,label="{testapi.c:39712:}"];
+	Node0x68c7420 -> Node0x68c7bf0;
+	Node0x68c7bf0 [shape=record,label="{testapi.c:39717:}"];
+	Node0x68c7bf0 -> Node0x68c6540;
+	Node0x68c6540 [shape=record,label="{testapi.c:39701:}"];
+	Node0x68c6540 -> Node0x68c62f0;
+	Node0x68c6150 [shape=record,label="{testapi.c:39718:}"];
+}

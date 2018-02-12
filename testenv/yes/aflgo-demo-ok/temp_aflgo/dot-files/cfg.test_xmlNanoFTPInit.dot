@@ -1,0 +1,10 @@
+digraph "CFG for 'test_xmlNanoFTPInit' function" {
+	label="CFG for 'test_xmlNanoFTPInit' function";
+
+	Node0x58f6cf0 [shape=record,label="{testapi.c:11745:|{<s0>T|<s1>F}}"];
+	Node0x58f6cf0:s0 -> Node0x58faeb0;
+	Node0x58f6cf0:s1 -> Node0x58fb1e0;
+	Node0x58faeb0 [shape=record,label="{testapi.c:11757:}"];
+	Node0x58faeb0 -> Node0x58fb1e0;
+	Node0x58fb1e0 [shape=record,label="{testapi.c:11761:}"];
+}

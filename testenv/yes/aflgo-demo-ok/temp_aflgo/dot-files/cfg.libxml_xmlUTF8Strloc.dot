@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUTF8Strloc' function" {
+	label="CFG for 'libxml_xmlUTF8Strloc' function";
+
+	Node0x5ffc9c0 [shape=record,label="{libxml2-py.c:12097:|{<s0>T|<s1>F}}"];
+	Node0x5ffc9c0:s0 -> Node0x5fffa80;
+	Node0x5ffc9c0:s1 -> Node0x5fffa30;
+	Node0x5fffa30 [shape=record,label="{libxml2-py.c:12104:}"];
+	Node0x5fffa30 -> Node0x5ffdfe0;
+	Node0x5fffa80 [shape=record,label="{libxml2-py.c:12106:}"];
+	Node0x5fffa80 -> Node0x5ffdfe0;
+	Node0x5ffdfe0 [shape=record,label="{libxml2-py.c:12109:}"];
+}

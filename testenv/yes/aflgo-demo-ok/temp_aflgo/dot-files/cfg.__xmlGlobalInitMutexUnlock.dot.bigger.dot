@@ -1,0 +1,10 @@
+digraph "CFG for '__xmlGlobalInitMutexUnlock' function" {
+	label="CFG for '__xmlGlobalInitMutexUnlock' function";
+
+	Node0x4e0ab10 [shape=record,label="{threads.c:513:|{<s0>T|<s1>F}}"];
+	Node0x4e0ab10:s0 -> Node0x4dec660;
+	Node0x4e0ab10:s1 -> Node0x4e079a0;
+	Node0x4dec660 [shape=record,label="{threads.c:514:}"];
+	Node0x4dec660 -> Node0x4e079a0;
+	Node0x4e079a0 [shape=record,label="{threads.c:522:}"];
+}

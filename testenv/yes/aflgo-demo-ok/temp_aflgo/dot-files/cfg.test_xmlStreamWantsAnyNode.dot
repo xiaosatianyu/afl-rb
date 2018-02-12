@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlStreamWantsAnyNode' function" {
+	label="CFG for 'test_xmlStreamWantsAnyNode' function";
+
+	Node0x5c12f30 [shape=record,label="{testapi.c:17206:}"];
+	Node0x5c12f30 -> Node0x5c25bd0;
+	Node0x5c25bd0 [shape=record,label="{testapi.c:17214:|{<s0>T|<s1>F}}"];
+	Node0x5c25bd0:s0 -> Node0x5c25eb0;
+	Node0x5c25bd0:s1 -> Node0x5c25a30;
+	Node0x5c25eb0 [shape=record,label="{testapi.c:17215:|{<s0>T|<s1>F}}"];
+	Node0x5c25eb0:s0 -> Node0x5c26d00;
+	Node0x5c25eb0:s1 -> Node0x5c274d0;
+	Node0x5c26d00 [shape=record,label="{testapi.c:17225:}"];
+	Node0x5c26d00 -> Node0x5c274d0;
+	Node0x5c274d0 [shape=record,label="{testapi.c:17230:}"];
+	Node0x5c274d0 -> Node0x5c25e20;
+	Node0x5c25e20 [shape=record,label="{testapi.c:17214:}"];
+	Node0x5c25e20 -> Node0x5c25bd0;
+	Node0x5c25a30 [shape=record,label="{testapi.c:17231:}"];
+}

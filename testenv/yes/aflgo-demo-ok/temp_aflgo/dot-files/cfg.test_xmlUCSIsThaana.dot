@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsThaana' function" {
+	label="CFG for 'test_xmlUCSIsThaana' function";
+
+	Node0x69f6650 [shape=record,label="{testapi.c:42651:}"];
+	Node0x69f6650 -> Node0x69fe050;
+	Node0x69fe050 [shape=record,label="{testapi.c:42659:|{<s0>T|<s1>F}}"];
+	Node0x69fe050:s0 -> Node0x69fe330;
+	Node0x69fe050:s1 -> Node0x69fdeb0;
+	Node0x69fe330 [shape=record,label="{testapi.c:42660:|{<s0>T|<s1>F}}"];
+	Node0x69fe330:s0 -> Node0x69ff180;
+	Node0x69fe330:s1 -> Node0x69ff4b0;
+	Node0x69ff180 [shape=record,label="{testapi.c:42670:}"];
+	Node0x69ff180 -> Node0x69ff4b0;
+	Node0x69ff4b0 [shape=record,label="{testapi.c:42675:}"];
+	Node0x69ff4b0 -> Node0x69fe2a0;
+	Node0x69fe2a0 [shape=record,label="{testapi.c:42659:}"];
+	Node0x69fe2a0 -> Node0x69fe050;
+	Node0x69fdeb0 [shape=record,label="{testapi.c:42676:}"];
+}

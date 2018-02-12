@@ -1,0 +1,12 @@
+digraph "CFG for '__xmlParserVersion' function" {
+	label="CFG for '__xmlParserVersion' function";
+
+	Node0x3788ef0 [shape=record,label="{globals.c:1020:|{<s0>T|<s1>F}}"];
+	Node0x3788ef0:s0 -> Node0x3789370;
+	Node0x3788ef0:s1 -> Node0x3789410;
+	Node0x3789370 [shape=record,label="{globals.c:1021:}"];
+	Node0x3789370 -> Node0x3789220;
+	Node0x3789410 [shape=record,label="{globals.c:1023:}"];
+	Node0x3789410 -> Node0x3789220;
+	Node0x3789220 [shape=record,label="{globals.c:1024:}"];
+}

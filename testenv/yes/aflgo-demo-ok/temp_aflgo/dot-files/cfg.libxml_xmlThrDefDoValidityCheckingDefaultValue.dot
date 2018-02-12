@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlThrDefDoValidityCheckingDefaultValue' function" {
+	label="CFG for 'libxml_xmlThrDefDoValidityCheckingDefaultValue' function";
+
+	Node0x5dcd9d0 [shape=record,label="{libxml2-py.c:8878:|{<s0>T|<s1>F}}"];
+	Node0x5dcd9d0:s0 -> Node0x5dd87d0;
+	Node0x5dcd9d0:s1 -> Node0x5dd8780;
+	Node0x5dd8780 [shape=record,label="{libxml2-py.c:8884:}"];
+	Node0x5dd8780 -> Node0x5dcdcb0;
+	Node0x5dd87d0 [shape=record,label="{libxml2-py.c:8886:}"];
+	Node0x5dd87d0 -> Node0x5dcdcb0;
+	Node0x5dcdcb0 [shape=record,label="{libxml2-py.c:8889:}"];
+}

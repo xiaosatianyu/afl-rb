@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsMiscellaneousSymbolsandArrows' function" {
+	label="CFG for 'libxml_xmlUCSIsMiscellaneousSymbolsandArrows' function";
+
+	Node0x5f13690 [shape=record,label="{libxml2-py.c:10987:|{<s0>T|<s1>F}}"];
+	Node0x5f13690:s0 -> Node0x5f1e4a0;
+	Node0x5f13690:s1 -> Node0x5f1e450;
+	Node0x5f1e450 [shape=record,label="{libxml2-py.c:10993:}"];
+	Node0x5f1e450 -> Node0x5f13970;
+	Node0x5f1e4a0 [shape=record,label="{libxml2-py.c:10995:}"];
+	Node0x5f1e4a0 -> Node0x5f13970;
+	Node0x5f13970 [shape=record,label="{libxml2-py.c:10998:}"];
+}

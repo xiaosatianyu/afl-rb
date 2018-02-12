@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlGetIntSubset' function" {
+	label="CFG for 'test_xmlGetIntSubset' function";
+
+	Node0x5e376e0 [shape=record,label="{testapi.c:20511:}"];
+	Node0x5e376e0 -> Node0x5e3e030;
+	Node0x5e3e030 [shape=record,label="{testapi.c:20518:|{<s0>T|<s1>F}}"];
+	Node0x5e3e030:s0 -> Node0x5e3e310;
+	Node0x5e3e030:s1 -> Node0x5e3de90;
+	Node0x5e3e310 [shape=record,label="{testapi.c:20519:|{<s0>T|<s1>F}}"];
+	Node0x5e3e310:s0 -> Node0x5e3f1d0;
+	Node0x5e3e310:s1 -> Node0x5e3f9a0;
+	Node0x5e3f1d0 [shape=record,label="{testapi.c:20529:}"];
+	Node0x5e3f1d0 -> Node0x5e3f9a0;
+	Node0x5e3f9a0 [shape=record,label="{testapi.c:20534:}"];
+	Node0x5e3f9a0 -> Node0x5e3e280;
+	Node0x5e3e280 [shape=record,label="{testapi.c:20518:}"];
+	Node0x5e3e280 -> Node0x5e3e030;
+	Node0x5e3de90 [shape=record,label="{testapi.c:20535:}"];
+}

@@ -1,0 +1,36 @@
+digraph "CFG for 'xmlValidityError' function" {
+	label="CFG for 'xmlValidityError' function";
+
+	Node0x4aaafe0 [shape=record,label="{parser.c:623:|{<s0>T|<s1>F}}"];
+	Node0x4aaafe0 -> Node0x4aafce0;
+	Node0x4aaafe0 -> Node0x4aafc10;
+	Node0x4aafce0 [shape=record,label="{parser.c:628:|{<s0>T|<s1>F}}"];
+	Node0x4aafce0 -> Node0x4aafc60;
+	Node0x4aafce0 -> Node0x4aafc10;
+	Node0x4aafc60 [shape=record,label="{parser.c:629:|{<s0>T|<s1>F}}"];
+	Node0x4aafc60 -> Node0x4aafbc0;
+	Node0x4aafc60 -> Node0x4aafc10;
+	Node0x4aafbc0 [shape=record,label="{parser.c:630:}"];
+	Node0x4aafbc0 -> Node0x4ab1d30;
+	Node0x4aafc10 [shape=record,label="{parser.c:631:|{<s0>T|<s1>F}}"];
+	Node0x4aafc10 -> Node0x4ab07c0;
+	Node0x4aafc10 -> Node0x4ab0810;
+	Node0x4ab07c0 [shape=record,label="{parser.c:632:|{<s0>T|<s1>F}}"];
+	Node0x4ab07c0 -> Node0x4ab0eb0;
+	Node0x4ab07c0 -> Node0x4ab0e60;
+	Node0x4ab0eb0 [shape=record,label="{parser.c:633:|{<s0>T|<s1>F}}"];
+	Node0x4ab0eb0 -> Node0x4ab0e10;
+	Node0x4ab0eb0 -> Node0x4ab0e60;
+	Node0x4ab0e10 [shape=record,label="{parser.c:634:}"];
+	Node0x4ab0e10 -> Node0x4ab0e60;
+	Node0x4ab0e60 [shape=record,label="{parser.c:635:}"];
+	Node0x4ab0e60 -> Node0x4ab0810;
+	Node0x4ab0810 [shape=record,label="{parser.c:636:|{<s0>T|<s1>F}}"];
+	Node0x4ab0810 -> Node0x4ab1ce0;
+	Node0x4ab0810 -> Node0x4ab1d80;
+	Node0x4ab1ce0 [shape=record,label="{parser.c:637:}"];
+	Node0x4ab1ce0 -> Node0x4ab1d30;
+	Node0x4ab1d80 [shape=record,label="{parser.c:645:}"];
+	Node0x4ab1d80 -> Node0x4ab1d30;
+	Node0x4ab1d30 [shape=record,label="{parser.c:651:}"];
+}

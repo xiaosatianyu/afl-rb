@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlValidateQName' function" {
+	label="CFG for 'libxml_xmlValidateQName' function";
+
+	Node0x6082310 [shape=record,label="{libxml2-py.c:12677:|{<s0>T|<s1>F}}"];
+	Node0x6082310:s0 -> Node0x6087890;
+	Node0x6082310:s1 -> Node0x6087840;
+	Node0x6087840 [shape=record,label="{libxml2-py.c:12684:}"];
+	Node0x6087840 -> Node0x6082440;
+	Node0x6087890 [shape=record,label="{libxml2-py.c:12686:}"];
+	Node0x6087890 -> Node0x6082440;
+	Node0x6082440 [shape=record,label="{libxml2-py.c:12689:}"];
+}

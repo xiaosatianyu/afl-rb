@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlAttributePtrWrap' function" {
+	label="CFG for 'libxml_xmlAttributePtrWrap' function";
+
+	Node0x3d2f930 [shape=record,label="{types.c:305:|{<s0>T|<s1>F}}"];
+	Node0x3d2f930:s0 -> Node0x3d01fe0;
+	Node0x3d2f930:s1 -> Node0x3d02030;
+	Node0x3d01fe0 [shape=record,label="{types.c:313:}"];
+	Node0x3d01fe0 -> Node0x3d2fc20;
+	Node0x3d02030 [shape=record,label="{types.c:316:}"];
+	Node0x3d02030 -> Node0x3d2fc20;
+	Node0x3d2fc20 [shape=record,label="{types.c:318:}"];
+}

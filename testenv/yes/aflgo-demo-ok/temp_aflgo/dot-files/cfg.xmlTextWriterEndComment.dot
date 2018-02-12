@@ -1,0 +1,44 @@
+digraph "CFG for 'xmlTextWriterEndComment' function" {
+	label="CFG for 'xmlTextWriterEndComment' function";
+
+	Node0x3feb880 [shape=record,label="{xmlwriter.c:815:|{<s0>T|<s1>F}}"];
+	Node0x3feb880:s0 -> Node0x3f65b60;
+	Node0x3feb880:s1 -> Node0x3f65bb0;
+	Node0x3f65b60 [shape=record,label="{xmlwriter.c:823:}"];
+	Node0x3f65b60 -> Node0x3fe3d90;
+	Node0x3f65bb0 [shape=record,label="{xmlwriter.c:828:|{<s0>T|<s1>F}}"];
+	Node0x3f65bb0:s0 -> Node0x3ff15a0;
+	Node0x3f65bb0:s1 -> Node0x3ff15f0;
+	Node0x3ff15a0 [shape=record,label="{xmlwriter.c:830:}"];
+	Node0x3ff15a0 -> Node0x3fe3d90;
+	Node0x3ff15f0 [shape=record,label="{xmlwriter.c:835:|{<s0>T|<s1>F}}"];
+	Node0x3ff15f0:s0 -> Node0x3fc24b0;
+	Node0x3ff15f0:s1 -> Node0x3fc2500;
+	Node0x3fc24b0 [shape=record,label="{xmlwriter.c:837:}"];
+	Node0x3fc24b0 -> Node0x3fe3d90;
+	Node0x3fc2500 [shape=record,label="{xmlwriter.c:839:|{<s0>def|<s1>16}}"];
+	Node0x3fc2500:s0 -> Node0x3fc2c40;
+	Node0x3fc2500:s1 -> Node0x3fc2f80;
+	Node0x3fc2f80 [shape=record,label="{xmlwriter.c:842:|{<s0>T|<s1>F}}"];
+	Node0x3fc2f80:s0 -> Node0x3fc3550;
+	Node0x3fc2f80:s1 -> Node0x3fc35a0;
+	Node0x3fc3550 [shape=record,label="{xmlwriter.c:844:}"];
+	Node0x3fc3550 -> Node0x3fe3d90;
+	Node0x3fc35a0 [shape=record,label="{xmlwriter.c:845:}"];
+	Node0x3fc35a0 -> Node0x3fc2a30;
+	Node0x3fc2c40 [shape=record,label="{xmlwriter.c:848:}"];
+	Node0x3fc2c40 -> Node0x3fe3d90;
+	Node0x3fc2a30 [shape=record,label="{xmlwriter.c:851:|{<s0>T|<s1>F}}"];
+	Node0x3fc2a30:s0 -> Node0x3fc3ee0;
+	Node0x3fc2a30:s1 -> Node0x3fc3f30;
+	Node0x3fc3ee0 [shape=record,label="{xmlwriter.c:852:|{<s0>T|<s1>F}}"];
+	Node0x3fc3ee0:s0 -> Node0x3fc4700;
+	Node0x3fc3ee0:s1 -> Node0x3fc4750;
+	Node0x3fc4700 [shape=record,label="{xmlwriter.c:854:}"];
+	Node0x3fc4700 -> Node0x3fe3d90;
+	Node0x3fc4750 [shape=record,label="{xmlwriter.c:855:}"];
+	Node0x3fc4750 -> Node0x3fc3f30;
+	Node0x3fc3f30 [shape=record,label="{xmlwriter.c:858:}"];
+	Node0x3fc3f30 -> Node0x3fe3d90;
+	Node0x3fe3d90 [shape=record,label="{xmlwriter.c:860:}"];
+}

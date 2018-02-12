@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsCombiningHalfMarks' function" {
+	label="CFG for 'test_xmlUCSIsCombiningHalfMarks' function";
+
+	Node0x68b3dd0 [shape=record,label="{testapi.c:39591:}"];
+	Node0x68b3dd0 -> Node0x68bb830;
+	Node0x68bb830 [shape=record,label="{testapi.c:39599:|{<s0>T|<s1>F}}"];
+	Node0x68bb830:s0 -> Node0x68bbb10;
+	Node0x68bb830:s1 -> Node0x68bb690;
+	Node0x68bbb10 [shape=record,label="{testapi.c:39600:|{<s0>T|<s1>F}}"];
+	Node0x68bbb10:s0 -> Node0x68bc970;
+	Node0x68bbb10:s1 -> Node0x68bcca0;
+	Node0x68bc970 [shape=record,label="{testapi.c:39610:}"];
+	Node0x68bc970 -> Node0x68bcca0;
+	Node0x68bcca0 [shape=record,label="{testapi.c:39615:}"];
+	Node0x68bcca0 -> Node0x68bba80;
+	Node0x68bba80 [shape=record,label="{testapi.c:39599:}"];
+	Node0x68bba80 -> Node0x68bb830;
+	Node0x68bb690 [shape=record,label="{testapi.c:39616:}"];
+}

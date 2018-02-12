@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlPreviousElementSibling' function" {
+	label="CFG for 'libxml_xmlPreviousElementSibling' function";
+
+	Node0x5aa30d0 [shape=record,label="{libxml2-py.c:5756:|{<s0>T|<s1>F}}"];
+	Node0x5aa30d0:s0 -> Node0x5aa6870;
+	Node0x5aa30d0:s1 -> Node0x5aa6820;
+	Node0x5aa6820 [shape=record,label="{libxml2-py.c:5763:}"];
+	Node0x5aa6820 -> Node0x5aa2d90;
+	Node0x5aa6870 [shape=record,label="{libxml2-py.c:5764:|{<s0>T|<s1>F}}"];
+	Node0x5aa6870:s0 -> Node0x5aa70a0;
+	Node0x5aa6870:s1 -> Node0x5aa70f0;
+	Node0x5aa70a0 [shape=record,label="{libxml2-py.c:5764:}"];
+	Node0x5aa70a0 -> Node0x5aa7140;
+	Node0x5aa70f0 [shape=record,label="{libxml2-py.c:5764:}"];
+	Node0x5aa70f0 -> Node0x5aa7140;
+	Node0x5aa7140 [shape=record,label="{libxml2-py.c:5764:}"];
+	Node0x5aa7140 -> Node0x5aa2d90;
+	Node0x5aa2d90 [shape=record,label="{libxml2-py.c:5769:}"];
+}

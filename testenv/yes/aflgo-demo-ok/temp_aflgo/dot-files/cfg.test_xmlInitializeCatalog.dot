@@ -1,0 +1,10 @@
+digraph "CFG for 'test_xmlInitializeCatalog' function" {
+	label="CFG for 'test_xmlInitializeCatalog' function";
+
+	Node0x561d780 [shape=record,label="{testapi.c:6420:|{<s0>T|<s1>F}}"];
+	Node0x561d780:s0 -> Node0x5622280;
+	Node0x561d780:s1 -> Node0x56225b0;
+	Node0x5622280 [shape=record,label="{testapi.c:6432:}"];
+	Node0x5622280 -> Node0x56225b0;
+	Node0x56225b0 [shape=record,label="{testapi.c:6436:}"];
+}

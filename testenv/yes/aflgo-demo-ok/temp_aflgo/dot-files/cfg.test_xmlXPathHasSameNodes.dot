@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlXPathHasSameNodes' function" {
+	label="CFG for 'test_xmlXPathHasSameNodes' function";
+
+	Node0x6ca75f0 [shape=record,label="{testapi.c:47950:}"];
+	Node0x6ca75f0 -> Node0x6ca8970;
+	Node0x6ca8970 [shape=record,label="{testapi.c:47960:|{<s0>T|<s1>F}}"];
+	Node0x6ca8970:s0 -> Node0x6ca8c50;
+	Node0x6ca8970:s1 -> Node0x6ca87d0;
+	Node0x6ca8c50 [shape=record,label="{testapi.c:47961:}"];
+	Node0x6ca8c50 -> Node0x6ca9040;
+	Node0x6ca9040 [shape=record,label="{testapi.c:47961:|{<s0>T|<s1>F}}"];
+	Node0x6ca9040:s0 -> Node0x6ca92c0;
+	Node0x6ca9040:s1 -> Node0x6ca8f20;
+	Node0x6ca92c0 [shape=record,label="{testapi.c:47962:|{<s0>T|<s1>F}}"];
+	Node0x6ca92c0:s0 -> Node0x6caa410;
+	Node0x6ca92c0:s1 -> Node0x6caadd0;
+	Node0x6caa410 [shape=record,label="{testapi.c:47974:}"];
+	Node0x6caa410 -> Node0x6caadd0;
+	Node0x6caadd0 [shape=record,label="{testapi.c:47980:}"];
+	Node0x6caadd0 -> Node0x6ca9230;
+	Node0x6ca9230 [shape=record,label="{testapi.c:47961:}"];
+	Node0x6ca9230 -> Node0x6ca9040;
+	Node0x6ca8f20 [shape=record,label="{testapi.c:47981:}"];
+	Node0x6ca8f20 -> Node0x6ca8bc0;
+	Node0x6ca8bc0 [shape=record,label="{testapi.c:47960:}"];
+	Node0x6ca8bc0 -> Node0x6ca8970;
+	Node0x6ca87d0 [shape=record,label="{testapi.c:47982:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsDeseret' function" {
+	label="CFG for 'test_xmlUCSIsDeseret' function";
+
+	Node0x68ccc30 [shape=record,label="{testapi.c:39829:}"];
+	Node0x68ccc30 -> Node0x68d4610;
+	Node0x68d4610 [shape=record,label="{testapi.c:39837:|{<s0>T|<s1>F}}"];
+	Node0x68d4610:s0 -> Node0x68d48f0;
+	Node0x68d4610:s1 -> Node0x68d4470;
+	Node0x68d48f0 [shape=record,label="{testapi.c:39838:|{<s0>T|<s1>F}}"];
+	Node0x68d48f0:s0 -> Node0x68d5740;
+	Node0x68d48f0:s1 -> Node0x68d5a70;
+	Node0x68d5740 [shape=record,label="{testapi.c:39848:}"];
+	Node0x68d5740 -> Node0x68d5a70;
+	Node0x68d5a70 [shape=record,label="{testapi.c:39853:}"];
+	Node0x68d5a70 -> Node0x68d4860;
+	Node0x68d4860 [shape=record,label="{testapi.c:39837:}"];
+	Node0x68d4860 -> Node0x68d4610;
+	Node0x68d4470 [shape=record,label="{testapi.c:39854:}"];
+}

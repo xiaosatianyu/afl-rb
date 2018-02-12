@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlBufferEmpty' function" {
+	label="CFG for 'test_xmlBufferEmpty' function";
+
+	Node0x5d55e10 [shape=record,label="{testapi.c:18862:}"];
+	Node0x5d55e10 -> Node0x5d5abe0;
+	Node0x5d5abe0 [shape=record,label="{testapi.c:18868:|{<s0>T|<s1>F}}"];
+	Node0x5d5abe0:s0 -> Node0x5d5aec0;
+	Node0x5d5abe0:s1 -> Node0x5d5aa40;
+	Node0x5d5aec0 [shape=record,label="{testapi.c:18869:|{<s0>T|<s1>F}}"];
+	Node0x5d5aec0:s0 -> Node0x5d5bcb0;
+	Node0x5d5aec0:s1 -> Node0x5d5c310;
+	Node0x5d5bcb0 [shape=record,label="{testapi.c:18878:}"];
+	Node0x5d5bcb0 -> Node0x5d5c310;
+	Node0x5d5c310 [shape=record,label="{testapi.c:18883:}"];
+	Node0x5d5c310 -> Node0x5d5ae30;
+	Node0x5d5ae30 [shape=record,label="{testapi.c:18868:}"];
+	Node0x5d5ae30 -> Node0x5d5abe0;
+	Node0x5d5aa40 [shape=record,label="{testapi.c:18884:}"];
+}

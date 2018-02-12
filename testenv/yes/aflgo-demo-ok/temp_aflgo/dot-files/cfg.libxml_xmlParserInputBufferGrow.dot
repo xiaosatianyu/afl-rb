@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlParserInputBufferGrow' function" {
+	label="CFG for 'libxml_xmlParserInputBufferGrow' function";
+
+	Node0x5a7d260 [shape=record,label="{libxml2-py.c:5584:|{<s0>T|<s1>F}}"];
+	Node0x5a7d260:s0 -> Node0x5767620;
+	Node0x5a7d260:s1 -> Node0x57675d0;
+	Node0x57675d0 [shape=record,label="{libxml2-py.c:5592:}"];
+	Node0x57675d0 -> Node0x5a7b1f0;
+	Node0x5767620 [shape=record,label="{libxml2-py.c:5593:|{<s0>T|<s1>F}}"];
+	Node0x5767620:s0 -> Node0x5767e60;
+	Node0x5767620:s1 -> Node0x5767eb0;
+	Node0x5767e60 [shape=record,label="{libxml2-py.c:5593:}"];
+	Node0x5767e60 -> Node0x5767f00;
+	Node0x5767eb0 [shape=record,label="{libxml2-py.c:5593:}"];
+	Node0x5767eb0 -> Node0x5767f00;
+	Node0x5767f00 [shape=record,label="{libxml2-py.c:5593:}"];
+	Node0x5767f00 -> Node0x5a7b1f0;
+	Node0x5a7b1f0 [shape=record,label="{libxml2-py.c:5598:}"];
+}

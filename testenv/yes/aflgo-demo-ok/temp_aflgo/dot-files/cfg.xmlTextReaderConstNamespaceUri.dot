@@ -1,0 +1,40 @@
+digraph "CFG for 'xmlTextReaderConstNamespaceUri' function" {
+	label="CFG for 'xmlTextReaderConstNamespaceUri' function";
+
+	Node0x43ca290 [shape=record,label="{xmlreader.c:3407:|{<s0>T|<s1>F}}"];
+	Node0x43ca290 -> Node0x43cd1a0;
+	Node0x43ca290 -> Node0x43cd240;
+	Node0x43cd240 [shape=record,label="{xmlreader.c:3409:|{<s0>T|<s1>F}}"];
+	Node0x43cd240 -> Node0x43cd1a0;
+	Node0x43cd240 -> Node0x43cd1f0;
+	Node0x43cd1a0 [shape=record,label="{xmlreader.c:3410:}"];
+	Node0x43cd1a0 -> Node0x43ca210;
+	Node0x43cd1f0 [shape=record,label="{xmlreader.c:3411:|{<s0>T|<s1>F}}"];
+	Node0x43cd1f0 -> Node0x43ce2a0;
+	Node0x43cd1f0 -> Node0x43ce340;
+	Node0x43ce2a0 [shape=record,label="{xmlreader.c:3412:}"];
+	Node0x43ce2a0 -> Node0x43ce2f0;
+	Node0x43ce340 [shape=record,label="{xmlreader.c:3414:}"];
+	Node0x43ce340 -> Node0x43ce2f0;
+	Node0x43ce2f0 [shape=record,label="{xmlreader.c:3415:|{<s0>T|<s1>F}}"];
+	Node0x43ce2f0 -> Node0x43ced90;
+	Node0x43ce2f0 -> Node0x43cede0;
+	Node0x43ced90 [shape=record,label="{xmlreader.c:3416:}"];
+	Node0x43ced90 -> Node0x43ca210;
+	Node0x43cede0 [shape=record,label="{xmlreader.c:3417:|{<s0>T|<s1>F}}"];
+	Node0x43cede0 -> Node0x43cf660;
+	Node0x43cede0 -> Node0x43cf610;
+	Node0x43cf660 [shape=record,label="{xmlreader.c:3418:|{<s0>T|<s1>F}}"];
+	Node0x43cf660 -> Node0x43cf5c0;
+	Node0x43cf660 -> Node0x43cf610;
+	Node0x43cf5c0 [shape=record,label="{xmlreader.c:3419:}"];
+	Node0x43cf5c0 -> Node0x43ca210;
+	Node0x43cf610 [shape=record,label="{xmlreader.c:3420:|{<s0>T|<s1>F}}"];
+	Node0x43cf610 -> Node0x43cff80;
+	Node0x43cf610 -> Node0x43cffd0;
+	Node0x43cff80 [shape=record,label="{xmlreader.c:3421:}"];
+	Node0x43cff80 -> Node0x43ca210;
+	Node0x43cffd0 [shape=record,label="{xmlreader.c:3422:}"];
+	Node0x43cffd0 -> Node0x43ca210;
+	Node0x43ca210 [shape=record,label="{xmlreader.c:3423:}"];
+}

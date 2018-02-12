@@ -1,0 +1,29 @@
+digraph "CFG for 'xmlCtxtNsCheckScope' function" {
+	label="CFG for 'xmlCtxtNsCheckScope' function";
+
+	Node0x494f770 [shape=record,label="{debugXML.c:197:|{<s0>T|<s1>F}}"];
+	Node0x494f770 -> Node0x49558f0;
+	Node0x494f770 -> Node0x4955c20;
+	Node0x49558f0 [shape=record,label="{debugXML.c:203:|{<s0>T|<s1>F}}"];
+	Node0x49558f0 -> Node0x4955bd0;
+	Node0x49558f0 -> Node0x4955fb0;
+	Node0x4955bd0 [shape=record,label="{debugXML.c:204:}"];
+	Node0x4955bd0 -> Node0x4955f60;
+	Node0x4955fb0 [shape=record,label="{debugXML.c:207:}"];
+	Node0x4955fb0 -> Node0x4955f60;
+	Node0x4955f60 [shape=record,label="{debugXML.c:210:}"];
+	Node0x4955f60 -> Node0x4955c20;
+	Node0x4955c20 [shape=record,label="{debugXML.c:211:|{<s0>T|<s1>F}}"];
+	Node0x4955c20 -> Node0x4956d20;
+	Node0x4955c20 -> Node0x4956d70;
+	Node0x4956d20 [shape=record,label="{debugXML.c:212:|{<s0>T|<s1>F}}"];
+	Node0x4956d20 -> Node0x49570e0;
+	Node0x4956d20 -> Node0x4957180;
+	Node0x49570e0 [shape=record,label="{debugXML.c:213:}"];
+	Node0x49570e0 -> Node0x4957130;
+	Node0x4957180 [shape=record,label="{debugXML.c:216:}"];
+	Node0x4957180 -> Node0x4957130;
+	Node0x4957130 [shape=record,label="{debugXML.c:219:}"];
+	Node0x4957130 -> Node0x4956d70;
+	Node0x4956d70 [shape=record,label="{debugXML.c:220:}"];
+}

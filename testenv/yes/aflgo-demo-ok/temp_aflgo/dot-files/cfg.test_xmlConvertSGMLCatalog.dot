@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlConvertSGMLCatalog' function" {
+	label="CFG for 'test_xmlConvertSGMLCatalog' function";
+
+	Node0x5619050 [shape=record,label="{testapi.c:6386:}"];
+	Node0x5619050 -> Node0x561ea90;
+	Node0x561ea90 [shape=record,label="{testapi.c:6394:|{<s0>T|<s1>F}}"];
+	Node0x561ea90:s0 -> Node0x561ed70;
+	Node0x561ea90:s1 -> Node0x561e8f0;
+	Node0x561ed70 [shape=record,label="{testapi.c:6395:|{<s0>T|<s1>F}}"];
+	Node0x561ed70:s0 -> Node0x561fbc0;
+	Node0x561ed70:s1 -> Node0x561fef0;
+	Node0x561fbc0 [shape=record,label="{testapi.c:6405:}"];
+	Node0x561fbc0 -> Node0x561fef0;
+	Node0x561fef0 [shape=record,label="{testapi.c:6410:}"];
+	Node0x561fef0 -> Node0x561ece0;
+	Node0x561ece0 [shape=record,label="{testapi.c:6394:}"];
+	Node0x561ece0 -> Node0x561ea90;
+	Node0x561e8f0 [shape=record,label="{testapi.c:6411:}"];
+}

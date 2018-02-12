@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlPatternMatch' function" {
+	label="CFG for 'test_xmlPatternMatch' function";
+
+	Node0x5bf5030 [shape=record,label="{testapi.c:16858:}"];
+	Node0x5bf5030 -> Node0x5bf6f90;
+	Node0x5bf6f90 [shape=record,label="{testapi.c:16868:|{<s0>T|<s1>F}}"];
+	Node0x5bf6f90:s0 -> Node0x5bf7270;
+	Node0x5bf6f90:s1 -> Node0x5bf6df0;
+	Node0x5bf7270 [shape=record,label="{testapi.c:16869:}"];
+	Node0x5bf7270 -> Node0x5bf7660;
+	Node0x5bf7660 [shape=record,label="{testapi.c:16869:|{<s0>T|<s1>F}}"];
+	Node0x5bf7660:s0 -> Node0x5bf78e0;
+	Node0x5bf7660:s1 -> Node0x5bf7540;
+	Node0x5bf78e0 [shape=record,label="{testapi.c:16870:|{<s0>T|<s1>F}}"];
+	Node0x5bf78e0:s0 -> Node0x5bf8a30;
+	Node0x5bf78e0:s1 -> Node0x5bf8d60;
+	Node0x5bf8a30 [shape=record,label="{testapi.c:16882:}"];
+	Node0x5bf8a30 -> Node0x5bf8d60;
+	Node0x5bf8d60 [shape=record,label="{testapi.c:16888:}"];
+	Node0x5bf8d60 -> Node0x5bf7850;
+	Node0x5bf7850 [shape=record,label="{testapi.c:16869:}"];
+	Node0x5bf7850 -> Node0x5bf7660;
+	Node0x5bf7540 [shape=record,label="{testapi.c:16889:}"];
+	Node0x5bf7540 -> Node0x5bf71e0;
+	Node0x5bf71e0 [shape=record,label="{testapi.c:16868:}"];
+	Node0x5bf71e0 -> Node0x5bf6f90;
+	Node0x5bf6df0 [shape=record,label="{testapi.c:16890:}"];
+}

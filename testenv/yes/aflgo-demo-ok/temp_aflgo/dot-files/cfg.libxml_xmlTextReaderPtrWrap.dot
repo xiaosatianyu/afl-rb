@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlTextReaderPtrWrap' function" {
+	label="CFG for 'libxml_xmlTextReaderPtrWrap' function";
+
+	Node0x3dca720 [shape=record,label="{types.c:795:|{<s0>T|<s1>F}}"];
+	Node0x3dca720:s0 -> Node0x3dcee50;
+	Node0x3dca720:s1 -> Node0x3dceea0;
+	Node0x3dcee50 [shape=record,label="{types.c:803:}"];
+	Node0x3dcee50 -> Node0x3dca630;
+	Node0x3dceea0 [shape=record,label="{types.c:807:}"];
+	Node0x3dceea0 -> Node0x3dca630;
+	Node0x3dca630 [shape=record,label="{types.c:810:}"];
+}

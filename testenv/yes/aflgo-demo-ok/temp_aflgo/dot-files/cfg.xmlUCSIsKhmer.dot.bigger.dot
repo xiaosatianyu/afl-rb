@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsKhmer' function" {
+	label="CFG for 'xmlUCSIsKhmer' function";
+
+	Node0x4f9fe60 [shape=record,label="{xmlunicode.c:1834:|{<s0>T|<s1>F}}"];
+	Node0x4f9fe60:s0 -> Node0x4f9d600;
+	Node0x4f9fe60:s1 -> Node0x4f9fdf0;
+	Node0x4f9d600 [shape=record,label="{xmlunicode.c:1835:}"];
+	Node0x4f9d600 -> Node0x4f9fdf0;
+	Node0x4f9fdf0 [shape=record,label="{xmlunicode.c:1835:}"];
+}

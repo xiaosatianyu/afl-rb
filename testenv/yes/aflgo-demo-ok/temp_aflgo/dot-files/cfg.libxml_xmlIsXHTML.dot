@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlIsXHTML' function" {
+	label="CFG for 'libxml_xmlIsXHTML' function";
+
+	Node0x5852ba0 [shape=record,label="{libxml2-py.c:3507:|{<s0>T|<s1>F}}"];
+	Node0x5852ba0:s0 -> Node0x5858110;
+	Node0x5852ba0:s1 -> Node0x58580c0;
+	Node0x58580c0 [shape=record,label="{libxml2-py.c:3514:}"];
+	Node0x58580c0 -> Node0x5852d30;
+	Node0x5858110 [shape=record,label="{libxml2-py.c:3516:}"];
+	Node0x5858110 -> Node0x5852d30;
+	Node0x5852d30 [shape=record,label="{libxml2-py.c:3519:}"];
+}

@@ -1,0 +1,15 @@
+relaxng.c:6642,86.625
+relaxng.c:6648,85.60919540229887
+relaxng.c:6651,84.59302325581395
+relaxng.c:6655,83.5764705882353
+relaxng.c:6657,82.02409638554217
+relaxng.c:6658,91.0
+relaxng.c:6664,73.0
+relaxng.c:6674,72.0
+relaxng.c:6676,74.0
+relaxng.c:6678,73.0
+relaxng.c:6680,74.0
+relaxng.c:6681,75.0
+relaxng.c:6682,73.0
+relaxng.c:6684,72.0
+relaxng.c:6685,71.0

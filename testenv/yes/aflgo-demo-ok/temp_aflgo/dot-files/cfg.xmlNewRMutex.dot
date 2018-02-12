@@ -1,0 +1,17 @@
+digraph "CFG for 'xmlNewRMutex' function" {
+	label="CFG for 'xmlNewRMutex' function";
+
+	Node0x4df9a30 [shape=record,label="{threads.c:299:|{<s0>T|<s1>F}}"];
+	Node0x4df9a30 -> Node0x4df39d0;
+	Node0x4df9a30 -> Node0x4df3a20;
+	Node0x4df39d0 [shape=record,label="{threads.c:302:}"];
+	Node0x4df39d0 -> Node0x4df5ff0;
+	Node0x4df3a20 [shape=record,label="{threads.c:304:|{<s0>T|<s1>F}}"];
+	Node0x4df3a20 -> Node0x4dfbd10;
+	Node0x4df3a20 -> Node0x4dfbd60;
+	Node0x4dfbd10 [shape=record,label="{threads.c:305:}"];
+	Node0x4dfbd10 -> Node0x4dfbd60;
+	Node0x4dfbd60 [shape=record,label="{threads.c:320:}"];
+	Node0x4dfbd60 -> Node0x4df5ff0;
+	Node0x4df5ff0 [shape=record,label="{threads.c:321:}"];
+}

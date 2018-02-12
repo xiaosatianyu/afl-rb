@@ -1,0 +1,6 @@
+xmlreader.c:1699,61.29655172413793
+xmlreader.c:1709,43.0
+xmlreader.c:1711,42.0
+xmlreader.c:1712,43.0
+xmlreader.c:1713,41.0
+xmlreader.c:1721,44.0

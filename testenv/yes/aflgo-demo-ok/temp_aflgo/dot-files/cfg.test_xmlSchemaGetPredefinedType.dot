@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlSchemaGetPredefinedType' function" {
+	label="CFG for 'test_xmlSchemaGetPredefinedType' function";
+
+	Node0x5c97650 [shape=record,label="{testapi.c:35415:}"];
+	Node0x5c97650 -> Node0x5ca35d0;
+	Node0x5ca35d0 [shape=record,label="{testapi.c:35425:|{<s0>T|<s1>F}}"];
+	Node0x5ca35d0:s0 -> Node0x5ca37d0;
+	Node0x5ca35d0:s1 -> Node0x5ca3470;
+	Node0x5ca37d0 [shape=record,label="{testapi.c:35426:}"];
+	Node0x5ca37d0 -> Node0x5ca3b80;
+	Node0x5ca3b80 [shape=record,label="{testapi.c:35426:|{<s0>T|<s1>F}}"];
+	Node0x5ca3b80:s0 -> Node0x5ca3e00;
+	Node0x5ca3b80:s1 -> Node0x5ca3a60;
+	Node0x5ca3e00 [shape=record,label="{testapi.c:35427:|{<s0>T|<s1>F}}"];
+	Node0x5ca3e00:s0 -> Node0x669aed0;
+	Node0x5ca3e00:s1 -> Node0x669b8f0;
+	Node0x669aed0 [shape=record,label="{testapi.c:35439:}"];
+	Node0x669aed0 -> Node0x669b8f0;
+	Node0x669b8f0 [shape=record,label="{testapi.c:35445:}"];
+	Node0x669b8f0 -> Node0x5ca3d70;
+	Node0x5ca3d70 [shape=record,label="{testapi.c:35426:}"];
+	Node0x5ca3d70 -> Node0x5ca3b80;
+	Node0x5ca3a60 [shape=record,label="{testapi.c:35446:}"];
+	Node0x5ca3a60 -> Node0x5ca3780;
+	Node0x5ca3780 [shape=record,label="{testapi.c:35425:}"];
+	Node0x5ca3780 -> Node0x5ca35d0;
+	Node0x5ca3470 [shape=record,label="{testapi.c:35447:}"];
+}

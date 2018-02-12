@@ -1,0 +1,42 @@
+digraph "CFG for 'xmlCopyEntity' function" {
+	label="CFG for 'xmlCopyEntity' function";
+
+	Node0x4128f20 [shape=record,label="{entities.c:910:|{<s0>T|<s1>F}}"];
+	Node0x4128f20 -> Node0x4129be0;
+	Node0x4128f20 -> Node0x4129c30;
+	Node0x4129be0 [shape=record,label="{entities.c:915:}"];
+	Node0x4129be0 -> Node0x41299d0;
+	Node0x4129c30 [shape=record,label="{entities.c:918:|{<s0>T|<s1>F}}"];
+	Node0x4129c30 -> Node0x412ac90;
+	Node0x4129c30 -> Node0x412ace0;
+	Node0x412ac90 [shape=record,label="{entities.c:923:}"];
+	Node0x412ac90 -> Node0x412ace0;
+	Node0x412ace0 [shape=record,label="{entities.c:924:|{<s0>T|<s1>F}}"];
+	Node0x412ace0 -> Node0x412b620;
+	Node0x412ace0 -> Node0x412b670;
+	Node0x412b620 [shape=record,label="{entities.c:925:}"];
+	Node0x412b620 -> Node0x412b670;
+	Node0x412b670 [shape=record,label="{entities.c:926:|{<s0>T|<s1>F}}"];
+	Node0x412b670 -> Node0x412bfb0;
+	Node0x412b670 -> Node0x412c000;
+	Node0x412bfb0 [shape=record,label="{entities.c:927:}"];
+	Node0x412bfb0 -> Node0x412c000;
+	Node0x412c000 [shape=record,label="{entities.c:928:|{<s0>T|<s1>F}}"];
+	Node0x412c000 -> Node0x412c940;
+	Node0x412c000 -> Node0x412c990;
+	Node0x412c940 [shape=record,label="{entities.c:929:}"];
+	Node0x412c940 -> Node0x412c990;
+	Node0x412c990 [shape=record,label="{entities.c:930:|{<s0>T|<s1>F}}"];
+	Node0x412c990 -> Node0x412d2d0;
+	Node0x412c990 -> Node0x412d320;
+	Node0x412d2d0 [shape=record,label="{entities.c:931:}"];
+	Node0x412d2d0 -> Node0x412d320;
+	Node0x412d320 [shape=record,label="{entities.c:932:|{<s0>T|<s1>F}}"];
+	Node0x412d320 -> Node0x412dc60;
+	Node0x412d320 -> Node0x412dcb0;
+	Node0x412dc60 [shape=record,label="{entities.c:933:}"];
+	Node0x412dc60 -> Node0x412dcb0;
+	Node0x412dcb0 [shape=record,label="{entities.c:934:}"];
+	Node0x412dcb0 -> Node0x41299d0;
+	Node0x41299d0 [shape=record,label="{entities.c:935:}"];
+}

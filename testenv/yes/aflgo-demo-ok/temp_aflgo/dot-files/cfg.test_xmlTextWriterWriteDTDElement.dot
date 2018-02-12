@@ -1,0 +1,37 @@
+digraph "CFG for 'test_xmlTextWriterWriteDTDElement' function" {
+	label="CFG for 'test_xmlTextWriterWriteDTDElement' function";
+
+	Node0x6af8ed0 [shape=record,label="{testapi.c:44858:}"];
+	Node0x6af8ed0 -> Node0x6b0ad90;
+	Node0x6b0ad90 [shape=record,label="{testapi.c:44870:|{<s0>T|<s1>F}}"];
+	Node0x6b0ad90:s0 -> Node0x6b0b070;
+	Node0x6b0ad90:s1 -> Node0x6b0abf0;
+	Node0x6b0b070 [shape=record,label="{testapi.c:44871:}"];
+	Node0x6b0b070 -> Node0x6b0b460;
+	Node0x6b0b460 [shape=record,label="{testapi.c:44871:|{<s0>T|<s1>F}}"];
+	Node0x6b0b460:s0 -> Node0x6b0b6e0;
+	Node0x6b0b460:s1 -> Node0x6b0b340;
+	Node0x6b0b6e0 [shape=record,label="{testapi.c:44872:}"];
+	Node0x6b0b6e0 -> Node0x6b0bad0;
+	Node0x6b0bad0 [shape=record,label="{testapi.c:44872:|{<s0>T|<s1>F}}"];
+	Node0x6b0bad0:s0 -> Node0x6b0bd50;
+	Node0x6b0bad0:s1 -> Node0x6b0b9b0;
+	Node0x6b0bd50 [shape=record,label="{testapi.c:44873:|{<s0>T|<s1>F}}"];
+	Node0x6b0bd50:s0 -> Node0x6b0d090;
+	Node0x6b0bd50:s1 -> Node0x6b0d3c0;
+	Node0x6b0d090 [shape=record,label="{testapi.c:44887:}"];
+	Node0x6b0d090 -> Node0x6b0d3c0;
+	Node0x6b0d3c0 [shape=record,label="{testapi.c:44894:}"];
+	Node0x6b0d3c0 -> Node0x6b0bcc0;
+	Node0x6b0bcc0 [shape=record,label="{testapi.c:44872:}"];
+	Node0x6b0bcc0 -> Node0x6b0bad0;
+	Node0x6b0b9b0 [shape=record,label="{testapi.c:44895:}"];
+	Node0x6b0b9b0 -> Node0x6b0b650;
+	Node0x6b0b650 [shape=record,label="{testapi.c:44871:}"];
+	Node0x6b0b650 -> Node0x6b0b460;
+	Node0x6b0b340 [shape=record,label="{testapi.c:44896:}"];
+	Node0x6b0b340 -> Node0x6b0afe0;
+	Node0x6b0afe0 [shape=record,label="{testapi.c:44870:}"];
+	Node0x6b0afe0 -> Node0x6b0ad90;
+	Node0x6b0abf0 [shape=record,label="{testapi.c:44897:}"];
+}

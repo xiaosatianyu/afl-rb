@@ -1,0 +1,46 @@
+digraph "CFG for 'test_xmlXPtrNewRange' function" {
+	label="CFG for 'test_xmlXPtrNewRange' function";
+
+	Node0x6e4dad0 [shape=record,label="{testapi.c:51770:}"];
+	Node0x6e4dad0 -> Node0x6e582f0;
+	Node0x6e582f0 [shape=record,label="{testapi.c:51784:|{<s0>T|<s1>F}}"];
+	Node0x6e582f0:s0 -> Node0x6e585d0;
+	Node0x6e582f0:s1 -> Node0x6e58150;
+	Node0x6e585d0 [shape=record,label="{testapi.c:51785:}"];
+	Node0x6e585d0 -> Node0x6e589c0;
+	Node0x6e589c0 [shape=record,label="{testapi.c:51785:|{<s0>T|<s1>F}}"];
+	Node0x6e589c0:s0 -> Node0x6e58c40;
+	Node0x6e589c0:s1 -> Node0x6e588a0;
+	Node0x6e58c40 [shape=record,label="{testapi.c:51786:}"];
+	Node0x6e58c40 -> Node0x6e59030;
+	Node0x6e59030 [shape=record,label="{testapi.c:51786:|{<s0>T|<s1>F}}"];
+	Node0x6e59030:s0 -> Node0x6e592b0;
+	Node0x6e59030:s1 -> Node0x6e58f10;
+	Node0x6e592b0 [shape=record,label="{testapi.c:51787:}"];
+	Node0x6e592b0 -> Node0x6e596a0;
+	Node0x6e596a0 [shape=record,label="{testapi.c:51787:|{<s0>T|<s1>F}}"];
+	Node0x6e596a0:s0 -> Node0x6e59920;
+	Node0x6e596a0:s1 -> Node0x6e59580;
+	Node0x6e59920 [shape=record,label="{testapi.c:51788:|{<s0>T|<s1>F}}"];
+	Node0x6e59920:s0 -> Node0x6e5af90;
+	Node0x6e59920:s1 -> Node0x6e5bec0;
+	Node0x6e5af90 [shape=record,label="{testapi.c:51804:}"];
+	Node0x6e5af90 -> Node0x6e5bec0;
+	Node0x6e5bec0 [shape=record,label="{testapi.c:51812:}"];
+	Node0x6e5bec0 -> Node0x6e59890;
+	Node0x6e59890 [shape=record,label="{testapi.c:51787:}"];
+	Node0x6e59890 -> Node0x6e596a0;
+	Node0x6e59580 [shape=record,label="{testapi.c:51813:}"];
+	Node0x6e59580 -> Node0x6e59220;
+	Node0x6e59220 [shape=record,label="{testapi.c:51786:}"];
+	Node0x6e59220 -> Node0x6e59030;
+	Node0x6e58f10 [shape=record,label="{testapi.c:51814:}"];
+	Node0x6e58f10 -> Node0x6e58bb0;
+	Node0x6e58bb0 [shape=record,label="{testapi.c:51785:}"];
+	Node0x6e58bb0 -> Node0x6e589c0;
+	Node0x6e588a0 [shape=record,label="{testapi.c:51815:}"];
+	Node0x6e588a0 -> Node0x6e58540;
+	Node0x6e58540 [shape=record,label="{testapi.c:51784:}"];
+	Node0x6e58540 -> Node0x6e582f0;
+	Node0x6e58150 [shape=record,label="{testapi.c:51816:}"];
+}

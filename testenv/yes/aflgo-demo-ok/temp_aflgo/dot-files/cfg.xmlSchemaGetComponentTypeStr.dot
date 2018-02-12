@@ -1,0 +1,20 @@
+digraph "CFG for 'xmlSchemaGetComponentTypeStr' function" {
+	label="CFG for 'xmlSchemaGetComponentTypeStr' function";
+
+	Node0x4f02110 [shape=record,label="{xmlschemas.c:1173:|{<s0>def|<s1>1}}"];
+	Node0x4f02110 -> Node0x4f022a0;
+	Node0x4f02110 -> Node0x4f025e0;
+	Node0x4f025e0 [shape=record,label="{xmlschemas.c:1177:|{<s0>T|<s1>F}}"];
+	Node0x4f025e0 -> Node0x4f05030;
+	Node0x4f025e0 -> Node0x4f05120;
+	Node0x4f05120 [shape=record,label="{xmlschemas.c:1177:|{<s0>T|<s1>F}}"];
+	Node0x4f05120 -> Node0x4f05030;
+	Node0x4f05120 -> Node0x4f050d0;
+	Node0x4f05030 [shape=record,label="{xmlschemas.c:1178:}"];
+	Node0x4f05030 -> Node0x4ef9ef0;
+	Node0x4f050d0 [shape=record,label="{xmlschemas.c:1180:}"];
+	Node0x4f050d0 -> Node0x4ef9ef0;
+	Node0x4f022a0 [shape=record,label="{xmlschemas.c:1182:}"];
+	Node0x4f022a0 -> Node0x4ef9ef0;
+	Node0x4ef9ef0 [shape=record,label="{xmlschemas.c:1184:}"];
+}

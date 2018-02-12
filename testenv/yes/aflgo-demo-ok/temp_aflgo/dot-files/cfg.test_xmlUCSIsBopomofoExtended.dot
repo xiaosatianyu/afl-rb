@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsBopomofoExtended' function" {
+	label="CFG for 'test_xmlUCSIsBopomofoExtended' function";
+
+	Node0x67f1d30 [shape=record,label="{testapi.c:37748:}"];
+	Node0x67f1d30 -> Node0x67f97b0;
+	Node0x67f97b0 [shape=record,label="{testapi.c:37756:|{<s0>T|<s1>F}}"];
+	Node0x67f97b0:s0 -> Node0x67f9a90;
+	Node0x67f97b0:s1 -> Node0x67f9610;
+	Node0x67f9a90 [shape=record,label="{testapi.c:37757:|{<s0>T|<s1>F}}"];
+	Node0x67f9a90:s0 -> Node0x67fa8f0;
+	Node0x67f9a90:s1 -> Node0x67fb0c0;
+	Node0x67fa8f0 [shape=record,label="{testapi.c:37767:}"];
+	Node0x67fa8f0 -> Node0x67fb0c0;
+	Node0x67fb0c0 [shape=record,label="{testapi.c:37772:}"];
+	Node0x67fb0c0 -> Node0x67f9a00;
+	Node0x67f9a00 [shape=record,label="{testapi.c:37756:}"];
+	Node0x67f9a00 -> Node0x67f97b0;
+	Node0x67f9610 [shape=record,label="{testapi.c:37773:}"];
+}

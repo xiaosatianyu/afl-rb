@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlRelaxNGValidCtxtPtrWrap' function" {
+	label="CFG for 'libxml_xmlRelaxNGValidCtxtPtrWrap' function";
+
+	Node0x3d41e90 [shape=record,label="{types.c:868:|{<s0>T|<s1>F}}"];
+	Node0x3d41e90:s0 -> Node0x3ddd9a0;
+	Node0x3d41e90:s1 -> Node0x3ddd9f0;
+	Node0x3ddd9a0 [shape=record,label="{types.c:876:}"];
+	Node0x3ddd9a0 -> Node0x3d421c0;
+	Node0x3ddd9f0 [shape=record,label="{types.c:880:}"];
+	Node0x3ddd9f0 -> Node0x3d421c0;
+	Node0x3d421c0 [shape=record,label="{types.c:883:}"];
+}

@@ -1,0 +1,31 @@
+digraph "CFG for 'xmlXPathNodeSetFreeNs' function" {
+	label="CFG for 'xmlXPathNodeSetFreeNs' function";
+
+	Node0x447b960 [shape=record,label="{xpath.c:3506:|{<s0>T|<s1>F}}"];
+	Node0x447b960:s0 -> Node0x447beb0;
+	Node0x447b960:s1 -> Node0x447bf50;
+	Node0x447bf50 [shape=record,label="{xpath.c:3507:|{<s0>T|<s1>F}}"];
+	Node0x447bf50:s0 -> Node0x447beb0;
+	Node0x447bf50:s1 -> Node0x447bf00;
+	Node0x447beb0 [shape=record,label="{xpath.c:3508:}"];
+	Node0x447beb0 -> Node0x447c780;
+	Node0x447bf00 [shape=record,label="{xpath.c:3510:|{<s0>T|<s1>F}}"];
+	Node0x447bf00:s0 -> Node0x447c7d0;
+	Node0x447bf00:s1 -> Node0x447c780;
+	Node0x447c7d0 [shape=record,label="{xpath.c:3510:|{<s0>T|<s1>F}}"];
+	Node0x447c7d0:s0 -> Node0x447c730;
+	Node0x447c7d0:s1 -> Node0x447c780;
+	Node0x447c730 [shape=record,label="{xpath.c:3511:|{<s0>T|<s1>F}}"];
+	Node0x447c730:s0 -> Node0x447d150;
+	Node0x447c730:s1 -> Node0x447d1a0;
+	Node0x447d150 [shape=record,label="{xpath.c:3512:}"];
+	Node0x447d150 -> Node0x447d1a0;
+	Node0x447d1a0 [shape=record,label="{xpath.c:3513:|{<s0>T|<s1>F}}"];
+	Node0x447d1a0:s0 -> Node0x447d8b0;
+	Node0x447d1a0:s1 -> Node0x447d900;
+	Node0x447d8b0 [shape=record,label="{xpath.c:3514:}"];
+	Node0x447d8b0 -> Node0x447d900;
+	Node0x447d900 [shape=record,label="{xpath.c:3515:}"];
+	Node0x447d900 -> Node0x447c780;
+	Node0x447c780 [shape=record,label="{xpath.c:3517:}"];
+}

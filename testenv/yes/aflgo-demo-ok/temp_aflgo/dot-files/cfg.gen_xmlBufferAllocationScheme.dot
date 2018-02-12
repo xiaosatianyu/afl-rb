@@ -1,0 +1,27 @@
+digraph "CFG for 'gen_xmlBufferAllocationScheme' function" {
+	label="CFG for 'gen_xmlBufferAllocationScheme' function";
+
+	Node0x5d66260 [shape=record,label="{testapi.c:1036:|{<s0>T|<s1>F}}"];
+	Node0x5d66260:s0 -> Node0x5d6b020;
+	Node0x5d66260:s1 -> Node0x5d6b070;
+	Node0x5d6b020 [shape=record,label="{testapi.c:1037:}"];
+	Node0x5d6b020 -> Node0x5d6b120;
+	Node0x5d6b070 [shape=record,label="{testapi.c:1038:|{<s0>T|<s1>F}}"];
+	Node0x5d6b070:s0 -> Node0x5d717a0;
+	Node0x5d6b070:s1 -> Node0x5d717f0;
+	Node0x5d717a0 [shape=record,label="{testapi.c:1038:}"];
+	Node0x5d717a0 -> Node0x5d6b120;
+	Node0x5d717f0 [shape=record,label="{testapi.c:1039:|{<s0>T|<s1>F}}"];
+	Node0x5d717f0:s0 -> Node0x5d71c80;
+	Node0x5d717f0:s1 -> Node0x5d71cd0;
+	Node0x5d71c80 [shape=record,label="{testapi.c:1039:}"];
+	Node0x5d71c80 -> Node0x5d6b120;
+	Node0x5d71cd0 [shape=record,label="{testapi.c:1040:|{<s0>T|<s1>F}}"];
+	Node0x5d71cd0:s0 -> Node0x5d72160;
+	Node0x5d71cd0:s1 -> Node0x5d721b0;
+	Node0x5d72160 [shape=record,label="{testapi.c:1040:}"];
+	Node0x5d72160 -> Node0x5d6b120;
+	Node0x5d721b0 [shape=record,label="{testapi.c:1041:}"];
+	Node0x5d721b0 -> Node0x5d6b120;
+	Node0x5d6b120 [shape=record,label="{testapi.c:1042:}"];
+}

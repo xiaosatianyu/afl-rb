@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsTagalog' function" {
+	label="CFG for 'xmlUCSIsTagalog' function";
+
+	Node0x4f91ae0 [shape=record,label="{xmlunicode.c:2421:|{<s0>T|<s1>F}}"];
+	Node0x4f91ae0:s0 -> Node0x4f91020;
+	Node0x4f91ae0:s1 -> Node0x4f91170;
+	Node0x4f91020 [shape=record,label="{xmlunicode.c:2422:}"];
+	Node0x4f91020 -> Node0x4f91170;
+	Node0x4f91170 [shape=record,label="{xmlunicode.c:2422:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlXPathBooleanFunction' function" {
+	label="CFG for 'libxml_xmlXPathBooleanFunction' function";
+
+	Node0x60a0690 [shape=record,label="{libxml2-py.c:12805:|{<s0>T|<s1>F}}"];
+	Node0x60a0690:s0 -> Node0x60a3730;
+	Node0x60a0690:s1 -> Node0x60a36e0;
+	Node0x60a36e0 [shape=record,label="{libxml2-py.c:12811:}"];
+	Node0x60a36e0 -> Node0x60a09c0;
+	Node0x60a3730 [shape=record,label="{libxml2-py.c:12812:|{<s0>T|<s1>F}}"];
+	Node0x60a3730:s0 -> Node0x60a3fd0;
+	Node0x60a3730:s1 -> Node0x60a4020;
+	Node0x60a3fd0 [shape=record,label="{libxml2-py.c:12812:}"];
+	Node0x60a3fd0 -> Node0x60a4070;
+	Node0x60a4020 [shape=record,label="{libxml2-py.c:12812:}"];
+	Node0x60a4020 -> Node0x60a4070;
+	Node0x60a4070 [shape=record,label="{libxml2-py.c:12812:}"];
+	Node0x60a4070 -> Node0x60a09c0;
+	Node0x60a09c0 [shape=record,label="{libxml2-py.c:12817:}"];
+}

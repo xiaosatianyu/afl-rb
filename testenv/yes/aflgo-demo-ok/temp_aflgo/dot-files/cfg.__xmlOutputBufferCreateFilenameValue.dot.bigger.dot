@@ -1,0 +1,12 @@
+digraph "CFG for '__xmlOutputBufferCreateFilenameValue' function" {
+	label="CFG for '__xmlOutputBufferCreateFilenameValue' function";
+
+	Node0x3794b40 [shape=record,label="{globals.c:1107:|{<s0>T|<s1>F}}"];
+	Node0x3794b40:s0 -> Node0x364a170;
+	Node0x3794b40:s1 -> Node0x364a4c0;
+	Node0x364a170 [shape=record,label="{globals.c:1108:}"];
+	Node0x364a170 -> Node0x37935a0;
+	Node0x364a4c0 [shape=record,label="{globals.c:1110:}"];
+	Node0x364a4c0 -> Node0x37935a0;
+	Node0x37935a0 [shape=record,label="{globals.c:1111:}"];
+}

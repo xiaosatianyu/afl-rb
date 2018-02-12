@@ -1,0 +1,10 @@
+digraph "CFG for 'isStandalone' function" {
+	label="CFG for 'isStandalone' function";
+
+	Node0x4dc9410 [shape=record,label="{legacy.c:829:|{<s0>T|<s1>F}}"];
+	Node0x4dc9410 -> Node0x4d86e20;
+	Node0x4dc9410 -> Node0x4db2ac0;
+	Node0x4d86e20 [shape=record,label="{legacy.c:831:}"];
+	Node0x4d86e20 -> Node0x4db2ac0;
+	Node0x4db2ac0 [shape=record,label="{legacy.c:831:}"];
+}

@@ -1,0 +1,46 @@
+digraph "CFG for 'xmlUTF8Strsize' function" {
+	label="CFG for 'xmlUTF8Strsize' function";
+
+	Node0x53c8540 [shape=record,label="{xmlstring.c:825:|{<s0>T|<s1>F}}"];
+	Node0x53c8540 -> Node0x53cff90;
+	Node0x53c8540 -> Node0x53cffe0;
+	Node0x53cff90 [shape=record,label="{xmlstring.c:830:}"];
+	Node0x53cff90 -> Node0x53cf270;
+	Node0x53cffe0 [shape=record,label="{xmlstring.c:832:|{<s0>T|<s1>F}}"];
+	Node0x53cffe0 -> Node0x53d04e0;
+	Node0x53cffe0 -> Node0x53d0530;
+	Node0x53d04e0 [shape=record,label="{xmlstring.c:833:}"];
+	Node0x53d04e0 -> Node0x53cf270;
+	Node0x53d0530 [shape=record,label="{xmlstring.c:835:}"];
+	Node0x53d0530 -> Node0x53d0950;
+	Node0x53d0950 [shape=record,label="{xmlstring.c:835:|{<s0>T|<s1>F}}"];
+	Node0x53d0950 -> Node0x53d0dc0;
+	Node0x53d0950 -> Node0x53d0b70;
+	Node0x53d0dc0 [shape=record,label="{xmlstring.c:836:|{<s0>T|<s1>F}}"];
+	Node0x53d0dc0 -> Node0x53d1000;
+	Node0x53d0dc0 -> Node0x53d0fb0;
+	Node0x53d0fb0 [shape=record,label="{xmlstring.c:837:}"];
+	Node0x53d0fb0 -> Node0x53d0b70;
+	Node0x53d1000 [shape=record,label="{xmlstring.c:838:|{<s0>T|<s1>F}}"];
+	Node0x53d1000 -> Node0x53d1380;
+	Node0x53d1000 -> Node0x53d13d0;
+	Node0x53d1380 [shape=record,label="{xmlstring.c:839:}"];
+	Node0x53d1380 -> Node0x53d1a10;
+	Node0x53d1a10 [shape=record,label="{xmlstring.c:839:|{<s0>T|<s1>F}}"];
+	Node0x53d1a10 -> Node0x53d2020;
+	Node0x53d1a10 -> Node0x53d1c30;
+	Node0x53d2020 [shape=record,label="{xmlstring.c:840:|{<s0>T|<s1>F}}"];
+	Node0x53d2020 -> Node0x53d23e0;
+	Node0x53d2020 -> Node0x53d2430;
+	Node0x53d23e0 [shape=record,label="{xmlstring.c:841:}"];
+	Node0x53d23e0 -> Node0x53d1c30;
+	Node0x53d2430 [shape=record,label="{xmlstring.c:839:}"];
+	Node0x53d2430 -> Node0x53d1a10;
+	Node0x53d1c30 [shape=record,label="{xmlstring.c:839:}"];
+	Node0x53d1c30 -> Node0x53d13d0;
+	Node0x53d13d0 [shape=record,label="{xmlstring.c:835:}"];
+	Node0x53d13d0 -> Node0x53d0950;
+	Node0x53d0b70 [shape=record,label="{xmlstring.c:844:}"];
+	Node0x53d0b70 -> Node0x53cf270;
+	Node0x53cf270 [shape=record,label="{xmlstring.c:845:}"];
+}

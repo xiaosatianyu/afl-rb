@@ -1,0 +1,42 @@
+digraph "CFG for 'xmlRelaxNGCompareElemDefLists' function" {
+	label="CFG for 'xmlRelaxNGCompareElemDefLists' function";
+
+	Node0x52029d0 [shape=record,label="{relaxng.c:3878:|{<s0>T|<s1>F}}"];
+	Node0x52029d0 -> Node0x52111c0;
+	Node0x52029d0 -> Node0x5211260;
+	Node0x5211260 [shape=record,label="{relaxng.c:3884:|{<s0>T|<s1>F}}"];
+	Node0x5211260 -> Node0x52111c0;
+	Node0x5211260 -> Node0x5211210;
+	Node0x52111c0 [shape=record,label="{relaxng.c:3885:}"];
+	Node0x52111c0 -> Node0x52085f0;
+	Node0x5211210 [shape=record,label="{relaxng.c:3886:|{<s0>T|<s1>F}}"];
+	Node0x5211210 -> Node0x52119c0;
+	Node0x5211210 -> Node0x5211a60;
+	Node0x5211a60 [shape=record,label="{relaxng.c:3886:|{<s0>T|<s1>F}}"];
+	Node0x5211a60 -> Node0x52119c0;
+	Node0x5211a60 -> Node0x5211a10;
+	Node0x52119c0 [shape=record,label="{relaxng.c:3887:}"];
+	Node0x52119c0 -> Node0x52085f0;
+	Node0x5211a10 [shape=record,label="{relaxng.c:3888:}"];
+	Node0x5211a10 -> Node0x5212200;
+	Node0x5212200 [shape=record,label="{relaxng.c:3888:|{<s0>T|<s1>F}}"];
+	Node0x5212200 -> Node0x5212680;
+	Node0x5212200 -> Node0x5212420;
+	Node0x5212680 [shape=record,label="{relaxng.c:3889:}"];
+	Node0x5212680 -> Node0x52127d0;
+	Node0x52127d0 [shape=record,label="{relaxng.c:3889:|{<s0>T|<s1>F}}"];
+	Node0x52127d0 -> Node0x5212ba0;
+	Node0x52127d0 -> Node0x5212910;
+	Node0x5212ba0 [shape=record,label="{relaxng.c:3890:|{<s0>T|<s1>F}}"];
+	Node0x5212ba0 -> Node0x5212d60;
+	Node0x5212ba0 -> Node0x5212db0;
+	Node0x5212d60 [shape=record,label="{relaxng.c:3891:}"];
+	Node0x5212d60 -> Node0x52085f0;
+	Node0x5212db0 [shape=record,label="{relaxng.c:3892:}"];
+	Node0x5212db0 -> Node0x52127d0;
+	Node0x5212910 [shape=record,label="{relaxng.c:3894:}"];
+	Node0x5212910 -> Node0x5212200;
+	Node0x5212420 [shape=record,label="{relaxng.c:3897:}"];
+	Node0x5212420 -> Node0x52085f0;
+	Node0x52085f0 [shape=record,label="{relaxng.c:3898:}"];
+}

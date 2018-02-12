@@ -1,0 +1,9 @@
+xmlschemas.c:25801,119.0
+xmlschemas.c:25809,118.0
+xmlschemas.c:25810,116.99999999999999
+xmlschemas.c:25815,116.0
+xmlschemas.c:25825,115.0
+xmlschemas.c:25834,114.0
+xmlschemas.c:25841,113.0
+xmlschemas.c:25842,112.0
+xmlschemas.c:25852,111.0

@@ -1,0 +1,37 @@
+digraph "CFG for 'test_xmlXPathDebugDumpCompExpr' function" {
+	label="CFG for 'test_xmlXPathDebugDumpCompExpr' function";
+
+	Node0x6c641e0 [shape=record,label="{testapi.c:47473:}"];
+	Node0x6c641e0 -> Node0x6c73030;
+	Node0x6c73030 [shape=record,label="{testapi.c:47484:|{<s0>T|<s1>F}}"];
+	Node0x6c73030:s0 -> Node0x6c73310;
+	Node0x6c73030:s1 -> Node0x6c72e90;
+	Node0x6c73310 [shape=record,label="{testapi.c:47485:}"];
+	Node0x6c73310 -> Node0x6c73700;
+	Node0x6c73700 [shape=record,label="{testapi.c:47485:|{<s0>T|<s1>F}}"];
+	Node0x6c73700:s0 -> Node0x6c73980;
+	Node0x6c73700:s1 -> Node0x6c735e0;
+	Node0x6c73980 [shape=record,label="{testapi.c:47486:}"];
+	Node0x6c73980 -> Node0x6c73d70;
+	Node0x6c73d70 [shape=record,label="{testapi.c:47486:|{<s0>T|<s1>F}}"];
+	Node0x6c73d70:s0 -> Node0x6c73ff0;
+	Node0x6c73d70:s1 -> Node0x6c73c50;
+	Node0x6c73ff0 [shape=record,label="{testapi.c:47487:|{<s0>T|<s1>F}}"];
+	Node0x6c73ff0:s0 -> Node0x6c75380;
+	Node0x6c73ff0:s1 -> Node0x6c75e00;
+	Node0x6c75380 [shape=record,label="{testapi.c:47500:}"];
+	Node0x6c75380 -> Node0x6c75e00;
+	Node0x6c75e00 [shape=record,label="{testapi.c:47507:}"];
+	Node0x6c75e00 -> Node0x6c73f60;
+	Node0x6c73f60 [shape=record,label="{testapi.c:47486:}"];
+	Node0x6c73f60 -> Node0x6c73d70;
+	Node0x6c73c50 [shape=record,label="{testapi.c:47508:}"];
+	Node0x6c73c50 -> Node0x6c738f0;
+	Node0x6c738f0 [shape=record,label="{testapi.c:47485:}"];
+	Node0x6c738f0 -> Node0x6c73700;
+	Node0x6c735e0 [shape=record,label="{testapi.c:47509:}"];
+	Node0x6c735e0 -> Node0x6c73280;
+	Node0x6c73280 [shape=record,label="{testapi.c:47484:}"];
+	Node0x6c73280 -> Node0x6c73030;
+	Node0x6c72e90 [shape=record,label="{testapi.c:47510:}"];
+}

@@ -1,0 +1,27 @@
+digraph "CFG for 'entityDeclDebug' function" {
+	label="CFG for 'entityDeclDebug' function";
+
+	Node0x4fbc700 [shape=record,label="{xmllint.c:1077:|{<s0>T|<s1>F}}"];
+	Node0x4fbc700 -> Node0x4fbf650;
+	Node0x4fbc700 -> Node0x4fbf6a0;
+	Node0x4fbf650 [shape=record,label="{xmllint.c:1083:}"];
+	Node0x4fbf650 -> Node0x4fbf6a0;
+	Node0x4fbf6a0 [shape=record,label="{xmllint.c:1084:|{<s0>T|<s1>F}}"];
+	Node0x4fbf6a0 -> Node0x4fbfb90;
+	Node0x4fbf6a0 -> Node0x4fbfbe0;
+	Node0x4fbfb90 [shape=record,label="{xmllint.c:1085:}"];
+	Node0x4fbfb90 -> Node0x4fbfbe0;
+	Node0x4fbfbe0 [shape=record,label="{xmllint.c:1086:|{<s0>T|<s1>F}}"];
+	Node0x4fbfbe0 -> Node0x4fc00d0;
+	Node0x4fbfbe0 -> Node0x4fc0120;
+	Node0x4fc00d0 [shape=record,label="{xmllint.c:1087:}"];
+	Node0x4fc00d0 -> Node0x4fc0120;
+	Node0x4fc0120 [shape=record,label="{xmllint.c:1088:|{<s0>T|<s1>F}}"];
+	Node0x4fc0120 -> Node0x4fc0900;
+	Node0x4fc0120 -> Node0x4fc0950;
+	Node0x4fc0900 [shape=record,label="{xmllint.c:1090:}"];
+	Node0x4fc0900 -> Node0x4fbdda0;
+	Node0x4fc0950 [shape=record,label="{xmllint.c:1091:}"];
+	Node0x4fc0950 -> Node0x4fbdda0;
+	Node0x4fbdda0 [shape=record,label="{xmllint.c:1093:}"];
+}

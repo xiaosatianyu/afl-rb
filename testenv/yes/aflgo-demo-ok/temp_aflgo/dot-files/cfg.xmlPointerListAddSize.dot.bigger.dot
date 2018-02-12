@@ -1,0 +1,39 @@
+digraph "CFG for 'xmlPointerListAddSize' function" {
+	label="CFG for 'xmlPointerListAddSize' function";
+
+	Node0x4a55a30 [shape=record,label="{xpath.c:783:|{<s0>T|<s1>F}}"];
+	Node0x4a55a30:s0 -> Node0x4a581e0;
+	Node0x4a55a30:s1 -> Node0x4a58280;
+	Node0x4a581e0 [shape=record,label="{xpath.c:788:|{<s0>T|<s1>F}}"];
+	Node0x4a581e0:s0 -> Node0x4a587e0;
+	Node0x4a581e0:s1 -> Node0x4a58830;
+	Node0x4a587e0 [shape=record,label="{xpath.c:789:}"];
+	Node0x4a587e0 -> Node0x4a58830;
+	Node0x4a58830 [shape=record,label="{xpath.c:790:|{<s0>T|<s1>F}}"];
+	Node0x4a58830:s0 -> Node0x4a591f0;
+	Node0x4a58830:s1 -> Node0x4a59240;
+	Node0x4a591f0 [shape=record,label="{xpath.c:792:}"];
+	Node0x4a591f0 -> Node0x4a57820;
+	Node0x4a59240 [shape=record,label="{xpath.c:796:}"];
+	Node0x4a59240 -> Node0x4a58230;
+	Node0x4a58280 [shape=record,label="{xpath.c:798:|{<s0>T|<s1>F}}"];
+	Node0x4a58280:s0 -> Node0x4a59fd0;
+	Node0x4a58280:s1 -> Node0x4a5a020;
+	Node0x4a59fd0 [shape=record,label="{xpath.c:799:|{<s0>T|<s1>F}}"];
+	Node0x4a59fd0:s0 -> Node0x4a5a6a0;
+	Node0x4a59fd0:s1 -> Node0x4a5a6f0;
+	Node0x4a5a6a0 [shape=record,label="{xpath.c:800:}"];
+	Node0x4a5a6a0 -> Node0x4a57820;
+	Node0x4a5a6f0 [shape=record,label="{xpath.c:804:|{<s0>T|<s1>F}}"];
+	Node0x4a5a6f0:s0 -> Node0x4a5bc90;
+	Node0x4a5a6f0:s1 -> Node0x4a5bce0;
+	Node0x4a5bc90 [shape=record,label="{xpath.c:808:}"];
+	Node0x4a5bc90 -> Node0x4a57820;
+	Node0x4a5bce0 [shape=record,label="{xpath.c:813:}"];
+	Node0x4a5bce0 -> Node0x4a5a020;
+	Node0x4a5a020 [shape=record,label="{%65}"];
+	Node0x4a5a020 -> Node0x4a58230;
+	Node0x4a58230 [shape=record,label="{xpath.c:814:}"];
+	Node0x4a58230 -> Node0x4a57820;
+	Node0x4a57820 [shape=record,label="{xpath.c:816:}"];
+}

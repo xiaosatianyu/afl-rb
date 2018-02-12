@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlNodeGetSpacePreserve' function" {
+	label="CFG for 'test_xmlNodeGetSpacePreserve' function";
+
+	Node0x5f4eda0 [shape=record,label="{testapi.c:22510:}"];
+	Node0x5f4eda0 -> Node0x5f5bde0;
+	Node0x5f5bde0 [shape=record,label="{testapi.c:22517:|{<s0>T|<s1>F}}"];
+	Node0x5f5bde0:s0 -> Node0x5f5c0c0;
+	Node0x5f5bde0:s1 -> Node0x5f5bc40;
+	Node0x5f5c0c0 [shape=record,label="{testapi.c:22518:|{<s0>T|<s1>F}}"];
+	Node0x5f5c0c0:s0 -> Node0x5f5cf10;
+	Node0x5f5c0c0:s1 -> Node0x5f5d6e0;
+	Node0x5f5cf10 [shape=record,label="{testapi.c:22528:}"];
+	Node0x5f5cf10 -> Node0x5f5d6e0;
+	Node0x5f5d6e0 [shape=record,label="{testapi.c:22533:}"];
+	Node0x5f5d6e0 -> Node0x5f5c030;
+	Node0x5f5c030 [shape=record,label="{testapi.c:22517:}"];
+	Node0x5f5c030 -> Node0x5f5bde0;
+	Node0x5f5bc40 [shape=record,label="{testapi.c:22534:}"];
+}

@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlXPathNodeSetAddUnique' function" {
+	label="CFG for 'test_xmlXPathNodeSetAddUnique' function";
+
+	Node0x6d3cf50 [shape=record,label="{testapi.c:49325:}"];
+	Node0x6d3cf50 -> Node0x6d49250;
+	Node0x6d49250 [shape=record,label="{testapi.c:49335:|{<s0>T|<s1>F}}"];
+	Node0x6d49250:s0 -> Node0x6d49530;
+	Node0x6d49250:s1 -> Node0x6d490b0;
+	Node0x6d49530 [shape=record,label="{testapi.c:49336:}"];
+	Node0x6d49530 -> Node0x6d49920;
+	Node0x6d49920 [shape=record,label="{testapi.c:49336:|{<s0>T|<s1>F}}"];
+	Node0x6d49920:s0 -> Node0x6d49ba0;
+	Node0x6d49920:s1 -> Node0x6d49800;
+	Node0x6d49ba0 [shape=record,label="{testapi.c:49337:|{<s0>T|<s1>F}}"];
+	Node0x6d49ba0:s0 -> Node0x6d4ac70;
+	Node0x6d49ba0:s1 -> Node0x6d4afa0;
+	Node0x6d4ac70 [shape=record,label="{testapi.c:49349:}"];
+	Node0x6d4ac70 -> Node0x6d4afa0;
+	Node0x6d4afa0 [shape=record,label="{testapi.c:49355:}"];
+	Node0x6d4afa0 -> Node0x6d49b10;
+	Node0x6d49b10 [shape=record,label="{testapi.c:49336:}"];
+	Node0x6d49b10 -> Node0x6d49920;
+	Node0x6d49800 [shape=record,label="{testapi.c:49356:}"];
+	Node0x6d49800 -> Node0x6d494a0;
+	Node0x6d494a0 [shape=record,label="{testapi.c:49335:}"];
+	Node0x6d494a0 -> Node0x6d49250;
+	Node0x6d490b0 [shape=record,label="{testapi.c:49357:}"];
+}

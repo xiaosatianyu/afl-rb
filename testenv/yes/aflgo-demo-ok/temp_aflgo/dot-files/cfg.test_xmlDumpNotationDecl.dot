@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlDumpNotationDecl' function" {
+	label="CFG for 'test_xmlDumpNotationDecl' function";
+
+	Node0x60be4d0 [shape=record,label="{testapi.c:25283:}"];
+	Node0x60be4d0 -> Node0x60c3fa0;
+	Node0x60c3fa0 [shape=record,label="{testapi.c:25292:|{<s0>T|<s1>F}}"];
+	Node0x60c3fa0:s0 -> Node0x60c4280;
+	Node0x60c3fa0:s1 -> Node0x60c3e80;
+	Node0x60c4280 [shape=record,label="{testapi.c:25293:}"];
+	Node0x60c4280 -> Node0x60c4670;
+	Node0x60c4670 [shape=record,label="{testapi.c:25293:|{<s0>T|<s1>F}}"];
+	Node0x60c4670:s0 -> Node0x60c48f0;
+	Node0x60c4670:s1 -> Node0x60c4550;
+	Node0x60c48f0 [shape=record,label="{testapi.c:25294:|{<s0>T|<s1>F}}"];
+	Node0x60c48f0:s0 -> Node0x60c66a0;
+	Node0x60c48f0:s1 -> Node0x60c66f0;
+	Node0x60c66a0 [shape=record,label="{testapi.c:25305:}"];
+	Node0x60c66a0 -> Node0x60c66f0;
+	Node0x60c66f0 [shape=record,label="{testapi.c:25311:}"];
+	Node0x60c66f0 -> Node0x60c4860;
+	Node0x60c4860 [shape=record,label="{testapi.c:25293:}"];
+	Node0x60c4860 -> Node0x60c4670;
+	Node0x60c4550 [shape=record,label="{testapi.c:25312:}"];
+	Node0x60c4550 -> Node0x60c41f0;
+	Node0x60c41f0 [shape=record,label="{testapi.c:25292:}"];
+	Node0x60c41f0 -> Node0x60c3fa0;
+	Node0x60c3e80 [shape=record,label="{testapi.c:25313:}"];
+}

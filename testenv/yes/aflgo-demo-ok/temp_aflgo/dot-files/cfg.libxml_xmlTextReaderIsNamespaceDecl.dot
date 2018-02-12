@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlTextReaderIsNamespaceDecl' function" {
+	label="CFG for 'libxml_xmlTextReaderIsNamespaceDecl' function";
+
+	Node0x5cf8750 [shape=record,label="{libxml2-py.c:8260:|{<s0>T|<s1>F}}"];
+	Node0x5cf8750:s0 -> Node0x5d01ab0;
+	Node0x5cf8750:s1 -> Node0x5d01a60;
+	Node0x5d01a60 [shape=record,label="{libxml2-py.c:8267:}"];
+	Node0x5d01a60 -> Node0x5cf62a0;
+	Node0x5d01ab0 [shape=record,label="{libxml2-py.c:8268:|{<s0>T|<s1>F}}"];
+	Node0x5d01ab0:s0 -> Node0x5d022e0;
+	Node0x5d01ab0:s1 -> Node0x5d02330;
+	Node0x5d022e0 [shape=record,label="{libxml2-py.c:8268:}"];
+	Node0x5d022e0 -> Node0x5d02380;
+	Node0x5d02330 [shape=record,label="{libxml2-py.c:8268:}"];
+	Node0x5d02330 -> Node0x5d02380;
+	Node0x5d02380 [shape=record,label="{libxml2-py.c:8268:}"];
+	Node0x5d02380 -> Node0x5cf62a0;
+	Node0x5cf62a0 [shape=record,label="{libxml2-py.c:8273:}"];
+}

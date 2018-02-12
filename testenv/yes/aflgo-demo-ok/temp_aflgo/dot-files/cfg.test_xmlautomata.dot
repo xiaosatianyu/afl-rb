@@ -1,0 +1,15 @@
+digraph "CFG for 'test_xmlautomata' function" {
+	label="CFG for 'test_xmlautomata' function";
+
+	Node0x5ab6280 [shape=record,label="{testapi.c:29531:|{<s0>T|<s1>F}}"];
+	Node0x5ab6280:s0 -> Node0x5ab8360;
+	Node0x5ab6280:s1 -> Node0x62031a0;
+	Node0x5ab8360 [shape=record,label="{testapi.c:29533:}"];
+	Node0x5ab8360 -> Node0x62031a0;
+	Node0x62031a0 [shape=record,label="{testapi.c:29534:|{<s0>T|<s1>F}}"];
+	Node0x62031a0:s0 -> Node0x5abbca0;
+	Node0x62031a0:s1 -> Node0x49d4e20;
+	Node0x5abbca0 [shape=record,label="{testapi.c:29554:}"];
+	Node0x5abbca0 -> Node0x49d4e20;
+	Node0x49d4e20 [shape=record,label="{testapi.c:29555:}"];
+}

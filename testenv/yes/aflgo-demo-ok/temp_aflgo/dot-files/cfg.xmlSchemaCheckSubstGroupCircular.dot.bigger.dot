@@ -1,0 +1,22 @@
+digraph "CFG for 'xmlSchemaCheckSubstGroupCircular' function" {
+	label="CFG for 'xmlSchemaCheckSubstGroupCircular' function";
+
+	Node0x56cfe20 [shape=record,label="{xmlschemas.c:19553:|{<s0>T|<s1>F}}"];
+	Node0x56cfe20:s0 -> Node0x56e2630;
+	Node0x56cfe20:s1 -> Node0x56e2680;
+	Node0x56e2630 [shape=record,label="{xmlschemas.c:19559:}"];
+	Node0x56e2630 -> Node0x56d0380;
+	Node0x56e2680 [shape=record,label="{xmlschemas.c:19560:|{<s0>T|<s1>F}}"];
+	Node0x56e2680:s0 -> Node0x56e2bf0;
+	Node0x56e2680:s1 -> Node0x56e2c40;
+	Node0x56e2bf0 [shape=record,label="{xmlschemas.c:19561:}"];
+	Node0x56e2bf0 -> Node0x56d0380;
+	Node0x56e2c40 [shape=record,label="{xmlschemas.c:19563:|{<s0>T|<s1>F}}"];
+	Node0x56e2c40:s0 -> Node0x56e3290;
+	Node0x56e2c40:s1 -> Node0x56e32e0;
+	Node0x56e3290 [shape=record,label="{xmlschemas.c:19564:}"];
+	Node0x56e3290 -> Node0x56d0380;
+	Node0x56e32e0 [shape=record,label="{xmlschemas.c:19565:}"];
+	Node0x56e32e0 -> Node0x56d0380;
+	Node0x56d0380 [shape=record,label="{xmlschemas.c:19571:}"];
+}

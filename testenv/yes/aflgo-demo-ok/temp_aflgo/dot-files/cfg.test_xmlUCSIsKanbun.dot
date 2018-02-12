@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsKanbun' function" {
+	label="CFG for 'test_xmlUCSIsKanbun' function";
+
+	Node0x6926810 [shape=record,label="{testapi.c:40713:}"];
+	Node0x6926810 -> Node0x6931a80;
+	Node0x6931a80 [shape=record,label="{testapi.c:40721:|{<s0>T|<s1>F}}"];
+	Node0x6931a80:s0 -> Node0x6931d60;
+	Node0x6931a80:s1 -> Node0x69318e0;
+	Node0x6931d60 [shape=record,label="{testapi.c:40722:|{<s0>T|<s1>F}}"];
+	Node0x6931d60:s0 -> Node0x6932bb0;
+	Node0x6931d60:s1 -> Node0x6932ee0;
+	Node0x6932bb0 [shape=record,label="{testapi.c:40732:}"];
+	Node0x6932bb0 -> Node0x6932ee0;
+	Node0x6932ee0 [shape=record,label="{testapi.c:40737:}"];
+	Node0x6932ee0 -> Node0x6931cd0;
+	Node0x6931cd0 [shape=record,label="{testapi.c:40721:}"];
+	Node0x6931cd0 -> Node0x6931a80;
+	Node0x69318e0 [shape=record,label="{testapi.c:40738:}"];
+}

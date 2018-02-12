@@ -1,0 +1,22 @@
+digraph "CFG for 'xmlFreeEnumeration' function" {
+	label="CFG for 'xmlFreeEnumeration' function";
+
+	Node0x3d7fbb0 [shape=record,label="{valid.c:1776:|{<s0>T|<s1>F}}"];
+	Node0x3d7fbb0 -> Node0x3d811e0;
+	Node0x3d7fbb0 -> Node0x3d81230;
+	Node0x3d811e0 [shape=record,label="{valid.c:1777:}"];
+	Node0x3d811e0 -> Node0x3d81440;
+	Node0x3d81230 [shape=record,label="{valid.c:1779:|{<s0>T|<s1>F}}"];
+	Node0x3d81230 -> Node0x3d7fa10;
+	Node0x3d81230 -> Node0x3d7fa60;
+	Node0x3d7fa10 [shape=record,label="{valid.c:1779:}"];
+	Node0x3d7fa10 -> Node0x3d7fa60;
+	Node0x3d7fa60 [shape=record,label="{valid.c:1781:|{<s0>T|<s1>F}}"];
+	Node0x3d7fa60 -> Node0x3d823f0;
+	Node0x3d7fa60 -> Node0x3d82440;
+	Node0x3d823f0 [shape=record,label="{valid.c:1781:}"];
+	Node0x3d823f0 -> Node0x3d82440;
+	Node0x3d82440 [shape=record,label="{valid.c:1782:}"];
+	Node0x3d82440 -> Node0x3d81440;
+	Node0x3d81440 [shape=record,label="{valid.c:1783:}"];
+}

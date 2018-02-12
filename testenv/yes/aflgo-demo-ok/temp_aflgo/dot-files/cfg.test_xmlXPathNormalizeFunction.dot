@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlXPathNormalizeFunction' function" {
+	label="CFG for 'test_xmlXPathNormalizeFunction' function";
+
+	Node0x6d638e0 [shape=record,label="{testapi.c:49640:}"];
+	Node0x6d638e0 -> Node0x6d6e1d0;
+	Node0x6d6e1d0 [shape=record,label="{testapi.c:49649:|{<s0>T|<s1>F}}"];
+	Node0x6d6e1d0:s0 -> Node0x6d6e4b0;
+	Node0x6d6e1d0:s1 -> Node0x6d6e030;
+	Node0x6d6e4b0 [shape=record,label="{testapi.c:49650:}"];
+	Node0x6d6e4b0 -> Node0x6d6e8a0;
+	Node0x6d6e8a0 [shape=record,label="{testapi.c:49650:|{<s0>T|<s1>F}}"];
+	Node0x6d6e8a0:s0 -> Node0x6d6eb20;
+	Node0x6d6e8a0:s1 -> Node0x6d6e780;
+	Node0x6d6eb20 [shape=record,label="{testapi.c:49651:|{<s0>T|<s1>F}}"];
+	Node0x6d6eb20:s0 -> Node0x6d6fb90;
+	Node0x6d6eb20:s1 -> Node0x6d703e0;
+	Node0x6d6fb90 [shape=record,label="{testapi.c:49662:}"];
+	Node0x6d6fb90 -> Node0x6d703e0;
+	Node0x6d703e0 [shape=record,label="{testapi.c:49668:}"];
+	Node0x6d703e0 -> Node0x6d6ea90;
+	Node0x6d6ea90 [shape=record,label="{testapi.c:49650:}"];
+	Node0x6d6ea90 -> Node0x6d6e8a0;
+	Node0x6d6e780 [shape=record,label="{testapi.c:49669:}"];
+	Node0x6d6e780 -> Node0x6d6e420;
+	Node0x6d6e420 [shape=record,label="{testapi.c:49649:}"];
+	Node0x6d6e420 -> Node0x6d6e1d0;
+	Node0x6d6e030 [shape=record,label="{testapi.c:49670:}"];
+}

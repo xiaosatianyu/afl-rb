@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlListMerge' function" {
+	label="CFG for 'test_xmlListMerge' function";
+
+	Node0x589ac20 [shape=record,label="{testapi.c:10989:}"];
+	Node0x589ac20 -> Node0x58a1e60;
+	Node0x58a1e60 [shape=record,label="{testapi.c:10997:|{<s0>T|<s1>F}}"];
+	Node0x58a1e60:s0 -> Node0x58a2140;
+	Node0x58a1e60:s1 -> Node0x58a1cc0;
+	Node0x58a2140 [shape=record,label="{testapi.c:10998:}"];
+	Node0x58a2140 -> Node0x58a2530;
+	Node0x58a2530 [shape=record,label="{testapi.c:10998:|{<s0>T|<s1>F}}"];
+	Node0x58a2530:s0 -> Node0x58a27b0;
+	Node0x58a2530:s1 -> Node0x58a2410;
+	Node0x58a27b0 [shape=record,label="{testapi.c:10999:|{<s0>T|<s1>F}}"];
+	Node0x58a27b0:s0 -> Node0x58a38a0;
+	Node0x58a27b0:s1 -> Node0x58a40f0;
+	Node0x58a38a0 [shape=record,label="{testapi.c:11010:}"];
+	Node0x58a38a0 -> Node0x58a40f0;
+	Node0x58a40f0 [shape=record,label="{testapi.c:11016:}"];
+	Node0x58a40f0 -> Node0x58a2720;
+	Node0x58a2720 [shape=record,label="{testapi.c:10998:}"];
+	Node0x58a2720 -> Node0x58a2530;
+	Node0x58a2410 [shape=record,label="{testapi.c:11017:}"];
+	Node0x58a2410 -> Node0x58a20b0;
+	Node0x58a20b0 [shape=record,label="{testapi.c:10997:}"];
+	Node0x58a20b0 -> Node0x58a1e60;
+	Node0x58a1cc0 [shape=record,label="{testapi.c:11018:}"];
+}

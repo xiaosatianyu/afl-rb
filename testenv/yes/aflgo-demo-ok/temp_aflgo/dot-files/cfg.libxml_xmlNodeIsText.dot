@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlNodeIsText' function" {
+	label="CFG for 'libxml_xmlNodeIsText' function";
+
+	Node0x596cd50 [shape=record,label="{libxml2-py.c:4516:|{<s0>T|<s1>F}}"];
+	Node0x596cd50:s0 -> Node0x5970880;
+	Node0x596cd50:s1 -> Node0x5970830;
+	Node0x5970830 [shape=record,label="{libxml2-py.c:4523:}"];
+	Node0x5970830 -> Node0x596f1c0;
+	Node0x5970880 [shape=record,label="{libxml2-py.c:4524:|{<s0>T|<s1>F}}"];
+	Node0x5970880:s0 -> Node0x59710a0;
+	Node0x5970880:s1 -> Node0x59710f0;
+	Node0x59710a0 [shape=record,label="{libxml2-py.c:4524:}"];
+	Node0x59710a0 -> Node0x5971140;
+	Node0x59710f0 [shape=record,label="{libxml2-py.c:4524:}"];
+	Node0x59710f0 -> Node0x5971140;
+	Node0x5971140 [shape=record,label="{libxml2-py.c:4524:}"];
+	Node0x5971140 -> Node0x596f1c0;
+	Node0x596f1c0 [shape=record,label="{libxml2-py.c:4529:}"];
+}

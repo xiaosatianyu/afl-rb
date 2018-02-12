@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlSchemaPIllegalFacetListUnionErr' function" {
+	label="CFG for 'xmlSchemaPIllegalFacetListUnionErr' function";
+
+	Node0x55510b0 [shape=record,label="{xmlschemas.c:3047:|{<s0>T|<s1>F}}"];
+	Node0x55510b0:s0 -> Node0x5559670;
+	Node0x55510b0:s1 -> Node0x55596c0;
+	Node0x5559670 [shape=record,label="{xmlschemas.c:3059:}"];
+	Node0x5559670 -> Node0x55596c0;
+	Node0x55596c0 [shape=record,label="{xmlschemas.c:3060:}"];
+}

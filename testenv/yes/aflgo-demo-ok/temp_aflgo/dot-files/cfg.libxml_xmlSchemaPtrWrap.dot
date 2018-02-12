@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlSchemaPtrWrap' function" {
+	label="CFG for 'libxml_xmlSchemaPtrWrap' function";
+
+	Node0x3d42b80 [shape=record,label="{types.c:886:|{<s0>T|<s1>F}}"];
+	Node0x3d42b80:s0 -> Node0x3de04f0;
+	Node0x3d42b80:s1 -> Node0x3de0540;
+	Node0x3de04f0 [shape=record,label="{types.c:894:}"];
+	Node0x3de04f0 -> Node0x3ddeb90;
+	Node0x3de0540 [shape=record,label="{types.c:898:}"];
+	Node0x3de0540 -> Node0x3ddeb90;
+	Node0x3ddeb90 [shape=record,label="{types.c:901:}"];
+}

@@ -1,0 +1,10 @@
+digraph "CFG for 'test_xmlCleanupOutputCallbacks' function" {
+	label="CFG for 'test_xmlCleanupOutputCallbacks' function";
+
+	Node0x6212470 [shape=record,label="{testapi.c:27851:|{<s0>T|<s1>F}}"];
+	Node0x6212470:s0 -> Node0x62198a0;
+	Node0x6212470:s1 -> Node0x6219bd0;
+	Node0x62198a0 [shape=record,label="{testapi.c:27863:}"];
+	Node0x62198a0 -> Node0x6219bd0;
+	Node0x6219bd0 [shape=record,label="{testapi.c:27867:}"];
+}

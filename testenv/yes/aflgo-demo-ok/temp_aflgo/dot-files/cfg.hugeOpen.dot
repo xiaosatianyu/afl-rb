@@ -1,0 +1,15 @@
+digraph "CFG for 'hugeOpen' function" {
+	label="CFG for 'hugeOpen' function";
+
+	Node0x4639640 [shape=record,label="{testrecurse.c:201:|{<s0>T|<s1>F}}"];
+	Node0x4639640:s0 -> Node0x4639330;
+	Node0x4639640:s1 -> Node0x46393d0;
+	Node0x46393d0 [shape=record,label="{testrecurse.c:202:|{<s0>T|<s1>F}}"];
+	Node0x46393d0:s0 -> Node0x4639330;
+	Node0x46393d0:s1 -> Node0x4639380;
+	Node0x4639330 [shape=record,label="{testrecurse.c:203:}"];
+	Node0x4639330 -> Node0x46295f0;
+	Node0x4639380 [shape=record,label="{testrecurse.c:204:}"];
+	Node0x4639380 -> Node0x46295f0;
+	Node0x46295f0 [shape=record,label="{testrecurse.c:207:}"];
+}

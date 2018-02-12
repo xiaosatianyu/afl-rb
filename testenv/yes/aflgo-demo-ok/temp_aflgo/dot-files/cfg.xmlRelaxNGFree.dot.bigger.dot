@@ -1,0 +1,46 @@
+digraph "CFG for 'xmlRelaxNGFree' function" {
+	label="CFG for 'xmlRelaxNGFree' function";
+
+	Node0x4c55200 [shape=record,label="{relaxng.c:806:|{<s0>T|<s1>F}}"];
+	Node0x4c55200:s0 -> Node0x4c71be0;
+	Node0x4c55200:s1 -> Node0x4c71c30;
+	Node0x4c71be0 [shape=record,label="{relaxng.c:809:}"];
+	Node0x4c71be0 -> Node0x4c4fa10;
+	Node0x4c71c30 [shape=record,label="{relaxng.c:811:|{<s0>T|<s1>F}}"];
+	Node0x4c71c30:s0 -> Node0x4c72450;
+	Node0x4c71c30:s1 -> Node0x4c724a0;
+	Node0x4c72450 [shape=record,label="{relaxng.c:812:}"];
+	Node0x4c72450 -> Node0x4c724a0;
+	Node0x4c724a0 [shape=record,label="{relaxng.c:813:|{<s0>T|<s1>F}}"];
+	Node0x4c724a0:s0 -> Node0x4c73280;
+	Node0x4c724a0:s1 -> Node0x4c735b0;
+	Node0x4c73280 [shape=record,label="{relaxng.c:814:}"];
+	Node0x4c73280 -> Node0x4c735b0;
+	Node0x4c735b0 [shape=record,label="{relaxng.c:815:|{<s0>T|<s1>F}}"];
+	Node0x4c735b0:s0 -> Node0x4c73c70;
+	Node0x4c735b0:s1 -> Node0x4c73ee0;
+	Node0x4c73c70 [shape=record,label="{relaxng.c:816:}"];
+	Node0x4c73c70 -> Node0x4c73ee0;
+	Node0x4c73ee0 [shape=record,label="{relaxng.c:817:|{<s0>T|<s1>F}}"];
+	Node0x4c73ee0:s0 -> Node0x4c72df0;
+	Node0x4c73ee0:s1 -> Node0x4c5e520;
+	Node0x4c72df0 [shape=record,label="{relaxng.c:818:}"];
+	Node0x4c72df0 -> Node0x4c5e520;
+	Node0x4c5e520 [shape=record,label="{relaxng.c:819:|{<s0>T|<s1>F}}"];
+	Node0x4c5e520:s0 -> Node0x4c750f0;
+	Node0x4c5e520:s1 -> Node0x4c75140;
+	Node0x4c750f0 [shape=record,label="{relaxng.c:820:}"];
+	Node0x4c750f0 -> Node0x4c75b20;
+	Node0x4c75b20 [shape=record,label="{relaxng.c:822:|{<s0>T|<s1>F}}"];
+	Node0x4c75b20:s0 -> Node0x4c75da0;
+	Node0x4c75b20:s1 -> Node0x4c75980;
+	Node0x4c75da0 [shape=record,label="{relaxng.c:823:}"];
+	Node0x4c75da0 -> Node0x4c75d10;
+	Node0x4c75d10 [shape=record,label="{relaxng.c:822:}"];
+	Node0x4c75d10 -> Node0x4c75b20;
+	Node0x4c75980 [shape=record,label="{relaxng.c:824:}"];
+	Node0x4c75980 -> Node0x4c75140;
+	Node0x4c75140 [shape=record,label="{relaxng.c:827:}"];
+	Node0x4c75140 -> Node0x4c4fa10;
+	Node0x4c4fa10 [shape=record,label="{relaxng.c:828:}"];
+}

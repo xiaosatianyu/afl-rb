@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlNewInputFromFile' function" {
+	label="CFG for 'test_xmlNewInputFromFile' function";
+
+	Node0x5746ae0 [shape=record,label="{testapi.c:16162:}"];
+	Node0x5746ae0 -> Node0x5750050;
+	Node0x5750050 [shape=record,label="{testapi.c:16171:|{<s0>T|<s1>F}}"];
+	Node0x5750050:s0 -> Node0x5750250;
+	Node0x5750050:s1 -> Node0x574fef0;
+	Node0x5750250 [shape=record,label="{testapi.c:16172:}"];
+	Node0x5750250 -> Node0x5750600;
+	Node0x5750600 [shape=record,label="{testapi.c:16172:|{<s0>T|<s1>F}}"];
+	Node0x5750600:s0 -> Node0x5750880;
+	Node0x5750600:s1 -> Node0x57504e0;
+	Node0x5750880 [shape=record,label="{testapi.c:16173:|{<s0>T|<s1>F}}"];
+	Node0x5750880:s0 -> Node0x57519d0;
+	Node0x5750880:s1 -> Node0x5751d00;
+	Node0x57519d0 [shape=record,label="{testapi.c:16185:}"];
+	Node0x57519d0 -> Node0x5751d00;
+	Node0x5751d00 [shape=record,label="{testapi.c:16191:}"];
+	Node0x5751d00 -> Node0x57507f0;
+	Node0x57507f0 [shape=record,label="{testapi.c:16172:}"];
+	Node0x57507f0 -> Node0x5750600;
+	Node0x57504e0 [shape=record,label="{testapi.c:16192:}"];
+	Node0x57504e0 -> Node0x5750200;
+	Node0x5750200 [shape=record,label="{testapi.c:16171:}"];
+	Node0x5750200 -> Node0x5750050;
+	Node0x574fef0 [shape=record,label="{testapi.c:16193:}"];
+}

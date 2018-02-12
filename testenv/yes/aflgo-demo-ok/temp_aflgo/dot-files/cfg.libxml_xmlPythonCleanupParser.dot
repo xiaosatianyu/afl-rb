@@ -1,0 +1,44 @@
+digraph "CFG for 'libxml_xmlPythonCleanupParser' function" {
+	label="CFG for 'libxml_xmlPythonCleanupParser' function";
+
+	Node0x536d550 [shape=record,label="{libxml.c:186:|{<s0>T|<s1>F}}"];
+	Node0x536d550:s0 -> Node0x5374d10;
+	Node0x536d550:s1 -> Node0x5374d60;
+	Node0x5374d10 [shape=record,label="{libxml.c:193:}"];
+	Node0x5374d10 -> Node0x5374d60;
+	Node0x5374d60 [shape=record,label="{libxml.c:196:|{<s0>T|<s1>F}}"];
+	Node0x5374d60:s0 -> Node0x536cde0;
+	Node0x5374d60:s1 -> Node0x536ce30;
+	Node0x536cde0 [shape=record,label="{libxml.c:203:}"];
+	Node0x536cde0 -> Node0x5368d00;
+	Node0x5368d00 [shape=record,label="{libxml.c:203:|{<s0>T|<s1>F}}"];
+	Node0x5368d00:s0 -> Node0x53486d0;
+	Node0x5368d00:s1 -> Node0x536af70;
+	Node0x53486d0 [shape=record,label="{libxml.c:204:|{<s0>T|<s1>F}}"];
+	Node0x53486d0:s0 -> Node0x537c760;
+	Node0x53486d0:s1 -> Node0x537c7b0;
+	Node0x537c760 [shape=record,label="{libxml.c:205:}"];
+	Node0x537c760 -> Node0x537c7b0;
+	Node0x537c7b0 [shape=record,label="{libxml.c:206:|{<s0>T|<s1>F}}"];
+	Node0x537c7b0:s0 -> Node0x537d340;
+	Node0x537c7b0:s1 -> Node0x537d390;
+	Node0x537d340 [shape=record,label="{libxml.c:207:}"];
+	Node0x537d340 -> Node0x537d390;
+	Node0x537d390 [shape=record,label="{libxml.c:208:}"];
+	Node0x537d390 -> Node0x5348640;
+	Node0x5348640 [shape=record,label="{libxml.c:203:}"];
+	Node0x5348640 -> Node0x5368d00;
+	Node0x536af70 [shape=record,label="{libxml.c:209:}"];
+	Node0x536af70 -> Node0x536ce30;
+	Node0x536ce30 [shape=record,label="{libxml.c:214:|{<s0>T|<s1>F}}"];
+	Node0x536ce30:s0 -> Node0x537f7e0;
+	Node0x536ce30:s1 -> Node0x537f830;
+	Node0x537f7e0 [shape=record,label="{libxml.c:215:|{<s0>T|<s1>F}}"];
+	Node0x537f7e0:s0 -> Node0x5380040;
+	Node0x537f7e0:s1 -> Node0x5380090;
+	Node0x5380040 [shape=record,label="{libxml.c:218:}"];
+	Node0x5380040 -> Node0x5380090;
+	Node0x5380090 [shape=record,label="{libxml.c:219:}"];
+	Node0x5380090 -> Node0x537f830;
+	Node0x537f830 [shape=record,label="{libxml.c:221:}"];
+}

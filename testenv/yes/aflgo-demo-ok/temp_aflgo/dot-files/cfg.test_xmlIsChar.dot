@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlIsChar' function" {
+	label="CFG for 'test_xmlIsChar' function";
+
+	Node0x56317d0 [shape=record,label="{testapi.c:6707:}"];
+	Node0x56317d0 -> Node0x56413e0;
+	Node0x56413e0 [shape=record,label="{testapi.c:6714:|{<s0>T|<s1>F}}"];
+	Node0x56413e0:s0 -> Node0x56416c0;
+	Node0x56413e0:s1 -> Node0x5641240;
+	Node0x56416c0 [shape=record,label="{testapi.c:6715:|{<s0>T|<s1>F}}"];
+	Node0x56416c0:s0 -> Node0x5642510;
+	Node0x56416c0:s1 -> Node0x5642840;
+	Node0x5642510 [shape=record,label="{testapi.c:6725:}"];
+	Node0x5642510 -> Node0x5642840;
+	Node0x5642840 [shape=record,label="{testapi.c:6730:}"];
+	Node0x5642840 -> Node0x5641630;
+	Node0x5641630 [shape=record,label="{testapi.c:6714:}"];
+	Node0x5641630 -> Node0x56413e0;
+	Node0x5641240 [shape=record,label="{testapi.c:6731:}"];
+}

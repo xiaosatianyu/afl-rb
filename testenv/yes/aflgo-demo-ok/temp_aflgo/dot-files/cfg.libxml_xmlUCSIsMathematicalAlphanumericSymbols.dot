@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsMathematicalAlphanumericSymbols' function" {
+	label="CFG for 'libxml_xmlUCSIsMathematicalAlphanumericSymbols' function";
+
+	Node0x5f08720 [shape=record,label="{libxml2-py.c:10907:|{<s0>T|<s1>F}}"];
+	Node0x5f08720:s0 -> Node0x5f0b540;
+	Node0x5f08720:s1 -> Node0x5f0b4f0;
+	Node0x5f0b4f0 [shape=record,label="{libxml2-py.c:10913:}"];
+	Node0x5f0b4f0 -> Node0x5f08b00;
+	Node0x5f0b540 [shape=record,label="{libxml2-py.c:10915:}"];
+	Node0x5f0b540 -> Node0x5f08b00;
+	Node0x5f08b00 [shape=record,label="{libxml2-py.c:10918:}"];
+}

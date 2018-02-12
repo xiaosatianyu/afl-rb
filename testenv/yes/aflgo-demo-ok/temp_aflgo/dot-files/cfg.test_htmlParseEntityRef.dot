@@ -1,0 +1,28 @@
+digraph "CFG for 'test_htmlParseEntityRef' function" {
+	label="CFG for 'test_htmlParseEntityRef' function";
+
+	Node0x537d250 [shape=record,label="{testapi.c:2422:}"];
+	Node0x537d250 -> Node0x5386bc0;
+	Node0x5386bc0 [shape=record,label="{testapi.c:2432:|{<s0>T|<s1>F}}"];
+	Node0x5386bc0:s0 -> Node0x5386ea0;
+	Node0x5386bc0:s1 -> Node0x5386a20;
+	Node0x5386ea0 [shape=record,label="{testapi.c:2433:}"];
+	Node0x5386ea0 -> Node0x5387290;
+	Node0x5387290 [shape=record,label="{testapi.c:2433:|{<s0>T|<s1>F}}"];
+	Node0x5387290:s0 -> Node0x52c56d0;
+	Node0x5387290:s1 -> Node0x5387170;
+	Node0x52c56d0 [shape=record,label="{testapi.c:2434:|{<s0>T|<s1>F}}"];
+	Node0x52c56d0:s0 -> Node0x5387e40;
+	Node0x52c56d0:s1 -> Node0x538a6d0;
+	Node0x5387e40 [shape=record,label="{testapi.c:2446:}"];
+	Node0x5387e40 -> Node0x538a6d0;
+	Node0x538a6d0 [shape=record,label="{testapi.c:2452:}"];
+	Node0x538a6d0 -> Node0x52c5640;
+	Node0x52c5640 [shape=record,label="{testapi.c:2433:}"];
+	Node0x52c5640 -> Node0x5387290;
+	Node0x5387170 [shape=record,label="{testapi.c:2453:}"];
+	Node0x5387170 -> Node0x5386e10;
+	Node0x5386e10 [shape=record,label="{testapi.c:2432:}"];
+	Node0x5386e10 -> Node0x5386bc0;
+	Node0x5386a20 [shape=record,label="{testapi.c:2454:}"];
+}

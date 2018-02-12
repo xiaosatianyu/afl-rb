@@ -1,0 +1,17 @@
+digraph "CFG for 'gen_xmlDtdPtr' function" {
+	label="CFG for 'gen_xmlDtdPtr' function";
+
+	Node0x5673140 [shape=record,label="{testapi.c:541:|{<s0>T|<s1>F}}"];
+	Node0x5673140:s0 -> Node0x567a1f0;
+	Node0x5673140:s1 -> Node0x567a240;
+	Node0x567a1f0 [shape=record,label="{testapi.c:543:}"];
+	Node0x567a1f0 -> Node0x5674000;
+	Node0x567a240 [shape=record,label="{testapi.c:544:|{<s0>T|<s1>F}}"];
+	Node0x567a240:s0 -> Node0x567fd60;
+	Node0x567a240:s1 -> Node0x5680240;
+	Node0x567fd60 [shape=record,label="{testapi.c:544:}"];
+	Node0x567fd60 -> Node0x5674000;
+	Node0x5680240 [shape=record,label="{testapi.c:545:}"];
+	Node0x5680240 -> Node0x5674000;
+	Node0x5674000 [shape=record,label="{testapi.c:546:}"];
+}

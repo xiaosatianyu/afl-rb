@@ -1,0 +1,20 @@
+digraph "CFG for 'xmlGetDtdEntity' function" {
+	label="CFG for 'xmlGetDtdEntity' function";
+
+	Node0x40894d0 [shape=record,label="{entities.c:481:|{<s0>T|<s1>F}}"];
+	Node0x40894d0:s0 -> Node0x4083aa0;
+	Node0x40894d0:s1 -> Node0x408d4c0;
+	Node0x4083aa0 [shape=record,label="{entities.c:485:}"];
+	Node0x4083aa0 -> Node0x4083cf0;
+	Node0x408d4c0 [shape=record,label="{entities.c:486:|{<s0>T|<s1>F}}"];
+	Node0x408d4c0:s0 -> Node0x408da60;
+	Node0x408d4c0:s1 -> Node0x408da10;
+	Node0x408da60 [shape=record,label="{entities.c:486:|{<s0>T|<s1>F}}"];
+	Node0x408da60:s0 -> Node0x408d9c0;
+	Node0x408da60:s1 -> Node0x408da10;
+	Node0x408d9c0 [shape=record,label="{entities.c:487:}"];
+	Node0x408d9c0 -> Node0x4083cf0;
+	Node0x408da10 [shape=record,label="{entities.c:490:}"];
+	Node0x408da10 -> Node0x4083cf0;
+	Node0x4083cf0 [shape=record,label="{entities.c:491:}"];
+}

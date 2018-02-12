@@ -1,0 +1,10 @@
+parser.c:14264,85.0
+parser.c:14275,84.0
+parser.c:14276,85.0
+parser.c:14277,85.0
+parser.c:14278,84.0
+parser.c:14280,83.0
+parser.c:14282,83.0
+parser.c:14285,82.0
+parser.c:14286,82.0
+parser.c:14288,81.0

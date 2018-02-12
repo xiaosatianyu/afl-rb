@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlURIGetQuery' function" {
+	label="CFG for 'libxml_xmlURIGetQuery' function";
+
+	Node0x5fb1eb0 [shape=record,label="{libxml2-py.c:11799:|{<s0>T|<s1>F}}"];
+	Node0x5fb1eb0:s0 -> Node0x5fb3290;
+	Node0x5fb1eb0:s1 -> Node0x5fb3240;
+	Node0x5fb3240 [shape=record,label="{libxml2-py.c:11806:}"];
+	Node0x5fb3240 -> Node0x5fa75f0;
+	Node0x5fb3290 [shape=record,label="{libxml2-py.c:11807:|{<s0>T|<s1>F}}"];
+	Node0x5fb3290:s0 -> Node0x5fb3ab0;
+	Node0x5fb3290:s1 -> Node0x5fb3b00;
+	Node0x5fb3ab0 [shape=record,label="{libxml2-py.c:11807:}"];
+	Node0x5fb3ab0 -> Node0x5fb3b50;
+	Node0x5fb3b00 [shape=record,label="{libxml2-py.c:11807:}"];
+	Node0x5fb3b00 -> Node0x5fb3b50;
+	Node0x5fb3b50 [shape=record,label="{libxml2-py.c:11807:}"];
+	Node0x5fb3b50 -> Node0x5fa75f0;
+	Node0x5fa75f0 [shape=record,label="{libxml2-py.c:11812:}"];
+}

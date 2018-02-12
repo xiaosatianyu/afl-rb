@@ -1,0 +1,10 @@
+digraph "CFG for 'hasInternalSubset' function" {
+	label="CFG for 'hasInternalSubset' function";
+
+	Node0x4dcbcc0 [shape=record,label="{legacy.c:845:|{<s0>T|<s1>F}}"];
+	Node0x4dcbcc0:s0 -> Node0x4d86e90;
+	Node0x4dcbcc0:s1 -> Node0x4d87010;
+	Node0x4d86e90 [shape=record,label="{legacy.c:847:}"];
+	Node0x4d86e90 -> Node0x4d87010;
+	Node0x4d87010 [shape=record,label="{legacy.c:847:}"];
+}

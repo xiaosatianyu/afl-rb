@@ -1,0 +1,39 @@
+digraph "CFG for 'compareFiles' function" {
+	label="CFG for 'compareFiles' function";
+
+	Node0x48654d0 [shape=record,label="{runtest.c:607:|{<s0>T|<s1>F}}"];
+	Node0x48654d0:s0 -> Node0x48688b0;
+	Node0x48654d0:s1 -> Node0x4868be0;
+	Node0x48688b0 [shape=record,label="{runtest.c:615:}"];
+	Node0x48688b0 -> Node0x4865790;
+	Node0x4868be0 [shape=record,label="{runtest.c:616:|{<s0>T|<s1>F}}"];
+	Node0x4868be0:s0 -> Node0x48690b0;
+	Node0x4868be0:s1 -> Node0x4869100;
+	Node0x48690b0 [shape=record,label="{runtest.c:618:}"];
+	Node0x48690b0 -> Node0x4865790;
+	Node0x4869100 [shape=record,label="{runtest.c:621:}"];
+	Node0x4869100 -> Node0x4869c30;
+	Node0x4869c30 [shape=record,label="{runtest.c:622:|{<s0>T|<s1>F}}"];
+	Node0x4869c30:s0 -> Node0x486a060;
+	Node0x4869c30:s1 -> Node0x486a660;
+	Node0x486a660 [shape=record,label="{runtest.c:624:|{<s0>T|<s1>F}}"];
+	Node0x486a660:s0 -> Node0x486a060;
+	Node0x486a660:s1 -> Node0x486a2d0;
+	Node0x486a060 [shape=record,label="{runtest.c:625:}"];
+	Node0x486a060 -> Node0x4865790;
+	Node0x486a2d0 [shape=record,label="{runtest.c:629:|{<s0>T|<s1>F}}"];
+	Node0x486a2d0:s0 -> Node0x486af50;
+	Node0x486a2d0:s1 -> Node0x486afa0;
+	Node0x486af50 [shape=record,label="{runtest.c:630:}"];
+	Node0x486af50 -> Node0x4869a20;
+	Node0x486afa0 [shape=record,label="{runtest.c:631:|{<s0>T|<s1>F}}"];
+	Node0x486afa0:s0 -> Node0x486b310;
+	Node0x486afa0:s1 -> Node0x486b360;
+	Node0x486b310 [shape=record,label="{runtest.c:632:}"];
+	Node0x486b310 -> Node0x4865790;
+	Node0x486b360 [shape=record,label="{runtest.c:621:}"];
+	Node0x486b360 -> Node0x4869c30;
+	Node0x4869a20 [shape=record,label="{runtest.c:637:}"];
+	Node0x4869a20 -> Node0x4865790;
+	Node0x4865790 [shape=record,label="{runtest.c:640:}"];
+}

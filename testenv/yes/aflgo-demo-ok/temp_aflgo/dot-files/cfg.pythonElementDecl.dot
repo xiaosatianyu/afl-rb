@@ -1,0 +1,37 @@
+digraph "CFG for 'pythonElementDecl' function" {
+	label="CFG for 'pythonElementDecl' function";
+
+	Node0x55f9730 [shape=record,label="{libxml.c:1342:|{<s0>T|<s1>F}}"];
+	Node0x55f9730:s0 -> Node0x55fdd70;
+	Node0x55f9730:s1 -> Node0x55fddc0;
+	Node0x55fdd70 [shape=record,label="{libxml.c:1353:|{<s0>T|<s1>F}}"];
+	Node0x55fdd70:s0 -> Node0x55fee60;
+	Node0x55fdd70:s1 -> Node0x55feeb0;
+	Node0x55fee60 [shape=record,label="{libxml.c:1360:}"];
+	Node0x55fee60 -> Node0x55feeb0;
+	Node0x55feeb0 [shape=record,label="{libxml.c:1361:}"];
+	Node0x55feeb0 -> Node0x55ff2e0;
+	Node0x55ff2e0 [shape=record,label="{libxml.c:1361:|{<s0>T|<s1>F}}"];
+	Node0x55ff2e0:s0 -> Node0x55ff580;
+	Node0x55ff2e0:s1 -> Node0x55ff620;
+	Node0x55ff580 [shape=record,label="{libxml.c:1361:}"];
+	Node0x55ff580 -> Node0x55ff5d0;
+	Node0x55ff620 [shape=record,label="{libxml.c:1361:}"];
+	Node0x55ff620 -> Node0x55ff8c0;
+	Node0x55ff8c0 [shape=record,label="{libxml.c:1361:|{<s0>T|<s1>F}}"];
+	Node0x55ff8c0:s0 -> Node0x55ffab0;
+	Node0x55ff8c0:s1 -> Node0x55ffb50;
+	Node0x55ffab0 [shape=record,label="{libxml.c:1361:}"];
+	Node0x55ffab0 -> Node0x55ffb00;
+	Node0x55ffb50 [shape=record,label="{libxml.c:1361:}"];
+	Node0x55ffb50 -> Node0x55ffb00;
+	Node0x55ffb00 [shape=record,label="{libxml.c:1361:}"];
+	Node0x55ffb00 -> Node0x55ff820;
+	Node0x55ff820 [shape=record,label="{%37}"];
+	Node0x55ff820 -> Node0x55ff5d0;
+	Node0x55ff5d0 [shape=record,label="{libxml.c:1361:}"];
+	Node0x55ff5d0 -> Node0x55ff240;
+	Node0x55ff240 [shape=record,label="{libxml.c:1362:}"];
+	Node0x55ff240 -> Node0x55fddc0;
+	Node0x55fddc0 [shape=record,label="{libxml.c:1363:}"];
+}

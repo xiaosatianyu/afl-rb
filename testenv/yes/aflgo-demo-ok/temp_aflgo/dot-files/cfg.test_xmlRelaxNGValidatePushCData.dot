@@ -1,0 +1,37 @@
+digraph "CFG for 'test_xmlRelaxNGValidatePushCData' function" {
+	label="CFG for 'test_xmlRelaxNGValidatePushCData' function";
+
+	Node0x57c2820 [shape=record,label="{testapi.c:17833:}"];
+	Node0x57c2820 -> Node0x5cb29c0;
+	Node0x5cb29c0 [shape=record,label="{testapi.c:17845:|{<s0>T|<s1>F}}"];
+	Node0x5cb29c0:s0 -> Node0x5cb2ca0;
+	Node0x5cb29c0:s1 -> Node0x5cb2820;
+	Node0x5cb2ca0 [shape=record,label="{testapi.c:17846:}"];
+	Node0x5cb2ca0 -> Node0x5cb3090;
+	Node0x5cb3090 [shape=record,label="{testapi.c:17846:|{<s0>T|<s1>F}}"];
+	Node0x5cb3090:s0 -> Node0x5cb3310;
+	Node0x5cb3090:s1 -> Node0x5cb2f70;
+	Node0x5cb3310 [shape=record,label="{testapi.c:17847:}"];
+	Node0x5cb3310 -> Node0x5cb3700;
+	Node0x5cb3700 [shape=record,label="{testapi.c:17847:|{<s0>T|<s1>F}}"];
+	Node0x5cb3700:s0 -> Node0x5cb3980;
+	Node0x5cb3700:s1 -> Node0x5cb35e0;
+	Node0x5cb3980 [shape=record,label="{testapi.c:17848:|{<s0>T|<s1>F}}"];
+	Node0x5cb3980:s0 -> Node0x5cb4d70;
+	Node0x5cb3980:s1 -> Node0x5cb50a0;
+	Node0x5cb4d70 [shape=record,label="{testapi.c:17862:}"];
+	Node0x5cb4d70 -> Node0x5cb50a0;
+	Node0x5cb50a0 [shape=record,label="{testapi.c:17869:}"];
+	Node0x5cb50a0 -> Node0x5cb38f0;
+	Node0x5cb38f0 [shape=record,label="{testapi.c:17847:}"];
+	Node0x5cb38f0 -> Node0x5cb3700;
+	Node0x5cb35e0 [shape=record,label="{testapi.c:17870:}"];
+	Node0x5cb35e0 -> Node0x5cb3280;
+	Node0x5cb3280 [shape=record,label="{testapi.c:17846:}"];
+	Node0x5cb3280 -> Node0x5cb3090;
+	Node0x5cb2f70 [shape=record,label="{testapi.c:17871:}"];
+	Node0x5cb2f70 -> Node0x5cb2c10;
+	Node0x5cb2c10 [shape=record,label="{testapi.c:17845:}"];
+	Node0x5cb2c10 -> Node0x5cb29c0;
+	Node0x5cb2820 [shape=record,label="{testapi.c:17872:}"];
+}

@@ -1,0 +1,23 @@
+digraph "CFG for 'pythonInputOpenCallback' function" {
+	label="CFG for 'pythonInputOpenCallback' function";
+
+	Node0x55bac60 [shape=record,label="{libxml.c:809:|{<s0>T|<s1>F}}"];
+	Node0x55bac60:s0 -> Node0x55cde00;
+	Node0x55bac60:s1 -> Node0x55cde50;
+	Node0x55cde00 [shape=record,label="{libxml.c:816:}"];
+	Node0x55cde00 -> Node0x55ce240;
+	Node0x55ce240 [shape=record,label="{libxml.c:816:|{<s0>T|<s1>F}}"];
+	Node0x55ce240:s0 -> Node0x55ce480;
+	Node0x55ce240:s1 -> Node0x55ce520;
+	Node0x55ce480 [shape=record,label="{libxml.c:816:}"];
+	Node0x55ce480 -> Node0x55ce4d0;
+	Node0x55ce520 [shape=record,label="{libxml.c:816:}"];
+	Node0x55ce520 -> Node0x55ce4d0;
+	Node0x55ce4d0 [shape=record,label="{libxml.c:816:}"];
+	Node0x55ce4d0 -> Node0x55ce1a0;
+	Node0x55ce1a0 [shape=record,label="{libxml.c:817:}"];
+	Node0x55ce1a0 -> Node0x55cd9e0;
+	Node0x55cde50 [shape=record,label="{libxml.c:819:}"];
+	Node0x55cde50 -> Node0x55cd9e0;
+	Node0x55cd9e0 [shape=record,label="{libxml.c:820:}"];
+}

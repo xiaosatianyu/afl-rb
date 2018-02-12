@@ -1,0 +1,37 @@
+digraph "CFG for 'test_xmlIsRef' function" {
+	label="CFG for 'test_xmlIsRef' function";
+
+	Node0x60f1480 [shape=record,label="{testapi.c:25689:}"];
+	Node0x60f1480 -> Node0x60fe2b0;
+	Node0x60fe2b0 [shape=record,label="{testapi.c:25700:|{<s0>T|<s1>F}}"];
+	Node0x60fe2b0:s0 -> Node0x60fe590;
+	Node0x60fe2b0:s1 -> Node0x60fe110;
+	Node0x60fe590 [shape=record,label="{testapi.c:25701:}"];
+	Node0x60fe590 -> Node0x60fe980;
+	Node0x60fe980 [shape=record,label="{testapi.c:25701:|{<s0>T|<s1>F}}"];
+	Node0x60fe980:s0 -> Node0x60fec00;
+	Node0x60fe980:s1 -> Node0x60fe860;
+	Node0x60fec00 [shape=record,label="{testapi.c:25702:}"];
+	Node0x60fec00 -> Node0x60feff0;
+	Node0x60feff0 [shape=record,label="{testapi.c:25702:|{<s0>T|<s1>F}}"];
+	Node0x60feff0:s0 -> Node0x60ff270;
+	Node0x60feff0:s1 -> Node0x60feed0;
+	Node0x60ff270 [shape=record,label="{testapi.c:25703:|{<s0>T|<s1>F}}"];
+	Node0x60ff270:s0 -> Node0x61005a0;
+	Node0x60ff270:s1 -> Node0x61011f0;
+	Node0x61005a0 [shape=record,label="{testapi.c:25717:}"];
+	Node0x61005a0 -> Node0x61011f0;
+	Node0x61011f0 [shape=record,label="{testapi.c:25724:}"];
+	Node0x61011f0 -> Node0x60ff1e0;
+	Node0x60ff1e0 [shape=record,label="{testapi.c:25702:}"];
+	Node0x60ff1e0 -> Node0x60feff0;
+	Node0x60feed0 [shape=record,label="{testapi.c:25725:}"];
+	Node0x60feed0 -> Node0x60feb70;
+	Node0x60feb70 [shape=record,label="{testapi.c:25701:}"];
+	Node0x60feb70 -> Node0x60fe980;
+	Node0x60fe860 [shape=record,label="{testapi.c:25726:}"];
+	Node0x60fe860 -> Node0x60fe500;
+	Node0x60fe500 [shape=record,label="{testapi.c:25700:}"];
+	Node0x60fe500 -> Node0x60fe2b0;
+	Node0x60fe110 [shape=record,label="{testapi.c:25727:}"];
+}

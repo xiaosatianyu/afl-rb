@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlCopyElementContent' function" {
+	label="CFG for 'test_xmlCopyElementContent' function";
+
+	Node0x60a0440 [shape=record,label="{testapi.c:25020:}"];
+	Node0x60a0440 -> Node0x60a3e50;
+	Node0x60a3e50 [shape=record,label="{testapi.c:25027:|{<s0>T|<s1>F}}"];
+	Node0x60a3e50:s0 -> Node0x60a4130;
+	Node0x60a3e50:s1 -> Node0x60a3cb0;
+	Node0x60a4130 [shape=record,label="{testapi.c:25028:|{<s0>T|<s1>F}}"];
+	Node0x60a4130:s0 -> Node0x60a4ff0;
+	Node0x60a4130:s1 -> Node0x60a57c0;
+	Node0x60a4ff0 [shape=record,label="{testapi.c:25038:}"];
+	Node0x60a4ff0 -> Node0x60a57c0;
+	Node0x60a57c0 [shape=record,label="{testapi.c:25043:}"];
+	Node0x60a57c0 -> Node0x60a40a0;
+	Node0x60a40a0 [shape=record,label="{testapi.c:25027:}"];
+	Node0x60a40a0 -> Node0x60a3e50;
+	Node0x60a3cb0 [shape=record,label="{testapi.c:25044:}"];
+}

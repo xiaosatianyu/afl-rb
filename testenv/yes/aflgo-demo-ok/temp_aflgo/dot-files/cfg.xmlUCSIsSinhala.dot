@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsSinhala' function" {
+	label="CFG for 'xmlUCSIsSinhala' function";
+
+	Node0x4fcbc00 [shape=record,label="{xmlunicode.c:2278:|{<s0>T|<s1>F}}"];
+	Node0x4fcbc00 -> Node0x4fcc1c0;
+	Node0x4fcbc00 -> Node0x4fcc170;
+	Node0x4fcc1c0 [shape=record,label="{xmlunicode.c:2279:}"];
+	Node0x4fcc1c0 -> Node0x4fcc170;
+	Node0x4fcc170 [shape=record,label="{xmlunicode.c:2279:}"];
+}

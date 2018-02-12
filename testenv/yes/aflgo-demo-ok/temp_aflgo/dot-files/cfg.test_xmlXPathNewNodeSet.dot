@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlXPathNewNodeSet' function" {
+	label="CFG for 'test_xmlXPathNewNodeSet' function";
+
+	Node0x6ce0050 [shape=record,label="{testapi.c:48509:}"];
+	Node0x6ce0050 -> Node0x6ce7950;
+	Node0x6ce7950 [shape=record,label="{testapi.c:48517:|{<s0>T|<s1>F}}"];
+	Node0x6ce7950:s0 -> Node0x6ce7c30;
+	Node0x6ce7950:s1 -> Node0x6ce77b0;
+	Node0x6ce7c30 [shape=record,label="{testapi.c:48518:|{<s0>T|<s1>F}}"];
+	Node0x6ce7c30:s0 -> Node0x6ce8aa0;
+	Node0x6ce7c30:s1 -> Node0x6ce8af0;
+	Node0x6ce8aa0 [shape=record,label="{testapi.c:48528:}"];
+	Node0x6ce8aa0 -> Node0x6ce8af0;
+	Node0x6ce8af0 [shape=record,label="{testapi.c:48533:}"];
+	Node0x6ce8af0 -> Node0x6ce7ba0;
+	Node0x6ce7ba0 [shape=record,label="{testapi.c:48517:}"];
+	Node0x6ce7ba0 -> Node0x6ce7950;
+	Node0x6ce77b0 [shape=record,label="{testapi.c:48534:}"];
+}

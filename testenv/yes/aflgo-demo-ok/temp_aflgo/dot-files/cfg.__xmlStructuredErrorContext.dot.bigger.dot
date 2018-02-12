@@ -1,0 +1,12 @@
+digraph "CFG for '__xmlStructuredErrorContext' function" {
+	label="CFG for '__xmlStructuredErrorContext' function";
+
+	Node0x3773e10 [shape=record,label="{globals.c:892:|{<s0>T|<s1>F}}"];
+	Node0x3773e10:s0 -> Node0x3771840;
+	Node0x3773e10:s1 -> Node0x36487f0;
+	Node0x3771840 [shape=record,label="{globals.c:893:}"];
+	Node0x3771840 -> Node0x3774160;
+	Node0x36487f0 [shape=record,label="{globals.c:895:}"];
+	Node0x36487f0 -> Node0x3774160;
+	Node0x3774160 [shape=record,label="{globals.c:896:}"];
+}

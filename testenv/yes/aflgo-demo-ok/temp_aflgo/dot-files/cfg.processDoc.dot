@@ -1,0 +1,29 @@
+digraph "CFG for 'processDoc' function" {
+	label="CFG for 'processDoc' function";
+
+	Node0x3460fc0 [shape=record,label="{reader4.c:19:}"];
+	Node0x3460fc0 -> Node0x367fd00;
+	Node0x367fd00 [shape=record,label="{reader4.c:25:|{<s0>T|<s1>F}}"];
+	Node0x367fd00:s0 -> Node0x3680300;
+	Node0x367fd00:s1 -> Node0x36801f0;
+	Node0x3680300 [shape=record,label="{reader4.c:26:}"];
+	Node0x3680300 -> Node0x367fd00;
+	Node0x36801f0 [shape=record,label="{reader4.c:34:|{<s0>T|<s1>F}}"];
+	Node0x36801f0:s0 -> Node0x3680640;
+	Node0x36801f0:s1 -> Node0x3680690;
+	Node0x3680640 [shape=record,label="{reader4.c:36:}"];
+	Node0x3680640 -> Node0x3668e20;
+	Node0x3680690 [shape=record,label="{reader4.c:40:|{<s0>T|<s1>F}}"];
+	Node0x3680690:s0 -> Node0x3680f90;
+	Node0x3680690:s1 -> Node0x3680fe0;
+	Node0x3680f90 [shape=record,label="{reader4.c:42:}"];
+	Node0x3680f90 -> Node0x3680fe0;
+	Node0x3680fe0 [shape=record,label="{reader4.c:45:|{<s0>T|<s1>F}}"];
+	Node0x3680fe0:s0 -> Node0x36816c0;
+	Node0x3680fe0:s1 -> Node0x3681710;
+	Node0x36816c0 [shape=record,label="{reader4.c:46:}"];
+	Node0x36816c0 -> Node0x3668e20;
+	Node0x3681710 [shape=record,label="{reader4.c:50:}"];
+	Node0x3681710 -> Node0x3668e20;
+	Node0x3668e20 [shape=record,label="{reader4.c:51:}"];
+}

@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlSchemaPSimpleInternalErr' function" {
+	label="CFG for 'xmlSchemaPSimpleInternalErr' function";
+
+	Node0x49826b0 [shape=record,label="{xmlschemas.c:2006:}"];
+}

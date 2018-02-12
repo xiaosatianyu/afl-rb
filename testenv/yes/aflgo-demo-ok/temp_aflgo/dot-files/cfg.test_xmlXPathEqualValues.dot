@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlXPathEqualValues' function" {
+	label="CFG for 'test_xmlXPathEqualValues' function";
+
+	Node0x6c6d590 [shape=record,label="{testapi.c:47706:}"];
+	Node0x6c6d590 -> Node0x6c8ddb0;
+	Node0x6c8ddb0 [shape=record,label="{testapi.c:47714:|{<s0>T|<s1>F}}"];
+	Node0x6c8ddb0:s0 -> Node0x6c8e090;
+	Node0x6c8ddb0:s1 -> Node0x6c8dc10;
+	Node0x6c8e090 [shape=record,label="{testapi.c:47715:|{<s0>T|<s1>F}}"];
+	Node0x6c8e090:s0 -> Node0x6c8ef50;
+	Node0x6c8e090:s1 -> Node0x6c8f720;
+	Node0x6c8ef50 [shape=record,label="{testapi.c:47725:}"];
+	Node0x6c8ef50 -> Node0x6c8f720;
+	Node0x6c8f720 [shape=record,label="{testapi.c:47730:}"];
+	Node0x6c8f720 -> Node0x6c8e000;
+	Node0x6c8e000 [shape=record,label="{testapi.c:47714:}"];
+	Node0x6c8e000 -> Node0x6c8ddb0;
+	Node0x6c8dc10 [shape=record,label="{testapi.c:47731:}"];
+}

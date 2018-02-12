@@ -1,0 +1,32 @@
+digraph "CFG for 'xmlXPtrNewRangePoints' function" {
+	label="CFG for 'xmlXPtrNewRangePoints' function";
+
+	Node0x4728a30 [shape=record,label="{xpointer.c:372:|{<s0>T|<s1>F}}"];
+	Node0x4728a30 -> Node0x47289d0;
+	Node0x4728a30 -> Node0x4730040;
+	Node0x47289d0 [shape=record,label="{xpointer.c:376:}"];
+	Node0x47289d0 -> Node0x4730900;
+	Node0x4730040 [shape=record,label="{xpointer.c:377:|{<s0>T|<s1>F}}"];
+	Node0x4730040 -> Node0x47319b0;
+	Node0x4730040 -> Node0x4731a00;
+	Node0x47319b0 [shape=record,label="{xpointer.c:378:}"];
+	Node0x47319b0 -> Node0x4730900;
+	Node0x4731a00 [shape=record,label="{xpointer.c:379:|{<s0>T|<s1>F}}"];
+	Node0x4731a00 -> Node0x4731e60;
+	Node0x4731a00 -> Node0x4731eb0;
+	Node0x4731e60 [shape=record,label="{xpointer.c:380:}"];
+	Node0x4731e60 -> Node0x4730900;
+	Node0x4731eb0 [shape=record,label="{xpointer.c:381:|{<s0>T|<s1>F}}"];
+	Node0x4731eb0 -> Node0x4732440;
+	Node0x4731eb0 -> Node0x4732490;
+	Node0x4732440 [shape=record,label="{xpointer.c:382:}"];
+	Node0x4732440 -> Node0x4730900;
+	Node0x4732490 [shape=record,label="{xpointer.c:384:|{<s0>T|<s1>F}}"];
+	Node0x4732490 -> Node0x4732ce0;
+	Node0x4732490 -> Node0x4732d30;
+	Node0x4732ce0 [shape=record,label="{xpointer.c:386:}"];
+	Node0x4732ce0 -> Node0x4730900;
+	Node0x4732d30 [shape=record,label="{xpointer.c:389:}"];
+	Node0x4732d30 -> Node0x4730900;
+	Node0x4730900 [shape=record,label="{xpointer.c:397:}"];
+}

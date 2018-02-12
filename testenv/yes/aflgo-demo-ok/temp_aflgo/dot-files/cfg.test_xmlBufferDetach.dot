@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlBufferDetach' function" {
+	label="CFG for 'test_xmlBufferDetach' function";
+
+	Node0x5d55cb0 [shape=record,label="{testapi.c:18830:}"];
+	Node0x5d55cb0 -> Node0x5d575a0;
+	Node0x5d575a0 [shape=record,label="{testapi.c:18837:|{<s0>T|<s1>F}}"];
+	Node0x5d575a0:s0 -> Node0x5d57880;
+	Node0x5d575a0:s1 -> Node0x5d57400;
+	Node0x5d57880 [shape=record,label="{testapi.c:18838:|{<s0>T|<s1>F}}"];
+	Node0x5d57880:s0 -> Node0x5d58740;
+	Node0x5d57880:s1 -> Node0x5d58f10;
+	Node0x5d58740 [shape=record,label="{testapi.c:18848:}"];
+	Node0x5d58740 -> Node0x5d58f10;
+	Node0x5d58f10 [shape=record,label="{testapi.c:18853:}"];
+	Node0x5d58f10 -> Node0x5d577f0;
+	Node0x5d577f0 [shape=record,label="{testapi.c:18837:}"];
+	Node0x5d577f0 -> Node0x5d575a0;
+	Node0x5d57400 [shape=record,label="{testapi.c:18854:}"];
+}

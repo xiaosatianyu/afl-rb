@@ -1,0 +1,31 @@
+digraph "CFG for 'xmlFatalErrMsgInt' function" {
+	label="CFG for 'xmlFatalErrMsgInt' function";
+
+	Node0x4a82c70 [shape=record,label="{parser.c:663:|{<s0>T|<s1>F}}"];
+	Node0x4a82c70 -> Node0x4a88360;
+	Node0x4a82c70 -> Node0x4a88290;
+	Node0x4a88360 [shape=record,label="{parser.c:666:|{<s0>T|<s1>F}}"];
+	Node0x4a88360 -> Node0x4a882e0;
+	Node0x4a88360 -> Node0x4a88290;
+	Node0x4a882e0 [shape=record,label="{parser.c:667:|{<s0>T|<s1>F}}"];
+	Node0x4a882e0 -> Node0x4a88240;
+	Node0x4a882e0 -> Node0x4a88290;
+	Node0x4a88240 [shape=record,label="{parser.c:668:}"];
+	Node0x4a88240 -> Node0x41edff0;
+	Node0x4a88290 [shape=record,label="{parser.c:669:|{<s0>T|<s1>F}}"];
+	Node0x4a88290 -> Node0x4a88e40;
+	Node0x4a88290 -> Node0x4a88e90;
+	Node0x4a88e40 [shape=record,label="{parser.c:670:}"];
+	Node0x4a88e40 -> Node0x4a88e90;
+	Node0x4a88e90 [shape=record,label="{parser.c:672:|{<s0>T|<s1>F}}"];
+	Node0x4a88e90 -> Node0x4a8a110;
+	Node0x4a88e90 -> Node0x41edff0;
+	Node0x4a8a110 [shape=record,label="{parser.c:675:|{<s0>T|<s1>F}}"];
+	Node0x4a8a110 -> Node0x41eea80;
+	Node0x4a8a110 -> Node0x41eead0;
+	Node0x41eea80 [shape=record,label="{parser.c:677:}"];
+	Node0x41eea80 -> Node0x41eead0;
+	Node0x41eead0 [shape=record,label="{parser.c:678:}"];
+	Node0x41eead0 -> Node0x41edff0;
+	Node0x41edff0 [shape=record,label="{parser.c:679:}"];
+}

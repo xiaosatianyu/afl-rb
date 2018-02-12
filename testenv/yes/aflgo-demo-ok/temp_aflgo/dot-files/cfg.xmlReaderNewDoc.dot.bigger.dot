@@ -1,0 +1,17 @@
+digraph "CFG for 'xmlReaderNewDoc' function" {
+	label="CFG for 'xmlReaderNewDoc' function";
+
+	Node0x4500560 [shape=record,label="{xmlreader.c:5585:|{<s0>T|<s1>F}}"];
+	Node0x4500560:s0 -> Node0x450a6f0;
+	Node0x4500560:s1 -> Node0x450a740;
+	Node0x450a6f0 [shape=record,label="{xmlreader.c:5592:}"];
+	Node0x450a6f0 -> Node0x45093f0;
+	Node0x450a740 [shape=record,label="{xmlreader.c:5593:|{<s0>T|<s1>F}}"];
+	Node0x450a740:s0 -> Node0x450ac70;
+	Node0x450a740:s1 -> Node0x450acc0;
+	Node0x450ac70 [shape=record,label="{xmlreader.c:5594:}"];
+	Node0x450ac70 -> Node0x45093f0;
+	Node0x450acc0 [shape=record,label="{xmlreader.c:5596:}"];
+	Node0x450acc0 -> Node0x45093f0;
+	Node0x45093f0 [shape=record,label="{xmlreader.c:5599:}"];
+}

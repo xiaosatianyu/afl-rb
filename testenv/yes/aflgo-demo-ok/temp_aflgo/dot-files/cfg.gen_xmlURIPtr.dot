@@ -1,0 +1,5 @@
+digraph "CFG for 'gen_xmlURIPtr' function" {
+	label="CFG for 'gen_xmlURIPtr' function";
+
+	Node0x60465e0 [shape=record,label="{testapi.c:24533:}"];
+}

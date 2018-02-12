@@ -1,0 +1,10 @@
+digraph "CFG for 'test_xmlCatalogGetDefaults' function" {
+	label="CFG for 'test_xmlCatalogGetDefaults' function";
+
+	Node0x55ea580 [shape=record,label="{testapi.c:6012:|{<s0>T|<s1>F}}"];
+	Node0x55ea580:s0 -> Node0x55ef190;
+	Node0x55ea580:s1 -> Node0x55ef8d0;
+	Node0x55ef190 [shape=record,label="{testapi.c:6026:}"];
+	Node0x55ef190 -> Node0x55ef8d0;
+	Node0x55ef8d0 [shape=record,label="{testapi.c:6030:}"];
+}

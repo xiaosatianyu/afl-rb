@@ -1,0 +1,41 @@
+digraph "CFG for 'xmlCtxtGrowAttrs' function" {
+	label="CFG for 'xmlCtxtGrowAttrs' function";
+
+	Node0x4d047d0 [shape=record,label="{parser.c:1652:|{<s0>T|<s1>F}}"];
+	Node0x4d047d0 -> Node0x4d064a0;
+	Node0x4d047d0 -> Node0x4d06540;
+	Node0x4d064a0 [shape=record,label="{parser.c:1658:|{<s0>T|<s1>F}}"];
+	Node0x4d064a0 -> Node0x4d06fb0;
+	Node0x4d064a0 -> Node0x4d07000;
+	Node0x4d06fb0 [shape=record,label="{parser.c:1661:}"];
+	Node0x4d06fb0 -> Node0x4d071f0;
+	Node0x4d07000 [shape=record,label="{parser.c:1662:|{<s0>T|<s1>F}}"];
+	Node0x4d07000 -> Node0x4d08440;
+	Node0x4d07000 -> Node0x4d08490;
+	Node0x4d08440 [shape=record,label="{parser.c:1664:}"];
+	Node0x4d08440 -> Node0x4d071f0;
+	Node0x4d08490 [shape=record,label="{parser.c:1665:}"];
+	Node0x4d08490 -> Node0x4d064f0;
+	Node0x4d06540 [shape=record,label="{parser.c:1667:|{<s0>T|<s1>F}}"];
+	Node0x4d06540 -> Node0x4d08e40;
+	Node0x4d06540 -> Node0x4d08e90;
+	Node0x4d08e40 [shape=record,label="{parser.c:1668:|{<s0>T|<s1>F}}"];
+	Node0x4d08e40 -> Node0x4d09e80;
+	Node0x4d08e40 -> Node0x4d09ed0;
+	Node0x4d09e80 [shape=record,label="{parser.c:1671:}"];
+	Node0x4d09e80 -> Node0x4d071f0;
+	Node0x4d09ed0 [shape=record,label="{parser.c:1672:|{<s0>T|<s1>F}}"];
+	Node0x4d09ed0 -> Node0x4d0acf0;
+	Node0x4d09ed0 -> Node0x4d0ad40;
+	Node0x4d0acf0 [shape=record,label="{parser.c:1675:}"];
+	Node0x4d0acf0 -> Node0x4d071f0;
+	Node0x4d0ad40 [shape=record,label="{parser.c:1676:}"];
+	Node0x4d0ad40 -> Node0x4d08e90;
+	Node0x4d08e90 [shape=record,label="{%81}"];
+	Node0x4d08e90 -> Node0x4d064f0;
+	Node0x4d064f0 [shape=record,label="{parser.c:1679:}"];
+	Node0x4d064f0 -> Node0x4d04890;
+	Node0x4d071f0 [shape=record,label="{parser.c:1681:}"];
+	Node0x4d071f0 -> Node0x4d04890;
+	Node0x4d04890 [shape=record,label="{parser.c:1683:}"];
+}

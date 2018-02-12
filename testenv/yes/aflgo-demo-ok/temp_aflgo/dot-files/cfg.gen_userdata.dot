@@ -1,0 +1,17 @@
+digraph "CFG for 'gen_userdata' function" {
+	label="CFG for 'gen_userdata' function";
+
+	Node0x52e10f0 [shape=record,label="{testapi.c:235:|{<s0>T|<s1>F}}"];
+	Node0x52e10f0:s0 -> Node0x52ef960;
+	Node0x52e10f0:s1 -> Node0x52efa80;
+	Node0x52ef960 [shape=record,label="{testapi.c:236:}"];
+	Node0x52ef960 -> Node0x52efa30;
+	Node0x52efa80 [shape=record,label="{testapi.c:237:|{<s0>T|<s1>F}}"];
+	Node0x52efa80:s0 -> Node0x52eff00;
+	Node0x52efa80:s1 -> Node0x52eff50;
+	Node0x52eff00 [shape=record,label="{testapi.c:237:}"];
+	Node0x52eff00 -> Node0x52efa30;
+	Node0x52eff50 [shape=record,label="{testapi.c:238:}"];
+	Node0x52eff50 -> Node0x52efa30;
+	Node0x52efa30 [shape=record,label="{testapi.c:239:}"];
+}

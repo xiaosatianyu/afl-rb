@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlXPathNodeSetMerge' function" {
+	label="CFG for 'test_xmlXPathNodeSetMerge' function";
+
+	Node0x6d48490 [shape=record,label="{testapi.c:49446:}"];
+	Node0x6d48490 -> Node0x6d57a70;
+	Node0x6d57a70 [shape=record,label="{testapi.c:49456:|{<s0>T|<s1>F}}"];
+	Node0x6d57a70:s0 -> Node0x6d57d50;
+	Node0x6d57a70:s1 -> Node0x6d578d0;
+	Node0x6d57d50 [shape=record,label="{testapi.c:49457:}"];
+	Node0x6d57d50 -> Node0x6d58140;
+	Node0x6d58140 [shape=record,label="{testapi.c:49457:|{<s0>T|<s1>F}}"];
+	Node0x6d58140:s0 -> Node0x6d583c0;
+	Node0x6d58140:s1 -> Node0x6d58020;
+	Node0x6d583c0 [shape=record,label="{testapi.c:49458:|{<s0>T|<s1>F}}"];
+	Node0x6d583c0:s0 -> Node0x6d59480;
+	Node0x6d583c0:s1 -> Node0x6d59e40;
+	Node0x6d59480 [shape=record,label="{testapi.c:49470:}"];
+	Node0x6d59480 -> Node0x6d59e40;
+	Node0x6d59e40 [shape=record,label="{testapi.c:49476:}"];
+	Node0x6d59e40 -> Node0x6d58330;
+	Node0x6d58330 [shape=record,label="{testapi.c:49457:}"];
+	Node0x6d58330 -> Node0x6d58140;
+	Node0x6d58020 [shape=record,label="{testapi.c:49477:}"];
+	Node0x6d58020 -> Node0x6d57cc0;
+	Node0x6d57cc0 [shape=record,label="{testapi.c:49456:}"];
+	Node0x6d57cc0 -> Node0x6d57a70;
+	Node0x6d578d0 [shape=record,label="{testapi.c:49478:}"];
+}

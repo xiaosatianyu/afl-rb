@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlParseExtParsedEnt' function" {
+	label="CFG for 'libxml_xmlParseExtParsedEnt' function";
+
+	Node0x59e5c10 [shape=record,label="{libxml2-py.c:5088:|{<s0>T|<s1>F}}"];
+	Node0x59e5c10:s0 -> Node0x59f16f0;
+	Node0x59e5c10:s1 -> Node0x59f16a0;
+	Node0x59f16a0 [shape=record,label="{libxml2-py.c:5095:}"];
+	Node0x59f16a0 -> Node0x59e5ef0;
+	Node0x59f16f0 [shape=record,label="{libxml2-py.c:5096:|{<s0>T|<s1>F}}"];
+	Node0x59f16f0:s0 -> Node0x59f1f10;
+	Node0x59f16f0:s1 -> Node0x59f1f60;
+	Node0x59f1f10 [shape=record,label="{libxml2-py.c:5096:}"];
+	Node0x59f1f10 -> Node0x59f1fb0;
+	Node0x59f1f60 [shape=record,label="{libxml2-py.c:5096:}"];
+	Node0x59f1f60 -> Node0x59f1fb0;
+	Node0x59f1fb0 [shape=record,label="{libxml2-py.c:5096:}"];
+	Node0x59f1fb0 -> Node0x59e5ef0;
+	Node0x59e5ef0 [shape=record,label="{libxml2-py.c:5101:}"];
+}

@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlSchemaItemListCreate' function" {
+	label="CFG for 'xmlSchemaItemListCreate' function";
+
+	Node0x5824aa0 [shape=record,label="{xmlschemas.c:3317:|{<s0>T|<s1>F}}"];
+	Node0x5824aa0 -> Node0x5824cf0;
+	Node0x5824aa0 -> Node0x5824d40;
+	Node0x5824cf0 [shape=record,label="{xmlschemas.c:3321:}"];
+	Node0x5824cf0 -> Node0x5825310;
+	Node0x5824d40 [shape=record,label="{xmlschemas.c:3325:}"];
+	Node0x5824d40 -> Node0x5825310;
+	Node0x5825310 [shape=record,label="{xmlschemas.c:3327:}"];
+}

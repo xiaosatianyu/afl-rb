@@ -1,0 +1,31 @@
+digraph "CFG for 'xmlRelaxNGFreeInnerSchema' function" {
+	label="CFG for 'xmlRelaxNGFreeInnerSchema' function";
+
+	Node0x4f8a080 [shape=record,label="{relaxng.c:781:|{<s0>T|<s1>F}}"];
+	Node0x4f8a080 -> Node0x4f87d60;
+	Node0x4f8a080 -> Node0x4f87db0;
+	Node0x4f87d60 [shape=record,label="{relaxng.c:784:}"];
+	Node0x4f87d60 -> Node0x4f87ed0;
+	Node0x4f87db0 [shape=record,label="{relaxng.c:786:|{<s0>T|<s1>F}}"];
+	Node0x4f87db0 -> Node0x4f88210;
+	Node0x4f87db0 -> Node0x4f88260;
+	Node0x4f88210 [shape=record,label="{relaxng.c:787:}"];
+	Node0x4f88210 -> Node0x4f88260;
+	Node0x4f88260 [shape=record,label="{relaxng.c:788:|{<s0>T|<s1>F}}"];
+	Node0x4f88260 -> Node0x4f8adf0;
+	Node0x4f88260 -> Node0x4f8ae40;
+	Node0x4f8adf0 [shape=record,label="{relaxng.c:789:}"];
+	Node0x4f8adf0 -> Node0x4f8b6c0;
+	Node0x4f8b6c0 [shape=record,label="{relaxng.c:791:|{<s0>T|<s1>F}}"];
+	Node0x4f8b6c0 -> Node0x4f8b940;
+	Node0x4f8b6c0 -> Node0x4f8b520;
+	Node0x4f8b940 [shape=record,label="{relaxng.c:792:}"];
+	Node0x4f8b940 -> Node0x4f8b8b0;
+	Node0x4f8b8b0 [shape=record,label="{relaxng.c:791:}"];
+	Node0x4f8b8b0 -> Node0x4f8b6c0;
+	Node0x4f8b520 [shape=record,label="{relaxng.c:793:}"];
+	Node0x4f8b520 -> Node0x4f8ae40;
+	Node0x4f8ae40 [shape=record,label="{relaxng.c:796:}"];
+	Node0x4f8ae40 -> Node0x4f87ed0;
+	Node0x4f87ed0 [shape=record,label="{relaxng.c:797:}"];
+}

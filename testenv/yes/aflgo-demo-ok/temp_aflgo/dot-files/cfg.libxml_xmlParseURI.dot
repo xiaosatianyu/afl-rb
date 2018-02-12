@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlParseURI' function" {
+	label="CFG for 'libxml_xmlParseURI' function";
+
+	Node0x5a545b0 [shape=record,label="{libxml2-py.c:5400:|{<s0>T|<s1>F}}"];
+	Node0x5a545b0:s0 -> Node0x5a55d40;
+	Node0x5a545b0:s1 -> Node0x5a55cf0;
+	Node0x5a55cf0 [shape=record,label="{libxml2-py.c:5406:}"];
+	Node0x5a55cf0 -> Node0x5a54b20;
+	Node0x5a55d40 [shape=record,label="{libxml2-py.c:5408:}"];
+	Node0x5a55d40 -> Node0x5a54b20;
+	Node0x5a54b20 [shape=record,label="{libxml2-py.c:5411:}"];
+}

@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlSchemaVCheckINodeDataType' function" {
+	label="CFG for 'xmlSchemaVCheckINodeDataType' function";
+
+	Node0x59becf0 [shape=record,label="{xmlschemas.c:25988:|{<s0>T|<s1>F}}"];
+	Node0x59becf0 -> Node0x59e9420;
+	Node0x59becf0 -> Node0x59e94c0;
+	Node0x59e9420 [shape=record,label="{xmlschemas.c:25995:}"];
+	Node0x59e9420 -> Node0x59c0a10;
+	Node0x59e94c0 [shape=record,label="{xmlschemas.c:25999:}"];
+	Node0x59e94c0 -> Node0x59c0a10;
+	Node0x59c0a10 [shape=record,label="{xmlschemas.c:26001:}"];
+}

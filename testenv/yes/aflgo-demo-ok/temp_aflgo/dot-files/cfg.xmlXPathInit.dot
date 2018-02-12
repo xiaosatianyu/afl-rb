@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlXPathInit' function" {
+	label="CFG for 'xmlXPathInit' function";
+
+	Node0x435f5e0 [shape=record,label="{xpath.c:494:|{<s0>T|<s1>F}}"];
+	Node0x435f5e0 -> Node0x435f8c0;
+	Node0x435f5e0 -> Node0x435fa50;
+	Node0x435f8c0 [shape=record,label="{xpath.c:494:}"];
+	Node0x435f8c0 -> Node0x435f910;
+	Node0x435fa50 [shape=record,label="{xpath.c:496:}"];
+	Node0x435fa50 -> Node0x435f910;
+	Node0x435f910 [shape=record,label="{xpath.c:502:}"];
+}

@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlXIncludeSetFlags' function" {
+	label="CFG for 'xmlXIncludeSetFlags' function";
+
+	Node0x4968230 [shape=record,label="{xinclude.c:2456:|{<s0>T|<s1>F}}"];
+	Node0x4968230:s0 -> Node0x4967fa0;
+	Node0x4968230:s1 -> Node0x4967ff0;
+	Node0x4967fa0 [shape=record,label="{xinclude.c:2458:}"];
+	Node0x4967fa0 -> Node0x4aec5d0;
+	Node0x4967ff0 [shape=record,label="{xinclude.c:2459:}"];
+	Node0x4967ff0 -> Node0x4aec5d0;
+	Node0x4aec5d0 [shape=record,label="{xinclude.c:2461:}"];
+}

@@ -1,0 +1,30 @@
+digraph "CFG for 'xmlBufFree' function" {
+	label="CFG for 'xmlBufFree' function";
+
+	Node0x498ed60 [shape=record,label="{buf.c:329:|{<s0>T|<s1>F}}"];
+	Node0x498ed60 -> Node0x498ec70;
+	Node0x498ed60 -> Node0x498ecc0;
+	Node0x498ec70 [shape=record,label="{buf.c:335:}"];
+	Node0x498ec70 -> Node0x4987ad0;
+	Node0x498ecc0 [shape=record,label="{buf.c:338:|{<s0>T|<s1>F}}"];
+	Node0x498ecc0 -> Node0x498f8f0;
+	Node0x498ecc0 -> Node0x498f8a0;
+	Node0x498f8f0 [shape=record,label="{buf.c:339:|{<s0>T|<s1>F}}"];
+	Node0x498f8f0 -> Node0x4987fe0;
+	Node0x498f8f0 -> Node0x498f8a0;
+	Node0x4987fe0 [shape=record,label="{buf.c:340:}"];
+	Node0x4987fe0 -> Node0x498f850;
+	Node0x498f8a0 [shape=record,label="{buf.c:341:|{<s0>T|<s1>F}}"];
+	Node0x498f8a0 -> Node0x49904f0;
+	Node0x498f8a0 -> Node0x49904a0;
+	Node0x49904f0 [shape=record,label="{buf.c:342:|{<s0>T|<s1>F}}"];
+	Node0x49904f0 -> Node0x4990450;
+	Node0x49904f0 -> Node0x49904a0;
+	Node0x4990450 [shape=record,label="{buf.c:343:}"];
+	Node0x4990450 -> Node0x49904a0;
+	Node0x49904a0 [shape=record,label="{%28}"];
+	Node0x49904a0 -> Node0x498f850;
+	Node0x498f850 [shape=record,label="{buf.c:345:}"];
+	Node0x498f850 -> Node0x4987ad0;
+	Node0x4987ad0 [shape=record,label="{buf.c:346:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsPhoneticExtensions' function" {
+	label="CFG for 'test_xmlUCSIsPhoneticExtensions' function";
+
+	Node0x69a2c70 [shape=record,label="{testapi.c:41869:}"];
+	Node0x69a2c70 -> Node0x69aa590;
+	Node0x69aa590 [shape=record,label="{testapi.c:41877:|{<s0>T|<s1>F}}"];
+	Node0x69aa590:s0 -> Node0x69aa870;
+	Node0x69aa590:s1 -> Node0x69aa3f0;
+	Node0x69aa870 [shape=record,label="{testapi.c:41878:|{<s0>T|<s1>F}}"];
+	Node0x69aa870:s0 -> Node0x69ab6d0;
+	Node0x69aa870:s1 -> Node0x69abea0;
+	Node0x69ab6d0 [shape=record,label="{testapi.c:41888:}"];
+	Node0x69ab6d0 -> Node0x69abea0;
+	Node0x69abea0 [shape=record,label="{testapi.c:41893:}"];
+	Node0x69abea0 -> Node0x69aa7e0;
+	Node0x69aa7e0 [shape=record,label="{testapi.c:41877:}"];
+	Node0x69aa7e0 -> Node0x69aa590;
+	Node0x69aa3f0 [shape=record,label="{testapi.c:41894:}"];
+}

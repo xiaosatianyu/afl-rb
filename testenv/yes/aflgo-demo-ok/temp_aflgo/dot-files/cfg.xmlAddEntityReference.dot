@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlAddEntityReference' function" {
+	label="CFG for 'xmlAddEntityReference' function";
+
+	Node0x498d290 [shape=record,label="{parser.c:14777:|{<s0>T|<s1>F}}"];
+	Node0x498d290 -> Node0x4e6b8d0;
+	Node0x498d290 -> Node0x4e6b920;
+	Node0x4e6b8d0 [shape=record,label="{parser.c:14781:}"];
+	Node0x4e6b8d0 -> Node0x4e6b920;
+	Node0x4e6b920 [shape=record,label="{parser.c:14783:}"];
+}

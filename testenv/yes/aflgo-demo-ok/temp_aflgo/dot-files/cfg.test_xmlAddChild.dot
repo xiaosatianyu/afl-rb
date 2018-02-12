@@ -1,0 +1,33 @@
+digraph "CFG for 'test_xmlAddChild' function" {
+	label="CFG for 'test_xmlAddChild' function";
+
+	Node0x5cd0e10 [shape=record,label="{testapi.c:18158:}"];
+	Node0x5cd0e10 -> Node0x5cff500;
+	Node0x5cff500 [shape=record,label="{testapi.c:18167:|{<s0>T|<s1>F}}"];
+	Node0x5cff500:s0 -> Node0x5cff780;
+	Node0x5cff500:s1 -> Node0x5cff430;
+	Node0x5cff780 [shape=record,label="{testapi.c:18168:}"];
+	Node0x5cff780 -> Node0x5cffb70;
+	Node0x5cffb70 [shape=record,label="{testapi.c:18168:|{<s0>T|<s1>F}}"];
+	Node0x5cffb70:s0 -> Node0x5cffdf0;
+	Node0x5cffb70:s1 -> Node0x5cffa50;
+	Node0x5cffdf0 [shape=record,label="{testapi.c:18169:|{<s0>T|<s1>F}}"];
+	Node0x5cffdf0:s0 -> Node0x5d00c40;
+	Node0x5cffdf0:s1 -> Node0x5d01400;
+	Node0x5d00c40 [shape=record,label="{testapi.c:18174:}"];
+	Node0x5d00c40 -> Node0x5d01400;
+	Node0x5d01400 [shape=record,label="{testapi.c:18175:|{<s0>T|<s1>F}}"];
+	Node0x5d01400:s0 -> Node0x5d02320;
+	Node0x5d01400:s1 -> Node0x5d022d0;
+	Node0x5d02320 [shape=record,label="{testapi.c:18182:}"];
+	Node0x5d02320 -> Node0x5d022d0;
+	Node0x5d022d0 [shape=record,label="{testapi.c:18188:}"];
+	Node0x5d022d0 -> Node0x5cffd60;
+	Node0x5cffd60 [shape=record,label="{testapi.c:18168:}"];
+	Node0x5cffd60 -> Node0x5cffb70;
+	Node0x5cffa50 [shape=record,label="{testapi.c:18189:}"];
+	Node0x5cffa50 -> Node0x5cff6f0;
+	Node0x5cff6f0 [shape=record,label="{testapi.c:18167:}"];
+	Node0x5cff6f0 -> Node0x5cff500;
+	Node0x5cff430 [shape=record,label="{testapi.c:18190:}"];
+}

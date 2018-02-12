@@ -1,0 +1,16 @@
+digraph "CFG for 'unparsedEntityDeclSplit' function" {
+	label="CFG for 'unparsedEntityDeclSplit' function";
+
+	Node0x5a8a470 [shape=record,label="{xmlschemas.c:28355:|{<s0>T|<s1>F}}"];
+	Node0x5a8a470:s0 -> Node0x5a8dd30;
+	Node0x5a8a470:s1 -> Node0x5a8dc60;
+	Node0x5a8dd30 [shape=record,label="{xmlschemas.c:28360:|{<s0>T|<s1>F}}"];
+	Node0x5a8dd30:s0 -> Node0x5a8dcb0;
+	Node0x5a8dd30:s1 -> Node0x5a8dc60;
+	Node0x5a8dcb0 [shape=record,label="{xmlschemas.c:28361:|{<s0>T|<s1>F}}"];
+	Node0x5a8dcb0:s0 -> Node0x5a8dc10;
+	Node0x5a8dcb0:s1 -> Node0x5a8dc60;
+	Node0x5a8dc10 [shape=record,label="{xmlschemas.c:28362:}"];
+	Node0x5a8dc10 -> Node0x5a8dc60;
+	Node0x5a8dc60 [shape=record,label="{xmlschemas.c:28364:}"];
+}

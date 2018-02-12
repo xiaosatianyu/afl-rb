@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsOldItalic' function" {
+	label="CFG for 'test_xmlUCSIsOldItalic' function";
+
+	Node0x6994860 [shape=record,label="{testapi.c:41733:}"];
+	Node0x6994860 -> Node0x699c260;
+	Node0x699c260 [shape=record,label="{testapi.c:41741:|{<s0>T|<s1>F}}"];
+	Node0x699c260:s0 -> Node0x699c540;
+	Node0x699c260:s1 -> Node0x699c0c0;
+	Node0x699c540 [shape=record,label="{testapi.c:41742:|{<s0>T|<s1>F}}"];
+	Node0x699c540:s0 -> Node0x699d390;
+	Node0x699c540:s1 -> Node0x699d6c0;
+	Node0x699d390 [shape=record,label="{testapi.c:41752:}"];
+	Node0x699d390 -> Node0x699d6c0;
+	Node0x699d6c0 [shape=record,label="{testapi.c:41757:}"];
+	Node0x699d6c0 -> Node0x699c4b0;
+	Node0x699c4b0 [shape=record,label="{testapi.c:41741:}"];
+	Node0x699c4b0 -> Node0x699c260;
+	Node0x699c0c0 [shape=record,label="{testapi.c:41758:}"];
+}

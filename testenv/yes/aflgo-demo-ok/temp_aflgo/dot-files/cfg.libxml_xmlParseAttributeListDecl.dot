@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlParseAttributeListDecl' function" {
+	label="CFG for 'libxml_xmlParseAttributeListDecl' function";
+
+	Node0x59a3e10 [shape=record,label="{libxml2-py.c:4776:|{<s0>T|<s1>F}}"];
+	Node0x59a3e10:s0 -> Node0x59a5b50;
+	Node0x59a3e10:s1 -> Node0x59a5b00;
+	Node0x59a5b00 [shape=record,label="{libxml2-py.c:4781:}"];
+	Node0x59a5b00 -> Node0x59a1ad0;
+	Node0x59a5b50 [shape=record,label="{libxml2-py.c:4782:|{<s0>T|<s1>F}}"];
+	Node0x59a5b50:s0 -> Node0x59a6380;
+	Node0x59a5b50:s1 -> Node0x59a63d0;
+	Node0x59a6380 [shape=record,label="{libxml2-py.c:4782:}"];
+	Node0x59a6380 -> Node0x59a6420;
+	Node0x59a63d0 [shape=record,label="{libxml2-py.c:4782:}"];
+	Node0x59a63d0 -> Node0x59a6420;
+	Node0x59a6420 [shape=record,label="{libxml2-py.c:4782:}"];
+	Node0x59a6420 -> Node0x59a1ad0;
+	Node0x59a1ad0 [shape=record,label="{libxml2-py.c:4787:}"];
+}

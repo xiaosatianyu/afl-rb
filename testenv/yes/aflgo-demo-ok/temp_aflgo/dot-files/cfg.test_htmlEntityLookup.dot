@@ -1,0 +1,19 @@
+digraph "CFG for 'test_htmlEntityLookup' function" {
+	label="CFG for 'test_htmlEntityLookup' function";
+
+	Node0x53323f0 [shape=record,label="{testapi.c:1979:}"];
+	Node0x53323f0 -> Node0x5341630;
+	Node0x5341630 [shape=record,label="{testapi.c:1987:|{<s0>T|<s1>F}}"];
+	Node0x5341630:s0 -> Node0x5341910;
+	Node0x5341630:s1 -> Node0x5341510;
+	Node0x5341910 [shape=record,label="{testapi.c:1988:|{<s0>T|<s1>F}}"];
+	Node0x5341910:s0 -> Node0x53427d0;
+	Node0x5341910:s1 -> Node0x5343180;
+	Node0x53427d0 [shape=record,label="{testapi.c:1998:}"];
+	Node0x53427d0 -> Node0x5343180;
+	Node0x5343180 [shape=record,label="{testapi.c:2003:}"];
+	Node0x5343180 -> Node0x5341880;
+	Node0x5341880 [shape=record,label="{testapi.c:1987:}"];
+	Node0x5341880 -> Node0x5341630;
+	Node0x5341510 [shape=record,label="{testapi.c:2004:}"];
+}

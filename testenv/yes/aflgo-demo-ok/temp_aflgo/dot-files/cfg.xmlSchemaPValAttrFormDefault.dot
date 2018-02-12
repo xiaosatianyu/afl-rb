@@ -1,0 +1,24 @@
+digraph "CFG for 'xmlSchemaPValAttrFormDefault' function" {
+	label="CFG for 'xmlSchemaPValAttrFormDefault' function";
+
+	Node0x4f10e80 [shape=record,label="{xmlschemas.c:7873:|{<s0>T|<s1>F}}"];
+	Node0x4f10e80 -> Node0x5071250;
+	Node0x4f10e80 -> Node0x50712f0;
+	Node0x5071250 [shape=record,label="{xmlschemas.c:7878:|{<s0>T|<s1>F}}"];
+	Node0x5071250 -> Node0x5071930;
+	Node0x5071250 -> Node0x5071980;
+	Node0x5071930 [shape=record,label="{xmlschemas.c:7879:}"];
+	Node0x5071930 -> Node0x5071980;
+	Node0x5071980 [shape=record,label="{xmlschemas.c:7880:}"];
+	Node0x5071980 -> Node0x50712a0;
+	Node0x50712f0 [shape=record,label="{xmlschemas.c:7880:|{<s0>T|<s1>F}}"];
+	Node0x50712f0 -> Node0x50722f0;
+	Node0x50712f0 -> Node0x50722a0;
+	Node0x50722a0 [shape=record,label="{xmlschemas.c:7881:}"];
+	Node0x50722a0 -> Node0x4f116f0;
+	Node0x50722f0 [shape=record,label="{%22}"];
+	Node0x50722f0 -> Node0x50712a0;
+	Node0x50712a0 [shape=record,label="{xmlschemas.c:7883:}"];
+	Node0x50712a0 -> Node0x4f116f0;
+	Node0x4f116f0 [shape=record,label="{xmlschemas.c:7884:}"];
+}

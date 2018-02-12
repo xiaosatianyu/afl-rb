@@ -1,0 +1,47 @@
+digraph "CFG for 'xmlCopyCharMultiByte' function" {
+	label="CFG for 'xmlCopyCharMultiByte' function";
+
+	Node0x3bebd20 [shape=record,label="{parserInternals.c:860:|{<s0>T|<s1>F}}"];
+	Node0x3bebd20 -> Node0x3be9720;
+	Node0x3bebd20 -> Node0x3be9770;
+	Node0x3be9720 [shape=record,label="{parserInternals.c:861:}"];
+	Node0x3be9720 -> Node0x3bec050;
+	Node0x3be9770 [shape=record,label="{parserInternals.c:871:|{<s0>T|<s1>F}}"];
+	Node0x3be9770 -> Node0x3bf7a40;
+	Node0x3be9770 -> Node0x3bf7a90;
+	Node0x3bf7a40 [shape=record,label="{parserInternals.c:872:|{<s0>T|<s1>F}}"];
+	Node0x3bf7a40 -> Node0x3bf8430;
+	Node0x3bf7a40 -> Node0x3bf84d0;
+	Node0x3bf8430 [shape=record,label="{parserInternals.c:874:}"];
+	Node0x3bf8430 -> Node0x3bf8480;
+	Node0x3bf84d0 [shape=record,label="{parserInternals.c:875:|{<s0>T|<s1>F}}"];
+	Node0x3bf84d0 -> Node0x3bf8f90;
+	Node0x3bf84d0 -> Node0x3bf9030;
+	Node0x3bf8f90 [shape=record,label="{parserInternals.c:875:}"];
+	Node0x3bf8f90 -> Node0x3bf8fe0;
+	Node0x3bf9030 [shape=record,label="{parserInternals.c:876:|{<s0>T|<s1>F}}"];
+	Node0x3bf9030 -> Node0x3bf9af0;
+	Node0x3bf9030 -> Node0x3bf9b90;
+	Node0x3bf9af0 [shape=record,label="{parserInternals.c:876:}"];
+	Node0x3bf9af0 -> Node0x3bf9b40;
+	Node0x3bf9b90 [shape=record,label="{parserInternals.c:880:}"];
+	Node0x3bf9b90 -> Node0x3bec050;
+	Node0x3bf9b40 [shape=record,label="{%37}"];
+	Node0x3bf9b40 -> Node0x3bf8fe0;
+	Node0x3bf8fe0 [shape=record,label="{%38}"];
+	Node0x3bf8fe0 -> Node0x3bf8480;
+	Node0x3bf8480 [shape=record,label="{parserInternals.c:883:}"];
+	Node0x3bf8480 -> Node0x3bfadc0;
+	Node0x3bfadc0 [shape=record,label="{parserInternals.c:883:|{<s0>T|<s1>F}}"];
+	Node0x3bfadc0 -> Node0x3bfb0a0;
+	Node0x3bfadc0 -> Node0x3bfad30;
+	Node0x3bfb0a0 [shape=record,label="{parserInternals.c:884:}"];
+	Node0x3bfb0a0 -> Node0x3bfb010;
+	Node0x3bfb010 [shape=record,label="{parserInternals.c:883:}"];
+	Node0x3bfb010 -> Node0x3bfadc0;
+	Node0x3bfad30 [shape=record,label="{parserInternals.c:885:}"];
+	Node0x3bfad30 -> Node0x3bec050;
+	Node0x3bf7a90 [shape=record,label="{parserInternals.c:887:}"];
+	Node0x3bf7a90 -> Node0x3bec050;
+	Node0x3bec050 [shape=record,label="{parserInternals.c:889:}"];
+}

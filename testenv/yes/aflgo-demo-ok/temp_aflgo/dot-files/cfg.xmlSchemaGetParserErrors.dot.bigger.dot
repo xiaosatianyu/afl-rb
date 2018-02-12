@@ -1,0 +1,27 @@
+digraph "CFG for 'xmlSchemaGetParserErrors' function" {
+	label="CFG for 'xmlSchemaGetParserErrors' function";
+
+	Node0x4d4b150 [shape=record,label="{xmlschemas.c:21464:|{<s0>T|<s1>F}}"];
+	Node0x4d4b150:s0 -> Node0x4d4c380;
+	Node0x4d4b150:s1 -> Node0x4d4c3d0;
+	Node0x4d4c380 [shape=record,label="{xmlschemas.c:21469:}"];
+	Node0x4d4c380 -> Node0x4d4b660;
+	Node0x4d4c3d0 [shape=record,label="{xmlschemas.c:21470:|{<s0>T|<s1>F}}"];
+	Node0x4d4c3d0:s0 -> Node0x4d4c900;
+	Node0x4d4c3d0:s1 -> Node0x4d4c950;
+	Node0x4d4c900 [shape=record,label="{xmlschemas.c:21471:}"];
+	Node0x4d4c900 -> Node0x4d4c950;
+	Node0x4d4c950 [shape=record,label="{xmlschemas.c:21472:|{<s0>T|<s1>F}}"];
+	Node0x4d4c950:s0 -> Node0x4d4d030;
+	Node0x4d4c950:s1 -> Node0x4d4d080;
+	Node0x4d4d030 [shape=record,label="{xmlschemas.c:21473:}"];
+	Node0x4d4d030 -> Node0x4d4d080;
+	Node0x4d4d080 [shape=record,label="{xmlschemas.c:21474:|{<s0>T|<s1>F}}"];
+	Node0x4d4d080:s0 -> Node0x4d4d730;
+	Node0x4d4d080:s1 -> Node0x4d4d780;
+	Node0x4d4d730 [shape=record,label="{xmlschemas.c:21475:}"];
+	Node0x4d4d730 -> Node0x4d4d780;
+	Node0x4d4d780 [shape=record,label="{xmlschemas.c:21476:}"];
+	Node0x4d4d780 -> Node0x4d4b660;
+	Node0x4d4b660 [shape=record,label="{xmlschemas.c:21477:}"];
+}

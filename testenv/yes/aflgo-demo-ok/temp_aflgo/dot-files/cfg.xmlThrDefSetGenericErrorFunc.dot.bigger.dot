@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlThrDefSetGenericErrorFunc' function" {
+	label="CFG for 'xmlThrDefSetGenericErrorFunc' function";
+
+	Node0x3716c20 [shape=record,label="{globals.c:573:|{<s0>T|<s1>F}}"];
+	Node0x3716c20:s0 -> Node0x3750e00;
+	Node0x3716c20:s1 -> Node0x3753820;
+	Node0x3750e00 [shape=record,label="{globals.c:577:}"];
+	Node0x3750e00 -> Node0x3750e50;
+	Node0x3753820 [shape=record,label="{globals.c:579:}"];
+	Node0x3753820 -> Node0x3750e50;
+	Node0x3750e50 [shape=record,label="{globals.c:580:}"];
+}

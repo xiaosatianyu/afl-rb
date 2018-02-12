@@ -1,0 +1,15 @@
+digraph "CFG for 'xmlNanoHTTPOpenRedir' function" {
+	label="CFG for 'xmlNanoHTTPOpenRedir' function";
+
+	Node0x398cff0 [shape=record,label="{nanohttp.c:1247:|{<s0>T|<s1>F}}"];
+	Node0x398cff0 -> Node0x398db00;
+	Node0x398cff0 -> Node0x398db50;
+	Node0x398db00 [shape=record,label="{nanohttp.c:1248:}"];
+	Node0x398db00 -> Node0x398db50;
+	Node0x398db50 [shape=record,label="{nanohttp.c:1249:|{<s0>T|<s1>F}}"];
+	Node0x398db50 -> Node0x398e0e0;
+	Node0x398db50 -> Node0x398e130;
+	Node0x398e0e0 [shape=record,label="{nanohttp.c:1249:}"];
+	Node0x398e0e0 -> Node0x398e130;
+	Node0x398e130 [shape=record,label="{nanohttp.c:1250:}"];
+}

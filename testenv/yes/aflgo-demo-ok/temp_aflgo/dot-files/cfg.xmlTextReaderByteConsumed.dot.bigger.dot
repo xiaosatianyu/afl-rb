@@ -1,0 +1,15 @@
+digraph "CFG for 'xmlTextReaderByteConsumed' function" {
+	label="CFG for 'xmlTextReaderByteConsumed' function";
+
+	Node0x44bf560 [shape=record,label="{xmlreader.c:5319:|{<s0>T|<s1>F}}"];
+	Node0x44bf560:s0 -> Node0x3f1a5b0;
+	Node0x44bf560:s1 -> Node0x44bf790;
+	Node0x44bf790 [shape=record,label="{xmlreader.c:5320:|{<s0>T|<s1>F}}"];
+	Node0x44bf790:s0 -> Node0x3f1a5b0;
+	Node0x44bf790:s1 -> Node0x44bf740;
+	Node0x3f1a5b0 [shape=record,label="{xmlreader.c:5321:}"];
+	Node0x3f1a5b0 -> Node0x44bf840;
+	Node0x44bf740 [shape=record,label="{xmlreader.c:5322:}"];
+	Node0x44bf740 -> Node0x44bf840;
+	Node0x44bf840 [shape=record,label="{xmlreader.c:5323:}"];
+}

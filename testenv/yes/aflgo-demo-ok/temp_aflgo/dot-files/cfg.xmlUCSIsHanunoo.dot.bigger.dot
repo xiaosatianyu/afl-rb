@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsHanunoo' function" {
+	label="CFG for 'xmlUCSIsHanunoo' function";
+
+	Node0x4f8ee10 [shape=record,label="{xmlunicode.c:1678:|{<s0>T|<s1>F}}"];
+	Node0x4f8ee10:s0 -> Node0x4f8eda0;
+	Node0x4f8ee10:s1 -> Node0x4f8e430;
+	Node0x4f8eda0 [shape=record,label="{xmlunicode.c:1679:}"];
+	Node0x4f8eda0 -> Node0x4f8e430;
+	Node0x4f8e430 [shape=record,label="{xmlunicode.c:1679:}"];
+}

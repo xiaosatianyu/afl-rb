@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlXPathCastNodeSetToBoolean' function" {
+	label="CFG for 'test_xmlXPathCastNodeSetToBoolean' function";
+
+	Node0x6b80310 [shape=record,label="{testapi.c:45920:}"];
+	Node0x6b80310 -> Node0x6b86f10;
+	Node0x6b86f10 [shape=record,label="{testapi.c:45928:|{<s0>T|<s1>F}}"];
+	Node0x6b86f10:s0 -> Node0x6b871f0;
+	Node0x6b86f10:s1 -> Node0x6b86d70;
+	Node0x6b871f0 [shape=record,label="{testapi.c:45929:|{<s0>T|<s1>F}}"];
+	Node0x6b871f0:s0 -> Node0x6b880c0;
+	Node0x6b871f0:s1 -> Node0x6b883f0;
+	Node0x6b880c0 [shape=record,label="{testapi.c:45939:}"];
+	Node0x6b880c0 -> Node0x6b883f0;
+	Node0x6b883f0 [shape=record,label="{testapi.c:45944:}"];
+	Node0x6b883f0 -> Node0x6b87160;
+	Node0x6b87160 [shape=record,label="{testapi.c:45928:}"];
+	Node0x6b87160 -> Node0x6b86f10;
+	Node0x6b86d70 [shape=record,label="{testapi.c:45945:}"];
+}

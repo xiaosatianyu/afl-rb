@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsSyriac' function" {
+	label="CFG for 'libxml_xmlUCSIsSyriac' function";
+
+	Node0x5f5e2c0 [shape=record,label="{libxml2-py.c:11403:|{<s0>T|<s1>F}}"];
+	Node0x5f5e2c0:s0 -> Node0x5f69120;
+	Node0x5f5e2c0:s1 -> Node0x5f690d0;
+	Node0x5f690d0 [shape=record,label="{libxml2-py.c:11409:}"];
+	Node0x5f690d0 -> Node0x5f5e5d0;
+	Node0x5f69120 [shape=record,label="{libxml2-py.c:11411:}"];
+	Node0x5f69120 -> Node0x5f5e5d0;
+	Node0x5f5e5d0 [shape=record,label="{libxml2-py.c:11414:}"];
+}

@@ -1,0 +1,5 @@
+xmlreader.c:2032,95.0
+xmlreader.c:2035,94.0
+xmlreader.c:2040,92.99999999999999
+xmlreader.c:2043,92.0
+xmlreader.c:2044,91.0

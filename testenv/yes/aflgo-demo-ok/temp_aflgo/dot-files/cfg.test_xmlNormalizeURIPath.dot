@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlNormalizeURIPath' function" {
+	label="CFG for 'test_xmlNormalizeURIPath' function";
+
+	Node0x6038fc0 [shape=record,label="{testapi.c:24482:}"];
+	Node0x6038fc0 -> Node0x60426c0;
+	Node0x60426c0 [shape=record,label="{testapi.c:24489:|{<s0>T|<s1>F}}"];
+	Node0x60426c0:s0 -> Node0x60429a0;
+	Node0x60426c0:s1 -> Node0x6042520;
+	Node0x60429a0 [shape=record,label="{testapi.c:24490:|{<s0>T|<s1>F}}"];
+	Node0x60429a0:s0 -> Node0x60437f0;
+	Node0x60429a0:s1 -> Node0x6043fc0;
+	Node0x60437f0 [shape=record,label="{testapi.c:24500:}"];
+	Node0x60437f0 -> Node0x6043fc0;
+	Node0x6043fc0 [shape=record,label="{testapi.c:24505:}"];
+	Node0x6043fc0 -> Node0x6042910;
+	Node0x6042910 [shape=record,label="{testapi.c:24489:}"];
+	Node0x6042910 -> Node0x60426c0;
+	Node0x6042520 [shape=record,label="{testapi.c:24506:}"];
+}

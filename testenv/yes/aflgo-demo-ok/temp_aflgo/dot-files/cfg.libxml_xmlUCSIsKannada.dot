@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsKannada' function" {
+	label="CFG for 'libxml_xmlUCSIsKannada' function";
+
+	Node0x5a16600 [shape=record,label="{libxml2-py.c:10651:|{<s0>T|<s1>F}}"];
+	Node0x5a16600:s0 -> Node0x5a194c0;
+	Node0x5a16600:s1 -> Node0x5a19470;
+	Node0x5a19470 [shape=record,label="{libxml2-py.c:10657:}"];
+	Node0x5a19470 -> Node0x5a180d0;
+	Node0x5a194c0 [shape=record,label="{libxml2-py.c:10659:}"];
+	Node0x5a194c0 -> Node0x5a180d0;
+	Node0x5a180d0 [shape=record,label="{libxml2-py.c:10662:}"];
+}

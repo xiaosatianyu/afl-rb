@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlNanoFTPCloseConnection' function" {
+	label="CFG for 'test_xmlNanoFTPCloseConnection' function";
+
+	Node0x58e6060 [shape=record,label="{testapi.c:11565:}"];
+	Node0x58e6060 -> Node0x58e8b50;
+	Node0x58e8b50 [shape=record,label="{testapi.c:11573:|{<s0>T|<s1>F}}"];
+	Node0x58e8b50:s0 -> Node0x58e8e30;
+	Node0x58e8b50:s1 -> Node0x58e89b0;
+	Node0x58e8e30 [shape=record,label="{testapi.c:11574:|{<s0>T|<s1>F}}"];
+	Node0x58e8e30:s0 -> Node0x58e9c90;
+	Node0x58e8e30:s1 -> Node0x58ea460;
+	Node0x58e9c90 [shape=record,label="{testapi.c:11584:}"];
+	Node0x58e9c90 -> Node0x58ea460;
+	Node0x58ea460 [shape=record,label="{testapi.c:11589:}"];
+	Node0x58ea460 -> Node0x58e8da0;
+	Node0x58e8da0 [shape=record,label="{testapi.c:11573:}"];
+	Node0x58e8da0 -> Node0x58e8b50;
+	Node0x58e89b0 [shape=record,label="{testapi.c:11590:}"];
+}

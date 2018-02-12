@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlThrDefPedanticParserDefaultValue' function" {
+	label="CFG for 'libxml_xmlThrDefPedanticParserDefaultValue' function";
+
+	Node0x5de5e60 [shape=record,label="{libxml2-py.c:8976:|{<s0>T|<s1>F}}"];
+	Node0x5de5e60:s0 -> Node0x5de8ca0;
+	Node0x5de5e60:s1 -> Node0x5de8c50;
+	Node0x5de8c50 [shape=record,label="{libxml2-py.c:8982:}"];
+	Node0x5de8c50 -> Node0x5de6240;
+	Node0x5de8ca0 [shape=record,label="{libxml2-py.c:8984:}"];
+	Node0x5de8ca0 -> Node0x5de6240;
+	Node0x5de6240 [shape=record,label="{libxml2-py.c:8987:}"];
+}

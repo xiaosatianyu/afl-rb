@@ -1,0 +1,22 @@
+digraph "CFG for 'xmlFreeSaveCtxt' function" {
+	label="CFG for 'xmlFreeSaveCtxt' function";
+
+	Node0x4fb6bf0 [shape=record,label="{xmlsave.c:362:|{<s0>T|<s1>F}}"];
+	Node0x4fb6bf0 -> Node0x4fbb9d0;
+	Node0x4fb6bf0 -> Node0x4fbba20;
+	Node0x4fbb9d0 [shape=record,label="{xmlsave.c:364:}"];
+	Node0x4fbb9d0 -> Node0x4fbba90;
+	Node0x4fbba20 [shape=record,label="{xmlsave.c:365:|{<s0>T|<s1>F}}"];
+	Node0x4fbba20 -> Node0x4fb7050;
+	Node0x4fbba20 -> Node0x4fb70a0;
+	Node0x4fb7050 [shape=record,label="{xmlsave.c:366:}"];
+	Node0x4fb7050 -> Node0x4fb70a0;
+	Node0x4fb70a0 [shape=record,label="{xmlsave.c:367:|{<s0>T|<s1>F}}"];
+	Node0x4fb70a0 -> Node0x4fbc990;
+	Node0x4fb70a0 -> Node0x4fbc9e0;
+	Node0x4fbc990 [shape=record,label="{xmlsave.c:368:}"];
+	Node0x4fbc990 -> Node0x4fbc9e0;
+	Node0x4fbc9e0 [shape=record,label="{xmlsave.c:369:}"];
+	Node0x4fbc9e0 -> Node0x4fbba90;
+	Node0x4fbba90 [shape=record,label="{xmlsave.c:370:}"];
+}

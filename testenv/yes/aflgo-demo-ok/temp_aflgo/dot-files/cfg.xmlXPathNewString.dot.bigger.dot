@@ -1,0 +1,19 @@
+digraph "CFG for 'xmlXPathNewString' function" {
+	label="CFG for 'xmlXPathNewString' function";
+
+	Node0x4575750 [shape=record,label="{xpath.c:5273:|{<s0>T|<s1>F}}"];
+	Node0x4575750:s0 -> Node0x457aab0;
+	Node0x4575750:s1 -> Node0x457ab00;
+	Node0x457aab0 [shape=record,label="{xpath.c:5278:}"];
+	Node0x457aab0 -> Node0x457a070;
+	Node0x457ab00 [shape=record,label="{xpath.c:5281:|{<s0>T|<s1>F}}"];
+	Node0x457ab00:s0 -> Node0x457b790;
+	Node0x457ab00:s1 -> Node0x457b830;
+	Node0x457b790 [shape=record,label="{xpath.c:5284:}"];
+	Node0x457b790 -> Node0x457b7e0;
+	Node0x457b830 [shape=record,label="{xpath.c:5286:}"];
+	Node0x457b830 -> Node0x457b7e0;
+	Node0x457b7e0 [shape=record,label="{xpath.c:5290:}"];
+	Node0x457b7e0 -> Node0x457a070;
+	Node0x457a070 [shape=record,label="{xpath.c:5291:}"];
+}

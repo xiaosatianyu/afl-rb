@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlOutputBufferCreateFile' function" {
+	label="CFG for 'test_xmlOutputBufferCreateFile' function";
+
+	Node0x6257940 [shape=record,label="{testapi.c:28478:}"];
+	Node0x6257940 -> Node0x6262670;
+	Node0x6262670 [shape=record,label="{testapi.c:28488:|{<s0>T|<s1>F}}"];
+	Node0x6262670:s0 -> Node0x6262950;
+	Node0x6262670:s1 -> Node0x62624d0;
+	Node0x6262950 [shape=record,label="{testapi.c:28489:}"];
+	Node0x6262950 -> Node0x6262d40;
+	Node0x6262d40 [shape=record,label="{testapi.c:28489:|{<s0>T|<s1>F}}"];
+	Node0x6262d40:s0 -> Node0x6262fc0;
+	Node0x6262d40:s1 -> Node0x6262c20;
+	Node0x6262fc0 [shape=record,label="{testapi.c:28490:|{<s0>T|<s1>F}}"];
+	Node0x6262fc0:s0 -> Node0x6264120;
+	Node0x6262fc0:s1 -> Node0x6264450;
+	Node0x6264120 [shape=record,label="{testapi.c:28502:}"];
+	Node0x6264120 -> Node0x6264450;
+	Node0x6264450 [shape=record,label="{testapi.c:28508:}"];
+	Node0x6264450 -> Node0x6262f30;
+	Node0x6262f30 [shape=record,label="{testapi.c:28489:}"];
+	Node0x6262f30 -> Node0x6262d40;
+	Node0x6262c20 [shape=record,label="{testapi.c:28509:}"];
+	Node0x6262c20 -> Node0x62628c0;
+	Node0x62628c0 [shape=record,label="{testapi.c:28488:}"];
+	Node0x62628c0 -> Node0x6262670;
+	Node0x62624d0 [shape=record,label="{testapi.c:28510:}"];
+}

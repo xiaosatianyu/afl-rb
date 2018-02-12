@@ -1,0 +1,28 @@
+digraph "CFG for 'xmlSchemaAddModelGroup' function" {
+	label="CFG for 'xmlSchemaAddModelGroup' function";
+
+	Node0x52542a0 [shape=record,label="{xmlschemas.c:5465:|{<s0>T|<s1>F}}"];
+	Node0x52542a0:s0 -> Node0x5255ca0;
+	Node0x52542a0:s1 -> Node0x5255d40;
+	Node0x5255d40 [shape=record,label="{xmlschemas.c:5472:|{<s0>T|<s1>F}}"];
+	Node0x5255d40:s0 -> Node0x5255ca0;
+	Node0x5255d40:s1 -> Node0x5255cf0;
+	Node0x5255ca0 [shape=record,label="{xmlschemas.c:5473:}"];
+	Node0x5255ca0 -> Node0x522ad00;
+	Node0x5255cf0 [shape=record,label="{xmlschemas.c:5476:|{<s0>T|<s1>F}}"];
+	Node0x5255cf0:s0 -> Node0x5256770;
+	Node0x5255cf0:s1 -> Node0x52567c0;
+	Node0x5256770 [shape=record,label="{xmlschemas.c:5478:}"];
+	Node0x5256770 -> Node0x522ad00;
+	Node0x52567c0 [shape=record,label="{xmlschemas.c:5482:|{<s0>T|<s1>F}}"];
+	Node0x52567c0:s0 -> Node0x5257ce0;
+	Node0x52567c0:s1 -> Node0x5257d80;
+	Node0x5257d80 [shape=record,label="{xmlschemas.c:5487:|{<s0>T|<s1>F}}"];
+	Node0x5257d80:s0 -> Node0x5257ce0;
+	Node0x5257d80:s1 -> Node0x5257d30;
+	Node0x5257ce0 [shape=record,label="{xmlschemas.c:5488:}"];
+	Node0x5257ce0 -> Node0x5257d30;
+	Node0x5257d30 [shape=record,label="{xmlschemas.c:5489:}"];
+	Node0x5257d30 -> Node0x522ad00;
+	Node0x522ad00 [shape=record,label="{xmlschemas.c:5490:}"];
+}

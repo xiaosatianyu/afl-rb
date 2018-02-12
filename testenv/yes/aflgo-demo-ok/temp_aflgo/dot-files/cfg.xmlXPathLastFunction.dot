@@ -1,0 +1,27 @@
+digraph "CFG for 'xmlXPathLastFunction' function" {
+	label="CFG for 'xmlXPathLastFunction' function";
+
+	Node0x46e21c0 [shape=record,label="{xpath.c:8489:|{<s0>T|<s1>F}}"];
+	Node0x46e21c0 -> Node0x46e3ba0;
+	Node0x46e21c0 -> Node0x46e3630;
+	Node0x46e3ba0 [shape=record,label="{xpath.c:8490:}"];
+	Node0x46e3ba0 -> Node0x46e9290;
+	Node0x46e3630 [shape=record,label="{xpath.c:8490:|{<s0>T|<s1>F}}"];
+	Node0x46e3630 -> Node0x46e3920;
+	Node0x46e3630 -> Node0x46e8720;
+	Node0x46e3920 [shape=record,label="{xpath.c:8490:}"];
+	Node0x46e3920 -> Node0x46e9290;
+	Node0x46e8720 [shape=record,label="{xpath.c:8490:|{<s0>T|<s1>F}}"];
+	Node0x46e8720 -> Node0x46e8ab0;
+	Node0x46e8720 -> Node0x46e8b00;
+	Node0x46e8ab0 [shape=record,label="{xpath.c:8490:}"];
+	Node0x46e8ab0 -> Node0x46e9290;
+	Node0x46e8b00 [shape=record,label="{xpath.c:8491:|{<s0>T|<s1>F}}"];
+	Node0x46e8b00 -> Node0x46e9240;
+	Node0x46e8b00 -> Node0x46e92e0;
+	Node0x46e9240 [shape=record,label="{xpath.c:8492:}"];
+	Node0x46e9240 -> Node0x46e9290;
+	Node0x46e92e0 [shape=record,label="{xpath.c:8500:}"];
+	Node0x46e92e0 -> Node0x46e9290;
+	Node0x46e9290 [shape=record,label="{xpath.c:8502:}"];
+}

@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlLoadSGMLSuperCatalog' function" {
+	label="CFG for 'libxml_xmlLoadSGMLSuperCatalog' function";
+
+	Node0x5867c20 [shape=record,label="{libxml2-py.c:3615:|{<s0>T|<s1>F}}"];
+	Node0x5867c20:s0 -> Node0x5872ff0;
+	Node0x5867c20:s1 -> Node0x5872fa0;
+	Node0x5872fa0 [shape=record,label="{libxml2-py.c:3621:}"];
+	Node0x5872fa0 -> Node0x569eee0;
+	Node0x5872ff0 [shape=record,label="{libxml2-py.c:3623:}"];
+	Node0x5872ff0 -> Node0x569eee0;
+	Node0x569eee0 [shape=record,label="{libxml2-py.c:3626:}"];
+}

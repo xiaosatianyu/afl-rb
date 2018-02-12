@@ -1,0 +1,38 @@
+digraph "CFG for 'xmlSchemaPGetBoolNodeValue' function" {
+	label="CFG for 'xmlSchemaPGetBoolNodeValue' function";
+
+	Node0x517fc70 [shape=record,label="{xmlschemas.c:6134:|{<s0>T|<s1>F}}"];
+	Node0x517fc70:s0 -> Node0x518e4a0;
+	Node0x517fc70:s1 -> Node0x518e540;
+	Node0x518e4a0 [shape=record,label="{xmlschemas.c:6148:}"];
+	Node0x518e4a0 -> Node0x518e4f0;
+	Node0x518e540 [shape=record,label="{xmlschemas.c:6149:|{<s0>T|<s1>F}}"];
+	Node0x518e540:s0 -> Node0x518ec80;
+	Node0x518e540:s1 -> Node0x518ed20;
+	Node0x518ec80 [shape=record,label="{xmlschemas.c:6150:}"];
+	Node0x518ec80 -> Node0x518ecd0;
+	Node0x518ed20 [shape=record,label="{xmlschemas.c:6151:|{<s0>T|<s1>F}}"];
+	Node0x518ed20:s0 -> Node0x518f3f0;
+	Node0x518ed20:s1 -> Node0x518f490;
+	Node0x518f3f0 [shape=record,label="{xmlschemas.c:6152:}"];
+	Node0x518f3f0 -> Node0x518f440;
+	Node0x518f490 [shape=record,label="{xmlschemas.c:6153:|{<s0>T|<s1>F}}"];
+	Node0x518f490:s0 -> Node0x518fb60;
+	Node0x518f490:s1 -> Node0x518fc00;
+	Node0x518fb60 [shape=record,label="{xmlschemas.c:6154:}"];
+	Node0x518fb60 -> Node0x518fbb0;
+	Node0x518fc00 [shape=record,label="{xmlschemas.c:6156:}"];
+	Node0x518fc00 -> Node0x518fbb0;
+	Node0x518fbb0 [shape=record,label="{%27}"];
+	Node0x518fbb0 -> Node0x518f440;
+	Node0x518f440 [shape=record,label="{%28}"];
+	Node0x518f440 -> Node0x518ecd0;
+	Node0x518ecd0 [shape=record,label="{%29}"];
+	Node0x518ecd0 -> Node0x518e4f0;
+	Node0x518e4f0 [shape=record,label="{xmlschemas.c:6163:|{<s0>T|<s1>F}}"];
+	Node0x518e4f0:s0 -> Node0x5190cd0;
+	Node0x518e4f0:s1 -> Node0x5190d20;
+	Node0x5190cd0 [shape=record,label="{xmlschemas.c:6164:}"];
+	Node0x5190cd0 -> Node0x5190d20;
+	Node0x5190d20 [shape=record,label="{xmlschemas.c:6165:}"];
+}

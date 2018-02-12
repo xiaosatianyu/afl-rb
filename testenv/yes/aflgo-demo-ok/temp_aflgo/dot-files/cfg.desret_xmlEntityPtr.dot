@@ -1,0 +1,10 @@
+digraph "CFG for 'desret_xmlEntityPtr' function" {
+	label="CFG for 'desret_xmlEntityPtr' function";
+
+	Node0x54c96e0 [shape=record,label="{testapi.c:806:|{<s0>T|<s1>F}}"];
+	Node0x54c96e0:s0 -> Node0x54d25e0;
+	Node0x54c96e0:s1 -> Node0x54d2630;
+	Node0x54d25e0 [shape=record,label="{testapi.c:808:}"];
+	Node0x54d25e0 -> Node0x54d2630;
+	Node0x54d2630 [shape=record,label="{testapi.c:811:}"];
+}

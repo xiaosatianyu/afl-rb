@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsSupplementaryPrivateUseAreaA' function" {
+	label="CFG for 'test_xmlUCSIsSupplementaryPrivateUseAreaA' function";
+
+	Node0x69cacf0 [shape=record,label="{testapi.c:42311:}"];
+	Node0x69cacf0 -> Node0x69d9850;
+	Node0x69d9850 [shape=record,label="{testapi.c:42319:|{<s0>T|<s1>F}}"];
+	Node0x69d9850:s0 -> Node0x69d9b30;
+	Node0x69d9850:s1 -> Node0x69d96b0;
+	Node0x69d9b30 [shape=record,label="{testapi.c:42320:|{<s0>T|<s1>F}}"];
+	Node0x69d9b30:s0 -> Node0x69da990;
+	Node0x69d9b30:s1 -> Node0x69dacc0;
+	Node0x69da990 [shape=record,label="{testapi.c:42330:}"];
+	Node0x69da990 -> Node0x69dacc0;
+	Node0x69dacc0 [shape=record,label="{testapi.c:42335:}"];
+	Node0x69dacc0 -> Node0x69d9aa0;
+	Node0x69d9aa0 [shape=record,label="{testapi.c:42319:}"];
+	Node0x69d9aa0 -> Node0x69d9850;
+	Node0x69d96b0 [shape=record,label="{testapi.c:42336:}"];
+}

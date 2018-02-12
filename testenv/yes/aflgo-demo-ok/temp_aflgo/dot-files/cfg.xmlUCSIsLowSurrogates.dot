@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsLowSurrogates' function" {
+	label="CFG for 'xmlUCSIsLowSurrogates' function";
+
+	Node0x4fac270 [shape=record,label="{xmlunicode.c:1977:|{<s0>T|<s1>F}}"];
+	Node0x4fac270 -> Node0x4fab7b0;
+	Node0x4fac270 -> Node0x4fab900;
+	Node0x4fab7b0 [shape=record,label="{xmlunicode.c:1978:}"];
+	Node0x4fab7b0 -> Node0x4fab900;
+	Node0x4fab900 [shape=record,label="{xmlunicode.c:1978:}"];
+}

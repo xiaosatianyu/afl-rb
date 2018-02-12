@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlXPathNodeLeading' function" {
+	label="CFG for 'xmlXPathNodeLeading' function";
+
+	Node0x4522bd0 [shape=record,label="{xpath.c:4671:}"];
+}

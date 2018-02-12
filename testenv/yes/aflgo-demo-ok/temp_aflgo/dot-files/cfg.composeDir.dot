@@ -1,0 +1,17 @@
+digraph "CFG for 'composeDir' function" {
+	label="CFG for 'composeDir' function";
+
+	Node0x497a000 [shape=record,label="{runxmlconf.c:67:|{<s0>T|<s1>F}}"];
+	Node0x497a000:s0 -> Node0x499c840;
+	Node0x497a000:s1 -> Node0x499c890;
+	Node0x499c840 [shape=record,label="{runxmlconf.c:70:}"];
+	Node0x499c840 -> Node0x497a4a0;
+	Node0x499c890 [shape=record,label="{runxmlconf.c:71:|{<s0>T|<s1>F}}"];
+	Node0x499c890:s0 -> Node0x499d450;
+	Node0x499c890:s1 -> Node0x499d780;
+	Node0x499d450 [shape=record,label="{runxmlconf.c:71:}"];
+	Node0x499d450 -> Node0x497a4a0;
+	Node0x499d780 [shape=record,label="{runxmlconf.c:73:}"];
+	Node0x499d780 -> Node0x497a4a0;
+	Node0x497a4a0 [shape=record,label="{runxmlconf.c:75:}"];
+}

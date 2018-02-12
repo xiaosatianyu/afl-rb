@@ -1,0 +1,17 @@
+digraph "CFG for 'xmlParserPrintFileInfo' function" {
+	label="CFG for 'xmlParserPrintFileInfo' function";
+
+	Node0x36f3da0 [shape=record,label="{error.c:153:|{<s0>T|<s1>F}}"];
+	Node0x36f3da0:s0 -> Node0x37cc960;
+	Node0x36f3da0:s1 -> Node0x37e3340;
+	Node0x37cc960 [shape=record,label="{error.c:155:|{<s0>T|<s1>F}}"];
+	Node0x37cc960:s0 -> Node0x37e3770;
+	Node0x37cc960:s1 -> Node0x37e3810;
+	Node0x37e3770 [shape=record,label="{error.c:156:}"];
+	Node0x37e3770 -> Node0x37e37c0;
+	Node0x37e3810 [shape=record,label="{error.c:160:}"];
+	Node0x37e3810 -> Node0x37e37c0;
+	Node0x37e37c0 [shape=record,label="{error.c:162:}"];
+	Node0x37e37c0 -> Node0x37e3340;
+	Node0x37e3340 [shape=record,label="{error.c:163:}"];
+}

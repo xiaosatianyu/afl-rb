@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlTextWriterSetQuoteChar' function" {
+	label="CFG for 'test_xmlTextWriterSetQuoteChar' function";
+
+	Node0x6a7b2d0 [shape=record,label="{testapi.c:43864:}"];
+	Node0x6a7b2d0 -> Node0x6a86190;
+	Node0x6a86190 [shape=record,label="{testapi.c:43874:|{<s0>T|<s1>F}}"];
+	Node0x6a86190:s0 -> Node0x6a86470;
+	Node0x6a86190:s1 -> Node0x6a85ff0;
+	Node0x6a86470 [shape=record,label="{testapi.c:43875:}"];
+	Node0x6a86470 -> Node0x6a86860;
+	Node0x6a86860 [shape=record,label="{testapi.c:43875:|{<s0>T|<s1>F}}"];
+	Node0x6a86860:s0 -> Node0x6a86ae0;
+	Node0x6a86860:s1 -> Node0x6a86740;
+	Node0x6a86ae0 [shape=record,label="{testapi.c:43876:|{<s0>T|<s1>F}}"];
+	Node0x6a86ae0:s0 -> Node0x6a87c40;
+	Node0x6a86ae0:s1 -> Node0x6a87f70;
+	Node0x6a87c40 [shape=record,label="{testapi.c:43888:}"];
+	Node0x6a87c40 -> Node0x6a87f70;
+	Node0x6a87f70 [shape=record,label="{testapi.c:43894:}"];
+	Node0x6a87f70 -> Node0x6a86a50;
+	Node0x6a86a50 [shape=record,label="{testapi.c:43875:}"];
+	Node0x6a86a50 -> Node0x6a86860;
+	Node0x6a86740 [shape=record,label="{testapi.c:43895:}"];
+	Node0x6a86740 -> Node0x6a863e0;
+	Node0x6a863e0 [shape=record,label="{testapi.c:43874:}"];
+	Node0x6a863e0 -> Node0x6a86190;
+	Node0x6a85ff0 [shape=record,label="{testapi.c:43896:}"];
+}

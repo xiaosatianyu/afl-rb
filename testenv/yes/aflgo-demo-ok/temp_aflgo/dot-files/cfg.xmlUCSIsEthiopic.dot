@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsEthiopic' function" {
+	label="CFG for 'xmlUCSIsEthiopic' function";
+
+	Node0x4f7c2e0 [shape=record,label="{xmlunicode.c:1496:|{<s0>T|<s1>F}}"];
+	Node0x4f7c2e0 -> Node0x4f7bb90;
+	Node0x4f7c2e0 -> Node0x4f7c4f0;
+	Node0x4f7bb90 [shape=record,label="{xmlunicode.c:1497:}"];
+	Node0x4f7bb90 -> Node0x4f7c4f0;
+	Node0x4f7c4f0 [shape=record,label="{xmlunicode.c:1497:}"];
+}

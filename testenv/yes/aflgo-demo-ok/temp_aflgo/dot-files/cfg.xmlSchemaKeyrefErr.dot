@@ -1,0 +1,15 @@
+digraph "CFG for 'xmlSchemaKeyrefErr' function" {
+	label="CFG for 'xmlSchemaKeyrefErr' function";
+
+	Node0x5a17090 [shape=record,label="{xmlschemas.c:2380:|{<s0>T|<s1>F}}"];
+	Node0x5a17090 -> Node0x5a2e740;
+	Node0x5a17090 -> Node0x5a2e790;
+	Node0x5a2e740 [shape=record,label="{xmlschemas.c:2399:}"];
+	Node0x5a2e740 -> Node0x5a2e790;
+	Node0x5a2e790 [shape=record,label="{xmlschemas.c:2400:|{<s0>T|<s1>F}}"];
+	Node0x5a2e790 -> Node0x5a2ee30;
+	Node0x5a2e790 -> Node0x5a2ee80;
+	Node0x5a2ee30 [shape=record,label="{xmlschemas.c:2400:}"];
+	Node0x5a2ee30 -> Node0x5a2ee80;
+	Node0x5a2ee80 [shape=record,label="{xmlschemas.c:2401:}"];
+}

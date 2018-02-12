@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlSchemaNewValidCtxt' function" {
+	label="CFG for 'xmlSchemaNewValidCtxt' function";
+
+	Node0x4e2c370 [shape=record,label="{xmlschemas.c:27482:|{<s0>T|<s1>F}}"];
+	Node0x4e2c370 -> Node0x4e2cf40;
+	Node0x4e2c370 -> Node0x4e2cf90;
+	Node0x4e2cf40 [shape=record,label="{xmlschemas.c:27488:}"];
+	Node0x4e2cf40 -> Node0x4df1280;
+	Node0x4e2cf90 [shape=record,label="{xmlschemas.c:27491:}"];
+	Node0x4e2cf90 -> Node0x4df1280;
+	Node0x4df1280 [shape=record,label="{xmlschemas.c:27497:}"];
+}

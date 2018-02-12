@@ -1,0 +1,33 @@
+digraph "CFG for 'xmlXIncludeCopyNode' function" {
+	label="CFG for 'xmlXIncludeCopyNode' function";
+
+	Node0x4c65b30 [shape=record,label="{xinclude.c:818:|{<s0>T|<s1>F}}"];
+	Node0x4c65b30:s0 -> Node0x4c6b5c0;
+	Node0x4c65b30:s1 -> Node0x4c6b760;
+	Node0x4c6b760 [shape=record,label="{xinclude.c:822:|{<s0>T|<s1>F}}"];
+	Node0x4c6b760:s0 -> Node0x4c6b5c0;
+	Node0x4c6b760:s1 -> Node0x4c6b6e0;
+	Node0x4c6b6e0 [shape=record,label="{xinclude.c:822:|{<s0>T|<s1>F}}"];
+	Node0x4c6b6e0:s0 -> Node0x4c6b5c0;
+	Node0x4c6b6e0:s1 -> Node0x4c6b660;
+	Node0x4c6b660 [shape=record,label="{xinclude.c:823:|{<s0>T|<s1>F}}"];
+	Node0x4c6b660:s0 -> Node0x4c6b5c0;
+	Node0x4c6b660:s1 -> Node0x4c6b610;
+	Node0x4c6b5c0 [shape=record,label="{xinclude.c:824:}"];
+	Node0x4c6b5c0 -> Node0x4c66010;
+	Node0x4c6b610 [shape=record,label="{xinclude.c:825:|{<s0>T|<s1>F}}"];
+	Node0x4c6b610:s0 -> Node0x4c6c290;
+	Node0x4c6b610:s1 -> Node0x4c6c2e0;
+	Node0x4c6c290 [shape=record,label="{xinclude.c:826:}"];
+	Node0x4c6c290 -> Node0x4c66010;
+	Node0x4c6c2e0 [shape=record,label="{xinclude.c:827:|{<s0>T|<s1>F}}"];
+	Node0x4c6c2e0:s0 -> Node0x4c6c870;
+	Node0x4c6c2e0:s1 -> Node0x4c6c910;
+	Node0x4c6c870 [shape=record,label="{xinclude.c:828:}"];
+	Node0x4c6c870 -> Node0x4c6c8c0;
+	Node0x4c6c910 [shape=record,label="{xinclude.c:830:}"];
+	Node0x4c6c910 -> Node0x4c6c8c0;
+	Node0x4c6c8c0 [shape=record,label="{xinclude.c:831:}"];
+	Node0x4c6c8c0 -> Node0x4c66010;
+	Node0x4c66010 [shape=record,label="{xinclude.c:832:}"];
+}

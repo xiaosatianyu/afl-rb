@@ -1,0 +1,38 @@
+digraph "CFG for 'xmlSchemaIsDerivedFromBuiltInType' function" {
+	label="CFG for 'xmlSchemaIsDerivedFromBuiltInType' function";
+
+	Node0x55c9ad0 [shape=record,label="{xmlschemas.c:13363:|{<s0>T|<s1>F}}"];
+	Node0x55c9ad0 -> Node0x55c9e50;
+	Node0x55c9ad0 -> Node0x55c9ea0;
+	Node0x55c9e50 [shape=record,label="{xmlschemas.c:13366:}"];
+	Node0x55c9e50 -> Node0x55cc130;
+	Node0x55c9ea0 [shape=record,label="{xmlschemas.c:13367:|{<s0>T|<s1>F}}"];
+	Node0x55c9ea0 -> Node0x55cf650;
+	Node0x55c9ea0 -> Node0x55cf6f0;
+	Node0x55cf6f0 [shape=record,label="{xmlschemas.c:13367:|{<s0>T|<s1>F}}"];
+	Node0x55cf6f0 -> Node0x55cf650;
+	Node0x55cf6f0 -> Node0x55cf6a0;
+	Node0x55cf650 [shape=record,label="{xmlschemas.c:13368:}"];
+	Node0x55cf650 -> Node0x55cc130;
+	Node0x55cf6a0 [shape=record,label="{xmlschemas.c:13369:|{<s0>T|<s1>F}}"];
+	Node0x55cf6a0 -> Node0x55cfe60;
+	Node0x55cf6a0 -> Node0x55cfeb0;
+	Node0x55cfe60 [shape=record,label="{xmlschemas.c:13370:|{<s0>T|<s1>F}}"];
+	Node0x55cfe60 -> Node0x55d03a0;
+	Node0x55cfe60 -> Node0x55d03f0;
+	Node0x55d03a0 [shape=record,label="{xmlschemas.c:13371:}"];
+	Node0x55d03a0 -> Node0x55cc130;
+	Node0x55d03f0 [shape=record,label="{xmlschemas.c:13372:|{<s0>T|<s1>F}}"];
+	Node0x55d03f0 -> Node0x55d09b0;
+	Node0x55d03f0 -> Node0x55d0a50;
+	Node0x55d0a50 [shape=record,label="{xmlschemas.c:13373:|{<s0>T|<s1>F}}"];
+	Node0x55d0a50 -> Node0x55d09b0;
+	Node0x55d0a50 -> Node0x55d0a00;
+	Node0x55d09b0 [shape=record,label="{xmlschemas.c:13374:}"];
+	Node0x55d09b0 -> Node0x55cc130;
+	Node0x55d0a00 [shape=record,label="{xmlschemas.c:13375:}"];
+	Node0x55d0a00 -> Node0x55cc130;
+	Node0x55cfeb0 [shape=record,label="{xmlschemas.c:13377:}"];
+	Node0x55cfeb0 -> Node0x55cc130;
+	Node0x55cc130 [shape=record,label="{xmlschemas.c:13378:}"];
+}

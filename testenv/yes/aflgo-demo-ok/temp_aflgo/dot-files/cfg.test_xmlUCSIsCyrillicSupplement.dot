@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsCyrillicSupplement' function" {
+	label="CFG for 'test_xmlUCSIsCyrillicSupplement' function";
+
+	Node0x68c2240 [shape=record,label="{testapi.c:39795:}"];
+	Node0x68c2240 -> Node0x68d0d50;
+	Node0x68d0d50 [shape=record,label="{testapi.c:39803:|{<s0>T|<s1>F}}"];
+	Node0x68d0d50:s0 -> Node0x68d1030;
+	Node0x68d0d50:s1 -> Node0x68d0bb0;
+	Node0x68d1030 [shape=record,label="{testapi.c:39804:|{<s0>T|<s1>F}}"];
+	Node0x68d1030:s0 -> Node0x68d1e90;
+	Node0x68d1030:s1 -> Node0x68d21c0;
+	Node0x68d1e90 [shape=record,label="{testapi.c:39814:}"];
+	Node0x68d1e90 -> Node0x68d21c0;
+	Node0x68d21c0 [shape=record,label="{testapi.c:39819:}"];
+	Node0x68d21c0 -> Node0x68d0fa0;
+	Node0x68d0fa0 [shape=record,label="{testapi.c:39803:}"];
+	Node0x68d0fa0 -> Node0x68d0d50;
+	Node0x68d0bb0 [shape=record,label="{testapi.c:39820:}"];
+}

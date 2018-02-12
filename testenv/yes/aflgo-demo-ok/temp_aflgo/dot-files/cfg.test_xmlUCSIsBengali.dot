@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsBengali' function" {
+	label="CFG for 'test_xmlUCSIsBengali' function";
+
+	Node0x67d8ae0 [shape=record,label="{testapi.c:37605:}"];
+	Node0x67d8ae0 -> Node0x67e75d0;
+	Node0x67e75d0 [shape=record,label="{testapi.c:37613:|{<s0>T|<s1>F}}"];
+	Node0x67e75d0:s0 -> Node0x67e78b0;
+	Node0x67e75d0:s1 -> Node0x67e7430;
+	Node0x67e78b0 [shape=record,label="{testapi.c:37614:|{<s0>T|<s1>F}}"];
+	Node0x67e78b0:s0 -> Node0x67e8700;
+	Node0x67e78b0:s1 -> Node0x67e8a30;
+	Node0x67e8700 [shape=record,label="{testapi.c:37624:}"];
+	Node0x67e8700 -> Node0x67e8a30;
+	Node0x67e8a30 [shape=record,label="{testapi.c:37629:}"];
+	Node0x67e8a30 -> Node0x67e7820;
+	Node0x67e7820 [shape=record,label="{testapi.c:37613:}"];
+	Node0x67e7820 -> Node0x67e75d0;
+	Node0x67e7430 [shape=record,label="{testapi.c:37630:}"];
+}

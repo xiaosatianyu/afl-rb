@@ -1,0 +1,14 @@
+digraph "CFG for 'test_xmlNanoFTPScanProxy' function" {
+	label="CFG for 'test_xmlNanoFTPScanProxy' function";
+
+	Node0x5900f20 [shape=record,label="{testapi.c:11977:}"];
+	Node0x5900f20 -> Node0x5915a40;
+	Node0x5915a40 [shape=record,label="{testapi.c:11983:|{<s0>T|<s1>F}}"];
+	Node0x5915a40:s0 -> Node0x5915d20;
+	Node0x5915a40:s1 -> Node0x590f170;
+	Node0x5915d20 [shape=record,label="{testapi.c:11984:}"];
+	Node0x5915d20 -> Node0x5915c90;
+	Node0x5915c90 [shape=record,label="{testapi.c:11983:}"];
+	Node0x5915c90 -> Node0x5915a40;
+	Node0x590f170 [shape=record,label="{testapi.c:11991:}"];
+}

@@ -1,0 +1,34 @@
+digraph "CFG for 'xmlUnicodeLookup' function" {
+	label="CFG for 'xmlUnicodeLookup' function";
+
+	Node0x5021e10 [shape=record,label="{xmlunicode.c:946:|{<s0>T|<s1>F}}"];
+	Node0x5021e10:s0 -> Node0x5024be0;
+	Node0x5021e10:s1 -> Node0x5024c80;
+	Node0x5024c80 [shape=record,label="{xmlunicode.c:950:|{<s0>T|<s1>F}}"];
+	Node0x5024c80:s0 -> Node0x5024be0;
+	Node0x5024c80:s1 -> Node0x5024c30;
+	Node0x5024be0 [shape=record,label="{xmlunicode.c:950:}"];
+	Node0x5024be0 -> Node0x5021af0;
+	Node0x5024c30 [shape=record,label="{xmlunicode.c:952:}"];
+	Node0x5024c30 -> Node0x5025aa0;
+	Node0x5025aa0 [shape=record,label="{xmlunicode.c:955:|{<s0>T|<s1>F}}"];
+	Node0x5025aa0:s0 -> Node0x5025ec0;
+	Node0x5025aa0:s1 -> Node0x5025cc0;
+	Node0x5025ec0 [shape=record,label="{xmlunicode.c:956:|{<s0>T|<s1>F}}"];
+	Node0x5025ec0:s0 -> Node0x5026400;
+	Node0x5025ec0:s1 -> Node0x5026450;
+	Node0x5026400 [shape=record,label="{xmlunicode.c:958:}"];
+	Node0x5026400 -> Node0x5021af0;
+	Node0x5026450 [shape=record,label="{xmlunicode.c:959:|{<s0>T|<s1>F}}"];
+	Node0x5026450:s0 -> Node0x5026dd0;
+	Node0x5026450:s1 -> Node0x50270b0;
+	Node0x5026dd0 [shape=record,label="{xmlunicode.c:960:}"];
+	Node0x5026dd0 -> Node0x5027100;
+	Node0x50270b0 [shape=record,label="{xmlunicode.c:962:}"];
+	Node0x50270b0 -> Node0x5027100;
+	Node0x5027100 [shape=record,label="{xmlunicode.c:955:}"];
+	Node0x5027100 -> Node0x5025aa0;
+	Node0x5025cc0 [shape=record,label="{xmlunicode.c:964:}"];
+	Node0x5025cc0 -> Node0x5021af0;
+	Node0x5021af0 [shape=record,label="{xmlunicode.c:965:}"];
+}

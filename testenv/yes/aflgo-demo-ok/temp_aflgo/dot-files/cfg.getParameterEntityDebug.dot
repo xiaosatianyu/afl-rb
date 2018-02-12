@@ -1,0 +1,12 @@
+digraph "CFG for 'getParameterEntityDebug' function" {
+	label="CFG for 'getParameterEntityDebug' function";
+
+	Node0x4fe4b80 [shape=record,label="{xmllint.c:1055:|{<s0>T|<s1>F}}"];
+	Node0x4fe4b80 -> Node0x4fe5040;
+	Node0x4fe4b80 -> Node0x4fe5090;
+	Node0x4fe5040 [shape=record,label="{xmllint.c:1059:}"];
+	Node0x4fe5040 -> Node0x4fe6430;
+	Node0x4fe5090 [shape=record,label="{xmllint.c:1060:}"];
+	Node0x4fe5090 -> Node0x4fe6430;
+	Node0x4fe6430 [shape=record,label="{xmllint.c:1062:}"];
+}

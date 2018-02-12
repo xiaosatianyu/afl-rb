@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlCopyDoc' function" {
+	label="CFG for 'test_xmlCopyDoc' function";
+
+	Node0x5d86da0 [shape=record,label="{testapi.c:19281:}"];
+	Node0x5d86da0 -> Node0x5d94080;
+	Node0x5d94080 [shape=record,label="{testapi.c:19291:|{<s0>T|<s1>F}}"];
+	Node0x5d94080:s0 -> Node0x5d94360;
+	Node0x5d94080:s1 -> Node0x5d93ee0;
+	Node0x5d94360 [shape=record,label="{testapi.c:19292:}"];
+	Node0x5d94360 -> Node0x5d94750;
+	Node0x5d94750 [shape=record,label="{testapi.c:19292:|{<s0>T|<s1>F}}"];
+	Node0x5d94750:s0 -> Node0x5d949d0;
+	Node0x5d94750:s1 -> Node0x5d94630;
+	Node0x5d949d0 [shape=record,label="{testapi.c:19293:|{<s0>T|<s1>F}}"];
+	Node0x5d949d0:s0 -> Node0x5d95a40;
+	Node0x5d949d0:s1 -> Node0x5d95a90;
+	Node0x5d95a40 [shape=record,label="{testapi.c:19305:}"];
+	Node0x5d95a40 -> Node0x5d95a90;
+	Node0x5d95a90 [shape=record,label="{testapi.c:19311:}"];
+	Node0x5d95a90 -> Node0x5d94940;
+	Node0x5d94940 [shape=record,label="{testapi.c:19292:}"];
+	Node0x5d94940 -> Node0x5d94750;
+	Node0x5d94630 [shape=record,label="{testapi.c:19312:}"];
+	Node0x5d94630 -> Node0x5d942d0;
+	Node0x5d942d0 [shape=record,label="{testapi.c:19291:}"];
+	Node0x5d942d0 -> Node0x5d94080;
+	Node0x5d93ee0 [shape=record,label="{testapi.c:19313:}"];
+}

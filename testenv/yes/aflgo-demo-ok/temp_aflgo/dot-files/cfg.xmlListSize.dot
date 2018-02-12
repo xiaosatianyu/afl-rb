@@ -1,0 +1,21 @@
+digraph "CFG for 'xmlListSize' function" {
+	label="CFG for 'xmlListSize' function";
+
+	Node0x45b7dd0 [shape=record,label="{list.c:494:|{<s0>T|<s1>F}}"];
+	Node0x45b7dd0 -> Node0x45b7650;
+	Node0x45b7dd0 -> Node0x45b76a0;
+	Node0x45b7650 [shape=record,label="{list.c:500:}"];
+	Node0x45b7650 -> Node0x45b8100;
+	Node0x45b76a0 [shape=record,label="{list.c:502:}"];
+	Node0x45b76a0 -> Node0x45b9300;
+	Node0x45b9300 [shape=record,label="{list.c:502:|{<s0>T|<s1>F}}"];
+	Node0x45b9300 -> Node0x45b95e0;
+	Node0x45b9300 -> Node0x45b8ea0;
+	Node0x45b95e0 [shape=record,label="{list.c:502:}"];
+	Node0x45b95e0 -> Node0x45b9550;
+	Node0x45b9550 [shape=record,label="{list.c:502:}"];
+	Node0x45b9550 -> Node0x45b9300;
+	Node0x45b8ea0 [shape=record,label="{list.c:503:}"];
+	Node0x45b8ea0 -> Node0x45b8100;
+	Node0x45b8100 [shape=record,label="{list.c:504:}"];
+}

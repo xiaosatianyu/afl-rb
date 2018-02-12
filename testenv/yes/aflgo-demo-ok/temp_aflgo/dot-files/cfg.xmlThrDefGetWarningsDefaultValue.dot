@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlThrDefGetWarningsDefaultValue' function" {
+	label="CFG for 'xmlThrDefGetWarningsDefaultValue' function";
+
+	Node0x371dc20 [shape=record,label="{globals.c:906:}"];
+}

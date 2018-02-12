@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsKatakana' function" {
+	label="CFG for 'test_xmlUCSIsKatakana' function";
+
+	Node0x6934a80 [shape=record,label="{testapi.c:40815:}"];
+	Node0x6934a80 -> Node0x693c480;
+	Node0x693c480 [shape=record,label="{testapi.c:40823:|{<s0>T|<s1>F}}"];
+	Node0x693c480:s0 -> Node0x693c760;
+	Node0x693c480:s1 -> Node0x693c2e0;
+	Node0x693c760 [shape=record,label="{testapi.c:40824:|{<s0>T|<s1>F}}"];
+	Node0x693c760:s0 -> Node0x693d5b0;
+	Node0x693c760:s1 -> Node0x693d8e0;
+	Node0x693d5b0 [shape=record,label="{testapi.c:40834:}"];
+	Node0x693d5b0 -> Node0x693d8e0;
+	Node0x693d8e0 [shape=record,label="{testapi.c:40839:}"];
+	Node0x693d8e0 -> Node0x693c6d0;
+	Node0x693c6d0 [shape=record,label="{testapi.c:40823:}"];
+	Node0x693c6d0 -> Node0x693c480;
+	Node0x693c2e0 [shape=record,label="{testapi.c:40840:}"];
+}

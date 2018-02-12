@@ -1,0 +1,12 @@
+digraph "CFG for 'crazyClose' function" {
+	label="CFG for 'crazyClose' function";
+
+	Node0x530a0a0 [shape=record,label="{testlimits.c:305:|{<s0>T|<s1>F}}"];
+	Node0x530a0a0:s0 -> Node0x530a9e0;
+	Node0x530a0a0:s1 -> Node0x5309990;
+	Node0x530a9e0 [shape=record,label="{testlimits.c:306:}"];
+	Node0x530a9e0 -> Node0x530ab50;
+	Node0x5309990 [shape=record,label="{testlimits.c:307:}"];
+	Node0x5309990 -> Node0x530ab50;
+	Node0x530ab50 [shape=record,label="{testlimits.c:308:}"];
+}

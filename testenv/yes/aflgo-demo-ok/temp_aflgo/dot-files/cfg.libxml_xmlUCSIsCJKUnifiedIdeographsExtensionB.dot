@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsCJKUnifiedIdeographsExtensionB' function" {
+	label="CFG for 'libxml_xmlUCSIsCJKUnifiedIdeographsExtensionB' function";
+
+	Node0x5e368d0 [shape=record,label="{libxml2-py.c:9434:|{<s0>T|<s1>F}}"];
+	Node0x5e368d0:s0 -> Node0x5e39690;
+	Node0x5e368d0:s1 -> Node0x5e39640;
+	Node0x5e39640 [shape=record,label="{libxml2-py.c:9440:}"];
+	Node0x5e39640 -> Node0x5e36c80;
+	Node0x5e39690 [shape=record,label="{libxml2-py.c:9442:}"];
+	Node0x5e39690 -> Node0x5e36c80;
+	Node0x5e36c80 [shape=record,label="{libxml2-py.c:9445:}"];
+}

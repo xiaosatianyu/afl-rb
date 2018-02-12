@@ -1,0 +1,18 @@
+digraph "CFG for 'attributeDeclSplit' function" {
+	label="CFG for 'attributeDeclSplit' function";
+
+	Node0x5a83100 [shape=record,label="{xmlschemas.c:28319:|{<s0>T|<s1>F}}"];
+	Node0x5a83100 -> Node0x5a87330;
+	Node0x5a83100 -> Node0x5a87260;
+	Node0x5a87330 [shape=record,label="{xmlschemas.c:28324:|{<s0>T|<s1>F}}"];
+	Node0x5a87330 -> Node0x5a872b0;
+	Node0x5a87330 -> Node0x5a87260;
+	Node0x5a872b0 [shape=record,label="{xmlschemas.c:28325:|{<s0>T|<s1>F}}"];
+	Node0x5a872b0 -> Node0x5a871c0;
+	Node0x5a872b0 -> Node0x5a87260;
+	Node0x5a871c0 [shape=record,label="{xmlschemas.c:28326:}"];
+	Node0x5a871c0 -> Node0x5a87210;
+	Node0x5a87260 [shape=record,label="{xmlschemas.c:28329:}"];
+	Node0x5a87260 -> Node0x5a87210;
+	Node0x5a87210 [shape=record,label="{xmlschemas.c:28331:}"];
+}

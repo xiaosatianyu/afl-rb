@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsArrows' function" {
+	label="CFG for 'xmlUCSIsArrows' function";
+
+	Node0x4f539f0 [shape=record,label="{xmlunicode.c:1054:|{<s0>T|<s1>F}}"];
+	Node0x4f539f0:s0 -> Node0x4f53f80;
+	Node0x4f539f0:s1 -> Node0x4f53f30;
+	Node0x4f53f80 [shape=record,label="{xmlunicode.c:1055:}"];
+	Node0x4f53f80 -> Node0x4f53f30;
+	Node0x4f53f30 [shape=record,label="{xmlunicode.c:1055:}"];
+}

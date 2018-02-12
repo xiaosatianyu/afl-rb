@@ -1,0 +1,32 @@
+digraph "CFG for 'htmlDtdDumpOutput' function" {
+	label="CFG for 'htmlDtdDumpOutput' function";
+
+	Node0x55d29e0 [shape=record,label="{HTMLtree.c:654:|{<s0>T|<s1>F}}"];
+	Node0x55d29e0 -> Node0x55d3c50;
+	Node0x55d29e0 -> Node0x55d3ca0;
+	Node0x55d3c50 [shape=record,label="{HTMLtree.c:659:}"];
+	Node0x55d3c50 -> Node0x55d3490;
+	Node0x55d3ca0 [shape=record,label="{HTMLtree.c:662:|{<s0>T|<s1>F}}"];
+	Node0x55d3ca0 -> Node0x55d4a90;
+	Node0x55d3ca0 -> Node0x55d4b30;
+	Node0x55d4a90 [shape=record,label="{HTMLtree.c:665:|{<s0>T|<s1>F}}"];
+	Node0x55d4a90 -> Node0x55d5730;
+	Node0x55d4a90 -> Node0x55d5780;
+	Node0x55d5730 [shape=record,label="{HTMLtree.c:668:}"];
+	Node0x55d5730 -> Node0x55d5780;
+	Node0x55d5780 [shape=record,label="{HTMLtree.c:671:}"];
+	Node0x55d5780 -> Node0x55d4ae0;
+	Node0x55d4b30 [shape=record,label="{HTMLtree.c:671:|{<s0>T|<s1>F}}"];
+	Node0x55d4b30 -> Node0x55d6440;
+	Node0x55d4b30 -> Node0x55d63f0;
+	Node0x55d6440 [shape=record,label="{HTMLtree.c:672:|{<s0>T|<s1>F}}"];
+	Node0x55d6440 -> Node0x55d63a0;
+	Node0x55d6440 -> Node0x55d63f0;
+	Node0x55d63a0 [shape=record,label="{HTMLtree.c:673:}"];
+	Node0x55d63a0 -> Node0x55d63f0;
+	Node0x55d63f0 [shape=record,label="{%65}"];
+	Node0x55d63f0 -> Node0x55d4ae0;
+	Node0x55d4ae0 [shape=record,label="{HTMLtree.c:676:}"];
+	Node0x55d4ae0 -> Node0x55d3490;
+	Node0x55d3490 [shape=record,label="{HTMLtree.c:677:}"];
+}

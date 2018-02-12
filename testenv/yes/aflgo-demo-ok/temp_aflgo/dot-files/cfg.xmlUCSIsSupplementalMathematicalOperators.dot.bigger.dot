@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsSupplementalMathematicalOperators' function" {
+	label="CFG for 'xmlUCSIsSupplementalMathematicalOperators' function";
+
+	Node0x4fd3ad0 [shape=record,label="{xmlunicode.c:2369:|{<s0>T|<s1>F}}"];
+	Node0x4fd3ad0:s0 -> Node0x4fd3390;
+	Node0x4fd3ad0:s1 -> Node0x4fd3d10;
+	Node0x4fd3390 [shape=record,label="{xmlunicode.c:2370:}"];
+	Node0x4fd3390 -> Node0x4fd3d10;
+	Node0x4fd3d10 [shape=record,label="{xmlunicode.c:2370:}"];
+}

@@ -1,0 +1,27 @@
+digraph "CFG for 'xmlDumpXMLCatalog' function" {
+	label="CFG for 'xmlDumpXMLCatalog' function";
+
+	Node0x48a33a0 [shape=record,label="{catalog.c:657:|{<s0>T|<s1>F}}"];
+	Node0x48a33a0:s0 -> Node0x48b9a10;
+	Node0x48a33a0:s1 -> Node0x48b9d40;
+	Node0x48b9a10 [shape=record,label="{catalog.c:670:}"];
+	Node0x48b9a10 -> Node0x48b5a30;
+	Node0x48b9d40 [shape=record,label="{catalog.c:671:|{<s0>T|<s1>F}}"];
+	Node0x48b9d40:s0 -> Node0x48babc0;
+	Node0x48b9d40:s1 -> Node0x48bb320;
+	Node0x48babc0 [shape=record,label="{catalog.c:679:}"];
+	Node0x48babc0 -> Node0x48b5a30;
+	Node0x48bb320 [shape=record,label="{catalog.c:682:|{<s0>T|<s1>F}}"];
+	Node0x48bb320:s0 -> Node0x48bbc00;
+	Node0x48bb320:s1 -> Node0x48bbf40;
+	Node0x48bbc00 [shape=record,label="{catalog.c:684:}"];
+	Node0x48bbc00 -> Node0x48b5a30;
+	Node0x48bbf40 [shape=record,label="{catalog.c:688:|{<s0>T|<s1>F}}"];
+	Node0x48bbf40:s0 -> Node0x461ffc0;
+	Node0x48bbf40:s1 -> Node0x46e3670;
+	Node0x461ffc0 [shape=record,label="{catalog.c:698:}"];
+	Node0x461ffc0 -> Node0x48b5a30;
+	Node0x46e3670 [shape=record,label="{catalog.c:701:}"];
+	Node0x46e3670 -> Node0x48b5a30;
+	Node0x48b5a30 [shape=record,label="{catalog.c:709:}"];
+}

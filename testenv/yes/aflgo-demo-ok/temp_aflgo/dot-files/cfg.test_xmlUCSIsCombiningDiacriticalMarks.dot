@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsCombiningDiacriticalMarks' function" {
+	label="CFG for 'test_xmlUCSIsCombiningDiacriticalMarks' function";
+
+	Node0x68acc80 [shape=record,label="{testapi.c:39523:}"];
+	Node0x68acc80 -> Node0x68b4680;
+	Node0x68b4680 [shape=record,label="{testapi.c:39531:|{<s0>T|<s1>F}}"];
+	Node0x68b4680:s0 -> Node0x68b4960;
+	Node0x68b4680:s1 -> Node0x68b44e0;
+	Node0x68b4960 [shape=record,label="{testapi.c:39532:|{<s0>T|<s1>F}}"];
+	Node0x68b4960:s0 -> Node0x68b57c0;
+	Node0x68b4960:s1 -> Node0x68b5af0;
+	Node0x68b57c0 [shape=record,label="{testapi.c:39542:}"];
+	Node0x68b57c0 -> Node0x68b5af0;
+	Node0x68b5af0 [shape=record,label="{testapi.c:39547:}"];
+	Node0x68b5af0 -> Node0x68b48d0;
+	Node0x68b48d0 [shape=record,label="{testapi.c:39531:}"];
+	Node0x68b48d0 -> Node0x68b4680;
+	Node0x68b44e0 [shape=record,label="{testapi.c:39548:}"];
+}

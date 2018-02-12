@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlTextReaderPrefix' function" {
+	label="CFG for 'test_xmlTextReaderPrefix' function";
+
+	Node0x64293e0 [shape=record,label="{testapi.c:32240:}"];
+	Node0x64293e0 -> Node0x5b9fde0;
+	Node0x5b9fde0 [shape=record,label="{testapi.c:32248:|{<s0>T|<s1>F}}"];
+	Node0x5b9fde0:s0 -> Node0x5ba0040;
+	Node0x5b9fde0:s1 -> Node0x5b9fc80;
+	Node0x5ba0040 [shape=record,label="{testapi.c:32249:|{<s0>T|<s1>F}}"];
+	Node0x5ba0040:s0 -> Node0x5ba0e10;
+	Node0x5ba0040:s1 -> Node0x5ba1140;
+	Node0x5ba0e10 [shape=record,label="{testapi.c:32259:}"];
+	Node0x5ba0e10 -> Node0x5ba1140;
+	Node0x5ba1140 [shape=record,label="{testapi.c:32264:}"];
+	Node0x5ba1140 -> Node0x5b9fff0;
+	Node0x5b9fff0 [shape=record,label="{testapi.c:32248:}"];
+	Node0x5b9fff0 -> Node0x5b9fde0;
+	Node0x5b9fc80 [shape=record,label="{testapi.c:32265:}"];
+}

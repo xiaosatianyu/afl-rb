@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlURIGetAuthority' function" {
+	label="CFG for 'libxml_xmlURIGetAuthority' function";
+
+	Node0x5f9bcf0 [shape=record,label="{libxml2-py.c:11719:|{<s0>T|<s1>F}}"];
+	Node0x5f9bcf0:s0 -> Node0x5f9d690;
+	Node0x5f9bcf0:s1 -> Node0x5f9d640;
+	Node0x5f9d640 [shape=record,label="{libxml2-py.c:11726:}"];
+	Node0x5f9d640 -> Node0x5f9b4f0;
+	Node0x5f9d690 [shape=record,label="{libxml2-py.c:11727:|{<s0>T|<s1>F}}"];
+	Node0x5f9d690:s0 -> Node0x5f9deb0;
+	Node0x5f9d690:s1 -> Node0x5f9df00;
+	Node0x5f9deb0 [shape=record,label="{libxml2-py.c:11727:}"];
+	Node0x5f9deb0 -> Node0x5f9df50;
+	Node0x5f9df00 [shape=record,label="{libxml2-py.c:11727:}"];
+	Node0x5f9df00 -> Node0x5f9df50;
+	Node0x5f9df50 [shape=record,label="{libxml2-py.c:11727:}"];
+	Node0x5f9df50 -> Node0x5f9b4f0;
+	Node0x5f9b4f0 [shape=record,label="{libxml2-py.c:11732:}"];
+}

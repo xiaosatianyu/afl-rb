@@ -1,0 +1,46 @@
+digraph "CFG for 'test_xmlValidNormalizeAttributeValue' function" {
+	label="CFG for 'test_xmlValidNormalizeAttributeValue' function";
+
+	Node0x6141540 [shape=record,label="{testapi.c:26232:}"];
+	Node0x6141540 -> Node0x614b4d0;
+	Node0x614b4d0 [shape=record,label="{testapi.c:26246:|{<s0>T|<s1>F}}"];
+	Node0x614b4d0:s0 -> Node0x614b7b0;
+	Node0x614b4d0:s1 -> Node0x614b330;
+	Node0x614b7b0 [shape=record,label="{testapi.c:26247:}"];
+	Node0x614b7b0 -> Node0x614bba0;
+	Node0x614bba0 [shape=record,label="{testapi.c:26247:|{<s0>T|<s1>F}}"];
+	Node0x614bba0:s0 -> Node0x614be20;
+	Node0x614bba0:s1 -> Node0x614ba80;
+	Node0x614be20 [shape=record,label="{testapi.c:26248:}"];
+	Node0x614be20 -> Node0x614c210;
+	Node0x614c210 [shape=record,label="{testapi.c:26248:|{<s0>T|<s1>F}}"];
+	Node0x614c210:s0 -> Node0x614c490;
+	Node0x614c210:s1 -> Node0x614c0f0;
+	Node0x614c490 [shape=record,label="{testapi.c:26249:}"];
+	Node0x614c490 -> Node0x614c880;
+	Node0x614c880 [shape=record,label="{testapi.c:26249:|{<s0>T|<s1>F}}"];
+	Node0x614c880:s0 -> Node0x614cb00;
+	Node0x614c880:s1 -> Node0x614c760;
+	Node0x614cb00 [shape=record,label="{testapi.c:26250:|{<s0>T|<s1>F}}"];
+	Node0x614cb00:s0 -> Node0x614e180;
+	Node0x614cb00:s1 -> Node0x614e4b0;
+	Node0x614e180 [shape=record,label="{testapi.c:26266:}"];
+	Node0x614e180 -> Node0x614e4b0;
+	Node0x614e4b0 [shape=record,label="{testapi.c:26274:}"];
+	Node0x614e4b0 -> Node0x614ca70;
+	Node0x614ca70 [shape=record,label="{testapi.c:26249:}"];
+	Node0x614ca70 -> Node0x614c880;
+	Node0x614c760 [shape=record,label="{testapi.c:26275:}"];
+	Node0x614c760 -> Node0x614c400;
+	Node0x614c400 [shape=record,label="{testapi.c:26248:}"];
+	Node0x614c400 -> Node0x614c210;
+	Node0x614c0f0 [shape=record,label="{testapi.c:26276:}"];
+	Node0x614c0f0 -> Node0x614bd90;
+	Node0x614bd90 [shape=record,label="{testapi.c:26247:}"];
+	Node0x614bd90 -> Node0x614bba0;
+	Node0x614ba80 [shape=record,label="{testapi.c:26277:}"];
+	Node0x614ba80 -> Node0x614b720;
+	Node0x614b720 [shape=record,label="{testapi.c:26246:}"];
+	Node0x614b720 -> Node0x614b4d0;
+	Node0x614b330 [shape=record,label="{testapi.c:26278:}"];
+}

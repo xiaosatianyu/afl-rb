@@ -1,0 +1,20 @@
+digraph "CFG for 'xmlStrndup' function" {
+	label="CFG for 'xmlStrndup' function";
+
+	Node0x51fc710 [shape=record,label="{xmlstring.c:41:|{<s0>T|<s1>F}}"];
+	Node0x51fc710:s0 -> Node0x533eb80;
+	Node0x51fc710:s1 -> Node0x533ec20;
+	Node0x533ec20 [shape=record,label="{xmlstring.c:44:|{<s0>T|<s1>F}}"];
+	Node0x533ec20:s0 -> Node0x533eb80;
+	Node0x533ec20:s1 -> Node0x533ebd0;
+	Node0x533eb80 [shape=record,label="{xmlstring.c:44:}"];
+	Node0x533eb80 -> Node0x51f7060;
+	Node0x533ebd0 [shape=record,label="{xmlstring.c:45:|{<s0>T|<s1>F}}"];
+	Node0x533ebd0:s0 -> Node0x533fe80;
+	Node0x533ebd0:s1 -> Node0x533fed0;
+	Node0x533fe80 [shape=record,label="{xmlstring.c:47:}"];
+	Node0x533fe80 -> Node0x51f7060;
+	Node0x533fed0 [shape=record,label="{xmlstring.c:50:}"];
+	Node0x533fed0 -> Node0x51f7060;
+	Node0x51f7060 [shape=record,label="{xmlstring.c:53:}"];
+}

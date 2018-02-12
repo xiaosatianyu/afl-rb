@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlRemoveProp' function" {
+	label="CFG for 'test_xmlRemoveProp' function";
+
+	Node0x5f8c640 [shape=record,label="{testapi.c:22984:}"];
+	Node0x5f8c640 -> Node0x5f95680;
+	Node0x5f95680 [shape=record,label="{testapi.c:22991:|{<s0>T|<s1>F}}"];
+	Node0x5f95680:s0 -> Node0x5f95960;
+	Node0x5f95680:s1 -> Node0x5f954e0;
+	Node0x5f95960 [shape=record,label="{testapi.c:22992:|{<s0>T|<s1>F}}"];
+	Node0x5f95960:s0 -> Node0x5f96820;
+	Node0x5f95960:s1 -> Node0x5f97070;
+	Node0x5f96820 [shape=record,label="{testapi.c:23003:}"];
+	Node0x5f96820 -> Node0x5f97070;
+	Node0x5f97070 [shape=record,label="{testapi.c:23008:}"];
+	Node0x5f97070 -> Node0x5f958d0;
+	Node0x5f958d0 [shape=record,label="{testapi.c:22991:}"];
+	Node0x5f958d0 -> Node0x5f95680;
+	Node0x5f954e0 [shape=record,label="{testapi.c:23009:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlSchemaWhiteSpaceReplace' function" {
+	label="CFG for 'test_xmlSchemaWhiteSpaceReplace' function";
+
+	Node0x66eba50 [shape=record,label="{testapi.c:36185:}"];
+	Node0x66eba50 -> Node0x6700c90;
+	Node0x6700c90 [shape=record,label="{testapi.c:36193:|{<s0>T|<s1>F}}"];
+	Node0x6700c90:s0 -> Node0x6700f70;
+	Node0x6700c90:s1 -> Node0x6700af0;
+	Node0x6700f70 [shape=record,label="{testapi.c:36194:|{<s0>T|<s1>F}}"];
+	Node0x6700f70:s0 -> Node0x6701dd0;
+	Node0x6700f70:s1 -> Node0x67025a0;
+	Node0x6701dd0 [shape=record,label="{testapi.c:36204:}"];
+	Node0x6701dd0 -> Node0x67025a0;
+	Node0x67025a0 [shape=record,label="{testapi.c:36209:}"];
+	Node0x67025a0 -> Node0x6700ee0;
+	Node0x6700ee0 [shape=record,label="{testapi.c:36193:}"];
+	Node0x6700ee0 -> Node0x6700c90;
+	Node0x6700af0 [shape=record,label="{testapi.c:36210:}"];
+}

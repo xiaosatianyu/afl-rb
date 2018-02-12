@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlURIUnescapeString' function" {
+	label="CFG for 'libxml_xmlURIUnescapeString' function";
+
+	Node0x5fea730 [shape=record,label="{libxml2-py.c:12038:|{<s0>T|<s1>F}}"];
+	Node0x5fea730:s0 -> Node0x5ff6470;
+	Node0x5fea730:s1 -> Node0x5ff6420;
+	Node0x5ff6420 [shape=record,label="{libxml2-py.c:12046:}"];
+	Node0x5ff6420 -> Node0x5ff50c0;
+	Node0x5ff6470 [shape=record,label="{libxml2-py.c:12048:}"];
+	Node0x5ff6470 -> Node0x5ff50c0;
+	Node0x5ff50c0 [shape=record,label="{libxml2-py.c:12051:}"];
+}

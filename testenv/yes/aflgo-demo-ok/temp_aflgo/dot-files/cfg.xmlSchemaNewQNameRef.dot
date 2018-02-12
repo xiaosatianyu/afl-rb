@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlSchemaNewQNameRef' function" {
+	label="CFG for 'xmlSchemaNewQNameRef' function";
+
+	Node0x52b6ca0 [shape=record,label="{xmlschemas.c:5406:|{<s0>T|<s1>F}}"];
+	Node0x52b6ca0 -> Node0x52be050;
+	Node0x52b6ca0 -> Node0x52be0a0;
+	Node0x52be050 [shape=record,label="{xmlschemas.c:5416:}"];
+	Node0x52be050 -> Node0x52bcd30;
+	Node0x52be0a0 [shape=record,label="{xmlschemas.c:5420:}"];
+	Node0x52be0a0 -> Node0x52bcd30;
+	Node0x52bcd30 [shape=record,label="{xmlschemas.c:5431:}"];
+}

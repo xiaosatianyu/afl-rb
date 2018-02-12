@@ -1,0 +1,17 @@
+digraph "CFG for 'htmlReadMemory' function" {
+	label="CFG for 'htmlReadMemory' function";
+
+	Node0x4547fe0 [shape=record,label="{HTMLparser.c:6808:|{<s0>T|<s1>F}}"];
+	Node0x4547fe0:s0 -> Node0x454b350;
+	Node0x4547fe0:s1 -> Node0x454b750;
+	Node0x454b350 [shape=record,label="{HTMLparser.c:6815:}"];
+	Node0x454b350 -> Node0x45495a0;
+	Node0x454b750 [shape=record,label="{HTMLparser.c:6816:|{<s0>T|<s1>F}}"];
+	Node0x454b750:s0 -> Node0x454ba60;
+	Node0x454b750:s1 -> Node0x454bab0;
+	Node0x454ba60 [shape=record,label="{HTMLparser.c:6818:}"];
+	Node0x454ba60 -> Node0x454bab0;
+	Node0x454bab0 [shape=record,label="{HTMLparser.c:6819:}"];
+	Node0x454bab0 -> Node0x45495a0;
+	Node0x45495a0 [shape=record,label="{HTMLparser.c:6820:}"];
+}

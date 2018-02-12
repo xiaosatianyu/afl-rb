@@ -1,0 +1,15 @@
+digraph "CFG for 'xmlSAX2GetLineNumber' function" {
+	label="CFG for 'xmlSAX2GetLineNumber' function";
+
+	Node0x48e33d0 [shape=record,label="{SAX2.c:272:|{<s0>T|<s1>F}}"];
+	Node0x48e33d0:s0 -> Node0x473b4a0;
+	Node0x48e33d0:s1 -> Node0x473b540;
+	Node0x473b540 [shape=record,label="{SAX2.c:275:|{<s0>T|<s1>F}}"];
+	Node0x473b540:s0 -> Node0x473b4a0;
+	Node0x473b540:s1 -> Node0x473b4f0;
+	Node0x473b4a0 [shape=record,label="{SAX2.c:275:}"];
+	Node0x473b4a0 -> Node0x48e2f50;
+	Node0x473b4f0 [shape=record,label="{SAX2.c:276:}"];
+	Node0x473b4f0 -> Node0x48e2f50;
+	Node0x48e2f50 [shape=record,label="{SAX2.c:277:}"];
+}

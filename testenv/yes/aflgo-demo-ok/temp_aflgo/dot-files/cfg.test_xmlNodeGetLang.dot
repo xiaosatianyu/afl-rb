@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlNodeGetLang' function" {
+	label="CFG for 'test_xmlNodeGetLang' function";
+
+	Node0x5f36e70 [shape=record,label="{testapi.c:22478:}"];
+	Node0x5f36e70 -> Node0x5f584b0;
+	Node0x5f584b0 [shape=record,label="{testapi.c:22485:|{<s0>T|<s1>F}}"];
+	Node0x5f584b0:s0 -> Node0x5f58790;
+	Node0x5f584b0:s1 -> Node0x5f58310;
+	Node0x5f58790 [shape=record,label="{testapi.c:22486:|{<s0>T|<s1>F}}"];
+	Node0x5f58790:s0 -> Node0x5f595e0;
+	Node0x5f58790:s1 -> Node0x5f59db0;
+	Node0x5f595e0 [shape=record,label="{testapi.c:22496:}"];
+	Node0x5f595e0 -> Node0x5f59db0;
+	Node0x5f59db0 [shape=record,label="{testapi.c:22501:}"];
+	Node0x5f59db0 -> Node0x5f58700;
+	Node0x5f58700 [shape=record,label="{testapi.c:22485:}"];
+	Node0x5f58700 -> Node0x5f584b0;
+	Node0x5f58310 [shape=record,label="{testapi.c:22502:}"];
+}

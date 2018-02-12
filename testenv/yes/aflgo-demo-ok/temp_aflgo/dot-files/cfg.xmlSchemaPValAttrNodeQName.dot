@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlSchemaPValAttrNodeQName' function" {
+	label="CFG for 'xmlSchemaPValAttrNodeQName' function";
+
+	Node0x51e2470 [shape=record,label="{xmlschemas.c:5871:}"];
+}

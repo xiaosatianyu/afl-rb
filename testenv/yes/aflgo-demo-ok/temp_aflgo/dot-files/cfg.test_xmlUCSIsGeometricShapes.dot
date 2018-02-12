@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsGeometricShapes' function" {
+	label="CFG for 'test_xmlUCSIsGeometricShapes' function";
+
+	Node0x68de840 [shape=record,label="{testapi.c:40067:}"];
+	Node0x68de840 -> Node0x68ee3b0;
+	Node0x68ee3b0 [shape=record,label="{testapi.c:40075:|{<s0>T|<s1>F}}"];
+	Node0x68ee3b0:s0 -> Node0x68ee690;
+	Node0x68ee3b0:s1 -> Node0x68ee210;
+	Node0x68ee690 [shape=record,label="{testapi.c:40076:|{<s0>T|<s1>F}}"];
+	Node0x68ee690:s0 -> Node0x68ef4e0;
+	Node0x68ee690:s1 -> Node0x68efcb0;
+	Node0x68ef4e0 [shape=record,label="{testapi.c:40086:}"];
+	Node0x68ef4e0 -> Node0x68efcb0;
+	Node0x68efcb0 [shape=record,label="{testapi.c:40091:}"];
+	Node0x68efcb0 -> Node0x68ee600;
+	Node0x68ee600 [shape=record,label="{testapi.c:40075:}"];
+	Node0x68ee600 -> Node0x68ee3b0;
+	Node0x68ee210 [shape=record,label="{testapi.c:40092:}"];
+}

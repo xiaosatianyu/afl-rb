@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlC14NVisibleNsStackShift' function" {
+	label="CFG for 'xmlC14NVisibleNsStackShift' function";
+
+	Node0x5249f40 [shape=record,label="{c14n.c:383:|{<s0>T|<s1>F}}"];
+	Node0x5249f40:s0 -> Node0x524c3d0;
+	Node0x5249f40:s1 -> Node0x524c420;
+	Node0x524c3d0 [shape=record,label="{c14n.c:385:}"];
+	Node0x524c3d0 -> Node0x5244d90;
+	Node0x524c420 [shape=record,label="{c14n.c:388:}"];
+	Node0x524c420 -> Node0x5244d90;
+	Node0x5244d90 [shape=record,label="{c14n.c:390:}"];
+}

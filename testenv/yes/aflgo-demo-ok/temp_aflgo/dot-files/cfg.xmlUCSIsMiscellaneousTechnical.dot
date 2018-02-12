@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsMiscellaneousTechnical' function" {
+	label="CFG for 'xmlUCSIsMiscellaneousTechnical' function";
+
+	Node0x4fb5180 [shape=record,label="{xmlunicode.c:2081:|{<s0>T|<s1>F}}"];
+	Node0x4fb5180 -> Node0x4fb5320;
+	Node0x4fb5180 -> Node0x4fb52d0;
+	Node0x4fb5320 [shape=record,label="{xmlunicode.c:2082:}"];
+	Node0x4fb5320 -> Node0x4fb52d0;
+	Node0x4fb52d0 [shape=record,label="{xmlunicode.c:2082:}"];
+}

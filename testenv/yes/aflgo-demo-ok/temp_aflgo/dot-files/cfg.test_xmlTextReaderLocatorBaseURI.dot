@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlTextReaderLocatorBaseURI' function" {
+	label="CFG for 'test_xmlTextReaderLocatorBaseURI' function";
+
+	Node0x63ec300 [shape=record,label="{testapi.c:31695:}"];
+	Node0x63ec300 -> Node0x63f4400;
+	Node0x63f4400 [shape=record,label="{testapi.c:31703:|{<s0>T|<s1>F}}"];
+	Node0x63f4400:s0 -> Node0x63f46e0;
+	Node0x63f4400:s1 -> Node0x63f4260;
+	Node0x63f46e0 [shape=record,label="{testapi.c:31704:|{<s0>T|<s1>F}}"];
+	Node0x63f46e0:s0 -> Node0x4ec68f0;
+	Node0x63f46e0:s1 -> Node0x63f5330;
+	Node0x4ec68f0 [shape=record,label="{testapi.c:31714:}"];
+	Node0x4ec68f0 -> Node0x63f5330;
+	Node0x63f5330 [shape=record,label="{testapi.c:31719:}"];
+	Node0x63f5330 -> Node0x63f4650;
+	Node0x63f4650 [shape=record,label="{testapi.c:31703:}"];
+	Node0x63f4650 -> Node0x63f4400;
+	Node0x63f4260 [shape=record,label="{testapi.c:31720:}"];
+}

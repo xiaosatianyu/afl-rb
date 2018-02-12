@@ -1,0 +1,36 @@
+digraph "CFG for 'test_xmlTextMerge' function" {
+	label="CFG for 'test_xmlTextMerge' function";
+
+	Node0x60006e0 [shape=record,label="{testapi.c:23900:}"];
+	Node0x60006e0 -> Node0x600e110;
+	Node0x600e110 [shape=record,label="{testapi.c:23909:|{<s0>T|<s1>F}}"];
+	Node0x600e110:s0 -> Node0x600e3f0;
+	Node0x600e110:s1 -> Node0x600df70;
+	Node0x600e3f0 [shape=record,label="{testapi.c:23910:}"];
+	Node0x600e3f0 -> Node0x600e7e0;
+	Node0x600e7e0 [shape=record,label="{testapi.c:23910:|{<s0>T|<s1>F}}"];
+	Node0x600e7e0:s0 -> Node0x600ea60;
+	Node0x600e7e0:s1 -> Node0x600e6c0;
+	Node0x600ea60 [shape=record,label="{testapi.c:23911:|{<s0>T|<s1>F}}"];
+	Node0x600ea60:s0 -> Node0x600fe00;
+	Node0x600ea60:s1 -> Node0x600fe50;
+	Node0x600fe00 [shape=record,label="{testapi.c:23916:|{<s0>T|<s1>F}}"];
+	Node0x600fe00:s0 -> Node0x600fb20;
+	Node0x600fe00:s1 -> Node0x600fe50;
+	Node0x600fb20 [shape=record,label="{testapi.c:23917:}"];
+	Node0x600fb20 -> Node0x600fe50;
+	Node0x600fe50 [shape=record,label="{testapi.c:23919:|{<s0>T|<s1>F}}"];
+	Node0x600fe50:s0 -> Node0x6011010;
+	Node0x600fe50:s1 -> Node0x6011060;
+	Node0x6011010 [shape=record,label="{testapi.c:23926:}"];
+	Node0x6011010 -> Node0x6011060;
+	Node0x6011060 [shape=record,label="{testapi.c:23932:}"];
+	Node0x6011060 -> Node0x600e9d0;
+	Node0x600e9d0 [shape=record,label="{testapi.c:23910:}"];
+	Node0x600e9d0 -> Node0x600e7e0;
+	Node0x600e6c0 [shape=record,label="{testapi.c:23933:}"];
+	Node0x600e6c0 -> Node0x600e360;
+	Node0x600e360 [shape=record,label="{testapi.c:23909:}"];
+	Node0x600e360 -> Node0x600e110;
+	Node0x600df70 [shape=record,label="{testapi.c:23934:}"];
+}

@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlCatalogErrMemory' function" {
+	label="CFG for 'xmlCatalogErrMemory' function";
+
+	Node0x4791420 [shape=record,label="{catalog.c:224:}"];
+}

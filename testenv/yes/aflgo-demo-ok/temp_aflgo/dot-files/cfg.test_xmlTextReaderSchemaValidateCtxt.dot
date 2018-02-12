@@ -1,0 +1,37 @@
+digraph "CFG for 'test_xmlTextReaderSchemaValidateCtxt' function" {
+	label="CFG for 'test_xmlTextReaderSchemaValidateCtxt' function";
+
+	Node0x5b93980 [shape=record,label="{testapi.c:32655:}"];
+	Node0x5b93980 -> Node0x64a2d40;
+	Node0x64a2d40 [shape=record,label="{testapi.c:32667:|{<s0>T|<s1>F}}"];
+	Node0x64a2d40:s0 -> Node0x64a3020;
+	Node0x64a2d40:s1 -> Node0x64a2ba0;
+	Node0x64a3020 [shape=record,label="{testapi.c:32668:}"];
+	Node0x64a3020 -> Node0x64a3410;
+	Node0x64a3410 [shape=record,label="{testapi.c:32668:|{<s0>T|<s1>F}}"];
+	Node0x64a3410:s0 -> Node0x64a3690;
+	Node0x64a3410:s1 -> Node0x64a32f0;
+	Node0x64a3690 [shape=record,label="{testapi.c:32669:}"];
+	Node0x64a3690 -> Node0x64a3a80;
+	Node0x64a3a80 [shape=record,label="{testapi.c:32669:|{<s0>T|<s1>F}}"];
+	Node0x64a3a80:s0 -> Node0x64a3d00;
+	Node0x64a3a80:s1 -> Node0x64a3960;
+	Node0x64a3d00 [shape=record,label="{testapi.c:32670:|{<s0>T|<s1>F}}"];
+	Node0x64a3d00:s0 -> Node0x4793e60;
+	Node0x64a3d00:s1 -> Node0x64a4f20;
+	Node0x4793e60 [shape=record,label="{testapi.c:32684:}"];
+	Node0x4793e60 -> Node0x64a4f20;
+	Node0x64a4f20 [shape=record,label="{testapi.c:32691:}"];
+	Node0x64a4f20 -> Node0x64a3c70;
+	Node0x64a3c70 [shape=record,label="{testapi.c:32669:}"];
+	Node0x64a3c70 -> Node0x64a3a80;
+	Node0x64a3960 [shape=record,label="{testapi.c:32692:}"];
+	Node0x64a3960 -> Node0x64a3600;
+	Node0x64a3600 [shape=record,label="{testapi.c:32668:}"];
+	Node0x64a3600 -> Node0x64a3410;
+	Node0x64a32f0 [shape=record,label="{testapi.c:32693:}"];
+	Node0x64a32f0 -> Node0x64a2f90;
+	Node0x64a2f90 [shape=record,label="{testapi.c:32667:}"];
+	Node0x64a2f90 -> Node0x64a2d40;
+	Node0x64a2ba0 [shape=record,label="{testapi.c:32694:}"];
+}

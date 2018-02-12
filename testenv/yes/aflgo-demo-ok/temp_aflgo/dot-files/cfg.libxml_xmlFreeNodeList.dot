@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlFreeNodeList' function" {
+	label="CFG for 'libxml_xmlFreeNodeList' function";
+
+	Node0x57956e0 [shape=record,label="{libxml2-py.c:2728:|{<s0>T|<s1>F}}"];
+	Node0x57956e0:s0 -> Node0x57967c0;
+	Node0x57956e0:s1 -> Node0x5796770;
+	Node0x5796770 [shape=record,label="{libxml2-py.c:2733:}"];
+	Node0x5796770 -> Node0x5793d50;
+	Node0x57967c0 [shape=record,label="{libxml2-py.c:2734:|{<s0>T|<s1>F}}"];
+	Node0x57967c0:s0 -> Node0x5796fe0;
+	Node0x57967c0:s1 -> Node0x5797030;
+	Node0x5796fe0 [shape=record,label="{libxml2-py.c:2734:}"];
+	Node0x5796fe0 -> Node0x5797080;
+	Node0x5797030 [shape=record,label="{libxml2-py.c:2734:}"];
+	Node0x5797030 -> Node0x5797080;
+	Node0x5797080 [shape=record,label="{libxml2-py.c:2734:}"];
+	Node0x5797080 -> Node0x5793d50;
+	Node0x5793d50 [shape=record,label="{libxml2-py.c:2739:}"];
+}

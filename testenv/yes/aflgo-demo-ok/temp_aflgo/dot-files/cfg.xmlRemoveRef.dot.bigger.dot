@@ -1,0 +1,37 @@
+digraph "CFG for 'xmlRemoveRef' function" {
+	label="CFG for 'xmlRemoveRef' function";
+
+	Node0x3e365b0 [shape=record,label="{valid.c:3055:|{<s0>T|<s1>F}}"];
+	Node0x3e365b0:s0 -> Node0x3cda290;
+	Node0x3e365b0:s1 -> Node0x3cda2e0;
+	Node0x3cda290 [shape=record,label="{valid.c:3061:}"];
+	Node0x3cda290 -> Node0x3e368e0;
+	Node0x3cda2e0 [shape=record,label="{valid.c:3062:|{<s0>T|<s1>F}}"];
+	Node0x3cda2e0:s0 -> Node0x3cda7e0;
+	Node0x3cda2e0:s1 -> Node0x3cda830;
+	Node0x3cda7e0 [shape=record,label="{valid.c:3062:}"];
+	Node0x3cda7e0 -> Node0x3e368e0;
+	Node0x3cda830 [shape=record,label="{valid.c:3064:|{<s0>T|<s1>F}}"];
+	Node0x3cda830:s0 -> Node0x3cdb020;
+	Node0x3cda830:s1 -> Node0x3cdb070;
+	Node0x3cdb020 [shape=record,label="{valid.c:3066:}"];
+	Node0x3cdb020 -> Node0x3e368e0;
+	Node0x3cdb070 [shape=record,label="{valid.c:3068:|{<s0>T|<s1>F}}"];
+	Node0x3cdb070:s0 -> Node0x3e3de10;
+	Node0x3cdb070:s1 -> Node0x3e3de60;
+	Node0x3e3de10 [shape=record,label="{valid.c:3070:}"];
+	Node0x3e3de10 -> Node0x3e368e0;
+	Node0x3e3de60 [shape=record,label="{valid.c:3072:|{<s0>T|<s1>F}}"];
+	Node0x3e3de60:s0 -> Node0x3e3e650;
+	Node0x3e3de60:s1 -> Node0x3e3e6a0;
+	Node0x3e3e650 [shape=record,label="{valid.c:3074:}"];
+	Node0x3e3e650 -> Node0x3e368e0;
+	Node0x3e3e6a0 [shape=record,label="{valid.c:3088:|{<s0>T|<s1>F}}"];
+	Node0x3e3e6a0:s0 -> Node0x3e3fab0;
+	Node0x3e3e6a0:s1 -> Node0x3e3fde0;
+	Node0x3e3fab0 [shape=record,label="{valid.c:3096:}"];
+	Node0x3e3fab0 -> Node0x3e3fde0;
+	Node0x3e3fde0 [shape=record,label="{valid.c:3098:}"];
+	Node0x3e3fde0 -> Node0x3e368e0;
+	Node0x3e368e0 [shape=record,label="{valid.c:3100:}"];
+}

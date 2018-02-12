@@ -1,0 +1,12 @@
+digraph "CFG for '__xmlBufferAllocScheme' function" {
+	label="CFG for '__xmlBufferAllocScheme' function";
+
+	Node0x3764a50 [shape=record,label="{globals.c:794:|{<s0>T|<s1>F}}"];
+	Node0x3764a50 -> Node0x3750470;
+	Node0x3764a50 -> Node0x3764060;
+	Node0x3750470 [shape=record,label="{globals.c:795:}"];
+	Node0x3750470 -> Node0x3750290;
+	Node0x3764060 [shape=record,label="{globals.c:797:}"];
+	Node0x3764060 -> Node0x3750290;
+	Node0x3750290 [shape=record,label="{globals.c:798:}"];
+}

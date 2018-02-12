@@ -1,0 +1,10 @@
+digraph "CFG for 'desret_xmlChar_ptr' function" {
+	label="CFG for 'desret_xmlChar_ptr' function";
+
+	Node0x55c2110 [shape=record,label="{testapi.c:773:|{<s0>T|<s1>F}}"];
+	Node0x55c2110:s0 -> Node0x55c6ce0;
+	Node0x55c2110:s1 -> Node0x55c6d30;
+	Node0x55c6ce0 [shape=record,label="{testapi.c:775:}"];
+	Node0x55c6ce0 -> Node0x55c6d30;
+	Node0x55c6d30 [shape=record,label="{testapi.c:776:}"];
+}

@@ -1,0 +1,12 @@
+xmlschemas.c:24868,110.0
+xmlschemas.c:24883,109.0
+xmlschemas.c:24887,108.0
+xmlschemas.c:24912,107.00000000000001
+xmlschemas.c:24926,106.0
+xmlschemas.c:24927,104.99999999999999
+xmlschemas.c:24950,104.0
+xmlschemas.c:24952,104.0
+xmlschemas.c:24954,103.00000000000001
+xmlschemas.c:24955,102.0
+xmlschemas.c:24957,102.0
+xmlschemas.c:24970,101.0

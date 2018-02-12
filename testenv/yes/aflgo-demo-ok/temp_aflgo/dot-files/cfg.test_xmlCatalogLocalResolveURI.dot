@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlCatalogLocalResolveURI' function" {
+	label="CFG for 'test_xmlCatalogLocalResolveURI' function";
+
+	Node0x55f0790 [shape=record,label="{testapi.c:6121:}"];
+	Node0x55f0790 -> Node0x55fbe50;
+	Node0x55fbe50 [shape=record,label="{testapi.c:6131:|{<s0>T|<s1>F}}"];
+	Node0x55fbe50:s0 -> Node0x55fc130;
+	Node0x55fbe50:s1 -> Node0x55fbcb0;
+	Node0x55fc130 [shape=record,label="{testapi.c:6132:}"];
+	Node0x55fc130 -> Node0x55fc520;
+	Node0x55fc520 [shape=record,label="{testapi.c:6132:|{<s0>T|<s1>F}}"];
+	Node0x55fc520:s0 -> Node0x55fc7a0;
+	Node0x55fc520:s1 -> Node0x55fc400;
+	Node0x55fc7a0 [shape=record,label="{testapi.c:6133:|{<s0>T|<s1>F}}"];
+	Node0x55fc7a0:s0 -> Node0x55fd900;
+	Node0x55fc7a0:s1 -> Node0x55fe2c0;
+	Node0x55fd900 [shape=record,label="{testapi.c:6145:}"];
+	Node0x55fd900 -> Node0x55fe2c0;
+	Node0x55fe2c0 [shape=record,label="{testapi.c:6151:}"];
+	Node0x55fe2c0 -> Node0x55fc710;
+	Node0x55fc710 [shape=record,label="{testapi.c:6132:}"];
+	Node0x55fc710 -> Node0x55fc520;
+	Node0x55fc400 [shape=record,label="{testapi.c:6152:}"];
+	Node0x55fc400 -> Node0x55fc0a0;
+	Node0x55fc0a0 [shape=record,label="{testapi.c:6131:}"];
+	Node0x55fc0a0 -> Node0x55fbe50;
+	Node0x55fbcb0 [shape=record,label="{testapi.c:6153:}"];
+}

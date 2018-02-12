@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlIsIdeographic' function" {
+	label="CFG for 'test_xmlIsIdeographic' function";
+
+	Node0x5647ca0 [shape=record,label="{testapi.c:6835:}"];
+	Node0x5647ca0 -> Node0x564f640;
+	Node0x564f640 [shape=record,label="{testapi.c:6842:|{<s0>T|<s1>F}}"];
+	Node0x564f640:s0 -> Node0x564f920;
+	Node0x564f640:s1 -> Node0x564f4a0;
+	Node0x564f920 [shape=record,label="{testapi.c:6843:|{<s0>T|<s1>F}}"];
+	Node0x564f920:s0 -> Node0x5650770;
+	Node0x564f920:s1 -> Node0x5650f40;
+	Node0x5650770 [shape=record,label="{testapi.c:6853:}"];
+	Node0x5650770 -> Node0x5650f40;
+	Node0x5650f40 [shape=record,label="{testapi.c:6858:}"];
+	Node0x5650f40 -> Node0x564f890;
+	Node0x564f890 [shape=record,label="{testapi.c:6842:}"];
+	Node0x564f890 -> Node0x564f640;
+	Node0x564f4a0 [shape=record,label="{testapi.c:6859:}"];
+}

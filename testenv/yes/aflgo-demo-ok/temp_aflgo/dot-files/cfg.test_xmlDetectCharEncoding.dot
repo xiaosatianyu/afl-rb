@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlDetectCharEncoding' function" {
+	label="CFG for 'test_xmlDetectCharEncoding' function";
+
+	Node0x5789520 [shape=record,label="{testapi.c:8901:}"];
+	Node0x5789520 -> Node0x5796ab0;
+	Node0x5796ab0 [shape=record,label="{testapi.c:8910:|{<s0>T|<s1>F}}"];
+	Node0x5796ab0:s0 -> Node0x5796d90;
+	Node0x5796ab0:s1 -> Node0x5796910;
+	Node0x5796d90 [shape=record,label="{testapi.c:8911:}"];
+	Node0x5796d90 -> Node0x5797180;
+	Node0x5797180 [shape=record,label="{testapi.c:8911:|{<s0>T|<s1>F}}"];
+	Node0x5797180:s0 -> Node0x5797400;
+	Node0x5797180:s1 -> Node0x5797060;
+	Node0x5797400 [shape=record,label="{testapi.c:8912:|{<s0>T|<s1>F}}"];
+	Node0x5797400:s0 -> Node0x5798550;
+	Node0x5797400:s1 -> Node0x5798880;
+	Node0x5798550 [shape=record,label="{testapi.c:8924:}"];
+	Node0x5798550 -> Node0x5798880;
+	Node0x5798880 [shape=record,label="{testapi.c:8930:}"];
+	Node0x5798880 -> Node0x5797370;
+	Node0x5797370 [shape=record,label="{testapi.c:8911:}"];
+	Node0x5797370 -> Node0x5797180;
+	Node0x5797060 [shape=record,label="{testapi.c:8931:}"];
+	Node0x5797060 -> Node0x5796d00;
+	Node0x5796d00 [shape=record,label="{testapi.c:8910:}"];
+	Node0x5796d00 -> Node0x5796ab0;
+	Node0x5796910 [shape=record,label="{testapi.c:8932:}"];
+}

@@ -1,0 +1,27 @@
+digraph "CFG for 'xmlRelaxParserSetFlag' function" {
+	label="CFG for 'xmlRelaxParserSetFlag' function";
+
+	Node0x4c95b90 [shape=record,label="{relaxng.c:1417:|{<s0>T|<s1>F}}"];
+	Node0x4c95b90 -> Node0x4ca04a0;
+	Node0x4c95b90 -> Node0x4ca04f0;
+	Node0x4ca04a0 [shape=record,label="{relaxng.c:1419:}"];
+	Node0x4ca04a0 -> Node0x4c94e90;
+	Node0x4ca04f0 [shape=record,label="{relaxng.c:1420:|{<s0>T|<s1>F}}"];
+	Node0x4ca04f0 -> Node0x4c74d90;
+	Node0x4ca04f0 -> Node0x4c74de0;
+	Node0x4c74d90 [shape=record,label="{relaxng.c:1421:}"];
+	Node0x4c74d90 -> Node0x4c74de0;
+	Node0x4c74de0 [shape=record,label="{relaxng.c:1424:|{<s0>T|<s1>F}}"];
+	Node0x4c74de0 -> Node0x4ca19e0;
+	Node0x4c74de0 -> Node0x4ca1a30;
+	Node0x4ca19e0 [shape=record,label="{relaxng.c:1425:}"];
+	Node0x4ca19e0 -> Node0x4ca1a30;
+	Node0x4ca1a30 [shape=record,label="{relaxng.c:1428:|{<s0>T|<s1>F}}"];
+	Node0x4ca1a30 -> Node0x4ca2410;
+	Node0x4ca1a30 -> Node0x4ca2460;
+	Node0x4ca2410 [shape=record,label="{relaxng.c:1428:}"];
+	Node0x4ca2410 -> Node0x4c94e90;
+	Node0x4ca2460 [shape=record,label="{relaxng.c:1429:}"];
+	Node0x4ca2460 -> Node0x4c94e90;
+	Node0x4c94e90 [shape=record,label="{relaxng.c:1430:}"];
+}

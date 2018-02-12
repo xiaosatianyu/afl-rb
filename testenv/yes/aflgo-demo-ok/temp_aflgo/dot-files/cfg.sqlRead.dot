@@ -1,0 +1,23 @@
+digraph "CFG for 'sqlRead' function" {
+	label="CFG for 'sqlRead' function";
+
+	Node0x4cb3170 [shape=record,label="{io1.c:86:|{<s0>T|<s1>F}}"];
+	Node0x4cb3170:s0 -> Node0x4cb4ff0;
+	Node0x4cb3170:s1 -> Node0x4cb5110;
+	Node0x4cb5110 [shape=record,label="{io1.c:89:|{<s0>T|<s1>F}}"];
+	Node0x4cb5110:s0 -> Node0x4cb4ff0;
+	Node0x4cb5110:s1 -> Node0x4cb5090;
+	Node0x4cb5090 [shape=record,label="{io1.c:89:|{<s0>T|<s1>F}}"];
+	Node0x4cb5090:s0 -> Node0x4cb4ff0;
+	Node0x4cb5090:s1 -> Node0x4cb5040;
+	Node0x4cb4ff0 [shape=record,label="{io1.c:90:}"];
+	Node0x4cb4ff0 -> Node0x4cb3060;
+	Node0x4cb5040 [shape=record,label="{io1.c:92:|{<s0>T|<s1>F}}"];
+	Node0x4cb5040:s0 -> Node0x4cb5a70;
+	Node0x4cb5040:s1 -> Node0x4cb5ac0;
+	Node0x4cb5a70 [shape=record,label="{io1.c:92:}"];
+	Node0x4cb5a70 -> Node0x4cb5ac0;
+	Node0x4cb5ac0 [shape=record,label="{io1.c:93:}"];
+	Node0x4cb5ac0 -> Node0x4cb3060;
+	Node0x4cb3060 [shape=record,label="{io1.c:96:}"];
+}

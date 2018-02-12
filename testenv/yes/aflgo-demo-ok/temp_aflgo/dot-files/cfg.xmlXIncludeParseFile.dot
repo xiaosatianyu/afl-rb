@@ -1,0 +1,47 @@
+digraph "CFG for 'xmlXIncludeParseFile' function" {
+	label="CFG for 'xmlXIncludeParseFile' function";
+
+	Node0x4bdd3a0 [shape=record,label="{xinclude.c:421:|{<s0>T|<s1>F}}"];
+	Node0x4bdd3a0 -> Node0x4c41330;
+	Node0x4bdd3a0 -> Node0x4c41540;
+	Node0x4c41330 [shape=record,label="{xinclude.c:430:}"];
+	Node0x4c41330 -> Node0x4be7e50;
+	Node0x4c41540 [shape=record,label="{xinclude.c:437:|{<s0>T|<s1>F}}"];
+	Node0x4c41540 -> Node0x4c41ee0;
+	Node0x4c41540 -> Node0x4c41e90;
+	Node0x4c41ee0 [shape=record,label="{xinclude.c:443:|{<s0>T|<s1>F}}"];
+	Node0x4c41ee0 -> Node0x4c41e40;
+	Node0x4c41ee0 -> Node0x4c41e90;
+	Node0x4c41e40 [shape=record,label="{xinclude.c:444:|{<s0>T|<s1>F}}"];
+	Node0x4c41e40 -> Node0x4c42810;
+	Node0x4c41e40 -> Node0x4c42860;
+	Node0x4c42810 [shape=record,label="{xinclude.c:445:}"];
+	Node0x4c42810 -> Node0x4c42860;
+	Node0x4c42860 [shape=record,label="{xinclude.c:446:}"];
+	Node0x4c42860 -> Node0x4c41e90;
+	Node0x4c41e90 [shape=record,label="{xinclude.c:450:|{<s0>T|<s1>F}}"];
+	Node0x4c41e90 -> Node0x4ba78a0;
+	Node0x4c41e90 -> Node0x4ba7a00;
+	Node0x4ba78a0 [shape=record,label="{xinclude.c:454:}"];
+	Node0x4ba78a0 -> Node0x4be7e50;
+	Node0x4ba7a00 [shape=record,label="{xinclude.c:458:|{<s0>T|<s1>F}}"];
+	Node0x4ba7a00 -> Node0x4c40bb0;
+	Node0x4ba7a00 -> Node0x4c46890;
+	Node0x4c40bb0 [shape=record,label="{xinclude.c:461:}"];
+	Node0x4c40bb0 -> Node0x4c46890;
+	Node0x4c46890 [shape=record,label="{xinclude.c:463:|{<s0>T|<s1>F}}"];
+	Node0x4c46890 -> Node0x4b3de20;
+	Node0x4c46890 -> Node0x4c47f20;
+	Node0x4b3de20 [shape=record,label="{xinclude.c:468:}"];
+	Node0x4b3de20 -> Node0x4c47710;
+	Node0x4c47f20 [shape=record,label="{xinclude.c:471:|{<s0>T|<s1>F}}"];
+	Node0x4c47f20 -> Node0x4c484a0;
+	Node0x4c47f20 -> Node0x4c484f0;
+	Node0x4c484a0 [shape=record,label="{xinclude.c:473:}"];
+	Node0x4c484a0 -> Node0x4c484f0;
+	Node0x4c484f0 [shape=record,label="{xinclude.c:474:}"];
+	Node0x4c484f0 -> Node0x4c47710;
+	Node0x4c47710 [shape=record,label="{xinclude.c:476:}"];
+	Node0x4c47710 -> Node0x4be7e50;
+	Node0x4be7e50 [shape=record,label="{xinclude.c:479:}"];
+}

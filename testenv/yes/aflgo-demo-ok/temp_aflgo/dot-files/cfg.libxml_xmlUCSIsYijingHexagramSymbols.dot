@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsYijingHexagramSymbols' function" {
+	label="CFG for 'libxml_xmlUCSIsYijingHexagramSymbols' function";
+
+	Node0x5f933f0 [shape=record,label="{libxml2-py.c:11675:|{<s0>T|<s1>F}}"];
+	Node0x5f933f0:s0 -> Node0x5f962a0;
+	Node0x5f933f0:s1 -> Node0x5f96250;
+	Node0x5f96250 [shape=record,label="{libxml2-py.c:11681:}"];
+	Node0x5f96250 -> Node0x5f94eb0;
+	Node0x5f962a0 [shape=record,label="{libxml2-py.c:11683:}"];
+	Node0x5f962a0 -> Node0x5f94eb0;
+	Node0x5f94eb0 [shape=record,label="{libxml2-py.c:11686:}"];
+}

@@ -1,0 +1,5 @@
+digraph "CFG for 'test_xmlInitCharEncodingHandlers' function" {
+	label="CFG for 'test_xmlInitCharEncodingHandlers' function";
+
+	Node0x579b800 [shape=record,label="{testapi.c:9024:}"];
+}

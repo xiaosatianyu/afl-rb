@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsSupplementalArrowsB' function" {
+	label="CFG for 'test_xmlUCSIsSupplementalArrowsB' function";
+
+	Node0x69c6e40 [shape=record,label="{testapi.c:42243:}"];
+	Node0x69c6e40 -> Node0x69d26a0;
+	Node0x69d26a0 [shape=record,label="{testapi.c:42251:|{<s0>T|<s1>F}}"];
+	Node0x69d26a0:s0 -> Node0x69d2980;
+	Node0x69d26a0:s1 -> Node0x69d2500;
+	Node0x69d2980 [shape=record,label="{testapi.c:42252:|{<s0>T|<s1>F}}"];
+	Node0x69d2980:s0 -> Node0x69d37e0;
+	Node0x69d2980:s1 -> Node0x69d3fb0;
+	Node0x69d37e0 [shape=record,label="{testapi.c:42262:}"];
+	Node0x69d37e0 -> Node0x69d3fb0;
+	Node0x69d3fb0 [shape=record,label="{testapi.c:42267:}"];
+	Node0x69d3fb0 -> Node0x69d28f0;
+	Node0x69d28f0 [shape=record,label="{testapi.c:42251:}"];
+	Node0x69d28f0 -> Node0x69d26a0;
+	Node0x69d2500 [shape=record,label="{testapi.c:42268:}"];
+}

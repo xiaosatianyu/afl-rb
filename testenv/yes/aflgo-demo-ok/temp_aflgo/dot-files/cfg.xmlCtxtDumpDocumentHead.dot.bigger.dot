@@ -1,0 +1,45 @@
+digraph "CFG for 'xmlCtxtDumpDocumentHead' function" {
+	label="CFG for 'xmlCtxtDumpDocumentHead' function";
+
+	Node0x48748d0 [shape=record,label="{debugXML.c:1174:|{<s0>T|<s1>F}}"];
+	Node0x48748d0:s0 -> Node0x4873f80;
+	Node0x48748d0:s1 -> Node0x4873fd0;
+	Node0x4873f80 [shape=record,label="{debugXML.c:1176:}"];
+	Node0x4873f80 -> Node0x4a02020;
+	Node0x4873fd0 [shape=record,label="{debugXML.c:1177:|{<s0>T|<s1>F}}"];
+	Node0x4873fd0:s0 -> Node0x49fd1e0;
+	Node0x4873fd0:s1 -> Node0x49fd190;
+	Node0x49fd190 [shape=record,label="{debugXML.c:1179:|{<s0>T|<s1>F}}"];
+	Node0x49fd190:s0 -> Node0x49fd610;
+	Node0x49fd190:s1 -> Node0x49fd660;
+	Node0x49fd610 [shape=record,label="{debugXML.c:1180:}"];
+	Node0x49fd610 -> Node0x49fd660;
+	Node0x49fd660 [shape=record,label="{debugXML.c:1184:|{<s0>T|<s1>F}}"];
+	Node0x49fd660:s0 -> Node0x49fe620;
+	Node0x49fd660:s1 -> Node0x49fe670;
+	Node0x49fe620 [shape=record,label="{debugXML.c:1185:}"];
+	Node0x49fe620 -> Node0x49fe670;
+	Node0x49fe670 [shape=record,label="{debugXML.c:1189:|{<s0>T|<s1>F}}"];
+	Node0x49fe670:s0 -> Node0x49ff630;
+	Node0x49fe670:s1 -> Node0x49ff680;
+	Node0x49ff630 [shape=record,label="{debugXML.c:1190:}"];
+	Node0x49ff630 -> Node0x49ff680;
+	Node0x49ff680 [shape=record,label="{debugXML.c:1194:|{<s0>T|<s1>F}}"];
+	Node0x49ff680:s0 -> Node0x4a00640;
+	Node0x49ff680:s1 -> Node0x4a00690;
+	Node0x4a00640 [shape=record,label="{debugXML.c:1195:}"];
+	Node0x4a00640 -> Node0x4a00690;
+	Node0x4a00690 [shape=record,label="{debugXML.c:1199:|{<s0>T|<s1>F}}"];
+	Node0x4a00690:s0 -> Node0x4a01620;
+	Node0x4a00690:s1 -> Node0x4a01670;
+	Node0x4a01620 [shape=record,label="{debugXML.c:1200:}"];
+	Node0x4a01620 -> Node0x4a01670;
+	Node0x4a01670 [shape=record,label="{debugXML.c:1201:}"];
+	Node0x4a01670 -> Node0x49fd1e0;
+	Node0x49fd1e0 [shape=record,label="{debugXML.c:1202:|{<s0>T|<s1>F}}"];
+	Node0x49fd1e0:s0 -> Node0x4a01fd0;
+	Node0x49fd1e0:s1 -> Node0x4a02020;
+	Node0x4a01fd0 [shape=record,label="{debugXML.c:1203:}"];
+	Node0x4a01fd0 -> Node0x4a02020;
+	Node0x4a02020 [shape=record,label="{debugXML.c:1204:}"];
+}

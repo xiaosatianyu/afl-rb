@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlXPathRegisteredNsCleanup' function" {
+	label="CFG for 'libxml_xmlXPathRegisteredNsCleanup' function";
+
+	Node0x61fdba0 [shape=record,label="{libxml2-py.c:14271:|{<s0>T|<s1>F}}"];
+	Node0x61fdba0:s0 -> Node0x61fec80;
+	Node0x61fdba0:s1 -> Node0x61fec30;
+	Node0x61fec30 [shape=record,label="{libxml2-py.c:14276:}"];
+	Node0x61fec30 -> Node0x61fc290;
+	Node0x61fec80 [shape=record,label="{libxml2-py.c:14277:|{<s0>T|<s1>F}}"];
+	Node0x61fec80:s0 -> Node0x61ff4b0;
+	Node0x61fec80:s1 -> Node0x61ff500;
+	Node0x61ff4b0 [shape=record,label="{libxml2-py.c:14277:}"];
+	Node0x61ff4b0 -> Node0x61ff550;
+	Node0x61ff500 [shape=record,label="{libxml2-py.c:14277:}"];
+	Node0x61ff500 -> Node0x61ff550;
+	Node0x61ff550 [shape=record,label="{libxml2-py.c:14277:}"];
+	Node0x61ff550 -> Node0x61fc290;
+	Node0x61fc290 [shape=record,label="{libxml2-py.c:14282:}"];
+}

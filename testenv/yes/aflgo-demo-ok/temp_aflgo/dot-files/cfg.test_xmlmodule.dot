@@ -1,0 +1,15 @@
+digraph "CFG for 'test_xmlmodule' function" {
+	label="CFG for 'test_xmlmodule' function";
+
+	Node0x6304010 [shape=record,label="{testapi.c:29984:|{<s0>T|<s1>F}}"];
+	Node0x6304010:s0 -> Node0x6303d30;
+	Node0x6304010:s1 -> Node0x6303d80;
+	Node0x6303d30 [shape=record,label="{testapi.c:29986:}"];
+	Node0x6303d30 -> Node0x6303d80;
+	Node0x6303d80 [shape=record,label="{testapi.c:29987:|{<s0>T|<s1>F}}"];
+	Node0x6303d80:s0 -> Node0x6304dd0;
+	Node0x6303d80:s1 -> Node0x6305100;
+	Node0x6304dd0 [shape=record,label="{testapi.c:29992:}"];
+	Node0x6304dd0 -> Node0x6305100;
+	Node0x6305100 [shape=record,label="{testapi.c:29993:}"];
+}

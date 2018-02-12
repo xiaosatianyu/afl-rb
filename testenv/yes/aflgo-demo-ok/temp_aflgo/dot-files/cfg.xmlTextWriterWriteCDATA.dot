@@ -1,0 +1,27 @@
+digraph "CFG for 'xmlTextWriterWriteCDATA' function" {
+	label="CFG for 'xmlTextWriterWriteCDATA' function";
+
+	Node0x40fdd60 [shape=record,label="{xmlwriter.c:2799:|{<s0>T|<s1>F}}"];
+	Node0x40fdd60:s0 -> Node0x40ff310;
+	Node0x40fdd60:s1 -> Node0x40ff360;
+	Node0x40ff310 [shape=record,label="{xmlwriter.c:2807:}"];
+	Node0x40ff310 -> Node0x40fdaa0;
+	Node0x40ff360 [shape=record,label="{xmlwriter.c:2808:|{<s0>T|<s1>F}}"];
+	Node0x40ff360:s0 -> Node0x40ffa70;
+	Node0x40ff360:s1 -> Node0x40ffac0;
+	Node0x40ffa70 [shape=record,label="{xmlwriter.c:2810:|{<s0>T|<s1>F}}"];
+	Node0x40ffa70:s0 -> Node0x41000f0;
+	Node0x40ffa70:s1 -> Node0x4100140;
+	Node0x41000f0 [shape=record,label="{xmlwriter.c:2812:}"];
+	Node0x41000f0 -> Node0x40fdaa0;
+	Node0x4100140 [shape=record,label="{xmlwriter.c:2813:}"];
+	Node0x4100140 -> Node0x40ffac0;
+	Node0x40ffac0 [shape=record,label="{xmlwriter.c:2815:|{<s0>T|<s1>F}}"];
+	Node0x40ffac0:s0 -> Node0x4100b70;
+	Node0x40ffac0:s1 -> Node0x4100bc0;
+	Node0x4100b70 [shape=record,label="{xmlwriter.c:2817:}"];
+	Node0x4100b70 -> Node0x40fdaa0;
+	Node0x4100bc0 [shape=record,label="{xmlwriter.c:2818:}"];
+	Node0x4100bc0 -> Node0x40fdaa0;
+	Node0x40fdaa0 [shape=record,label="{xmlwriter.c:2821:}"];
+}

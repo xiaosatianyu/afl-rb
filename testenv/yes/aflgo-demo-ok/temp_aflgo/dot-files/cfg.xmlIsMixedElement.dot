@@ -1,0 +1,41 @@
+digraph "CFG for 'xmlIsMixedElement' function" {
+	label="CFG for 'xmlIsMixedElement' function";
+
+	Node0x3e5f5d0 [shape=record,label="{valid.c:3384:|{<s0>T|<s1>F}}"];
+	Node0x3e5f5d0 -> Node0x3e65ba0;
+	Node0x3e5f5d0 -> Node0x3e65c40;
+	Node0x3e65c40 [shape=record,label="{valid.c:3387:|{<s0>T|<s1>F}}"];
+	Node0x3e65c40 -> Node0x3e65ba0;
+	Node0x3e65c40 -> Node0x3e65bf0;
+	Node0x3e65ba0 [shape=record,label="{valid.c:3387:}"];
+	Node0x3e65ba0 -> Node0x3e650e0;
+	Node0x3e65bf0 [shape=record,label="{valid.c:3389:|{<s0>T|<s1>F}}"];
+	Node0x3e65bf0 -> Node0x3e669a0;
+	Node0x3e65bf0 -> Node0x3e66950;
+	Node0x3e669a0 [shape=record,label="{valid.c:3390:|{<s0>T|<s1>F}}"];
+	Node0x3e669a0 -> Node0x3e66900;
+	Node0x3e669a0 -> Node0x3e66950;
+	Node0x3e66900 [shape=record,label="{valid.c:3391:}"];
+	Node0x3e66900 -> Node0x3e66950;
+	Node0x3e66950 [shape=record,label="{valid.c:3392:|{<s0>T|<s1>F}}"];
+	Node0x3e66950 -> Node0x3e674b0;
+	Node0x3e66950 -> Node0x3e67500;
+	Node0x3e674b0 [shape=record,label="{valid.c:3392:}"];
+	Node0x3e674b0 -> Node0x3e650e0;
+	Node0x3e67500 [shape=record,label="{valid.c:3393:|{<s0>def|<s1>0|<s2>4|<s3>1|<s4>2|<s5>3}}"];
+	Node0x3e67500 -> Node0x3e67950;
+	Node0x3e67500 -> Node0x3e67ea0;
+	Node0x3e67500 -> Node0x3e68090;
+	Node0x3e67500 -> Node0x3e68250;
+	Node0x3e67500 -> Node0x3e68250;
+	Node0x3e67500 -> Node0x3e68250;
+	Node0x3e67ea0 [shape=record,label="{valid.c:3395:}"];
+	Node0x3e67ea0 -> Node0x3e650e0;
+	Node0x3e68090 [shape=record,label="{valid.c:3397:}"];
+	Node0x3e68090 -> Node0x3e650e0;
+	Node0x3e68250 [shape=record,label="{valid.c:3405:}"];
+	Node0x3e68250 -> Node0x3e650e0;
+	Node0x3e67950 [shape=record,label="{valid.c:3407:}"];
+	Node0x3e67950 -> Node0x3e650e0;
+	Node0x3e650e0 [shape=record,label="{valid.c:3408:}"];
+}

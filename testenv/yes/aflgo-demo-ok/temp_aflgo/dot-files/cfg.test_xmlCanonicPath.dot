@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlCanonicPath' function" {
+	label="CFG for 'test_xmlCanonicPath' function";
+
+	Node0x601e3e0 [shape=record,label="{testapi.c:24440:}"];
+	Node0x601e3e0 -> Node0x603e6f0;
+	Node0x603e6f0 [shape=record,label="{testapi.c:24447:|{<s0>T|<s1>F}}"];
+	Node0x603e6f0:s0 -> Node0x603e9d0;
+	Node0x603e6f0:s1 -> Node0x603e550;
+	Node0x603e9d0 [shape=record,label="{testapi.c:24448:|{<s0>T|<s1>F}}"];
+	Node0x603e9d0:s0 -> Node0x603f820;
+	Node0x603e9d0:s1 -> Node0x603fff0;
+	Node0x603f820 [shape=record,label="{testapi.c:24458:}"];
+	Node0x603f820 -> Node0x603fff0;
+	Node0x603fff0 [shape=record,label="{testapi.c:24463:}"];
+	Node0x603fff0 -> Node0x603e940;
+	Node0x603e940 [shape=record,label="{testapi.c:24447:}"];
+	Node0x603e940 -> Node0x603e6f0;
+	Node0x603e550 [shape=record,label="{testapi.c:24464:}"];
+}

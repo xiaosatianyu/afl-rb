@@ -1,0 +1,22 @@
+digraph "CFG for 'gen_xmlCatalogPrefer' function" {
+	label="CFG for 'gen_xmlCatalogPrefer' function";
+
+	Node0x55f4a80 [shape=record,label="{testapi.c:1070:|{<s0>T|<s1>F}}"];
+	Node0x55f4a80:s0 -> Node0x5610da0;
+	Node0x55f4a80:s1 -> Node0x56121b0;
+	Node0x5610da0 [shape=record,label="{testapi.c:1071:}"];
+	Node0x5610da0 -> Node0x560d5d0;
+	Node0x56121b0 [shape=record,label="{testapi.c:1072:|{<s0>T|<s1>F}}"];
+	Node0x56121b0:s0 -> Node0x5615210;
+	Node0x56121b0:s1 -> Node0x5615260;
+	Node0x5615210 [shape=record,label="{testapi.c:1072:}"];
+	Node0x5615210 -> Node0x560d5d0;
+	Node0x5615260 [shape=record,label="{testapi.c:1073:|{<s0>T|<s1>F}}"];
+	Node0x5615260:s0 -> Node0x56156f0;
+	Node0x5615260:s1 -> Node0x5615740;
+	Node0x56156f0 [shape=record,label="{testapi.c:1073:}"];
+	Node0x56156f0 -> Node0x560d5d0;
+	Node0x5615740 [shape=record,label="{testapi.c:1074:}"];
+	Node0x5615740 -> Node0x560d5d0;
+	Node0x560d5d0 [shape=record,label="{testapi.c:1075:}"];
+}

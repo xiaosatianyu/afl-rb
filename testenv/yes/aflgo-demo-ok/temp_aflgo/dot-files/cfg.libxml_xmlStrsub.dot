@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlStrsub' function" {
+	label="CFG for 'libxml_xmlStrsub' function";
+
+	Node0x5c7f300 [shape=record,label="{libxml2-py.c:7682:|{<s0>T|<s1>F}}"];
+	Node0x5c7f300:s0 -> Node0x5c82a70;
+	Node0x5c7f300:s1 -> Node0x5c82a20;
+	Node0x5c82a20 [shape=record,label="{libxml2-py.c:7690:}"];
+	Node0x5c82a20 -> Node0x5c80c90;
+	Node0x5c82a70 [shape=record,label="{libxml2-py.c:7692:}"];
+	Node0x5c82a70 -> Node0x5c80c90;
+	Node0x5c80c90 [shape=record,label="{libxml2-py.c:7695:}"];
+}

@@ -1,0 +1,36 @@
+digraph "CFG for 'xmlRelaxNGRegisterTypeLibrary' function" {
+	label="CFG for 'xmlRelaxNGRegisterTypeLibrary' function";
+
+	Node0x4f2ae40 [shape=record,label="{relaxng.c:2752:|{<s0>T|<s1>F}}"];
+	Node0x4f2ae40 -> Node0x4f31e30;
+	Node0x4f2ae40 -> Node0x4f31fd0;
+	Node0x4f31fd0 [shape=record,label="{relaxng.c:2762:|{<s0>T|<s1>F}}"];
+	Node0x4f31fd0 -> Node0x4f31e30;
+	Node0x4f31fd0 -> Node0x4f31f50;
+	Node0x4f31f50 [shape=record,label="{relaxng.c:2763:|{<s0>T|<s1>F}}"];
+	Node0x4f31f50 -> Node0x4f31e30;
+	Node0x4f31f50 -> Node0x4f31ed0;
+	Node0x4f31ed0 [shape=record,label="{relaxng.c:2763:|{<s0>T|<s1>F}}"];
+	Node0x4f31ed0 -> Node0x4f31e30;
+	Node0x4f31ed0 -> Node0x4f31e80;
+	Node0x4f31e30 [shape=record,label="{relaxng.c:2764:}"];
+	Node0x4f31e30 -> Node0x4f2f600;
+	Node0x4f31e80 [shape=record,label="{relaxng.c:2765:|{<s0>T|<s1>F}}"];
+	Node0x4f31e80 -> Node0x4f32bc0;
+	Node0x4f31e80 -> Node0x4f32c10;
+	Node0x4f32bc0 [shape=record,label="{relaxng.c:2766:}"];
+	Node0x4f32bc0 -> Node0x4f2f600;
+	Node0x4f32c10 [shape=record,label="{relaxng.c:2773:|{<s0>T|<s1>F}}"];
+	Node0x4f32c10 -> Node0x4f341d0;
+	Node0x4f32c10 -> Node0x4f34220;
+	Node0x4f341d0 [shape=record,label="{relaxng.c:2775:}"];
+	Node0x4f341d0 -> Node0x4f2f600;
+	Node0x4f34220 [shape=record,label="{relaxng.c:2778:|{<s0>T|<s1>F}}"];
+	Node0x4f34220 -> Node0x4f36bf0;
+	Node0x4f34220 -> Node0x4f370d0;
+	Node0x4f36bf0 [shape=record,label="{relaxng.c:2788:}"];
+	Node0x4f36bf0 -> Node0x4f2f600;
+	Node0x4f370d0 [shape=record,label="{relaxng.c:2794:}"];
+	Node0x4f370d0 -> Node0x4f2f600;
+	Node0x4f2f600 [shape=record,label="{relaxng.c:2795:}"];
+}

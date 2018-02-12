@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlRegisterHTTPPostCallbacks' function" {
+	label="CFG for 'xmlRegisterHTTPPostCallbacks' function";
+
+	Node0x49048f0 [shape=record,label="{xmlIO.c:2404:|{<s0>T|<s1>F}}"];
+	Node0x49048f0 -> Node0x4902390;
+	Node0x49048f0 -> Node0x4816c10;
+	Node0x4902390 [shape=record,label="{xmlIO.c:2405:}"];
+	Node0x4902390 -> Node0x4816c10;
+	Node0x4816c10 [shape=record,label="{xmlIO.c:2407:}"];
+}

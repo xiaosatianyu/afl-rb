@@ -1,0 +1,12 @@
+digraph "CFG for 'example1Func' function" {
+	label="CFG for 'example1Func' function";
+
+	Node0x4957da0 [shape=record,label="{parse1.c:23:|{<s0>T|<s1>F}}"];
+	Node0x4957da0:s0 -> Node0x4961d60;
+	Node0x4957da0:s1 -> Node0x4961db0;
+	Node0x4961d60 [shape=record,label="{parse1.c:28:}"];
+	Node0x4961d60 -> Node0x49576b0;
+	Node0x4961db0 [shape=record,label="{parse1.c:31:}"];
+	Node0x4961db0 -> Node0x49576b0;
+	Node0x49576b0 [shape=record,label="{parse1.c:32:}"];
+}

@@ -1,0 +1,10 @@
+digraph "CFG for 'globalNamespace' function" {
+	label="CFG for 'globalNamespace' function";
+
+	Node0x4dfc090 [shape=record,label="{legacy.c:1233:|{<s0>T|<s1>F}}"];
+	Node0x4dfc090:s0 -> Node0x4dfbf90;
+	Node0x4dfc090:s1 -> Node0x4dfbfe0;
+	Node0x4dfbf90 [shape=record,label="{legacy.c:1237:}"];
+	Node0x4dfbf90 -> Node0x4dfbfe0;
+	Node0x4dfbfe0 [shape=record,label="{legacy.c:1237:}"];
+}

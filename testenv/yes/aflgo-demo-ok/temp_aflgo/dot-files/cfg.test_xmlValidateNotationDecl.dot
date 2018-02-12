@@ -1,0 +1,37 @@
+digraph "CFG for 'test_xmlValidateNotationDecl' function" {
+	label="CFG for 'test_xmlValidateNotationDecl' function";
+
+	Node0x6182440 [shape=record,label="{testapi.c:26779:}"];
+	Node0x6182440 -> Node0x618e300;
+	Node0x618e300 [shape=record,label="{testapi.c:26791:|{<s0>T|<s1>F}}"];
+	Node0x618e300:s0 -> Node0x618e5e0;
+	Node0x618e300:s1 -> Node0x618e160;
+	Node0x618e5e0 [shape=record,label="{testapi.c:26792:}"];
+	Node0x618e5e0 -> Node0x618e9d0;
+	Node0x618e9d0 [shape=record,label="{testapi.c:26792:|{<s0>T|<s1>F}}"];
+	Node0x618e9d0:s0 -> Node0x618ec50;
+	Node0x618e9d0:s1 -> Node0x618e8b0;
+	Node0x618ec50 [shape=record,label="{testapi.c:26793:}"];
+	Node0x618ec50 -> Node0x618f040;
+	Node0x618f040 [shape=record,label="{testapi.c:26793:|{<s0>T|<s1>F}}"];
+	Node0x618f040:s0 -> Node0x618f2c0;
+	Node0x618f040:s1 -> Node0x618ef20;
+	Node0x618f2c0 [shape=record,label="{testapi.c:26794:|{<s0>T|<s1>F}}"];
+	Node0x618f2c0:s0 -> Node0x61906a0;
+	Node0x618f2c0:s1 -> Node0x61909d0;
+	Node0x61906a0 [shape=record,label="{testapi.c:26808:}"];
+	Node0x61906a0 -> Node0x61909d0;
+	Node0x61909d0 [shape=record,label="{testapi.c:26815:}"];
+	Node0x61909d0 -> Node0x618f230;
+	Node0x618f230 [shape=record,label="{testapi.c:26793:}"];
+	Node0x618f230 -> Node0x618f040;
+	Node0x618ef20 [shape=record,label="{testapi.c:26816:}"];
+	Node0x618ef20 -> Node0x618ebc0;
+	Node0x618ebc0 [shape=record,label="{testapi.c:26792:}"];
+	Node0x618ebc0 -> Node0x618e9d0;
+	Node0x618e8b0 [shape=record,label="{testapi.c:26817:}"];
+	Node0x618e8b0 -> Node0x618e550;
+	Node0x618e550 [shape=record,label="{testapi.c:26791:}"];
+	Node0x618e550 -> Node0x618e300;
+	Node0x618e160 [shape=record,label="{testapi.c:26818:}"];
+}

@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsOldItalic' function" {
+	label="CFG for 'xmlUCSIsOldItalic' function";
+
+	Node0x4fba280 [shape=record,label="{xmlunicode.c:2159:|{<s0>T|<s1>F}}"];
+	Node0x4fba280 -> Node0x4f7e5b0;
+	Node0x4fba280 -> Node0x4f7e560;
+	Node0x4f7e5b0 [shape=record,label="{xmlunicode.c:2160:}"];
+	Node0x4f7e5b0 -> Node0x4f7e560;
+	Node0x4f7e560 [shape=record,label="{xmlunicode.c:2160:}"];
+}

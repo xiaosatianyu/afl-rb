@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlGetPredefinedEntity' function" {
+	label="CFG for 'test_xmlGetPredefinedEntity' function";
+
+	Node0x554ef90 [shape=record,label="{testapi.c:9622:}"];
+	Node0x554ef90 -> Node0x5554d70;
+	Node0x5554d70 [shape=record,label="{testapi.c:9629:|{<s0>T|<s1>F}}"];
+	Node0x5554d70:s0 -> Node0x5554fd0;
+	Node0x5554d70:s1 -> Node0x5554c90;
+	Node0x5554fd0 [shape=record,label="{testapi.c:9630:|{<s0>T|<s1>F}}"];
+	Node0x5554fd0:s0 -> Node0x5556e60;
+	Node0x5554fd0:s1 -> Node0x5557630;
+	Node0x5556e60 [shape=record,label="{testapi.c:9640:}"];
+	Node0x5556e60 -> Node0x5557630;
+	Node0x5557630 [shape=record,label="{testapi.c:9645:}"];
+	Node0x5557630 -> Node0x5554f80;
+	Node0x5554f80 [shape=record,label="{testapi.c:9629:}"];
+	Node0x5554f80 -> Node0x5554d70;
+	Node0x5554c90 [shape=record,label="{testapi.c:9646:}"];
+}

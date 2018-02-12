@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlCatalogResolveURI' function" {
+	label="CFG for 'test_xmlCatalogResolveURI' function";
+
+	Node0x56063c0 [shape=record,label="{testapi.c:6286:}"];
+	Node0x56063c0 -> Node0x560ddb0;
+	Node0x560ddb0 [shape=record,label="{testapi.c:6294:|{<s0>T|<s1>F}}"];
+	Node0x560ddb0:s0 -> Node0x560e090;
+	Node0x560ddb0:s1 -> Node0x560dc10;
+	Node0x560e090 [shape=record,label="{testapi.c:6295:|{<s0>T|<s1>F}}"];
+	Node0x560e090:s0 -> Node0x560eee0;
+	Node0x560e090:s1 -> Node0x560f6b0;
+	Node0x560eee0 [shape=record,label="{testapi.c:6305:}"];
+	Node0x560eee0 -> Node0x560f6b0;
+	Node0x560f6b0 [shape=record,label="{testapi.c:6310:}"];
+	Node0x560f6b0 -> Node0x560e000;
+	Node0x560e000 [shape=record,label="{testapi.c:6294:}"];
+	Node0x560e000 -> Node0x560ddb0;
+	Node0x560dc10 [shape=record,label="{testapi.c:6311:}"];
+}

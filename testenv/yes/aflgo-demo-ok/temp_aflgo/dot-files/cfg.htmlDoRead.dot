@@ -1,0 +1,47 @@
+digraph "CFG for 'htmlDoRead' function" {
+	label="CFG for 'htmlDoRead' function";
+
+	Node0x48df740 [shape=record,label="{HTMLparser.c:6713:|{<s0>T|<s1>F}}"];
+	Node0x48df740 -> Node0x45bc8f0;
+	Node0x48df740 -> Node0x45bc940;
+	Node0x45bc8f0 [shape=record,label="{HTMLparser.c:6721:|{<s0>T|<s1>F}}"];
+	Node0x45bc8f0 -> Node0x45bd1a0;
+	Node0x45bc8f0 -> Node0x45bd1f0;
+	Node0x45bd1a0 [shape=record,label="{HTMLparser.c:6725:|{<s0>T|<s1>F}}"];
+	Node0x45bd1a0 -> Node0x45bd7b0;
+	Node0x45bd1a0 -> Node0x45bd800;
+	Node0x45bd7b0 [shape=record,label="{HTMLparser.c:6727:}"];
+	Node0x45bd7b0 -> Node0x45bd800;
+	Node0x45bd800 [shape=record,label="{HTMLparser.c:6728:}"];
+	Node0x45bd800 -> Node0x45bd1f0;
+	Node0x45bd1f0 [shape=record,label="{HTMLparser.c:6730:}"];
+	Node0x45bd1f0 -> Node0x45bc940;
+	Node0x45bc940 [shape=record,label="{HTMLparser.c:6731:|{<s0>T|<s1>F}}"];
+	Node0x45bc940 -> Node0x48eac30;
+	Node0x45bc940 -> Node0x48eab60;
+	Node0x48eac30 [shape=record,label="{HTMLparser.c:6731:|{<s0>T|<s1>F}}"];
+	Node0x48eac30 -> Node0x48eabb0;
+	Node0x48eac30 -> Node0x48eab60;
+	Node0x48eabb0 [shape=record,label="{HTMLparser.c:6732:|{<s0>T|<s1>F}}"];
+	Node0x48eabb0 -> Node0x48eab10;
+	Node0x48eabb0 -> Node0x48eab60;
+	Node0x48eab10 [shape=record,label="{HTMLparser.c:6733:}"];
+	Node0x48eab10 -> Node0x48eab60;
+	Node0x48eab60 [shape=record,label="{HTMLparser.c:6734:|{<s0>T|<s1>F}}"];
+	Node0x48eab60 -> Node0x48ec2b0;
+	Node0x48eab60 -> Node0x48ec260;
+	Node0x48ec260 [shape=record,label="{HTMLparser.c:6738:|{<s0>T|<s1>F}}"];
+	Node0x48ec260 -> Node0x48ec6d0;
+	Node0x48ec260 -> Node0x48ec600;
+	Node0x48ec6d0 [shape=record,label="{HTMLparser.c:6739:|{<s0>T|<s1>F}}"];
+	Node0x48ec6d0 -> Node0x48ec650;
+	Node0x48ec6d0 -> Node0x48ec600;
+	Node0x48ec650 [shape=record,label="{HTMLparser.c:6740:|{<s0>T|<s1>F}}"];
+	Node0x48ec650 -> Node0x48ec5b0;
+	Node0x48ec650 -> Node0x48ec600;
+	Node0x48ec5b0 [shape=record,label="{HTMLparser.c:6741:}"];
+	Node0x48ec5b0 -> Node0x48ec600;
+	Node0x48ec600 [shape=record,label="{HTMLparser.c:6742:}"];
+	Node0x48ec600 -> Node0x48ec2b0;
+	Node0x48ec2b0 [shape=record,label="{HTMLparser.c:6744:}"];
+}

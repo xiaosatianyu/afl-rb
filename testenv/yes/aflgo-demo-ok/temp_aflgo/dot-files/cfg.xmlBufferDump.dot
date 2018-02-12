@@ -1,0 +1,22 @@
+digraph "CFG for 'xmlBufferDump' function" {
+	label="CFG for 'xmlBufferDump' function";
+
+	Node0x420e0c0 [shape=record,label="{tree.c:7309:|{<s0>T|<s1>F}}"];
+	Node0x420e0c0 -> Node0x42127c0;
+	Node0x420e0c0 -> Node0x4212810;
+	Node0x42127c0 [shape=record,label="{tree.c:7317:}"];
+	Node0x42127c0 -> Node0x420e070;
+	Node0x4212810 [shape=record,label="{tree.c:7319:|{<s0>T|<s1>F}}"];
+	Node0x4212810 -> Node0x4212de0;
+	Node0x4212810 -> Node0x4212e30;
+	Node0x4212de0 [shape=record,label="{tree.c:7324:}"];
+	Node0x4212de0 -> Node0x420e070;
+	Node0x4212e30 [shape=record,label="{tree.c:7326:|{<s0>T|<s1>F}}"];
+	Node0x4212e30 -> Node0x42134c0;
+	Node0x4212e30 -> Node0x4213510;
+	Node0x42134c0 [shape=record,label="{tree.c:7327:}"];
+	Node0x42134c0 -> Node0x4213510;
+	Node0x4213510 [shape=record,label="{tree.c:7328:}"];
+	Node0x4213510 -> Node0x420e070;
+	Node0x420e070 [shape=record,label="{tree.c:7330:}"];
+}

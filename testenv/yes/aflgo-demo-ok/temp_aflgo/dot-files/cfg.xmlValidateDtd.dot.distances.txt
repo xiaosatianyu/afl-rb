@@ -1,0 +1,8 @@
+valid.c:6614,36.0
+valid.c:6620,35.0
+valid.c:6621,34.0
+valid.c:6631,33.0
+valid.c:6632,33.0
+valid.c:6635,32.0
+valid.c:6636,32.0
+valid.c:6639,31.0

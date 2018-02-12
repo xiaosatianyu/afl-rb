@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlNanoHTTPClose' function" {
+	label="CFG for 'xmlNanoHTTPClose' function";
+
+	Node0x39a6400 [shape=record,label="{nanohttp.c:1321:|{<s0>T|<s1>F}}"];
+	Node0x39a6400:s0 -> Node0x39a62d0;
+	Node0x39a6400:s1 -> Node0x39a6320;
+	Node0x39a62d0 [shape=record,label="{nanohttp.c:1324:}"];
+	Node0x39a62d0 -> Node0x39a5630;
+	Node0x39a6320 [shape=record,label="{nanohttp.c:1326:}"];
+	Node0x39a6320 -> Node0x39a5630;
+	Node0x39a5630 [shape=record,label="{nanohttp.c:1327:}"];
+}

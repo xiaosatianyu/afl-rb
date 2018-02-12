@@ -1,0 +1,19 @@
+digraph "CFG for 'xmlSchemaAddRedef' function" {
+	label="CFG for 'xmlSchemaAddRedef' function";
+
+	Node0x49864f0 [shape=record,label="{xmlschemas.c:5233:|{<s0>T|<s1>F}}"];
+	Node0x49864f0 -> Node0x51830b0;
+	Node0x49864f0 -> Node0x5183100;
+	Node0x51830b0 [shape=record,label="{xmlschemas.c:5244:}"];
+	Node0x51830b0 -> Node0x517a080;
+	Node0x5183100 [shape=record,label="{xmlschemas.c:5248:|{<s0>T|<s1>F}}"];
+	Node0x5183100 -> Node0x5184710;
+	Node0x5183100 -> Node0x51847b0;
+	Node0x5184710 [shape=record,label="{xmlschemas.c:5254:}"];
+	Node0x5184710 -> Node0x5184760;
+	Node0x51847b0 [shape=record,label="{xmlschemas.c:5256:}"];
+	Node0x51847b0 -> Node0x5184760;
+	Node0x5184760 [shape=record,label="{xmlschemas.c:5257:}"];
+	Node0x5184760 -> Node0x517a080;
+	Node0x517a080 [shape=record,label="{xmlschemas.c:5260:}"];
+}

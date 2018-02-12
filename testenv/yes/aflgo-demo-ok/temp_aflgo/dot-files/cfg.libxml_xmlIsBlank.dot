@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlIsBlank' function" {
+	label="CFG for 'libxml_xmlIsBlank' function";
+
+	Node0x582cbb0 [shape=record,label="{libxml2-py.c:3318:|{<s0>T|<s1>F}}"];
+	Node0x582cbb0:s0 -> Node0x582f850;
+	Node0x582cbb0:s1 -> Node0x582f800;
+	Node0x582f800 [shape=record,label="{libxml2-py.c:3324:}"];
+	Node0x582f800 -> Node0x582e080;
+	Node0x582f850 [shape=record,label="{libxml2-py.c:3326:}"];
+	Node0x582f850 -> Node0x582e080;
+	Node0x582e080 [shape=record,label="{libxml2-py.c:3329:}"];
+}

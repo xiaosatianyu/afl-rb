@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsCJKCompatibilityIdeographsSupplement' function" {
+	label="CFG for 'test_xmlUCSIsCJKCompatibilityIdeographsSupplement' function";
+
+	Node0x680e3e0 [shape=record,label="{testapi.c:38020:}"];
+	Node0x680e3e0 -> Node0x6815e30;
+	Node0x6815e30 [shape=record,label="{testapi.c:38028:|{<s0>T|<s1>F}}"];
+	Node0x6815e30:s0 -> Node0x6816110;
+	Node0x6815e30:s1 -> Node0x6815c90;
+	Node0x6816110 [shape=record,label="{testapi.c:38029:|{<s0>T|<s1>F}}"];
+	Node0x6816110:s0 -> Node0x6816f80;
+	Node0x6816110:s1 -> Node0x68172b0;
+	Node0x6816f80 [shape=record,label="{testapi.c:38039:}"];
+	Node0x6816f80 -> Node0x68172b0;
+	Node0x68172b0 [shape=record,label="{testapi.c:38044:}"];
+	Node0x68172b0 -> Node0x6816080;
+	Node0x6816080 [shape=record,label="{testapi.c:38028:}"];
+	Node0x6816080 -> Node0x6815e30;
+	Node0x6815c90 [shape=record,label="{testapi.c:38045:}"];
+}

@@ -1,0 +1,45 @@
+digraph "CFG for 'xmlShellWrite' function" {
+	label="CFG for 'xmlShellWrite' function";
+
+	Node0x4846cf0 [shape=record,label="{debugXML.c:2512:|{<s0>T|<s1>F}}"];
+	Node0x4846cf0 -> Node0x4850520;
+	Node0x4846cf0 -> Node0x4850570;
+	Node0x4850520 [shape=record,label="{debugXML.c:2516:}"];
+	Node0x4850520 -> Node0x484ad40;
+	Node0x4850570 [shape=record,label="{debugXML.c:2517:|{<s0>T|<s1>F}}"];
+	Node0x4850570 -> Node0x4850aa0;
+	Node0x4850570 -> Node0x4850b40;
+	Node0x4850b40 [shape=record,label="{debugXML.c:2517:|{<s0>T|<s1>F}}"];
+	Node0x4850b40 -> Node0x4850aa0;
+	Node0x4850b40 -> Node0x4850af0;
+	Node0x4850aa0 [shape=record,label="{debugXML.c:2518:}"];
+	Node0x4850aa0 -> Node0x484ad40;
+	Node0x4850af0 [shape=record,label="{debugXML.c:2527:|{<s0>def|<s1>9|<s2>13}}"];
+	Node0x4850af0 -> Node0x4851690;
+	Node0x4850af0 -> Node0x48519d0;
+	Node0x4850af0 -> Node0x4852460;
+	Node0x48519d0 [shape=record,label="{debugXML.c:2529:|{<s0>T|<s1>F}}"];
+	Node0x48519d0 -> Node0x4851ac0;
+	Node0x48519d0 -> Node0x4851b10;
+	Node0x4851ac0 [shape=record,label="{debugXML.c:2530:}"];
+	Node0x4851ac0 -> Node0x484ad40;
+	Node0x4851b10 [shape=record,label="{debugXML.c:2534:}"];
+	Node0x4851b10 -> Node0x4851480;
+	Node0x4852460 [shape=record,label="{debugXML.c:2537:|{<s0>T|<s1>F}}"];
+	Node0x4852460 -> Node0x4852790;
+	Node0x4852460 -> Node0x4853060;
+	Node0x4852790 [shape=record,label="{debugXML.c:2538:}"];
+	Node0x4852790 -> Node0x484ad40;
+	Node0x4853060 [shape=record,label="{debugXML.c:2549:}"];
+	Node0x4853060 -> Node0x4851480;
+	Node0x4851690 [shape=record,label="{debugXML.c:2551:|{<s0>T|<s1>F}}"];
+	Node0x4851690 -> Node0x4851f50;
+	Node0x4851690 -> Node0x47f16a0;
+	Node0x4851f50 [shape=record,label="{debugXML.c:2555:}"];
+	Node0x4851f50 -> Node0x484ad40;
+	Node0x47f16a0 [shape=record,label="{debugXML.c:2559:}"];
+	Node0x47f16a0 -> Node0x4851480;
+	Node0x4851480 [shape=record,label="{debugXML.c:2563:}"];
+	Node0x4851480 -> Node0x484ad40;
+	Node0x484ad40 [shape=record,label="{debugXML.c:2564:}"];
+}

@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlXPathTranslateFunction' function" {
+	label="CFG for 'test_xmlXPathTranslateFunction' function";
+
+	Node0x6defeb0 [shape=record,label="{testapi.c:50920:}"];
+	Node0x6defeb0 -> Node0x6dff0d0;
+	Node0x6dff0d0 [shape=record,label="{testapi.c:50929:|{<s0>T|<s1>F}}"];
+	Node0x6dff0d0:s0 -> Node0x6dff3b0;
+	Node0x6dff0d0:s1 -> Node0x6dfef30;
+	Node0x6dff3b0 [shape=record,label="{testapi.c:50930:}"];
+	Node0x6dff3b0 -> Node0x6dff7a0;
+	Node0x6dff7a0 [shape=record,label="{testapi.c:50930:|{<s0>T|<s1>F}}"];
+	Node0x6dff7a0:s0 -> Node0x6dffa20;
+	Node0x6dff7a0:s1 -> Node0x6dff680;
+	Node0x6dffa20 [shape=record,label="{testapi.c:50931:|{<s0>T|<s1>F}}"];
+	Node0x6dffa20:s0 -> Node0x6e00a90;
+	Node0x6dffa20:s1 -> Node0x6e012e0;
+	Node0x6e00a90 [shape=record,label="{testapi.c:50942:}"];
+	Node0x6e00a90 -> Node0x6e012e0;
+	Node0x6e012e0 [shape=record,label="{testapi.c:50948:}"];
+	Node0x6e012e0 -> Node0x6dff990;
+	Node0x6dff990 [shape=record,label="{testapi.c:50930:}"];
+	Node0x6dff990 -> Node0x6dff7a0;
+	Node0x6dff680 [shape=record,label="{testapi.c:50949:}"];
+	Node0x6dff680 -> Node0x6dff320;
+	Node0x6dff320 [shape=record,label="{testapi.c:50929:}"];
+	Node0x6dff320 -> Node0x6dff0d0;
+	Node0x6dfef30 [shape=record,label="{testapi.c:50950:}"];
+}

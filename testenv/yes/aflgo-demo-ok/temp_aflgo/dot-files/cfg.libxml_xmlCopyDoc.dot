@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlCopyDoc' function" {
+	label="CFG for 'libxml_xmlCopyDoc' function";
+
+	Node0x566cc70 [shape=record,label="{libxml2-py.c:1672:|{<s0>T|<s1>F}}"];
+	Node0x566cc70:s0 -> Node0x566eb90;
+	Node0x566cc70:s1 -> Node0x566eb40;
+	Node0x566eb40 [shape=record,label="{libxml2-py.c:1680:}"];
+	Node0x566eb40 -> Node0x566cbf0;
+	Node0x566eb90 [shape=record,label="{libxml2-py.c:1681:|{<s0>T|<s1>F}}"];
+	Node0x566eb90:s0 -> Node0x566f3f0;
+	Node0x566eb90:s1 -> Node0x566f440;
+	Node0x566f3f0 [shape=record,label="{libxml2-py.c:1681:}"];
+	Node0x566f3f0 -> Node0x566f490;
+	Node0x566f440 [shape=record,label="{libxml2-py.c:1681:}"];
+	Node0x566f440 -> Node0x566f490;
+	Node0x566f490 [shape=record,label="{libxml2-py.c:1681:}"];
+	Node0x566f490 -> Node0x566cbf0;
+	Node0x566cbf0 [shape=record,label="{libxml2-py.c:1686:}"];
+}

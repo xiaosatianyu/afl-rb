@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlValidateNMToken' function" {
+	label="CFG for 'libxml_xmlValidateNMToken' function";
+
+	Node0x6044a20 [shape=record,label="{libxml2-py.c:12406:|{<s0>T|<s1>F}}"];
+	Node0x6044a20:s0 -> Node0x6047e40;
+	Node0x6044a20:s1 -> Node0x6047df0;
+	Node0x6047df0 [shape=record,label="{libxml2-py.c:12413:}"];
+	Node0x6047df0 -> Node0x6044cd0;
+	Node0x6047e40 [shape=record,label="{libxml2-py.c:12415:}"];
+	Node0x6047e40 -> Node0x6044cd0;
+	Node0x6044cd0 [shape=record,label="{libxml2-py.c:12418:}"];
+}

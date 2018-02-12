@@ -1,0 +1,33 @@
+digraph "CFG for 'xmlXPathCacheNewBoolean' function" {
+	label="CFG for 'xmlXPathCacheNewBoolean' function";
+
+	Node0x4b2a230 [shape=record,label="{xpath.c:2554:|{<s0>T|<s1>F}}"];
+	Node0x4b2a230 -> Node0x4b25650;
+	Node0x4b2a230 -> Node0x4b25600;
+	Node0x4b25650 [shape=record,label="{xpath.c:2556:|{<s0>T|<s1>F}}"];
+	Node0x4b25650 -> Node0x4b255b0;
+	Node0x4b25650 -> Node0x4b25600;
+	Node0x4b255b0 [shape=record,label="{xpath.c:2557:|{<s0>T|<s1>F}}"];
+	Node0x4b255b0 -> Node0x4b2ba40;
+	Node0x4b255b0 -> Node0x4b2b9f0;
+	Node0x4b2ba40 [shape=record,label="{xpath.c:2560:|{<s0>T|<s1>F}}"];
+	Node0x4b2ba40 -> Node0x4b2b950;
+	Node0x4b2ba40 -> Node0x4b2b9f0;
+	Node0x4b2b950 [shape=record,label="{xpath.c:2562:}"];
+	Node0x4b2b950 -> Node0x4b2ace0;
+	Node0x4b2b9f0 [shape=record,label="{xpath.c:2572:|{<s0>T|<s1>F}}"];
+	Node0x4b2b9f0 -> Node0x4b2d920;
+	Node0x4b2b9f0 -> Node0x4b2d8d0;
+	Node0x4b2d920 [shape=record,label="{xpath.c:2573:|{<s0>T|<s1>F}}"];
+	Node0x4b2d920 -> Node0x4b2d880;
+	Node0x4b2d920 -> Node0x4b2d8d0;
+	Node0x4b2d880 [shape=record,label="{xpath.c:2575:}"];
+	Node0x4b2d880 -> Node0x4b2ace0;
+	Node0x4b2d8d0 [shape=record,label="{%84}"];
+	Node0x4b2d8d0 -> Node0x4b2b9a0;
+	Node0x4b2b9a0 [shape=record,label="{xpath.c:2587:}"];
+	Node0x4b2b9a0 -> Node0x4b25600;
+	Node0x4b25600 [shape=record,label="{xpath.c:2588:}"];
+	Node0x4b25600 -> Node0x4b2ace0;
+	Node0x4b2ace0 [shape=record,label="{xpath.c:2589:}"];
+}

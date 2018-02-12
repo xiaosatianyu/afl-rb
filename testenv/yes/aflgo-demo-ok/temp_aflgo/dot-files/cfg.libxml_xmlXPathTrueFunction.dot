@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlXPathTrueFunction' function" {
+	label="CFG for 'libxml_xmlXPathTrueFunction' function";
+
+	Node0x6237370 [shape=record,label="{libxml2-py.c:14542:|{<s0>T|<s1>F}}"];
+	Node0x6237370:s0 -> Node0x623a7a0;
+	Node0x6237370:s1 -> Node0x623a750;
+	Node0x623a750 [shape=record,label="{libxml2-py.c:14548:}"];
+	Node0x623a750 -> Node0x62376a0;
+	Node0x623a7a0 [shape=record,label="{libxml2-py.c:14549:|{<s0>T|<s1>F}}"];
+	Node0x623a7a0:s0 -> Node0x623b040;
+	Node0x623a7a0:s1 -> Node0x623b090;
+	Node0x623b040 [shape=record,label="{libxml2-py.c:14549:}"];
+	Node0x623b040 -> Node0x623b0e0;
+	Node0x623b090 [shape=record,label="{libxml2-py.c:14549:}"];
+	Node0x623b090 -> Node0x623b0e0;
+	Node0x623b0e0 [shape=record,label="{libxml2-py.c:14549:}"];
+	Node0x623b0e0 -> Node0x62376a0;
+	Node0x62376a0 [shape=record,label="{libxml2-py.c:14554:}"];
+}

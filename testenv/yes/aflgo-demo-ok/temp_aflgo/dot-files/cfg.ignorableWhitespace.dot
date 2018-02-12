@@ -1,0 +1,10 @@
+digraph "CFG for 'ignorableWhitespace' function" {
+	label="CFG for 'ignorableWhitespace' function";
+
+	Node0x4df8320 [shape=record,label="{legacy.c:1199:|{<s0>T|<s1>F}}"];
+	Node0x4df8320 -> Node0x4df81f0;
+	Node0x4df8320 -> Node0x4df8240;
+	Node0x4df81f0 [shape=record,label="{legacy.c:1203:}"];
+	Node0x4df81f0 -> Node0x4df8240;
+	Node0x4df8240 [shape=record,label="{legacy.c:1203:}"];
+}

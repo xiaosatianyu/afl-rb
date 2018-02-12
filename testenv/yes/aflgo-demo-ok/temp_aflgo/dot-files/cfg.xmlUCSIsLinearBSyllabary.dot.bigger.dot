@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsLinearBSyllabary' function" {
+	label="CFG for 'xmlUCSIsLinearBSyllabary' function";
+
+	Node0x4fab4f0 [shape=record,label="{xmlunicode.c:1964:|{<s0>T|<s1>F}}"];
+	Node0x4fab4f0:s0 -> Node0x4faaa30;
+	Node0x4fab4f0:s1 -> Node0x4fab730;
+	Node0x4faaa30 [shape=record,label="{xmlunicode.c:1965:}"];
+	Node0x4faaa30 -> Node0x4fab730;
+	Node0x4fab730 [shape=record,label="{xmlunicode.c:1965:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlXPathRegisteredFuncsCleanup' function" {
+	label="CFG for 'test_xmlXPathRegisteredFuncsCleanup' function";
+
+	Node0x6db3610 [shape=record,label="{testapi.c:50332:}"];
+	Node0x6db3610 -> Node0x6dbc290;
+	Node0x6dbc290 [shape=record,label="{testapi.c:50339:|{<s0>T|<s1>F}}"];
+	Node0x6dbc290:s0 -> Node0x6dbc570;
+	Node0x6dbc290:s1 -> Node0x6dbc0f0;
+	Node0x6dbc570 [shape=record,label="{testapi.c:50340:|{<s0>T|<s1>F}}"];
+	Node0x6dbc570:s0 -> Node0x6dbd370;
+	Node0x6dbc570:s1 -> Node0x6dbd9d0;
+	Node0x6dbd370 [shape=record,label="{testapi.c:50349:}"];
+	Node0x6dbd370 -> Node0x6dbd9d0;
+	Node0x6dbd9d0 [shape=record,label="{testapi.c:50354:}"];
+	Node0x6dbd9d0 -> Node0x6dbc4e0;
+	Node0x6dbc4e0 [shape=record,label="{testapi.c:50339:}"];
+	Node0x6dbc4e0 -> Node0x6dbc290;
+	Node0x6dbc0f0 [shape=record,label="{testapi.c:50355:}"];
+}

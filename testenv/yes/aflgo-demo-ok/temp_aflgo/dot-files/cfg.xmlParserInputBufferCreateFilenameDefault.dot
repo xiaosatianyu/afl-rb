@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlParserInputBufferCreateFilenameDefault' function" {
+	label="CFG for 'xmlParserInputBufferCreateFilenameDefault' function";
+
+	Node0x497f870 [shape=record,label="{xmlIO.c:3191:|{<s0>T|<s1>F}}"];
+	Node0x497f870 -> Node0x4981410;
+	Node0x497f870 -> Node0x4981460;
+	Node0x4981410 [shape=record,label="{xmlIO.c:3195:}"];
+	Node0x4981410 -> Node0x4981460;
+	Node0x4981460 [shape=record,label="{xmlIO.c:3198:}"];
+}

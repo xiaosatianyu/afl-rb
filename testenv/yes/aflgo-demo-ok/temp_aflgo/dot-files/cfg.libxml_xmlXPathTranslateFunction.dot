@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlXPathTranslateFunction' function" {
+	label="CFG for 'libxml_xmlXPathTranslateFunction' function";
+
+	Node0x62369f0 [shape=record,label="{libxml2-py.c:14525:|{<s0>T|<s1>F}}"];
+	Node0x62369f0:s0 -> Node0x6237f20;
+	Node0x62369f0:s1 -> Node0x6237ed0;
+	Node0x6237ed0 [shape=record,label="{libxml2-py.c:14531:}"];
+	Node0x6237ed0 -> Node0x62365e0;
+	Node0x6237f20 [shape=record,label="{libxml2-py.c:14532:|{<s0>T|<s1>F}}"];
+	Node0x6237f20:s0 -> Node0x62387c0;
+	Node0x6237f20:s1 -> Node0x6238810;
+	Node0x62387c0 [shape=record,label="{libxml2-py.c:14532:}"];
+	Node0x62387c0 -> Node0x6238860;
+	Node0x6238810 [shape=record,label="{libxml2-py.c:14532:}"];
+	Node0x6238810 -> Node0x6238860;
+	Node0x6238860 [shape=record,label="{libxml2-py.c:14532:}"];
+	Node0x6238860 -> Node0x62365e0;
+	Node0x62365e0 [shape=record,label="{libxml2-py.c:14537:}"];
+}

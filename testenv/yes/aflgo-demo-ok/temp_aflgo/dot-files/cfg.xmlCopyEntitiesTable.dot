@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlCopyEntitiesTable' function" {
+	label="CFG for 'xmlCopyEntitiesTable' function";
+
+	Node0x40aa350 [shape=record,label="{entities.c:946:}"];
+}

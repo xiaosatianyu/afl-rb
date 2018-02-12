@@ -1,0 +1,5 @@
+digraph "CFG for 'test_xmlXPathRegisterFuncLookup' function" {
+	label="CFG for 'test_xmlXPathRegisterFuncLookup' function";
+
+	Node0x6da14c0 [shape=record,label="{testapi.c:50151:}"];
+}

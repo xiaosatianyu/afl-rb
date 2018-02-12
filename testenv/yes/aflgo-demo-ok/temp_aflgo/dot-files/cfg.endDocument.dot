@@ -1,0 +1,10 @@
+digraph "CFG for 'endDocument' function" {
+	label="CFG for 'endDocument' function";
+
+	Node0x4dec0d0 [shape=record,label="{legacy.c:1101:|{<s0>T|<s1>F}}"];
+	Node0x4dec0d0 -> Node0x4decf90;
+	Node0x4dec0d0 -> Node0x4ded0a0;
+	Node0x4decf90 [shape=record,label="{legacy.c:1103:}"];
+	Node0x4decf90 -> Node0x4ded0a0;
+	Node0x4ded0a0 [shape=record,label="{legacy.c:1103:}"];
+}

@@ -1,0 +1,27 @@
+digraph "CFG for 'get_api_root' function" {
+	label="CFG for 'get_api_root' function";
+
+	Node0x54288f0 [shape=record,label="{testapi.c:76:|{<s0>T|<s1>F}}"];
+	Node0x54288f0:s0 -> Node0x5427460;
+	Node0x54288f0:s1 -> Node0x5427500;
+	Node0x5427500 [shape=record,label="{testapi.c:76:|{<s0>T|<s1>F}}"];
+	Node0x5427500:s0 -> Node0x5427460;
+	Node0x5427500:s1 -> Node0x54274b0;
+	Node0x5427460 [shape=record,label="{testapi.c:77:|{<s0>T|<s1>F}}"];
+	Node0x5427460:s0 -> Node0x5429540;
+	Node0x5427460:s1 -> Node0x5429450;
+	Node0x5429540 [shape=record,label="{testapi.c:78:|{<s0>T|<s1>F}}"];
+	Node0x5429540:s0 -> Node0x54294f0;
+	Node0x5429540:s1 -> Node0x5429450;
+	Node0x54294f0 [shape=record,label="{testapi.c:79:|{<s0>T|<s1>F}}"];
+	Node0x54294f0:s0 -> Node0x54294a0;
+	Node0x54294f0:s1 -> Node0x5429450;
+	Node0x54294a0 [shape=record,label="{testapi.c:80:|{<s0>T|<s1>F}}"];
+	Node0x54294a0:s0 -> Node0x5428f60;
+	Node0x54294a0:s1 -> Node0x5429450;
+	Node0x5428f60 [shape=record,label="{testapi.c:81:}"];
+	Node0x5428f60 -> Node0x5429450;
+	Node0x5429450 [shape=record,label="{testapi.c:82:}"];
+	Node0x5429450 -> Node0x54274b0;
+	Node0x54274b0 [shape=record,label="{testapi.c:83:}"];
+}

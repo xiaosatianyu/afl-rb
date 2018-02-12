@@ -1,0 +1,10 @@
+digraph "CFG for 'test_xmlInitializePredefinedEntities' function" {
+	label="CFG for 'test_xmlInitializePredefinedEntities' function";
+
+	Node0x5553ea0 [shape=record,label="{testapi.c:9654:|{<s0>T|<s1>F}}"];
+	Node0x5553ea0:s0 -> Node0x5559590;
+	Node0x5553ea0:s1 -> Node0x5554420;
+	Node0x5559590 [shape=record,label="{testapi.c:9667:}"];
+	Node0x5559590 -> Node0x5554420;
+	Node0x5554420 [shape=record,label="{testapi.c:9671:}"];
+}

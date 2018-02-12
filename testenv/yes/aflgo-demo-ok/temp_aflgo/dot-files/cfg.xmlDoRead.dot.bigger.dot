@@ -1,0 +1,46 @@
+digraph "CFG for 'xmlDoRead' function" {
+	label="CFG for 'xmlDoRead' function";
+
+	Node0x4e6c930 [shape=record,label="{parser.c:15295:|{<s0>T|<s1>F}}"];
+	Node0x4e6c930:s0 -> Node0x4e83990;
+	Node0x4e6c930:s1 -> Node0x4e839e0;
+	Node0x4e83990 [shape=record,label="{parser.c:15302:|{<s0>T|<s1>F}}"];
+	Node0x4e83990:s0 -> Node0x4e84240;
+	Node0x4e83990:s1 -> Node0x4e84290;
+	Node0x4e84240 [shape=record,label="{parser.c:15306:}"];
+	Node0x4e84240 -> Node0x4e84290;
+	Node0x4e84290 [shape=record,label="{parser.c:15307:}"];
+	Node0x4e84290 -> Node0x4e839e0;
+	Node0x4e839e0 [shape=record,label="{parser.c:15308:|{<s0>T|<s1>F}}"];
+	Node0x4e839e0:s0 -> Node0x4e84a80;
+	Node0x4e839e0:s1 -> Node0x4e849b0;
+	Node0x4e84a80 [shape=record,label="{parser.c:15308:|{<s0>T|<s1>F}}"];
+	Node0x4e84a80:s0 -> Node0x4e84a00;
+	Node0x4e84a80:s1 -> Node0x4e849b0;
+	Node0x4e84a00 [shape=record,label="{parser.c:15309:|{<s0>T|<s1>F}}"];
+	Node0x4e84a00:s0 -> Node0x4e84960;
+	Node0x4e84a00:s1 -> Node0x4e849b0;
+	Node0x4e84960 [shape=record,label="{parser.c:15310:}"];
+	Node0x4e84960 -> Node0x4e849b0;
+	Node0x4e849b0 [shape=record,label="{parser.c:15311:|{<s0>T|<s1>F}}"];
+	Node0x4e849b0:s0 -> Node0x4e85c30;
+	Node0x4e849b0:s1 -> Node0x4e85d20;
+	Node0x4e85d20 [shape=record,label="{parser.c:15312:|{<s0>T|<s1>F}}"];
+	Node0x4e85d20:s0 -> Node0x4e85c30;
+	Node0x4e85d20:s1 -> Node0x4e85cd0;
+	Node0x4e85c30 [shape=record,label="{parser.c:15313:}"];
+	Node0x4e85c30 -> Node0x4e85c80;
+	Node0x4e85cd0 [shape=record,label="{parser.c:15315:|{<s0>T|<s1>F}}"];
+	Node0x4e85cd0:s0 -> Node0x4e86890;
+	Node0x4e85cd0:s1 -> Node0x4e868e0;
+	Node0x4e86890 [shape=record,label="{parser.c:15317:}"];
+	Node0x4e86890 -> Node0x4e868e0;
+	Node0x4e868e0 [shape=record,label="{%63}"];
+	Node0x4e868e0 -> Node0x4e85c80;
+	Node0x4e85c80 [shape=record,label="{parser.c:15320:|{<s0>T|<s1>F}}"];
+	Node0x4e85c80:s0 -> Node0x4e87460;
+	Node0x4e85c80:s1 -> Node0x4e87410;
+	Node0x4e87410 [shape=record,label="{parser.c:15322:}"];
+	Node0x4e87410 -> Node0x4e87460;
+	Node0x4e87460 [shape=record,label="{parser.c:15325:}"];
+}

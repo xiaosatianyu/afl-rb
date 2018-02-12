@@ -1,0 +1,20 @@
+digraph "CFG for 'xmlSAX2CDataBlock' function" {
+	label="CFG for 'xmlSAX2CDataBlock' function";
+
+	Node0x4a74870 [shape=record,label="{SAX2.c:2788:|{<s0>T|<s1>F}}"];
+	Node0x4a74870 -> Node0x4a7b1f0;
+	Node0x4a74870 -> Node0x4a7b240;
+	Node0x4a7b1f0 [shape=record,label="{SAX2.c:2793:}"];
+	Node0x4a7b1f0 -> Node0x4a7c190;
+	Node0x4a7b240 [shape=record,label="{SAX2.c:2798:|{<s0>T|<s1>F}}"];
+	Node0x4a7b240 -> Node0x4a7c3a0;
+	Node0x4a7b240 -> Node0x4a7c350;
+	Node0x4a7c3a0 [shape=record,label="{SAX2.c:2804:|{<s0>T|<s1>F}}"];
+	Node0x4a7c3a0 -> Node0x4a7be60;
+	Node0x4a7c3a0 -> Node0x4a7c350;
+	Node0x4a7be60 [shape=record,label="{SAX2.c:2805:}"];
+	Node0x4a7be60 -> Node0x4a7c190;
+	Node0x4a7c350 [shape=record,label="{SAX2.c:2807:}"];
+	Node0x4a7c350 -> Node0x4a7c190;
+	Node0x4a7c190 [shape=record,label="{SAX2.c:2810:}"];
+}

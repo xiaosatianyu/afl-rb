@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlSetExternalEntityLoader' function" {
+	label="CFG for 'xmlSetExternalEntityLoader' function";
+
+	Node0x49fa330 [shape=record,label="{xmlIO.c:4093:}"];
+}

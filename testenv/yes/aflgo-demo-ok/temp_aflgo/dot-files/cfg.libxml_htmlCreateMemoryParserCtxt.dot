@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_htmlCreateMemoryParserCtxt' function" {
+	label="CFG for 'libxml_htmlCreateMemoryParserCtxt' function";
+
+	Node0x54c6080 [shape=record,label="{libxml2-py.c:61:|{<s0>T|<s1>F}}"];
+	Node0x54c6080:s0 -> Node0x548bc40;
+	Node0x54c6080:s1 -> Node0x548bbf0;
+	Node0x548bbf0 [shape=record,label="{libxml2-py.c:69:}"];
+	Node0x548bbf0 -> Node0x548b0a0;
+	Node0x548bc40 [shape=record,label="{libxml2-py.c:71:}"];
+	Node0x548bc40 -> Node0x548b0a0;
+	Node0x548b0a0 [shape=record,label="{libxml2-py.c:74:}"];
+}

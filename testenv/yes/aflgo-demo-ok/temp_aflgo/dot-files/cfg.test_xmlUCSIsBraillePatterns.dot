@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsBraillePatterns' function" {
+	label="CFG for 'test_xmlUCSIsBraillePatterns' function";
+
+	Node0x67dfc50 [shape=record,label="{testapi.c:37816:}"];
+	Node0x67dfc50 -> Node0x6800960;
+	Node0x6800960 [shape=record,label="{testapi.c:37824:|{<s0>T|<s1>F}}"];
+	Node0x6800960:s0 -> Node0x6800c40;
+	Node0x6800960:s1 -> Node0x68007c0;
+	Node0x6800c40 [shape=record,label="{testapi.c:37825:|{<s0>T|<s1>F}}"];
+	Node0x6800c40:s0 -> Node0x6801a90;
+	Node0x6800c40:s1 -> Node0x6802260;
+	Node0x6801a90 [shape=record,label="{testapi.c:37835:}"];
+	Node0x6801a90 -> Node0x6802260;
+	Node0x6802260 [shape=record,label="{testapi.c:37840:}"];
+	Node0x6802260 -> Node0x6800bb0;
+	Node0x6800bb0 [shape=record,label="{testapi.c:37824:}"];
+	Node0x6800bb0 -> Node0x6800960;
+	Node0x68007c0 [shape=record,label="{testapi.c:37841:}"];
+}

@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlTextReaderWarning' function" {
+	label="CFG for 'xmlTextReaderWarning' function";
+
+	Node0x4624690 [shape=record,label="{xmlreader.c:4867:}"];
+}

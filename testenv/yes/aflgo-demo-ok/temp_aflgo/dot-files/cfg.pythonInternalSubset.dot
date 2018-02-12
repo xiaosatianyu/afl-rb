@@ -1,0 +1,37 @@
+digraph "CFG for 'pythonInternalSubset' function" {
+	label="CFG for 'pythonInternalSubset' function";
+
+	Node0x55d8440 [shape=record,label="{libxml.c:1388:|{<s0>T|<s1>F}}"];
+	Node0x55d8440:s0 -> Node0x55ddec0;
+	Node0x55d8440:s1 -> Node0x55ddf10;
+	Node0x55ddec0 [shape=record,label="{libxml.c:1400:|{<s0>T|<s1>F}}"];
+	Node0x55ddec0:s0 -> Node0x53680b0;
+	Node0x55ddec0:s1 -> Node0x5368100;
+	Node0x53680b0 [shape=record,label="{libxml.c:1404:}"];
+	Node0x53680b0 -> Node0x5368100;
+	Node0x5368100 [shape=record,label="{libxml.c:1405:}"];
+	Node0x5368100 -> Node0x53abca0;
+	Node0x53abca0 [shape=record,label="{libxml.c:1405:|{<s0>T|<s1>F}}"];
+	Node0x53abca0:s0 -> Node0x53abe50;
+	Node0x53abca0:s1 -> Node0x53abef0;
+	Node0x53abe50 [shape=record,label="{libxml.c:1405:}"];
+	Node0x53abe50 -> Node0x53abea0;
+	Node0x53abef0 [shape=record,label="{libxml.c:1405:}"];
+	Node0x53abef0 -> Node0x53ac130;
+	Node0x53ac130 [shape=record,label="{libxml.c:1405:|{<s0>T|<s1>F}}"];
+	Node0x53ac130:s0 -> Node0x53ac260;
+	Node0x53ac130:s1 -> Node0x53ac300;
+	Node0x53ac260 [shape=record,label="{libxml.c:1405:}"];
+	Node0x53ac260 -> Node0x53ac2b0;
+	Node0x53ac300 [shape=record,label="{libxml.c:1405:}"];
+	Node0x53ac300 -> Node0x53ac2b0;
+	Node0x53ac2b0 [shape=record,label="{libxml.c:1405:}"];
+	Node0x53ac2b0 -> Node0x53ac090;
+	Node0x53ac090 [shape=record,label="{%35}"];
+	Node0x53ac090 -> Node0x53abea0;
+	Node0x53abea0 [shape=record,label="{libxml.c:1405:}"];
+	Node0x53abea0 -> Node0x5421260;
+	Node0x5421260 [shape=record,label="{libxml.c:1406:}"];
+	Node0x5421260 -> Node0x55ddf10;
+	Node0x55ddf10 [shape=record,label="{libxml.c:1407:}"];
+}

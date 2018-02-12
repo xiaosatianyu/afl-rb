@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlSAX2Reference' function" {
+	label="CFG for 'test_xmlSAX2Reference' function";
+
+	Node0x550cf60 [shape=record,label="{testapi.c:4870:}"];
+	Node0x550cf60 -> Node0x53ce0f0;
+	Node0x53ce0f0 [shape=record,label="{testapi.c:4878:|{<s0>T|<s1>F}}"];
+	Node0x53ce0f0:s0 -> Node0x53ce350;
+	Node0x53ce0f0:s1 -> Node0x53cdf90;
+	Node0x53ce350 [shape=record,label="{testapi.c:4879:}"];
+	Node0x53ce350 -> Node0x53ce6c0;
+	Node0x53ce6c0 [shape=record,label="{testapi.c:4879:|{<s0>T|<s1>F}}"];
+	Node0x53ce6c0:s0 -> Node0x53ce900;
+	Node0x53ce6c0:s1 -> Node0x53ce5e0;
+	Node0x53ce900 [shape=record,label="{testapi.c:4880:|{<s0>T|<s1>F}}"];
+	Node0x53ce900:s0 -> Node0x552ab60;
+	Node0x53ce900:s1 -> Node0x552b3b0;
+	Node0x552ab60 [shape=record,label="{testapi.c:4891:}"];
+	Node0x552ab60 -> Node0x552b3b0;
+	Node0x552b3b0 [shape=record,label="{testapi.c:4897:}"];
+	Node0x552b3b0 -> Node0x53ce870;
+	Node0x53ce870 [shape=record,label="{testapi.c:4879:}"];
+	Node0x53ce870 -> Node0x53ce6c0;
+	Node0x53ce5e0 [shape=record,label="{testapi.c:4898:}"];
+	Node0x53ce5e0 -> Node0x53ce300;
+	Node0x53ce300 [shape=record,label="{testapi.c:4878:}"];
+	Node0x53ce300 -> Node0x53ce0f0;
+	Node0x53cdf90 [shape=record,label="{testapi.c:4899:}"];
+}

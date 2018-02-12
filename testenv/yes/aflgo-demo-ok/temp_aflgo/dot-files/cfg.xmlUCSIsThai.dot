@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsThai' function" {
+	label="CFG for 'xmlUCSIsThai' function";
+
+	Node0x4f67c10 [shape=record,label="{xmlunicode.c:2525:|{<s0>T|<s1>F}}"];
+	Node0x4f67c10 -> Node0x4f68250;
+	Node0x4f67c10 -> Node0x4f68200;
+	Node0x4f68250 [shape=record,label="{xmlunicode.c:2526:}"];
+	Node0x4f68250 -> Node0x4f68200;
+	Node0x4f68200 [shape=record,label="{xmlunicode.c:2526:}"];
+}

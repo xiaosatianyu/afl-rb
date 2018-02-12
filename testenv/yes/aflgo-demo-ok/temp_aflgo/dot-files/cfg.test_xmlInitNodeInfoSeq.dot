@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlInitNodeInfoSeq' function" {
+	label="CFG for 'test_xmlInitNodeInfoSeq' function";
+
+	Node0x59d7d70 [shape=record,label="{testapi.c:13256:}"];
+	Node0x59d7d70 -> Node0x59d7ce0;
+	Node0x59d7ce0 [shape=record,label="{testapi.c:13262:|{<s0>T|<s1>F}}"];
+	Node0x59d7ce0:s0 -> Node0x59d8a10;
+	Node0x59d7ce0:s1 -> Node0x59d7bc0;
+	Node0x59d8a10 [shape=record,label="{testapi.c:13263:|{<s0>T|<s1>F}}"];
+	Node0x59d8a10:s0 -> Node0x59d9800;
+	Node0x59d8a10:s1 -> Node0x59d9b30;
+	Node0x59d9800 [shape=record,label="{testapi.c:13272:}"];
+	Node0x59d9800 -> Node0x59d9b30;
+	Node0x59d9b30 [shape=record,label="{testapi.c:13277:}"];
+	Node0x59d9b30 -> Node0x59d8980;
+	Node0x59d8980 [shape=record,label="{testapi.c:13262:}"];
+	Node0x59d8980 -> Node0x59d7ce0;
+	Node0x59d7bc0 [shape=record,label="{testapi.c:13278:}"];
+}

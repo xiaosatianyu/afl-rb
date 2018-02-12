@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsBraillePatterns' function" {
+	label="CFG for 'libxml_xmlUCSIsBraillePatterns' function";
+
+	Node0x5e166d0 [shape=record,label="{libxml2-py.c:9258:|{<s0>T|<s1>F}}"];
+	Node0x5e166d0:s0 -> Node0x5e19580;
+	Node0x5e166d0:s1 -> Node0x5e19530;
+	Node0x5e19530 [shape=record,label="{libxml2-py.c:9264:}"];
+	Node0x5e19530 -> Node0x5e18190;
+	Node0x5e19580 [shape=record,label="{libxml2-py.c:9266:}"];
+	Node0x5e19580 -> Node0x5e18190;
+	Node0x5e18190 [shape=record,label="{libxml2-py.c:9269:}"];
+}

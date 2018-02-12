@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsArabicPresentationFormsB' function" {
+	label="CFG for 'test_xmlUCSIsArabicPresentationFormsB' function";
+
+	Node0x67d17e0 [shape=record,label="{testapi.c:37469:}"];
+	Node0x67d17e0 -> Node0x67d9270;
+	Node0x67d9270 [shape=record,label="{testapi.c:37477:|{<s0>T|<s1>F}}"];
+	Node0x67d9270:s0 -> Node0x67d9550;
+	Node0x67d9270:s1 -> Node0x67d90d0;
+	Node0x67d9550 [shape=record,label="{testapi.c:37478:|{<s0>T|<s1>F}}"];
+	Node0x67d9550:s0 -> Node0x67da3b0;
+	Node0x67d9550:s1 -> Node0x67dab80;
+	Node0x67da3b0 [shape=record,label="{testapi.c:37488:}"];
+	Node0x67da3b0 -> Node0x67dab80;
+	Node0x67dab80 [shape=record,label="{testapi.c:37493:}"];
+	Node0x67dab80 -> Node0x67d94c0;
+	Node0x67d94c0 [shape=record,label="{testapi.c:37477:}"];
+	Node0x67d94c0 -> Node0x67d9270;
+	Node0x67d90d0 [shape=record,label="{testapi.c:37494:}"];
+}

@@ -1,0 +1,22 @@
+digraph "CFG for 'xmlShellReadline' function" {
+	label="CFG for 'xmlShellReadline' function";
+
+	Node0x4cf5e00 [shape=record,label="{xmlcatalog.c:64:|{<s0>T|<s1>F}}"];
+	Node0x4cf5e00:s0 -> Node0x4cab670;
+	Node0x4cf5e00:s1 -> Node0x4cab6c0;
+	Node0x4cab670 [shape=record,label="{xmlcatalog.c:82:}"];
+	Node0x4cab670 -> Node0x4cab6c0;
+	Node0x4cab6c0 [shape=record,label="{xmlcatalog.c:83:|{<s0>T|<s1>F}}"];
+	Node0x4cab6c0:s0 -> Node0x4d21d80;
+	Node0x4cab6c0:s1 -> Node0x4d21d30;
+	Node0x4d21d30 [shape=record,label="{xmlcatalog.c:84:}"];
+	Node0x4d21d30 -> Node0x4cf4be0;
+	Node0x4d21d80 [shape=record,label="{xmlcatalog.c:85:|{<s0>T|<s1>F}}"];
+	Node0x4d21d80:s0 -> Node0x4d22690;
+	Node0x4d21d80:s1 -> Node0x4d24050;
+	Node0x4d22690 [shape=record,label="{xmlcatalog.c:89:}"];
+	Node0x4d22690 -> Node0x4d24050;
+	Node0x4d24050 [shape=record,label="{xmlcatalog.c:91:}"];
+	Node0x4d24050 -> Node0x4cf4be0;
+	Node0x4cf4be0 [shape=record,label="{xmlcatalog.c:93:}"];
+}

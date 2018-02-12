@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlXPathIsNaN' function" {
+	label="CFG for 'libxml_xmlXPathIsNaN' function";
+
+	Node0x6137a80 [shape=record,label="{libxml2-py.c:13406:|{<s0>T|<s1>F}}"];
+	Node0x6137a80:s0 -> Node0x613a6b0;
+	Node0x6137a80:s1 -> Node0x613a660;
+	Node0x613a660 [shape=record,label="{libxml2-py.c:13412:}"];
+	Node0x613a660 -> Node0x61392c0;
+	Node0x613a6b0 [shape=record,label="{libxml2-py.c:13414:}"];
+	Node0x613a6b0 -> Node0x61392c0;
+	Node0x61392c0 [shape=record,label="{libxml2-py.c:13417:}"];
+}

@@ -1,0 +1,14 @@
+digraph "CFG for 'xmlCtxtDumpInitCtxt' function" {
+	label="CFG for 'xmlCtxtDumpInitCtxt' function";
+
+	Node0x4897100 [shape=record,label="{debugXML.c:57:}"];
+	Node0x4897100 -> Node0x49109b0;
+	Node0x49109b0 [shape=record,label="{debugXML.c:70:|{<s0>T|<s1>F}}"];
+	Node0x49109b0:s0 -> Node0x4910cb0;
+	Node0x49109b0:s1 -> Node0x4910810;
+	Node0x4910cb0 [shape=record,label="{debugXML.c:71:}"];
+	Node0x4910cb0 -> Node0x4910c20;
+	Node0x4910c20 [shape=record,label="{debugXML.c:70:}"];
+	Node0x4910c20 -> Node0x49109b0;
+	Node0x4910810 [shape=record,label="{debugXML.c:72:}"];
+}

@@ -1,0 +1,10 @@
+digraph "CFG for 'test_xmlDictCreate' function" {
+	label="CFG for 'test_xmlDictCreate' function";
+
+	Node0x54cba30 [shape=record,label="{testapi.c:8149:|{<s0>T|<s1>F}}"];
+	Node0x54cba30:s0 -> Node0x5725a70;
+	Node0x54cba30:s1 -> Node0x57261b0;
+	Node0x5725a70 [shape=record,label="{testapi.c:8162:}"];
+	Node0x5725a70 -> Node0x57261b0;
+	Node0x57261b0 [shape=record,label="{testapi.c:8166:}"];
+}

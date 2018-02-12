@@ -1,0 +1,15 @@
+digraph "CFG for 'xmlSchemaSetValidStructuredErrors' function" {
+	label="CFG for 'xmlSchemaSetValidStructuredErrors' function";
+
+	Node0x4e59b20 [shape=record,label="{xmlschemas.c:27766:|{<s0>T|<s1>F}}"];
+	Node0x4e59b20 -> Node0x4e5bc20;
+	Node0x4e59b20 -> Node0x4e5bc70;
+	Node0x4e5bc20 [shape=record,label="{xmlschemas.c:27770:}"];
+	Node0x4e5bc20 -> Node0x4e5cad0;
+	Node0x4e5bc70 [shape=record,label="{xmlschemas.c:27771:|{<s0>T|<s1>F}}"];
+	Node0x4e5bc70 -> Node0x4e5ca80;
+	Node0x4e5bc70 -> Node0x4e5cad0;
+	Node0x4e5ca80 [shape=record,label="{xmlschemas.c:27776:}"];
+	Node0x4e5ca80 -> Node0x4e5cad0;
+	Node0x4e5cad0 [shape=record,label="{xmlschemas.c:27777:}"];
+}

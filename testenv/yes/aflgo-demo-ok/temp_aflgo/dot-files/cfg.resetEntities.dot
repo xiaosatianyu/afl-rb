@@ -1,0 +1,24 @@
+digraph "CFG for 'resetEntities' function" {
+	label="CFG for 'resetEntities' function";
+
+	Node0x40956a0 [shape=record,label="{runsuite.c:100:}"];
+	Node0x40956a0 -> Node0x402c9d0;
+	Node0x402c9d0 [shape=record,label="{runsuite.c:102:|{<s0>T|<s1>F}}"];
+	Node0x402c9d0:s0 -> Node0x400c080;
+	Node0x402c9d0:s1 -> Node0x40b1fe0;
+	Node0x400c080 [shape=record,label="{runsuite.c:103:|{<s0>T|<s1>F}}"];
+	Node0x400c080:s0 -> Node0x400f620;
+	Node0x400c080:s1 -> Node0x400f670;
+	Node0x400f620 [shape=record,label="{runsuite.c:104:}"];
+	Node0x400f620 -> Node0x400f670;
+	Node0x400f670 [shape=record,label="{runsuite.c:105:|{<s0>T|<s1>F}}"];
+	Node0x400f670:s0 -> Node0x40863a0;
+	Node0x400f670:s1 -> Node0x40863f0;
+	Node0x40863a0 [shape=record,label="{runsuite.c:106:}"];
+	Node0x40863a0 -> Node0x40863f0;
+	Node0x40863f0 [shape=record,label="{runsuite.c:107:}"];
+	Node0x40863f0 -> Node0x400bff0;
+	Node0x400bff0 [shape=record,label="{runsuite.c:102:}"];
+	Node0x400bff0 -> Node0x402c9d0;
+	Node0x40b1fe0 [shape=record,label="{runsuite.c:108:}"];
+}

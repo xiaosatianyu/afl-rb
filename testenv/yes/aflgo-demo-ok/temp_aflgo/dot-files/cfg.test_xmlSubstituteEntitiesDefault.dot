@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlSubstituteEntitiesDefault' function" {
+	label="CFG for 'test_xmlSubstituteEntitiesDefault' function";
+
+	Node0x5b10420 [shape=record,label="{testapi.c:15358:}"];
+	Node0x5b10420 -> Node0x5b20c50;
+	Node0x5b20c50 [shape=record,label="{testapi.c:15365:|{<s0>T|<s1>F}}"];
+	Node0x5b20c50:s0 -> Node0x5b20f30;
+	Node0x5b20c50:s1 -> Node0x5b20ab0;
+	Node0x5b20f30 [shape=record,label="{testapi.c:15366:|{<s0>T|<s1>F}}"];
+	Node0x5b20f30:s0 -> Node0x5b21d90;
+	Node0x5b20f30:s1 -> Node0x5b22560;
+	Node0x5b21d90 [shape=record,label="{testapi.c:15376:}"];
+	Node0x5b21d90 -> Node0x5b22560;
+	Node0x5b22560 [shape=record,label="{testapi.c:15381:}"];
+	Node0x5b22560 -> Node0x5b20ea0;
+	Node0x5b20ea0 [shape=record,label="{testapi.c:15365:}"];
+	Node0x5b20ea0 -> Node0x5b20c50;
+	Node0x5b20ab0 [shape=record,label="{testapi.c:15382:}"];
+}

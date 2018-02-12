@@ -1,0 +1,37 @@
+digraph "CFG for 'pythonWarning' function" {
+	label="CFG for 'pythonWarning' function";
+
+	Node0x56385e0 [shape=record,label="{libxml.c:1130:|{<s0>T|<s1>F}}"];
+	Node0x56385e0:s0 -> Node0x563b870;
+	Node0x56385e0:s1 -> Node0x563b8c0;
+	Node0x563b870 [shape=record,label="{libxml.c:1142:|{<s0>T|<s1>F}}"];
+	Node0x563b870:s0 -> Node0x563cb70;
+	Node0x563b870:s1 -> Node0x563cea0;
+	Node0x563cb70 [shape=record,label="{libxml.c:1150:}"];
+	Node0x563cb70 -> Node0x563cea0;
+	Node0x563cea0 [shape=record,label="{libxml.c:1151:}"];
+	Node0x563cea0 -> Node0x563dbf0;
+	Node0x563dbf0 [shape=record,label="{libxml.c:1151:|{<s0>T|<s1>F}}"];
+	Node0x563dbf0:s0 -> Node0x563ddd0;
+	Node0x563dbf0:s1 -> Node0x563de70;
+	Node0x563ddd0 [shape=record,label="{libxml.c:1151:}"];
+	Node0x563ddd0 -> Node0x563de20;
+	Node0x563de70 [shape=record,label="{libxml.c:1151:}"];
+	Node0x563de70 -> Node0x563e110;
+	Node0x563e110 [shape=record,label="{libxml.c:1151:|{<s0>T|<s1>F}}"];
+	Node0x563e110:s0 -> Node0x563e240;
+	Node0x563e110:s1 -> Node0x563e2e0;
+	Node0x563e240 [shape=record,label="{libxml.c:1151:}"];
+	Node0x563e240 -> Node0x563e290;
+	Node0x563e2e0 [shape=record,label="{libxml.c:1151:}"];
+	Node0x563e2e0 -> Node0x563e290;
+	Node0x563e290 [shape=record,label="{libxml.c:1151:}"];
+	Node0x563e290 -> Node0x563e070;
+	Node0x563e070 [shape=record,label="{%40}"];
+	Node0x563e070 -> Node0x563de20;
+	Node0x563de20 [shape=record,label="{libxml.c:1151:}"];
+	Node0x563de20 -> Node0x563db50;
+	Node0x563db50 [shape=record,label="{libxml.c:1152:}"];
+	Node0x563db50 -> Node0x563b8c0;
+	Node0x563b8c0 [shape=record,label="{libxml.c:1153:}"];
+}

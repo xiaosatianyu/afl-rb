@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlSchemaCompareValues' function" {
+	label="CFG for 'test_xmlSchemaCompareValues' function";
+
+	Node0x5c708d0 [shape=record,label="{testapi.c:35127:}"];
+	Node0x5c708d0 -> Node0x5c763e0;
+	Node0x5c763e0 [shape=record,label="{testapi.c:35137:|{<s0>T|<s1>F}}"];
+	Node0x5c763e0:s0 -> Node0x5c76640;
+	Node0x5c763e0:s1 -> Node0x5c76280;
+	Node0x5c76640 [shape=record,label="{testapi.c:35138:}"];
+	Node0x5c76640 -> Node0x5c769b0;
+	Node0x5c769b0 [shape=record,label="{testapi.c:35138:|{<s0>T|<s1>F}}"];
+	Node0x5c769b0:s0 -> Node0x5c76bf0;
+	Node0x5c769b0:s1 -> Node0x5c768d0;
+	Node0x5c76bf0 [shape=record,label="{testapi.c:35139:|{<s0>T|<s1>F}}"];
+	Node0x5c76bf0:s0 -> Node0x5c79b30;
+	Node0x5c76bf0:s1 -> Node0x5c79b80;
+	Node0x5c79b30 [shape=record,label="{testapi.c:35151:}"];
+	Node0x5c79b30 -> Node0x5c79b80;
+	Node0x5c79b80 [shape=record,label="{testapi.c:35157:}"];
+	Node0x5c79b80 -> Node0x5c76b60;
+	Node0x5c76b60 [shape=record,label="{testapi.c:35138:}"];
+	Node0x5c76b60 -> Node0x5c769b0;
+	Node0x5c768d0 [shape=record,label="{testapi.c:35158:}"];
+	Node0x5c768d0 -> Node0x5c765f0;
+	Node0x5c765f0 [shape=record,label="{testapi.c:35137:}"];
+	Node0x5c765f0 -> Node0x5c763e0;
+	Node0x5c76280 [shape=record,label="{testapi.c:35159:}"];
+}

@@ -1,0 +1,13 @@
+digraph "CFG for 'xmlTextReaderStructuredError' function" {
+	label="CFG for 'xmlTextReaderStructuredError' function";
+
+	Node0x46277c0 [shape=record,label="{xmlreader.c:4842:|{<s0>T|<s1>F}}"];
+	Node0x46277c0:s0 -> Node0x462ad10;
+	Node0x46277c0:s1 -> Node0x462acc0;
+	Node0x462ad10 [shape=record,label="{xmlreader.c:4848:|{<s0>T|<s1>F}}"];
+	Node0x462ad10:s0 -> Node0x462ac70;
+	Node0x462ad10:s1 -> Node0x462acc0;
+	Node0x462ac70 [shape=record,label="{xmlreader.c:4849:}"];
+	Node0x462ac70 -> Node0x462acc0;
+	Node0x462acc0 [shape=record,label="{xmlreader.c:4851:}"];
+}

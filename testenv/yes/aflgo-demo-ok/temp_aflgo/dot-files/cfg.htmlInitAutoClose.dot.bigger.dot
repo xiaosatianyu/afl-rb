@@ -1,0 +1,40 @@
+digraph "CFG for 'htmlInitAutoClose' function" {
+	label="CFG for 'htmlInitAutoClose' function";
+
+	Node0x424c160 [shape=record,label="{HTMLparser.c:1231:|{<s0>T|<s1>F}}"];
+	Node0x424c160:s0 -> Node0x42a0c40;
+	Node0x424c160:s1 -> Node0x42a0c90;
+	Node0x42a0c40 [shape=record,label="{HTMLparser.c:1233:}"];
+	Node0x42a0c40 -> Node0x4249bf0;
+	Node0x42a0c90 [shape=record,label="{HTMLparser.c:1235:}"];
+	Node0x42a0c90 -> Node0x42a1540;
+	Node0x42a1540 [shape=record,label="{HTMLparser.c:1235:|{<s0>T|<s1>F}}"];
+	Node0x42a1540:s0 -> Node0x42a1870;
+	Node0x42a1540:s1 -> Node0x42a13e0;
+	Node0x42a1870 [shape=record,label="{HTMLparser.c:1235:}"];
+	Node0x42a1870 -> Node0x42a17e0;
+	Node0x42a17e0 [shape=record,label="{HTMLparser.c:1235:}"];
+	Node0x42a17e0 -> Node0x42a1540;
+	Node0x42a13e0 [shape=record,label="{HTMLparser.c:1236:}"];
+	Node0x42a13e0 -> Node0x42a3be0;
+	Node0x42a3be0 [shape=record,label="{HTMLparser.c:1237:|{<s0>T|<s1>F}}"];
+	Node0x42a3be0:s0 -> Node0x42a3ed0;
+	Node0x42a3be0:s1 -> Node0x42a3e80;
+	Node0x42a3ed0 [shape=record,label="{HTMLparser.c:1237:}"];
+	Node0x42a3ed0 -> Node0x42a3e80;
+	Node0x42a3e80 [shape=record,label="{HTMLparser.c:1237:|{<s0>T|<s1>F}}"];
+	Node0x42a3e80:s0 -> Node0x42a48e0;
+	Node0x42a3e80:s1 -> Node0x42a3e00;
+	Node0x42a48e0 [shape=record,label="{HTMLparser.c:1238:}"];
+	Node0x42a48e0 -> Node0x42ac2d0;
+	Node0x42ac2d0 [shape=record,label="{HTMLparser.c:1239:|{<s0>T|<s1>F}}"];
+	Node0x42ac2d0:s0 -> Node0x42ac900;
+	Node0x42ac2d0:s1 -> Node0x42a1790;
+	Node0x42ac900 [shape=record,label="{HTMLparser.c:1239:}"];
+	Node0x42ac900 -> Node0x42ac2d0;
+	Node0x42a1790 [shape=record,label="{HTMLparser.c:1240:}"];
+	Node0x42a1790 -> Node0x42a3be0;
+	Node0x42a3e00 [shape=record,label="{HTMLparser.c:1242:}"];
+	Node0x42a3e00 -> Node0x4249bf0;
+	Node0x4249bf0 [shape=record,label="{HTMLparser.c:1243:}"];
+}

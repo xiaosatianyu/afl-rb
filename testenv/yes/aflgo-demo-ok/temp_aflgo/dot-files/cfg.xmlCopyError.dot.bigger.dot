@@ -1,0 +1,40 @@
+digraph "CFG for 'xmlCopyError' function" {
+	label="CFG for 'xmlCopyError' function";
+
+	Node0x35bb2d0 [shape=record,label="{error.c:955:|{<s0>T|<s1>F}}"];
+	Node0x35bb2d0:s0 -> Node0x387c960;
+	Node0x35bb2d0:s1 -> Node0x387ca00;
+	Node0x387ca00 [shape=record,label="{error.c:958:|{<s0>T|<s1>F}}"];
+	Node0x387ca00:s0 -> Node0x387c960;
+	Node0x387ca00:s1 -> Node0x387c9b0;
+	Node0x387c960 [shape=record,label="{error.c:959:}"];
+	Node0x387c960 -> Node0x38b2f00;
+	Node0x387c9b0 [shape=record,label="{error.c:961:|{<s0>T|<s1>F}}"];
+	Node0x387c9b0:s0 -> Node0x38c3600;
+	Node0x387c9b0:s1 -> Node0x38c3650;
+	Node0x38c3600 [shape=record,label="{error.c:968:}"];
+	Node0x38c3600 -> Node0x38c3650;
+	Node0x38c3650 [shape=record,label="{error.c:969:|{<s0>T|<s1>F}}"];
+	Node0x38c3650:s0 -> Node0x38c3de0;
+	Node0x38c3650:s1 -> Node0x38c3e30;
+	Node0x38c3de0 [shape=record,label="{error.c:970:}"];
+	Node0x38c3de0 -> Node0x38c3e30;
+	Node0x38c3e30 [shape=record,label="{error.c:971:|{<s0>T|<s1>F}}"];
+	Node0x38c3e30:s0 -> Node0x38c45c0;
+	Node0x38c3e30:s1 -> Node0x38c4610;
+	Node0x38c45c0 [shape=record,label="{error.c:972:}"];
+	Node0x38c45c0 -> Node0x38c4610;
+	Node0x38c4610 [shape=record,label="{error.c:973:|{<s0>T|<s1>F}}"];
+	Node0x38c4610:s0 -> Node0x38c4da0;
+	Node0x38c4610:s1 -> Node0x38c4df0;
+	Node0x38c4da0 [shape=record,label="{error.c:974:}"];
+	Node0x38c4da0 -> Node0x38c4df0;
+	Node0x38c4df0 [shape=record,label="{error.c:975:|{<s0>T|<s1>F}}"];
+	Node0x38c4df0:s0 -> Node0x38c5580;
+	Node0x38c4df0:s1 -> Node0x38c55d0;
+	Node0x38c5580 [shape=record,label="{error.c:976:}"];
+	Node0x38c5580 -> Node0x38c55d0;
+	Node0x38c55d0 [shape=record,label="{error.c:977:}"];
+	Node0x38c55d0 -> Node0x38b2f00;
+	Node0x38b2f00 [shape=record,label="{error.c:993:}"];
+}

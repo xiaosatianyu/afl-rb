@@ -1,0 +1,15 @@
+digraph "CFG for 'xmlCatalogFreeLocal' function" {
+	label="CFG for 'xmlCatalogFreeLocal' function";
+
+	Node0x475ee70 [shape=record,label="{catalog.c:3599:|{<s0>T|<s1>F}}"];
+	Node0x475ee70 -> Node0x475e3d0;
+	Node0x475ee70 -> Node0x475e380;
+	Node0x475e380 [shape=record,label="{catalog.c:3603:}"];
+	Node0x475e380 -> Node0x475e3d0;
+	Node0x475e3d0 [shape=record,label="{catalog.c:3605:|{<s0>T|<s1>F}}"];
+	Node0x475e3d0 -> Node0x475fc30;
+	Node0x475e3d0 -> Node0x475fc80;
+	Node0x475fc30 [shape=record,label="{catalog.c:3607:}"];
+	Node0x475fc30 -> Node0x475fc80;
+	Node0x475fc80 [shape=record,label="{catalog.c:3608:}"];
+}

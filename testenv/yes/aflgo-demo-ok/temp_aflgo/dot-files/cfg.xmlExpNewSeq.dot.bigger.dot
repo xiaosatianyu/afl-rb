@@ -1,0 +1,20 @@
+digraph "CFG for 'xmlExpNewSeq' function" {
+	label="CFG for 'xmlExpNewSeq' function";
+
+	Node0x3906e00 [shape=record,label="{xmlregexp.c:6896:|{<s0>T|<s1>F}}"];
+	Node0x3906e00:s0 -> Node0x3936bd0;
+	Node0x3906e00:s1 -> Node0x3936c20;
+	Node0x3936bd0 [shape=record,label="{xmlregexp.c:6898:}"];
+	Node0x3936bd0 -> Node0x3907130;
+	Node0x3936c20 [shape=record,label="{xmlregexp.c:6899:|{<s0>T|<s1>F}}"];
+	Node0x3936c20:s0 -> Node0x39370f0;
+	Node0x3936c20:s1 -> Node0x3937190;
+	Node0x3937190 [shape=record,label="{xmlregexp.c:6899:|{<s0>T|<s1>F}}"];
+	Node0x3937190:s0 -> Node0x39370f0;
+	Node0x3937190:s1 -> Node0x3937140;
+	Node0x39370f0 [shape=record,label="{xmlregexp.c:6900:}"];
+	Node0x39370f0 -> Node0x3907130;
+	Node0x3937140 [shape=record,label="{xmlregexp.c:6904:}"];
+	Node0x3937140 -> Node0x3907130;
+	Node0x3907130 [shape=record,label="{xmlregexp.c:6905:}"];
+}

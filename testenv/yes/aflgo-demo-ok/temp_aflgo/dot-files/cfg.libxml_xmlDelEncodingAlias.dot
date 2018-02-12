@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlDelEncodingAlias' function" {
+	label="CFG for 'libxml_xmlDelEncodingAlias' function";
+
+	Node0x57222d0 [shape=record,label="{libxml2-py.c:2323:|{<s0>T|<s1>F}}"];
+	Node0x57222d0:s0 -> Node0x5723300;
+	Node0x57222d0:s1 -> Node0x57232b0;
+	Node0x57232b0 [shape=record,label="{libxml2-py.c:2329:}"];
+	Node0x57232b0 -> Node0x571a800;
+	Node0x5723300 [shape=record,label="{libxml2-py.c:2331:}"];
+	Node0x5723300 -> Node0x571a800;
+	Node0x571a800 [shape=record,label="{libxml2-py.c:2334:}"];
+}

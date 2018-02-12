@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlXPtrWrapLocationSet' function" {
+	label="CFG for 'xmlXPtrWrapLocationSet' function";
+
+	Node0x477f170 [shape=record,label="{xpointer.c:856:|{<s0>T|<s1>F}}"];
+	Node0x477f170 -> Node0x477f0d0;
+	Node0x477f170 -> Node0x47854b0;
+	Node0x477f0d0 [shape=record,label="{xpointer.c:861:}"];
+	Node0x477f0d0 -> Node0x477f120;
+	Node0x47854b0 [shape=record,label="{xpointer.c:864:}"];
+	Node0x47854b0 -> Node0x477f120;
+	Node0x477f120 [shape=record,label="{xpointer.c:868:}"];
+}

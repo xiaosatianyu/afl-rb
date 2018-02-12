@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsCJKCompatibilityForms' function" {
+	label="CFG for 'xmlUCSIsCJKCompatibilityForms' function";
+
+	Node0x4f5fd50 [shape=record,label="{xmlunicode.c:1197:|{<s0>T|<s1>F}}"];
+	Node0x4f5fd50:s0 -> Node0x4f5ff90;
+	Node0x4f5fd50:s1 -> Node0x4f60060;
+	Node0x4f5ff90 [shape=record,label="{xmlunicode.c:1198:}"];
+	Node0x4f5ff90 -> Node0x4f60060;
+	Node0x4f60060 [shape=record,label="{xmlunicode.c:1198:}"];
+}

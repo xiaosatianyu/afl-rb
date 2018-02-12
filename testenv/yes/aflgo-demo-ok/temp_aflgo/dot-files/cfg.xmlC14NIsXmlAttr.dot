@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlC14NIsXmlAttr' function" {
+	label="CFG for 'xmlC14NIsXmlAttr' function";
+
+	Node0x526c760 [shape=record,label="{c14n.c:865:|{<s0>T|<s1>F}}"];
+	Node0x526c760 -> Node0x5271bb0;
+	Node0x526c760 -> Node0x5271b60;
+	Node0x5271bb0 [shape=record,label="{c14n.c:868:}"];
+	Node0x5271bb0 -> Node0x5271b60;
+	Node0x5271b60 [shape=record,label="{c14n.c:867:}"];
+}

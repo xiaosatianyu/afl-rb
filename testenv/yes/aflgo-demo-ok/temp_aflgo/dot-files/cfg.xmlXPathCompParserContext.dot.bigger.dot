@@ -1,0 +1,17 @@
+digraph "CFG for 'xmlXPathCompParserContext' function" {
+	label="CFG for 'xmlXPathCompParserContext' function";
+
+	Node0x483f330 [shape=record,label="{xpath.c:6255:|{<s0>T|<s1>F}}"];
+	Node0x483f330:s0 -> Node0x4847e00;
+	Node0x483f330:s1 -> Node0x4847e50;
+	Node0x4847e00 [shape=record,label="{xpath.c:6260:}"];
+	Node0x4847e00 -> Node0x4846fb0;
+	Node0x4847e50 [shape=record,label="{xpath.c:6263:|{<s0>T|<s1>F}}"];
+	Node0x4847e50:s0 -> Node0x4848d70;
+	Node0x4847e50:s1 -> Node0x4848dc0;
+	Node0x4848d70 [shape=record,label="{xpath.c:6269:}"];
+	Node0x4848d70 -> Node0x4846fb0;
+	Node0x4848dc0 [shape=record,label="{xpath.c:6273:}"];
+	Node0x4848dc0 -> Node0x4846fb0;
+	Node0x4846fb0 [shape=record,label="{xpath.c:6282:}"];
+}

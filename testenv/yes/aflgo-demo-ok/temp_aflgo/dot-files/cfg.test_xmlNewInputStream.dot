@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlNewInputStream' function" {
+	label="CFG for 'test_xmlNewInputStream' function";
+
+	Node0x5751b30 [shape=record,label="{testapi.c:16201:}"];
+	Node0x5751b30 -> Node0x57528c0;
+	Node0x57528c0 [shape=record,label="{testapi.c:16208:|{<s0>T|<s1>F}}"];
+	Node0x57528c0:s0 -> Node0x5752b60;
+	Node0x57528c0:s1 -> Node0x5752760;
+	Node0x5752b60 [shape=record,label="{testapi.c:16209:|{<s0>T|<s1>F}}"];
+	Node0x5752b60:s0 -> Node0x57539b0;
+	Node0x5752b60:s1 -> Node0x5753ce0;
+	Node0x57539b0 [shape=record,label="{testapi.c:16219:}"];
+	Node0x57539b0 -> Node0x5753ce0;
+	Node0x5753ce0 [shape=record,label="{testapi.c:16224:}"];
+	Node0x5753ce0 -> Node0x5752ad0;
+	Node0x5752ad0 [shape=record,label="{testapi.c:16208:}"];
+	Node0x5752ad0 -> Node0x57528c0;
+	Node0x5752760 [shape=record,label="{testapi.c:16225:}"];
+}

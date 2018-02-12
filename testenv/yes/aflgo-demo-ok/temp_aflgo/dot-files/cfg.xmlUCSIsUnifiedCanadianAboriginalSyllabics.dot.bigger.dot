@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsUnifiedCanadianAboriginalSyllabics' function" {
+	label="CFG for 'xmlUCSIsUnifiedCanadianAboriginalSyllabics' function";
+
+	Node0x4fea110 [shape=record,label="{xmlunicode.c:2564:|{<s0>T|<s1>F}}"];
+	Node0x4fea110:s0 -> Node0x4f69e30;
+	Node0x4fea110:s1 -> Node0x4fea350;
+	Node0x4f69e30 [shape=record,label="{xmlunicode.c:2565:}"];
+	Node0x4f69e30 -> Node0x4fea350;
+	Node0x4fea350 [shape=record,label="{xmlunicode.c:2565:}"];
+}

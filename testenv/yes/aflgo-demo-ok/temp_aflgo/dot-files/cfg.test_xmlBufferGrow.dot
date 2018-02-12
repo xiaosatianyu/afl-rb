@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlBufferGrow' function" {
+	label="CFG for 'test_xmlBufferGrow' function";
+
+	Node0x5d55d90 [shape=record,label="{testapi.c:18892:}"];
+	Node0x5d55d90 -> Node0x5d5e820;
+	Node0x5d5e820 [shape=record,label="{testapi.c:18901:|{<s0>T|<s1>F}}"];
+	Node0x5d5e820:s0 -> Node0x5d5eb00;
+	Node0x5d5e820:s1 -> Node0x5d5e680;
+	Node0x5d5eb00 [shape=record,label="{testapi.c:18902:}"];
+	Node0x5d5eb00 -> Node0x5d5eef0;
+	Node0x5d5eef0 [shape=record,label="{testapi.c:18902:|{<s0>T|<s1>F}}"];
+	Node0x5d5eef0:s0 -> Node0x5d5f170;
+	Node0x5d5eef0:s1 -> Node0x5d5edd0;
+	Node0x5d5f170 [shape=record,label="{testapi.c:18903:|{<s0>T|<s1>F}}"];
+	Node0x5d5f170:s0 -> Node0x5d602c0;
+	Node0x5d5f170:s1 -> Node0x5d60c80;
+	Node0x5d602c0 [shape=record,label="{testapi.c:18915:}"];
+	Node0x5d602c0 -> Node0x5d60c80;
+	Node0x5d60c80 [shape=record,label="{testapi.c:18921:}"];
+	Node0x5d60c80 -> Node0x5d5f0e0;
+	Node0x5d5f0e0 [shape=record,label="{testapi.c:18902:}"];
+	Node0x5d5f0e0 -> Node0x5d5eef0;
+	Node0x5d5edd0 [shape=record,label="{testapi.c:18922:}"];
+	Node0x5d5edd0 -> Node0x5d5ea70;
+	Node0x5d5ea70 [shape=record,label="{testapi.c:18901:}"];
+	Node0x5d5ea70 -> Node0x5d5e820;
+	Node0x5d5e680 [shape=record,label="{testapi.c:18923:}"];
+}

@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsSupplementalArrowsA' function" {
+	label="CFG for 'libxml_xmlUCSIsSupplementalArrowsA' function";
+
+	Node0x5f551c0 [shape=record,label="{libxml2-py.c:11323:|{<s0>T|<s1>F}}"];
+	Node0x5f551c0:s0 -> Node0x5f56220;
+	Node0x5f551c0:s1 -> Node0x5f561d0;
+	Node0x5f561d0 [shape=record,label="{libxml2-py.c:11329:}"];
+	Node0x5f561d0 -> Node0x5f537c0;
+	Node0x5f56220 [shape=record,label="{libxml2-py.c:11331:}"];
+	Node0x5f56220 -> Node0x5f537c0;
+	Node0x5f537c0 [shape=record,label="{libxml2-py.c:11334:}"];
+}

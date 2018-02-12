@@ -1,0 +1,40 @@
+digraph "CFG for 'xmlPythonFileClose' function" {
+	label="CFG for 'xmlPythonFileClose' function";
+
+	Node0x55ab360 [shape=record,label="{libxml.c:452:|{<s0>T|<s1>F}}"];
+	Node0x55ab360:s0 -> Node0x55ad000;
+	Node0x55ab360:s1 -> Node0x55ad050;
+	Node0x55ad000 [shape=record,label="{libxml.c:459:}"];
+	Node0x55ad000 -> Node0x55ac540;
+	Node0x55ad050 [shape=record,label="{libxml.c:460:|{<s0>T|<s1>F}}"];
+	Node0x55ad050:s0 -> Node0x55ad510;
+	Node0x55ad050:s1 -> Node0x55ad5b0;
+	Node0x55ad510 [shape=record,label="{libxml.c:461:}"];
+	Node0x55ad510 -> Node0x55ad560;
+	Node0x55ad5b0 [shape=record,label="{libxml.c:462:|{<s0>T|<s1>F}}"];
+	Node0x55ad5b0:s0 -> Node0x55ae070;
+	Node0x55ad5b0:s1 -> Node0x55ae0c0;
+	Node0x55ae070 [shape=record,label="{libxml.c:463:}"];
+	Node0x55ae070 -> Node0x55ae0c0;
+	Node0x55ae0c0 [shape=record,label="{%19}"];
+	Node0x55ae0c0 -> Node0x55ad560;
+	Node0x55ad560 [shape=record,label="{libxml.c:465:|{<s0>T|<s1>F}}"];
+	Node0x55ad560:s0 -> Node0x55b6b60;
+	Node0x55ad560:s1 -> Node0x55b6bb0;
+	Node0x55b6b60 [shape=record,label="{libxml.c:466:}"];
+	Node0x55b6b60 -> Node0x55b6fa0;
+	Node0x55b6fa0 [shape=record,label="{libxml.c:466:|{<s0>T|<s1>F}}"];
+	Node0x55b6fa0:s0 -> Node0x55b71e0;
+	Node0x55b6fa0:s1 -> Node0x55b7280;
+	Node0x55b71e0 [shape=record,label="{libxml.c:466:}"];
+	Node0x55b71e0 -> Node0x55b7230;
+	Node0x55b7280 [shape=record,label="{libxml.c:466:}"];
+	Node0x55b7280 -> Node0x55b7230;
+	Node0x55b7230 [shape=record,label="{libxml.c:466:}"];
+	Node0x55b7230 -> Node0x55b6f00;
+	Node0x55b6f00 [shape=record,label="{libxml.c:467:}"];
+	Node0x55b6f00 -> Node0x55b6bb0;
+	Node0x55b6bb0 [shape=record,label="{libxml.c:468:}"];
+	Node0x55b6bb0 -> Node0x55ac540;
+	Node0x55ac540 [shape=record,label="{libxml.c:469:}"];
+}

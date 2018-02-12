@@ -1,0 +1,12 @@
+digraph "CFG for 'warningDebug' function" {
+	label="CFG for 'warningDebug' function";
+
+	Node0x48898f0 [shape=record,label="{testSAX.c:777:|{<s0>T|<s1>F}}"];
+	Node0x48898f0 -> Node0x488c1b0;
+	Node0x48898f0 -> Node0x488c200;
+	Node0x488c1b0 [shape=record,label="{testSAX.c:783:}"];
+	Node0x488c1b0 -> Node0x488a8f0;
+	Node0x488c200 [shape=record,label="{testSAX.c:784:}"];
+	Node0x488c200 -> Node0x488a8f0;
+	Node0x488a8f0 [shape=record,label="{testSAX.c:788:}"];
+}

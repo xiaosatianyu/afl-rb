@@ -1,0 +1,32 @@
+digraph "CFG for 'xmlAttrDumpOutput' function" {
+	label="CFG for 'xmlAttrDumpOutput' function";
+
+	Node0x5039360 [shape=record,label="{xmlsave.c:764:|{<s0>T|<s1>F}}"];
+	Node0x5039360 -> Node0x50398d0;
+	Node0x5039360 -> Node0x503e1a0;
+	Node0x50398d0 [shape=record,label="{xmlsave.c:767:}"];
+	Node0x50398d0 -> Node0x503d820;
+	Node0x503e1a0 [shape=record,label="{xmlsave.c:768:|{<s0>T|<s1>F}}"];
+	Node0x503e1a0 -> Node0x503e860;
+	Node0x503e1a0 -> Node0x503e8b0;
+	Node0x503e860 [shape=record,label="{xmlsave.c:769:}"];
+	Node0x503e860 -> Node0x503d820;
+	Node0x503e8b0 [shape=record,label="{xmlsave.c:770:|{<s0>T|<s1>F}}"];
+	Node0x503e8b0 -> Node0x503ec60;
+	Node0x503e8b0 -> Node0x503ed00;
+	Node0x503ec60 [shape=record,label="{xmlsave.c:771:}"];
+	Node0x503ec60 -> Node0x503ecb0;
+	Node0x503ed00 [shape=record,label="{xmlsave.c:773:}"];
+	Node0x503ed00 -> Node0x503ecb0;
+	Node0x503ecb0 [shape=record,label="{xmlsave.c:774:|{<s0>T|<s1>F}}"];
+	Node0x503ecb0 -> Node0x503f620;
+	Node0x503ecb0 -> Node0x503f5d0;
+	Node0x503f620 [shape=record,label="{xmlsave.c:774:|{<s0>T|<s1>F}}"];
+	Node0x503f620 -> Node0x503f580;
+	Node0x503f620 -> Node0x503f5d0;
+	Node0x503f580 [shape=record,label="{xmlsave.c:775:}"];
+	Node0x503f580 -> Node0x503f5d0;
+	Node0x503f5d0 [shape=record,label="{xmlsave.c:778:}"];
+	Node0x503f5d0 -> Node0x503d820;
+	Node0x503d820 [shape=record,label="{xmlsave.c:782:}"];
+}

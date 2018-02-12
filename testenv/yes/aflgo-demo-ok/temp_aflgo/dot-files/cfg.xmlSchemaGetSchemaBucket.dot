@@ -1,0 +1,28 @@
+digraph "CFG for 'xmlSchemaGetSchemaBucket' function" {
+	label="CFG for 'xmlSchemaGetSchemaBucket' function";
+
+	Node0x4fca440 [shape=record,label="{xmlschemas.c:10021:|{<s0>T|<s1>F}}"];
+	Node0x4fca440 -> Node0x4ff36b0;
+	Node0x4fca440 -> Node0x4ff3750;
+	Node0x4ff36b0 [shape=record,label="{xmlschemas.c:10029:}"];
+	Node0x4ff36b0 -> Node0x4fd13c0;
+	Node0x4ff3750 [shape=record,label="{xmlschemas.c:10031:}"];
+	Node0x4ff3750 -> Node0x4ff4120;
+	Node0x4ff4120 [shape=record,label="{xmlschemas.c:10032:|{<s0>T|<s1>F}}"];
+	Node0x4ff4120 -> Node0x4ff4400;
+	Node0x4ff4120 -> Node0x4ff3f80;
+	Node0x4ff4400 [shape=record,label="{xmlschemas.c:10033:|{<s0>T|<s1>F}}"];
+	Node0x4ff4400 -> Node0x4ff4d70;
+	Node0x4ff4400 -> Node0x4ff4dc0;
+	Node0x4ff4d70 [shape=record,label="{xmlschemas.c:10036:}"];
+	Node0x4ff4d70 -> Node0x4fd13c0;
+	Node0x4ff4dc0 [shape=record,label="{xmlschemas.c:10037:}"];
+	Node0x4ff4dc0 -> Node0x4ff4370;
+	Node0x4ff4370 [shape=record,label="{xmlschemas.c:10032:}"];
+	Node0x4ff4370 -> Node0x4ff4120;
+	Node0x4ff3f80 [shape=record,label="{%38}"];
+	Node0x4ff3f80 -> Node0x4ff3700;
+	Node0x4ff3700 [shape=record,label="{xmlschemas.c:10039:}"];
+	Node0x4ff3700 -> Node0x4fd13c0;
+	Node0x4fd13c0 [shape=record,label="{xmlschemas.c:10040:}"];
+}

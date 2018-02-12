@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlStrcasecmp' function" {
+	label="CFG for 'libxml_xmlStrcasecmp' function";
+
+	Node0x5c3d870 [shape=record,label="{libxml2-py.c:7407:|{<s0>T|<s1>F}}"];
+	Node0x5c3d870:s0 -> Node0x5c420b0;
+	Node0x5c3d870:s1 -> Node0x5c42060;
+	Node0x5c42060 [shape=record,label="{libxml2-py.c:7414:}"];
+	Node0x5c42060 -> Node0x5c404a0;
+	Node0x5c420b0 [shape=record,label="{libxml2-py.c:7416:}"];
+	Node0x5c420b0 -> Node0x5c404a0;
+	Node0x5c404a0 [shape=record,label="{libxml2-py.c:7419:}"];
+}

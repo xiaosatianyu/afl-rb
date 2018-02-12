@@ -1,0 +1,38 @@
+digraph "CFG for '__xmlLoaderErr' function" {
+	label="CFG for '__xmlLoaderErr' function";
+
+	Node0x48545e0 [shape=record,label="{xmlIO.c:459:|{<s0>T|<s1>F}}"];
+	Node0x48545e0 -> Node0x488ca00;
+	Node0x48545e0 -> Node0x488c930;
+	Node0x488ca00 [shape=record,label="{xmlIO.c:467:|{<s0>T|<s1>F}}"];
+	Node0x488ca00 -> Node0x488c980;
+	Node0x488ca00 -> Node0x488c930;
+	Node0x488c980 [shape=record,label="{xmlIO.c:468:|{<s0>T|<s1>F}}"];
+	Node0x488c980 -> Node0x488c8e0;
+	Node0x488c980 -> Node0x488c930;
+	Node0x488c8e0 [shape=record,label="{xmlIO.c:469:}"];
+	Node0x488c8e0 -> Node0x4817800;
+	Node0x488c930 [shape=record,label="{xmlIO.c:470:|{<s0>T|<s1>F}}"];
+	Node0x488c930 -> Node0x488d630;
+	Node0x488c930 -> Node0x488d5e0;
+	Node0x488d630 [shape=record,label="{xmlIO.c:470:|{<s0>T|<s1>F}}"];
+	Node0x488d630 -> Node0x488d590;
+	Node0x488d630 -> Node0x488d5e0;
+	Node0x488d590 [shape=record,label="{xmlIO.c:471:|{<s0>T|<s1>F}}"];
+	Node0x488d590 -> Node0x488ddd0;
+	Node0x488d590 -> Node0x488de70;
+	Node0x488ddd0 [shape=record,label="{xmlIO.c:472:}"];
+	Node0x488ddd0 -> Node0x488de20;
+	Node0x488de70 [shape=record,label="{xmlIO.c:475:}"];
+	Node0x488de70 -> Node0x488de20;
+	Node0x488de20 [shape=record,label="{xmlIO.c:478:|{<s0>T|<s1>F}}"];
+	Node0x488de20 -> Node0x488ee20;
+	Node0x488de20 -> Node0x488ee70;
+	Node0x488ee20 [shape=record,label="{xmlIO.c:479:}"];
+	Node0x488ee20 -> Node0x488ee70;
+	Node0x488ee70 [shape=record,label="{xmlIO.c:480:}"];
+	Node0x488ee70 -> Node0x488d5e0;
+	Node0x488d5e0 [shape=record,label="{xmlIO.c:482:}"];
+	Node0x488d5e0 -> Node0x4817800;
+	Node0x4817800 [shape=record,label="{xmlIO.c:487:}"];
+}

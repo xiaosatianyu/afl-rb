@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlTextReaderIsValid' function" {
+	label="CFG for 'libxml_xmlTextReaderIsValid' function";
+
+	Node0x5d00c70 [shape=record,label="{libxml2-py.c:8278:|{<s0>T|<s1>F}}"];
+	Node0x5d00c70:s0 -> Node0x5d047b0;
+	Node0x5d00c70:s1 -> Node0x5d04760;
+	Node0x5d04760 [shape=record,label="{libxml2-py.c:8285:}"];
+	Node0x5d04760 -> Node0x5d01050;
+	Node0x5d047b0 [shape=record,label="{libxml2-py.c:8286:|{<s0>T|<s1>F}}"];
+	Node0x5d047b0:s0 -> Node0x5d04fd0;
+	Node0x5d047b0:s1 -> Node0x5d05020;
+	Node0x5d04fd0 [shape=record,label="{libxml2-py.c:8286:}"];
+	Node0x5d04fd0 -> Node0x5d05070;
+	Node0x5d05020 [shape=record,label="{libxml2-py.c:8286:}"];
+	Node0x5d05020 -> Node0x5d05070;
+	Node0x5d05070 [shape=record,label="{libxml2-py.c:8286:}"];
+	Node0x5d05070 -> Node0x5d01050;
+	Node0x5d01050 [shape=record,label="{libxml2-py.c:8291:}"];
+}

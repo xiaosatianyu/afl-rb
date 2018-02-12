@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlTextWriterStartCDATA' function" {
+	label="CFG for 'test_xmlTextWriterStartCDATA' function";
+
+	Node0x6a77a40 [shape=record,label="{testapi.c:44001:}"];
+	Node0x6a77a40 -> Node0x6a97910;
+	Node0x6a97910 [shape=record,label="{testapi.c:44009:|{<s0>T|<s1>F}}"];
+	Node0x6a97910:s0 -> Node0x6a97bf0;
+	Node0x6a97910:s1 -> Node0x6a97770;
+	Node0x6a97bf0 [shape=record,label="{testapi.c:44010:|{<s0>T|<s1>F}}"];
+	Node0x6a97bf0:s0 -> Node0x6a98a40;
+	Node0x6a97bf0:s1 -> Node0x6a99210;
+	Node0x6a98a40 [shape=record,label="{testapi.c:44020:}"];
+	Node0x6a98a40 -> Node0x6a99210;
+	Node0x6a99210 [shape=record,label="{testapi.c:44025:}"];
+	Node0x6a99210 -> Node0x6a97b60;
+	Node0x6a97b60 [shape=record,label="{testapi.c:44009:}"];
+	Node0x6a97b60 -> Node0x6a97910;
+	Node0x6a97770 [shape=record,label="{testapi.c:44026:}"];
+}

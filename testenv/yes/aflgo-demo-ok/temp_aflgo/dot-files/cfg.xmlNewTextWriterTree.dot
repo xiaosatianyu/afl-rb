@@ -1,0 +1,22 @@
+digraph "CFG for 'xmlNewTextWriterTree' function" {
+	label="CFG for 'xmlNewTextWriterTree' function";
+
+	Node0x3f2ffd0 [shape=record,label="{xmlwriter.c:429:|{<s0>T|<s1>F}}"];
+	Node0x3f2ffd0:s0 -> Node0x3faa120;
+	Node0x3f2ffd0:s1 -> Node0x3faa170;
+	Node0x3faa120 [shape=record,label="{xmlwriter.c:436:}"];
+	Node0x3faa120 -> Node0x3f9f180;
+	Node0x3faa170 [shape=record,label="{xmlwriter.c:441:|{<s0>T|<s1>F}}"];
+	Node0x3faa170:s0 -> Node0x3fab730;
+	Node0x3faa170:s1 -> Node0x3fab780;
+	Node0x3fab730 [shape=record,label="{xmlwriter.c:449:}"];
+	Node0x3fab730 -> Node0x3f9f180;
+	Node0x3fab780 [shape=record,label="{xmlwriter.c:457:|{<s0>T|<s1>F}}"];
+	Node0x3fab780:s0 -> Node0x3fac340;
+	Node0x3fab780:s1 -> Node0x3fac390;
+	Node0x3fac340 [shape=record,label="{xmlwriter.c:461:}"];
+	Node0x3fac340 -> Node0x3f9f180;
+	Node0x3fac390 [shape=record,label="{xmlwriter.c:467:}"];
+	Node0x3fac390 -> Node0x3f9f180;
+	Node0x3f9f180 [shape=record,label="{xmlwriter.c:474:}"];
+}

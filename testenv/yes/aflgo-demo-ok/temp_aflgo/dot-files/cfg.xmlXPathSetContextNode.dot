@@ -1,0 +1,20 @@
+digraph "CFG for 'xmlXPathSetContextNode' function" {
+	label="CFG for 'xmlXPathSetContextNode' function";
+
+	Node0x4961e30 [shape=record,label="{xpath.c:15113:|{<s0>T|<s1>F}}"];
+	Node0x4961e30 -> Node0x4961bd0;
+	Node0x4961e30 -> Node0x4961c70;
+	Node0x4961c70 [shape=record,label="{xpath.c:15114:|{<s0>T|<s1>F}}"];
+	Node0x4961c70 -> Node0x4961bd0;
+	Node0x4961c70 -> Node0x4961c20;
+	Node0x4961bd0 [shape=record,label="{xpath.c:15115:}"];
+	Node0x4961bd0 -> Node0x4959990;
+	Node0x4961c20 [shape=record,label="{xpath.c:15117:|{<s0>T|<s1>F}}"];
+	Node0x4961c20 -> Node0x4962f80;
+	Node0x4961c20 -> Node0x4962fd0;
+	Node0x4962f80 [shape=record,label="{xpath.c:15118:}"];
+	Node0x4962f80 -> Node0x4959990;
+	Node0x4962fd0 [shape=record,label="{xpath.c:15121:}"];
+	Node0x4962fd0 -> Node0x4959990;
+	Node0x4959990 [shape=record,label="{xpath.c:15122:}"];
+}

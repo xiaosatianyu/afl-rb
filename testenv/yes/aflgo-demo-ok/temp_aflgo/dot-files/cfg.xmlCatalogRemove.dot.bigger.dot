@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlCatalogRemove' function" {
+	label="CFG for 'xmlCatalogRemove' function";
+
+	Node0x474b050 [shape=record,label="{catalog.c:3448:|{<s0>T|<s1>F}}"];
+	Node0x474b050:s0 -> Node0x474b0e0;
+	Node0x474b050:s1 -> Node0x474c520;
+	Node0x474c520 [shape=record,label="{catalog.c:3452:}"];
+	Node0x474c520 -> Node0x474b0e0;
+	Node0x474b0e0 [shape=record,label="{catalog.c:3454:}"];
+}

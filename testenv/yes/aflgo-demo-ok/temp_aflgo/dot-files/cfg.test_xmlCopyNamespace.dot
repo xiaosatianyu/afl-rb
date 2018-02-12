@@ -1,0 +1,24 @@
+digraph "CFG for 'test_xmlCopyNamespace' function" {
+	label="CFG for 'test_xmlCopyNamespace' function";
+
+	Node0x5d933f0 [shape=record,label="{testapi.c:19356:}"];
+	Node0x5d933f0 -> Node0x5d9c310;
+	Node0x5d9c310 [shape=record,label="{testapi.c:19363:|{<s0>T|<s1>F}}"];
+	Node0x5d9c310:s0 -> Node0x5d9c5f0;
+	Node0x5d9c310:s1 -> Node0x5d9c170;
+	Node0x5d9c5f0 [shape=record,label="{testapi.c:19364:|{<s0>T|<s1>F}}"];
+	Node0x5d9c5f0:s0 -> Node0x48ce9a0;
+	Node0x5d9c5f0:s1 -> Node0x5d9d2c0;
+	Node0x48ce9a0 [shape=record,label="{testapi.c:19368:}"];
+	Node0x48ce9a0 -> Node0x5d9d2c0;
+	Node0x5d9d2c0 [shape=record,label="{testapi.c:19369:|{<s0>T|<s1>F}}"];
+	Node0x5d9d2c0:s0 -> Node0x5d9dd90;
+	Node0x5d9d2c0:s1 -> Node0x5d9e4b0;
+	Node0x5d9dd90 [shape=record,label="{testapi.c:19375:}"];
+	Node0x5d9dd90 -> Node0x5d9e4b0;
+	Node0x5d9e4b0 [shape=record,label="{testapi.c:19380:}"];
+	Node0x5d9e4b0 -> Node0x5d9c560;
+	Node0x5d9c560 [shape=record,label="{testapi.c:19363:}"];
+	Node0x5d9c560 -> Node0x5d9c310;
+	Node0x5d9c170 [shape=record,label="{testapi.c:19381:}"];
+}

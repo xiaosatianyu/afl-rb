@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsBasicLatin' function" {
+	label="CFG for 'test_xmlUCSIsBasicLatin' function";
+
+	Node0x67d84b0 [shape=record,label="{testapi.c:37571:}"];
+	Node0x67d84b0 -> Node0x67e3d00;
+	Node0x67e3d00 [shape=record,label="{testapi.c:37579:|{<s0>T|<s1>F}}"];
+	Node0x67e3d00:s0 -> Node0x67e3fe0;
+	Node0x67e3d00:s1 -> Node0x67e3b60;
+	Node0x67e3fe0 [shape=record,label="{testapi.c:37580:|{<s0>T|<s1>F}}"];
+	Node0x67e3fe0:s0 -> Node0x67e4e30;
+	Node0x67e3fe0:s1 -> Node0x67e5600;
+	Node0x67e4e30 [shape=record,label="{testapi.c:37590:}"];
+	Node0x67e4e30 -> Node0x67e5600;
+	Node0x67e5600 [shape=record,label="{testapi.c:37595:}"];
+	Node0x67e5600 -> Node0x67e3f50;
+	Node0x67e3f50 [shape=record,label="{testapi.c:37579:}"];
+	Node0x67e3f50 -> Node0x67e3d00;
+	Node0x67e3b60 [shape=record,label="{testapi.c:37596:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlRegisterCharEncodingHandler' function" {
+	label="CFG for 'test_xmlRegisterCharEncodingHandler' function";
+
+	Node0x5511a50 [shape=record,label="{testapi.c:9088:}"];
+	Node0x5511a50 -> Node0x5516770;
+	Node0x5516770 [shape=record,label="{testapi.c:9094:|{<s0>T|<s1>F}}"];
+	Node0x5516770:s0 -> Node0x55169d0;
+	Node0x5516770:s1 -> Node0x5516690;
+	Node0x55169d0 [shape=record,label="{testapi.c:9095:|{<s0>T|<s1>F}}"];
+	Node0x55169d0:s0 -> Node0x55175e0;
+	Node0x55169d0:s1 -> Node0x55180f0;
+	Node0x55175e0 [shape=record,label="{testapi.c:9104:}"];
+	Node0x55175e0 -> Node0x55180f0;
+	Node0x55180f0 [shape=record,label="{testapi.c:9109:}"];
+	Node0x55180f0 -> Node0x5516980;
+	Node0x5516980 [shape=record,label="{testapi.c:9094:}"];
+	Node0x5516980 -> Node0x5516770;
+	Node0x5516690 [shape=record,label="{testapi.c:9110:}"];
+}

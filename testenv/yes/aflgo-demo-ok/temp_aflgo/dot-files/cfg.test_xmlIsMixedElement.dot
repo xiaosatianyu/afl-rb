@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlIsMixedElement' function" {
+	label="CFG for 'test_xmlIsMixedElement' function";
+
+	Node0x60eed00 [shape=record,label="{testapi.c:25650:}"];
+	Node0x60eed00 -> Node0x60f8de0;
+	Node0x60f8de0 [shape=record,label="{testapi.c:25659:|{<s0>T|<s1>F}}"];
+	Node0x60f8de0:s0 -> Node0x60f90c0;
+	Node0x60f8de0:s1 -> Node0x60f8c40;
+	Node0x60f90c0 [shape=record,label="{testapi.c:25660:}"];
+	Node0x60f90c0 -> Node0x60f94b0;
+	Node0x60f94b0 [shape=record,label="{testapi.c:25660:|{<s0>T|<s1>F}}"];
+	Node0x60f94b0:s0 -> Node0x60f9730;
+	Node0x60f94b0:s1 -> Node0x60f9390;
+	Node0x60f9730 [shape=record,label="{testapi.c:25661:|{<s0>T|<s1>F}}"];
+	Node0x60f9730:s0 -> Node0x60fa580;
+	Node0x60f9730:s1 -> Node0x60fa5d0;
+	Node0x60fa580 [shape=record,label="{testapi.c:25673:}"];
+	Node0x60fa580 -> Node0x60fa5d0;
+	Node0x60fa5d0 [shape=record,label="{testapi.c:25679:}"];
+	Node0x60fa5d0 -> Node0x60f96a0;
+	Node0x60f96a0 [shape=record,label="{testapi.c:25660:}"];
+	Node0x60f96a0 -> Node0x60f94b0;
+	Node0x60f9390 [shape=record,label="{testapi.c:25680:}"];
+	Node0x60f9390 -> Node0x60f9030;
+	Node0x60f9030 [shape=record,label="{testapi.c:25659:}"];
+	Node0x60f9030 -> Node0x60f8de0;
+	Node0x60f8c40 [shape=record,label="{testapi.c:25681:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlXPathWrapExternal' function" {
+	label="CFG for 'test_xmlXPathWrapExternal' function";
+
+	Node0x6dfe620 [shape=record,label="{testapi.c:51153:}"];
+	Node0x6dfe620 -> Node0x6e1a470;
+	Node0x6e1a470 [shape=record,label="{testapi.c:51161:|{<s0>T|<s1>F}}"];
+	Node0x6e1a470:s0 -> Node0x6e1a750;
+	Node0x6e1a470:s1 -> Node0x6e1a2d0;
+	Node0x6e1a750 [shape=record,label="{testapi.c:51162:|{<s0>T|<s1>F}}"];
+	Node0x6e1a750:s0 -> Node0x6e1b610;
+	Node0x6e1a750:s1 -> Node0x6e1bde0;
+	Node0x6e1b610 [shape=record,label="{testapi.c:51172:}"];
+	Node0x6e1b610 -> Node0x6e1bde0;
+	Node0x6e1bde0 [shape=record,label="{testapi.c:51177:}"];
+	Node0x6e1bde0 -> Node0x6e1a6c0;
+	Node0x6e1a6c0 [shape=record,label="{testapi.c:51161:}"];
+	Node0x6e1a6c0 -> Node0x6e1a470;
+	Node0x6e1a2d0 [shape=record,label="{testapi.c:51178:}"];
+}

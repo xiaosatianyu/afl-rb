@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsCJKUnifiedIdeographsExtensionB' function" {
+	label="CFG for 'test_xmlUCSIsCJKUnifiedIdeographsExtensionB' function";
+
+	Node0x681c840 [shape=record,label="{testapi.c:38190:}"];
+	Node0x681c840 -> Node0x6827ae0;
+	Node0x6827ae0 [shape=record,label="{testapi.c:38198:|{<s0>T|<s1>F}}"];
+	Node0x6827ae0:s0 -> Node0x6827dc0;
+	Node0x6827ae0:s1 -> Node0x6827940;
+	Node0x6827dc0 [shape=record,label="{testapi.c:38199:|{<s0>T|<s1>F}}"];
+	Node0x6827dc0:s0 -> Node0x6828c20;
+	Node0x6827dc0:s1 -> Node0x68293f0;
+	Node0x6828c20 [shape=record,label="{testapi.c:38209:}"];
+	Node0x6828c20 -> Node0x68293f0;
+	Node0x68293f0 [shape=record,label="{testapi.c:38214:}"];
+	Node0x68293f0 -> Node0x6827d30;
+	Node0x6827d30 [shape=record,label="{testapi.c:38198:}"];
+	Node0x6827d30 -> Node0x6827ae0;
+	Node0x6827940 [shape=record,label="{testapi.c:38215:}"];
+}

@@ -1,0 +1,31 @@
+digraph "CFG for 'extractFile' function" {
+	label="CFG for 'extractFile' function";
+
+	Node0x543d490 [shape=record,label="{reader3.c:30:|{<s0>T|<s1>F}}"];
+	Node0x543d490:s0 -> Node0x55333c0;
+	Node0x543d490:s1 -> Node0x55336a0;
+	Node0x55333c0 [shape=record,label="{reader3.c:43:|{<s0>T|<s1>F}}"];
+	Node0x55333c0:s0 -> Node0x5533990;
+	Node0x55333c0:s1 -> Node0x55339e0;
+	Node0x5533990 [shape=record,label="{reader3.c:44:}"];
+	Node0x5533990 -> Node0x55339e0;
+	Node0x55339e0 [shape=record,label="{reader3.c:50:}"];
+	Node0x55339e0 -> Node0x552ff60;
+	Node0x552ff60 [shape=record,label="{reader3.c:51:|{<s0>T|<s1>F}}"];
+	Node0x552ff60:s0 -> Node0x55300d0;
+	Node0x552ff60:s1 -> Node0x5534560;
+	Node0x55300d0 [shape=record,label="{reader3.c:52:}"];
+	Node0x55300d0 -> Node0x552ff60;
+	Node0x5534560 [shape=record,label="{reader3.c:54:|{<s0>T|<s1>F}}"];
+	Node0x5534560:s0 -> Node0x5534450;
+	Node0x5534560:s1 -> Node0x5534790;
+	Node0x5534450 [shape=record,label="{reader3.c:55:}"];
+	Node0x5534450 -> Node0x552f560;
+	Node0x5534790 [shape=record,label="{reader3.c:62:}"];
+	Node0x5534790 -> Node0x55336f0;
+	Node0x55336a0 [shape=record,label="{reader3.c:68:}"];
+	Node0x55336a0 -> Node0x552f560;
+	Node0x55336f0 [shape=record,label="{reader3.c:71:}"];
+	Node0x55336f0 -> Node0x552f560;
+	Node0x552f560 [shape=record,label="{reader3.c:72:}"];
+}

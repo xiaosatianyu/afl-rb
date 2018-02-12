@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlFreeElementTable' function" {
+	label="CFG for 'xmlFreeElementTable' function";
+
+	Node0x3d48d70 [shape=record,label="{valid.c:1601:}"];
+}

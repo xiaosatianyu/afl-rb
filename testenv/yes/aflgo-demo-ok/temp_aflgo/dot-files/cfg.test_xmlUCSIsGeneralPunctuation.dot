@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsGeneralPunctuation' function" {
+	label="CFG for 'test_xmlUCSIsGeneralPunctuation' function";
+
+	Node0x68dfad0 [shape=record,label="{testapi.c:40033:}"];
+	Node0x68dfad0 -> Node0x68eaad0;
+	Node0x68eaad0 [shape=record,label="{testapi.c:40041:|{<s0>T|<s1>F}}"];
+	Node0x68eaad0:s0 -> Node0x68eadb0;
+	Node0x68eaad0:s1 -> Node0x68ea930;
+	Node0x68eadb0 [shape=record,label="{testapi.c:40042:|{<s0>T|<s1>F}}"];
+	Node0x68eadb0:s0 -> Node0x68ebc10;
+	Node0x68eadb0:s1 -> Node0x68ec3e0;
+	Node0x68ebc10 [shape=record,label="{testapi.c:40052:}"];
+	Node0x68ebc10 -> Node0x68ec3e0;
+	Node0x68ec3e0 [shape=record,label="{testapi.c:40057:}"];
+	Node0x68ec3e0 -> Node0x68ead20;
+	Node0x68ead20 [shape=record,label="{testapi.c:40041:}"];
+	Node0x68ead20 -> Node0x68eaad0;
+	Node0x68ea930 [shape=record,label="{testapi.c:40058:}"];
+}

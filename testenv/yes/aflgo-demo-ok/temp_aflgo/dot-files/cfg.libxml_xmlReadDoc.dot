@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlReadDoc' function" {
+	label="CFG for 'libxml_xmlReadDoc' function";
+
+	Node0x5aa95f0 [shape=record,label="{libxml2-py.c:5791:|{<s0>T|<s1>F}}"];
+	Node0x5aa95f0:s0 -> Node0x5aae550;
+	Node0x5aa95f0:s1 -> Node0x5aae500;
+	Node0x5aae500 [shape=record,label="{libxml2-py.c:5800:}"];
+	Node0x5aae500 -> Node0x5aa9920;
+	Node0x5aae550 [shape=record,label="{libxml2-py.c:5802:}"];
+	Node0x5aae550 -> Node0x5aa9920;
+	Node0x5aa9920 [shape=record,label="{libxml2-py.c:5805:}"];
+}

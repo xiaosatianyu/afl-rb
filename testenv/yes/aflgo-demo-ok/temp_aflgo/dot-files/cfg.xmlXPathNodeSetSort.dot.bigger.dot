@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlXPathNodeSetSort' function" {
+	label="CFG for 'xmlXPathNodeSetSort' function";
+
+	Node0x44793e0 [shape=record,label="{xpath.c:3417:|{<s0>T|<s1>F}}"];
+	Node0x44793e0:s0 -> Node0x4479330;
+	Node0x44793e0:s1 -> Node0x4479560;
+	Node0x4479330 [shape=record,label="{xpath.c:3424:}"];
+	Node0x4479330 -> Node0x4461f40;
+	Node0x4479560 [shape=record,label="{xpath.c:3454:}"];
+	Node0x4479560 -> Node0x4461f40;
+	Node0x4461f40 [shape=record,label="{xpath.c:3456:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlNodeSetContent' function" {
+	label="CFG for 'libxml_xmlNodeSetContent' function";
+
+	Node0x597c080 [shape=record,label="{libxml2-py.c:4591:|{<s0>T|<s1>F}}"];
+	Node0x597c080:s0 -> Node0x597d850;
+	Node0x597c080:s1 -> Node0x597d800;
+	Node0x597d800 [shape=record,label="{libxml2-py.c:4597:}"];
+	Node0x597d800 -> Node0x5961330;
+	Node0x597d850 [shape=record,label="{libxml2-py.c:4598:|{<s0>T|<s1>F}}"];
+	Node0x597d850:s0 -> Node0x597e0e0;
+	Node0x597d850:s1 -> Node0x597e130;
+	Node0x597e0e0 [shape=record,label="{libxml2-py.c:4598:}"];
+	Node0x597e0e0 -> Node0x597e180;
+	Node0x597e130 [shape=record,label="{libxml2-py.c:4598:}"];
+	Node0x597e130 -> Node0x597e180;
+	Node0x597e180 [shape=record,label="{libxml2-py.c:4598:}"];
+	Node0x597e180 -> Node0x5961330;
+	Node0x5961330 [shape=record,label="{libxml2-py.c:4603:}"];
+}

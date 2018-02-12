@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlXPathRegisterVariable' function" {
+	label="CFG for 'libxml_xmlXPathRegisterVariable' function";
+
+	Node0x53b8230 [shape=record,label="{libxml.c:2391:|{<s0>T|<s1>F}}"];
+	Node0x53b8230:s0 -> Node0x5489560;
+	Node0x53b8230:s1 -> Node0x5489510;
+	Node0x5489510 [shape=record,label="{libxml.c:2406:}"];
+	Node0x5489510 -> Node0x53b7e50;
+	Node0x5489560 [shape=record,label="{libxml.c:2408:|{<s0>T|<s1>F}}"];
+	Node0x5489560:s0 -> Node0x5489ec0;
+	Node0x5489560:s1 -> Node0x5489f10;
+	Node0x5489ec0 [shape=record,label="{libxml.c:2408:}"];
+	Node0x5489ec0 -> Node0x5489f60;
+	Node0x5489f10 [shape=record,label="{libxml.c:2408:}"];
+	Node0x5489f10 -> Node0x5489f60;
+	Node0x5489f60 [shape=record,label="{libxml.c:2408:}"];
+	Node0x5489f60 -> Node0x53b7e50;
+	Node0x53b7e50 [shape=record,label="{libxml.c:2414:}"];
+}

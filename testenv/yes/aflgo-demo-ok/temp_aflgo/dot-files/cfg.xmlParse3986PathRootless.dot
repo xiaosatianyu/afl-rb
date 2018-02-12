@@ -1,0 +1,48 @@
+digraph "CFG for 'xmlParse3986PathRootless' function" {
+	label="CFG for 'xmlParse3986PathRootless' function";
+
+	Node0x3ec3ee0 [shape=record,label="{uri.c:664:|{<s0>T|<s1>F}}"];
+	Node0x3ec3ee0 -> Node0x3dfefb0;
+	Node0x3ec3ee0 -> Node0x3dff000;
+	Node0x3dfefb0 [shape=record,label="{uri.c:672:}"];
+	Node0x3dfefb0 -> Node0x3dfdf80;
+	Node0x3dff000 [shape=record,label="{uri.c:673:}"];
+	Node0x3dff000 -> Node0x3dff480;
+	Node0x3dff480 [shape=record,label="{uri.c:673:|{<s0>T|<s1>F}}"];
+	Node0x3dff480 -> Node0x3dff930;
+	Node0x3dff480 -> Node0x3dff6a0;
+	Node0x3dff930 [shape=record,label="{uri.c:674:|{<s0>T|<s1>F}}"];
+	Node0x3dff930 -> Node0x3dffea0;
+	Node0x3dff930 -> Node0x3dffef0;
+	Node0x3dffea0 [shape=record,label="{uri.c:676:}"];
+	Node0x3dffea0 -> Node0x3dfdf80;
+	Node0x3dffef0 [shape=record,label="{uri.c:673:}"];
+	Node0x3dffef0 -> Node0x3dff480;
+	Node0x3dff6a0 [shape=record,label="{uri.c:678:|{<s0>T|<s1>F}}"];
+	Node0x3dff6a0 -> Node0x3e00470;
+	Node0x3dff6a0 -> Node0x3e004c0;
+	Node0x3e00470 [shape=record,label="{uri.c:679:|{<s0>T|<s1>F}}"];
+	Node0x3e00470 -> Node0x3e008f0;
+	Node0x3e00470 -> Node0x3e00940;
+	Node0x3e008f0 [shape=record,label="{uri.c:679:}"];
+	Node0x3e008f0 -> Node0x3e00940;
+	Node0x3e00940 [shape=record,label="{uri.c:680:|{<s0>T|<s1>F}}"];
+	Node0x3e00940 -> Node0x3e01070;
+	Node0x3e00940 -> Node0x3e01110;
+	Node0x3e01070 [shape=record,label="{uri.c:681:|{<s0>T|<s1>F}}"];
+	Node0x3e01070 -> Node0x3e015c0;
+	Node0x3e01070 -> Node0x3e01660;
+	Node0x3e015c0 [shape=record,label="{uri.c:682:}"];
+	Node0x3e015c0 -> Node0x3e01610;
+	Node0x3e01660 [shape=record,label="{uri.c:684:}"];
+	Node0x3e01660 -> Node0x3e01610;
+	Node0x3e01610 [shape=record,label="{uri.c:685:}"];
+	Node0x3e01610 -> Node0x3e010c0;
+	Node0x3e01110 [shape=record,label="{uri.c:686:}"];
+	Node0x3e01110 -> Node0x3e010c0;
+	Node0x3e010c0 [shape=record,label="{uri.c:688:}"];
+	Node0x3e010c0 -> Node0x3e004c0;
+	Node0x3e004c0 [shape=record,label="{uri.c:689:}"];
+	Node0x3e004c0 -> Node0x3dfdf80;
+	Node0x3dfdf80 [shape=record,label="{uri.c:691:}"];
+}

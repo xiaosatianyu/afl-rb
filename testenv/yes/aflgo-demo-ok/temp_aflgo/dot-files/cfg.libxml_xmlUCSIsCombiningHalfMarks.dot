@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsCombiningHalfMarks' function" {
+	label="CFG for 'libxml_xmlUCSIsCombiningHalfMarks' function";
+
+	Node0x5eb4f20 [shape=record,label="{libxml2-py.c:10091:|{<s0>T|<s1>F}}"];
+	Node0x5eb4f20:s0 -> Node0x5eb7d20;
+	Node0x5eb4f20:s1 -> Node0x5eb7cd0;
+	Node0x5eb7cd0 [shape=record,label="{libxml2-py.c:10097:}"];
+	Node0x5eb7cd0 -> Node0x5eb6550;
+	Node0x5eb7d20 [shape=record,label="{libxml2-py.c:10099:}"];
+	Node0x5eb7d20 -> Node0x5eb6550;
+	Node0x5eb6550 [shape=record,label="{libxml2-py.c:10102:}"];
+}

@@ -1,0 +1,22 @@
+digraph "CFG for 'xmlFreeHTTPWriteCtxt' function" {
+	label="CFG for 'xmlFreeHTTPWriteCtxt' function";
+
+	Node0x4a18e80 [shape=record,label="{xmlIO.c:1814:|{<s0>T|<s1>F}}"];
+	Node0x4a18e80:s0 -> Node0x4a19850;
+	Node0x4a18e80:s1 -> Node0x4a198a0;
+	Node0x4a19850 [shape=record,label="{xmlIO.c:1817:}"];
+	Node0x4a19850 -> Node0x4a198a0;
+	Node0x4a198a0 [shape=record,label="{xmlIO.c:1819:|{<s0>T|<s1>F}}"];
+	Node0x4a198a0:s0 -> Node0x4a1a430;
+	Node0x4a198a0:s1 -> Node0x4a1a480;
+	Node0x4a1a430 [shape=record,label="{xmlIO.c:1822:|{<s0>T|<s1>F}}"];
+	Node0x4a1a430:s0 -> Node0x4a1a970;
+	Node0x4a1a430:s1 -> Node0x4a1aa10;
+	Node0x4a1a970 [shape=record,label="{xmlIO.c:1823:}"];
+	Node0x4a1a970 -> Node0x4a1a9c0;
+	Node0x4a1aa10 [shape=record,label="{xmlIO.c:1828:}"];
+	Node0x4a1aa10 -> Node0x4a1a9c0;
+	Node0x4a1a9c0 [shape=record,label="{xmlIO.c:1830:}"];
+	Node0x4a1a9c0 -> Node0x4a1a480;
+	Node0x4a1a480 [shape=record,label="{xmlIO.c:1832:}"];
+}

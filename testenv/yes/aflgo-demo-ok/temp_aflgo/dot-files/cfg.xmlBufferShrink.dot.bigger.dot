@@ -1,0 +1,48 @@
+digraph "CFG for 'xmlBufferShrink' function" {
+	label="CFG for 'xmlBufferShrink' function";
+
+	Node0x41f9ff0 [shape=record,label="{tree.c:7209:|{<s0>T|<s1>F}}"];
+	Node0x41f9ff0:s0 -> Node0x41f9d90;
+	Node0x41f9ff0:s1 -> Node0x41f9de0;
+	Node0x41f9d90 [shape=record,label="{tree.c:7210:}"];
+	Node0x41f9d90 -> Node0x41f27c0;
+	Node0x41f9de0 [shape=record,label="{tree.c:7211:|{<s0>T|<s1>F}}"];
+	Node0x41f9de0:s0 -> Node0x41fae70;
+	Node0x41f9de0:s1 -> Node0x41faec0;
+	Node0x41fae70 [shape=record,label="{tree.c:7211:}"];
+	Node0x41fae70 -> Node0x41f27c0;
+	Node0x41faec0 [shape=record,label="{tree.c:7212:|{<s0>T|<s1>F}}"];
+	Node0x41faec0:s0 -> Node0x41fb350;
+	Node0x41faec0:s1 -> Node0x41fb3a0;
+	Node0x41fb350 [shape=record,label="{tree.c:7212:}"];
+	Node0x41fb350 -> Node0x41f27c0;
+	Node0x41fb3a0 [shape=record,label="{tree.c:7214:|{<s0>T|<s1>F}}"];
+	Node0x41fb3a0:s0 -> Node0x41fbd70;
+	Node0x41fb3a0:s1 -> Node0x41fbe60;
+	Node0x41fbe60 [shape=record,label="{tree.c:7216:|{<s0>T|<s1>F}}"];
+	Node0x41fbe60:s0 -> Node0x41fc270;
+	Node0x41fbe60:s1 -> Node0x41fbe10;
+	Node0x41fc270 [shape=record,label="{tree.c:7216:|{<s0>T|<s1>F}}"];
+	Node0x41fc270:s0 -> Node0x41fbd70;
+	Node0x41fc270:s1 -> Node0x41fbe10;
+	Node0x41fbd70 [shape=record,label="{tree.c:7221:|{<s0>T|<s1>F}}"];
+	Node0x41fbd70:s0 -> Node0x41fd210;
+	Node0x41fbd70:s1 -> Node0x41fd1c0;
+	Node0x41fd210 [shape=record,label="{tree.c:7228:|{<s0>T|<s1>F}}"];
+	Node0x41fd210:s0 -> Node0x41fd170;
+	Node0x41fd210:s1 -> Node0x41fd1c0;
+	Node0x41fd170 [shape=record,label="{tree.c:7229:|{<s0>T|<s1>F}}"];
+	Node0x41fd170:s0 -> Node0x41fe1d0;
+	Node0x41fd170:s1 -> Node0x41fe220;
+	Node0x41fe1d0 [shape=record,label="{tree.c:7231:}"];
+	Node0x41fe1d0 -> Node0x41fe220;
+	Node0x41fe220 [shape=record,label="{tree.c:7236:}"];
+	Node0x41fe220 -> Node0x41fd1c0;
+	Node0x41fd1c0 [shape=record,label="{tree.c:7237:}"];
+	Node0x41fd1c0 -> Node0x41fbdc0;
+	Node0x41fbe10 [shape=record,label="{tree.c:7238:}"];
+	Node0x41fbe10 -> Node0x41fbdc0;
+	Node0x41fbdc0 [shape=record,label="{tree.c:7241:}"];
+	Node0x41fbdc0 -> Node0x41f27c0;
+	Node0x41f27c0 [shape=record,label="{tree.c:7242:}"];
+}

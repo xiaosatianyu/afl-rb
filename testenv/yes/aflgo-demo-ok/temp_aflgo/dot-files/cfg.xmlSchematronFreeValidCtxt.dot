@@ -1,0 +1,22 @@
+digraph "CFG for 'xmlSchematronFreeValidCtxt' function" {
+	label="CFG for 'xmlSchematronFreeValidCtxt' function";
+
+	Node0x3a953c0 [shape=record,label="{schematron.c:1544:|{<s0>T|<s1>F}}"];
+	Node0x3a953c0 -> Node0x3a95780;
+	Node0x3a953c0 -> Node0x3a957d0;
+	Node0x3a95780 [shape=record,label="{schematron.c:1547:}"];
+	Node0x3a95780 -> Node0x3a95410;
+	Node0x3a957d0 [shape=record,label="{schematron.c:1548:|{<s0>T|<s1>F}}"];
+	Node0x3a957d0 -> Node0x3a95b20;
+	Node0x3a957d0 -> Node0x3a95b70;
+	Node0x3a95b20 [shape=record,label="{schematron.c:1549:}"];
+	Node0x3a95b20 -> Node0x3a95b70;
+	Node0x3a95b70 [shape=record,label="{schematron.c:1550:|{<s0>T|<s1>F}}"];
+	Node0x3a95b70 -> Node0x3a962a0;
+	Node0x3a95b70 -> Node0x3a962f0;
+	Node0x3a962a0 [shape=record,label="{schematron.c:1551:}"];
+	Node0x3a962a0 -> Node0x3a962f0;
+	Node0x3a962f0 [shape=record,label="{schematron.c:1552:}"];
+	Node0x3a962f0 -> Node0x3a95410;
+	Node0x3a95410 [shape=record,label="{schematron.c:1553:}"];
+}

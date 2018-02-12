@@ -1,0 +1,9 @@
+digraph "CFG for 'registerNode' function" {
+	label="CFG for 'registerNode' function";
+
+	Node0x502c4c0 [shape=record,label="{xmllint.c:3106:|{<s0>T|<s1>F}}"];
+	Node0x502c4c0:s0 -> Node0x502eb60;
+	Node0x502c4c0:s1 -> Node0x502ebb0;
+	Node0x502eb60 [shape=record,label="{xmllint.c:3110:}"];
+	Node0x502ebb0 [shape=record,label="{xmllint.c:3113:}"];
+}

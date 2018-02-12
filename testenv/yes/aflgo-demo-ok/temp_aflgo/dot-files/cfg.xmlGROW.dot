@@ -1,0 +1,33 @@
+digraph "CFG for 'xmlGROW' function" {
+	label="CFG for 'xmlGROW' function";
+
+	Node0x4a87850 [shape=record,label="{parser.c:2067:|{<s0>T|<s1>F}}"];
+	Node0x4a87850 -> Node0x41f0e30;
+	Node0x4a87850 -> Node0x41f0eb0;
+	Node0x41f0eb0 [shape=record,label="{parser.c:2072:|{<s0>T|<s1>F}}"];
+	Node0x41f0eb0 -> Node0x41f0e30;
+	Node0x41f0eb0 -> Node0x41f0d60;
+	Node0x41f0e30 [shape=record,label="{parser.c:2073:|{<s0>T|<s1>F}}"];
+	Node0x41f0e30 -> Node0x41f1460;
+	Node0x41f0e30 -> Node0x41f0d60;
+	Node0x41f1460 [shape=record,label="{parser.c:2073:|{<s0>T|<s1>F}}"];
+	Node0x41f1460 -> Node0x41f0db0;
+	Node0x41f1460 -> Node0x41f0d60;
+	Node0x41f0db0 [shape=record,label="{parser.c:2074:|{<s0>T|<s1>F}}"];
+	Node0x41f0db0 -> Node0x41f0d10;
+	Node0x41f0db0 -> Node0x41f0d60;
+	Node0x41f0d10 [shape=record,label="{parser.c:2075:}"];
+	Node0x41f0d10 -> Node0x41f0d60;
+	Node0x41f0d60 [shape=record,label="{parser.c:2078:|{<s0>T|<s1>F}}"];
+	Node0x41f0d60 -> Node0x41f32b0;
+	Node0x41f0d60 -> Node0x41f2870;
+	Node0x41f32b0 [shape=record,label="{parser.c:2079:|{<s0>T|<s1>F}}"];
+	Node0x41f32b0 -> Node0x41f3230;
+	Node0x41f32b0 -> Node0x41f2870;
+	Node0x41f3230 [shape=record,label="{parser.c:2080:|{<s0>T|<s1>F}}"];
+	Node0x41f3230 -> Node0x41f2540;
+	Node0x41f3230 -> Node0x41f2870;
+	Node0x41f2540 [shape=record,label="{parser.c:2081:}"];
+	Node0x41f2540 -> Node0x41f2870;
+	Node0x41f2870 [shape=record,label="{parser.c:2082:}"];
+}

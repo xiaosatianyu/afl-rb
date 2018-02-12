@@ -1,0 +1,16 @@
+digraph "CFG for 'warningSplit' function" {
+	label="CFG for 'warningSplit' function";
+
+	Node0x5a97190 [shape=record,label="{xmlschemas.c:28417:|{<s0>T|<s1>F}}"];
+	Node0x5a97190 -> Node0x47feea0;
+	Node0x5a97190 -> Node0x47fedd0;
+	Node0x47feea0 [shape=record,label="{xmlschemas.c:28419:|{<s0>T|<s1>F}}"];
+	Node0x47feea0 -> Node0x47fee20;
+	Node0x47feea0 -> Node0x47fedd0;
+	Node0x47fee20 [shape=record,label="{xmlschemas.c:28420:|{<s0>T|<s1>F}}"];
+	Node0x47fee20 -> Node0x47fed80;
+	Node0x47fee20 -> Node0x47fedd0;
+	Node0x47fed80 [shape=record,label="{xmlschemas.c:28421:}"];
+	Node0x47fed80 -> Node0x47fedd0;
+	Node0x47fedd0 [shape=record,label="{xmlschemas.c:28423:}"];
+}

@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsGeneralPunctuation' function" {
+	label="CFG for 'xmlUCSIsGeneralPunctuation' function";
+
+	Node0x4f7d090 [shape=record,label="{xmlunicode.c:1509:|{<s0>T|<s1>F}}"];
+	Node0x4f7d090 -> Node0x4f7ce80;
+	Node0x4f7d090 -> Node0x4f7d2a0;
+	Node0x4f7ce80 [shape=record,label="{xmlunicode.c:1510:}"];
+	Node0x4f7ce80 -> Node0x4f7d2a0;
+	Node0x4f7d2a0 [shape=record,label="{xmlunicode.c:1510:}"];
+}

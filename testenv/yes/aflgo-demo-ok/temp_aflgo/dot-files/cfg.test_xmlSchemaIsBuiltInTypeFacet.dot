@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlSchemaIsBuiltInTypeFacet' function" {
+	label="CFG for 'test_xmlSchemaIsBuiltInTypeFacet' function";
+
+	Node0x669ea60 [shape=record,label="{testapi.c:35507:}"];
+	Node0x669ea60 -> Node0x66a3180;
+	Node0x66a3180 [shape=record,label="{testapi.c:35517:|{<s0>T|<s1>F}}"];
+	Node0x66a3180:s0 -> Node0x66a3460;
+	Node0x66a3180:s1 -> Node0x66a2fe0;
+	Node0x66a3460 [shape=record,label="{testapi.c:35518:}"];
+	Node0x66a3460 -> Node0x66a3850;
+	Node0x66a3850 [shape=record,label="{testapi.c:35518:|{<s0>T|<s1>F}}"];
+	Node0x66a3850:s0 -> Node0x66a3ad0;
+	Node0x66a3850:s1 -> Node0x66a3730;
+	Node0x66a3ad0 [shape=record,label="{testapi.c:35519:|{<s0>T|<s1>F}}"];
+	Node0x66a3ad0:s0 -> Node0x66a4c30;
+	Node0x66a3ad0:s1 -> Node0x66a55f0;
+	Node0x66a4c30 [shape=record,label="{testapi.c:35531:}"];
+	Node0x66a4c30 -> Node0x66a55f0;
+	Node0x66a55f0 [shape=record,label="{testapi.c:35537:}"];
+	Node0x66a55f0 -> Node0x66a3a40;
+	Node0x66a3a40 [shape=record,label="{testapi.c:35518:}"];
+	Node0x66a3a40 -> Node0x66a3850;
+	Node0x66a3730 [shape=record,label="{testapi.c:35538:}"];
+	Node0x66a3730 -> Node0x66a33d0;
+	Node0x66a33d0 [shape=record,label="{testapi.c:35517:}"];
+	Node0x66a33d0 -> Node0x66a3180;
+	Node0x66a2fe0 [shape=record,label="{testapi.c:35539:}"];
+}

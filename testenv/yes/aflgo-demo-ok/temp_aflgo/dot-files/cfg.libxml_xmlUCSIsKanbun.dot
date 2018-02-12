@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsKanbun' function" {
+	label="CFG for 'libxml_xmlUCSIsKanbun' function";
+
+	Node0x5a12090 [shape=record,label="{libxml2-py.c:10619:|{<s0>T|<s1>F}}"];
+	Node0x5a12090:s0 -> Node0x5a14ed0;
+	Node0x5a12090:s1 -> Node0x5a14e80;
+	Node0x5a14e80 [shape=record,label="{libxml2-py.c:10625:}"];
+	Node0x5a14e80 -> Node0x5a13ae0;
+	Node0x5a14ed0 [shape=record,label="{libxml2-py.c:10627:}"];
+	Node0x5a14ed0 -> Node0x5a13ae0;
+	Node0x5a13ae0 [shape=record,label="{libxml2-py.c:10630:}"];
+}

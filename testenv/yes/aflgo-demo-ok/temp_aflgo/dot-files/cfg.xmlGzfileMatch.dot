@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlGzfileMatch' function" {
+	label="CFG for 'xmlGzfileMatch' function";
+
+	Node0x496a880 [shape=record,label="{xmlIO.c:1147:}"];
+}

@@ -1,0 +1,26 @@
+digraph "CFG for 'libxml_xmlReconciliateNs' function" {
+	label="CFG for 'libxml_xmlReconciliateNs' function";
+
+	Node0x5aea200 [shape=record,label="{libxml2-py.c:6064:|{<s0>T|<s1>F}}"];
+	Node0x5aea200:s0 -> Node0x5aee350;
+	Node0x5aea200:s1 -> Node0x5aee300;
+	Node0x5aee300 [shape=record,label="{libxml2-py.c:6073:}"];
+	Node0x5aee300 -> Node0x5aec310;
+	Node0x5aee350 [shape=record,label="{libxml2-py.c:6074:|{<s0>T|<s1>F}}"];
+	Node0x5aee350:s0 -> Node0x5aeebe0;
+	Node0x5aee350:s1 -> Node0x5aeec30;
+	Node0x5aeebe0 [shape=record,label="{libxml2-py.c:6074:}"];
+	Node0x5aeebe0 -> Node0x5aeec80;
+	Node0x5aeec30 [shape=record,label="{libxml2-py.c:6074:}"];
+	Node0x5aeec30 -> Node0x5aeec80;
+	Node0x5aeec80 [shape=record,label="{libxml2-py.c:6074:|{<s0>T|<s1>F}}"];
+	Node0x5aeec80:s0 -> Node0x5aef310;
+	Node0x5aeec80:s1 -> Node0x5aef360;
+	Node0x5aef310 [shape=record,label="{libxml2-py.c:6075:}"];
+	Node0x5aef310 -> Node0x5aef3b0;
+	Node0x5aef360 [shape=record,label="{libxml2-py.c:6075:}"];
+	Node0x5aef360 -> Node0x5aef3b0;
+	Node0x5aef3b0 [shape=record,label="{libxml2-py.c:6075:}"];
+	Node0x5aef3b0 -> Node0x5aec310;
+	Node0x5aec310 [shape=record,label="{libxml2-py.c:6080:}"];
+}

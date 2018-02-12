@@ -1,0 +1,19 @@
+digraph "CFG for 'htmlIsBooleanAttr' function" {
+	label="CFG for 'htmlIsBooleanAttr' function";
+
+	Node0x55469a0 [shape=record,label="{HTMLtree.c:323:}"];
+	Node0x55469a0 -> Node0x5546c40;
+	Node0x5546c40 [shape=record,label="{HTMLtree.c:327:|{<s0>T|<s1>F}}"];
+	Node0x5546c40 -> Node0x554bdf0;
+	Node0x5546c40 -> Node0x5546d20;
+	Node0x554bdf0 [shape=record,label="{HTMLtree.c:328:|{<s0>T|<s1>F}}"];
+	Node0x554bdf0 -> Node0x555db80;
+	Node0x554bdf0 -> Node0x555dbd0;
+	Node0x555db80 [shape=record,label="{HTMLtree.c:329:}"];
+	Node0x555db80 -> Node0x555c6f0;
+	Node0x555dbd0 [shape=record,label="{HTMLtree.c:330:}"];
+	Node0x555dbd0 -> Node0x5546c40;
+	Node0x5546d20 [shape=record,label="{HTMLtree.c:332:}"];
+	Node0x5546d20 -> Node0x555c6f0;
+	Node0x555c6f0 [shape=record,label="{HTMLtree.c:333:}"];
+}

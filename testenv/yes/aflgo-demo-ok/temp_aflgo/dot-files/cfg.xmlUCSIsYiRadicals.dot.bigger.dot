@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsYiRadicals' function" {
+	label="CFG for 'xmlUCSIsYiRadicals' function";
+
+	Node0x4fec990 [shape=record,label="{xmlunicode.c:2603:|{<s0>T|<s1>F}}"];
+	Node0x4fec990:s0 -> Node0x4fecbd0;
+	Node0x4fec990:s1 -> Node0x4feccc0;
+	Node0x4fecbd0 [shape=record,label="{xmlunicode.c:2604:}"];
+	Node0x4fecbd0 -> Node0x4feccc0;
+	Node0x4feccc0 [shape=record,label="{xmlunicode.c:2604:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsEthiopic' function" {
+	label="CFG for 'test_xmlUCSIsEthiopic' function";
+
+	Node0x68c5b10 [shape=record,label="{testapi.c:39999:}"];
+	Node0x68c5b10 -> Node0x68e7200;
+	Node0x68e7200 [shape=record,label="{testapi.c:40007:|{<s0>T|<s1>F}}"];
+	Node0x68e7200:s0 -> Node0x68e74e0;
+	Node0x68e7200:s1 -> Node0x68e7060;
+	Node0x68e74e0 [shape=record,label="{testapi.c:40008:|{<s0>T|<s1>F}}"];
+	Node0x68e74e0:s0 -> Node0x68e8330;
+	Node0x68e74e0:s1 -> Node0x68e8b00;
+	Node0x68e8330 [shape=record,label="{testapi.c:40018:}"];
+	Node0x68e8330 -> Node0x68e8b00;
+	Node0x68e8b00 [shape=record,label="{testapi.c:40023:}"];
+	Node0x68e8b00 -> Node0x68e7450;
+	Node0x68e7450 [shape=record,label="{testapi.c:40007:}"];
+	Node0x68e7450 -> Node0x68e7200;
+	Node0x68e7060 [shape=record,label="{testapi.c:40024:}"];
+}

@@ -1,0 +1,24 @@
+digraph "CFG for 'htmlnamePop' function" {
+	label="CFG for 'htmlnamePop' function";
+
+	Node0x4729650 [shape=record,label="{HTMLparser.c:197:|{<s0>T|<s1>F}}"];
+	Node0x4729650 -> Node0x4729930;
+	Node0x4729650 -> Node0x4729980;
+	Node0x4729930 [shape=record,label="{HTMLparser.c:202:}"];
+	Node0x4729930 -> Node0x4729f00;
+	Node0x4729980 [shape=record,label="{HTMLparser.c:203:|{<s0>T|<s1>F}}"];
+	Node0x4729980 -> Node0x472e9a0;
+	Node0x4729980 -> Node0x472e9f0;
+	Node0x472e9a0 [shape=record,label="{HTMLparser.c:205:}"];
+	Node0x472e9a0 -> Node0x4729f00;
+	Node0x472e9f0 [shape=record,label="{HTMLparser.c:206:|{<s0>T|<s1>F}}"];
+	Node0x472e9f0 -> Node0x472ef80;
+	Node0x472e9f0 -> Node0x472f020;
+	Node0x472ef80 [shape=record,label="{HTMLparser.c:207:}"];
+	Node0x472ef80 -> Node0x472efd0;
+	Node0x472f020 [shape=record,label="{HTMLparser.c:209:}"];
+	Node0x472f020 -> Node0x472efd0;
+	Node0x472efd0 [shape=record,label="{HTMLparser.c:210:}"];
+	Node0x472efd0 -> Node0x4729f00;
+	Node0x4729f00 [shape=record,label="{HTMLparser.c:213:}"];
+}

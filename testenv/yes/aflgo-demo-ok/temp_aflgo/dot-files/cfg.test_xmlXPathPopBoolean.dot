@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlXPathPopBoolean' function" {
+	label="CFG for 'test_xmlXPathPopBoolean' function";
+
+	Node0x6d83c40 [shape=record,label="{testapi.c:49900:}"];
+	Node0x6d83c40 -> Node0x6d8b6c0;
+	Node0x6d8b6c0 [shape=record,label="{testapi.c:49908:|{<s0>T|<s1>F}}"];
+	Node0x6d8b6c0:s0 -> Node0x6d8b9a0;
+	Node0x6d8b6c0:s1 -> Node0x6d8b520;
+	Node0x6d8b9a0 [shape=record,label="{testapi.c:49909:|{<s0>T|<s1>F}}"];
+	Node0x6d8b9a0:s0 -> Node0x6d8c7f0;
+	Node0x6d8b9a0:s1 -> Node0x6d8cb20;
+	Node0x6d8c7f0 [shape=record,label="{testapi.c:49919:}"];
+	Node0x6d8c7f0 -> Node0x6d8cb20;
+	Node0x6d8cb20 [shape=record,label="{testapi.c:49924:}"];
+	Node0x6d8cb20 -> Node0x6d8b910;
+	Node0x6d8b910 [shape=record,label="{testapi.c:49908:}"];
+	Node0x6d8b910 -> Node0x6d8b6c0;
+	Node0x6d8b520 [shape=record,label="{testapi.c:49925:}"];
+}

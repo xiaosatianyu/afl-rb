@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlEncodeEntities' function" {
+	label="CFG for 'xmlEncodeEntities' function";
+
+	Node0x4dc0570 [shape=record,label="{legacy.c:726:|{<s0>T|<s1>F}}"];
+	Node0x4dc0570 -> Node0x4dc02a0;
+	Node0x4dc0570 -> Node0x4dc0450;
+	Node0x4dc02a0 [shape=record,label="{legacy.c:732:}"];
+	Node0x4dc02a0 -> Node0x4dc0450;
+	Node0x4dc0450 [shape=record,label="{legacy.c:738:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlIOFTPClose' function" {
+	label="CFG for 'test_xmlIOFTPClose' function";
+
+	Node0x62220c0 [shape=record,label="{testapi.c:28018:}"];
+	Node0x62220c0 -> Node0x622c5e0;
+	Node0x622c5e0 [shape=record,label="{testapi.c:28026:|{<s0>T|<s1>F}}"];
+	Node0x622c5e0:s0 -> Node0x622c8c0;
+	Node0x622c5e0:s1 -> Node0x622c440;
+	Node0x622c8c0 [shape=record,label="{testapi.c:28027:|{<s0>T|<s1>F}}"];
+	Node0x622c8c0:s0 -> Node0x622d710;
+	Node0x622c8c0:s1 -> Node0x622dee0;
+	Node0x622d710 [shape=record,label="{testapi.c:28037:}"];
+	Node0x622d710 -> Node0x622dee0;
+	Node0x622dee0 [shape=record,label="{testapi.c:28042:}"];
+	Node0x622dee0 -> Node0x622c830;
+	Node0x622c830 [shape=record,label="{testapi.c:28026:}"];
+	Node0x622c830 -> Node0x622c5e0;
+	Node0x622c440 [shape=record,label="{testapi.c:28043:}"];
+}

@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsCypriotSyllabary' function" {
+	label="CFG for 'libxml_xmlUCSIsCypriotSyllabary' function";
+
+	Node0x5ec6fb0 [shape=record,label="{libxml2-py.c:10155:|{<s0>T|<s1>F}}"];
+	Node0x5ec6fb0:s0 -> Node0x5ec88b0;
+	Node0x5ec6fb0:s1 -> Node0x5ec8860;
+	Node0x5ec8860 [shape=record,label="{libxml2-py.c:10161:}"];
+	Node0x5ec8860 -> Node0x5ec5e30;
+	Node0x5ec88b0 [shape=record,label="{libxml2-py.c:10163:}"];
+	Node0x5ec88b0 -> Node0x5ec5e30;
+	Node0x5ec5e30 [shape=record,label="{libxml2-py.c:10166:}"];
+}

@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlXPtrNewRangeNodes' function" {
+	label="CFG for 'test_xmlXPtrNewRangeNodes' function";
+
+	Node0x6e56450 [shape=record,label="{testapi.c:51907:}"];
+	Node0x6e56450 -> Node0x6e69180;
+	Node0x6e69180 [shape=record,label="{testapi.c:51917:|{<s0>T|<s1>F}}"];
+	Node0x6e69180:s0 -> Node0x6e69460;
+	Node0x6e69180:s1 -> Node0x6e68fe0;
+	Node0x6e69460 [shape=record,label="{testapi.c:51918:}"];
+	Node0x6e69460 -> Node0x6e69850;
+	Node0x6e69850 [shape=record,label="{testapi.c:51918:|{<s0>T|<s1>F}}"];
+	Node0x6e69850:s0 -> Node0x6e69ad0;
+	Node0x6e69850:s1 -> Node0x6e69730;
+	Node0x6e69ad0 [shape=record,label="{testapi.c:51919:|{<s0>T|<s1>F}}"];
+	Node0x6e69ad0:s0 -> Node0x6e6ab90;
+	Node0x6e69ad0:s1 -> Node0x6e6aec0;
+	Node0x6e6ab90 [shape=record,label="{testapi.c:51931:}"];
+	Node0x6e6ab90 -> Node0x6e6aec0;
+	Node0x6e6aec0 [shape=record,label="{testapi.c:51937:}"];
+	Node0x6e6aec0 -> Node0x6e69a40;
+	Node0x6e69a40 [shape=record,label="{testapi.c:51918:}"];
+	Node0x6e69a40 -> Node0x6e69850;
+	Node0x6e69730 [shape=record,label="{testapi.c:51938:}"];
+	Node0x6e69730 -> Node0x6e693d0;
+	Node0x6e693d0 [shape=record,label="{testapi.c:51917:}"];
+	Node0x6e693d0 -> Node0x6e69180;
+	Node0x6e68fe0 [shape=record,label="{testapi.c:51939:}"];
+}

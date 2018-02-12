@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlTextReaderConstLocalName' function" {
+	label="CFG for 'libxml_xmlTextReaderConstLocalName' function";
+
+	Node0x5ca0da0 [shape=record,label="{libxml2-py.c:7840:|{<s0>T|<s1>F}}"];
+	Node0x5ca0da0:s0 -> Node0x5ca48f0;
+	Node0x5ca0da0:s1 -> Node0x5ca48a0;
+	Node0x5ca48a0 [shape=record,label="{libxml2-py.c:7847:}"];
+	Node0x5ca48a0 -> Node0x5ca2dd0;
+	Node0x5ca48f0 [shape=record,label="{libxml2-py.c:7848:|{<s0>T|<s1>F}}"];
+	Node0x5ca48f0:s0 -> Node0x5ca5120;
+	Node0x5ca48f0:s1 -> Node0x5ca5170;
+	Node0x5ca5120 [shape=record,label="{libxml2-py.c:7848:}"];
+	Node0x5ca5120 -> Node0x5ca51c0;
+	Node0x5ca5170 [shape=record,label="{libxml2-py.c:7848:}"];
+	Node0x5ca5170 -> Node0x5ca51c0;
+	Node0x5ca51c0 [shape=record,label="{libxml2-py.c:7848:}"];
+	Node0x5ca51c0 -> Node0x5ca2dd0;
+	Node0x5ca2dd0 [shape=record,label="{libxml2-py.c:7853:}"];
+}

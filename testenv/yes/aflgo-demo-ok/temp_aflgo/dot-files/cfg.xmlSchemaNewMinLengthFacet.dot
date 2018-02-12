@@ -1,0 +1,17 @@
+digraph "CFG for 'xmlSchemaNewMinLengthFacet' function" {
+	label="CFG for 'xmlSchemaNewMinLengthFacet' function";
+
+	Node0x567e4d0 [shape=record,label="{xmlschemastypes.c:235:|{<s0>T|<s1>F}}"];
+	Node0x567e4d0 -> Node0x5680670;
+	Node0x567e4d0 -> Node0x5678ce0;
+	Node0x5680670 [shape=record,label="{xmlschemastypes.c:241:}"];
+	Node0x5680670 -> Node0x543f140;
+	Node0x5678ce0 [shape=record,label="{xmlschemastypes.c:243:|{<s0>T|<s1>F}}"];
+	Node0x5678ce0 -> Node0x56809a0;
+	Node0x5678ce0 -> Node0x5681100;
+	Node0x56809a0 [shape=record,label="{xmlschemastypes.c:246:}"];
+	Node0x56809a0 -> Node0x543f140;
+	Node0x5681100 [shape=record,label="{xmlschemastypes.c:249:}"];
+	Node0x5681100 -> Node0x543f140;
+	Node0x543f140 [shape=record,label="{xmlschemastypes.c:251:}"];
+}

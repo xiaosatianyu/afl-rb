@@ -1,0 +1,37 @@
+digraph "CFG for 'test_xmlCharEncOutFunc' function" {
+	label="CFG for 'test_xmlCharEncOutFunc' function";
+
+	Node0x5496800 [shape=record,label="{testapi.c:8785:}"];
+	Node0x5496800 -> Node0x578a840;
+	Node0x578a840 [shape=record,label="{testapi.c:8796:|{<s0>T|<s1>F}}"];
+	Node0x578a840:s0 -> Node0x578ab20;
+	Node0x578a840:s1 -> Node0x578a6a0;
+	Node0x578ab20 [shape=record,label="{testapi.c:8797:}"];
+	Node0x578ab20 -> Node0x578af10;
+	Node0x578af10 [shape=record,label="{testapi.c:8797:|{<s0>T|<s1>F}}"];
+	Node0x578af10:s0 -> Node0x578b190;
+	Node0x578af10:s1 -> Node0x578adf0;
+	Node0x578b190 [shape=record,label="{testapi.c:8798:}"];
+	Node0x578b190 -> Node0x578b580;
+	Node0x578b580 [shape=record,label="{testapi.c:8798:|{<s0>T|<s1>F}}"];
+	Node0x578b580:s0 -> Node0x578b800;
+	Node0x578b580:s1 -> Node0x578b460;
+	Node0x578b800 [shape=record,label="{testapi.c:8799:|{<s0>T|<s1>F}}"];
+	Node0x578b800:s0 -> Node0x578cb30;
+	Node0x578b800:s1 -> Node0x578d780;
+	Node0x578cb30 [shape=record,label="{testapi.c:8813:}"];
+	Node0x578cb30 -> Node0x578d780;
+	Node0x578d780 [shape=record,label="{testapi.c:8820:}"];
+	Node0x578d780 -> Node0x578b770;
+	Node0x578b770 [shape=record,label="{testapi.c:8798:}"];
+	Node0x578b770 -> Node0x578b580;
+	Node0x578b460 [shape=record,label="{testapi.c:8821:}"];
+	Node0x578b460 -> Node0x578b100;
+	Node0x578b100 [shape=record,label="{testapi.c:8797:}"];
+	Node0x578b100 -> Node0x578af10;
+	Node0x578adf0 [shape=record,label="{testapi.c:8822:}"];
+	Node0x578adf0 -> Node0x578aa90;
+	Node0x578aa90 [shape=record,label="{testapi.c:8796:}"];
+	Node0x578aa90 -> Node0x578a840;
+	Node0x578a6a0 [shape=record,label="{testapi.c:8823:}"];
+}

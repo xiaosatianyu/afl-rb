@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlTextReaderClose' function" {
+	label="CFG for 'test_xmlTextReaderClose' function";
+
+	Node0x6371ae0 [shape=record,label="{testapi.c:30601:}"];
+	Node0x6371ae0 -> Node0x6379670;
+	Node0x6379670 [shape=record,label="{testapi.c:30609:|{<s0>T|<s1>F}}"];
+	Node0x6379670:s0 -> Node0x6379950;
+	Node0x6379670:s1 -> Node0x63794d0;
+	Node0x6379950 [shape=record,label="{testapi.c:30610:|{<s0>T|<s1>F}}"];
+	Node0x6379950:s0 -> Node0x637a7a0;
+	Node0x6379950:s1 -> Node0x637af70;
+	Node0x637a7a0 [shape=record,label="{testapi.c:30620:}"];
+	Node0x637a7a0 -> Node0x637af70;
+	Node0x637af70 [shape=record,label="{testapi.c:30625:}"];
+	Node0x637af70 -> Node0x63798c0;
+	Node0x63798c0 [shape=record,label="{testapi.c:30609:}"];
+	Node0x63798c0 -> Node0x6379670;
+	Node0x63794d0 [shape=record,label="{testapi.c:30626:}"];
+}

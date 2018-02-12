@@ -1,0 +1,10 @@
+digraph "CFG for 'externalSubset' function" {
+	label="CFG for 'externalSubset' function";
+
+	Node0x4dd2ee0 [shape=record,label="{legacy.c:896:|{<s0>T|<s1>F}}"];
+	Node0x4dd2ee0 -> Node0x4dd3eb0;
+	Node0x4dd2ee0 -> Node0x4dd3f00;
+	Node0x4dd3eb0 [shape=record,label="{legacy.c:899:}"];
+	Node0x4dd3eb0 -> Node0x4dd3f00;
+	Node0x4dd3f00 [shape=record,label="{legacy.c:899:}"];
+}

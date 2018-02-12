@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsSyriac' function" {
+	label="CFG for 'test_xmlUCSIsSyriac' function";
+
+	Node0x69d8fb0 [shape=record,label="{testapi.c:42379:}"];
+	Node0x69d8fb0 -> Node0x69e09f0;
+	Node0x69e09f0 [shape=record,label="{testapi.c:42387:|{<s0>T|<s1>F}}"];
+	Node0x69e09f0:s0 -> Node0x69e0cd0;
+	Node0x69e09f0:s1 -> Node0x69e0850;
+	Node0x69e0cd0 [shape=record,label="{testapi.c:42388:|{<s0>T|<s1>F}}"];
+	Node0x69e0cd0:s0 -> Node0x69e1b20;
+	Node0x69e0cd0:s1 -> Node0x69e1e50;
+	Node0x69e1b20 [shape=record,label="{testapi.c:42398:}"];
+	Node0x69e1b20 -> Node0x69e1e50;
+	Node0x69e1e50 [shape=record,label="{testapi.c:42403:}"];
+	Node0x69e1e50 -> Node0x69e0c40;
+	Node0x69e0c40 [shape=record,label="{testapi.c:42387:}"];
+	Node0x69e0c40 -> Node0x69e09f0;
+	Node0x69e0850 [shape=record,label="{testapi.c:42404:}"];
+}

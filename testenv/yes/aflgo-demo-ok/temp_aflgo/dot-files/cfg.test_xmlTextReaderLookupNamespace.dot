@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlTextReaderLookupNamespace' function" {
+	label="CFG for 'test_xmlTextReaderLookupNamespace' function";
+
+	Node0x63f8280 [shape=record,label="{testapi.c:31763:}"];
+	Node0x63f8280 -> Node0x63fd420;
+	Node0x63fd420 [shape=record,label="{testapi.c:31773:|{<s0>T|<s1>F}}"];
+	Node0x63fd420:s0 -> Node0x63fd700;
+	Node0x63fd420:s1 -> Node0x63fd280;
+	Node0x63fd700 [shape=record,label="{testapi.c:31774:}"];
+	Node0x63fd700 -> Node0x63fdaf0;
+	Node0x63fdaf0 [shape=record,label="{testapi.c:31774:|{<s0>T|<s1>F}}"];
+	Node0x63fdaf0:s0 -> Node0x63fdd70;
+	Node0x63fdaf0:s1 -> Node0x63fd9d0;
+	Node0x63fdd70 [shape=record,label="{testapi.c:31775:|{<s0>T|<s1>F}}"];
+	Node0x63fdd70:s0 -> Node0x63fee40;
+	Node0x63fdd70:s1 -> Node0x63ff800;
+	Node0x63fee40 [shape=record,label="{testapi.c:31787:}"];
+	Node0x63fee40 -> Node0x63ff800;
+	Node0x63ff800 [shape=record,label="{testapi.c:31793:}"];
+	Node0x63ff800 -> Node0x63fdce0;
+	Node0x63fdce0 [shape=record,label="{testapi.c:31774:}"];
+	Node0x63fdce0 -> Node0x63fdaf0;
+	Node0x63fd9d0 [shape=record,label="{testapi.c:31794:}"];
+	Node0x63fd9d0 -> Node0x63fd670;
+	Node0x63fd670 [shape=record,label="{testapi.c:31773:}"];
+	Node0x63fd670 -> Node0x63fd420;
+	Node0x63fd280 [shape=record,label="{testapi.c:31795:}"];
+}

@@ -1,0 +1,15 @@
+digraph "CFG for 'test_schematron' function" {
+	label="CFG for 'test_schematron' function";
+
+	Node0x5cbe100 [shape=record,label="{testapi.c:18140:|{<s0>T|<s1>F}}"];
+	Node0x5cbe100:s0 -> Node0x5cc3ad0;
+	Node0x5cbe100:s1 -> Node0x5cc3b20;
+	Node0x5cc3ad0 [shape=record,label="{testapi.c:18142:}"];
+	Node0x5cc3ad0 -> Node0x5cc3b20;
+	Node0x5cc3b20 [shape=record,label="{testapi.c:18143:|{<s0>T|<s1>F}}"];
+	Node0x5cc3b20:s0 -> Node0x5cc5d20;
+	Node0x5cc3b20:s1 -> Node0x5cc6290;
+	Node0x5cc5d20 [shape=record,label="{testapi.c:18152:}"];
+	Node0x5cc5d20 -> Node0x5cc6290;
+	Node0x5cc6290 [shape=record,label="{testapi.c:18153:}"];
+}

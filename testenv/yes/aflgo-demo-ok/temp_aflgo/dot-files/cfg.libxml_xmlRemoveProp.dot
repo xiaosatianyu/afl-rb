@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlRemoveProp' function" {
+	label="CFG for 'libxml_xmlRemoveProp' function";
+
+	Node0x5b74b40 [shape=record,label="{libxml2-py.c:6585:|{<s0>T|<s1>F}}"];
+	Node0x5b74b40:s0 -> Node0x5b79410;
+	Node0x5b74b40:s1 -> Node0x5b793c0;
+	Node0x5b793c0 [shape=record,label="{libxml2-py.c:6592:}"];
+	Node0x5b793c0 -> Node0x5b74e20;
+	Node0x5b79410 [shape=record,label="{libxml2-py.c:6593:|{<s0>T|<s1>F}}"];
+	Node0x5b79410:s0 -> Node0x5b79c30;
+	Node0x5b79410:s1 -> Node0x5b79c80;
+	Node0x5b79c30 [shape=record,label="{libxml2-py.c:6593:}"];
+	Node0x5b79c30 -> Node0x5b79cd0;
+	Node0x5b79c80 [shape=record,label="{libxml2-py.c:6593:}"];
+	Node0x5b79c80 -> Node0x5b79cd0;
+	Node0x5b79cd0 [shape=record,label="{libxml2-py.c:6593:}"];
+	Node0x5b79cd0 -> Node0x5b74e20;
+	Node0x5b74e20 [shape=record,label="{libxml2-py.c:6598:}"];
+}

@@ -1,0 +1,5 @@
+digraph "CFG for 'gen_xmlSchemaPtr' function" {
+	label="CFG for 'gen_xmlSchemaPtr' function";
+
+	Node0x64a8c70 [shape=record,label="{testapi.c:723:}"];
+}

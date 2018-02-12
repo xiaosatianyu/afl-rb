@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlBufferCat' function" {
+	label="CFG for 'test_xmlBufferCat' function";
+
+	Node0x5d35bf0 [shape=record,label="{testapi.c:18707:}"];
+	Node0x5d35bf0 -> Node0x5d4a160;
+	Node0x5d4a160 [shape=record,label="{testapi.c:18716:|{<s0>T|<s1>F}}"];
+	Node0x5d4a160:s0 -> Node0x5d4a440;
+	Node0x5d4a160:s1 -> Node0x5d49fc0;
+	Node0x5d4a440 [shape=record,label="{testapi.c:18717:}"];
+	Node0x5d4a440 -> Node0x5d4a830;
+	Node0x5d4a830 [shape=record,label="{testapi.c:18717:|{<s0>T|<s1>F}}"];
+	Node0x5d4a830:s0 -> Node0x5d4aab0;
+	Node0x5d4a830:s1 -> Node0x5d4a710;
+	Node0x5d4aab0 [shape=record,label="{testapi.c:18718:|{<s0>T|<s1>F}}"];
+	Node0x5d4aab0:s0 -> Node0x5d4bc00;
+	Node0x5d4aab0:s1 -> Node0x5d4bf30;
+	Node0x5d4bc00 [shape=record,label="{testapi.c:18730:}"];
+	Node0x5d4bc00 -> Node0x5d4bf30;
+	Node0x5d4bf30 [shape=record,label="{testapi.c:18736:}"];
+	Node0x5d4bf30 -> Node0x5d4aa20;
+	Node0x5d4aa20 [shape=record,label="{testapi.c:18717:}"];
+	Node0x5d4aa20 -> Node0x5d4a830;
+	Node0x5d4a710 [shape=record,label="{testapi.c:18737:}"];
+	Node0x5d4a710 -> Node0x5d4a3b0;
+	Node0x5d4a3b0 [shape=record,label="{testapi.c:18716:}"];
+	Node0x5d4a3b0 -> Node0x5d4a160;
+	Node0x5d49fc0 [shape=record,label="{testapi.c:18738:}"];
+}

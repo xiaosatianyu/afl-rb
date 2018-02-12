@@ -1,0 +1,23 @@
+digraph "CFG for 'xmlParseXMLCatalogNodeList' function" {
+	label="CFG for 'xmlParseXMLCatalogNodeList' function";
+
+	Node0x483a170 [shape=record,label="{catalog.c:1318:}"];
+	Node0x483a170 -> Node0x483bf80;
+	Node0x483bf80 [shape=record,label="{catalog.c:1320:|{<s0>T|<s1>F}}"];
+	Node0x483bf80 -> Node0x483c3e0;
+	Node0x483bf80 -> Node0x483c1a0;
+	Node0x483c3e0 [shape=record,label="{catalog.c:1321:|{<s0>T|<s1>F}}"];
+	Node0x483c3e0 -> Node0x483c6c0;
+	Node0x483c3e0 -> Node0x483c5f0;
+	Node0x483c6c0 [shape=record,label="{catalog.c:1321:|{<s0>T|<s1>F}}"];
+	Node0x483c6c0 -> Node0x483c640;
+	Node0x483c6c0 -> Node0x483c5f0;
+	Node0x483c640 [shape=record,label="{catalog.c:1322:|{<s0>T|<s1>F}}"];
+	Node0x483c640 -> Node0x483c5a0;
+	Node0x483c640 -> Node0x483c5f0;
+	Node0x483c5a0 [shape=record,label="{catalog.c:1323:}"];
+	Node0x483c5a0 -> Node0x483c5f0;
+	Node0x483c5f0 [shape=record,label="{catalog.c:1325:}"];
+	Node0x483c5f0 -> Node0x483bf80;
+	Node0x483c1a0 [shape=record,label="{catalog.c:1328:}"];
+}

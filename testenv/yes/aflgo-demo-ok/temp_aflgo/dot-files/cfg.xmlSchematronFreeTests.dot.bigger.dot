@@ -1,0 +1,27 @@
+digraph "CFG for 'xmlSchematronFreeTests' function" {
+	label="CFG for 'xmlSchematronFreeTests' function";
+
+	Node0x3aab8a0 [shape=record,label="{schematron.c:362:}"];
+	Node0x3aab8a0 -> Node0x3aabad0;
+	Node0x3aabad0 [shape=record,label="{schematron.c:365:|{<s0>T|<s1>F}}"];
+	Node0x3aabad0:s0 -> Node0x3aaf4b0;
+	Node0x3aabad0:s1 -> Node0x3aabc30;
+	Node0x3aaf4b0 [shape=record,label="{schematron.c:366:|{<s0>T|<s1>F}}"];
+	Node0x3aaf4b0:s0 -> Node0x3aaf820;
+	Node0x3aaf4b0:s1 -> Node0x3aaf870;
+	Node0x3aaf820 [shape=record,label="{schematron.c:368:}"];
+	Node0x3aaf820 -> Node0x3aaf870;
+	Node0x3aaf870 [shape=record,label="{schematron.c:369:|{<s0>T|<s1>F}}"];
+	Node0x3aaf870:s0 -> Node0x3ab0000;
+	Node0x3aaf870:s1 -> Node0x3ab0050;
+	Node0x3ab0000 [shape=record,label="{schematron.c:370:}"];
+	Node0x3ab0000 -> Node0x3ab0050;
+	Node0x3ab0050 [shape=record,label="{schematron.c:371:|{<s0>T|<s1>F}}"];
+	Node0x3ab0050:s0 -> Node0x3ab0ca0;
+	Node0x3ab0050:s1 -> Node0x3ab0fd0;
+	Node0x3ab0ca0 [shape=record,label="{schematron.c:372:}"];
+	Node0x3ab0ca0 -> Node0x3ab0fd0;
+	Node0x3ab0fd0 [shape=record,label="{schematron.c:373:}"];
+	Node0x3ab0fd0 -> Node0x3aabad0;
+	Node0x3aabc30 [shape=record,label="{schematron.c:376:}"];
+}

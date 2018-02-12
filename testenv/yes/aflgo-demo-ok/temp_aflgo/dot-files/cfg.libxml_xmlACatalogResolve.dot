@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlACatalogResolve' function" {
+	label="CFG for 'libxml_xmlACatalogResolve' function";
+
+	Node0x55b9480 [shape=record,label="{libxml2-py.c:946:|{<s0>T|<s1>F}}"];
+	Node0x55b9480:s0 -> Node0x55bd8d0;
+	Node0x55b9480:s1 -> Node0x55bd880;
+	Node0x55bd880 [shape=record,label="{libxml2-py.c:955:}"];
+	Node0x55bd880 -> Node0x55bb7a0;
+	Node0x55bd8d0 [shape=record,label="{libxml2-py.c:956:|{<s0>T|<s1>F}}"];
+	Node0x55bd8d0:s0 -> Node0x55be4a0;
+	Node0x55bd8d0:s1 -> Node0x55be4f0;
+	Node0x55be4a0 [shape=record,label="{libxml2-py.c:956:}"];
+	Node0x55be4a0 -> Node0x55be540;
+	Node0x55be4f0 [shape=record,label="{libxml2-py.c:956:}"];
+	Node0x55be4f0 -> Node0x55be540;
+	Node0x55be540 [shape=record,label="{libxml2-py.c:956:}"];
+	Node0x55be540 -> Node0x55bb7a0;
+	Node0x55bb7a0 [shape=record,label="{libxml2-py.c:961:}"];
+}

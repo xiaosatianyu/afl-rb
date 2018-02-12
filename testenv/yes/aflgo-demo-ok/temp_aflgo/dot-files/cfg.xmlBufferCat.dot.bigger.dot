@@ -1,0 +1,22 @@
+digraph "CFG for 'xmlBufferCat' function" {
+	label="CFG for 'xmlBufferCat' function";
+
+	Node0x4232f00 [shape=record,label="{tree.c:7606:|{<s0>T|<s1>F}}"];
+	Node0x4232f00:s0 -> Node0x4232cb0;
+	Node0x4232f00:s1 -> Node0x4232d00;
+	Node0x4232cb0 [shape=record,label="{tree.c:7608:}"];
+	Node0x4232cb0 -> Node0x42330e0;
+	Node0x4232d00 [shape=record,label="{tree.c:7609:|{<s0>T|<s1>F}}"];
+	Node0x4232d00:s0 -> Node0x423c040;
+	Node0x4232d00:s1 -> Node0x423c090;
+	Node0x423c040 [shape=record,label="{tree.c:7609:}"];
+	Node0x423c040 -> Node0x42330e0;
+	Node0x423c090 [shape=record,label="{tree.c:7610:|{<s0>T|<s1>F}}"];
+	Node0x423c090:s0 -> Node0x423c650;
+	Node0x423c090:s1 -> Node0x423c6a0;
+	Node0x423c650 [shape=record,label="{tree.c:7610:}"];
+	Node0x423c650 -> Node0x42330e0;
+	Node0x423c6a0 [shape=record,label="{tree.c:7611:}"];
+	Node0x423c6a0 -> Node0x42330e0;
+	Node0x42330e0 [shape=record,label="{tree.c:7612:}"];
+}

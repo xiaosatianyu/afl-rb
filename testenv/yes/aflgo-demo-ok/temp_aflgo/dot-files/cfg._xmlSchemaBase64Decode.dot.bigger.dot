@@ -1,0 +1,46 @@
+digraph "CFG for '_xmlSchemaBase64Decode' function" {
+	label="CFG for '_xmlSchemaBase64Decode' function";
+
+	Node0x57f2180 [shape=record,label="{xmlschemastypes.c:1471:|{<s0>T|<s1>F}}"];
+	Node0x57f2180:s0 -> Node0x57ecd60;
+	Node0x57f2180:s1 -> Node0x57f2110;
+	Node0x57ecd60 [shape=record,label="{xmlschemastypes.c:1472:|{<s0>T|<s1>F}}"];
+	Node0x57ecd60:s0 -> Node0x57f20c0;
+	Node0x57ecd60:s1 -> Node0x57f2110;
+	Node0x57f20c0 [shape=record,label="{xmlschemastypes.c:1472:}"];
+	Node0x57f20c0 -> Node0x57f21d0;
+	Node0x57f2110 [shape=record,label="{xmlschemastypes.c:1473:|{<s0>T|<s1>F}}"];
+	Node0x57f2110:s0 -> Node0x57f2f80;
+	Node0x57f2110:s1 -> Node0x57f2f30;
+	Node0x57f2f80 [shape=record,label="{xmlschemastypes.c:1473:|{<s0>T|<s1>F}}"];
+	Node0x57f2f80:s0 -> Node0x57f2ee0;
+	Node0x57f2f80:s1 -> Node0x57f2f30;
+	Node0x57f2ee0 [shape=record,label="{xmlschemastypes.c:1473:}"];
+	Node0x57f2ee0 -> Node0x57f21d0;
+	Node0x57f2f30 [shape=record,label="{xmlschemastypes.c:1474:|{<s0>T|<s1>F}}"];
+	Node0x57f2f30:s0 -> Node0x57f3a60;
+	Node0x57f2f30:s1 -> Node0x57f3a10;
+	Node0x57f3a60 [shape=record,label="{xmlschemastypes.c:1474:|{<s0>T|<s1>F}}"];
+	Node0x57f3a60:s0 -> Node0x57f39c0;
+	Node0x57f3a60:s1 -> Node0x57f3a10;
+	Node0x57f39c0 [shape=record,label="{xmlschemastypes.c:1474:}"];
+	Node0x57f39c0 -> Node0x57f21d0;
+	Node0x57f3a10 [shape=record,label="{xmlschemastypes.c:1475:|{<s0>T|<s1>F}}"];
+	Node0x57f3a10:s0 -> Node0x57f44a0;
+	Node0x57f3a10:s1 -> Node0x57f44f0;
+	Node0x57f44a0 [shape=record,label="{xmlschemastypes.c:1475:}"];
+	Node0x57f44a0 -> Node0x57f21d0;
+	Node0x57f44f0 [shape=record,label="{xmlschemastypes.c:1476:|{<s0>T|<s1>F}}"];
+	Node0x57f44f0:s0 -> Node0x57f49b0;
+	Node0x57f44f0:s1 -> Node0x57f4a00;
+	Node0x57f49b0 [shape=record,label="{xmlschemastypes.c:1476:}"];
+	Node0x57f49b0 -> Node0x57f21d0;
+	Node0x57f4a00 [shape=record,label="{xmlschemastypes.c:1477:|{<s0>T|<s1>F}}"];
+	Node0x57f4a00:s0 -> Node0x57f4f00;
+	Node0x57f4a00:s1 -> Node0x57f4f50;
+	Node0x57f4f00 [shape=record,label="{xmlschemastypes.c:1477:}"];
+	Node0x57f4f00 -> Node0x57f21d0;
+	Node0x57f4f50 [shape=record,label="{xmlschemastypes.c:1478:}"];
+	Node0x57f4f50 -> Node0x57f21d0;
+	Node0x57f21d0 [shape=record,label="{xmlschemastypes.c:1479:}"];
+}

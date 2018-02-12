@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlSAX2InitDocbDefaultSAXHandler' function" {
+	label="CFG for 'test_xmlSAX2InitDocbDefaultSAXHandler' function";
+
+	Node0x49fe020 [shape=record,label="{testapi.c:4628:}"];
+	Node0x49fe020 -> Node0x54f7d70;
+	Node0x54f7d70 [shape=record,label="{testapi.c:4635:|{<s0>T|<s1>F}}"];
+	Node0x54f7d70:s0 -> Node0x54f8050;
+	Node0x54f7d70:s1 -> Node0x54f7bd0;
+	Node0x54f8050 [shape=record,label="{testapi.c:4636:|{<s0>T|<s1>F}}"];
+	Node0x54f8050:s0 -> Node0x54f8ec0;
+	Node0x54f8050:s1 -> Node0x54f91f0;
+	Node0x54f8ec0 [shape=record,label="{testapi.c:4645:}"];
+	Node0x54f8ec0 -> Node0x54f91f0;
+	Node0x54f91f0 [shape=record,label="{testapi.c:4650:}"];
+	Node0x54f91f0 -> Node0x54f7fc0;
+	Node0x54f7fc0 [shape=record,label="{testapi.c:4635:}"];
+	Node0x54f7fc0 -> Node0x54f7d70;
+	Node0x54f7bd0 [shape=record,label="{testapi.c:4651:}"];
+}

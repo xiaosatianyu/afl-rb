@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsOpticalCharacterRecognition' function" {
+	label="CFG for 'libxml_xmlUCSIsOpticalCharacterRecognition' function";
+
+	Node0x5f2dde0 [shape=record,label="{libxml2-py.c:11115:|{<s0>T|<s1>F}}"];
+	Node0x5f2dde0:s0 -> Node0x5f30c10;
+	Node0x5f2dde0:s1 -> Node0x5f30bc0;
+	Node0x5f30bc0 [shape=record,label="{libxml2-py.c:11121:}"];
+	Node0x5f30bc0 -> Node0x5f2e1c0;
+	Node0x5f30c10 [shape=record,label="{libxml2-py.c:11123:}"];
+	Node0x5f30c10 -> Node0x5f2e1c0;
+	Node0x5f2e1c0 [shape=record,label="{libxml2-py.c:11126:}"];
+}

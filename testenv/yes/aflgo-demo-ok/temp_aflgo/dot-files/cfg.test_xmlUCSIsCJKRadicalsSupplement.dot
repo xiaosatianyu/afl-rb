@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsCJKRadicalsSupplement' function" {
+	label="CFG for 'test_xmlUCSIsCJKRadicalsSupplement' function";
+
+	Node0x6811cb0 [shape=record,label="{testapi.c:38054:}"];
+	Node0x6811cb0 -> Node0x6819730;
+	Node0x6819730 [shape=record,label="{testapi.c:38062:|{<s0>T|<s1>F}}"];
+	Node0x6819730:s0 -> Node0x6819a10;
+	Node0x6819730:s1 -> Node0x6819590;
+	Node0x6819a10 [shape=record,label="{testapi.c:38063:|{<s0>T|<s1>F}}"];
+	Node0x6819a10:s0 -> Node0x681a870;
+	Node0x6819a10:s1 -> Node0x681b040;
+	Node0x681a870 [shape=record,label="{testapi.c:38073:}"];
+	Node0x681a870 -> Node0x681b040;
+	Node0x681b040 [shape=record,label="{testapi.c:38078:}"];
+	Node0x681b040 -> Node0x6819980;
+	Node0x6819980 [shape=record,label="{testapi.c:38062:}"];
+	Node0x6819980 -> Node0x6819730;
+	Node0x6819590 [shape=record,label="{testapi.c:38079:}"];
+}

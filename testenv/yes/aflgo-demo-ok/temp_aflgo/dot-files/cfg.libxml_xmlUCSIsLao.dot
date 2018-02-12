@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsLao' function" {
+	label="CFG for 'libxml_xmlUCSIsLao' function";
+
+	Node0x5786ff0 [shape=record,label="{libxml2-py.c:10731:|{<s0>T|<s1>F}}"];
+	Node0x5786ff0:s0 -> Node0x5a256f0;
+	Node0x5786ff0:s1 -> Node0x5a256a0;
+	Node0x5a256a0 [shape=record,label="{libxml2-py.c:10737:}"];
+	Node0x5a256a0 -> Node0x5a24300;
+	Node0x5a256f0 [shape=record,label="{libxml2-py.c:10739:}"];
+	Node0x5a256f0 -> Node0x5a24300;
+	Node0x5a24300 [shape=record,label="{libxml2-py.c:10742:}"];
+}

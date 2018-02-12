@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlSchemaGetBuiltInListSimpleTypeItemType' function" {
+	label="CFG for 'test_xmlSchemaGetBuiltInListSimpleTypeItemType' function";
+
+	Node0x5c87340 [shape=record,label="{testapi.c:35233:}"];
+	Node0x5c87340 -> Node0x5c88c20;
+	Node0x5c88c20 [shape=record,label="{testapi.c:35241:|{<s0>T|<s1>F}}"];
+	Node0x5c88c20:s0 -> Node0x5c88f00;
+	Node0x5c88c20:s1 -> Node0x5c88ac0;
+	Node0x5c88f00 [shape=record,label="{testapi.c:35242:|{<s0>T|<s1>F}}"];
+	Node0x5c88f00:s0 -> Node0x5c89de0;
+	Node0x5c88f00:s1 -> Node0x5c8a740;
+	Node0x5c89de0 [shape=record,label="{testapi.c:35252:}"];
+	Node0x5c89de0 -> Node0x5c8a740;
+	Node0x5c8a740 [shape=record,label="{testapi.c:35257:}"];
+	Node0x5c8a740 -> Node0x5c88e70;
+	Node0x5c88e70 [shape=record,label="{testapi.c:35241:}"];
+	Node0x5c88e70 -> Node0x5c88c20;
+	Node0x5c88ac0 [shape=record,label="{testapi.c:35258:}"];
+}

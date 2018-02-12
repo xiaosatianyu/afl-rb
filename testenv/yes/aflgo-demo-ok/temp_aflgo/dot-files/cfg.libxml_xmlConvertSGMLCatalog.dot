@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlConvertSGMLCatalog' function" {
+	label="CFG for 'libxml_xmlConvertSGMLCatalog' function";
+
+	Node0x565c2d0 [shape=record,label="{libxml2-py.c:1623:|{<s0>T|<s1>F}}"];
+	Node0x565c2d0:s0 -> Node0x56634b0;
+	Node0x565c2d0:s1 -> Node0x5663460;
+	Node0x5663460 [shape=record,label="{libxml2-py.c:1630:}"];
+	Node0x5663460 -> Node0x565e1c0;
+	Node0x56634b0 [shape=record,label="{libxml2-py.c:1631:|{<s0>T|<s1>F}}"];
+	Node0x56634b0:s0 -> Node0x5663cb0;
+	Node0x56634b0:s1 -> Node0x5663d00;
+	Node0x5663cb0 [shape=record,label="{libxml2-py.c:1631:}"];
+	Node0x5663cb0 -> Node0x5663d50;
+	Node0x5663d00 [shape=record,label="{libxml2-py.c:1631:}"];
+	Node0x5663d00 -> Node0x5663d50;
+	Node0x5663d50 [shape=record,label="{libxml2-py.c:1631:}"];
+	Node0x5663d50 -> Node0x565e1c0;
+	Node0x565e1c0 [shape=record,label="{libxml2-py.c:1636:}"];
+}

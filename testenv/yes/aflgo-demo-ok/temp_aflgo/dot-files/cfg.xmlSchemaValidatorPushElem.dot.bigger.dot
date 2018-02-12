@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlSchemaValidatorPushElem' function" {
+	label="CFG for 'xmlSchemaValidatorPushElem' function";
+
+	Node0x5846c00 [shape=record,label="{xmlschemas.c:25975:|{<s0>T|<s1>F}}"];
+	Node0x5846c00:s0 -> Node0x584ac00;
+	Node0x5846c00:s1 -> Node0x584ae20;
+	Node0x584ac00 [shape=record,label="{xmlschemas.c:25979:}"];
+	Node0x584ac00 -> Node0x584a710;
+	Node0x584ae20 [shape=record,label="{xmlschemas.c:25983:}"];
+	Node0x584ae20 -> Node0x584a710;
+	Node0x584a710 [shape=record,label="{xmlschemas.c:25985:}"];
+}

@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsSmallFormVariants' function" {
+	label="CFG for 'libxml_xmlUCSIsSmallFormVariants' function";
+
+	Node0x5f497a0 [shape=record,label="{libxml2-py.c:11259:|{<s0>T|<s1>F}}"];
+	Node0x5f497a0:s0 -> Node0x5f4d660;
+	Node0x5f497a0:s1 -> Node0x5f4d610;
+	Node0x5f4d610 [shape=record,label="{libxml2-py.c:11265:}"];
+	Node0x5f4d610 -> Node0x5f4b260;
+	Node0x5f4d660 [shape=record,label="{libxml2-py.c:11267:}"];
+	Node0x5f4d660 -> Node0x5f4b260;
+	Node0x5f4b260 [shape=record,label="{libxml2-py.c:11270:}"];
+}

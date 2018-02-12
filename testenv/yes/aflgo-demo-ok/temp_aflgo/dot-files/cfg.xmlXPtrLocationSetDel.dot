@@ -1,0 +1,45 @@
+digraph "CFG for 'xmlXPtrLocationSetDel' function" {
+	label="CFG for 'xmlXPtrLocationSetDel' function";
+
+	Node0x476d390 [shape=record,label="{xpointer.c:720:|{<s0>T|<s1>F}}"];
+	Node0x476d390 -> Node0x476d890;
+	Node0x476d390 -> Node0x476d8e0;
+	Node0x476d890 [shape=record,label="{xpointer.c:723:}"];
+	Node0x476d890 -> Node0x476d6c0;
+	Node0x476d8e0 [shape=record,label="{xpointer.c:724:|{<s0>T|<s1>F}}"];
+	Node0x476d8e0 -> Node0x476dcc0;
+	Node0x476d8e0 -> Node0x476dd10;
+	Node0x476dcc0 [shape=record,label="{xpointer.c:724:}"];
+	Node0x476dcc0 -> Node0x476d6c0;
+	Node0x476dd10 [shape=record,label="{xpointer.c:729:}"];
+	Node0x476dd10 -> Node0x476e9d0;
+	Node0x476e9d0 [shape=record,label="{xpointer.c:729:|{<s0>T|<s1>F}}"];
+	Node0x476e9d0 -> Node0x476ecb0;
+	Node0x476e9d0 -> Node0x476e830;
+	Node0x476ecb0 [shape=record,label="{xpointer.c:730:|{<s0>T|<s1>F}}"];
+	Node0x476ecb0 -> Node0x476f110;
+	Node0x476ecb0 -> Node0x476f160;
+	Node0x476f110 [shape=record,label="{xpointer.c:730:}"];
+	Node0x476f110 -> Node0x476e830;
+	Node0x476f160 [shape=record,label="{xpointer.c:730:}"];
+	Node0x476f160 -> Node0x476ec20;
+	Node0x476ec20 [shape=record,label="{xpointer.c:729:}"];
+	Node0x476ec20 -> Node0x476e9d0;
+	Node0x476e830 [shape=record,label="{xpointer.c:732:|{<s0>T|<s1>F}}"];
+	Node0x476e830 -> Node0x476fa80;
+	Node0x476e830 -> Node0x476fad0;
+	Node0x476fa80 [shape=record,label="{xpointer.c:737:}"];
+	Node0x476fa80 -> Node0x476d6c0;
+	Node0x476fad0 [shape=record,label="{xpointer.c:739:}"];
+	Node0x476fad0 -> Node0x47703f0;
+	Node0x47703f0 [shape=record,label="{xpointer.c:740:|{<s0>T|<s1>F}}"];
+	Node0x47703f0 -> Node0x47706d0;
+	Node0x47703f0 -> Node0x4770360;
+	Node0x47706d0 [shape=record,label="{xpointer.c:741:}"];
+	Node0x47706d0 -> Node0x4770640;
+	Node0x4770640 [shape=record,label="{xpointer.c:740:}"];
+	Node0x4770640 -> Node0x47703f0;
+	Node0x4770360 [shape=record,label="{xpointer.c:742:}"];
+	Node0x4770360 -> Node0x476d6c0;
+	Node0x476d6c0 [shape=record,label="{xpointer.c:743:}"];
+}

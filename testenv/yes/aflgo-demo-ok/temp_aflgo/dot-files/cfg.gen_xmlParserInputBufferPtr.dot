@@ -1,0 +1,42 @@
+digraph "CFG for 'gen_xmlParserInputBufferPtr' function" {
+	label="CFG for 'gen_xmlParserInputBufferPtr' function";
+
+	Node0x59cbf80 [shape=record,label="{testapi.c:479:|{<s0>T|<s1>F}}"];
+	Node0x59cbf80:s0 -> Node0x59cc280;
+	Node0x59cbf80:s1 -> Node0x59cc2d0;
+	Node0x59cc280 [shape=record,label="{testapi.c:480:}"];
+	Node0x59cc280 -> Node0x58e20b0;
+	Node0x59cc2d0 [shape=record,label="{testapi.c:481:|{<s0>T|<s1>F}}"];
+	Node0x59cc2d0:s0 -> Node0x59d2b00;
+	Node0x59cc2d0:s1 -> Node0x59d2e40;
+	Node0x59d2b00 [shape=record,label="{testapi.c:481:}"];
+	Node0x59d2b00 -> Node0x58e20b0;
+	Node0x59d2e40 [shape=record,label="{testapi.c:482:|{<s0>T|<s1>F}}"];
+	Node0x59d2e40:s0 -> Node0x59d3180;
+	Node0x59d2e40:s1 -> Node0x59d31d0;
+	Node0x59d3180 [shape=record,label="{testapi.c:482:}"];
+	Node0x59d3180 -> Node0x58e20b0;
+	Node0x59d31d0 [shape=record,label="{testapi.c:483:|{<s0>T|<s1>F}}"];
+	Node0x59d31d0:s0 -> Node0x59d3690;
+	Node0x59d31d0:s1 -> Node0x59d36e0;
+	Node0x59d3690 [shape=record,label="{testapi.c:483:}"];
+	Node0x59d3690 -> Node0x58e20b0;
+	Node0x59d36e0 [shape=record,label="{testapi.c:484:|{<s0>T|<s1>F}}"];
+	Node0x59d36e0:s0 -> Node0x59d3c30;
+	Node0x59d36e0:s1 -> Node0x59d3c80;
+	Node0x59d3c30 [shape=record,label="{testapi.c:484:}"];
+	Node0x59d3c30 -> Node0x58e20b0;
+	Node0x59d3c80 [shape=record,label="{testapi.c:485:|{<s0>T|<s1>F}}"];
+	Node0x59d3c80:s0 -> Node0x59d41d0;
+	Node0x59d3c80:s1 -> Node0x59d4220;
+	Node0x59d41d0 [shape=record,label="{testapi.c:485:}"];
+	Node0x59d41d0 -> Node0x58e20b0;
+	Node0x59d4220 [shape=record,label="{testapi.c:486:|{<s0>T|<s1>F}}"];
+	Node0x59d4220:s0 -> Node0x59d4770;
+	Node0x59d4220:s1 -> Node0x59d47c0;
+	Node0x59d4770 [shape=record,label="{testapi.c:486:}"];
+	Node0x59d4770 -> Node0x58e20b0;
+	Node0x59d47c0 [shape=record,label="{testapi.c:487:}"];
+	Node0x59d47c0 -> Node0x58e20b0;
+	Node0x58e20b0 [shape=record,label="{testapi.c:488:}"];
+}

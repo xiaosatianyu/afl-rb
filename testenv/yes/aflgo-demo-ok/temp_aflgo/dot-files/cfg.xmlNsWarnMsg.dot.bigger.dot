@@ -1,0 +1,23 @@
+digraph "CFG for 'xmlNsWarnMsg' function" {
+	label="CFG for 'xmlNsWarnMsg' function";
+
+	Node0x4b17810 [shape=record,label="{SAX2.c:217:|{<s0>T|<s1>F}}"];
+	Node0x4b17810:s0 -> Node0x4b195d0;
+	Node0x4b17810:s1 -> Node0x4b19500;
+	Node0x4b195d0 [shape=record,label="{SAX2.c:220:|{<s0>T|<s1>F}}"];
+	Node0x4b195d0:s0 -> Node0x4b19550;
+	Node0x4b195d0:s1 -> Node0x4b19500;
+	Node0x4b19550 [shape=record,label="{SAX2.c:221:|{<s0>T|<s1>F}}"];
+	Node0x4b19550:s0 -> Node0x4b194b0;
+	Node0x4b19550:s1 -> Node0x4b19500;
+	Node0x4b194b0 [shape=record,label="{SAX2.c:222:}"];
+	Node0x4b194b0 -> Node0x4b02b60;
+	Node0x4b19500 [shape=record,label="{SAX2.c:223:|{<s0>T|<s1>F}}"];
+	Node0x4b19500:s0 -> Node0x4b1a0b0;
+	Node0x4b19500:s1 -> Node0x4b1a100;
+	Node0x4b1a0b0 [shape=record,label="{SAX2.c:224:}"];
+	Node0x4b1a0b0 -> Node0x4b1a100;
+	Node0x4b1a100 [shape=record,label="{SAX2.c:225:}"];
+	Node0x4b1a100 -> Node0x4b02b60;
+	Node0x4b02b60 [shape=record,label="{SAX2.c:229:}"];
+}

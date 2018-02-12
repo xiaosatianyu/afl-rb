@@ -1,0 +1,28 @@
+digraph "CFG for 'libxml_domnode_binary_insertion_sort_start' function" {
+	label="CFG for 'libxml_domnode_binary_insertion_sort_start' function";
+
+	Node0x4974100 [shape=record,label="{timsort.h:180:}"];
+	Node0x4974100 -> Node0x497be80;
+	Node0x497be80 [shape=record,label="{timsort.h:183:|{<s0>T|<s1>F}}"];
+	Node0x497be80 -> Node0x497c160;
+	Node0x497be80 -> Node0x49745b0;
+	Node0x497c160 [shape=record,label="{timsort.h:185:|{<s0>T|<s1>F}}"];
+	Node0x497c160 -> Node0x497cda0;
+	Node0x497c160 -> Node0x497cdf0;
+	Node0x497cda0 [shape=record,label="{timsort.h:189:}"];
+	Node0x497cda0 -> Node0x497c0d0;
+	Node0x497cdf0 [shape=record,label="{timsort.h:192:}"];
+	Node0x497cdf0 -> Node0x497e750;
+	Node0x497e750 [shape=record,label="{timsort.h:194:|{<s0>T|<s1>F}}"];
+	Node0x497e750 -> Node0x497e950;
+	Node0x497e750 -> Node0x42feb40;
+	Node0x497e950 [shape=record,label="{timsort.h:196:}"];
+	Node0x497e950 -> Node0x497e900;
+	Node0x497e900 [shape=record,label="{timsort.h:194:}"];
+	Node0x497e900 -> Node0x497e750;
+	Node0x42feb40 [shape=record,label="{timsort.h:198:}"];
+	Node0x42feb40 -> Node0x497c0d0;
+	Node0x497c0d0 [shape=record,label="{timsort.h:183:}"];
+	Node0x497c0d0 -> Node0x497be80;
+	Node0x49745b0 [shape=record,label="{timsort.h:200:}"];
+}

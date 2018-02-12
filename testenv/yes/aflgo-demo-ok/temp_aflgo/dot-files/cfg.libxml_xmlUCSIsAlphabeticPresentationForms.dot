@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsAlphabeticPresentationForms' function" {
+	label="CFG for 'libxml_xmlUCSIsAlphabeticPresentationForms' function";
+
+	Node0x5df0d80 [shape=record,label="{libxml2-py.c:9049:|{<s0>T|<s1>F}}"];
+	Node0x5df0d80:s0 -> Node0x5df3bc0;
+	Node0x5df0d80:s1 -> Node0x5df3b70;
+	Node0x5df3b70 [shape=record,label="{libxml2-py.c:9055:}"];
+	Node0x5df3b70 -> Node0x5df1130;
+	Node0x5df3bc0 [shape=record,label="{libxml2-py.c:9057:}"];
+	Node0x5df3bc0 -> Node0x5df1130;
+	Node0x5df1130 [shape=record,label="{libxml2-py.c:9060:}"];
+}

@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlIOFTPClose' function" {
+	label="CFG for 'xmlIOFTPClose' function";
+
+	Node0x48f89f0 [shape=record,label="{xmlIO.c:2251:}"];
+}

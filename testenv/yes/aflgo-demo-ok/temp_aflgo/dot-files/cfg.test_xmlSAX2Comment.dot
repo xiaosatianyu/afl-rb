@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlSAX2Comment' function" {
+	label="CFG for 'test_xmlSAX2Comment' function";
+
+	Node0x548b170 [shape=record,label="{testapi.c:3944:}"];
+	Node0x548b170 -> Node0x5492a60;
+	Node0x5492a60 [shape=record,label="{testapi.c:3952:|{<s0>T|<s1>F}}"];
+	Node0x5492a60:s0 -> Node0x5492d40;
+	Node0x5492a60:s1 -> Node0x54928c0;
+	Node0x5492d40 [shape=record,label="{testapi.c:3953:}"];
+	Node0x5492d40 -> Node0x5493130;
+	Node0x5493130 [shape=record,label="{testapi.c:3953:|{<s0>T|<s1>F}}"];
+	Node0x5493130:s0 -> Node0x54933b0;
+	Node0x5493130:s1 -> Node0x5493010;
+	Node0x54933b0 [shape=record,label="{testapi.c:3954:|{<s0>T|<s1>F}}"];
+	Node0x54933b0:s0 -> Node0x5494410;
+	Node0x54933b0:s1 -> Node0x5494740;
+	Node0x5494410 [shape=record,label="{testapi.c:3965:}"];
+	Node0x5494410 -> Node0x5494740;
+	Node0x5494740 [shape=record,label="{testapi.c:3971:}"];
+	Node0x5494740 -> Node0x5493320;
+	Node0x5493320 [shape=record,label="{testapi.c:3953:}"];
+	Node0x5493320 -> Node0x5493130;
+	Node0x5493010 [shape=record,label="{testapi.c:3972:}"];
+	Node0x5493010 -> Node0x5492cb0;
+	Node0x5492cb0 [shape=record,label="{testapi.c:3952:}"];
+	Node0x5492cb0 -> Node0x5492a60;
+	Node0x54928c0 [shape=record,label="{testapi.c:3973:}"];
+}

@@ -1,0 +1,12 @@
+digraph "CFG for '__xmlDeregisterNodeDefaultValue' function" {
+	label="CFG for '__xmlDeregisterNodeDefaultValue' function";
+
+	Node0x3793200 [shape=record,label="{globals.c:1089:|{<s0>T|<s1>F}}"];
+	Node0x3793200 -> Node0x35a6e10;
+	Node0x3793200 -> Node0x3793810;
+	Node0x35a6e10 [shape=record,label="{globals.c:1090:}"];
+	Node0x35a6e10 -> Node0x35a6fd0;
+	Node0x3793810 [shape=record,label="{globals.c:1092:}"];
+	Node0x3793810 -> Node0x35a6fd0;
+	Node0x35a6fd0 [shape=record,label="{globals.c:1093:}"];
+}

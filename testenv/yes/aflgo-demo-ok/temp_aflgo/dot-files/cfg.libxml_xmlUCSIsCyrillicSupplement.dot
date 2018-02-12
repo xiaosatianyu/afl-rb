@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsCyrillicSupplement' function" {
+	label="CFG for 'libxml_xmlUCSIsCyrillicSupplement' function";
+
+	Node0x5ecbe20 [shape=record,label="{libxml2-py.c:10187:|{<s0>T|<s1>F}}"];
+	Node0x5ecbe20:s0 -> Node0x5ecce80;
+	Node0x5ecbe20:s1 -> Node0x5ecce30;
+	Node0x5ecce30 [shape=record,label="{libxml2-py.c:10193:}"];
+	Node0x5ecce30 -> Node0x5eca410;
+	Node0x5ecce80 [shape=record,label="{libxml2-py.c:10195:}"];
+	Node0x5ecce80 -> Node0x5eca410;
+	Node0x5eca410 [shape=record,label="{libxml2-py.c:10198:}"];
+}

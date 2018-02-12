@@ -1,0 +1,46 @@
+digraph "CFG for 'xmlExpandCatalog' function" {
+	label="CFG for 'xmlExpandCatalog' function";
+
+	Node0x48f3130 [shape=record,label="{catalog.c:2734:|{<s0>T|<s1>F}}"];
+	Node0x48f3130:s0 -> Node0x48f2f40;
+	Node0x48f3130:s1 -> Node0x48f42a0;
+	Node0x48f42a0 [shape=record,label="{catalog.c:2738:|{<s0>T|<s1>F}}"];
+	Node0x48f42a0:s0 -> Node0x48f2f40;
+	Node0x48f42a0:s1 -> Node0x48f2f90;
+	Node0x48f2f40 [shape=record,label="{catalog.c:2739:}"];
+	Node0x48f2f40 -> Node0x48f3020;
+	Node0x48f2f90 [shape=record,label="{catalog.c:2742:|{<s0>T|<s1>F}}"];
+	Node0x48f2f90:s0 -> Node0x48f4a00;
+	Node0x48f2f90:s1 -> Node0x48f4aa0;
+	Node0x48f4a00 [shape=record,label="{catalog.c:2743:|{<s0>T|<s1>F}}"];
+	Node0x48f4a00:s0 -> Node0x48f53c0;
+	Node0x48f4a00:s1 -> Node0x48f5410;
+	Node0x48f53c0 [shape=record,label="{catalog.c:2747:}"];
+	Node0x48f53c0 -> Node0x48f3020;
+	Node0x48f5410 [shape=record,label="{catalog.c:2749:|{<s0>T|<s1>F}}"];
+	Node0x48f5410:s0 -> Node0x48f5d00;
+	Node0x48f5410:s1 -> Node0x48f5d50;
+	Node0x48f5d00 [shape=record,label="{catalog.c:2751:}"];
+	Node0x48f5d00 -> Node0x48f3020;
+	Node0x48f5d50 [shape=record,label="{catalog.c:2754:}"];
+	Node0x48f5d50 -> Node0x48f4a50;
+	Node0x48f4aa0 [shape=record,label="{catalog.c:2756:|{<s0>T|<s1>F}}"];
+	Node0x48f4aa0:s0 -> Node0x48f73a0;
+	Node0x48f4aa0:s1 -> Node0x48f7440;
+	Node0x48f73a0 [shape=record,label="{catalog.c:2762:}"];
+	Node0x48f73a0 -> Node0x48f73f0;
+	Node0x48f7440 [shape=record,label="{catalog.c:2764:}"];
+	Node0x48f7440 -> Node0x48f7b00;
+	Node0x48f7b00 [shape=record,label="{catalog.c:2764:|{<s0>T|<s1>F}}"];
+	Node0x48f7b00:s0 -> Node0x48f8020;
+	Node0x48f7b00:s1 -> Node0x48f7d20;
+	Node0x48f8020 [shape=record,label="{catalog.c:2764:}"];
+	Node0x48f8020 -> Node0x48f7b00;
+	Node0x48f7d20 [shape=record,label="{catalog.c:2765:}"];
+	Node0x48f7d20 -> Node0x48f73f0;
+	Node0x48f73f0 [shape=record,label="{%52}"];
+	Node0x48f73f0 -> Node0x48f4a50;
+	Node0x48f4a50 [shape=record,label="{catalog.c:2768:}"];
+	Node0x48f4a50 -> Node0x48f3020;
+	Node0x48f3020 [shape=record,label="{catalog.c:2769:}"];
+}

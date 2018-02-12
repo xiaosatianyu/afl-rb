@@ -1,0 +1,47 @@
+digraph "CFG for 'xmlParserInputBufferPush' function" {
+	label="CFG for 'xmlParserInputBufferPush' function";
+
+	Node0x4982180 [shape=record,label="{xmlIO.c:3237:|{<s0>T|<s1>F}}"];
+	Node0x4982180 -> Node0x4915b20;
+	Node0x4982180 -> Node0x4915b70;
+	Node0x4915b20 [shape=record,label="{xmlIO.c:3242:}"];
+	Node0x4915b20 -> Node0x4914c10;
+	Node0x4915b70 [shape=record,label="{xmlIO.c:3243:|{<s0>T|<s1>F}}"];
+	Node0x4915b70 -> Node0x4916000;
+	Node0x4915b70 -> Node0x49160a0;
+	Node0x49160a0 [shape=record,label="{xmlIO.c:3243:|{<s0>T|<s1>F}}"];
+	Node0x49160a0 -> Node0x4916000;
+	Node0x49160a0 -> Node0x4916050;
+	Node0x4916000 [shape=record,label="{xmlIO.c:3243:}"];
+	Node0x4916000 -> Node0x4914c10;
+	Node0x4916050 [shape=record,label="{xmlIO.c:3244:|{<s0>T|<s1>F}}"];
+	Node0x4916050 -> Node0x4916cc0;
+	Node0x4916050 -> Node0x4916d60;
+	Node0x4916cc0 [shape=record,label="{xmlIO.c:3245:|{<s0>T|<s1>F}}"];
+	Node0x4916cc0 -> Node0x4917520;
+	Node0x4916cc0 -> Node0x4917570;
+	Node0x4917520 [shape=record,label="{xmlIO.c:3251:}"];
+	Node0x4917520 -> Node0x4917570;
+	Node0x4917570 [shape=record,label="{xmlIO.c:3253:|{<s0>T|<s1>F}}"];
+	Node0x4917570 -> Node0x4918290;
+	Node0x4917570 -> Node0x49182e0;
+	Node0x4918290 [shape=record,label="{xmlIO.c:3255:}"];
+	Node0x4918290 -> Node0x4914c10;
+	Node0x49182e0 [shape=record,label="{xmlIO.c:3260:|{<s0>T|<s1>F}}"];
+	Node0x49182e0 -> Node0x48ecf90;
+	Node0x49182e0 -> Node0x48ed2c0;
+	Node0x48ecf90 [shape=record,label="{xmlIO.c:3263:}"];
+	Node0x48ecf90 -> Node0x4914c10;
+	Node0x48ed2c0 [shape=record,label="{xmlIO.c:3267:}"];
+	Node0x48ed2c0 -> Node0x4916d10;
+	Node0x4916d60 [shape=record,label="{xmlIO.c:3269:|{<s0>T|<s1>F}}"];
+	Node0x4916d60 -> Node0x491a000;
+	Node0x4916d60 -> Node0x491a050;
+	Node0x491a000 [shape=record,label="{xmlIO.c:3272:}"];
+	Node0x491a000 -> Node0x4914c10;
+	Node0x491a050 [shape=record,label="{%68}"];
+	Node0x491a050 -> Node0x4916d10;
+	Node0x4916d10 [shape=record,label="{xmlIO.c:3279:}"];
+	Node0x4916d10 -> Node0x4914c10;
+	Node0x4914c10 [shape=record,label="{xmlIO.c:3280:}"];
+}

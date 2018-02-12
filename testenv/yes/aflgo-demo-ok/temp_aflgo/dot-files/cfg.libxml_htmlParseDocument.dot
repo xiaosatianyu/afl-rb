@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_htmlParseDocument' function" {
+	label="CFG for 'libxml_htmlParseDocument' function";
+
+	Node0x554dd20 [shape=record,label="{libxml2-py.c:591:|{<s0>T|<s1>F}}"];
+	Node0x554dd20:s0 -> Node0x5555280;
+	Node0x554dd20:s1 -> Node0x5555230;
+	Node0x5555230 [shape=record,label="{libxml2-py.c:598:}"];
+	Node0x5555230 -> Node0x554f780;
+	Node0x5555280 [shape=record,label="{libxml2-py.c:599:|{<s0>T|<s1>F}}"];
+	Node0x5555280:s0 -> Node0x5555a70;
+	Node0x5555280:s1 -> Node0x5555ac0;
+	Node0x5555a70 [shape=record,label="{libxml2-py.c:599:}"];
+	Node0x5555a70 -> Node0x5555b10;
+	Node0x5555ac0 [shape=record,label="{libxml2-py.c:599:}"];
+	Node0x5555ac0 -> Node0x5555b10;
+	Node0x5555b10 [shape=record,label="{libxml2-py.c:599:}"];
+	Node0x5555b10 -> Node0x554f780;
+	Node0x554f780 [shape=record,label="{libxml2-py.c:604:}"];
+}

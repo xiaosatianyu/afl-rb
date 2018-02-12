@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsYiRadicals' function" {
+	label="CFG for 'test_xmlUCSIsYiRadicals' function";
+
+	Node0x6a08280 [shape=record,label="{testapi.c:42889:}"];
+	Node0x6a08280 -> Node0x6a16e20;
+	Node0x6a16e20 [shape=record,label="{testapi.c:42897:|{<s0>T|<s1>F}}"];
+	Node0x6a16e20:s0 -> Node0x6a17100;
+	Node0x6a16e20:s1 -> Node0x6a16c80;
+	Node0x6a17100 [shape=record,label="{testapi.c:42898:|{<s0>T|<s1>F}}"];
+	Node0x6a17100:s0 -> Node0x6a17f50;
+	Node0x6a17100:s1 -> Node0x6a18720;
+	Node0x6a17f50 [shape=record,label="{testapi.c:42908:}"];
+	Node0x6a17f50 -> Node0x6a18720;
+	Node0x6a18720 [shape=record,label="{testapi.c:42913:}"];
+	Node0x6a18720 -> Node0x6a17070;
+	Node0x6a17070 [shape=record,label="{testapi.c:42897:}"];
+	Node0x6a17070 -> Node0x6a16e20;
+	Node0x6a16c80 [shape=record,label="{testapi.c:42914:}"];
+}

@@ -1,0 +1,10 @@
+digraph "CFG for 'test_xmlCleanupEncodingAliases' function" {
+	label="CFG for 'test_xmlCleanupEncodingAliases' function";
+
+	Node0x5496eb0 [shape=record,label="{testapi.c:8846:|{<s0>T|<s1>F}}"];
+	Node0x5496eb0:s0 -> Node0x5790de0;
+	Node0x5496eb0:s1 -> Node0x5791240;
+	Node0x5790de0 [shape=record,label="{testapi.c:8857:}"];
+	Node0x5790de0 -> Node0x5791240;
+	Node0x5791240 [shape=record,label="{testapi.c:8861:}"];
+}

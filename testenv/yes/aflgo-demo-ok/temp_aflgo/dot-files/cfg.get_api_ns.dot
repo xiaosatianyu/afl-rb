@@ -1,0 +1,10 @@
+digraph "CFG for 'get_api_ns' function" {
+	label="CFG for 'get_api_ns' function";
+
+	Node0x5da0940 [shape=record,label="{testapi.c:88:|{<s0>T|<s1>F}}"];
+	Node0x5da0940:s0 -> Node0x5d9fdd0;
+	Node0x5da0940:s1 -> Node0x5d9fe20;
+	Node0x5d9fdd0 [shape=record,label="{testapi.c:90:}"];
+	Node0x5d9fdd0 -> Node0x5d9fe20;
+	Node0x5d9fe20 [shape=record,label="{testapi.c:91:}"];
+}

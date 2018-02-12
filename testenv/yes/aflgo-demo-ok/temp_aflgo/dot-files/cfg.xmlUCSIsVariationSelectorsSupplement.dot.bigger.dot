@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsVariationSelectorsSupplement' function" {
+	label="CFG for 'xmlUCSIsVariationSelectorsSupplement' function";
+
+	Node0x4febc10 [shape=record,label="{xmlunicode.c:2590:|{<s0>T|<s1>F}}"];
+	Node0x4febc10:s0 -> Node0x4febe50;
+	Node0x4febc10:s1 -> Node0x4febf20;
+	Node0x4febe50 [shape=record,label="{xmlunicode.c:2591:}"];
+	Node0x4febe50 -> Node0x4febf20;
+	Node0x4febf20 [shape=record,label="{xmlunicode.c:2591:}"];
+}

@@ -1,0 +1,38 @@
+digraph "CFG for 'xmlPushInput' function" {
+	label="CFG for 'xmlPushInput' function";
+
+	Node0x415b710 [shape=record,label="{parser.c:2211:|{<s0>T|<s1>F}}"];
+	Node0x415b710 -> Node0x415dd80;
+	Node0x415b710 -> Node0x415ddd0;
+	Node0x415dd80 [shape=record,label="{parser.c:2213:}"];
+	Node0x415dd80 -> Node0x4230c20;
+	Node0x415ddd0 [shape=record,label="{parser.c:2215:|{<s0>T|<s1>F}}"];
+	Node0x415ddd0 -> Node0x4231e20;
+	Node0x415ddd0 -> Node0x4231e70;
+	Node0x4231e20 [shape=record,label="{parser.c:2216:|{<s0>T|<s1>F}}"];
+	Node0x4231e20 -> Node0x4232210;
+	Node0x4231e20 -> Node0x42321c0;
+	Node0x4232210 [shape=record,label="{parser.c:2216:|{<s0>T|<s1>F}}"];
+	Node0x4232210 -> Node0x4232170;
+	Node0x4232210 -> Node0x42321c0;
+	Node0x4232170 [shape=record,label="{parser.c:2217:}"];
+	Node0x4232170 -> Node0x42321c0;
+	Node0x42321c0 [shape=record,label="{parser.c:2220:}"];
+	Node0x42321c0 -> Node0x4231e70;
+	Node0x4231e70 [shape=record,label="{parser.c:2223:|{<s0>T|<s1>F}}"];
+	Node0x4231e70 -> Node0x42343b0;
+	Node0x4231e70 -> Node0x4234400;
+	Node0x42343b0 [shape=record,label="{parser.c:2225:}"];
+	Node0x42343b0 -> Node0x4230c20;
+	Node0x4234400 [shape=record,label="{parser.c:2226:|{<s0>T|<s1>F}}"];
+	Node0x4234400 -> Node0x4234a60;
+	Node0x4234400 -> Node0x4234a10;
+	Node0x4234a60 [shape=record,label="{parser.c:2226:|{<s0>T|<s1>F}}"];
+	Node0x4234a60 -> Node0x42349c0;
+	Node0x4234a60 -> Node0x4234a10;
+	Node0x42349c0 [shape=record,label="{parser.c:2226:}"];
+	Node0x42349c0 -> Node0x4234a10;
+	Node0x4234a10 [shape=record,label="{parser.c:2227:}"];
+	Node0x4234a10 -> Node0x4230c20;
+	Node0x4230c20 [shape=record,label="{parser.c:2228:}"];
+}

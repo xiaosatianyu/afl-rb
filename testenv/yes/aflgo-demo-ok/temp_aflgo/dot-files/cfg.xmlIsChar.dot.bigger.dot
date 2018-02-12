@@ -1,0 +1,42 @@
+digraph "CFG for 'xmlIsChar' function" {
+	label="CFG for 'xmlIsChar' function";
+
+	Node0x363ce40 [shape=record,label="{chvalid.c:256:|{<s0>T|<s1>F}}"];
+	Node0x363ce40:s0 -> Node0x363cd20;
+	Node0x363ce40:s1 -> Node0x363cfc0;
+	Node0x363cd20 [shape=record,label="{chvalid.c:257:|{<s0>T|<s1>F}}"];
+	Node0x363cd20:s0 -> Node0x363d700;
+	Node0x363cd20:s1 -> Node0x363d6b0;
+	Node0x363d700 [shape=record,label="{chvalid.c:257:|{<s0>T|<s1>F}}"];
+	Node0x363d700:s0 -> Node0x363d610;
+	Node0x363d700:s1 -> Node0x363d6b0;
+	Node0x363d6b0 [shape=record,label="{chvalid.c:257:|{<s0>T|<s1>F}}"];
+	Node0x363d6b0:s0 -> Node0x363d610;
+	Node0x363d6b0:s1 -> Node0x363d660;
+	Node0x363d660 [shape=record,label="{chvalid.c:257:}"];
+	Node0x363d660 -> Node0x363d610;
+	Node0x363d610 [shape=record,label="{chvalid.c:257:}"];
+	Node0x363d610 -> Node0x363d010;
+	Node0x363cfc0 [shape=record,label="{chvalid.c:257:|{<s0>T|<s1>F}}"];
+	Node0x363cfc0:s0 -> Node0x363df00;
+	Node0x363cfc0:s1 -> Node0x363deb0;
+	Node0x363df00 [shape=record,label="{chvalid.c:257:|{<s0>T|<s1>F}}"];
+	Node0x363df00:s0 -> Node0x363dba0;
+	Node0x363df00:s1 -> Node0x363deb0;
+	Node0x363deb0 [shape=record,label="{chvalid.c:257:|{<s0>T|<s1>F}}"];
+	Node0x363deb0:s0 -> Node0x363e2d0;
+	Node0x363deb0:s1 -> Node0x363de60;
+	Node0x363e2d0 [shape=record,label="{chvalid.c:257:|{<s0>T|<s1>F}}"];
+	Node0x363e2d0:s0 -> Node0x363dba0;
+	Node0x363e2d0:s1 -> Node0x363de60;
+	Node0x363de60 [shape=record,label="{chvalid.c:257:|{<s0>T|<s1>F}}"];
+	Node0x363de60:s0 -> Node0x363e720;
+	Node0x363de60:s1 -> Node0x363e6d0;
+	Node0x363e720 [shape=record,label="{chvalid.c:257:}"];
+	Node0x363e720 -> Node0x363e6d0;
+	Node0x363e6d0 [shape=record,label="{chvalid.c:257:}"];
+	Node0x363e6d0 -> Node0x363dba0;
+	Node0x363dba0 [shape=record,label="{chvalid.c:257:}"];
+	Node0x363dba0 -> Node0x363d010;
+	Node0x363d010 [shape=record,label="{chvalid.c:257:}"];
+}

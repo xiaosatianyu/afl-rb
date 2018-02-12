@@ -1,0 +1,11 @@
+xmlsave.c:1420,65.0
+xmlsave.c:1424,64.0
+xmlsave.c:1425,63.0
+xmlsave.c:1426,62.0
+xmlsave.c:1427,62.0
+xmlsave.c:1428,64.0
+xmlsave.c:1429,62.0
+xmlsave.c:1430,63.0
+xmlsave.c:1432,61.0
+xmlsave.c:1434,65.0
+xmlsave.c:1436,64.0

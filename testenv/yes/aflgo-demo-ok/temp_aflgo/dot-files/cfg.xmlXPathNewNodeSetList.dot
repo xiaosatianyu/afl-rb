@@ -1,0 +1,38 @@
+digraph "CFG for 'xmlXPathNewNodeSetList' function" {
+	label="CFG for 'xmlXPathNewNodeSetList' function";
+
+	Node0x44f41f0 [shape=record,label="{xpath.c:4390:|{<s0>T|<s1>F}}"];
+	Node0x44f41f0 -> Node0x44ed6e0;
+	Node0x44f41f0 -> Node0x44f4dd0;
+	Node0x44ed6e0 [shape=record,label="{xpath.c:4396:}"];
+	Node0x44ed6e0 -> Node0x44ed730;
+	Node0x44f4dd0 [shape=record,label="{xpath.c:4397:|{<s0>T|<s1>F}}"];
+	Node0x44f4dd0 -> Node0x44f52a0;
+	Node0x44f4dd0 -> Node0x44f5340;
+	Node0x44f52a0 [shape=record,label="{xpath.c:4398:}"];
+	Node0x44f52a0 -> Node0x44f52f0;
+	Node0x44f5340 [shape=record,label="{xpath.c:4400:|{<s0>T|<s1>F}}"];
+	Node0x44f5340 -> Node0x44f5e80;
+	Node0x44f5340 -> Node0x44f5ed0;
+	Node0x44f5e80 [shape=record,label="{xpath.c:4402:}"];
+	Node0x44f5e80 -> Node0x44f6300;
+	Node0x44f6300 [shape=record,label="{xpath.c:4402:|{<s0>T|<s1>F}}"];
+	Node0x44f6300 -> Node0x44f65e0;
+	Node0x44f6300 -> Node0x44f6160;
+	Node0x44f65e0 [shape=record,label="{xpath.c:4403:|{<s0>T|<s1>F}}"];
+	Node0x44f65e0 -> Node0x44f6ab0;
+	Node0x44f65e0 -> Node0x44f6b00;
+	Node0x44f6ab0 [shape=record,label="{xpath.c:4404:}"];
+	Node0x44f6ab0 -> Node0x44f6160;
+	Node0x44f6b00 [shape=record,label="{xpath.c:4405:}"];
+	Node0x44f6b00 -> Node0x44f6550;
+	Node0x44f6550 [shape=record,label="{xpath.c:4402:}"];
+	Node0x44f6550 -> Node0x44f6300;
+	Node0x44f6160 [shape=record,label="{xpath.c:4406:}"];
+	Node0x44f6160 -> Node0x44f5ed0;
+	Node0x44f5ed0 [shape=record,label="{%38}"];
+	Node0x44f5ed0 -> Node0x44f52f0;
+	Node0x44f52f0 [shape=record,label="{%39}"];
+	Node0x44f52f0 -> Node0x44ed730;
+	Node0x44ed730 [shape=record,label="{xpath.c:4409:}"];
+}

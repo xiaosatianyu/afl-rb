@@ -1,0 +1,27 @@
+digraph "CFG for 'xmlFreeElement' function" {
+	label="CFG for 'xmlFreeElement' function";
+
+	Node0x3ea4280 [shape=record,label="{valid.c:1352:|{<s0>T|<s1>F}}"];
+	Node0x3ea4280 -> Node0x4074500;
+	Node0x3ea4280 -> Node0x4074550;
+	Node0x4074500 [shape=record,label="{valid.c:1353:}"];
+	Node0x4074500 -> Node0x4074640;
+	Node0x4074550 [shape=record,label="{valid.c:1354:|{<s0>T|<s1>F}}"];
+	Node0x4074550 -> Node0x3ea5fc0;
+	Node0x4074550 -> Node0x3ea62f0;
+	Node0x3ea5fc0 [shape=record,label="{valid.c:1357:}"];
+	Node0x3ea5fc0 -> Node0x3ea62f0;
+	Node0x3ea62f0 [shape=record,label="{valid.c:1358:|{<s0>T|<s1>F}}"];
+	Node0x3ea62f0 -> Node0x3ea62a0;
+	Node0x3ea62f0 -> Node0x3ea6cb0;
+	Node0x3ea62a0 [shape=record,label="{valid.c:1359:}"];
+	Node0x3ea62a0 -> Node0x3ea6cb0;
+	Node0x3ea6cb0 [shape=record,label="{valid.c:1361:|{<s0>T|<s1>F}}"];
+	Node0x3ea6cb0 -> Node0x3ea7430;
+	Node0x3ea6cb0 -> Node0x3ea7480;
+	Node0x3ea7430 [shape=record,label="{valid.c:1362:}"];
+	Node0x3ea7430 -> Node0x3ea7480;
+	Node0x3ea7480 [shape=record,label="{valid.c:1364:}"];
+	Node0x3ea7480 -> Node0x4074640;
+	Node0x4074640 [shape=record,label="{valid.c:1365:}"];
+}

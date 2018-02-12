@@ -1,0 +1,40 @@
+digraph "CFG for 'xmlC14NNewCtx' function" {
+	label="CFG for 'xmlC14NNewCtx' function";
+
+	Node0x51bc0d0 [shape=record,label="{c14n.c:1774:|{<s0>T|<s1>F}}"];
+	Node0x51bc0d0 -> Node0x51bf6c0;
+	Node0x51bc0d0 -> Node0x51bf760;
+	Node0x51bf760 [shape=record,label="{c14n.c:1781:|{<s0>T|<s1>F}}"];
+	Node0x51bf760 -> Node0x51bf6c0;
+	Node0x51bf760 -> Node0x51bf710;
+	Node0x51bf6c0 [shape=record,label="{c14n.c:1782:}"];
+	Node0x51bf6c0 -> Node0x51bc190;
+	Node0x51bf710 [shape=record,label="{c14n.c:1789:|{<s0>T|<s1>F}}"];
+	Node0x51bf710 -> Node0x51c01c0;
+	Node0x51bf710 -> Node0x51c0210;
+	Node0x51c01c0 [shape=record,label="{c14n.c:1790:}"];
+	Node0x51c01c0 -> Node0x51bc190;
+	Node0x51c0210 [shape=record,label="{c14n.c:1798:|{<s0>T|<s1>F}}"];
+	Node0x51c0210 -> Node0x51c0cd0;
+	Node0x51c0210 -> Node0x51c0d20;
+	Node0x51c0cd0 [shape=record,label="{c14n.c:1799:}"];
+	Node0x51c0cd0 -> Node0x51bc190;
+	Node0x51c0d20 [shape=record,label="{c14n.c:1807:|{<s0>T|<s1>F}}"];
+	Node0x51c0d20 -> Node0x51c3570;
+	Node0x51c0d20 -> Node0x51c35c0;
+	Node0x51c3570 [shape=record,label="{c14n.c:1809:}"];
+	Node0x51c3570 -> Node0x51bc190;
+	Node0x51c35c0 [shape=record,label="{c14n.c:1812:|{<s0>T|<s1>F}}"];
+	Node0x51c35c0 -> Node0x5119990;
+	Node0x51c35c0 -> Node0x51c5d60;
+	Node0x5119990 [shape=record,label="{c14n.c:1827:}"];
+	Node0x5119990 -> Node0x51bc190;
+	Node0x51c5d60 [shape=record,label="{c14n.c:1837:|{<s0>T|<s1>F}}"];
+	Node0x51c5d60 -> Node0x51c6cb0;
+	Node0x51c5d60 -> Node0x51c6d00;
+	Node0x51c6cb0 [shape=record,label="{c14n.c:1839:}"];
+	Node0x51c6cb0 -> Node0x51c6d00;
+	Node0x51c6d00 [shape=record,label="{c14n.c:1841:}"];
+	Node0x51c6d00 -> Node0x51bc190;
+	Node0x51bc190 [shape=record,label="{c14n.c:1842:}"];
+}

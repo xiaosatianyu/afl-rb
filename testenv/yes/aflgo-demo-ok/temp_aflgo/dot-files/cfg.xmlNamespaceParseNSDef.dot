@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlNamespaceParseNSDef' function" {
+	label="CFG for 'xmlNamespaceParseNSDef' function";
+
+	Node0x4db23f0 [shape=record,label="{legacy.c:508:|{<s0>T|<s1>F}}"];
+	Node0x4db23f0:s0 -> Node0x4db1100;
+	Node0x4db23f0:s1 -> Node0x4db2660;
+	Node0x4db2660 [shape=record,label="{legacy.c:513:}"];
+	Node0x4db2660 -> Node0x4db1100;
+	Node0x4db1100 [shape=record,label="{legacy.c:517:}"];
+}

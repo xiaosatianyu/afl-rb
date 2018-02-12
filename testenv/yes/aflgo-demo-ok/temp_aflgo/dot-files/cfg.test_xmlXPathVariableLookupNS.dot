@@ -1,0 +1,37 @@
+digraph "CFG for 'test_xmlXPathVariableLookupNS' function" {
+	label="CFG for 'test_xmlXPathVariableLookupNS' function";
+
+	Node0x6e078e0 [shape=record,label="{testapi.c:51071:}"];
+	Node0x6e078e0 -> Node0x6e11010;
+	Node0x6e11010 [shape=record,label="{testapi.c:51083:|{<s0>T|<s1>F}}"];
+	Node0x6e11010:s0 -> Node0x6e112f0;
+	Node0x6e11010:s1 -> Node0x6e10e70;
+	Node0x6e112f0 [shape=record,label="{testapi.c:51084:}"];
+	Node0x6e112f0 -> Node0x6e116e0;
+	Node0x6e116e0 [shape=record,label="{testapi.c:51084:|{<s0>T|<s1>F}}"];
+	Node0x6e116e0:s0 -> Node0x6e11960;
+	Node0x6e116e0:s1 -> Node0x6e115c0;
+	Node0x6e11960 [shape=record,label="{testapi.c:51085:}"];
+	Node0x6e11960 -> Node0x6e11d50;
+	Node0x6e11d50 [shape=record,label="{testapi.c:51085:|{<s0>T|<s1>F}}"];
+	Node0x6e11d50:s0 -> Node0x6e11fd0;
+	Node0x6e11d50:s1 -> Node0x6e11c30;
+	Node0x6e11fd0 [shape=record,label="{testapi.c:51086:|{<s0>T|<s1>F}}"];
+	Node0x6e11fd0:s0 -> Node0x6e133c0;
+	Node0x6e11fd0:s1 -> Node0x6e140d0;
+	Node0x6e133c0 [shape=record,label="{testapi.c:51100:}"];
+	Node0x6e133c0 -> Node0x6e140d0;
+	Node0x6e140d0 [shape=record,label="{testapi.c:51107:}"];
+	Node0x6e140d0 -> Node0x6e11f40;
+	Node0x6e11f40 [shape=record,label="{testapi.c:51085:}"];
+	Node0x6e11f40 -> Node0x6e11d50;
+	Node0x6e11c30 [shape=record,label="{testapi.c:51108:}"];
+	Node0x6e11c30 -> Node0x6e118d0;
+	Node0x6e118d0 [shape=record,label="{testapi.c:51084:}"];
+	Node0x6e118d0 -> Node0x6e116e0;
+	Node0x6e115c0 [shape=record,label="{testapi.c:51109:}"];
+	Node0x6e115c0 -> Node0x6e11260;
+	Node0x6e11260 [shape=record,label="{testapi.c:51083:}"];
+	Node0x6e11260 -> Node0x6e11010;
+	Node0x6e10e70 [shape=record,label="{testapi.c:51110:}"];
+}

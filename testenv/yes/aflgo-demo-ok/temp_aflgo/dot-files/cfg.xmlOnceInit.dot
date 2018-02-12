@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlOnceInit' function" {
+	label="CFG for 'xmlOnceInit' function";
+
+	Node0x4e4ced0 [shape=record,label="{threads.c:957:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlCatalogSetDefaultPrefer' function" {
+	label="CFG for 'test_xmlCatalogSetDefaultPrefer' function";
+
+	Node0x5609c00 [shape=record,label="{testapi.c:6320:}"];
+	Node0x5609c00 -> Node0x56118a0;
+	Node0x56118a0 [shape=record,label="{testapi.c:6328:|{<s0>T|<s1>F}}"];
+	Node0x56118a0:s0 -> Node0x5611b80;
+	Node0x56118a0:s1 -> Node0x5611700;
+	Node0x5611b80 [shape=record,label="{testapi.c:6329:|{<s0>T|<s1>F}}"];
+	Node0x5611b80:s0 -> Node0x5612850;
+	Node0x5611b80:s1 -> Node0x5613480;
+	Node0x5612850 [shape=record,label="{testapi.c:6339:}"];
+	Node0x5612850 -> Node0x5613480;
+	Node0x5613480 [shape=record,label="{testapi.c:6344:}"];
+	Node0x5613480 -> Node0x5611af0;
+	Node0x5611af0 [shape=record,label="{testapi.c:6328:}"];
+	Node0x5611af0 -> Node0x56118a0;
+	Node0x5611700 [shape=record,label="{testapi.c:6345:}"];
+}

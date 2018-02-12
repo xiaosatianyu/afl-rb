@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlXPathFreeContext' function" {
+	label="CFG for 'libxml_xmlXPathFreeContext' function";
+
+	Node0x6115340 [shape=record,label="{libxml2-py.c:13223:|{<s0>T|<s1>F}}"];
+	Node0x6115340:s0 -> Node0x6116480;
+	Node0x6115340:s1 -> Node0x6116430;
+	Node0x6116430 [shape=record,label="{libxml2-py.c:13228:}"];
+	Node0x6116430 -> Node0x6113790;
+	Node0x6116480 [shape=record,label="{libxml2-py.c:13229:|{<s0>T|<s1>F}}"];
+	Node0x6116480:s0 -> Node0x6116ca0;
+	Node0x6116480:s1 -> Node0x6116cf0;
+	Node0x6116ca0 [shape=record,label="{libxml2-py.c:13229:}"];
+	Node0x6116ca0 -> Node0x6116d40;
+	Node0x6116cf0 [shape=record,label="{libxml2-py.c:13229:}"];
+	Node0x6116cf0 -> Node0x6116d40;
+	Node0x6116d40 [shape=record,label="{libxml2-py.c:13229:}"];
+	Node0x6116d40 -> Node0x6113790;
+	Node0x6113790 [shape=record,label="{libxml2-py.c:13234:}"];
+}

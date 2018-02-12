@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlGetEntityFromTable' function" {
+	label="CFG for 'xmlGetEntityFromTable' function";
+
+	Node0x40fcbb0 [shape=record,label="{entities.c:435:}"];
+}

@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlSchemaValueAppend' function" {
+	label="CFG for 'test_xmlSchemaValueAppend' function";
+
+	Node0x66ec9c0 [shape=record,label="{testapi.c:36066:}"];
+	Node0x66ec9c0 -> Node0x66f4920;
+	Node0x66f4920 [shape=record,label="{testapi.c:36076:|{<s0>T|<s1>F}}"];
+	Node0x66f4920:s0 -> Node0x66f4c00;
+	Node0x66f4920:s1 -> Node0x66f4780;
+	Node0x66f4c00 [shape=record,label="{testapi.c:36077:}"];
+	Node0x66f4c00 -> Node0x66f4ff0;
+	Node0x66f4ff0 [shape=record,label="{testapi.c:36077:|{<s0>T|<s1>F}}"];
+	Node0x66f4ff0:s0 -> Node0x66f5270;
+	Node0x66f4ff0:s1 -> Node0x66f4ed0;
+	Node0x66f5270 [shape=record,label="{testapi.c:36078:|{<s0>T|<s1>F}}"];
+	Node0x66f5270:s0 -> Node0x66f6330;
+	Node0x66f5270:s1 -> Node0x66f6660;
+	Node0x66f6330 [shape=record,label="{testapi.c:36090:}"];
+	Node0x66f6330 -> Node0x66f6660;
+	Node0x66f6660 [shape=record,label="{testapi.c:36096:}"];
+	Node0x66f6660 -> Node0x66f51e0;
+	Node0x66f51e0 [shape=record,label="{testapi.c:36077:}"];
+	Node0x66f51e0 -> Node0x66f4ff0;
+	Node0x66f4ed0 [shape=record,label="{testapi.c:36097:}"];
+	Node0x66f4ed0 -> Node0x66f4b70;
+	Node0x66f4b70 [shape=record,label="{testapi.c:36076:}"];
+	Node0x66f4b70 -> Node0x66f4920;
+	Node0x66f4780 [shape=record,label="{testapi.c:36098:}"];
+}

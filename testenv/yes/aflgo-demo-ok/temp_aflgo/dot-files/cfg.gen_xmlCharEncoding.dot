@@ -1,0 +1,22 @@
+digraph "CFG for 'gen_xmlCharEncoding' function" {
+	label="CFG for 'gen_xmlCharEncoding' function";
+
+	Node0x5296490 [shape=record,label="{testapi.c:694:|{<s0>T|<s1>F}}"];
+	Node0x5296490:s0 -> Node0x52f0d50;
+	Node0x5296490:s1 -> Node0x52f0da0;
+	Node0x52f0d50 [shape=record,label="{testapi.c:695:}"];
+	Node0x52f0d50 -> Node0x5296f40;
+	Node0x52f0da0 [shape=record,label="{testapi.c:696:|{<s0>T|<s1>F}}"];
+	Node0x52f0da0:s0 -> Node0x52973d0;
+	Node0x52f0da0:s1 -> Node0x5297420;
+	Node0x52973d0 [shape=record,label="{testapi.c:696:}"];
+	Node0x52973d0 -> Node0x5296f40;
+	Node0x5297420 [shape=record,label="{testapi.c:697:|{<s0>T|<s1>F}}"];
+	Node0x5297420:s0 -> Node0x52978b0;
+	Node0x5297420:s1 -> Node0x5297900;
+	Node0x52978b0 [shape=record,label="{testapi.c:697:}"];
+	Node0x52978b0 -> Node0x5296f40;
+	Node0x5297900 [shape=record,label="{testapi.c:698:}"];
+	Node0x5297900 -> Node0x5296f40;
+	Node0x5296f40 [shape=record,label="{testapi.c:699:}"];
+}

@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsGeometricShapes' function" {
+	label="CFG for 'xmlUCSIsGeometricShapes' function";
+
+	Node0x4f7de10 [shape=record,label="{xmlunicode.c:1522:|{<s0>T|<s1>F}}"];
+	Node0x4f7de10:s0 -> Node0x4f7d5c0;
+	Node0x4f7de10:s1 -> Node0x4f7dda0;
+	Node0x4f7d5c0 [shape=record,label="{xmlunicode.c:1523:}"];
+	Node0x4f7d5c0 -> Node0x4f7dda0;
+	Node0x4f7dda0 [shape=record,label="{xmlunicode.c:1523:}"];
+}

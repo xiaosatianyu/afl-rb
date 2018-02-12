@@ -1,0 +1,12 @@
+digraph "CFG for 'gen_xmlHashTablePtr' function" {
+	label="CFG for 'gen_xmlHashTablePtr' function";
+
+	Node0x555aaa0 [shape=record,label="{testapi.c:622:|{<s0>T|<s1>F}}"];
+	Node0x555aaa0:s0 -> Node0x556adc0;
+	Node0x555aaa0:s1 -> Node0x556ae10;
+	Node0x556adc0 [shape=record,label="{testapi.c:623:}"];
+	Node0x556adc0 -> Node0x5570e90;
+	Node0x556ae10 [shape=record,label="{testapi.c:624:}"];
+	Node0x556ae10 -> Node0x5570e90;
+	Node0x5570e90 [shape=record,label="{testapi.c:625:}"];
+}

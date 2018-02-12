@@ -1,0 +1,36 @@
+digraph "CFG for 'libxml_xmlRelaxNGDumpTree' function" {
+	label="CFG for 'libxml_xmlRelaxNGDumpTree' function";
+
+	Node0x5b17550 [shape=record,label="{libxml2-py.c:6284:|{<s0>T|<s1>F}}"];
+	Node0x5b17550:s0 -> Node0x5b20eb0;
+	Node0x5b17550:s1 -> Node0x5b20e60;
+	Node0x5b20e60 [shape=record,label="{libxml2-py.c:6291:}"];
+	Node0x5b20e60 -> Node0x5b17290;
+	Node0x5b20eb0 [shape=record,label="{libxml2-py.c:6292:|{<s0>T|<s1>F}}"];
+	Node0x5b20eb0:s0 -> Node0x5b21740;
+	Node0x5b20eb0:s1 -> Node0x5b21790;
+	Node0x5b21740 [shape=record,label="{libxml2-py.c:6292:}"];
+	Node0x5b21740 -> Node0x5b217e0;
+	Node0x5b21790 [shape=record,label="{libxml2-py.c:6292:|{<s0>T|<s1>F}}"];
+	Node0x5b21790:s0 -> Node0x5b21980;
+	Node0x5b21790:s1 -> Node0x5b21a70;
+	Node0x5b21a70 [shape=record,label="{libxml2-py.c:6292:|{<s0>T|<s1>F}}"];
+	Node0x5b21a70:s0 -> Node0x5b21980;
+	Node0x5b21a70:s1 -> Node0x5b219d0;
+	Node0x5b21980 [shape=record,label="{libxml2-py.c:6292:}"];
+	Node0x5b21980 -> Node0x5b21a20;
+	Node0x5b219d0 [shape=record,label="{libxml2-py.c:6292:}"];
+	Node0x5b219d0 -> Node0x5b21a20;
+	Node0x5b21a20 [shape=record,label="{libxml2-py.c:6292:}"];
+	Node0x5b21a20 -> Node0x5b217e0;
+	Node0x5b217e0 [shape=record,label="{libxml2-py.c:6292:|{<s0>T|<s1>F}}"];
+	Node0x5b217e0:s0 -> Node0x5b225d0;
+	Node0x5b217e0:s1 -> Node0x5b22620;
+	Node0x5b225d0 [shape=record,label="{libxml2-py.c:6293:}"];
+	Node0x5b225d0 -> Node0x5b22670;
+	Node0x5b22620 [shape=record,label="{libxml2-py.c:6293:}"];
+	Node0x5b22620 -> Node0x5b22670;
+	Node0x5b22670 [shape=record,label="{libxml2-py.c:6293:}"];
+	Node0x5b22670 -> Node0x5b17290;
+	Node0x5b17290 [shape=record,label="{libxml2-py.c:6299:}"];
+}

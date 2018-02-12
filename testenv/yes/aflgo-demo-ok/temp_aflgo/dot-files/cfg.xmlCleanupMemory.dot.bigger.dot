@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlCleanupMemory' function" {
+	label="CFG for 'xmlCleanupMemory' function";
+
+	Node0x4196750 [shape=record,label="{xmlmemory.c:984:|{<s0>T|<s1>F}}"];
+	Node0x4196750:s0 -> Node0x419bde0;
+	Node0x4196750:s1 -> Node0x419be30;
+	Node0x419bde0 [shape=record,label="{xmlmemory.c:985:}"];
+	Node0x419bde0 -> Node0x419bc80;
+	Node0x419be30 [shape=record,label="{xmlmemory.c:987:}"];
+	Node0x419be30 -> Node0x419bc80;
+	Node0x419bc80 [shape=record,label="{xmlmemory.c:994:}"];
+}

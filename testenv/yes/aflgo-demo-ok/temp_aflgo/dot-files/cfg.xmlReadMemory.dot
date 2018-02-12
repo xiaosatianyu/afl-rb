@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlReadMemory' function" {
+	label="CFG for 'xmlReadMemory' function";
+
+	Node0x4a5e700 [shape=record,label="{parser.c:15389:|{<s0>T|<s1>F}}"];
+	Node0x4a5e700 -> Node0x4a61500;
+	Node0x4a5e700 -> Node0x4a61550;
+	Node0x4a61500 [shape=record,label="{parser.c:15396:}"];
+	Node0x4a61500 -> Node0x4a5fc90;
+	Node0x4a61550 [shape=record,label="{parser.c:15397:}"];
+	Node0x4a61550 -> Node0x4a5fc90;
+	Node0x4a5fc90 [shape=record,label="{parser.c:15398:}"];
+}

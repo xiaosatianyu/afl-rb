@@ -1,0 +1,22 @@
+digraph "CFG for 'gen_xmlDocPtr' function" {
+	label="CFG for 'gen_xmlDocPtr' function";
+
+	Node0x53cf1b0 [shape=record,label="{testapi.c:494:|{<s0>T|<s1>F}}"];
+	Node0x53cf1b0:s0 -> Node0x532f6d0;
+	Node0x53cf1b0:s1 -> Node0x532f720;
+	Node0x532f6d0 [shape=record,label="{testapi.c:495:}"];
+	Node0x532f6d0 -> Node0x532f920;
+	Node0x532f720 [shape=record,label="{testapi.c:496:|{<s0>T|<s1>F}}"];
+	Node0x532f720:s0 -> Node0x53d0750;
+	Node0x532f720:s1 -> Node0x53d0bf0;
+	Node0x53d0750 [shape=record,label="{testapi.c:496:}"];
+	Node0x53d0750 -> Node0x532f920;
+	Node0x53d0bf0 [shape=record,label="{testapi.c:497:|{<s0>T|<s1>F}}"];
+	Node0x53d0bf0:s0 -> Node0x53d1050;
+	Node0x53d0bf0:s1 -> Node0x53d0970;
+	Node0x53d1050 [shape=record,label="{testapi.c:497:}"];
+	Node0x53d1050 -> Node0x532f920;
+	Node0x53d0970 [shape=record,label="{testapi.c:498:}"];
+	Node0x53d0970 -> Node0x532f920;
+	Node0x532f920 [shape=record,label="{testapi.c:499:}"];
+}

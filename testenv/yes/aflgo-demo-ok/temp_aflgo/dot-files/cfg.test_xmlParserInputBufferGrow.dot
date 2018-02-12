@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlParserInputBufferGrow' function" {
+	label="CFG for 'test_xmlParserInputBufferGrow' function";
+
+	Node0x6285bf0 [shape=record,label="{testapi.c:28964:}"];
+	Node0x6285bf0 -> Node0x629d1a0;
+	Node0x629d1a0 [shape=record,label="{testapi.c:28973:|{<s0>T|<s1>F}}"];
+	Node0x629d1a0:s0 -> Node0x629d480;
+	Node0x629d1a0:s1 -> Node0x629d000;
+	Node0x629d480 [shape=record,label="{testapi.c:28974:}"];
+	Node0x629d480 -> Node0x629d870;
+	Node0x629d870 [shape=record,label="{testapi.c:28974:|{<s0>T|<s1>F}}"];
+	Node0x629d870:s0 -> Node0x629daf0;
+	Node0x629d870:s1 -> Node0x629d750;
+	Node0x629daf0 [shape=record,label="{testapi.c:28975:|{<s0>T|<s1>F}}"];
+	Node0x629daf0:s0 -> Node0x629ec50;
+	Node0x629daf0:s1 -> Node0x629ef80;
+	Node0x629ec50 [shape=record,label="{testapi.c:28987:}"];
+	Node0x629ec50 -> Node0x629ef80;
+	Node0x629ef80 [shape=record,label="{testapi.c:28993:}"];
+	Node0x629ef80 -> Node0x629da60;
+	Node0x629da60 [shape=record,label="{testapi.c:28974:}"];
+	Node0x629da60 -> Node0x629d870;
+	Node0x629d750 [shape=record,label="{testapi.c:28994:}"];
+	Node0x629d750 -> Node0x629d3f0;
+	Node0x629d3f0 [shape=record,label="{testapi.c:28973:}"];
+	Node0x629d3f0 -> Node0x629d1a0;
+	Node0x629d000 [shape=record,label="{testapi.c:28995:}"];
+}

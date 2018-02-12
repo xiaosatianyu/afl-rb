@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsBoxDrawing' function" {
+	label="CFG for 'libxml_xmlUCSIsBoxDrawing' function";
+
+	Node0x5e143c0 [shape=record,label="{libxml2-py.c:9242:|{<s0>T|<s1>F}}"];
+	Node0x5e143c0:s0 -> Node0x5e17290;
+	Node0x5e143c0:s1 -> Node0x5e17240;
+	Node0x5e17240 [shape=record,label="{libxml2-py.c:9248:}"];
+	Node0x5e17240 -> Node0x5e15ea0;
+	Node0x5e17290 [shape=record,label="{libxml2-py.c:9250:}"];
+	Node0x5e17290 -> Node0x5e15ea0;
+	Node0x5e15ea0 [shape=record,label="{libxml2-py.c:9253:}"];
+}

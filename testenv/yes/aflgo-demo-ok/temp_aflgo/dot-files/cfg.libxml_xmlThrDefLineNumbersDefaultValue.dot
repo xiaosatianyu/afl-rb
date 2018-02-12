@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlThrDefLineNumbersDefaultValue' function" {
+	label="CFG for 'libxml_xmlThrDefLineNumbersDefaultValue' function";
+
+	Node0x5de0a90 [shape=record,label="{libxml2-py.c:8934:|{<s0>T|<s1>F}}"];
+	Node0x5de0a90:s0 -> Node0x5de2390;
+	Node0x5de0a90:s1 -> Node0x5de2340;
+	Node0x5de2340 [shape=record,label="{libxml2-py.c:8940:}"];
+	Node0x5de2340 -> Node0x5ddf970;
+	Node0x5de2390 [shape=record,label="{libxml2-py.c:8942:}"];
+	Node0x5de2390 -> Node0x5ddf970;
+	Node0x5ddf970 [shape=record,label="{libxml2-py.c:8945:}"];
+}

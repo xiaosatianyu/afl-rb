@@ -1,0 +1,10 @@
+digraph "CFG for 'cdataBlock' function" {
+	label="CFG for 'cdataBlock' function";
+
+	Node0x4e069e0 [shape=record,label="{legacy.c:1335:|{<s0>T|<s1>F}}"];
+	Node0x4e069e0 -> Node0x4e068a0;
+	Node0x4e069e0 -> Node0x4e068f0;
+	Node0x4e068a0 [shape=record,label="{legacy.c:1337:}"];
+	Node0x4e068a0 -> Node0x4e068f0;
+	Node0x4e068f0 [shape=record,label="{legacy.c:1337:}"];
+}

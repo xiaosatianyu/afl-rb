@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsCJKUnifiedIdeographsExtensionB' function" {
+	label="CFG for 'xmlUCSIsCJKUnifiedIdeographsExtensionB' function";
+
+	Node0x4e94500 [shape=record,label="{xmlunicode.c:1288:|{<s0>T|<s1>F}}"];
+	Node0x4e94500 -> Node0x4f4b520;
+	Node0x4e94500 -> Node0x4f68cd0;
+	Node0x4f4b520 [shape=record,label="{xmlunicode.c:1289:}"];
+	Node0x4f4b520 -> Node0x4f68cd0;
+	Node0x4f68cd0 [shape=record,label="{xmlunicode.c:1289:}"];
+}

@@ -1,0 +1,17 @@
+digraph "CFG for 'checkTestFile' function" {
+	label="CFG for 'checkTestFile' function";
+
+	Node0x47c9000 [shape=record,label="{runtest.c:590:|{<s0>T|<s1>F}}"];
+	Node0x47c9000:s0 -> Node0x47f70d0;
+	Node0x47c9000:s1 -> Node0x47f7120;
+	Node0x47f70d0 [shape=record,label="{runtest.c:594:}"];
+	Node0x47f70d0 -> Node0x47dab70;
+	Node0x47f7120 [shape=record,label="{runtest.c:600:|{<s0>T|<s1>F}}"];
+	Node0x47f7120:s0 -> Node0x47f8d80;
+	Node0x47f7120:s1 -> Node0x47f8a50;
+	Node0x47f8a50 [shape=record,label="{runtest.c:601:}"];
+	Node0x47f8a50 -> Node0x47dab70;
+	Node0x47f8d80 [shape=record,label="{runtest.c:604:}"];
+	Node0x47f8d80 -> Node0x47dab70;
+	Node0x47dab70 [shape=record,label="{runtest.c:605:}"];
+}

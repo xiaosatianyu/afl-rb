@@ -1,0 +1,37 @@
+digraph "CFG for 'test_xmlSchemaGetCanonValueWhtsp' function" {
+	label="CFG for 'test_xmlSchemaGetCanonValueWhtsp' function";
+
+	Node0x5c91c80 [shape=record,label="{testapi.c:35333:}"];
+	Node0x5c91c80 -> Node0x5c98b10;
+	Node0x5c98b10 [shape=record,label="{testapi.c:35345:|{<s0>T|<s1>F}}"];
+	Node0x5c98b10:s0 -> Node0x5c98d70;
+	Node0x5c98b10:s1 -> Node0x5c989b0;
+	Node0x5c98d70 [shape=record,label="{testapi.c:35346:}"];
+	Node0x5c98d70 -> Node0x5c99120;
+	Node0x5c99120 [shape=record,label="{testapi.c:35346:|{<s0>T|<s1>F}}"];
+	Node0x5c99120:s0 -> Node0x5c993a0;
+	Node0x5c99120:s1 -> Node0x5c99000;
+	Node0x5c993a0 [shape=record,label="{testapi.c:35347:}"];
+	Node0x5c993a0 -> Node0x5c99790;
+	Node0x5c99790 [shape=record,label="{testapi.c:35347:|{<s0>T|<s1>F}}"];
+	Node0x5c99790:s0 -> Node0x5c99a10;
+	Node0x5c99790:s1 -> Node0x5c99670;
+	Node0x5c99a10 [shape=record,label="{testapi.c:35348:|{<s0>T|<s1>F}}"];
+	Node0x5c99a10:s0 -> Node0x5c9ae00;
+	Node0x5c99a10:s1 -> Node0x5c9b130;
+	Node0x5c9ae00 [shape=record,label="{testapi.c:35362:}"];
+	Node0x5c9ae00 -> Node0x5c9b130;
+	Node0x5c9b130 [shape=record,label="{testapi.c:35369:}"];
+	Node0x5c9b130 -> Node0x5c99980;
+	Node0x5c99980 [shape=record,label="{testapi.c:35347:}"];
+	Node0x5c99980 -> Node0x5c99790;
+	Node0x5c99670 [shape=record,label="{testapi.c:35370:}"];
+	Node0x5c99670 -> Node0x5c99310;
+	Node0x5c99310 [shape=record,label="{testapi.c:35346:}"];
+	Node0x5c99310 -> Node0x5c99120;
+	Node0x5c99000 [shape=record,label="{testapi.c:35371:}"];
+	Node0x5c99000 -> Node0x5c98d20;
+	Node0x5c98d20 [shape=record,label="{testapi.c:35345:}"];
+	Node0x5c98d20 -> Node0x5c98b10;
+	Node0x5c989b0 [shape=record,label="{testapi.c:35372:}"];
+}

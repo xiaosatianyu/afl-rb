@@ -1,0 +1,30 @@
+digraph "CFG for 'xmlBufferFree' function" {
+	label="CFG for 'xmlBufferFree' function";
+
+	Node0x41ef960 [shape=record,label="{tree.c:7155:|{<s0>T|<s1>F}}"];
+	Node0x41ef960 -> Node0x41efb80;
+	Node0x41ef960 -> Node0x41ef880;
+	Node0x41efb80 [shape=record,label="{tree.c:7161:}"];
+	Node0x41efb80 -> Node0x41efc90;
+	Node0x41ef880 [shape=record,label="{tree.c:7164:|{<s0>T|<s1>F}}"];
+	Node0x41ef880 -> Node0x41edb80;
+	Node0x41ef880 -> Node0x41edb30;
+	Node0x41edb80 [shape=record,label="{tree.c:7165:|{<s0>T|<s1>F}}"];
+	Node0x41edb80 -> Node0x41eda90;
+	Node0x41edb80 -> Node0x41edb30;
+	Node0x41eda90 [shape=record,label="{tree.c:7166:}"];
+	Node0x41eda90 -> Node0x41edae0;
+	Node0x41edb30 [shape=record,label="{tree.c:7167:|{<s0>T|<s1>F}}"];
+	Node0x41edb30 -> Node0x41f1180;
+	Node0x41edb30 -> Node0x41f1130;
+	Node0x41f1180 [shape=record,label="{tree.c:7168:|{<s0>T|<s1>F}}"];
+	Node0x41f1180 -> Node0x41f10e0;
+	Node0x41f1180 -> Node0x41f1130;
+	Node0x41f10e0 [shape=record,label="{tree.c:7169:}"];
+	Node0x41f10e0 -> Node0x41f1130;
+	Node0x41f1130 [shape=record,label="{%28}"];
+	Node0x41f1130 -> Node0x41edae0;
+	Node0x41edae0 [shape=record,label="{tree.c:7171:}"];
+	Node0x41edae0 -> Node0x41efc90;
+	Node0x41efc90 [shape=record,label="{tree.c:7172:}"];
+}

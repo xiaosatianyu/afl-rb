@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlNewComment' function" {
+	label="CFG for 'test_xmlNewComment' function";
+
+	Node0x5e5cb80 [shape=record,label="{testapi.c:21107:}"];
+	Node0x5e5cb80 -> Node0x5e87dd0;
+	Node0x5e87dd0 [shape=record,label="{testapi.c:21114:|{<s0>T|<s1>F}}"];
+	Node0x5e87dd0:s0 -> Node0x5e880b0;
+	Node0x5e87dd0:s1 -> Node0x5e87c30;
+	Node0x5e880b0 [shape=record,label="{testapi.c:21115:|{<s0>T|<s1>F}}"];
+	Node0x5e880b0:s0 -> Node0x5e88f00;
+	Node0x5e880b0:s1 -> Node0x5e896d0;
+	Node0x5e88f00 [shape=record,label="{testapi.c:21125:}"];
+	Node0x5e88f00 -> Node0x5e896d0;
+	Node0x5e896d0 [shape=record,label="{testapi.c:21130:}"];
+	Node0x5e896d0 -> Node0x5e88020;
+	Node0x5e88020 [shape=record,label="{testapi.c:21114:}"];
+	Node0x5e88020 -> Node0x5e87dd0;
+	Node0x5e87c30 [shape=record,label="{testapi.c:21131:}"];
+}

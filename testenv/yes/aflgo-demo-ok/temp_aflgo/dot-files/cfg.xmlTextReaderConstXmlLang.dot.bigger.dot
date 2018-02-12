@@ -1,0 +1,22 @@
+digraph "CFG for 'xmlTextReaderConstXmlLang' function" {
+	label="CFG for 'xmlTextReaderConstXmlLang' function";
+
+	Node0x43f7d70 [shape=record,label="{xmlreader.c:3724:|{<s0>T|<s1>F}}"];
+	Node0x43f7d70:s0 -> Node0x43f7720;
+	Node0x43f7d70:s1 -> Node0x43f7770;
+	Node0x43f7720 [shape=record,label="{xmlreader.c:3729:}"];
+	Node0x43f7720 -> Node0x43f7450;
+	Node0x43f7770 [shape=record,label="{xmlreader.c:3730:|{<s0>T|<s1>F}}"];
+	Node0x43f7770:s0 -> Node0x404f080;
+	Node0x43f7770:s1 -> Node0x404f0d0;
+	Node0x404f080 [shape=record,label="{xmlreader.c:3731:}"];
+	Node0x404f080 -> Node0x43f7450;
+	Node0x404f0d0 [shape=record,label="{xmlreader.c:3732:|{<s0>T|<s1>F}}"];
+	Node0x404f0d0:s0 -> Node0x404f9c0;
+	Node0x404f0d0:s1 -> Node0x404fa10;
+	Node0x404f9c0 [shape=record,label="{xmlreader.c:3734:}"];
+	Node0x404f9c0 -> Node0x43f7450;
+	Node0x404fa10 [shape=record,label="{xmlreader.c:3735:}"];
+	Node0x404fa10 -> Node0x43f7450;
+	Node0x43f7450 [shape=record,label="{xmlreader.c:3738:}"];
+}

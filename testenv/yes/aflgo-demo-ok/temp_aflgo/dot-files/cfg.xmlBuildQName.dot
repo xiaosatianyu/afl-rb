@@ -1,0 +1,32 @@
+digraph "CFG for 'xmlBuildQName' function" {
+	label="CFG for 'xmlBuildQName' function";
+
+	Node0x3cef750 [shape=record,label="{tree.c:217:|{<s0>T|<s1>F}}"];
+	Node0x3cef750 -> Node0x3d06dd0;
+	Node0x3cef750 -> Node0x3d06e20;
+	Node0x3d06dd0 [shape=record,label="{tree.c:222:}"];
+	Node0x3d06dd0 -> Node0x3d03580;
+	Node0x3d06e20 [shape=record,label="{tree.c:223:|{<s0>T|<s1>F}}"];
+	Node0x3d06e20 -> Node0x3d07730;
+	Node0x3d06e20 -> Node0x3d07780;
+	Node0x3d07730 [shape=record,label="{tree.c:223:}"];
+	Node0x3d07730 -> Node0x3d03580;
+	Node0x3d07780 [shape=record,label="{tree.c:225:|{<s0>T|<s1>F}}"];
+	Node0x3d07780 -> Node0x3cef5e0;
+	Node0x3d07780 -> Node0x3d08e20;
+	Node0x3d08e20 [shape=record,label="{tree.c:228:|{<s0>T|<s1>F}}"];
+	Node0x3d08e20 -> Node0x3cef5e0;
+	Node0x3d08e20 -> Node0x3d08dd0;
+	Node0x3cef5e0 [shape=record,label="{tree.c:229:|{<s0>T|<s1>F}}"];
+	Node0x3cef5e0 -> Node0x3d09930;
+	Node0x3cef5e0 -> Node0x3d09980;
+	Node0x3d09930 [shape=record,label="{tree.c:231:}"];
+	Node0x3d09930 -> Node0x3d03580;
+	Node0x3d09980 [shape=record,label="{tree.c:234:}"];
+	Node0x3d09980 -> Node0x3d08810;
+	Node0x3d08dd0 [shape=record,label="{tree.c:235:}"];
+	Node0x3d08dd0 -> Node0x3d08810;
+	Node0x3d08810 [shape=record,label="{tree.c:237:}"];
+	Node0x3d08810 -> Node0x3d03580;
+	Node0x3d03580 [shape=record,label="{tree.c:242:}"];
+}

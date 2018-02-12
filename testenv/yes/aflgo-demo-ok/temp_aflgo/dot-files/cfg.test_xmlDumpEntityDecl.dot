@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlDumpEntityDecl' function" {
+	label="CFG for 'test_xmlDumpEntityDecl' function";
+
+	Node0x54264b0 [shape=record,label="{testapi.c:9381:}"];
+	Node0x54264b0 -> Node0x57ed930;
+	Node0x57ed930 [shape=record,label="{testapi.c:9390:|{<s0>T|<s1>F}}"];
+	Node0x57ed930:s0 -> Node0x57edc10;
+	Node0x57ed930:s1 -> Node0x57ed790;
+	Node0x57edc10 [shape=record,label="{testapi.c:9391:}"];
+	Node0x57edc10 -> Node0x57ee000;
+	Node0x57ee000 [shape=record,label="{testapi.c:9391:|{<s0>T|<s1>F}}"];
+	Node0x57ee000:s0 -> Node0x57ee280;
+	Node0x57ee000:s1 -> Node0x57edee0;
+	Node0x57ee280 [shape=record,label="{testapi.c:9392:|{<s0>T|<s1>F}}"];
+	Node0x57ee280:s0 -> Node0x57ef160;
+	Node0x57ee280:s1 -> Node0x57ef490;
+	Node0x57ef160 [shape=record,label="{testapi.c:9403:}"];
+	Node0x57ef160 -> Node0x57ef490;
+	Node0x57ef490 [shape=record,label="{testapi.c:9409:}"];
+	Node0x57ef490 -> Node0x57ee1f0;
+	Node0x57ee1f0 [shape=record,label="{testapi.c:9391:}"];
+	Node0x57ee1f0 -> Node0x57ee000;
+	Node0x57edee0 [shape=record,label="{testapi.c:9410:}"];
+	Node0x57edee0 -> Node0x57edb80;
+	Node0x57edb80 [shape=record,label="{testapi.c:9390:}"];
+	Node0x57edb80 -> Node0x57ed930;
+	Node0x57ed790 [shape=record,label="{testapi.c:9411:}"];
+}

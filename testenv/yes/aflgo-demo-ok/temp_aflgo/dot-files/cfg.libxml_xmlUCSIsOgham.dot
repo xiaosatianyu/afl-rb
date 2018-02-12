@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsOgham' function" {
+	label="CFG for 'libxml_xmlUCSIsOgham' function";
+
+	Node0x5f287f0 [shape=record,label="{libxml2-py.c:11083:|{<s0>T|<s1>F}}"];
+	Node0x5f287f0:s0 -> Node0x5f2b6a0;
+	Node0x5f287f0:s1 -> Node0x5f2b650;
+	Node0x5f2b650 [shape=record,label="{libxml2-py.c:11089:}"];
+	Node0x5f2b650 -> Node0x5f2a2b0;
+	Node0x5f2b6a0 [shape=record,label="{libxml2-py.c:11091:}"];
+	Node0x5f2b6a0 -> Node0x5f2a2b0;
+	Node0x5f2a2b0 [shape=record,label="{libxml2-py.c:11094:}"];
+}

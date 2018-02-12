@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlXPathCountFunction' function" {
+	label="CFG for 'test_xmlXPathCountFunction' function";
+
+	Node0x6c514c0 [shape=record,label="{testapi.c:47434:}"];
+	Node0x6c514c0 -> Node0x6c6e040;
+	Node0x6c6e040 [shape=record,label="{testapi.c:47443:|{<s0>T|<s1>F}}"];
+	Node0x6c6e040:s0 -> Node0x6c6e320;
+	Node0x6c6e040:s1 -> Node0x6c6dea0;
+	Node0x6c6e320 [shape=record,label="{testapi.c:47444:}"];
+	Node0x6c6e320 -> Node0x6c6e710;
+	Node0x6c6e710 [shape=record,label="{testapi.c:47444:|{<s0>T|<s1>F}}"];
+	Node0x6c6e710:s0 -> Node0x6c6e990;
+	Node0x6c6e710:s1 -> Node0x6c6e5f0;
+	Node0x6c6e990 [shape=record,label="{testapi.c:47445:|{<s0>T|<s1>F}}"];
+	Node0x6c6e990:s0 -> Node0x6c6f9f0;
+	Node0x6c6e990:s1 -> Node0x6c70240;
+	Node0x6c6f9f0 [shape=record,label="{testapi.c:47456:}"];
+	Node0x6c6f9f0 -> Node0x6c70240;
+	Node0x6c70240 [shape=record,label="{testapi.c:47462:}"];
+	Node0x6c70240 -> Node0x6c6e900;
+	Node0x6c6e900 [shape=record,label="{testapi.c:47444:}"];
+	Node0x6c6e900 -> Node0x6c6e710;
+	Node0x6c6e5f0 [shape=record,label="{testapi.c:47463:}"];
+	Node0x6c6e5f0 -> Node0x6c6e290;
+	Node0x6c6e290 [shape=record,label="{testapi.c:47443:}"];
+	Node0x6c6e290 -> Node0x6c6e040;
+	Node0x6c6dea0 [shape=record,label="{testapi.c:47464:}"];
+}

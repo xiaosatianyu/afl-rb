@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsVariationSelectorsSupplement' function" {
+	label="CFG for 'libxml_xmlUCSIsVariationSelectorsSupplement' function";
+
+	Node0x5f84ba0 [shape=record,label="{libxml2-py.c:11627:|{<s0>T|<s1>F}}"];
+	Node0x5f84ba0:s0 -> Node0x5f8f9b0;
+	Node0x5f84ba0:s1 -> Node0x5f8f960;
+	Node0x5f8f960 [shape=record,label="{libxml2-py.c:11633:}"];
+	Node0x5f8f960 -> Node0x5f84e80;
+	Node0x5f8f9b0 [shape=record,label="{libxml2-py.c:11635:}"];
+	Node0x5f8f9b0 -> Node0x5f84e80;
+	Node0x5f84e80 [shape=record,label="{libxml2-py.c:11638:}"];
+}

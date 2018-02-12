@@ -1,0 +1,38 @@
+digraph "CFG for 'xmlXPathFreeValueTree' function" {
+	label="CFG for 'xmlXPathFreeValueTree' function";
+
+	Node0x4a3a8d0 [shape=record,label="{xpath.c:4261:|{<s0>T|<s1>F}}"];
+	Node0x4a3a8d0:s0 -> Node0x4a3abb0;
+	Node0x4a3a8d0:s1 -> Node0x4a3ac00;
+	Node0x4a3abb0 [shape=record,label="{xpath.c:4264:}"];
+	Node0x4a3abb0 -> Node0x4a3d8d0;
+	Node0x4a3ac00 [shape=record,label="{xpath.c:4266:|{<s0>T|<s1>F}}"];
+	Node0x4a3ac00:s0 -> Node0x4a3e1c0;
+	Node0x4a3ac00:s1 -> Node0x4a3e210;
+	Node0x4a3e1c0 [shape=record,label="{xpath.c:4267:}"];
+	Node0x4a3e1c0 -> Node0x4a3e830;
+	Node0x4a3e830 [shape=record,label="{xpath.c:4267:|{<s0>T|<s1>F}}"];
+	Node0x4a3e830:s0 -> Node0x4a3ead0;
+	Node0x4a3e830:s1 -> Node0x4a3e690;
+	Node0x4a3ead0 [shape=record,label="{xpath.c:4268:|{<s0>T|<s1>F}}"];
+	Node0x4a3ead0:s0 -> Node0x4a3efa0;
+	Node0x4a3ead0:s1 -> Node0x4a3eff0;
+	Node0x4a3efa0 [shape=record,label="{xpath.c:4269:|{<s0>T|<s1>F}}"];
+	Node0x4a3efa0:s0 -> Node0x4a3f5e0;
+	Node0x4a3efa0:s1 -> Node0x4a3f680;
+	Node0x4a3f5e0 [shape=record,label="{xpath.c:4270:}"];
+	Node0x4a3f5e0 -> Node0x4a3f630;
+	Node0x4a3f680 [shape=record,label="{xpath.c:4272:}"];
+	Node0x4a3f680 -> Node0x4a3f630;
+	Node0x4a3f630 [shape=record,label="{xpath.c:4274:}"];
+	Node0x4a3f630 -> Node0x4a3eff0;
+	Node0x4a3eff0 [shape=record,label="{xpath.c:4275:}"];
+	Node0x4a3eff0 -> Node0x4a3ea40;
+	Node0x4a3ea40 [shape=record,label="{xpath.c:4267:}"];
+	Node0x4a3ea40 -> Node0x4a3e830;
+	Node0x4a3e690 [shape=record,label="{xpath.c:4276:}"];
+	Node0x4a3e690 -> Node0x4a3e210;
+	Node0x4a3e210 [shape=record,label="{xpath.c:4278:}"];
+	Node0x4a3e210 -> Node0x4a3d8d0;
+	Node0x4a3d8d0 [shape=record,label="{xpath.c:4279:}"];
+}

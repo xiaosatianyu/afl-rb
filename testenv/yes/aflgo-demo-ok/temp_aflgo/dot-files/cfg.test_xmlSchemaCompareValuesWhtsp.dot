@@ -1,0 +1,46 @@
+digraph "CFG for 'test_xmlSchemaCompareValuesWhtsp' function" {
+	label="CFG for 'test_xmlSchemaCompareValuesWhtsp' function";
+
+	Node0x5c78870 [shape=record,label="{testapi.c:35168:}"];
+	Node0x5c78870 -> Node0x5c7ec50;
+	Node0x5c7ec50 [shape=record,label="{testapi.c:35182:|{<s0>T|<s1>F}}"];
+	Node0x5c7ec50:s0 -> Node0x5c7ef30;
+	Node0x5c7ec50:s1 -> Node0x5c7eab0;
+	Node0x5c7ef30 [shape=record,label="{testapi.c:35183:}"];
+	Node0x5c7ef30 -> Node0x5c7f320;
+	Node0x5c7f320 [shape=record,label="{testapi.c:35183:|{<s0>T|<s1>F}}"];
+	Node0x5c7f320:s0 -> Node0x5c7f5a0;
+	Node0x5c7f320:s1 -> Node0x5c7f200;
+	Node0x5c7f5a0 [shape=record,label="{testapi.c:35184:}"];
+	Node0x5c7f5a0 -> Node0x5c7f990;
+	Node0x5c7f990 [shape=record,label="{testapi.c:35184:|{<s0>T|<s1>F}}"];
+	Node0x5c7f990:s0 -> Node0x5c7fc10;
+	Node0x5c7f990:s1 -> Node0x5c7f870;
+	Node0x5c7fc10 [shape=record,label="{testapi.c:35185:}"];
+	Node0x5c7fc10 -> Node0x5c80000;
+	Node0x5c80000 [shape=record,label="{testapi.c:35185:|{<s0>T|<s1>F}}"];
+	Node0x5c80000:s0 -> Node0x5c80280;
+	Node0x5c80000:s1 -> Node0x5c7fee0;
+	Node0x5c80280 [shape=record,label="{testapi.c:35186:|{<s0>T|<s1>F}}"];
+	Node0x5c80280:s0 -> Node0x5c82bf0;
+	Node0x5c80280:s1 -> Node0x5c82c40;
+	Node0x5c82bf0 [shape=record,label="{testapi.c:35202:}"];
+	Node0x5c82bf0 -> Node0x5c82c40;
+	Node0x5c82c40 [shape=record,label="{testapi.c:35210:}"];
+	Node0x5c82c40 -> Node0x5c801f0;
+	Node0x5c801f0 [shape=record,label="{testapi.c:35185:}"];
+	Node0x5c801f0 -> Node0x5c80000;
+	Node0x5c7fee0 [shape=record,label="{testapi.c:35211:}"];
+	Node0x5c7fee0 -> Node0x5c7fb80;
+	Node0x5c7fb80 [shape=record,label="{testapi.c:35184:}"];
+	Node0x5c7fb80 -> Node0x5c7f990;
+	Node0x5c7f870 [shape=record,label="{testapi.c:35212:}"];
+	Node0x5c7f870 -> Node0x5c7f510;
+	Node0x5c7f510 [shape=record,label="{testapi.c:35183:}"];
+	Node0x5c7f510 -> Node0x5c7f320;
+	Node0x5c7f200 [shape=record,label="{testapi.c:35213:}"];
+	Node0x5c7f200 -> Node0x5c7eea0;
+	Node0x5c7eea0 [shape=record,label="{testapi.c:35182:}"];
+	Node0x5c7eea0 -> Node0x5c7ec50;
+	Node0x5c7eab0 [shape=record,label="{testapi.c:35214:}"];
+}

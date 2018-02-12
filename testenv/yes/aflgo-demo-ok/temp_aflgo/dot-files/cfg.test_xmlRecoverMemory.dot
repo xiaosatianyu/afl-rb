@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlRecoverMemory' function" {
+	label="CFG for 'test_xmlRecoverMemory' function";
+
+	Node0x56d77d0 [shape=record,label="{testapi.c:14687:}"];
+	Node0x56d77d0 -> Node0x5acb940;
+	Node0x5acb940 [shape=record,label="{testapi.c:14698:|{<s0>T|<s1>F}}"];
+	Node0x5acb940:s0 -> Node0x5acbc20;
+	Node0x5acb940:s1 -> Node0x5acb7a0;
+	Node0x5acbc20 [shape=record,label="{testapi.c:14699:}"];
+	Node0x5acbc20 -> Node0x5acc010;
+	Node0x5acc010 [shape=record,label="{testapi.c:14699:|{<s0>T|<s1>F}}"];
+	Node0x5acc010:s0 -> Node0x5acc290;
+	Node0x5acc010:s1 -> Node0x5acbef0;
+	Node0x5acc290 [shape=record,label="{testapi.c:14700:|{<s0>T|<s1>F}}"];
+	Node0x5acc290:s0 -> Node0x5acd350;
+	Node0x5acc290:s1 -> Node0x5acd680;
+	Node0x5acd350 [shape=record,label="{testapi.c:14712:}"];
+	Node0x5acd350 -> Node0x5acd680;
+	Node0x5acd680 [shape=record,label="{testapi.c:14718:}"];
+	Node0x5acd680 -> Node0x5acc200;
+	Node0x5acc200 [shape=record,label="{testapi.c:14699:}"];
+	Node0x5acc200 -> Node0x5acc010;
+	Node0x5acbef0 [shape=record,label="{testapi.c:14719:}"];
+	Node0x5acbef0 -> Node0x5acbb90;
+	Node0x5acbb90 [shape=record,label="{testapi.c:14698:}"];
+	Node0x5acbb90 -> Node0x5acb940;
+	Node0x5acb7a0 [shape=record,label="{testapi.c:14720:}"];
+}

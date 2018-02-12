@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsSupplementaryPrivateUseAreaA' function" {
+	label="CFG for 'libxml_xmlUCSIsSupplementaryPrivateUseAreaA' function";
+
+	Node0x5f59c70 [shape=record,label="{libxml2-py.c:11371:|{<s0>T|<s1>F}}"];
+	Node0x5f59c70:s0 -> Node0x5f5cb30;
+	Node0x5f59c70:s1 -> Node0x5f5cae0;
+	Node0x5f5cae0 [shape=record,label="{libxml2-py.c:11377:}"];
+	Node0x5f5cae0 -> Node0x5f5a050;
+	Node0x5f5cb30 [shape=record,label="{libxml2-py.c:11379:}"];
+	Node0x5f5cb30 -> Node0x5f5a050;
+	Node0x5f5a050 [shape=record,label="{libxml2-py.c:11382:}"];
+}

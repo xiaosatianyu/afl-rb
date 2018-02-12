@@ -1,0 +1,10 @@
+digraph "CFG for '__xmlRandom' function" {
+	label="CFG for '__xmlRandom' function";
+
+	Node0x3a3e5f0 [shape=record,label="{dict.c:198:|{<s0>T|<s1>F}}"];
+	Node0x3a3e5f0 -> Node0x3a3efb0;
+	Node0x3a3e5f0 -> Node0x3a3e810;
+	Node0x3a3efb0 [shape=record,label="{dict.c:201:}"];
+	Node0x3a3efb0 -> Node0x3a3e810;
+	Node0x3a3e810 [shape=record,label="{dict.c:203:}"];
+}

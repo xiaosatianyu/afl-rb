@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsKhmerSymbols' function" {
+	label="CFG for 'test_xmlUCSIsKhmerSymbols' function";
+
+	Node0x693f5c0 [shape=record,label="{testapi.c:40917:}"];
+	Node0x693f5c0 -> Node0x6946f30;
+	Node0x6946f30 [shape=record,label="{testapi.c:40925:|{<s0>T|<s1>F}}"];
+	Node0x6946f30:s0 -> Node0x6947210;
+	Node0x6946f30:s1 -> Node0x6946d90;
+	Node0x6947210 [shape=record,label="{testapi.c:40926:|{<s0>T|<s1>F}}"];
+	Node0x6947210:s0 -> Node0x6948060;
+	Node0x6947210:s1 -> Node0x6948830;
+	Node0x6948060 [shape=record,label="{testapi.c:40936:}"];
+	Node0x6948060 -> Node0x6948830;
+	Node0x6948830 [shape=record,label="{testapi.c:40941:}"];
+	Node0x6948830 -> Node0x6947180;
+	Node0x6947180 [shape=record,label="{testapi.c:40925:}"];
+	Node0x6947180 -> Node0x6946f30;
+	Node0x6946d90 [shape=record,label="{testapi.c:40942:}"];
+}

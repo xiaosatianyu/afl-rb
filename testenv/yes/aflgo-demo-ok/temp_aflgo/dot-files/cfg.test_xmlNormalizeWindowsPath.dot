@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlNormalizeWindowsPath' function" {
+	label="CFG for 'test_xmlNormalizeWindowsPath' function";
+
+	Node0x6243e40 [shape=record,label="{testapi.c:28364:}"];
+	Node0x6243e40 -> Node0x6254930;
+	Node0x6254930 [shape=record,label="{testapi.c:28371:|{<s0>T|<s1>F}}"];
+	Node0x6254930:s0 -> Node0x6254c10;
+	Node0x6254930:s1 -> Node0x6254790;
+	Node0x6254c10 [shape=record,label="{testapi.c:28372:|{<s0>T|<s1>F}}"];
+	Node0x6254c10:s0 -> Node0x6255a60;
+	Node0x6254c10:s1 -> Node0x6256230;
+	Node0x6255a60 [shape=record,label="{testapi.c:28382:}"];
+	Node0x6255a60 -> Node0x6256230;
+	Node0x6256230 [shape=record,label="{testapi.c:28387:}"];
+	Node0x6256230 -> Node0x6254b80;
+	Node0x6254b80 [shape=record,label="{testapi.c:28371:}"];
+	Node0x6254b80 -> Node0x6254930;
+	Node0x6254790 [shape=record,label="{testapi.c:28388:}"];
+}

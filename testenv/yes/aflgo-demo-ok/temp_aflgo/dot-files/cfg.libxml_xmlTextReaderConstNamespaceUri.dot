@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlTextReaderConstNamespaceUri' function" {
+	label="CFG for 'libxml_xmlTextReaderConstNamespaceUri' function";
+
+	Node0x5ca6760 [shape=record,label="{libxml2-py.c:7876:|{<s0>T|<s1>F}}"];
+	Node0x5ca6760:s0 -> Node0x5caa340;
+	Node0x5ca6760:s1 -> Node0x5caa2f0;
+	Node0x5caa2f0 [shape=record,label="{libxml2-py.c:7883:}"];
+	Node0x5caa2f0 -> Node0x5ca8820;
+	Node0x5caa340 [shape=record,label="{libxml2-py.c:7884:|{<s0>T|<s1>F}}"];
+	Node0x5caa340:s0 -> Node0x5caab70;
+	Node0x5caa340:s1 -> Node0x5caabc0;
+	Node0x5caab70 [shape=record,label="{libxml2-py.c:7884:}"];
+	Node0x5caab70 -> Node0x5caac10;
+	Node0x5caabc0 [shape=record,label="{libxml2-py.c:7884:}"];
+	Node0x5caabc0 -> Node0x5caac10;
+	Node0x5caac10 [shape=record,label="{libxml2-py.c:7884:}"];
+	Node0x5caac10 -> Node0x5ca8820;
+	Node0x5ca8820 [shape=record,label="{libxml2-py.c:7889:}"];
+}

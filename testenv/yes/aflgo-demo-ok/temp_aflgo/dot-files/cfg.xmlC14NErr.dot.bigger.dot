@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlC14NErr' function" {
+	label="CFG for 'xmlC14NErr' function";
+
+	Node0x4fc5240 [shape=record,label="{c14n.c:236:|{<s0>T|<s1>F}}"];
+	Node0x4fc5240:s0 -> Node0x51b8a40;
+	Node0x4fc5240:s1 -> Node0x51b8a90;
+	Node0x51b8a40 [shape=record,label="{c14n.c:240:}"];
+	Node0x51b8a40 -> Node0x51b8a90;
+	Node0x51b8a90 [shape=record,label="{c14n.c:242:}"];
+}

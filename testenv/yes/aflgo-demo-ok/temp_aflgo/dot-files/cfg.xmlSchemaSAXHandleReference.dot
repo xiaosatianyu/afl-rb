@@ -1,0 +1,20 @@
+digraph "CFG for 'xmlSchemaSAXHandleReference' function" {
+	label="CFG for 'xmlSchemaSAXHandleReference' function";
+
+	Node0x5a6d580 [shape=record,label="{xmlschemas.c:27271:|{<s0>T|<s1>F}}"];
+	Node0x5a6d580 -> Node0x5a71720;
+	Node0x5a6d580 -> Node0x5a71770;
+	Node0x5a71720 [shape=record,label="{xmlschemas.c:27277:}"];
+	Node0x5a71720 -> Node0x5a6de60;
+	Node0x5a71770 [shape=record,label="{xmlschemas.c:27278:|{<s0>T|<s1>F}}"];
+	Node0x5a71770 -> Node0x5a71cf0;
+	Node0x5a71770 -> Node0x5a71ca0;
+	Node0x5a71cf0 [shape=record,label="{xmlschemas.c:27278:|{<s0>T|<s1>F}}"];
+	Node0x5a71cf0 -> Node0x5a71c50;
+	Node0x5a71cf0 -> Node0x5a71ca0;
+	Node0x5a71c50 [shape=record,label="{xmlschemas.c:27279:}"];
+	Node0x5a71c50 -> Node0x5a6de60;
+	Node0x5a71ca0 [shape=record,label="{xmlschemas.c:27281:}"];
+	Node0x5a71ca0 -> Node0x5a6de60;
+	Node0x5a6de60 [shape=record,label="{xmlschemas.c:27282:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlTextReaderConstNamespaceUri' function" {
+	label="CFG for 'test_xmlTextReaderConstNamespaceUri' function";
+
+	Node0x63839c0 [shape=record,label="{testapi.c:30771:}"];
+	Node0x63839c0 -> Node0x638b550;
+	Node0x638b550 [shape=record,label="{testapi.c:30779:|{<s0>T|<s1>F}}"];
+	Node0x638b550:s0 -> Node0x638b830;
+	Node0x638b550:s1 -> Node0x638b3b0;
+	Node0x638b830 [shape=record,label="{testapi.c:30780:|{<s0>T|<s1>F}}"];
+	Node0x638b830:s0 -> Node0x638c690;
+	Node0x638b830:s1 -> Node0x638c9c0;
+	Node0x638c690 [shape=record,label="{testapi.c:30790:}"];
+	Node0x638c690 -> Node0x638c9c0;
+	Node0x638c9c0 [shape=record,label="{testapi.c:30795:}"];
+	Node0x638c9c0 -> Node0x638b7a0;
+	Node0x638b7a0 [shape=record,label="{testapi.c:30779:}"];
+	Node0x638b7a0 -> Node0x638b550;
+	Node0x638b3b0 [shape=record,label="{testapi.c:30796:}"];
+}

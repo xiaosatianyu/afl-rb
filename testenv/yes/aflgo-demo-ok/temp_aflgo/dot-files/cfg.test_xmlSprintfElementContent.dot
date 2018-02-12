@@ -1,0 +1,37 @@
+digraph "CFG for 'test_xmlSprintfElementContent' function" {
+	label="CFG for 'test_xmlSprintfElementContent' function";
+
+	Node0x6118360 [shape=record,label="{testapi.c:25960:}"];
+	Node0x6118360 -> Node0x6125910;
+	Node0x6125910 [shape=record,label="{testapi.c:25972:|{<s0>T|<s1>F}}"];
+	Node0x6125910:s0 -> Node0x6125bf0;
+	Node0x6125910:s1 -> Node0x6125770;
+	Node0x6125bf0 [shape=record,label="{testapi.c:25973:}"];
+	Node0x6125bf0 -> Node0x6125fe0;
+	Node0x6125fe0 [shape=record,label="{testapi.c:25973:|{<s0>T|<s1>F}}"];
+	Node0x6125fe0:s0 -> Node0x6126260;
+	Node0x6125fe0:s1 -> Node0x6125ec0;
+	Node0x6126260 [shape=record,label="{testapi.c:25974:}"];
+	Node0x6126260 -> Node0x6126650;
+	Node0x6126650 [shape=record,label="{testapi.c:25974:|{<s0>T|<s1>F}}"];
+	Node0x6126650:s0 -> Node0x61268d0;
+	Node0x6126650:s1 -> Node0x6126530;
+	Node0x61268d0 [shape=record,label="{testapi.c:25975:|{<s0>T|<s1>F}}"];
+	Node0x61268d0:s0 -> Node0x6127c60;
+	Node0x61268d0:s1 -> Node0x61286e0;
+	Node0x6127c60 [shape=record,label="{testapi.c:25988:}"];
+	Node0x6127c60 -> Node0x61286e0;
+	Node0x61286e0 [shape=record,label="{testapi.c:25995:}"];
+	Node0x61286e0 -> Node0x6126840;
+	Node0x6126840 [shape=record,label="{testapi.c:25974:}"];
+	Node0x6126840 -> Node0x6126650;
+	Node0x6126530 [shape=record,label="{testapi.c:25996:}"];
+	Node0x6126530 -> Node0x61261d0;
+	Node0x61261d0 [shape=record,label="{testapi.c:25973:}"];
+	Node0x61261d0 -> Node0x6125fe0;
+	Node0x6125ec0 [shape=record,label="{testapi.c:25997:}"];
+	Node0x6125ec0 -> Node0x6125b60;
+	Node0x6125b60 [shape=record,label="{testapi.c:25972:}"];
+	Node0x6125b60 -> Node0x6125910;
+	Node0x6125770 [shape=record,label="{testapi.c:25998:}"];
+}

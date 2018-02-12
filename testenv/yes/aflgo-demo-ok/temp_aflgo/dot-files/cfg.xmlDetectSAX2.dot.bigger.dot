@@ -1,0 +1,35 @@
+digraph "CFG for 'xmlDetectSAX2' function" {
+	label="CFG for 'xmlDetectSAX2' function";
+
+	Node0x4bc48f0 [shape=record,label="{parser.c:1057:|{<s0>T|<s1>F}}"];
+	Node0x4bc48f0:s0 -> Node0x4bc68a0;
+	Node0x4bc48f0:s1 -> Node0x4bc68f0;
+	Node0x4bc68a0 [shape=record,label="{parser.c:1058:}"];
+	Node0x4bc68a0 -> Node0x4bc9620;
+	Node0x4bc68f0 [shape=record,label="{parser.c:1060:|{<s0>T|<s1>F}}"];
+	Node0x4bc68f0:s0 -> Node0x4b8e6e0;
+	Node0x4bc68f0:s1 -> Node0x4b8e610;
+	Node0x4b8e6e0 [shape=record,label="{parser.c:1060:|{<s0>T|<s1>F}}"];
+	Node0x4b8e6e0:s0 -> Node0x4b8e660;
+	Node0x4b8e6e0:s1 -> Node0x4b8e610;
+	Node0x4b8e660 [shape=record,label="{parser.c:1061:|{<s0>T|<s1>F}}"];
+	Node0x4b8e660:s0 -> Node0x4b8e5c0;
+	Node0x4b8e660:s1 -> Node0x4bc7950;
+	Node0x4bc7950 [shape=record,label="{parser.c:1062:|{<s0>T|<s1>F}}"];
+	Node0x4bc7950:s0 -> Node0x4b8e5c0;
+	Node0x4bc7950:s1 -> Node0x4b8e610;
+	Node0x4b8e5c0 [shape=record,label="{parser.c:1062:}"];
+	Node0x4b8e5c0 -> Node0x4b8e610;
+	Node0x4b8e610 [shape=record,label="{parser.c:1067:|{<s0>T|<s1>F}}"];
+	Node0x4b8e610:s0 -> Node0x4bc95d0;
+	Node0x4b8e610:s1 -> Node0x4bc96f0;
+	Node0x4bc96f0 [shape=record,label="{parser.c:1070:|{<s0>T|<s1>F}}"];
+	Node0x4bc96f0:s0 -> Node0x4bc95d0;
+	Node0x4bc96f0:s1 -> Node0x4bc9670;
+	Node0x4bc9670 [shape=record,label="{parser.c:1071:|{<s0>T|<s1>F}}"];
+	Node0x4bc9670:s0 -> Node0x4bc95d0;
+	Node0x4bc9670:s1 -> Node0x4bc9620;
+	Node0x4bc95d0 [shape=record,label="{parser.c:1072:}"];
+	Node0x4bc95d0 -> Node0x4bc9620;
+	Node0x4bc9620 [shape=record,label="{parser.c:1074:}"];
+}

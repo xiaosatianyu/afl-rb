@@ -1,0 +1,47 @@
+digraph "CFG for 'xmlShellPrintXPathResultCtxt' function" {
+	label="CFG for 'xmlShellPrintXPathResultCtxt' function";
+
+	Node0x4a08810 [shape=record,label="{debugXML.c:1932:|{<s0>T|<s1>F}}"];
+	Node0x4a08810 -> Node0x4a08c20;
+	Node0x4a08810 -> Node0x4a08bd0;
+	Node0x4a08bd0 [shape=record,label="{debugXML.c:1935:}"];
+	Node0x4a08bd0 -> Node0x4a0bed0;
+	Node0x4a08c20 [shape=record,label="{debugXML.c:1937:|{<s0>T|<s1>F}}"];
+	Node0x4a08c20 -> Node0x4a0be80;
+	Node0x4a08c20 -> Node0x4a0bed0;
+	Node0x4a0be80 [shape=record,label="{debugXML.c:1938:|{<s0>def|<s1>1|<s2>2|<s3>3|<s4>4}}"];
+	Node0x4a0be80 -> Node0x4a0c440;
+	Node0x4a0be80 -> Node0x4a0c780;
+	Node0x4a0be80 -> Node0x4a0e960;
+	Node0x4a0be80 -> Node0x4a0f150;
+	Node0x4a0be80 -> Node0x4a0f930;
+	Node0x4a0c780 [shape=record,label="{debugXML.c:1941:|{<s0>T|<s1>F}}"];
+	Node0x4a0c780 -> Node0x4a0cb40;
+	Node0x4a0c780 -> Node0x4a0cbe0;
+	Node0x4a0cb40 [shape=record,label="{debugXML.c:1944:}"];
+	Node0x4a0cb40 -> Node0x4a0d140;
+	Node0x4a0d140 [shape=record,label="{debugXML.c:1944:|{<s0>T|<s1>F}}"];
+	Node0x4a0d140 -> Node0x4a0d420;
+	Node0x4a0d140 -> Node0x4a0cfa0;
+	Node0x4a0d420 [shape=record,label="{debugXML.c:1946:}"];
+	Node0x4a0d420 -> Node0x4a0d390;
+	Node0x4a0d390 [shape=record,label="{debugXML.c:1945:}"];
+	Node0x4a0d390 -> Node0x4a0d140;
+	Node0x4a0cfa0 [shape=record,label="{debugXML.c:1949:}"];
+	Node0x4a0cfa0 -> Node0x4a0cb90;
+	Node0x4a0cbe0 [shape=record,label="{debugXML.c:1950:}"];
+	Node0x4a0cbe0 -> Node0x4a0cb90;
+	Node0x4a0cb90 [shape=record,label="{debugXML.c:1953:}"];
+	Node0x4a0cb90 -> Node0x4a0c290;
+	Node0x4a0e960 [shape=record,label="{debugXML.c:1960:}"];
+	Node0x4a0e960 -> Node0x4a0c290;
+	Node0x4a0f150 [shape=record,label="{debugXML.c:1965:}"];
+	Node0x4a0f150 -> Node0x4a0c290;
+	Node0x4a0f930 [shape=record,label="{debugXML.c:1969:}"];
+	Node0x4a0f930 -> Node0x4a0c290;
+	Node0x4a0c440 [shape=record,label="{debugXML.c:1974:}"];
+	Node0x4a0c440 -> Node0x4a0c290;
+	Node0x4a0c290 [shape=record,label="{debugXML.c:1976:}"];
+	Node0x4a0c290 -> Node0x4a0bed0;
+	Node0x4a0bed0 [shape=record,label="{debugXML.c:1977:}"];
+}

@@ -1,0 +1,9 @@
+digraph "CFG for 'initializeLibxml2' function" {
+	label="CFG for 'initializeLibxml2' function";
+
+	Node0x4599ae0 [shape=record,label="{testrecurse.c:575:|{<s0>T|<s1>F}}"];
+	Node0x4599ae0:s0 -> Node0x45adb70;
+	Node0x4599ae0:s1 -> Node0x45b6350;
+	Node0x45adb70 [shape=record,label="{testrecurse.c:587:}"];
+	Node0x45b6350 [shape=record,label="{testrecurse.c:590:}"];
+}

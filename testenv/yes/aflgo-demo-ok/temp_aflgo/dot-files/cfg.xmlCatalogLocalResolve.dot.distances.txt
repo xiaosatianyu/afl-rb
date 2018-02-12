@@ -1,0 +1,12 @@
+catalog.c:3662,125.0
+catalog.c:3668,125.0
+catalog.c:3670,124.0
+catalog.c:3673,122.99999999999999
+catalog.c:3674,125.0
+catalog.c:3675,124.0
+catalog.c:3677,126.0
+catalog.c:3678,125.0
+catalog.c:3681,125.0
+catalog.c:3684,122.99999999999999
+catalog.c:3686,122.0
+catalog.c:3689,121.0

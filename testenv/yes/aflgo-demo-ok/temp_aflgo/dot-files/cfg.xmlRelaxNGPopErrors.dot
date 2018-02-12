@@ -1,0 +1,34 @@
+digraph "CFG for 'xmlRelaxNGPopErrors' function" {
+	label="CFG for 'xmlRelaxNGPopErrors' function";
+
+	Node0x5242530 [shape=record,label="{relaxng.c:2265:}"];
+	Node0x5242530 -> Node0x5257650;
+	Node0x5257650 [shape=record,label="{relaxng.c:2274:|{<s0>T|<s1>F}}"];
+	Node0x5257650 -> Node0x5257930;
+	Node0x5257650 -> Node0x5257450;
+	Node0x5257930 [shape=record,label="{relaxng.c:2275:|{<s0>T|<s1>F}}"];
+	Node0x5257930 -> Node0x5258170;
+	Node0x5257930 -> Node0x52581c0;
+	Node0x5258170 [shape=record,label="{relaxng.c:2277:|{<s0>T|<s1>F}}"];
+	Node0x5258170 -> Node0x52586d0;
+	Node0x5258170 -> Node0x5258720;
+	Node0x52586d0 [shape=record,label="{relaxng.c:2278:}"];
+	Node0x52586d0 -> Node0x5258720;
+	Node0x5258720 [shape=record,label="{relaxng.c:2279:|{<s0>T|<s1>F}}"];
+	Node0x5258720 -> Node0x5259190;
+	Node0x5258720 -> Node0x52591e0;
+	Node0x5259190 [shape=record,label="{relaxng.c:2281:}"];
+	Node0x5259190 -> Node0x52591e0;
+	Node0x52591e0 [shape=record,label="{relaxng.c:2282:}"];
+	Node0x52591e0 -> Node0x52581c0;
+	Node0x52581c0 [shape=record,label="{relaxng.c:2285:}"];
+	Node0x52581c0 -> Node0x52578a0;
+	Node0x52578a0 [shape=record,label="{relaxng.c:2274:}"];
+	Node0x52578a0 -> Node0x5257650;
+	Node0x5257450 [shape=record,label="{relaxng.c:2286:|{<s0>T|<s1>F}}"];
+	Node0x5257450 -> Node0x525a4c0;
+	Node0x5257450 -> Node0x525a510;
+	Node0x525a4c0 [shape=record,label="{relaxng.c:2288:}"];
+	Node0x525a4c0 -> Node0x525a510;
+	Node0x525a510 [shape=record,label="{relaxng.c:2289:}"];
+}

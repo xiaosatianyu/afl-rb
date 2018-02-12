@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlBufDumpElementDecl' function" {
+	label="CFG for 'xmlBufDumpElementDecl' function";
+
+	Node0x4e8ec20 [shape=record,label="{xmlsave.c:491:|{<s0>T|<s1>F}}"];
+	Node0x4e8ec20:s0 -> Node0x4e9a370;
+	Node0x4e8ec20:s1 -> Node0x4e9a3c0;
+	Node0x4e9a370 [shape=record,label="{xmlsave.c:499:}"];
+	Node0x4e9a370 -> Node0x4e8ef00;
+	Node0x4e9a3c0 [shape=record,label="{xmlsave.c:501:}"];
+	Node0x4e9a3c0 -> Node0x4e8ef00;
+	Node0x4e8ef00 [shape=record,label="{xmlsave.c:503:}"];
+}

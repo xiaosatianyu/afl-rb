@@ -1,0 +1,32 @@
+digraph "CFG for 'xmlTextReaderNextSibling' function" {
+	label="CFG for 'xmlTextReaderNextSibling' function";
+
+	Node0x42befd0 [shape=record,label="{xmlreader.c:2032:|{<s0>T|<s1>F}}"];
+	Node0x42befd0:s0 -> Node0x421d420;
+	Node0x42befd0:s1 -> Node0x421d0a0;
+	Node0x421d420 [shape=record,label="{xmlreader.c:2034:}"];
+	Node0x421d420 -> Node0x42c13b0;
+	Node0x421d0a0 [shape=record,label="{xmlreader.c:2035:|{<s0>T|<s1>F}}"];
+	Node0x421d0a0:s0 -> Node0x42bf140;
+	Node0x421d0a0:s1 -> Node0x42bf190;
+	Node0x42bf140 [shape=record,label="{xmlreader.c:2037:}"];
+	Node0x42bf140 -> Node0x42c13b0;
+	Node0x42bf190 [shape=record,label="{xmlreader.c:2040:|{<s0>T|<s1>F}}"];
+	Node0x42bf190:s0 -> Node0x42caae0;
+	Node0x42bf190:s1 -> Node0x42cab30;
+	Node0x42caae0 [shape=record,label="{xmlreader.c:2041:}"];
+	Node0x42caae0 -> Node0x42c13b0;
+	Node0x42cab30 [shape=record,label="{xmlreader.c:2043:|{<s0>T|<s1>F}}"];
+	Node0x42cab30:s0 -> Node0x42cb0f0;
+	Node0x42cab30:s1 -> Node0x42cb140;
+	Node0x42cb0f0 [shape=record,label="{xmlreader.c:2044:}"];
+	Node0x42cb0f0 -> Node0x42c13b0;
+	Node0x42cb140 [shape=record,label="{xmlreader.c:2046:|{<s0>T|<s1>F}}"];
+	Node0x42cb140:s0 -> Node0x42cb820;
+	Node0x42cb140:s1 -> Node0x42cb870;
+	Node0x42cb820 [shape=record,label="{xmlreader.c:2047:}"];
+	Node0x42cb820 -> Node0x42c13b0;
+	Node0x42cb870 [shape=record,label="{xmlreader.c:2052:}"];
+	Node0x42cb870 -> Node0x42c13b0;
+	Node0x42c13b0 [shape=record,label="{xmlreader.c:2053:}"];
+}

@@ -1,0 +1,37 @@
+digraph "CFG for 'test_xmlSplitQName' function" {
+	label="CFG for 'test_xmlSplitQName' function";
+
+	Node0x5baeb00 [shape=record,label="{testapi.c:16413:}"];
+	Node0x5baeb00 -> Node0x5bb58b0;
+	Node0x5bb58b0 [shape=record,label="{testapi.c:16424:|{<s0>T|<s1>F}}"];
+	Node0x5bb58b0:s0 -> Node0x5bb5b90;
+	Node0x5bb58b0:s1 -> Node0x5bb5710;
+	Node0x5bb5b90 [shape=record,label="{testapi.c:16425:}"];
+	Node0x5bb5b90 -> Node0x5bb5f80;
+	Node0x5bb5f80 [shape=record,label="{testapi.c:16425:|{<s0>T|<s1>F}}"];
+	Node0x5bb5f80:s0 -> Node0x5bb6200;
+	Node0x5bb5f80:s1 -> Node0x5bb5e60;
+	Node0x5bb6200 [shape=record,label="{testapi.c:16426:}"];
+	Node0x5bb6200 -> Node0x5bb65f0;
+	Node0x5bb65f0 [shape=record,label="{testapi.c:16426:|{<s0>T|<s1>F}}"];
+	Node0x5bb65f0:s0 -> Node0x5bb6870;
+	Node0x5bb65f0:s1 -> Node0x5bb64d0;
+	Node0x5bb6870 [shape=record,label="{testapi.c:16427:|{<s0>T|<s1>F}}"];
+	Node0x5bb6870:s0 -> Node0x5bb7c50;
+	Node0x5bb6870:s1 -> Node0x5bb7f80;
+	Node0x5bb7c50 [shape=record,label="{testapi.c:16441:}"];
+	Node0x5bb7c50 -> Node0x5bb7f80;
+	Node0x5bb7f80 [shape=record,label="{testapi.c:16448:}"];
+	Node0x5bb7f80 -> Node0x5bb67e0;
+	Node0x5bb67e0 [shape=record,label="{testapi.c:16426:}"];
+	Node0x5bb67e0 -> Node0x5bb65f0;
+	Node0x5bb64d0 [shape=record,label="{testapi.c:16449:}"];
+	Node0x5bb64d0 -> Node0x5bb6170;
+	Node0x5bb6170 [shape=record,label="{testapi.c:16425:}"];
+	Node0x5bb6170 -> Node0x5bb5f80;
+	Node0x5bb5e60 [shape=record,label="{testapi.c:16450:}"];
+	Node0x5bb5e60 -> Node0x5bb5b00;
+	Node0x5bb5b00 [shape=record,label="{testapi.c:16424:}"];
+	Node0x5bb5b00 -> Node0x5bb58b0;
+	Node0x5bb5710 [shape=record,label="{testapi.c:16451:}"];
+}

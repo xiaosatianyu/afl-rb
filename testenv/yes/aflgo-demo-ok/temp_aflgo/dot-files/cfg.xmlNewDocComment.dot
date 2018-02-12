@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlNewDocComment' function" {
+	label="CFG for 'xmlNewDocComment' function";
+
+	Node0x3f3e620 [shape=record,label="{tree.c:2777:|{<s0>T|<s1>F}}"];
+	Node0x3f3e620 -> Node0x3f42060;
+	Node0x3f3e620 -> Node0x3f420b0;
+	Node0x3f42060 [shape=record,label="{tree.c:2781:}"];
+	Node0x3f42060 -> Node0x3f420b0;
+	Node0x3f420b0 [shape=record,label="{tree.c:2782:}"];
+}

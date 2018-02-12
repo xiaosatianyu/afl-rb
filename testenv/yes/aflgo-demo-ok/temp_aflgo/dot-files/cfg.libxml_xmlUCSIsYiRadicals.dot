@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsYiRadicals' function" {
+	label="CFG for 'libxml_xmlUCSIsYiRadicals' function";
+
+	Node0x5f8eef0 [shape=record,label="{libxml2-py.c:11643:|{<s0>T|<s1>F}}"];
+	Node0x5f8eef0:s0 -> Node0x5f91cc0;
+	Node0x5f8eef0:s1 -> Node0x5f91c70;
+	Node0x5f91c70 [shape=record,label="{libxml2-py.c:11649:}"];
+	Node0x5f91c70 -> Node0x5f908d0;
+	Node0x5f91cc0 [shape=record,label="{libxml2-py.c:11651:}"];
+	Node0x5f91cc0 -> Node0x5f908d0;
+	Node0x5f908d0 [shape=record,label="{libxml2-py.c:11654:}"];
+}

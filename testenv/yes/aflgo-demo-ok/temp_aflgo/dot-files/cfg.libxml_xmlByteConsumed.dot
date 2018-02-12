@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlByteConsumed' function" {
+	label="CFG for 'libxml_xmlByteConsumed' function";
+
+	Node0x560c130 [shape=record,label="{libxml2-py.c:1239:|{<s0>T|<s1>F}}"];
+	Node0x560c130:s0 -> Node0x560dd70;
+	Node0x560c130:s1 -> Node0x560dd20;
+	Node0x560dd20 [shape=record,label="{libxml2-py.c:1246:}"];
+	Node0x560dd20 -> Node0x560c1e0;
+	Node0x560dd70 [shape=record,label="{libxml2-py.c:1247:|{<s0>T|<s1>F}}"];
+	Node0x560dd70:s0 -> Node0x560e560;
+	Node0x560dd70:s1 -> Node0x560e5b0;
+	Node0x560e560 [shape=record,label="{libxml2-py.c:1247:}"];
+	Node0x560e560 -> Node0x560e600;
+	Node0x560e5b0 [shape=record,label="{libxml2-py.c:1247:}"];
+	Node0x560e5b0 -> Node0x560e600;
+	Node0x560e600 [shape=record,label="{libxml2-py.c:1247:}"];
+	Node0x560e600 -> Node0x560c1e0;
+	Node0x560c1e0 [shape=record,label="{libxml2-py.c:1252:}"];
+}

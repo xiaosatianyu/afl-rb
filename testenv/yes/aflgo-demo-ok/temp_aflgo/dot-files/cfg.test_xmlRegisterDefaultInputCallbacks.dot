@@ -1,0 +1,10 @@
+digraph "CFG for 'test_xmlRegisterDefaultInputCallbacks' function" {
+	label="CFG for 'test_xmlRegisterDefaultInputCallbacks' function";
+
+	Node0x628f310 [shape=record,label="{testapi.c:29113:|{<s0>T|<s1>F}}"];
+	Node0x628f310:s0 -> Node0x62af250;
+	Node0x628f310:s1 -> Node0x62aeea0;
+	Node0x62af250 [shape=record,label="{testapi.c:29124:}"];
+	Node0x62af250 -> Node0x62aeea0;
+	Node0x62aeea0 [shape=record,label="{testapi.c:29128:}"];
+}

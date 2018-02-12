@@ -1,0 +1,36 @@
+digraph "CFG for 'xmlRMutexLock' function" {
+	label="CFG for 'xmlRMutexLock' function";
+
+	Node0x4dff5c0 [shape=record,label="{threads.c:355:|{<s0>T|<s1>F}}"];
+	Node0x4dff5c0 -> Node0x4dfafb0;
+	Node0x4dff5c0 -> Node0x4dff550;
+	Node0x4dfafb0 [shape=record,label="{threads.c:358:}"];
+	Node0x4dfafb0 -> Node0x4dfe340;
+	Node0x4dff550 [shape=record,label="{threads.c:360:|{<s0>T|<s1>F}}"];
+	Node0x4dff550 -> Node0x4dfee00;
+	Node0x4dff550 -> Node0x4dff040;
+	Node0x4dfee00 [shape=record,label="{threads.c:361:}"];
+	Node0x4dfee00 -> Node0x4dfe340;
+	Node0x4dff040 [shape=record,label="{threads.c:363:|{<s0>T|<s1>F}}"];
+	Node0x4dff040 -> Node0x4e02710;
+	Node0x4dff040 -> Node0x4e02760;
+	Node0x4e02710 [shape=record,label="{threads.c:365:|{<s0>T|<s1>F}}"];
+	Node0x4e02710 -> Node0x4df4980;
+	Node0x4e02710 -> Node0x4dfb370;
+	Node0x4df4980 [shape=record,label="{threads.c:366:}"];
+	Node0x4df4980 -> Node0x4dfe340;
+	Node0x4dfb370 [shape=record,label="{threads.c:370:}"];
+	Node0x4dfb370 -> Node0x4e04d20;
+	Node0x4e04d20 [shape=record,label="{threads.c:371:|{<s0>T|<s1>F}}"];
+	Node0x4e04d20 -> Node0x4e05080;
+	Node0x4e04d20 -> Node0x4e04ed0;
+	Node0x4e05080 [shape=record,label="{threads.c:372:}"];
+	Node0x4e05080 -> Node0x4e04d20;
+	Node0x4e04ed0 [shape=record,label="{threads.c:373:}"];
+	Node0x4e04ed0 -> Node0x4df49d0;
+	Node0x4df49d0 [shape=record,label="{threads.c:375:}"];
+	Node0x4df49d0 -> Node0x4e02760;
+	Node0x4e02760 [shape=record,label="{threads.c:376:}"];
+	Node0x4e02760 -> Node0x4dfe340;
+	Node0x4dfe340 [shape=record,label="{threads.c:391:}"];
+}

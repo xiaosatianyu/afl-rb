@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlReaderWalker' function" {
+	label="CFG for 'libxml_xmlReaderWalker' function";
+
+	Node0x5ae6690 [shape=record,label="{libxml2-py.c:6046:|{<s0>T|<s1>F}}"];
+	Node0x5ae6690:s0 -> Node0x5aeb050;
+	Node0x5ae6690:s1 -> Node0x5aeb000;
+	Node0x5aeb000 [shape=record,label="{libxml2-py.c:6053:}"];
+	Node0x5aeb000 -> Node0x5ae94c0;
+	Node0x5aeb050 [shape=record,label="{libxml2-py.c:6054:|{<s0>T|<s1>F}}"];
+	Node0x5aeb050:s0 -> Node0x5aeb870;
+	Node0x5aeb050:s1 -> Node0x5aeb8c0;
+	Node0x5aeb870 [shape=record,label="{libxml2-py.c:6054:}"];
+	Node0x5aeb870 -> Node0x5aeb910;
+	Node0x5aeb8c0 [shape=record,label="{libxml2-py.c:6054:}"];
+	Node0x5aeb8c0 -> Node0x5aeb910;
+	Node0x5aeb910 [shape=record,label="{libxml2-py.c:6054:}"];
+	Node0x5aeb910 -> Node0x5ae94c0;
+	Node0x5ae94c0 [shape=record,label="{libxml2-py.c:6059:}"];
+}

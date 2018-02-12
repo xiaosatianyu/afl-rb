@@ -1,0 +1,12 @@
+digraph "CFG for 'gen_xmlListPtr' function" {
+	label="CFG for 'gen_xmlListPtr' function";
+
+	Node0x58783d0 [shape=record,label="{testapi.c:611:|{<s0>T|<s1>F}}"];
+	Node0x58783d0:s0 -> Node0x587f130;
+	Node0x58783d0:s1 -> Node0x587f180;
+	Node0x587f130 [shape=record,label="{testapi.c:612:}"];
+	Node0x587f130 -> Node0x5878a50;
+	Node0x587f180 [shape=record,label="{testapi.c:613:}"];
+	Node0x587f180 -> Node0x5878a50;
+	Node0x5878a50 [shape=record,label="{testapi.c:614:}"];
+}

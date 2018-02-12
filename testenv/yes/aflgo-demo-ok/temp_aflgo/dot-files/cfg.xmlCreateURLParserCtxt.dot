@@ -1,0 +1,38 @@
+digraph "CFG for 'xmlCreateURLParserCtxt' function" {
+	label="CFG for 'xmlCreateURLParserCtxt' function";
+
+	Node0x4452ca0 [shape=record,label="{parser.c:14196:|{<s0>T|<s1>F}}"];
+	Node0x4452ca0 -> Node0x4454870;
+	Node0x4452ca0 -> Node0x44548c0;
+	Node0x4454870 [shape=record,label="{parser.c:14204:}"];
+	Node0x4454870 -> Node0x4452b50;
+	Node0x44548c0 [shape=record,label="{parser.c:14208:|{<s0>T|<s1>F}}"];
+	Node0x44548c0 -> Node0x4455140;
+	Node0x44548c0 -> Node0x4455190;
+	Node0x4455140 [shape=record,label="{parser.c:14209:}"];
+	Node0x4455140 -> Node0x4455190;
+	Node0x4455190 [shape=record,label="{parser.c:14210:|{<s0>T|<s1>F}}"];
+	Node0x4455190 -> Node0x44561b0;
+	Node0x4455190 -> Node0x4456570;
+	Node0x44561b0 [shape=record,label="{parser.c:14214:}"];
+	Node0x44561b0 -> Node0x4452b50;
+	Node0x4456570 [shape=record,label="{parser.c:14218:|{<s0>T|<s1>F}}"];
+	Node0x4456570 -> Node0x4456c00;
+	Node0x4456570 -> Node0x4456bb0;
+	Node0x4456c00 [shape=record,label="{parser.c:14219:|{<s0>T|<s1>F}}"];
+	Node0x4456c00 -> Node0x4456b60;
+	Node0x4456c00 -> Node0x4456bb0;
+	Node0x4456b60 [shape=record,label="{parser.c:14220:}"];
+	Node0x4456b60 -> Node0x4456bb0;
+	Node0x4456bb0 [shape=record,label="{parser.c:14221:|{<s0>T|<s1>F}}"];
+	Node0x4456bb0 -> Node0x44575a0;
+	Node0x4456bb0 -> Node0x4457550;
+	Node0x44575a0 [shape=record,label="{parser.c:14221:|{<s0>T|<s1>F}}"];
+	Node0x44575a0 -> Node0x4457500;
+	Node0x44575a0 -> Node0x4457550;
+	Node0x4457500 [shape=record,label="{parser.c:14222:}"];
+	Node0x4457500 -> Node0x4457550;
+	Node0x4457550 [shape=record,label="{parser.c:14224:}"];
+	Node0x4457550 -> Node0x4452b50;
+	Node0x4452b50 [shape=record,label="{parser.c:14225:}"];
+}

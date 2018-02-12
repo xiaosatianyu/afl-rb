@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsEnclosedCJKLettersandMonths' function" {
+	label="CFG for 'libxml_xmlUCSIsEnclosedCJKLettersandMonths' function";
+
+	Node0x5ed4e90 [shape=record,label="{libxml2-py.c:10267:|{<s0>T|<s1>F}}"];
+	Node0x5ed4e90:s0 -> Node0x5ed7ce0;
+	Node0x5ed4e90:s1 -> Node0x5ed7c90;
+	Node0x5ed7c90 [shape=record,label="{libxml2-py.c:10273:}"];
+	Node0x5ed7c90 -> Node0x5ed5240;
+	Node0x5ed7ce0 [shape=record,label="{libxml2-py.c:10275:}"];
+	Node0x5ed7ce0 -> Node0x5ed5240;
+	Node0x5ed5240 [shape=record,label="{libxml2-py.c:10278:}"];
+}

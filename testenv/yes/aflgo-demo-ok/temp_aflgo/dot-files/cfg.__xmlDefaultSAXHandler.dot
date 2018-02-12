@@ -1,0 +1,12 @@
+digraph "CFG for '__xmlDefaultSAXHandler' function" {
+	label="CFG for '__xmlDefaultSAXHandler' function";
+
+	Node0x376b6c0 [shape=record,label="{globals.c:829:|{<s0>T|<s1>F}}"];
+	Node0x376b6c0 -> Node0x376bc10;
+	Node0x376b6c0 -> Node0x376bcb0;
+	Node0x376bc10 [shape=record,label="{globals.c:830:}"];
+	Node0x376bc10 -> Node0x376b9f0;
+	Node0x376bcb0 [shape=record,label="{globals.c:832:}"];
+	Node0x376bcb0 -> Node0x376b9f0;
+	Node0x376b9f0 [shape=record,label="{globals.c:833:}"];
+}

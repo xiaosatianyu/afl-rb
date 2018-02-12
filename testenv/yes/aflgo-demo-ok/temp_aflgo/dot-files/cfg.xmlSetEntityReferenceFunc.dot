@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlSetEntityReferenceFunc' function" {
+	label="CFG for 'xmlSetEntityReferenceFunc' function";
+
+	Node0x4a0b410 [shape=record,label="{parser.c:14793:}"];
+}

@@ -1,0 +1,46 @@
+digraph "CFG for 'htmlCreateDocParserCtxt' function" {
+	label="CFG for 'htmlCreateDocParserCtxt' function";
+
+	Node0x48d6690 [shape=record,label="{HTMLparser.c:5000:|{<s0>T|<s1>F}}"];
+	Node0x48d6690 -> Node0x48da4b0;
+	Node0x48d6690 -> Node0x48da500;
+	Node0x48da4b0 [shape=record,label="{HTMLparser.c:5005:}"];
+	Node0x48da4b0 -> Node0x48caa60;
+	Node0x48da500 [shape=record,label="{HTMLparser.c:5006:|{<s0>T|<s1>F}}"];
+	Node0x48da500 -> Node0x48daf00;
+	Node0x48da500 -> Node0x48daf50;
+	Node0x48daf00 [shape=record,label="{HTMLparser.c:5009:}"];
+	Node0x48daf00 -> Node0x48caa60;
+	Node0x48daf50 [shape=record,label="{HTMLparser.c:5011:|{<s0>T|<s1>F}}"];
+	Node0x48daf50 -> Node0x48db3b0;
+	Node0x48daf50 -> Node0x48db400;
+	Node0x48db3b0 [shape=record,label="{HTMLparser.c:5012:|{<s0>T|<s1>F}}"];
+	Node0x48db3b0 -> Node0x48dbcf0;
+	Node0x48db3b0 -> Node0x48dbd40;
+	Node0x48dbcf0 [shape=record,label="{HTMLparser.c:5016:}"];
+	Node0x48dbcf0 -> Node0x48dbd40;
+	Node0x48dbd40 [shape=record,label="{HTMLparser.c:5017:|{<s0>T|<s1>F}}"];
+	Node0x48dbd40 -> Node0x48dce60;
+	Node0x48dbd40 -> Node0x48dcf00;
+	Node0x48dce60 [shape=record,label="{HTMLparser.c:5024:|{<s0>T|<s1>F}}"];
+	Node0x48dce60 -> Node0x48dd450;
+	Node0x48dce60 -> Node0x48dd4a0;
+	Node0x48dd450 [shape=record,label="{HTMLparser.c:5026:}"];
+	Node0x48dd450 -> Node0x48dd4a0;
+	Node0x48dd4a0 [shape=record,label="{HTMLparser.c:5030:}"];
+	Node0x48dd4a0 -> Node0x48dceb0;
+	Node0x48dcf00 [shape=record,label="{HTMLparser.c:5034:|{<s0>T|<s1>F}}"];
+	Node0x48dcf00 -> Node0x48de260;
+	Node0x48dcf00 -> Node0x48de300;
+	Node0x48de260 [shape=record,label="{HTMLparser.c:5036:}"];
+	Node0x48de260 -> Node0x48de2b0;
+	Node0x48de300 [shape=record,label="{HTMLparser.c:5038:}"];
+	Node0x48de300 -> Node0x48de2b0;
+	Node0x48de2b0 [shape=record,label="{%60}"];
+	Node0x48de2b0 -> Node0x48dceb0;
+	Node0x48dceb0 [shape=record,label="{HTMLparser.c:5043:}"];
+	Node0x48dceb0 -> Node0x48db400;
+	Node0x48db400 [shape=record,label="{HTMLparser.c:5044:}"];
+	Node0x48db400 -> Node0x48caa60;
+	Node0x48caa60 [shape=record,label="{HTMLparser.c:5045:}"];
+}

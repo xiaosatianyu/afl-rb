@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlIsDigit' function" {
+	label="CFG for 'test_xmlIsDigit' function";
+
+	Node0x5640b70 [shape=record,label="{testapi.c:6771:}"];
+	Node0x5640b70 -> Node0x5648510;
+	Node0x5648510 [shape=record,label="{testapi.c:6778:|{<s0>T|<s1>F}}"];
+	Node0x5648510:s0 -> Node0x56487f0;
+	Node0x5648510:s1 -> Node0x5648370;
+	Node0x56487f0 [shape=record,label="{testapi.c:6779:|{<s0>T|<s1>F}}"];
+	Node0x56487f0:s0 -> Node0x5649640;
+	Node0x56487f0:s1 -> Node0x5649970;
+	Node0x5649640 [shape=record,label="{testapi.c:6789:}"];
+	Node0x5649640 -> Node0x5649970;
+	Node0x5649970 [shape=record,label="{testapi.c:6794:}"];
+	Node0x5649970 -> Node0x5648760;
+	Node0x5648760 [shape=record,label="{testapi.c:6778:}"];
+	Node0x5648760 -> Node0x5648510;
+	Node0x5648370 [shape=record,label="{testapi.c:6795:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlXPathRegisterAllFunctions' function" {
+	label="CFG for 'test_xmlXPathRegisterAllFunctions' function";
+
+	Node0x6d95a10 [shape=record,label="{testapi.c:50109:}"];
+	Node0x6d95a10 -> Node0x6da1af0;
+	Node0x6da1af0 [shape=record,label="{testapi.c:50116:|{<s0>T|<s1>F}}"];
+	Node0x6da1af0:s0 -> Node0x6da1dd0;
+	Node0x6da1af0:s1 -> Node0x6da1950;
+	Node0x6da1dd0 [shape=record,label="{testapi.c:50117:|{<s0>T|<s1>F}}"];
+	Node0x6da1dd0:s0 -> Node0x6da3c50;
+	Node0x6da1dd0:s1 -> Node0x6da3f80;
+	Node0x6da3c50 [shape=record,label="{testapi.c:50126:}"];
+	Node0x6da3c50 -> Node0x6da3f80;
+	Node0x6da3f80 [shape=record,label="{testapi.c:50131:}"];
+	Node0x6da3f80 -> Node0x6da1d40;
+	Node0x6da1d40 [shape=record,label="{testapi.c:50116:}"];
+	Node0x6da1d40 -> Node0x6da1af0;
+	Node0x6da1950 [shape=record,label="{testapi.c:50132:}"];
+}

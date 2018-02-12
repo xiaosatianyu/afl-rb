@@ -1,0 +1,17 @@
+digraph "CFG for 'xmlBufferWriteCHAR' function" {
+	label="CFG for 'xmlBufferWriteCHAR' function";
+
+	Node0x4242b60 [shape=record,label="{tree.c:7660:|{<s0>T|<s1>F}}"];
+	Node0x4242b60:s0 -> Node0x423da70;
+	Node0x4242b60:s1 -> Node0x423dac0;
+	Node0x423da70 [shape=record,label="{tree.c:7662:}"];
+	Node0x423da70 -> Node0x4242e50;
+	Node0x423dac0 [shape=record,label="{tree.c:7663:|{<s0>T|<s1>F}}"];
+	Node0x423dac0:s0 -> Node0x4243910;
+	Node0x423dac0:s1 -> Node0x4243960;
+	Node0x4243910 [shape=record,label="{tree.c:7663:}"];
+	Node0x4243910 -> Node0x4242e50;
+	Node0x4243960 [shape=record,label="{tree.c:7664:}"];
+	Node0x4243960 -> Node0x4242e50;
+	Node0x4242e50 [shape=record,label="{tree.c:7665:}"];
+}

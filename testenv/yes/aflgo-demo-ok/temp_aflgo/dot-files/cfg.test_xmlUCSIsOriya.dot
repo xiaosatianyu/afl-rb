@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsOriya' function" {
+	label="CFG for 'test_xmlUCSIsOriya' function";
+
+	Node0x699b9b0 [shape=record,label="{testapi.c:41801:}"];
+	Node0x699b9b0 -> Node0x69a33e0;
+	Node0x69a33e0 [shape=record,label="{testapi.c:41809:|{<s0>T|<s1>F}}"];
+	Node0x69a33e0:s0 -> Node0x69a36c0;
+	Node0x69a33e0:s1 -> Node0x69a3240;
+	Node0x69a36c0 [shape=record,label="{testapi.c:41810:|{<s0>T|<s1>F}}"];
+	Node0x69a36c0:s0 -> Node0x69a4510;
+	Node0x69a36c0:s1 -> Node0x69a4840;
+	Node0x69a4510 [shape=record,label="{testapi.c:41820:}"];
+	Node0x69a4510 -> Node0x69a4840;
+	Node0x69a4840 [shape=record,label="{testapi.c:41825:}"];
+	Node0x69a4840 -> Node0x69a3630;
+	Node0x69a3630 [shape=record,label="{testapi.c:41809:}"];
+	Node0x69a3630 -> Node0x69a33e0;
+	Node0x69a3240 [shape=record,label="{testapi.c:41826:}"];
+}

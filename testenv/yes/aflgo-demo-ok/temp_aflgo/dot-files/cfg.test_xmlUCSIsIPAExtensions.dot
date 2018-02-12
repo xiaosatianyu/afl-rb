@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsIPAExtensions' function" {
+	label="CFG for 'test_xmlUCSIsIPAExtensions' function";
+
+	Node0x691f650 [shape=record,label="{testapi.c:40645:}"];
+	Node0x691f650 -> Node0x692a8c0;
+	Node0x692a8c0 [shape=record,label="{testapi.c:40653:|{<s0>T|<s1>F}}"];
+	Node0x692a8c0:s0 -> Node0x692aba0;
+	Node0x692a8c0:s1 -> Node0x692a720;
+	Node0x692aba0 [shape=record,label="{testapi.c:40654:|{<s0>T|<s1>F}}"];
+	Node0x692aba0:s0 -> Node0x692b9f0;
+	Node0x692aba0:s1 -> Node0x692c1c0;
+	Node0x692b9f0 [shape=record,label="{testapi.c:40664:}"];
+	Node0x692b9f0 -> Node0x692c1c0;
+	Node0x692c1c0 [shape=record,label="{testapi.c:40669:}"];
+	Node0x692c1c0 -> Node0x692ab10;
+	Node0x692ab10 [shape=record,label="{testapi.c:40653:}"];
+	Node0x692ab10 -> Node0x692a8c0;
+	Node0x692a720 [shape=record,label="{testapi.c:40670:}"];
+}

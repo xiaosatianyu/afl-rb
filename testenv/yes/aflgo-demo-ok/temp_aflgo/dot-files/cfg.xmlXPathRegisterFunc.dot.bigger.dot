@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlXPathRegisterFunc' function" {
+	label="CFG for 'xmlXPathRegisterFunc' function";
+
+	Node0x453e360 [shape=record,label="{xpath.c:4845:}"];
+}

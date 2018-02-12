@@ -1,0 +1,12 @@
+digraph "CFG for '__xmlGetWarningsDefaultValue' function" {
+	label="CFG for '__xmlGetWarningsDefaultValue' function";
+
+	Node0x36487a0 [shape=record,label="{globals.c:901:|{<s0>T|<s1>F}}"];
+	Node0x36487a0:s0 -> Node0x371d040;
+	Node0x36487a0:s1 -> Node0x371d230;
+	Node0x371d040 [shape=record,label="{globals.c:902:}"];
+	Node0x371d040 -> Node0x371d090;
+	Node0x371d230 [shape=record,label="{globals.c:904:}"];
+	Node0x371d230 -> Node0x371d090;
+	Node0x371d090 [shape=record,label="{globals.c:905:}"];
+}

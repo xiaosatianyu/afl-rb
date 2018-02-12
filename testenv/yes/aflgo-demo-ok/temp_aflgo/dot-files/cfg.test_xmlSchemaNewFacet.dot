@@ -1,0 +1,5 @@
+digraph "CFG for 'test_xmlSchemaNewFacet' function" {
+	label="CFG for 'test_xmlSchemaNewFacet' function";
+
+	Node0x66a1270 [shape=record,label="{testapi.c:35548:}"];
+}

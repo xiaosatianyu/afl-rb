@@ -1,0 +1,46 @@
+digraph "CFG for 'xmlBufMergeBuffer' function" {
+	label="CFG for 'xmlBufMergeBuffer' function";
+
+	Node0x46e4160 [shape=record,label="{buf.c:1257:|{<s0>T|<s1>F}}"];
+	Node0x46e4160:s0 -> Node0x4a66cc0;
+	Node0x46e4160:s1 -> Node0x4a70240;
+	Node0x4a70240 [shape=record,label="{buf.c:1260:|{<s0>T|<s1>F}}"];
+	Node0x4a70240:s0 -> Node0x4a66cc0;
+	Node0x4a70240:s1 -> Node0x4a701f0;
+	Node0x4a66cc0 [shape=record,label="{buf.c:1261:}"];
+	Node0x4a66cc0 -> Node0x4a66da0;
+	Node0x4a701f0 [shape=record,label="{buf.c:1264:|{<s0>T|<s1>F}}"];
+	Node0x4a701f0:s0 -> Node0x4a710e0;
+	Node0x4a701f0:s1 -> Node0x4a714d0;
+	Node0x4a710e0 [shape=record,label="{buf.c:1264:|{<s0>T|<s1>F}}"];
+	Node0x4a710e0:s0 -> Node0x4a71a20;
+	Node0x4a710e0:s1 -> Node0x4a71a70;
+	Node0x4a71a20 [shape=record,label="{buf.c:1264:}"];
+	Node0x4a71a20 -> Node0x4a71a70;
+	Node0x4a71a70 [shape=record,label="{buf.c:1264:}"];
+	Node0x4a71a70 -> Node0x4a714d0;
+	Node0x4a714d0 [shape=record,label="{buf.c:1264:|{<s0>T|<s1>F}}"];
+	Node0x4a714d0:s0 -> Node0x4a720d0;
+	Node0x4a714d0:s1 -> Node0x4a72120;
+	Node0x4a720d0 [shape=record,label="{buf.c:1264:|{<s0>T|<s1>F}}"];
+	Node0x4a720d0:s0 -> Node0x4a72600;
+	Node0x4a720d0:s1 -> Node0x4a72650;
+	Node0x4a72600 [shape=record,label="{buf.c:1264:}"];
+	Node0x4a72600 -> Node0x4a72650;
+	Node0x4a72650 [shape=record,label="{buf.c:1264:}"];
+	Node0x4a72650 -> Node0x4a72120;
+	Node0x4a72120 [shape=record,label="{buf.c:1265:|{<s0>T|<s1>F}}"];
+	Node0x4a72120:s0 -> Node0x4a72da0;
+	Node0x4a72120:s1 -> Node0x4a72d00;
+	Node0x4a72da0 [shape=record,label="{buf.c:1265:|{<s0>T|<s1>F}}"];
+	Node0x4a72da0:s0 -> Node0x4a72d50;
+	Node0x4a72da0:s1 -> Node0x4a72d00;
+	Node0x4a72d50 [shape=record,label="{buf.c:1266:|{<s0>T|<s1>F}}"];
+	Node0x4a72d50:s0 -> Node0x4a72cb0;
+	Node0x4a72d50:s1 -> Node0x4a72d00;
+	Node0x4a72cb0 [shape=record,label="{buf.c:1267:}"];
+	Node0x4a72cb0 -> Node0x4a72d00;
+	Node0x4a72d00 [shape=record,label="{buf.c:1269:}"];
+	Node0x4a72d00 -> Node0x4a66da0;
+	Node0x4a66da0 [shape=record,label="{buf.c:1271:}"];
+}

@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlXPathNextFollowing' function" {
+	label="CFG for 'test_xmlXPathNextFollowing' function";
+
+	Node0x6d0b0c0 [shape=record,label="{testapi.c:48867:}"];
+	Node0x6d0b0c0 -> Node0x6d117e0;
+	Node0x6d117e0 [shape=record,label="{testapi.c:48877:|{<s0>T|<s1>F}}"];
+	Node0x6d117e0:s0 -> Node0x6d11ac0;
+	Node0x6d117e0:s1 -> Node0x6d11640;
+	Node0x6d11ac0 [shape=record,label="{testapi.c:48878:}"];
+	Node0x6d11ac0 -> Node0x6d11eb0;
+	Node0x6d11eb0 [shape=record,label="{testapi.c:48878:|{<s0>T|<s1>F}}"];
+	Node0x6d11eb0:s0 -> Node0x6d12130;
+	Node0x6d11eb0:s1 -> Node0x6d11d90;
+	Node0x6d12130 [shape=record,label="{testapi.c:48879:|{<s0>T|<s1>F}}"];
+	Node0x6d12130:s0 -> Node0x6d131f0;
+	Node0x6d12130:s1 -> Node0x6d13bb0;
+	Node0x6d131f0 [shape=record,label="{testapi.c:48891:}"];
+	Node0x6d131f0 -> Node0x6d13bb0;
+	Node0x6d13bb0 [shape=record,label="{testapi.c:48897:}"];
+	Node0x6d13bb0 -> Node0x6d120a0;
+	Node0x6d120a0 [shape=record,label="{testapi.c:48878:}"];
+	Node0x6d120a0 -> Node0x6d11eb0;
+	Node0x6d11d90 [shape=record,label="{testapi.c:48898:}"];
+	Node0x6d11d90 -> Node0x6d11a30;
+	Node0x6d11a30 [shape=record,label="{testapi.c:48877:}"];
+	Node0x6d11a30 -> Node0x6d117e0;
+	Node0x6d11640 [shape=record,label="{testapi.c:48899:}"];
+}

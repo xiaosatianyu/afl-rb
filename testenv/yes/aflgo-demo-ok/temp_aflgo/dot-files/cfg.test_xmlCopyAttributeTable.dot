@@ -1,0 +1,5 @@
+digraph "CFG for 'test_xmlCopyAttributeTable' function" {
+	label="CFG for 'test_xmlCopyAttributeTable' function";
+
+	Node0x609bf50 [shape=record,label="{testapi.c:24971:}"];
+}

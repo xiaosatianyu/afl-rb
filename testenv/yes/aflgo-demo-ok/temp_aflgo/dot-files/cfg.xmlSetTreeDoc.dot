@@ -1,0 +1,40 @@
+digraph "CFG for 'xmlSetTreeDoc' function" {
+	label="CFG for 'xmlSetTreeDoc' function";
+
+	Node0x3f42a00 [shape=record,label="{tree.c:2793:|{<s0>T|<s1>F}}"];
+	Node0x3f42a00 -> Node0x3f43570;
+	Node0x3f42a00 -> Node0x3f43610;
+	Node0x3f43610 [shape=record,label="{tree.c:2796:|{<s0>T|<s1>F}}"];
+	Node0x3f43610 -> Node0x3f43570;
+	Node0x3f43610 -> Node0x3f435c0;
+	Node0x3f43570 [shape=record,label="{tree.c:2797:}"];
+	Node0x3f43570 -> Node0x3f43de0;
+	Node0x3f435c0 [shape=record,label="{tree.c:2798:|{<s0>T|<s1>F}}"];
+	Node0x3f435c0 -> Node0x3f43d90;
+	Node0x3f435c0 -> Node0x3f43de0;
+	Node0x3f43d90 [shape=record,label="{tree.c:2799:|{<s0>T|<s1>F}}"];
+	Node0x3f43d90 -> Node0x3f44330;
+	Node0x3f43d90 -> Node0x3f44380;
+	Node0x3f44330 [shape=record,label="{tree.c:2800:}"];
+	Node0x3f44330 -> Node0x3f449e0;
+	Node0x3f449e0 [shape=record,label="{tree.c:2801:|{<s0>T|<s1>F}}"];
+	Node0x3f449e0 -> Node0x3f44bb0;
+	Node0x3f449e0 -> Node0x3f44c00;
+	Node0x3f44bb0 [shape=record,label="{tree.c:2802:|{<s0>T|<s1>F}}"];
+	Node0x3f44bb0 -> Node0x3e68460;
+	Node0x3f44bb0 -> Node0x3e684b0;
+	Node0x3e68460 [shape=record,label="{tree.c:2803:}"];
+	Node0x3e68460 -> Node0x3e684b0;
+	Node0x3e684b0 [shape=record,label="{tree.c:2806:}"];
+	Node0x3e684b0 -> Node0x3f449e0;
+	Node0x3f44c00 [shape=record,label="{tree.c:2825:}"];
+	Node0x3f44c00 -> Node0x3f44380;
+	Node0x3f44380 [shape=record,label="{tree.c:2826:|{<s0>T|<s1>F}}"];
+	Node0x3f44380 -> Node0x3e69730;
+	Node0x3f44380 -> Node0x3e69a60;
+	Node0x3e69730 [shape=record,label="{tree.c:2827:}"];
+	Node0x3e69730 -> Node0x3e69a60;
+	Node0x3e69a60 [shape=record,label="{tree.c:2828:}"];
+	Node0x3e69a60 -> Node0x3f43de0;
+	Node0x3f43de0 [shape=record,label="{tree.c:2830:}"];
+}

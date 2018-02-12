@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlXPathNewBoolean' function" {
+	label="CFG for 'libxml_xmlXPathNewBoolean' function";
+
+	Node0x5bdfe20 [shape=record,label="{libxml2-py.c:13538:|{<s0>T|<s1>F}}"];
+	Node0x5bdfe20:s0 -> Node0x61578e0;
+	Node0x5bdfe20:s1 -> Node0x6157890;
+	Node0x6157890 [shape=record,label="{libxml2-py.c:13544:}"];
+	Node0x6157890 -> Node0x5bdfa10;
+	Node0x61578e0 [shape=record,label="{libxml2-py.c:13546:}"];
+	Node0x61578e0 -> Node0x5bdfa10;
+	Node0x5bdfa10 [shape=record,label="{libxml2-py.c:13549:}"];
+}

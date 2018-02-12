@@ -1,0 +1,20 @@
+digraph "CFG for 'xmlAutomataNewEpsilon' function" {
+	label="CFG for 'xmlAutomataNewEpsilon' function";
+
+	Node0x3973220 [shape=record,label="{xmlregexp.c:6171:|{<s0>T|<s1>F}}"];
+	Node0x3973220 -> Node0x3974b00;
+	Node0x3973220 -> Node0x3974ba0;
+	Node0x3974ba0 [shape=record,label="{xmlregexp.c:6173:|{<s0>T|<s1>F}}"];
+	Node0x3974ba0 -> Node0x3974b00;
+	Node0x3974ba0 -> Node0x3974b50;
+	Node0x3974b00 [shape=record,label="{xmlregexp.c:6174:}"];
+	Node0x3974b00 -> Node0x3973390;
+	Node0x3974b50 [shape=record,label="{xmlregexp.c:6175:|{<s0>T|<s1>F}}"];
+	Node0x3974b50 -> Node0x3975540;
+	Node0x3974b50 -> Node0x3975590;
+	Node0x3975540 [shape=record,label="{xmlregexp.c:6177:}"];
+	Node0x3975540 -> Node0x3973390;
+	Node0x3975590 [shape=record,label="{xmlregexp.c:6178:}"];
+	Node0x3975590 -> Node0x3973390;
+	Node0x3973390 [shape=record,label="{xmlregexp.c:6179:}"];
+}

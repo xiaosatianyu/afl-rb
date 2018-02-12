@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsCatCf' function" {
+	label="CFG for 'test_xmlUCSIsCatCf' function";
+
+	Node0x682f9a0 [shape=record,label="{testapi.c:38333:}"];
+	Node0x682f9a0 -> Node0x68373f0;
+	Node0x68373f0 [shape=record,label="{testapi.c:38341:|{<s0>T|<s1>F}}"];
+	Node0x68373f0:s0 -> Node0x68376d0;
+	Node0x68373f0:s1 -> Node0x6837250;
+	Node0x68376d0 [shape=record,label="{testapi.c:38342:|{<s0>T|<s1>F}}"];
+	Node0x68376d0:s0 -> Node0x6838520;
+	Node0x68376d0:s1 -> Node0x6838850;
+	Node0x6838520 [shape=record,label="{testapi.c:38352:}"];
+	Node0x6838520 -> Node0x6838850;
+	Node0x6838850 [shape=record,label="{testapi.c:38357:}"];
+	Node0x6838850 -> Node0x6837640;
+	Node0x6837640 [shape=record,label="{testapi.c:38341:}"];
+	Node0x6837640 -> Node0x68373f0;
+	Node0x6837250 [shape=record,label="{testapi.c:38358:}"];
+}

@@ -1,0 +1,48 @@
+digraph "CFG for 'xmlRelaxNGCheckCycles' function" {
+	label="CFG for 'xmlRelaxNGCheckCycles' function";
+
+	Node0x5016080 [shape=record,label="{relaxng.c:5952:}"];
+	Node0x5016080 -> Node0x5020c70;
+	Node0x5020c70 [shape=record,label="{relaxng.c:5957:|{<s0>T|<s1>F}}"];
+	Node0x5020c70 -> Node0x5020f60;
+	Node0x5020c70 -> Node0x5020f10;
+	Node0x5020f60 [shape=record,label="{relaxng.c:5957:}"];
+	Node0x5020f60 -> Node0x5020f10;
+	Node0x5020f10 [shape=record,label="{relaxng.c:5957:|{<s0>T|<s1>F}}"];
+	Node0x5020f10 -> Node0x5021460;
+	Node0x5020f10 -> Node0x5020e90;
+	Node0x5021460 [shape=record,label="{relaxng.c:5958:|{<s0>T|<s1>F}}"];
+	Node0x5021460 -> Node0x5021620;
+	Node0x5021460 -> Node0x5021710;
+	Node0x5021710 [shape=record,label="{relaxng.c:5959:|{<s0>T|<s1>F}}"];
+	Node0x5021710 -> Node0x5021620;
+	Node0x5021710 -> Node0x50216c0;
+	Node0x5021620 [shape=record,label="{relaxng.c:5960:|{<s0>T|<s1>F}}"];
+	Node0x5021620 -> Node0x5021f00;
+	Node0x5021620 -> Node0x5021fa0;
+	Node0x5021f00 [shape=record,label="{relaxng.c:5961:}"];
+	Node0x5021f00 -> Node0x5021f50;
+	Node0x5021fa0 [shape=record,label="{relaxng.c:5964:|{<s0>T|<s1>F}}"];
+	Node0x5021fa0 -> Node0x5022f80;
+	Node0x5021fa0 -> Node0x5022fd0;
+	Node0x5022f80 [shape=record,label="{relaxng.c:5965:}"];
+	Node0x5022f80 -> Node0x5054d00;
+	Node0x5022fd0 [shape=record,label="{%51}"];
+	Node0x5022fd0 -> Node0x5021f50;
+	Node0x5021f50 [shape=record,label="{relaxng.c:5970:}"];
+	Node0x5021f50 -> Node0x5021670;
+	Node0x50216c0 [shape=record,label="{relaxng.c:5970:|{<s0>T|<s1>F}}"];
+	Node0x50216c0 -> Node0x5024060;
+	Node0x50216c0 -> Node0x5024100;
+	Node0x5024060 [shape=record,label="{relaxng.c:5971:}"];
+	Node0x5024060 -> Node0x50240b0;
+	Node0x5024100 [shape=record,label="{relaxng.c:5973:}"];
+	Node0x5024100 -> Node0x50240b0;
+	Node0x50240b0 [shape=record,label="{%69}"];
+	Node0x50240b0 -> Node0x5021670;
+	Node0x5021670 [shape=record,label="{relaxng.c:5975:}"];
+	Node0x5021670 -> Node0x5020c70;
+	Node0x5020e90 [shape=record,label="{relaxng.c:5977:}"];
+	Node0x5020e90 -> Node0x5054d00;
+	Node0x5054d00 [shape=record,label="{relaxng.c:5978:}"];
+}

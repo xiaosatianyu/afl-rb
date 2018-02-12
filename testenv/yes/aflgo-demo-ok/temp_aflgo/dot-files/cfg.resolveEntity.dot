@@ -1,0 +1,10 @@
+digraph "CFG for 'resolveEntity' function" {
+	label="CFG for 'resolveEntity' function";
+
+	Node0x4dd4c40 [shape=record,label="{legacy.c:919:|{<s0>T|<s1>F}}"];
+	Node0x4dd4c40 -> Node0x4dd4fe0;
+	Node0x4dd4c40 -> Node0x4dd5030;
+	Node0x4dd4fe0 [shape=record,label="{legacy.c:922:}"];
+	Node0x4dd4fe0 -> Node0x4dd5030;
+	Node0x4dd5030 [shape=record,label="{legacy.c:922:}"];
+}

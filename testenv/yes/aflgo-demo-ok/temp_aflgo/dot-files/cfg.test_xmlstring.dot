@@ -1,0 +1,15 @@
+digraph "CFG for 'test_xmlstring' function" {
+	label="CFG for 'test_xmlstring' function";
+
+	Node0x66ff990 [shape=record,label="{testapi.c:37294:|{<s0>T|<s1>F}}"];
+	Node0x66ff990:s0 -> Node0x6701940;
+	Node0x66ff990:s1 -> Node0x5c55f20;
+	Node0x6701940 [shape=record,label="{testapi.c:37296:}"];
+	Node0x6701940 -> Node0x5c55f20;
+	Node0x5c55f20 [shape=record,label="{testapi.c:37297:|{<s0>T|<s1>F}}"];
+	Node0x5c55f20:s0 -> Node0x6705f60;
+	Node0x5c55f20:s1 -> Node0x6709b50;
+	Node0x6705f60 [shape=record,label="{testapi.c:37327:}"];
+	Node0x6705f60 -> Node0x6709b50;
+	Node0x6709b50 [shape=record,label="{testapi.c:37328:}"];
+}

@@ -1,0 +1,24 @@
+digraph "CFG for 'xmlXPathPopNumber' function" {
+	label="CFG for 'xmlXPathPopNumber' function";
+
+	Node0x4431020 [shape=record,label="{xpath.c:2917:|{<s0>T|<s1>F}}"];
+	Node0x4431020 -> Node0x442f520;
+	Node0x4431020 -> Node0x4434550;
+	Node0x442f520 [shape=record,label="{xpath.c:2923:|{<s0>T|<s1>F}}"];
+	Node0x442f520 -> Node0x4434aa0;
+	Node0x442f520 -> Node0x4434af0;
+	Node0x4434aa0 [shape=record,label="{xpath.c:2923:}"];
+	Node0x4434aa0 -> Node0x4434af0;
+	Node0x4434af0 [shape=record,label="{xpath.c:2924:}"];
+	Node0x4434af0 -> Node0x442f170;
+	Node0x4434550 [shape=record,label="{xpath.c:2926:|{<s0>T|<s1>F}}"];
+	Node0x4434550 -> Node0x4435160;
+	Node0x4434550 -> Node0x4435200;
+	Node0x4435160 [shape=record,label="{xpath.c:2927:}"];
+	Node0x4435160 -> Node0x44351b0;
+	Node0x4435200 [shape=record,label="{xpath.c:2929:}"];
+	Node0x4435200 -> Node0x44351b0;
+	Node0x44351b0 [shape=record,label="{xpath.c:2930:}"];
+	Node0x44351b0 -> Node0x442f170;
+	Node0x442f170 [shape=record,label="{xpath.c:2932:}"];
+}

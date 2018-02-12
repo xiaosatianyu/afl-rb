@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlNewDocComment' function" {
+	label="CFG for 'test_xmlNewDocComment' function";
+
+	Node0x5e7f9c0 [shape=record,label="{testapi.c:21171:}"];
+	Node0x5e7f9c0 -> Node0x5e933b0;
+	Node0x5e933b0 [shape=record,label="{testapi.c:21180:|{<s0>T|<s1>F}}"];
+	Node0x5e933b0:s0 -> Node0x5e93690;
+	Node0x5e933b0:s1 -> Node0x5e93210;
+	Node0x5e93690 [shape=record,label="{testapi.c:21181:}"];
+	Node0x5e93690 -> Node0x5e93a80;
+	Node0x5e93a80 [shape=record,label="{testapi.c:21181:|{<s0>T|<s1>F}}"];
+	Node0x5e93a80:s0 -> Node0x5e93d00;
+	Node0x5e93a80:s1 -> Node0x5e93960;
+	Node0x5e93d00 [shape=record,label="{testapi.c:21182:|{<s0>T|<s1>F}}"];
+	Node0x5e93d00:s0 -> Node0x5e94dc0;
+	Node0x5e93d00:s1 -> Node0x5e950f0;
+	Node0x5e94dc0 [shape=record,label="{testapi.c:21194:}"];
+	Node0x5e94dc0 -> Node0x5e950f0;
+	Node0x5e950f0 [shape=record,label="{testapi.c:21200:}"];
+	Node0x5e950f0 -> Node0x5e93c70;
+	Node0x5e93c70 [shape=record,label="{testapi.c:21181:}"];
+	Node0x5e93c70 -> Node0x5e93a80;
+	Node0x5e93960 [shape=record,label="{testapi.c:21201:}"];
+	Node0x5e93960 -> Node0x5e93600;
+	Node0x5e93600 [shape=record,label="{testapi.c:21180:}"];
+	Node0x5e93600 -> Node0x5e933b0;
+	Node0x5e93210 [shape=record,label="{testapi.c:21202:}"];
+}

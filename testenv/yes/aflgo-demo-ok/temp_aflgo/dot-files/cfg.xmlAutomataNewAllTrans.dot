@@ -1,0 +1,20 @@
+digraph "CFG for 'xmlAutomataNewAllTrans' function" {
+	label="CFG for 'xmlAutomataNewAllTrans' function";
+
+	Node0x39761e0 [shape=record,label="{xmlregexp.c:6196:|{<s0>T|<s1>F}}"];
+	Node0x39761e0 -> Node0x3977230;
+	Node0x39761e0 -> Node0x39772d0;
+	Node0x39772d0 [shape=record,label="{xmlregexp.c:6198:|{<s0>T|<s1>F}}"];
+	Node0x39772d0 -> Node0x3977230;
+	Node0x39772d0 -> Node0x3977280;
+	Node0x3977230 [shape=record,label="{xmlregexp.c:6199:}"];
+	Node0x3977230 -> Node0x39749b0;
+	Node0x3977280 [shape=record,label="{xmlregexp.c:6200:|{<s0>T|<s1>F}}"];
+	Node0x3977280 -> Node0x3978280;
+	Node0x3977280 -> Node0x3978690;
+	Node0x3978280 [shape=record,label="{xmlregexp.c:6202:}"];
+	Node0x3978280 -> Node0x39749b0;
+	Node0x3978690 [shape=record,label="{xmlregexp.c:6203:}"];
+	Node0x3978690 -> Node0x39749b0;
+	Node0x39749b0 [shape=record,label="{xmlregexp.c:6204:}"];
+}

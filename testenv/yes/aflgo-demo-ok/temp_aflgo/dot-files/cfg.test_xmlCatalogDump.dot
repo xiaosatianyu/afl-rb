@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlCatalogDump' function" {
+	label="CFG for 'test_xmlCatalogDump' function";
+
+	Node0x55e95e0 [shape=record,label="{testapi.c:5980:}"];
+	Node0x55e95e0 -> Node0x55eb5d0;
+	Node0x55eb5d0 [shape=record,label="{testapi.c:5987:|{<s0>T|<s1>F}}"];
+	Node0x55eb5d0:s0 -> Node0x55eb8b0;
+	Node0x55eb5d0:s1 -> Node0x55eb470;
+	Node0x55eb8b0 [shape=record,label="{testapi.c:5988:|{<s0>T|<s1>F}}"];
+	Node0x55eb8b0:s0 -> Node0x55ec710;
+	Node0x55eb8b0:s1 -> Node0x55eca40;
+	Node0x55ec710 [shape=record,label="{testapi.c:5997:}"];
+	Node0x55ec710 -> Node0x55eca40;
+	Node0x55eca40 [shape=record,label="{testapi.c:6002:}"];
+	Node0x55eca40 -> Node0x55eb820;
+	Node0x55eb820 [shape=record,label="{testapi.c:5987:}"];
+	Node0x55eb820 -> Node0x55eb5d0;
+	Node0x55eb470 [shape=record,label="{testapi.c:6003:}"];
+}

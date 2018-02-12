@@ -1,0 +1,42 @@
+digraph "CFG for 'xmlFAIsChar' function" {
+	label="CFG for 'xmlFAIsChar' function";
+
+	Node0x3b11ff0 [shape=record,label="{xmlregexp.c:4591:|{<s0>T|<s1>F}}"];
+	Node0x3b11ff0 -> Node0x3b26f00;
+	Node0x3b11ff0 -> Node0x3b273f0;
+	Node0x3b273f0 [shape=record,label="{xmlregexp.c:4596:|{<s0>T|<s1>F}}"];
+	Node0x3b273f0 -> Node0x3b26f00;
+	Node0x3b273f0 -> Node0x3b27370;
+	Node0x3b27370 [shape=record,label="{xmlregexp.c:4596:|{<s0>T|<s1>F}}"];
+	Node0x3b27370 -> Node0x3b26f00;
+	Node0x3b27370 -> Node0x3b272f0;
+	Node0x3b272f0 [shape=record,label="{xmlregexp.c:4597:|{<s0>T|<s1>F}}"];
+	Node0x3b272f0 -> Node0x3b26f00;
+	Node0x3b272f0 -> Node0x3b27270;
+	Node0x3b27270 [shape=record,label="{xmlregexp.c:4597:|{<s0>T|<s1>F}}"];
+	Node0x3b27270 -> Node0x3b26f00;
+	Node0x3b27270 -> Node0x3b271f0;
+	Node0x3b271f0 [shape=record,label="{xmlregexp.c:4597:|{<s0>T|<s1>F}}"];
+	Node0x3b271f0 -> Node0x3b26f00;
+	Node0x3b271f0 -> Node0x3b27170;
+	Node0x3b27170 [shape=record,label="{xmlregexp.c:4598:|{<s0>T|<s1>F}}"];
+	Node0x3b27170 -> Node0x3b26f00;
+	Node0x3b27170 -> Node0x3b270f0;
+	Node0x3b270f0 [shape=record,label="{xmlregexp.c:4598:|{<s0>T|<s1>F}}"];
+	Node0x3b270f0 -> Node0x3b26f00;
+	Node0x3b270f0 -> Node0x3b27070;
+	Node0x3b27070 [shape=record,label="{xmlregexp.c:4598:|{<s0>T|<s1>F}}"];
+	Node0x3b27070 -> Node0x3b26f00;
+	Node0x3b27070 -> Node0x3b26ff0;
+	Node0x3b26ff0 [shape=record,label="{xmlregexp.c:4599:|{<s0>T|<s1>F}}"];
+	Node0x3b26ff0 -> Node0x3b26f00;
+	Node0x3b26ff0 -> Node0x3b26fa0;
+	Node0x3b26fa0 [shape=record,label="{xmlregexp.c:4599:|{<s0>T|<s1>F}}"];
+	Node0x3b26fa0 -> Node0x3b26f00;
+	Node0x3b26fa0 -> Node0x3b26f50;
+	Node0x3b26f00 [shape=record,label="{xmlregexp.c:4600:}"];
+	Node0x3b26f00 -> Node0x3b123a0;
+	Node0x3b26f50 [shape=record,label="{xmlregexp.c:4601:}"];
+	Node0x3b26f50 -> Node0x3b123a0;
+	Node0x3b123a0 [shape=record,label="{xmlregexp.c:4602:}"];
+}

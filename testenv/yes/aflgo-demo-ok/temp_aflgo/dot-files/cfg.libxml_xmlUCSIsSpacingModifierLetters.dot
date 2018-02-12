@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsSpacingModifierLetters' function" {
+	label="CFG for 'libxml_xmlUCSIsSpacingModifierLetters' function";
+
+	Node0x5f4caa0 [shape=record,label="{libxml2-py.c:11275:|{<s0>T|<s1>F}}"];
+	Node0x5f4caa0:s0 -> Node0x5f4f970;
+	Node0x5f4caa0:s1 -> Node0x5f4f920;
+	Node0x5f4f920 [shape=record,label="{libxml2-py.c:11281:}"];
+	Node0x5f4f920 -> Node0x5f4e580;
+	Node0x5f4f970 [shape=record,label="{libxml2-py.c:11283:}"];
+	Node0x5f4f970 -> Node0x5f4e580;
+	Node0x5f4e580 [shape=record,label="{libxml2-py.c:11286:}"];
+}

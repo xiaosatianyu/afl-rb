@@ -1,0 +1,13 @@
+parser.c:8897,159.46081504702195
+parser.c:8904,161.0
+parser.c:8906,156.0
+parser.c:8907,155.0
+parser.c:8910,153.0
+parser.c:8911,155.0
+parser.c:8914,152.0
+parser.c:8915,156.0
+parser.c:8917,154.0
+parser.c:8918,156.0
+parser.c:8921,153.0
+parser.c:8926,152.0
+parser.c:8930,151.0

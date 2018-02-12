@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlSchemaFreeNotation' function" {
+	label="CFG for 'xmlSchemaFreeNotation' function";
+
+	Node0x4ef9d70 [shape=record,label="{xmlschemas.c:3723:|{<s0>T|<s1>F}}"];
+	Node0x4ef9d70 -> Node0x4eff550;
+	Node0x4ef9d70 -> Node0x4eff5a0;
+	Node0x4eff550 [shape=record,label="{xmlschemas.c:3726:}"];
+	Node0x4eff550 -> Node0x4efecf0;
+	Node0x4eff5a0 [shape=record,label="{xmlschemas.c:3727:}"];
+	Node0x4eff5a0 -> Node0x4efecf0;
+	Node0x4efecf0 [shape=record,label="{xmlschemas.c:3728:}"];
+}

@@ -1,0 +1,38 @@
+digraph "CFG for 'xmlRegCopyAtom' function" {
+	label="CFG for 'xmlRegCopyAtom' function";
+
+	Node0x3cd3060 [shape=record,label="{xmlregexp.c:839:|{<s0>T|<s1>F}}"];
+	Node0x3cd3060:s0 -> Node0x3ceade0;
+	Node0x3cd3060:s1 -> Node0x3ceae30;
+	Node0x3ceade0 [shape=record,label="{xmlregexp.c:844:}"];
+	Node0x3ceade0 -> Node0x3cea1b0;
+	Node0x3ceae30 [shape=record,label="{xmlregexp.c:847:|{<s0>T|<s1>F}}"];
+	Node0x3ceae30:s0 -> Node0x3cec840;
+	Node0x3ceae30:s1 -> Node0x3cec890;
+	Node0x3cec840 [shape=record,label="{xmlregexp.c:853:|{<s0>T|<s1>F}}"];
+	Node0x3cec840:s0 -> Node0x3ced6b0;
+	Node0x3cec840:s1 -> Node0x3ced700;
+	Node0x3ced6b0 [shape=record,label="{xmlregexp.c:858:}"];
+	Node0x3ced6b0 -> Node0x3cecfd0;
+	Node0x3ced700 [shape=record,label="{xmlregexp.c:861:}"];
+	Node0x3ced700 -> Node0x3cee780;
+	Node0x3cee780 [shape=record,label="{xmlregexp.c:861:|{<s0>T|<s1>F}}"];
+	Node0x3cee780:s0 -> Node0x3ceea60;
+	Node0x3cee780:s1 -> Node0x3cee5e0;
+	Node0x3ceea60 [shape=record,label="{xmlregexp.c:862:|{<s0>T|<s1>F}}"];
+	Node0x3ceea60:s0 -> Node0x3cef7c0;
+	Node0x3ceea60:s1 -> Node0x3cefaf0;
+	Node0x3cef7c0 [shape=record,label="{xmlregexp.c:864:}"];
+	Node0x3cef7c0 -> Node0x3cecfd0;
+	Node0x3cefaf0 [shape=record,label="{xmlregexp.c:865:}"];
+	Node0x3cefaf0 -> Node0x3cee9d0;
+	Node0x3cee9d0 [shape=record,label="{xmlregexp.c:861:}"];
+	Node0x3cee9d0 -> Node0x3cee780;
+	Node0x3cee5e0 [shape=record,label="{xmlregexp.c:867:}"];
+	Node0x3cee5e0 -> Node0x3cec890;
+	Node0x3cec890 [shape=record,label="{xmlregexp.c:868:}"];
+	Node0x3cec890 -> Node0x3cea1b0;
+	Node0x3cecfd0 [shape=record,label="{xmlregexp.c:871:}"];
+	Node0x3cecfd0 -> Node0x3cea1b0;
+	Node0x3cea1b0 [shape=record,label="{xmlregexp.c:873:}"];
+}

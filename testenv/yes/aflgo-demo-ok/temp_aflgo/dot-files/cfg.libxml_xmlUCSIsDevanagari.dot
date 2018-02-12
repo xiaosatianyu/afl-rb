@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsDevanagari' function" {
+	label="CFG for 'libxml_xmlUCSIsDevanagari' function";
+
+	Node0x5ed03f0 [shape=record,label="{libxml2-py.c:10219:|{<s0>T|<s1>F}}"];
+	Node0x5ed03f0:s0 -> Node0x5ed1450;
+	Node0x5ed03f0:s1 -> Node0x5ed1400;
+	Node0x5ed1400 [shape=record,label="{libxml2-py.c:10225:}"];
+	Node0x5ed1400 -> Node0x5ece9e0;
+	Node0x5ed1450 [shape=record,label="{libxml2-py.c:10227:}"];
+	Node0x5ed1450 -> Node0x5ece9e0;
+	Node0x5ece9e0 [shape=record,label="{libxml2-py.c:10230:}"];
+}

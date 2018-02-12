@@ -1,0 +1,27 @@
+digraph "CFG for 'gen_xmlCatalogAllow' function" {
+	label="CFG for 'gen_xmlCatalogAllow' function";
+
+	Node0x56166e0 [shape=record,label="{testapi.c:1052:|{<s0>T|<s1>F}}"];
+	Node0x56166e0:s0 -> Node0x5618f20;
+	Node0x56166e0:s1 -> Node0x56189b0;
+	Node0x5618f20 [shape=record,label="{testapi.c:1053:}"];
+	Node0x5618f20 -> Node0x561ab70;
+	Node0x56189b0 [shape=record,label="{testapi.c:1054:|{<s0>T|<s1>F}}"];
+	Node0x56189b0:s0 -> Node0x561b5d0;
+	Node0x56189b0:s1 -> Node0x561b620;
+	Node0x561b5d0 [shape=record,label="{testapi.c:1054:}"];
+	Node0x561b5d0 -> Node0x561ab70;
+	Node0x561b620 [shape=record,label="{testapi.c:1055:|{<s0>T|<s1>F}}"];
+	Node0x561b620:s0 -> Node0x561bab0;
+	Node0x561b620:s1 -> Node0x561bb00;
+	Node0x561bab0 [shape=record,label="{testapi.c:1055:}"];
+	Node0x561bab0 -> Node0x561ab70;
+	Node0x561bb00 [shape=record,label="{testapi.c:1056:|{<s0>T|<s1>F}}"];
+	Node0x561bb00:s0 -> Node0x561bf90;
+	Node0x561bb00:s1 -> Node0x561bfe0;
+	Node0x561bf90 [shape=record,label="{testapi.c:1056:}"];
+	Node0x561bf90 -> Node0x561ab70;
+	Node0x561bfe0 [shape=record,label="{testapi.c:1057:}"];
+	Node0x561bfe0 -> Node0x561ab70;
+	Node0x561ab70 [shape=record,label="{testapi.c:1058:}"];
+}

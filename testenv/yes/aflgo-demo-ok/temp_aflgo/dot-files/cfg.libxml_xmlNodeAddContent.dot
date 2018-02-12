@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlNodeAddContent' function" {
+	label="CFG for 'libxml_xmlNodeAddContent' function";
+
+	Node0x57068f0 [shape=record,label="{libxml2-py.c:4393:|{<s0>T|<s1>F}}"];
+	Node0x57068f0:s0 -> Node0x5950140;
+	Node0x57068f0:s1 -> Node0x59500f0;
+	Node0x59500f0 [shape=record,label="{libxml2-py.c:4399:}"];
+	Node0x59500f0 -> Node0x57059b0;
+	Node0x5950140 [shape=record,label="{libxml2-py.c:4400:|{<s0>T|<s1>F}}"];
+	Node0x5950140:s0 -> Node0x59509d0;
+	Node0x5950140:s1 -> Node0x5950a20;
+	Node0x59509d0 [shape=record,label="{libxml2-py.c:4400:}"];
+	Node0x59509d0 -> Node0x5950a70;
+	Node0x5950a20 [shape=record,label="{libxml2-py.c:4400:}"];
+	Node0x5950a20 -> Node0x5950a70;
+	Node0x5950a70 [shape=record,label="{libxml2-py.c:4400:}"];
+	Node0x5950a70 -> Node0x57059b0;
+	Node0x57059b0 [shape=record,label="{libxml2-py.c:4405:}"];
+}

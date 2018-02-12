@@ -1,0 +1,34 @@
+digraph "CFG for 'xmlPatternMinDepth' function" {
+	label="CFG for 'xmlPatternMinDepth' function";
+
+	Node0x4c649e0 [shape=record,label="{pattern.c:2576:|{<s0>T|<s1>F}}"];
+	Node0x4c649e0:s0 -> Node0x4c645a0;
+	Node0x4c649e0:s1 -> Node0x4c645f0;
+	Node0x4c645a0 [shape=record,label="{pattern.c:2579:}"];
+	Node0x4c645a0 -> Node0x4c6a3d0;
+	Node0x4c645f0 [shape=record,label="{pattern.c:2580:}"];
+	Node0x4c645f0 -> Node0x4c6ae30;
+	Node0x4c6ae30 [shape=record,label="{pattern.c:2580:|{<s0>T|<s1>F}}"];
+	Node0x4c6ae30:s0 -> Node0x4c6b1e0;
+	Node0x4c6ae30:s1 -> Node0x4c6b010;
+	Node0x4c6b1e0 [shape=record,label="{pattern.c:2581:|{<s0>T|<s1>F}}"];
+	Node0x4c6b1e0:s0 -> Node0x4c6b3a0;
+	Node0x4c6b1e0:s1 -> Node0x4c6b3f0;
+	Node0x4c6b3a0 [shape=record,label="{pattern.c:2582:}"];
+	Node0x4c6b3a0 -> Node0x4c6a3d0;
+	Node0x4c6b3f0 [shape=record,label="{pattern.c:2583:|{<s0>T|<s1>F}}"];
+	Node0x4c6b3f0:s0 -> Node0x4c64730;
+	Node0x4c6b3f0:s1 -> Node0x4c4ccd0;
+	Node0x4c64730 [shape=record,label="{pattern.c:2584:}"];
+	Node0x4c64730 -> Node0x4c4ccd0;
+	Node0x4c4ccd0 [shape=record,label="{pattern.c:2585:|{<s0>T|<s1>F}}"];
+	Node0x4c4ccd0:s0 -> Node0x4c6c7b0;
+	Node0x4c4ccd0:s1 -> Node0x4c6c800;
+	Node0x4c6c7b0 [shape=record,label="{pattern.c:2586:}"];
+	Node0x4c6c7b0 -> Node0x4c6a3d0;
+	Node0x4c6c800 [shape=record,label="{pattern.c:2587:}"];
+	Node0x4c6c800 -> Node0x4c6ae30;
+	Node0x4c6b010 [shape=record,label="{pattern.c:2589:}"];
+	Node0x4c6b010 -> Node0x4c6a3d0;
+	Node0x4c6a3d0 [shape=record,label="{pattern.c:2590:}"];
+}

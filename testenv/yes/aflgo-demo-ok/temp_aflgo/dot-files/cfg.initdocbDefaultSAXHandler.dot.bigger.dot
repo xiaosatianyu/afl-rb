@@ -1,0 +1,12 @@
+digraph "CFG for 'initdocbDefaultSAXHandler' function" {
+	label="CFG for 'initdocbDefaultSAXHandler' function";
+
+	Node0x4fb61b0 [shape=record,label="{SAX.c:138:|{<s0>T|<s1>F}}"];
+	Node0x4fb61b0:s0 -> Node0x4fa9bf0;
+	Node0x4fb61b0:s1 -> Node0x4fba2e0;
+	Node0x4fa9bf0 [shape=record,label="{SAX.c:141:}"];
+	Node0x4fa9bf0 -> Node0x4fb9d10;
+	Node0x4fba2e0 [shape=record,label="{SAX.c:143:}"];
+	Node0x4fba2e0 -> Node0x4fb9d10;
+	Node0x4fb9d10 [shape=record,label="{SAX.c:172:}"];
+}

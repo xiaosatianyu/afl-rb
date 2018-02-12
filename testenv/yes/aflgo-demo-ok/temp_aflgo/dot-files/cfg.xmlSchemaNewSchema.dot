@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlSchemaNewSchema' function" {
+	label="CFG for 'xmlSchemaNewSchema' function";
+
+	Node0x4fb6d70 [shape=record,label="{xmlschemas.c:3253:|{<s0>T|<s1>F}}"];
+	Node0x4fb6d70 -> Node0x4fc4cb0;
+	Node0x4fb6d70 -> Node0x4fc4d00;
+	Node0x4fc4cb0 [shape=record,label="{xmlschemas.c:3259:}"];
+	Node0x4fc4cb0 -> Node0x4fc4450;
+	Node0x4fc4d00 [shape=record,label="{xmlschemas.c:3262:}"];
+	Node0x4fc4d00 -> Node0x4fc4450;
+	Node0x4fc4450 [shape=record,label="{xmlschemas.c:3267:}"];
+}

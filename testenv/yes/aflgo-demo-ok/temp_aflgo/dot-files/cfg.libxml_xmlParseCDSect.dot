@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlParseCDSect' function" {
+	label="CFG for 'libxml_xmlParseCDSect' function";
+
+	Node0x59a5300 [shape=record,label="{libxml2-py.c:4790:|{<s0>T|<s1>F}}"];
+	Node0x59a5300:s0 -> Node0x59b0040;
+	Node0x59a5300:s1 -> Node0x59afff0;
+	Node0x59afff0 [shape=record,label="{libxml2-py.c:4795:}"];
+	Node0x59afff0 -> Node0x59a55f0;
+	Node0x59b0040 [shape=record,label="{libxml2-py.c:4796:|{<s0>T|<s1>F}}"];
+	Node0x59b0040:s0 -> Node0x59b0860;
+	Node0x59b0040:s1 -> Node0x59b08b0;
+	Node0x59b0860 [shape=record,label="{libxml2-py.c:4796:}"];
+	Node0x59b0860 -> Node0x59b0900;
+	Node0x59b08b0 [shape=record,label="{libxml2-py.c:4796:}"];
+	Node0x59b08b0 -> Node0x59b0900;
+	Node0x59b0900 [shape=record,label="{libxml2-py.c:4796:}"];
+	Node0x59b0900 -> Node0x59a55f0;
+	Node0x59a55f0 [shape=record,label="{libxml2-py.c:4801:}"];
+}

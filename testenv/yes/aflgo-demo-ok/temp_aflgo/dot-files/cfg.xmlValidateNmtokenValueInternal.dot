@@ -1,0 +1,29 @@
+digraph "CFG for 'xmlValidateNmtokenValueInternal' function" {
+	label="CFG for 'xmlValidateNmtokenValueInternal' function";
+
+	Node0x410ed40 [shape=record,label="{valid.c:3609:|{<s0>T|<s1>F}}"];
+	Node0x410ed40 -> Node0x4115ba0;
+	Node0x410ed40 -> Node0x4115bf0;
+	Node0x4115ba0 [shape=record,label="{valid.c:3613:}"];
+	Node0x4115ba0 -> Node0x410fa20;
+	Node0x4115bf0 [shape=record,label="{valid.c:3614:|{<s0>T|<s1>F}}"];
+	Node0x4115bf0 -> Node0x4116860;
+	Node0x4115bf0 -> Node0x4116810;
+	Node0x4116810 [shape=record,label="{valid.c:3619:}"];
+	Node0x4116810 -> Node0x410fa20;
+	Node0x4116860 [shape=record,label="{valid.c:3621:}"];
+	Node0x4116860 -> Node0x4117360;
+	Node0x4117360 [shape=record,label="{valid.c:3623:|{<s0>T|<s1>F}}"];
+	Node0x4117360 -> Node0x41177c0;
+	Node0x4117360 -> Node0x4117580;
+	Node0x41177c0 [shape=record,label="{valid.c:3624:}"];
+	Node0x41177c0 -> Node0x4117360;
+	Node0x4117580 [shape=record,label="{valid.c:3628:|{<s0>T|<s1>F}}"];
+	Node0x4117580 -> Node0x4117f70;
+	Node0x4117580 -> Node0x4117fc0;
+	Node0x4117f70 [shape=record,label="{valid.c:3628:}"];
+	Node0x4117f70 -> Node0x410fa20;
+	Node0x4117fc0 [shape=record,label="{valid.c:3630:}"];
+	Node0x4117fc0 -> Node0x410fa20;
+	Node0x410fa20 [shape=record,label="{valid.c:3631:}"];
+}

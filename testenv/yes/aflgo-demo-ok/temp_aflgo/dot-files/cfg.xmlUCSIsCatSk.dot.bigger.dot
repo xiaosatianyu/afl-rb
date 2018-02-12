@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlUCSIsCatSk' function" {
+	label="CFG for 'xmlUCSIsCatSk' function";
+
+	Node0x5017fd0 [shape=record,label="{xmlunicode.c:3069:}"];
+}

@@ -1,0 +1,21 @@
+digraph "CFG for 'xmlSAX2DecodeAttrEntities' function" {
+	label="CFG for 'xmlSAX2DecodeAttrEntities' function";
+
+	Node0x4b1b740 [shape=record,label="{SAX2.c:1933:}"];
+	Node0x4b1b740 -> Node0x4b3eb50;
+	Node0x4b3eb50 [shape=record,label="{SAX2.c:1939:|{<s0>T|<s1>F}}"];
+	Node0x4b3eb50:s0 -> Node0x4b3ef70;
+	Node0x4b3eb50:s1 -> Node0x4b3ed70;
+	Node0x4b3ef70 [shape=record,label="{SAX2.c:1940:|{<s0>T|<s1>F}}"];
+	Node0x4b3ef70:s0 -> Node0x4b3f0f0;
+	Node0x4b3ef70:s1 -> Node0x4b3f140;
+	Node0x4b3f0f0 [shape=record,label="{SAX2.c:1941:}"];
+	Node0x4b3f0f0 -> Node0x4b3f490;
+	Node0x4b3f140 [shape=record,label="{SAX2.c:1939:}"];
+	Node0x4b3f140 -> Node0x4b3eb50;
+	Node0x4b3ed70 [shape=record,label="{SAX2.c:1942:}"];
+	Node0x4b3ed70 -> Node0x4b39770;
+	Node0x4b3f490 [shape=record,label="{SAX2.c:1944:}"];
+	Node0x4b3f490 -> Node0x4b39770;
+	Node0x4b39770 [shape=record,label="{SAX2.c:1949:}"];
+}

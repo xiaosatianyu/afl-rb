@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlTextReaderRelaxNGValidate' function" {
+	label="CFG for 'libxml_xmlTextReaderRelaxNGValidate' function";
+
+	Node0x5d99320 [shape=record,label="{libxml2-py.c:8700:|{<s0>T|<s1>F}}"];
+	Node0x5d99320:s0 -> Node0x5d9c190;
+	Node0x5d99320:s1 -> Node0x5d9c140;
+	Node0x5d9c140 [shape=record,label="{libxml2-py.c:8708:}"];
+	Node0x5d9c140 -> Node0x5d99700;
+	Node0x5d9c190 [shape=record,label="{libxml2-py.c:8709:|{<s0>T|<s1>F}}"];
+	Node0x5d9c190:s0 -> Node0x5d9ca30;
+	Node0x5d9c190:s1 -> Node0x5d9ca80;
+	Node0x5d9ca30 [shape=record,label="{libxml2-py.c:8709:}"];
+	Node0x5d9ca30 -> Node0x5d9cad0;
+	Node0x5d9ca80 [shape=record,label="{libxml2-py.c:8709:}"];
+	Node0x5d9ca80 -> Node0x5d9cad0;
+	Node0x5d9cad0 [shape=record,label="{libxml2-py.c:8709:}"];
+	Node0x5d9cad0 -> Node0x5d99700;
+	Node0x5d99700 [shape=record,label="{libxml2-py.c:8714:}"];
+}

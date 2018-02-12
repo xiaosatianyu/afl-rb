@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlOutputBufferGetContent' function" {
+	label="CFG for 'test_xmlOutputBufferGetContent' function";
+
+	Node0x6261960 [shape=record,label="{testapi.c:28601:}"];
+	Node0x6261960 -> Node0x6270c70;
+	Node0x6270c70 [shape=record,label="{testapi.c:28609:|{<s0>T|<s1>F}}"];
+	Node0x6270c70:s0 -> Node0x6270f50;
+	Node0x6270c70:s1 -> Node0x6270ad0;
+	Node0x6270f50 [shape=record,label="{testapi.c:28610:|{<s0>T|<s1>F}}"];
+	Node0x6270f50:s0 -> Node0x6271e20;
+	Node0x6270f50:s1 -> Node0x62725f0;
+	Node0x6271e20 [shape=record,label="{testapi.c:28620:}"];
+	Node0x6271e20 -> Node0x62725f0;
+	Node0x62725f0 [shape=record,label="{testapi.c:28625:}"];
+	Node0x62725f0 -> Node0x6270ec0;
+	Node0x6270ec0 [shape=record,label="{testapi.c:28609:}"];
+	Node0x6270ec0 -> Node0x6270c70;
+	Node0x6270ad0 [shape=record,label="{testapi.c:28626:}"];
+}

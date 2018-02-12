@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlXPathNodeSetRemove' function" {
+	label="CFG for 'test_xmlXPathNodeSetRemove' function";
+
+	Node0x6d4d390 [shape=record,label="{testapi.c:49487:}"];
+	Node0x6d4d390 -> Node0x6d5c670;
+	Node0x6d5c670 [shape=record,label="{testapi.c:49496:|{<s0>T|<s1>F}}"];
+	Node0x6d5c670:s0 -> Node0x6d5c950;
+	Node0x6d5c670:s1 -> Node0x6d5c4d0;
+	Node0x6d5c950 [shape=record,label="{testapi.c:49497:}"];
+	Node0x6d5c950 -> Node0x6d5cd40;
+	Node0x6d5cd40 [shape=record,label="{testapi.c:49497:|{<s0>T|<s1>F}}"];
+	Node0x6d5cd40:s0 -> Node0x6d5cfc0;
+	Node0x6d5cd40:s1 -> Node0x6d5cc20;
+	Node0x6d5cfc0 [shape=record,label="{testapi.c:49498:|{<s0>T|<s1>F}}"];
+	Node0x6d5cfc0:s0 -> Node0x6d5e0b0;
+	Node0x6d5cfc0:s1 -> Node0x6d5e3e0;
+	Node0x6d5e0b0 [shape=record,label="{testapi.c:49509:}"];
+	Node0x6d5e0b0 -> Node0x6d5e3e0;
+	Node0x6d5e3e0 [shape=record,label="{testapi.c:49515:}"];
+	Node0x6d5e3e0 -> Node0x6d5cf30;
+	Node0x6d5cf30 [shape=record,label="{testapi.c:49497:}"];
+	Node0x6d5cf30 -> Node0x6d5cd40;
+	Node0x6d5cc20 [shape=record,label="{testapi.c:49516:}"];
+	Node0x6d5cc20 -> Node0x6d5c8c0;
+	Node0x6d5c8c0 [shape=record,label="{testapi.c:49496:}"];
+	Node0x6d5c8c0 -> Node0x6d5c670;
+	Node0x6d5c4d0 [shape=record,label="{testapi.c:49517:}"];
+}

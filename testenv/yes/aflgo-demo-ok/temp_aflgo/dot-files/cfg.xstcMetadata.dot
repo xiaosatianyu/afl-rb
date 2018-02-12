@@ -1,0 +1,47 @@
+digraph "CFG for 'xstcMetadata' function" {
+	label="CFG for 'xstcMetadata' function";
+
+	Node0x40dceb0 [shape=record,label="{runsuite.c:996:|{<s0>T|<s1>F}}"];
+	Node0x40dceb0:s0 -> Node0x40e3370;
+	Node0x40dceb0:s1 -> Node0x40e33c0;
+	Node0x40e3370 [shape=record,label="{runsuite.c:1005:}"];
+	Node0x40e3370 -> Node0x40dfa30;
+	Node0x40e33c0 [shape=record,label="{runsuite.c:1009:|{<s0>T|<s1>F}}"];
+	Node0x40e33c0:s0 -> Node0x40e3e30;
+	Node0x40e33c0:s1 -> Node0x40e3ed0;
+	Node0x40e3ed0 [shape=record,label="{runsuite.c:1010:|{<s0>T|<s1>F}}"];
+	Node0x40e3ed0:s0 -> Node0x40e3e80;
+	Node0x40e3ed0:s1 -> Node0x40e3e30;
+	Node0x40e3e30 [shape=record,label="{runsuite.c:1011:}"];
+	Node0x40e3e30 -> Node0x40dfa30;
+	Node0x40e3e80 [shape=record,label="{runsuite.c:1014:|{<s0>T|<s1>F}}"];
+	Node0x40e3e80:s0 -> Node0x40e50a0;
+	Node0x40e3e80:s1 -> Node0x40e50f0;
+	Node0x40e50a0 [shape=record,label="{runsuite.c:1016:}"];
+	Node0x40e50a0 -> Node0x40e50f0;
+	Node0x40e50f0 [shape=record,label="{runsuite.c:1018:|{<s0>T|<s1>F}}"];
+	Node0x40e50f0:s0 -> Node0x40e5cf0;
+	Node0x40e50f0:s1 -> Node0x40e5d40;
+	Node0x40e5cf0 [shape=record,label="{runsuite.c:1020:}"];
+	Node0x40e5cf0 -> Node0x40e5d40;
+	Node0x40e5d40 [shape=record,label="{runsuite.c:1022:|{<s0>T|<s1>F}}"];
+	Node0x40e5d40:s0 -> Node0x40123f0;
+	Node0x40e5d40:s1 -> Node0x4012490;
+	Node0x4012490 [shape=record,label="{runsuite.c:1027:|{<s0>T|<s1>F}}"];
+	Node0x4012490:s0 -> Node0x4012440;
+	Node0x4012490:s1 -> Node0x40123f0;
+	Node0x40123f0 [shape=record,label="{runsuite.c:1028:}"];
+	Node0x40123f0 -> Node0x4012600;
+	Node0x4012440 [shape=record,label="{runsuite.c:1032:}"];
+	Node0x4012440 -> Node0x40e8bc0;
+	Node0x40e8bc0 [shape=record,label="{runsuite.c:1032:|{<s0>T|<s1>F}}"];
+	Node0x40e8bc0:s0 -> Node0x40e9020;
+	Node0x40e8bc0:s1 -> Node0x40e8de0;
+	Node0x40e9020 [shape=record,label="{runsuite.c:1033:}"];
+	Node0x40e9020 -> Node0x40e8bc0;
+	Node0x40e8de0 [shape=record,label="{runsuite.c:1032:}"];
+	Node0x40e8de0 -> Node0x4012600;
+	Node0x4012600 [shape=record,label="{runsuite.c:1038:}"];
+	Node0x4012600 -> Node0x40dfa30;
+	Node0x40dfa30 [shape=record,label="{runsuite.c:1040:}"];
+}

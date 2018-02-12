@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsBoxDrawing' function" {
+	label="CFG for 'xmlUCSIsBoxDrawing' function";
+
+	Node0x4f5b180 [shape=record,label="{xmlunicode.c:1132:|{<s0>T|<s1>F}}"];
+	Node0x4f5b180:s0 -> Node0x4f5b710;
+	Node0x4f5b180:s1 -> Node0x4f5b6c0;
+	Node0x4f5b710 [shape=record,label="{xmlunicode.c:1133:}"];
+	Node0x4f5b710 -> Node0x4f5b6c0;
+	Node0x4f5b6c0 [shape=record,label="{xmlunicode.c:1133:}"];
+}

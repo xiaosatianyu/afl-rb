@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlFreeAutomata' function" {
+	label="CFG for 'xmlFreeAutomata' function";
+
+	Node0x3913f00 [shape=record,label="{xmlregexp.c:5634:|{<s0>T|<s1>F}}"];
+	Node0x3913f00 -> Node0x39168d0;
+	Node0x3913f00 -> Node0x3916920;
+	Node0x39168d0 [shape=record,label="{xmlregexp.c:5636:}"];
+	Node0x39168d0 -> Node0x3916990;
+	Node0x3916920 [shape=record,label="{xmlregexp.c:5637:}"];
+	Node0x3916920 -> Node0x3916990;
+	Node0x3916990 [shape=record,label="{xmlregexp.c:5638:}"];
+}

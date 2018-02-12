@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlSchemaVErrMemory' function" {
+	label="CFG for 'xmlSchemaVErrMemory' function";
+
+	Node0x581c210 [shape=record,label="{xmlschemas.c:1994:|{<s0>T|<s1>F}}"];
+	Node0x581c210:s0 -> Node0x5825180;
+	Node0x581c210:s1 -> Node0x58251d0;
+	Node0x5825180 [shape=record,label="{xmlschemas.c:1998:}"];
+	Node0x5825180 -> Node0x58251d0;
+	Node0x58251d0 [shape=record,label="{xmlschemas.c:2001:}"];
+}

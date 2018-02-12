@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlSchemaValueGetAsBoolean' function" {
+	label="CFG for 'test_xmlSchemaValueGetAsBoolean' function";
+
+	Node0x66ecf00 [shape=record,label="{testapi.c:36107:}"];
+	Node0x66ecf00 -> Node0x66f92b0;
+	Node0x66f92b0 [shape=record,label="{testapi.c:36115:|{<s0>T|<s1>F}}"];
+	Node0x66f92b0:s0 -> Node0x66f9590;
+	Node0x66f92b0:s1 -> Node0x66f9110;
+	Node0x66f9590 [shape=record,label="{testapi.c:36116:|{<s0>T|<s1>F}}"];
+	Node0x66f9590:s0 -> Node0x66fa460;
+	Node0x66f9590:s1 -> Node0x66fa790;
+	Node0x66fa460 [shape=record,label="{testapi.c:36126:}"];
+	Node0x66fa460 -> Node0x66fa790;
+	Node0x66fa790 [shape=record,label="{testapi.c:36131:}"];
+	Node0x66fa790 -> Node0x66f9500;
+	Node0x66f9500 [shape=record,label="{testapi.c:36115:}"];
+	Node0x66f9500 -> Node0x66f92b0;
+	Node0x66f9110 [shape=record,label="{testapi.c:36132:}"];
+}

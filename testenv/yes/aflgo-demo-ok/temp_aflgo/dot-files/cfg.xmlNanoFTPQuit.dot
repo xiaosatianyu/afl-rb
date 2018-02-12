@@ -1,0 +1,20 @@
+digraph "CFG for 'xmlNanoFTPQuit' function" {
+	label="CFG for 'xmlNanoFTPQuit' function";
+
+	Node0x39e0480 [shape=record,label="{nanoftp.c:825:|{<s0>T|<s1>F}}"];
+	Node0x39e0480 -> Node0x39e1730;
+	Node0x39e0480 -> Node0x39e17d0;
+	Node0x39e17d0 [shape=record,label="{nanoftp.c:830:|{<s0>T|<s1>F}}"];
+	Node0x39e17d0 -> Node0x39e1730;
+	Node0x39e17d0 -> Node0x39e1780;
+	Node0x39e1730 [shape=record,label="{nanoftp.c:830:}"];
+	Node0x39e1730 -> Node0x39db3a0;
+	Node0x39e1780 [shape=record,label="{nanoftp.c:832:|{<s0>T|<s1>F}}"];
+	Node0x39e1780 -> Node0x39e2f40;
+	Node0x39e1780 -> Node0x39e2a40;
+	Node0x39e2f40 [shape=record,label="{nanoftp.c:839:}"];
+	Node0x39e2f40 -> Node0x39db3a0;
+	Node0x39e2a40 [shape=record,label="{nanoftp.c:842:}"];
+	Node0x39e2a40 -> Node0x39db3a0;
+	Node0x39db3a0 [shape=record,label="{nanoftp.c:843:}"];
+}

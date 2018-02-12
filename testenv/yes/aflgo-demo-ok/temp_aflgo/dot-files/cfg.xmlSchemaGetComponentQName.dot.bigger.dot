@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlSchemaGetComponentQName' function" {
+	label="CFG for 'xmlSchemaGetComponentQName' function";
+
+	Node0x4f76510 [shape=record,label="{xmlschemas.c:1418:}"];
+}

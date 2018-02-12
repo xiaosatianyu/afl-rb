@@ -1,0 +1,25 @@
+digraph "CFG for 'xmlNewCDataBlock' function" {
+	label="CFG for 'xmlNewCDataBlock' function";
+
+	Node0x3f3b870 [shape=record,label="{tree.c:2744:|{<s0>T|<s1>F}}"];
+	Node0x3f3b870 -> Node0x3f3ee90;
+	Node0x3f3b870 -> Node0x3f3eee0;
+	Node0x3f3ee90 [shape=record,label="{tree.c:2752:}"];
+	Node0x3f3ee90 -> Node0x3f3e040;
+	Node0x3f3eee0 [shape=record,label="{tree.c:2755:|{<s0>T|<s1>F}}"];
+	Node0x3f3eee0 -> Node0x3f3fdc0;
+	Node0x3f3eee0 -> Node0x3f3fe10;
+	Node0x3f3fdc0 [shape=record,label="{tree.c:2760:}"];
+	Node0x3f3fdc0 -> Node0x3f3fe10;
+	Node0x3f3fe10 [shape=record,label="{tree.c:2763:|{<s0>T|<s1>F}}"];
+	Node0x3f3fe10 -> Node0x3f40700;
+	Node0x3f3fe10 -> Node0x3f406b0;
+	Node0x3f40700 [shape=record,label="{tree.c:2763:|{<s0>T|<s1>F}}"];
+	Node0x3f40700 -> Node0x3f40660;
+	Node0x3f40700 -> Node0x3f406b0;
+	Node0x3f40660 [shape=record,label="{tree.c:2764:}"];
+	Node0x3f40660 -> Node0x3f406b0;
+	Node0x3f406b0 [shape=record,label="{tree.c:2765:}"];
+	Node0x3f406b0 -> Node0x3f3e040;
+	Node0x3f3e040 [shape=record,label="{tree.c:2766:}"];
+}

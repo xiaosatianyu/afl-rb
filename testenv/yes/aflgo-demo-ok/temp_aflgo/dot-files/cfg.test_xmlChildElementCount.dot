@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlChildElementCount' function" {
+	label="CFG for 'test_xmlChildElementCount' function";
+
+	Node0x5d823d0 [shape=record,label="{testapi.c:19247:}"];
+	Node0x5d823d0 -> Node0x5d901e0;
+	Node0x5d901e0 [shape=record,label="{testapi.c:19255:|{<s0>T|<s1>F}}"];
+	Node0x5d901e0:s0 -> Node0x5d904c0;
+	Node0x5d901e0:s1 -> Node0x5d90040;
+	Node0x5d904c0 [shape=record,label="{testapi.c:19256:|{<s0>T|<s1>F}}"];
+	Node0x5d904c0:s0 -> Node0x5577330;
+	Node0x5d904c0:s1 -> Node0x5577380;
+	Node0x5577330 [shape=record,label="{testapi.c:19266:}"];
+	Node0x5577330 -> Node0x5577380;
+	Node0x5577380 [shape=record,label="{testapi.c:19271:}"];
+	Node0x5577380 -> Node0x5d90430;
+	Node0x5d90430 [shape=record,label="{testapi.c:19255:}"];
+	Node0x5d90430 -> Node0x5d901e0;
+	Node0x5d90040 [shape=record,label="{testapi.c:19272:}"];
+}

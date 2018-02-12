@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlFreeEntitiesTable' function" {
+	label="CFG for 'xmlFreeEntitiesTable' function";
+
+	Node0x407dff0 [shape=record,label="{entities.c:896:}"];
+}

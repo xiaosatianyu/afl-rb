@@ -1,0 +1,27 @@
+digraph "CFG for 'htmlParserFinishElementParsing' function" {
+	label="CFG for 'htmlParserFinishElementParsing' function";
+
+	Node0x479c6c0 [shape=record,label="{HTMLparser.c:4364:|{<s0>T|<s1>F}}"];
+	Node0x479c6c0 -> Node0x479c760;
+	Node0x479c6c0 -> Node0x479c710;
+	Node0x479c760 [shape=record,label="{HTMLparser.c:4368:|{<s0>T|<s1>F}}"];
+	Node0x479c760 -> Node0x47b1bc0;
+	Node0x479c760 -> Node0x479c710;
+	Node0x47b1bc0 [shape=record,label="{HTMLparser.c:4369:}"];
+	Node0x47b1bc0 -> Node0x479c710;
+	Node0x479c710 [shape=record,label="{HTMLparser.c:4376:|{<s0>T|<s1>F}}"];
+	Node0x479c710 -> Node0x47b8ed0;
+	Node0x479c710 -> Node0x47b8e80;
+	Node0x47b8ed0 [shape=record,label="{HTMLparser.c:4376:|{<s0>T|<s1>F}}"];
+	Node0x47b8ed0 -> Node0x47b8db0;
+	Node0x47b8ed0 -> Node0x47b8e80;
+	Node0x47b8e80 [shape=record,label="{HTMLparser.c:4376:|{<s0>T|<s1>F}}"];
+	Node0x47b8e80 -> Node0x47b8db0;
+	Node0x47b8e80 -> Node0x47b8e00;
+	Node0x47b8e00 [shape=record,label="{HTMLparser.c:4376:|{<s0>T|<s1>F}}"];
+	Node0x47b8e00 -> Node0x47b8db0;
+	Node0x47b8e00 -> Node0x47b8d60;
+	Node0x47b8d60 [shape=record,label="{HTMLparser.c:4377:}"];
+	Node0x47b8d60 -> Node0x47b8db0;
+	Node0x47b8db0 [shape=record,label="{HTMLparser.c:4379:}"];
+}

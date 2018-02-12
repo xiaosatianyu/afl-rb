@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlCreateEntitiesTable' function" {
+	label="CFG for 'xmlCreateEntitiesTable' function";
+
+	Node0x40aa150 [shape=record,label="{entities.c:872:}"];
+}

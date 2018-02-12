@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsRunic' function" {
+	label="CFG for 'test_xmlUCSIsRunic' function";
+
+	Node0x69a6530 [shape=record,label="{testapi.c:41971:}"];
+	Node0x69a6530 -> Node0x69b6020;
+	Node0x69b6020 [shape=record,label="{testapi.c:41979:|{<s0>T|<s1>F}}"];
+	Node0x69b6020:s0 -> Node0x69b6300;
+	Node0x69b6020:s1 -> Node0x69b5e80;
+	Node0x69b6300 [shape=record,label="{testapi.c:41980:|{<s0>T|<s1>F}}"];
+	Node0x69b6300:s0 -> Node0x69b7150;
+	Node0x69b6300:s1 -> Node0x69b7480;
+	Node0x69b7150 [shape=record,label="{testapi.c:41990:}"];
+	Node0x69b7150 -> Node0x69b7480;
+	Node0x69b7480 [shape=record,label="{testapi.c:41995:}"];
+	Node0x69b7480 -> Node0x69b6270;
+	Node0x69b6270 [shape=record,label="{testapi.c:41979:}"];
+	Node0x69b6270 -> Node0x69b6020;
+	Node0x69b5e80 [shape=record,label="{testapi.c:41996:}"];
+}

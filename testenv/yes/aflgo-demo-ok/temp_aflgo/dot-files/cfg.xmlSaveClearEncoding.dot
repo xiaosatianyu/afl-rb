@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlSaveClearEncoding' function" {
+	label="CFG for 'xmlSaveClearEncoding' function";
+
+	Node0x4ffa890 [shape=record,label="{xmlsave.c:580:}"];
+}

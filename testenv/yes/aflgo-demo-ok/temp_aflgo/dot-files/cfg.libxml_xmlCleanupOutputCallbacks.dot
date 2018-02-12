@@ -1,0 +1,5 @@
+digraph "CFG for 'libxml_xmlCleanupOutputCallbacks' function" {
+	label="CFG for 'libxml_xmlCleanupOutputCallbacks' function";
+
+	Node0x5585500 [shape=record,label="{libxml2-py.c:1589:}"];
+}

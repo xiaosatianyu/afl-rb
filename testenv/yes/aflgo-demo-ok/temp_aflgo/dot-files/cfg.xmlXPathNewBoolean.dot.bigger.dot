@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlXPathNewBoolean' function" {
+	label="CFG for 'xmlXPathNewBoolean' function";
+
+	Node0x4577dc0 [shape=record,label="{xpath.c:5247:|{<s0>T|<s1>F}}"];
+	Node0x4577dc0:s0 -> Node0x45789a0;
+	Node0x4577dc0:s1 -> Node0x45789f0;
+	Node0x45789a0 [shape=record,label="{xpath.c:5252:}"];
+	Node0x45789a0 -> Node0x4575400;
+	Node0x45789f0 [shape=record,label="{xpath.c:5255:}"];
+	Node0x45789f0 -> Node0x4575400;
+	Node0x4575400 [shape=record,label="{xpath.c:5262:}"];
+}

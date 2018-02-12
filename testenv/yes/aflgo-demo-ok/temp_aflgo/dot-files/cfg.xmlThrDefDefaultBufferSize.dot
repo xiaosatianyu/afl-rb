@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlThrDefDefaultBufferSize' function" {
+	label="CFG for 'xmlThrDefDefaultBufferSize' function";
+
+	Node0x3768d10 [shape=record,label="{globals.c:816:}"];
+}

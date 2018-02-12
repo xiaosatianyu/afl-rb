@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlIsExtender' function" {
+	label="CFG for 'xmlIsExtender' function";
+
+	Node0x3641cb0 [shape=record,label="{chvalid.c:301:|{<s0>T|<s1>F}}"];
+	Node0x3641cb0:s0 -> Node0x3640f50;
+	Node0x3641cb0:s1 -> Node0x3641c40;
+	Node0x3640f50 [shape=record,label="{chvalid.c:302:}"];
+	Node0x3640f50 -> Node0x3641a70;
+	Node0x3641c40 [shape=record,label="{chvalid.c:302:}"];
+	Node0x3641c40 -> Node0x3641a70;
+	Node0x3641a70 [shape=record,label="{chvalid.c:302:}"];
+}

@@ -1,0 +1,42 @@
+digraph "CFG for 'xmlXPtrGetEndPoint' function" {
+	label="CFG for 'xmlXPtrGetEndPoint' function";
+
+	Node0x4920ae0 [shape=record,label="{xpointer.c:2721:|{<s0>T|<s1>F}}"];
+	Node0x4920ae0:s0 -> Node0x4921770;
+	Node0x4920ae0:s1 -> Node0x4921890;
+	Node0x4921890 [shape=record,label="{xpointer.c:2722:|{<s0>T|<s1>F}}"];
+	Node0x4921890:s0 -> Node0x4921770;
+	Node0x4921890:s1 -> Node0x4921810;
+	Node0x4921810 [shape=record,label="{xpointer.c:2722:|{<s0>T|<s1>F}}"];
+	Node0x4921810:s0 -> Node0x4921770;
+	Node0x4921810:s1 -> Node0x49217c0;
+	Node0x4921770 [shape=record,label="{xpointer.c:2723:}"];
+	Node0x4921770 -> Node0x4727390;
+	Node0x49217c0 [shape=record,label="{xpointer.c:2725:|{<s0>def|<s1>5|<s2>6}}"];
+	Node0x49217c0:s0 -> Node0x49223c0;
+	Node0x49217c0:s1 -> Node0x4922700;
+	Node0x49217c0:s2 -> Node0x49236d0;
+	Node0x4922700 [shape=record,label="{xpointer.c:2727:|{<s0>T|<s1>F}}"];
+	Node0x4922700:s0 -> Node0x4922b80;
+	Node0x4922700:s1 -> Node0x4922c20;
+	Node0x4922b80 [shape=record,label="{xpointer.c:2729:}"];
+	Node0x4922b80 -> Node0x4922bd0;
+	Node0x4922c20 [shape=record,label="{xpointer.c:2731:}"];
+	Node0x4922c20 -> Node0x4922bd0;
+	Node0x4922bd0 [shape=record,label="{xpointer.c:2732:}"];
+	Node0x4922bd0 -> Node0x4727390;
+	Node0x49236d0 [shape=record,label="{xpointer.c:2734:|{<s0>T|<s1>F}}"];
+	Node0x49236d0:s0 -> Node0x4923b50;
+	Node0x49236d0:s1 -> Node0x4923bf0;
+	Node0x4923b50 [shape=record,label="{xpointer.c:2736:}"];
+	Node0x4923b50 -> Node0x4923ba0;
+	Node0x4923bf0 [shape=record,label="{xpointer.c:2738:}"];
+	Node0x4923bf0 -> Node0x4923ba0;
+	Node0x4923ba0 [shape=record,label="{xpointer.c:2739:}"];
+	Node0x4923ba0 -> Node0x4727390;
+	Node0x49223c0 [shape=record,label="{xpointer.c:2741:}"];
+	Node0x49223c0 -> Node0x49221b0;
+	Node0x49221b0 [shape=record,label="{xpointer.c:2743:}"];
+	Node0x49221b0 -> Node0x4727390;
+	Node0x4727390 [shape=record,label="{xpointer.c:2744:}"];
+}

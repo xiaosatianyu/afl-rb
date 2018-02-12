@@ -1,0 +1,36 @@
+digraph "CFG for 'xmlXPathCastToNumber' function" {
+	label="CFG for 'xmlXPathCastToNumber' function";
+
+	Node0x45bb160 [shape=record,label="{xpath.c:5925:|{<s0>T|<s1>F}}"];
+	Node0x45bb160:s0 -> Node0x45bae10;
+	Node0x45bb160:s1 -> Node0x45bae60;
+	Node0x45bae10 [shape=record,label="{xpath.c:5929:}"];
+	Node0x45bae10 -> Node0x45bb0a0;
+	Node0x45bae60 [shape=record,label="{xpath.c:5930:|{<s0>def|<s1>0|<s2>1|<s3>9|<s4>4|<s5>3|<s6>2|<s7>8|<s8>5|<s9>6|<s10>7}}"];
+	Node0x45bae60:s0 -> Node0x45bcf00;
+	Node0x45bae60:s1 -> Node0x45bd450;
+	Node0x45bae60:s2 -> Node0x45bd6a0;
+	Node0x45bae60:s3 -> Node0x45bd6a0;
+	Node0x45bae60:s4 -> Node0x45bdae0;
+	Node0x45bae60:s5 -> Node0x45bdf20;
+	Node0x45bae60:s6 -> Node0x45be2a0;
+	Node0x45bae60:s7 -> Node0x45be6e0;
+	Node0x45bae60:s8 -> Node0x45be6e0;
+	Node0x45bae60:s9 -> Node0x45be6e0;
+	Node0x45bae60:s10 -> Node0x45be6e0;
+	Node0x45bd450 [shape=record,label="{xpath.c:5935:}"];
+	Node0x45bd450 -> Node0x45bcf00;
+	Node0x45bd6a0 [shape=record,label="{xpath.c:5939:}"];
+	Node0x45bd6a0 -> Node0x45bcf00;
+	Node0x45bdae0 [shape=record,label="{xpath.c:5942:}"];
+	Node0x45bdae0 -> Node0x45bcf00;
+	Node0x45bdf20 [shape=record,label="{xpath.c:5945:}"];
+	Node0x45bdf20 -> Node0x45bcf00;
+	Node0x45be2a0 [shape=record,label="{xpath.c:5948:}"];
+	Node0x45be2a0 -> Node0x45bcf00;
+	Node0x45be6e0 [shape=record,label="{xpath.c:5954:}"];
+	Node0x45be6e0 -> Node0x45bcf00;
+	Node0x45bcf00 [shape=record,label="{xpath.c:5958:}"];
+	Node0x45bcf00 -> Node0x45bb0a0;
+	Node0x45bb0a0 [shape=record,label="{xpath.c:5959:}"];
+}

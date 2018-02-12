@@ -1,0 +1,18 @@
+digraph "CFG for 'resolveEntitySplit' function" {
+	label="CFG for 'resolveEntitySplit' function";
+
+	Node0x5a797c0 [shape=record,label="{xmlschemas.c:28276:|{<s0>T|<s1>F}}"];
+	Node0x5a797c0 -> Node0x5a7c3a0;
+	Node0x5a797c0 -> Node0x5a7c2d0;
+	Node0x5a7c3a0 [shape=record,label="{xmlschemas.c:28279:|{<s0>T|<s1>F}}"];
+	Node0x5a7c3a0 -> Node0x5a7c320;
+	Node0x5a7c3a0 -> Node0x5a7c2d0;
+	Node0x5a7c320 [shape=record,label="{xmlschemas.c:28280:|{<s0>T|<s1>F}}"];
+	Node0x5a7c320 -> Node0x5a7c280;
+	Node0x5a7c320 -> Node0x5a7c2d0;
+	Node0x5a7c280 [shape=record,label="{xmlschemas.c:28281:}"];
+	Node0x5a7c280 -> Node0x5a794b0;
+	Node0x5a7c2d0 [shape=record,label="{xmlschemas.c:28283:}"];
+	Node0x5a7c2d0 -> Node0x5a794b0;
+	Node0x5a794b0 [shape=record,label="{xmlschemas.c:28284:}"];
+}

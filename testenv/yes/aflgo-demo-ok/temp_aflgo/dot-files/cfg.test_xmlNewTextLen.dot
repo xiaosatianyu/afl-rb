@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlNewTextLen' function" {
+	label="CFG for 'test_xmlNewTextLen' function";
+
+	Node0x5f06870 [shape=record,label="{testapi.c:22085:}"];
+	Node0x5f06870 -> Node0x55ce800;
+	Node0x55ce800 [shape=record,label="{testapi.c:22094:|{<s0>T|<s1>F}}"];
+	Node0x55ce800:s0 -> Node0x55cea60;
+	Node0x55ce800:s1 -> Node0x55ce6a0;
+	Node0x55cea60 [shape=record,label="{testapi.c:22095:}"];
+	Node0x55cea60 -> Node0x55cedd0;
+	Node0x55cedd0 [shape=record,label="{testapi.c:22095:|{<s0>T|<s1>F}}"];
+	Node0x55cedd0:s0 -> Node0x55cf010;
+	Node0x55cedd0:s1 -> Node0x55cecf0;
+	Node0x55cf010 [shape=record,label="{testapi.c:22096:|{<s0>T|<s1>F}}"];
+	Node0x55cf010:s0 -> Node0x55d0160;
+	Node0x55cf010:s1 -> Node0x55d0490;
+	Node0x55d0160 [shape=record,label="{testapi.c:22108:}"];
+	Node0x55d0160 -> Node0x55d0490;
+	Node0x55d0490 [shape=record,label="{testapi.c:22114:}"];
+	Node0x55d0490 -> Node0x55cef80;
+	Node0x55cef80 [shape=record,label="{testapi.c:22095:}"];
+	Node0x55cef80 -> Node0x55cedd0;
+	Node0x55cecf0 [shape=record,label="{testapi.c:22115:}"];
+	Node0x55cecf0 -> Node0x55cea10;
+	Node0x55cea10 [shape=record,label="{testapi.c:22094:}"];
+	Node0x55cea10 -> Node0x55ce800;
+	Node0x55ce6a0 [shape=record,label="{testapi.c:22116:}"];
+}

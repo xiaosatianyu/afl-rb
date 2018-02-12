@@ -1,0 +1,35 @@
+digraph "CFG for 'xmlTextReaderClose' function" {
+	label="CFG for 'xmlTextReaderClose' function";
+
+	Node0x42f4ad0 [shape=record,label="{xmlreader.c:2303:|{<s0>T|<s1>F}}"];
+	Node0x42f4ad0:s0 -> Node0x43055d0;
+	Node0x42f4ad0:s1 -> Node0x4046c80;
+	Node0x43055d0 [shape=record,label="{xmlreader.c:2305:}"];
+	Node0x43055d0 -> Node0x42f4e70;
+	Node0x4046c80 [shape=record,label="{xmlreader.c:2306:|{<s0>T|<s1>F}}"];
+	Node0x4046c80:s0 -> Node0x43064f0;
+	Node0x4046c80:s1 -> Node0x4306540;
+	Node0x43064f0 [shape=record,label="{xmlreader.c:2310:|{<s0>T|<s1>F}}"];
+	Node0x43064f0:s0 -> Node0x43071d0;
+	Node0x43064f0:s1 -> Node0x4307500;
+	Node0x43071d0 [shape=record,label="{xmlreader.c:2312:|{<s0>T|<s1>F}}"];
+	Node0x43071d0:s0 -> Node0x43079b0;
+	Node0x43071d0:s1 -> Node0x4307a00;
+	Node0x43079b0 [shape=record,label="{xmlreader.c:2313:}"];
+	Node0x43079b0 -> Node0x4307a00;
+	Node0x4307a00 [shape=record,label="{xmlreader.c:2314:}"];
+	Node0x4307a00 -> Node0x4307500;
+	Node0x4307500 [shape=record,label="{xmlreader.c:2316:}"];
+	Node0x4307500 -> Node0x4306540;
+	Node0x4306540 [shape=record,label="{xmlreader.c:2317:|{<s0>T|<s1>F}}"];
+	Node0x4306540:s0 -> Node0x4308730;
+	Node0x4306540:s1 -> Node0x43086e0;
+	Node0x4308730 [shape=record,label="{xmlreader.c:2317:|{<s0>T|<s1>F}}"];
+	Node0x4308730:s0 -> Node0x4308690;
+	Node0x4308730:s1 -> Node0x43086e0;
+	Node0x4308690 [shape=record,label="{xmlreader.c:2318:}"];
+	Node0x4308690 -> Node0x43086e0;
+	Node0x43086e0 [shape=record,label="{xmlreader.c:2321:}"];
+	Node0x43086e0 -> Node0x42f4e70;
+	Node0x42f4e70 [shape=record,label="{xmlreader.c:2322:}"];
+}

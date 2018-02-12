@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlSchemaFreeModelGroup' function" {
+	label="CFG for 'xmlSchemaFreeModelGroup' function";
+
+	Node0x4ef3dc0 [shape=record,label="{xmlschemas.c:4019:|{<s0>T|<s1>F}}"];
+	Node0x4ef3dc0 -> Node0x4ef5de0;
+	Node0x4ef3dc0 -> Node0x4ef5e30;
+	Node0x4ef5de0 [shape=record,label="{xmlschemas.c:4022:}"];
+	Node0x4ef5de0 -> Node0x4ef5e30;
+	Node0x4ef5e30 [shape=record,label="{xmlschemas.c:4023:}"];
+}

@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlUTF8Charcmp' function" {
+	label="CFG for 'test_xmlUTF8Charcmp' function";
+
+	Node0x675a7e0 [shape=record,label="{testapi.c:36990:}"];
+	Node0x675a7e0 -> Node0x6766b30;
+	Node0x6766b30 [shape=record,label="{testapi.c:36999:|{<s0>T|<s1>F}}"];
+	Node0x6766b30:s0 -> Node0x6766e10;
+	Node0x6766b30:s1 -> Node0x6766990;
+	Node0x6766e10 [shape=record,label="{testapi.c:37000:}"];
+	Node0x6766e10 -> Node0x6767200;
+	Node0x6767200 [shape=record,label="{testapi.c:37000:|{<s0>T|<s1>F}}"];
+	Node0x6767200:s0 -> Node0x6767480;
+	Node0x6767200:s1 -> Node0x67670e0;
+	Node0x6767480 [shape=record,label="{testapi.c:37001:|{<s0>T|<s1>F}}"];
+	Node0x6767480:s0 -> Node0x6768540;
+	Node0x6767480:s1 -> Node0x6768f60;
+	Node0x6768540 [shape=record,label="{testapi.c:37013:}"];
+	Node0x6768540 -> Node0x6768f60;
+	Node0x6768f60 [shape=record,label="{testapi.c:37019:}"];
+	Node0x6768f60 -> Node0x67673f0;
+	Node0x67673f0 [shape=record,label="{testapi.c:37000:}"];
+	Node0x67673f0 -> Node0x6767200;
+	Node0x67670e0 [shape=record,label="{testapi.c:37020:}"];
+	Node0x67670e0 -> Node0x6766d80;
+	Node0x6766d80 [shape=record,label="{testapi.c:36999:}"];
+	Node0x6766d80 -> Node0x6766b30;
+	Node0x6766990 [shape=record,label="{testapi.c:37021:}"];
+}

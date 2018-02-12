@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsHangulSyllables' function" {
+	label="CFG for 'test_xmlUCSIsHangulSyllables' function";
+
+	Node0x690a1b0 [shape=record,label="{testapi.c:40441:}"];
+	Node0x690a1b0 -> Node0x6915420;
+	Node0x6915420 [shape=record,label="{testapi.c:40449:|{<s0>T|<s1>F}}"];
+	Node0x6915420:s0 -> Node0x6915700;
+	Node0x6915420:s1 -> Node0x6915280;
+	Node0x6915700 [shape=record,label="{testapi.c:40450:|{<s0>T|<s1>F}}"];
+	Node0x6915700:s0 -> Node0x6916550;
+	Node0x6915700:s1 -> Node0x6916880;
+	Node0x6916550 [shape=record,label="{testapi.c:40460:}"];
+	Node0x6916550 -> Node0x6916880;
+	Node0x6916880 [shape=record,label="{testapi.c:40465:}"];
+	Node0x6916880 -> Node0x6915670;
+	Node0x6915670 [shape=record,label="{testapi.c:40449:}"];
+	Node0x6915670 -> Node0x6915420;
+	Node0x6915280 [shape=record,label="{testapi.c:40466:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsMathematicalAlphanumericSymbols' function" {
+	label="CFG for 'test_xmlUCSIsMathematicalAlphanumericSymbols' function";
+
+	Node0x6966620 [shape=record,label="{testapi.c:41325:}"];
+	Node0x6966620 -> Node0x6971880;
+	Node0x6971880 [shape=record,label="{testapi.c:41333:|{<s0>T|<s1>F}}"];
+	Node0x6971880:s0 -> Node0x6971b60;
+	Node0x6971880:s1 -> Node0x69716e0;
+	Node0x6971b60 [shape=record,label="{testapi.c:41334:|{<s0>T|<s1>F}}"];
+	Node0x6971b60:s0 -> Node0x69729c0;
+	Node0x6971b60:s1 -> Node0x6973190;
+	Node0x69729c0 [shape=record,label="{testapi.c:41344:}"];
+	Node0x69729c0 -> Node0x6973190;
+	Node0x6973190 [shape=record,label="{testapi.c:41349:}"];
+	Node0x6973190 -> Node0x6971ad0;
+	Node0x6971ad0 [shape=record,label="{testapi.c:41333:}"];
+	Node0x6971ad0 -> Node0x6971880;
+	Node0x69716e0 [shape=record,label="{testapi.c:41350:}"];
+}

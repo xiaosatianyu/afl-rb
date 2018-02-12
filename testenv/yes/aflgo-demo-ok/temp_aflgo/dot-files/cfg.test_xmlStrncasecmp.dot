@@ -1,0 +1,37 @@
+digraph "CFG for 'test_xmlStrncasecmp' function" {
+	label="CFG for 'test_xmlStrncasecmp' function";
+
+	Node0x673b6f0 [shape=record,label="{testapi.c:36728:}"];
+	Node0x673b6f0 -> Node0x6743aa0;
+	Node0x6743aa0 [shape=record,label="{testapi.c:36739:|{<s0>T|<s1>F}}"];
+	Node0x6743aa0:s0 -> Node0x6743d80;
+	Node0x6743aa0:s1 -> Node0x6743900;
+	Node0x6743d80 [shape=record,label="{testapi.c:36740:}"];
+	Node0x6743d80 -> Node0x6744170;
+	Node0x6744170 [shape=record,label="{testapi.c:36740:|{<s0>T|<s1>F}}"];
+	Node0x6744170:s0 -> Node0x67443f0;
+	Node0x6744170:s1 -> Node0x6744050;
+	Node0x67443f0 [shape=record,label="{testapi.c:36741:}"];
+	Node0x67443f0 -> Node0x67447e0;
+	Node0x67447e0 [shape=record,label="{testapi.c:36741:|{<s0>T|<s1>F}}"];
+	Node0x67447e0:s0 -> Node0x6744a60;
+	Node0x67447e0:s1 -> Node0x67446c0;
+	Node0x6744a60 [shape=record,label="{testapi.c:36742:|{<s0>T|<s1>F}}"];
+	Node0x6744a60:s0 -> Node0x6745e40;
+	Node0x6744a60:s1 -> Node0x6746b50;
+	Node0x6745e40 [shape=record,label="{testapi.c:36756:}"];
+	Node0x6745e40 -> Node0x6746b50;
+	Node0x6746b50 [shape=record,label="{testapi.c:36763:}"];
+	Node0x6746b50 -> Node0x67449d0;
+	Node0x67449d0 [shape=record,label="{testapi.c:36741:}"];
+	Node0x67449d0 -> Node0x67447e0;
+	Node0x67446c0 [shape=record,label="{testapi.c:36764:}"];
+	Node0x67446c0 -> Node0x6744360;
+	Node0x6744360 [shape=record,label="{testapi.c:36740:}"];
+	Node0x6744360 -> Node0x6744170;
+	Node0x6744050 [shape=record,label="{testapi.c:36765:}"];
+	Node0x6744050 -> Node0x6743cf0;
+	Node0x6743cf0 [shape=record,label="{testapi.c:36739:}"];
+	Node0x6743cf0 -> Node0x6743aa0;
+	Node0x6743900 [shape=record,label="{testapi.c:36766:}"];
+}

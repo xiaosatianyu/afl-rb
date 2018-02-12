@@ -1,0 +1,5 @@
+digraph "CFG for 'libxml_xmlInitParser' function" {
+	label="CFG for 'libxml_xmlInitParser' function";
+
+	Node0x5816b60 [shape=record,label="{libxml2-py.c:3250:}"];
+}

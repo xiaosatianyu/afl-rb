@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlconfTestNotWF' function" {
+	label="CFG for 'xmlconfTestNotWF' function";
+
+	Node0x499c110 [shape=record,label="{runxmlconf.c:273:|{<s0>T|<s1>F}}"];
+	Node0x499c110:s0 -> Node0x499f5d0;
+	Node0x499c110:s1 -> Node0x499f620;
+	Node0x499f5d0 [shape=record,label="{runxmlconf.c:280:}"];
+	Node0x499f5d0 -> Node0x499f620;
+	Node0x499f620 [shape=record,label="{runxmlconf.c:285:}"];
+}

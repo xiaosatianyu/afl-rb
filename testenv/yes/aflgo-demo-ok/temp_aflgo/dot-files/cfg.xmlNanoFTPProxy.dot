@@ -1,0 +1,35 @@
+digraph "CFG for 'xmlNanoFTPProxy' function" {
+	label="CFG for 'xmlNanoFTPProxy' function";
+
+	Node0x3975850 [shape=record,label="{nanoftp.c:267:|{<s0>T|<s1>F}}"];
+	Node0x3975850 -> Node0x39846f0;
+	Node0x3975850 -> Node0x3984740;
+	Node0x39846f0 [shape=record,label="{nanoftp.c:270:}"];
+	Node0x39846f0 -> Node0x3984740;
+	Node0x3984740 [shape=record,label="{nanoftp.c:273:|{<s0>T|<s1>F}}"];
+	Node0x3984740 -> Node0x3984ec0;
+	Node0x3984740 -> Node0x3984f10;
+	Node0x3984ec0 [shape=record,label="{nanoftp.c:274:}"];
+	Node0x3984ec0 -> Node0x3984f10;
+	Node0x3984f10 [shape=record,label="{nanoftp.c:277:|{<s0>T|<s1>F}}"];
+	Node0x3984f10 -> Node0x3981b80;
+	Node0x3984f10 -> Node0x39856b0;
+	Node0x3981b80 [shape=record,label="{nanoftp.c:278:}"];
+	Node0x3981b80 -> Node0x39856b0;
+	Node0x39856b0 [shape=record,label="{nanoftp.c:281:|{<s0>T|<s1>F}}"];
+	Node0x39856b0 -> Node0x397ec00;
+	Node0x39856b0 -> Node0x397ec50;
+	Node0x397ec00 [shape=record,label="{nanoftp.c:282:}"];
+	Node0x397ec00 -> Node0x397ec50;
+	Node0x397ec50 [shape=record,label="{nanoftp.c:283:|{<s0>T|<s1>F}}"];
+	Node0x397ec50 -> Node0x397f1d0;
+	Node0x397ec50 -> Node0x3986b90;
+	Node0x397f1d0 [shape=record,label="{nanoftp.c:284:}"];
+	Node0x397f1d0 -> Node0x3986b90;
+	Node0x3986b90 [shape=record,label="{nanoftp.c:285:|{<s0>T|<s1>F}}"];
+	Node0x3986b90 -> Node0x3987110;
+	Node0x3986b90 -> Node0x3987160;
+	Node0x3987110 [shape=record,label="{nanoftp.c:286:}"];
+	Node0x3987110 -> Node0x3987160;
+	Node0x3987160 [shape=record,label="{nanoftp.c:287:}"];
+}

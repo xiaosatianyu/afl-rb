@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlSchemaGetValType' function" {
+	label="CFG for 'test_xmlSchemaGetValType' function";
+
+	Node0x5c9ec70 [shape=record,label="{testapi.c:35456:}"];
+	Node0x5c9ec70 -> Node0x669df30;
+	Node0x669df30 [shape=record,label="{testapi.c:35464:|{<s0>T|<s1>F}}"];
+	Node0x669df30:s0 -> Node0x669e210;
+	Node0x669df30:s1 -> Node0x669dd90;
+	Node0x669e210 [shape=record,label="{testapi.c:35465:|{<s0>T|<s1>F}}"];
+	Node0x669e210:s0 -> Node0x669f0d0;
+	Node0x669e210:s1 -> Node0x669fa40;
+	Node0x669f0d0 [shape=record,label="{testapi.c:35475:}"];
+	Node0x669f0d0 -> Node0x669fa40;
+	Node0x669fa40 [shape=record,label="{testapi.c:35480:}"];
+	Node0x669fa40 -> Node0x669e180;
+	Node0x669e180 [shape=record,label="{testapi.c:35464:}"];
+	Node0x669e180 -> Node0x669df30;
+	Node0x669dd90 [shape=record,label="{testapi.c:35481:}"];
+}

@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsKatakanaPhoneticExtensions' function" {
+	label="CFG for 'libxml_xmlUCSIsKatakanaPhoneticExtensions' function";
+
+	Node0x5a1ac30 [shape=record,label="{libxml2-py.c:10683:|{<s0>T|<s1>F}}"];
+	Node0x5a1ac30:s0 -> Node0x5a1da70;
+	Node0x5a1ac30:s1 -> Node0x5a1da20;
+	Node0x5a1da20 [shape=record,label="{libxml2-py.c:10689:}"];
+	Node0x5a1da20 -> Node0x5a1c170;
+	Node0x5a1da70 [shape=record,label="{libxml2-py.c:10691:}"];
+	Node0x5a1da70 -> Node0x5a1c170;
+	Node0x5a1c170 [shape=record,label="{libxml2-py.c:10694:}"];
+}

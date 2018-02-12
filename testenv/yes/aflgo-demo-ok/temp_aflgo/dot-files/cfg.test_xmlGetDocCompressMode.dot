@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlGetDocCompressMode' function" {
+	label="CFG for 'test_xmlGetDocCompressMode' function";
+
+	Node0x5e357b0 [shape=record,label="{testapi.c:20479:}"];
+	Node0x5e357b0 -> Node0x5e3a690;
+	Node0x5e3a690 [shape=record,label="{testapi.c:20486:|{<s0>T|<s1>F}}"];
+	Node0x5e3a690:s0 -> Node0x5e3a970;
+	Node0x5e3a690:s1 -> Node0x5e3a4f0;
+	Node0x5e3a970 [shape=record,label="{testapi.c:20487:|{<s0>T|<s1>F}}"];
+	Node0x5e3a970:s0 -> Node0x5e3b830;
+	Node0x5e3a970:s1 -> Node0x5e3c000;
+	Node0x5e3b830 [shape=record,label="{testapi.c:20497:}"];
+	Node0x5e3b830 -> Node0x5e3c000;
+	Node0x5e3c000 [shape=record,label="{testapi.c:20502:}"];
+	Node0x5e3c000 -> Node0x5e3a8e0;
+	Node0x5e3a8e0 [shape=record,label="{testapi.c:20486:}"];
+	Node0x5e3a8e0 -> Node0x5e3a690;
+	Node0x5e3a4f0 [shape=record,label="{testapi.c:20503:}"];
+}

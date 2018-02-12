@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlDocDump' function" {
+	label="CFG for 'xmlDocDump' function";
+
+	Node0x4f8f470 [shape=record,label="{xmlsave.c:2599:}"];
+}

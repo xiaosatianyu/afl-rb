@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsLimbu' function" {
+	label="CFG for 'libxml_xmlUCSIsLimbu' function";
+
+	Node0x5a3a750 [shape=record,label="{libxml2-py.c:10827:|{<s0>T|<s1>F}}"];
+	Node0x5a3a750:s0 -> Node0x5a3b770;
+	Node0x5a3a750:s1 -> Node0x5a3b720;
+	Node0x5a3b720 [shape=record,label="{libxml2-py.c:10833:}"];
+	Node0x5a3b720 -> Node0x5a39fe0;
+	Node0x5a3b770 [shape=record,label="{libxml2-py.c:10835:}"];
+	Node0x5a3b770 -> Node0x5a39fe0;
+	Node0x5a39fe0 [shape=record,label="{libxml2-py.c:10838:}"];
+}

@@ -1,0 +1,33 @@
+digraph "CFG for 'xmlSchematronReportPattern' function" {
+	label="CFG for 'xmlSchematronReportPattern' function";
+
+	Node0x3b39380 [shape=record,label="{schematron.c:1450:|{<s0>T|<s1>F}}"];
+	Node0x3b39380 -> Node0x3b35330;
+	Node0x3b39380 -> Node0x3b353d0;
+	Node0x3b353d0 [shape=record,label="{schematron.c:1452:|{<s0>T|<s1>F}}"];
+	Node0x3b353d0 -> Node0x3b35330;
+	Node0x3b353d0 -> Node0x3b35380;
+	Node0x3b35330 [shape=record,label="{schematron.c:1453:}"];
+	Node0x3b35330 -> Node0x3b3ae80;
+	Node0x3b35380 [shape=record,label="{schematron.c:1454:|{<s0>T|<s1>F}}"];
+	Node0x3b35380 -> Node0x3b3a420;
+	Node0x3b35380 -> Node0x3b3a4c0;
+	Node0x3b3a4c0 [shape=record,label="{schematron.c:1454:|{<s0>T|<s1>F}}"];
+	Node0x3b3a4c0 -> Node0x3b3a420;
+	Node0x3b3a4c0 -> Node0x3b3a470;
+	Node0x3b3a420 [shape=record,label="{schematron.c:1455:}"];
+	Node0x3b3a420 -> Node0x3b3ae80;
+	Node0x3b3a470 [shape=record,label="{schematron.c:1456:|{<s0>T|<s1>F}}"];
+	Node0x3b3a470 -> Node0x3b3ae30;
+	Node0x3b3a470 -> Node0x3b3aed0;
+	Node0x3b3ae30 [shape=record,label="{schematron.c:1457:}"];
+	Node0x3b3ae30 -> Node0x3b3ae80;
+	Node0x3b3aed0 [shape=record,label="{schematron.c:1459:|{<s0>T|<s1>F}}"];
+	Node0x3b3aed0 -> Node0x39e3a90;
+	Node0x3b3aed0 -> Node0x3b3c0b0;
+	Node0x39e3a90 [shape=record,label="{schematron.c:1462:}"];
+	Node0x39e3a90 -> Node0x3b3ae80;
+	Node0x3b3c0b0 [shape=record,label="{schematron.c:1463:}"];
+	Node0x3b3c0b0 -> Node0x3b3ae80;
+	Node0x3b3ae80 [shape=record,label="{schematron.c:1466:}"];
+}

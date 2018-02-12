@@ -1,0 +1,12 @@
+digraph "CFG for 'testDocumentRanges' function" {
+	label="CFG for 'testDocumentRanges' function";
+
+	Node0x39795b0 [shape=record,label="{testchar.c:145:|{<s0>T|<s1>F}}"];
+	Node0x39795b0:s0 -> Node0x3979990;
+	Node0x39795b0:s1 -> Node0x39799e0;
+	Node0x3979990 [shape=record,label="{testchar.c:154:}"];
+	Node0x3979990 -> Node0x393bda0;
+	Node0x39799e0 [shape=record,label="{testchar.c:158:}"];
+	Node0x39799e0 -> Node0x393bda0;
+	Node0x393bda0 [shape=record,label="{testchar.c:241:}"];
+}

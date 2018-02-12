@@ -1,0 +1,15 @@
+digraph "CFG for 'xmlXPathCastNodeSetToBoolean' function" {
+	label="CFG for 'xmlXPathCastNodeSetToBoolean' function";
+
+	Node0x45c7420 [shape=record,label="{xpath.c:6022:|{<s0>T|<s1>F}}"];
+	Node0x45c7420 -> Node0x45c7d00;
+	Node0x45c7420 -> Node0x45c87a0;
+	Node0x45c87a0 [shape=record,label="{xpath.c:6023:|{<s0>T|<s1>F}}"];
+	Node0x45c87a0 -> Node0x45c7d00;
+	Node0x45c87a0 -> Node0x45c8650;
+	Node0x45c7d00 [shape=record,label="{xpath.c:6024:}"];
+	Node0x45c7d00 -> Node0x45c8880;
+	Node0x45c8650 [shape=record,label="{xpath.c:6025:}"];
+	Node0x45c8650 -> Node0x45c8880;
+	Node0x45c8880 [shape=record,label="{xpath.c:6026:}"];
+}

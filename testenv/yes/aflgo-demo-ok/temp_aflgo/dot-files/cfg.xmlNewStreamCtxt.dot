@@ -1,0 +1,17 @@
+digraph "CFG for 'xmlNewStreamCtxt' function" {
+	label="CFG for 'xmlNewStreamCtxt' function";
+
+	Node0x4da0e60 [shape=record,label="{pattern.c:1759:|{<s0>T|<s1>F}}"];
+	Node0x4da0e60 -> Node0x4da1130;
+	Node0x4da0e60 -> Node0x4da1180;
+	Node0x4da1130 [shape=record,label="{pattern.c:1766:}"];
+	Node0x4da1130 -> Node0x4da5660;
+	Node0x4da1180 [shape=record,label="{pattern.c:1768:|{<s0>T|<s1>F}}"];
+	Node0x4da1180 -> Node0x4da7010;
+	Node0x4da1180 -> Node0x4da7060;
+	Node0x4da7010 [shape=record,label="{pattern.c:1771:}"];
+	Node0x4da7010 -> Node0x4da5660;
+	Node0x4da7060 [shape=record,label="{pattern.c:1776:}"];
+	Node0x4da7060 -> Node0x4da5660;
+	Node0x4da5660 [shape=record,label="{pattern.c:1782:}"];
+}

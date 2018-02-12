@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsOriya' function" {
+	label="CFG for 'libxml_xmlUCSIsOriya' function";
+
+	Node0x5f31ec0 [shape=record,label="{libxml2-py.c:11131:|{<s0>T|<s1>F}}"];
+	Node0x5f31ec0:s0 -> Node0x5f32ef0;
+	Node0x5f31ec0:s1 -> Node0x5f32ea0;
+	Node0x5f32ea0 [shape=record,label="{libxml2-py.c:11137:}"];
+	Node0x5f32ea0 -> Node0x5f31750;
+	Node0x5f32ef0 [shape=record,label="{libxml2-py.c:11139:}"];
+	Node0x5f32ef0 -> Node0x5f31750;
+	Node0x5f31750 [shape=record,label="{libxml2-py.c:11142:}"];
+}

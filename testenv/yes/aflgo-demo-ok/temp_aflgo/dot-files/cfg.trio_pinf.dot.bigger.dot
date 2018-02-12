@@ -1,0 +1,10 @@
+digraph "CFG for 'trio_pinf' function" {
+	label="CFG for 'trio_pinf' function";
+
+	Node0x49c5be0 [shape=record,label="{trionan.c:263:|{<s0>T|<s1>F}}"];
+	Node0x49c5be0:s0 -> Node0x459b650;
+	Node0x49c5be0:s1 -> Node0x459b6a0;
+	Node0x459b650 [shape=record,label="{trionan.c:266:}"];
+	Node0x459b650 -> Node0x459b6a0;
+	Node0x459b6a0 [shape=record,label="{trionan.c:293:}"];
+}

@@ -1,0 +1,17 @@
+digraph "CFG for 'libxml_buildMessage' function" {
+	label="CFG for 'libxml_buildMessage' function";
+
+	Node0x566d0a0 [shape=record,label="{libxml.c:1598:|{<s0>T|<s1>F}}"];
+	Node0x566d0a0:s0 -> Node0x566fbb0;
+	Node0x566d0a0:s1 -> Node0x566fc00;
+	Node0x566fbb0 [shape=record,label="{libxml.c:1605:}"];
+	Node0x566fbb0 -> Node0x566dfe0;
+	Node0x566fc00 [shape=record,label="{libxml.c:1607:|{<s0>T|<s1>F}}"];
+	Node0x566fc00:s0 -> Node0x5670420;
+	Node0x566fc00:s1 -> Node0x5670470;
+	Node0x5670420 [shape=record,label="{libxml.c:1609:}"];
+	Node0x5670420 -> Node0x5670470;
+	Node0x5670470 [shape=record,label="{libxml.c:1611:}"];
+	Node0x5670470 -> Node0x566dfe0;
+	Node0x566dfe0 [shape=record,label="{libxml.c:1612:}"];
+}

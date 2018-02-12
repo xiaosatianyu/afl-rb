@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlErrorGetDomain' function" {
+	label="CFG for 'libxml_xmlErrorGetDomain' function";
+
+	Node0x575e480 [shape=record,label="{libxml2-py.c:2558:|{<s0>T|<s1>F}}"];
+	Node0x575e480:s0 -> Node0x5761cf0;
+	Node0x575e480:s1 -> Node0x5761ca0;
+	Node0x5761ca0 [shape=record,label="{libxml2-py.c:2565:}"];
+	Node0x5761ca0 -> Node0x575e500;
+	Node0x5761cf0 [shape=record,label="{libxml2-py.c:2566:|{<s0>T|<s1>F}}"];
+	Node0x5761cf0:s0 -> Node0x5762510;
+	Node0x5761cf0:s1 -> Node0x5762560;
+	Node0x5762510 [shape=record,label="{libxml2-py.c:2566:}"];
+	Node0x5762510 -> Node0x57625b0;
+	Node0x5762560 [shape=record,label="{libxml2-py.c:2566:}"];
+	Node0x5762560 -> Node0x57625b0;
+	Node0x57625b0 [shape=record,label="{libxml2-py.c:2566:}"];
+	Node0x57625b0 -> Node0x575e500;
+	Node0x575e500 [shape=record,label="{libxml2-py.c:2571:}"];
+}

@@ -1,0 +1,20 @@
+digraph "CFG for 'xmlSchemaNewMemParserCtxt' function" {
+	label="CFG for 'xmlSchemaNewMemParserCtxt' function";
+
+	Node0x4beab60 [shape=record,label="{xmlschemas.c:12474:|{<s0>T|<s1>F}}"];
+	Node0x4beab60:s0 -> Node0x4bb4610;
+	Node0x4beab60:s1 -> Node0x4bf1d60;
+	Node0x4bf1d60 [shape=record,label="{xmlschemas.c:12478:|{<s0>T|<s1>F}}"];
+	Node0x4bf1d60:s0 -> Node0x4bb4610;
+	Node0x4bf1d60:s1 -> Node0x4bf1d10;
+	Node0x4bb4610 [shape=record,label="{xmlschemas.c:12479:}"];
+	Node0x4bb4610 -> Node0x4bec960;
+	Node0x4bf1d10 [shape=record,label="{xmlschemas.c:12480:|{<s0>T|<s1>F}}"];
+	Node0x4bf1d10:s0 -> Node0x4bf2540;
+	Node0x4bf1d10:s1 -> Node0x4bf2590;
+	Node0x4bf2540 [shape=record,label="{xmlschemas.c:12482:}"];
+	Node0x4bf2540 -> Node0x4bec960;
+	Node0x4bf2590 [shape=record,label="{xmlschemas.c:12483:}"];
+	Node0x4bf2590 -> Node0x4bec960;
+	Node0x4bec960 [shape=record,label="{xmlschemas.c:12487:}"];
+}

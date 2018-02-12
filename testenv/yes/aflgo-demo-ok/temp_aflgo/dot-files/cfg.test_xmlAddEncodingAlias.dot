@@ -1,0 +1,23 @@
+digraph "CFG for 'test_xmlAddEncodingAlias' function" {
+	label="CFG for 'test_xmlAddEncodingAlias' function";
+
+	Node0x5758ed0 [shape=record,label="{testapi.c:8625:}"];
+	Node0x5758ed0 -> Node0x576d820;
+	Node0x576d820 [shape=record,label="{testapi.c:8633:|{<s0>T|<s1>F}}"];
+	Node0x576d820:s0 -> Node0x576db00;
+	Node0x576d820:s1 -> Node0x576d680;
+	Node0x576db00 [shape=record,label="{testapi.c:8634:}"];
+	Node0x576db00 -> Node0x576def0;
+	Node0x576def0 [shape=record,label="{testapi.c:8634:|{<s0>T|<s1>F}}"];
+	Node0x576def0:s0 -> Node0x576e170;
+	Node0x576def0:s1 -> Node0x576ddd0;
+	Node0x576e170 [shape=record,label="{testapi.c:8635:}"];
+	Node0x576e170 -> Node0x576e0e0;
+	Node0x576e0e0 [shape=record,label="{testapi.c:8634:}"];
+	Node0x576e0e0 -> Node0x576def0;
+	Node0x576ddd0 [shape=record,label="{testapi.c:8645:}"];
+	Node0x576ddd0 -> Node0x576da70;
+	Node0x576da70 [shape=record,label="{testapi.c:8633:}"];
+	Node0x576da70 -> Node0x576d820;
+	Node0x576d680 [shape=record,label="{testapi.c:8646:}"];
+}

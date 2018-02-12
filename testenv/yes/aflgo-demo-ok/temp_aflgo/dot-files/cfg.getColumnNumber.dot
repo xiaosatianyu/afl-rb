@@ -1,0 +1,10 @@
+digraph "CFG for 'getColumnNumber' function" {
+	label="CFG for 'getColumnNumber' function";
+
+	Node0x4dc9660 [shape=record,label="{legacy.c:813:|{<s0>T|<s1>F}}"];
+	Node0x4dc9660:s0 -> Node0x4dc8b80;
+	Node0x4dc9660:s1 -> Node0x4dc8bd0;
+	Node0x4dc8b80 [shape=record,label="{legacy.c:815:}"];
+	Node0x4dc8b80 -> Node0x4dc8bd0;
+	Node0x4dc8bd0 [shape=record,label="{legacy.c:815:}"];
+}

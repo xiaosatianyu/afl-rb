@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlRelaxNGSetValidErrors' function" {
+	label="CFG for 'xmlRelaxNGSetValidErrors' function";
+
+	Node0x4e19c30 [shape=record,label="{relaxng.c:10962:|{<s0>T|<s1>F}}"];
+	Node0x4e19c30:s0 -> Node0x4f0c080;
+	Node0x4e19c30:s1 -> Node0x4f0c0d0;
+	Node0x4f0c080 [shape=record,label="{relaxng.c:10967:}"];
+	Node0x4f0c080 -> Node0x4e19f60;
+	Node0x4f0c0d0 [shape=record,label="{relaxng.c:10968:}"];
+	Node0x4f0c0d0 -> Node0x4e19f60;
+	Node0x4e19f60 [shape=record,label="{relaxng.c:10972:}"];
+}

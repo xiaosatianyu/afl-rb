@@ -1,0 +1,10 @@
+digraph "CFG for 'xmlUCSIsMusicalSymbols' function" {
+	label="CFG for 'xmlUCSIsMusicalSymbols' function";
+
+	Node0x4fb6c80 [shape=record,label="{xmlunicode.c:2107:|{<s0>T|<s1>F}}"];
+	Node0x4fb6c80 -> Node0x4fb7210;
+	Node0x4fb6c80 -> Node0x4fb71c0;
+	Node0x4fb7210 [shape=record,label="{xmlunicode.c:2108:}"];
+	Node0x4fb7210 -> Node0x4fb71c0;
+	Node0x4fb71c0 [shape=record,label="{xmlunicode.c:2108:}"];
+}

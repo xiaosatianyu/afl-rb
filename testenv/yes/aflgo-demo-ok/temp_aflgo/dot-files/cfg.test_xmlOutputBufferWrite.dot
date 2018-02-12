@@ -1,0 +1,37 @@
+digraph "CFG for 'test_xmlOutputBufferWrite' function" {
+	label="CFG for 'test_xmlOutputBufferWrite' function";
+
+	Node0x626c5e0 [shape=record,label="{testapi.c:28645:}"];
+	Node0x626c5e0 -> Node0x62757e0;
+	Node0x62757e0 [shape=record,label="{testapi.c:28657:|{<s0>T|<s1>F}}"];
+	Node0x62757e0:s0 -> Node0x6275ac0;
+	Node0x62757e0:s1 -> Node0x6275640;
+	Node0x6275ac0 [shape=record,label="{testapi.c:28658:}"];
+	Node0x6275ac0 -> Node0x6275eb0;
+	Node0x6275eb0 [shape=record,label="{testapi.c:28658:|{<s0>T|<s1>F}}"];
+	Node0x6275eb0:s0 -> Node0x6276130;
+	Node0x6275eb0:s1 -> Node0x6275d90;
+	Node0x6276130 [shape=record,label="{testapi.c:28659:}"];
+	Node0x6276130 -> Node0x6276520;
+	Node0x6276520 [shape=record,label="{testapi.c:28659:|{<s0>T|<s1>F}}"];
+	Node0x6276520:s0 -> Node0x62767a0;
+	Node0x6276520:s1 -> Node0x6276400;
+	Node0x62767a0 [shape=record,label="{testapi.c:28660:|{<s0>T|<s1>F}}"];
+	Node0x62767a0:s0 -> Node0x6277b80;
+	Node0x62767a0:s1 -> Node0x6277eb0;
+	Node0x6277b80 [shape=record,label="{testapi.c:28674:}"];
+	Node0x6277b80 -> Node0x6277eb0;
+	Node0x6277eb0 [shape=record,label="{testapi.c:28681:}"];
+	Node0x6277eb0 -> Node0x6276710;
+	Node0x6276710 [shape=record,label="{testapi.c:28659:}"];
+	Node0x6276710 -> Node0x6276520;
+	Node0x6276400 [shape=record,label="{testapi.c:28682:}"];
+	Node0x6276400 -> Node0x62760a0;
+	Node0x62760a0 [shape=record,label="{testapi.c:28658:}"];
+	Node0x62760a0 -> Node0x6275eb0;
+	Node0x6275d90 [shape=record,label="{testapi.c:28683:}"];
+	Node0x6275d90 -> Node0x6275a30;
+	Node0x6275a30 [shape=record,label="{testapi.c:28657:}"];
+	Node0x6275a30 -> Node0x62757e0;
+	Node0x6275640 [shape=record,label="{testapi.c:28684:}"];
+}

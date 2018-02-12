@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlAutomataIsDeterminist' function" {
+	label="CFG for 'xmlAutomataIsDeterminist' function";
+
+	Node0x3983680 [shape=record,label="{xmlregexp.c:6309:|{<s0>T|<s1>F}}"];
+	Node0x3983680 -> Node0x3985b20;
+	Node0x3983680 -> Node0x3985b70;
+	Node0x3985b20 [shape=record,label="{xmlregexp.c:6313:}"];
+	Node0x3985b20 -> Node0x3985f80;
+	Node0x3985b70 [shape=record,label="{xmlregexp.c:6315:}"];
+	Node0x3985b70 -> Node0x3985f80;
+	Node0x3985f80 [shape=record,label="{xmlregexp.c:6317:}"];
+}

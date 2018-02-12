@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlGetCharEncodingName' function" {
+	label="CFG for 'test_xmlGetCharEncodingName' function";
+
+	Node0x579b2a0 [shape=record,label="{testapi.c:8960:}"];
+	Node0x579b2a0 -> Node0x579c8c0;
+	Node0x579c8c0 [shape=record,label="{testapi.c:8967:|{<s0>T|<s1>F}}"];
+	Node0x579c8c0:s0 -> Node0x579cba0;
+	Node0x579c8c0:s1 -> Node0x579c720;
+	Node0x579cba0 [shape=record,label="{testapi.c:8968:|{<s0>T|<s1>F}}"];
+	Node0x579cba0:s0 -> Node0x579da60;
+	Node0x579cba0:s1 -> Node0x579dd90;
+	Node0x579da60 [shape=record,label="{testapi.c:8978:}"];
+	Node0x579da60 -> Node0x579dd90;
+	Node0x579dd90 [shape=record,label="{testapi.c:8983:}"];
+	Node0x579dd90 -> Node0x579cb10;
+	Node0x579cb10 [shape=record,label="{testapi.c:8967:}"];
+	Node0x579cb10 -> Node0x579c8c0;
+	Node0x579c720 [shape=record,label="{testapi.c:8984:}"];
+}

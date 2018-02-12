@@ -1,0 +1,10 @@
+digraph "CFG for 'getParameterEntity' function" {
+	label="CFG for 'getParameterEntity' function";
+
+	Node0x4d0aa10 [shape=record,label="{legacy.c:954:|{<s0>T|<s1>F}}"];
+	Node0x4d0aa10 -> Node0x4dda0d0;
+	Node0x4d0aa10 -> Node0x4d0ab20;
+	Node0x4dda0d0 [shape=record,label="{legacy.c:956:}"];
+	Node0x4dda0d0 -> Node0x4d0ab20;
+	Node0x4d0ab20 [shape=record,label="{legacy.c:956:}"];
+}

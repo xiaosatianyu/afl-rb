@@ -1,0 +1,27 @@
+digraph "CFG for 'xmlRelaxNGDocumentPush' function" {
+	label="CFG for 'xmlRelaxNGDocumentPush' function";
+
+	Node0x4c78740 [shape=record,label="{relaxng.c:1864:|{<s0>T|<s1>F}}"];
+	Node0x4c78740 -> Node0x4ff80f0;
+	Node0x4c78740 -> Node0x4ff8140;
+	Node0x4ff80f0 [shape=record,label="{relaxng.c:1868:|{<s0>T|<s1>F}}"];
+	Node0x4ff80f0 -> Node0x4ff9a40;
+	Node0x4ff80f0 -> Node0x4ff9a90;
+	Node0x4ff9a40 [shape=record,label="{relaxng.c:1874:}"];
+	Node0x4ff9a40 -> Node0x4ff8550;
+	Node0x4ff9a90 [shape=record,label="{relaxng.c:1877:}"];
+	Node0x4ff9a90 -> Node0x4ff8140;
+	Node0x4ff8140 [shape=record,label="{relaxng.c:1878:|{<s0>T|<s1>F}}"];
+	Node0x4ff8140 -> Node0x4ffa510;
+	Node0x4ff8140 -> Node0x4ffa560;
+	Node0x4ffa510 [shape=record,label="{relaxng.c:1879:|{<s0>T|<s1>F}}"];
+	Node0x4ffa510 -> Node0x4ffb8d0;
+	Node0x4ffa510 -> Node0x4ffb920;
+	Node0x4ffb8d0 [shape=record,label="{relaxng.c:1885:}"];
+	Node0x4ffb8d0 -> Node0x4ff8550;
+	Node0x4ffb920 [shape=record,label="{relaxng.c:1888:}"];
+	Node0x4ffb920 -> Node0x4ffa560;
+	Node0x4ffa560 [shape=record,label="{relaxng.c:1889:}"];
+	Node0x4ffa560 -> Node0x4ff8550;
+	Node0x4ff8550 [shape=record,label="{relaxng.c:1892:}"];
+}

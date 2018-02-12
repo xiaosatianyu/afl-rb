@@ -1,0 +1,5 @@
+digraph "CFG for 'xmlFreeGlobalState' function" {
+	label="CFG for 'xmlFreeGlobalState' function";
+
+	Node0x4e49440 [shape=record,label="{threads.c:562:}"];
+}

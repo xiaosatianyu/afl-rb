@@ -1,0 +1,10 @@
+digraph "CFG for 'trio_ninf' function" {
+	label="CFG for 'trio_ninf' function";
+
+	Node0x49cb280 [shape=record,label="{trionan.c:306:|{<s0>T|<s1>F}}"];
+	Node0x49cb280 -> Node0x49d8b50;
+	Node0x49cb280 -> Node0x49d8ba0;
+	Node0x49d8b50 [shape=record,label="{trionan.c:312:}"];
+	Node0x49d8b50 -> Node0x49d8ba0;
+	Node0x49d8ba0 [shape=record,label="{trionan.c:314:}"];
+}

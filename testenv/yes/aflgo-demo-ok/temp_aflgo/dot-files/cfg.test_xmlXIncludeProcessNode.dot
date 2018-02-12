@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlXIncludeProcessNode' function" {
+	label="CFG for 'test_xmlXIncludeProcessNode' function";
+
+	Node0x61d4f80 [shape=record,label="{testapi.c:27467:}"];
+	Node0x61d4f80 -> Node0x61e1d50;
+	Node0x61e1d50 [shape=record,label="{testapi.c:27477:|{<s0>T|<s1>F}}"];
+	Node0x61e1d50:s0 -> Node0x61e1ee0;
+	Node0x61e1d50:s1 -> Node0x61e1bb0;
+	Node0x61e1ee0 [shape=record,label="{testapi.c:27478:}"];
+	Node0x61e1ee0 -> Node0x61e2430;
+	Node0x61e2430 [shape=record,label="{testapi.c:27478:|{<s0>T|<s1>F}}"];
+	Node0x61e2430:s0 -> Node0x61e26b0;
+	Node0x61e2430:s1 -> Node0x61e2290;
+	Node0x61e26b0 [shape=record,label="{testapi.c:27479:|{<s0>T|<s1>F}}"];
+	Node0x61e26b0:s0 -> Node0x61e45d0;
+	Node0x61e26b0:s1 -> Node0x61e4620;
+	Node0x61e45d0 [shape=record,label="{testapi.c:27491:}"];
+	Node0x61e45d0 -> Node0x61e4620;
+	Node0x61e4620 [shape=record,label="{testapi.c:27497:}"];
+	Node0x61e4620 -> Node0x61e2620;
+	Node0x61e2620 [shape=record,label="{testapi.c:27478:}"];
+	Node0x61e2620 -> Node0x61e2430;
+	Node0x61e2290 [shape=record,label="{testapi.c:27498:}"];
+	Node0x61e2290 -> Node0x61e1fa0;
+	Node0x61e1fa0 [shape=record,label="{testapi.c:27477:}"];
+	Node0x61e1fa0 -> Node0x61e1d50;
+	Node0x61e1bb0 [shape=record,label="{testapi.c:27499:}"];
+}

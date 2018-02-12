@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlAddDocEntity' function" {
+	label="CFG for 'libxml_xmlAddDocEntity' function";
+
+	Node0x55dd0d0 [shape=record,label="{libxml2-py.c:1060:|{<s0>T|<s1>F}}"];
+	Node0x55dd0d0:s0 -> Node0x55e21c0;
+	Node0x55dd0d0:s1 -> Node0x55e2170;
+	Node0x55e2170 [shape=record,label="{libxml2-py.c:1072:}"];
+	Node0x55e2170 -> Node0x55dd3b0;
+	Node0x55e21c0 [shape=record,label="{libxml2-py.c:1073:|{<s0>T|<s1>F}}"];
+	Node0x55e21c0:s0 -> Node0x55e2d50;
+	Node0x55e21c0:s1 -> Node0x55e2da0;
+	Node0x55e2d50 [shape=record,label="{libxml2-py.c:1073:}"];
+	Node0x55e2d50 -> Node0x55e2df0;
+	Node0x55e2da0 [shape=record,label="{libxml2-py.c:1073:}"];
+	Node0x55e2da0 -> Node0x55e2df0;
+	Node0x55e2df0 [shape=record,label="{libxml2-py.c:1073:}"];
+	Node0x55e2df0 -> Node0x55dd3b0;
+	Node0x55dd3b0 [shape=record,label="{libxml2-py.c:1078:}"];
+}

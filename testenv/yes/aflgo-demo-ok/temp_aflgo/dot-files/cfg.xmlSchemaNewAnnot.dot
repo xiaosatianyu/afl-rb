@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlSchemaNewAnnot' function" {
+	label="CFG for 'xmlSchemaNewAnnot' function";
+
+	Node0x50acc00 [shape=record,label="{xmlschemas.c:3300:|{<s0>T|<s1>F}}"];
+	Node0x50acc00 -> Node0x50d0600;
+	Node0x50acc00 -> Node0x50d0650;
+	Node0x50d0600 [shape=record,label="{xmlschemas.c:3306:}"];
+	Node0x50d0600 -> Node0x50ad0e0;
+	Node0x50d0650 [shape=record,label="{xmlschemas.c:3309:}"];
+	Node0x50d0650 -> Node0x50ad0e0;
+	Node0x50ad0e0 [shape=record,label="{xmlschemas.c:3312:}"];
+}

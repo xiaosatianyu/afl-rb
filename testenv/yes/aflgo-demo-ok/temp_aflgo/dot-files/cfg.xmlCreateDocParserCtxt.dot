@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlCreateDocParserCtxt' function" {
+	label="CFG for 'xmlCreateDocParserCtxt' function";
+
+	Node0x49ff440 [shape=record,label="{parser.c:14687:|{<s0>T|<s1>F}}"];
+	Node0x49ff440 -> Node0x49ff160;
+	Node0x49ff440 -> Node0x49ff1b0;
+	Node0x49ff160 [shape=record,label="{parser.c:14691:}"];
+	Node0x49ff160 -> Node0x4a04740;
+	Node0x49ff1b0 [shape=record,label="{parser.c:14692:}"];
+	Node0x49ff1b0 -> Node0x4a04740;
+	Node0x4a04740 [shape=record,label="{parser.c:14694:}"];
+}

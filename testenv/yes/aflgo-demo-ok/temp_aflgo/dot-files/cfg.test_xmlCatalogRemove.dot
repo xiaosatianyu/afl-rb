@@ -1,0 +1,14 @@
+digraph "CFG for 'test_xmlCatalogRemove' function" {
+	label="CFG for 'test_xmlCatalogRemove' function";
+
+	Node0x55f0dc0 [shape=record,label="{testapi.c:6162:}"];
+	Node0x55f0dc0 -> Node0x5600590;
+	Node0x5600590 [shape=record,label="{testapi.c:6169:|{<s0>T|<s1>F}}"];
+	Node0x5600590:s0 -> Node0x5600870;
+	Node0x5600590:s1 -> Node0x56003f0;
+	Node0x5600870 [shape=record,label="{testapi.c:6170:}"];
+	Node0x5600870 -> Node0x56007e0;
+	Node0x56007e0 [shape=record,label="{testapi.c:6169:}"];
+	Node0x56007e0 -> Node0x5600590;
+	Node0x56003f0 [shape=record,label="{testapi.c:6178:}"];
+}

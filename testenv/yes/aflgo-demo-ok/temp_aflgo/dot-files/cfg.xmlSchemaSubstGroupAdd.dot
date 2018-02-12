@@ -1,0 +1,32 @@
+digraph "CFG for 'xmlSchemaSubstGroupAdd' function" {
+	label="CFG for 'xmlSchemaSubstGroupAdd' function";
+
+	Node0x5704850 [shape=record,label="{xmlschemas.c:5688:|{<s0>T|<s1>F}}"];
+	Node0x5704850 -> Node0x57045c0;
+	Node0x5704850 -> Node0x5704610;
+	Node0x57045c0 [shape=record,label="{xmlschemas.c:5695:|{<s0>T|<s1>F}}"];
+	Node0x57045c0 -> Node0x5706220;
+	Node0x57045c0 -> Node0x5706270;
+	Node0x5706220 [shape=record,label="{xmlschemas.c:5697:}"];
+	Node0x5706220 -> Node0x5704b80;
+	Node0x5706270 [shape=record,label="{xmlschemas.c:5698:}"];
+	Node0x5706270 -> Node0x5704610;
+	Node0x5704610 [shape=record,label="{xmlschemas.c:5700:|{<s0>T|<s1>F}}"];
+	Node0x5704610 -> Node0x5706c80;
+	Node0x5704610 -> Node0x5706cd0;
+	Node0x5706c80 [shape=record,label="{xmlschemas.c:5702:}"];
+	Node0x5706c80 -> Node0x5704b80;
+	Node0x5706cd0 [shape=record,label="{xmlschemas.c:5706:|{<s0>T|<s1>F}}"];
+	Node0x5706cd0 -> Node0x5707c90;
+	Node0x5706cd0 -> Node0x5707ce0;
+	Node0x5707c90 [shape=record,label="{xmlschemas.c:5711:}"];
+	Node0x5707c90 -> Node0x5704b80;
+	Node0x5707ce0 [shape=record,label="{xmlschemas.c:5715:|{<s0>T|<s1>F}}"];
+	Node0x5707ce0 -> Node0x5708500;
+	Node0x5707ce0 -> Node0x5708550;
+	Node0x5708500 [shape=record,label="{xmlschemas.c:5717:}"];
+	Node0x5708500 -> Node0x5704b80;
+	Node0x5708550 [shape=record,label="{xmlschemas.c:5722:}"];
+	Node0x5708550 -> Node0x5704b80;
+	Node0x5704b80 [shape=record,label="{xmlschemas.c:5723:}"];
+}

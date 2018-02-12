@@ -1,0 +1,12 @@
+digraph "CFG for 'libxml_xmlUCSIsOsmanya' function" {
+	label="CFG for 'libxml_xmlUCSIsOsmanya' function";
+
+	Node0x5f34180 [shape=record,label="{libxml2-py.c:11147:|{<s0>T|<s1>F}}"];
+	Node0x5f34180:s0 -> Node0x5f351b0;
+	Node0x5f34180:s1 -> Node0x5f35160;
+	Node0x5f35160 [shape=record,label="{libxml2-py.c:11153:}"];
+	Node0x5f35160 -> Node0x5f33a10;
+	Node0x5f351b0 [shape=record,label="{libxml2-py.c:11155:}"];
+	Node0x5f351b0 -> Node0x5f33a10;
+	Node0x5f33a10 [shape=record,label="{libxml2-py.c:11158:}"];
+}

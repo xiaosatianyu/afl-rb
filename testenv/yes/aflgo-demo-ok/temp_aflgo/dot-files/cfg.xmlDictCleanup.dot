@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlDictCleanup' function" {
+	label="CFG for 'xmlDictCleanup' function";
+
+	Node0x3a40630 [shape=record,label="{dict.c:222:|{<s0>T|<s1>F}}"];
+	Node0x3a40630 -> Node0x3a430e0;
+	Node0x3a40630 -> Node0x3906460;
+	Node0x3906460 [shape=record,label="{dict.c:223:}"];
+	Node0x3906460 -> Node0x3a40810;
+	Node0x3a430e0 [shape=record,label="{dict.c:225:}"];
+	Node0x3a430e0 -> Node0x3a40810;
+	Node0x3a40810 [shape=record,label="{dict.c:228:}"];
+}

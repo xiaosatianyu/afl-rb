@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlParseEndTag' function" {
+	label="CFG for 'libxml_xmlParseEndTag' function";
+
+	Node0x59dc250 [shape=record,label="{libxml2-py.c:5027:|{<s0>T|<s1>F}}"];
+	Node0x59dc250:s0 -> Node0x59df780;
+	Node0x59dc250:s1 -> Node0x59df730;
+	Node0x59df730 [shape=record,label="{libxml2-py.c:5032:}"];
+	Node0x59df730 -> Node0x59de280;
+	Node0x59df780 [shape=record,label="{libxml2-py.c:5033:|{<s0>T|<s1>F}}"];
+	Node0x59df780:s0 -> Node0x59dffa0;
+	Node0x59df780:s1 -> Node0x59dfff0;
+	Node0x59dffa0 [shape=record,label="{libxml2-py.c:5033:}"];
+	Node0x59dffa0 -> Node0x59e0040;
+	Node0x59dfff0 [shape=record,label="{libxml2-py.c:5033:}"];
+	Node0x59dfff0 -> Node0x59e0040;
+	Node0x59e0040 [shape=record,label="{libxml2-py.c:5033:}"];
+	Node0x59e0040 -> Node0x59de280;
+	Node0x59de280 [shape=record,label="{libxml2-py.c:5038:}"];
+}

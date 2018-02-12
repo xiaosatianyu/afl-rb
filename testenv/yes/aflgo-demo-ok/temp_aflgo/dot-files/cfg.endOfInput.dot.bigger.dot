@@ -1,0 +1,5 @@
+digraph "CFG for 'endOfInput' function" {
+	label="CFG for 'endOfInput' function";
+
+	Node0x4815c20 [shape=record,label="{xmlIO.c:3289:}"];
+}

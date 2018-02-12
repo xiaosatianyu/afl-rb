@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlCtxtUseOptions' function" {
+	label="CFG for 'test_xmlCtxtUseOptions' function";
+
+	Node0x5987410 [shape=record,label="{testapi.c:13035:}"];
+	Node0x5987410 -> Node0x59b43b0;
+	Node0x59b43b0 [shape=record,label="{testapi.c:13044:|{<s0>T|<s1>F}}"];
+	Node0x59b43b0:s0 -> Node0x59b4690;
+	Node0x59b43b0:s1 -> Node0x59b4210;
+	Node0x59b4690 [shape=record,label="{testapi.c:13045:}"];
+	Node0x59b4690 -> Node0x59b4a80;
+	Node0x59b4a80 [shape=record,label="{testapi.c:13045:|{<s0>T|<s1>F}}"];
+	Node0x59b4a80:s0 -> Node0x59b4d00;
+	Node0x59b4a80:s1 -> Node0x59b4960;
+	Node0x59b4d00 [shape=record,label="{testapi.c:13046:|{<s0>T|<s1>F}}"];
+	Node0x59b4d00:s0 -> Node0x59b5dc0;
+	Node0x59b4d00:s1 -> Node0x59b6780;
+	Node0x59b5dc0 [shape=record,label="{testapi.c:13058:}"];
+	Node0x59b5dc0 -> Node0x59b6780;
+	Node0x59b6780 [shape=record,label="{testapi.c:13064:}"];
+	Node0x59b6780 -> Node0x59b4c70;
+	Node0x59b4c70 [shape=record,label="{testapi.c:13045:}"];
+	Node0x59b4c70 -> Node0x59b4a80;
+	Node0x59b4960 [shape=record,label="{testapi.c:13065:}"];
+	Node0x59b4960 -> Node0x59b4600;
+	Node0x59b4600 [shape=record,label="{testapi.c:13044:}"];
+	Node0x59b4600 -> Node0x59b43b0;
+	Node0x59b4210 [shape=record,label="{testapi.c:13066:}"];
+}

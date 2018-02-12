@@ -1,0 +1,17 @@
+digraph "CFG for 'xmlRelaxNGSchemaTypeHave' function" {
+	label="CFG for 'xmlRelaxNGSchemaTypeHave' function";
+
+	Node0x4e66ab0 [shape=record,label="{relaxng.c:2412:|{<s0>T|<s1>F}}"];
+	Node0x4e66ab0:s0 -> Node0x4f48e20;
+	Node0x4e66ab0:s1 -> Node0x4f48e70;
+	Node0x4f48e20 [shape=record,label="{relaxng.c:2417:}"];
+	Node0x4f48e20 -> Node0x4e66f90;
+	Node0x4f48e70 [shape=record,label="{relaxng.c:2418:|{<s0>T|<s1>F}}"];
+	Node0x4f48e70:s0 -> Node0x4f49c40;
+	Node0x4f48e70:s1 -> Node0x4f49f70;
+	Node0x4f49c40 [shape=record,label="{relaxng.c:2422:}"];
+	Node0x4f49c40 -> Node0x4e66f90;
+	Node0x4f49f70 [shape=record,label="{relaxng.c:2423:}"];
+	Node0x4f49f70 -> Node0x4e66f90;
+	Node0x4e66f90 [shape=record,label="{relaxng.c:2424:}"];
+}

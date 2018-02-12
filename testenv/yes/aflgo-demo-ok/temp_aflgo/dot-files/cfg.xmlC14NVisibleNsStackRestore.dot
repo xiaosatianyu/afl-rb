@@ -1,0 +1,15 @@
+digraph "CFG for 'xmlC14NVisibleNsStackRestore' function" {
+	label="CFG for 'xmlC14NVisibleNsStackRestore' function";
+
+	Node0x5283bb0 [shape=record,label="{c14n.c:372:|{<s0>T|<s1>F}}"];
+	Node0x5283bb0 -> Node0x5283f30;
+	Node0x5283bb0 -> Node0x5283fd0;
+	Node0x5283fd0 [shape=record,label="{c14n.c:373:|{<s0>T|<s1>F}}"];
+	Node0x5283fd0 -> Node0x5283f30;
+	Node0x5283fd0 -> Node0x5283f80;
+	Node0x5283f30 [shape=record,label="{c14n.c:374:}"];
+	Node0x5283f30 -> Node0x52875b0;
+	Node0x5283f80 [shape=record,label="{c14n.c:377:}"];
+	Node0x5283f80 -> Node0x52875b0;
+	Node0x52875b0 [shape=record,label="{c14n.c:380:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_htmlFreeParserCtxt' function" {
+	label="CFG for 'libxml_htmlFreeParserCtxt' function";
+
+	Node0x50f5860 [shape=record,label="{libxml2-py.c:278:|{<s0>T|<s1>F}}"];
+	Node0x50f5860:s0 -> Node0x54fcec0;
+	Node0x50f5860:s1 -> Node0x5465680;
+	Node0x5465680 [shape=record,label="{libxml2-py.c:283:}"];
+	Node0x5465680 -> Node0x54fd2a0;
+	Node0x54fcec0 [shape=record,label="{libxml2-py.c:284:|{<s0>T|<s1>F}}"];
+	Node0x54fcec0:s0 -> Node0x5504f90;
+	Node0x54fcec0:s1 -> Node0x5504fe0;
+	Node0x5504f90 [shape=record,label="{libxml2-py.c:284:}"];
+	Node0x5504f90 -> Node0x5505030;
+	Node0x5504fe0 [shape=record,label="{libxml2-py.c:284:}"];
+	Node0x5504fe0 -> Node0x5505030;
+	Node0x5505030 [shape=record,label="{libxml2-py.c:284:}"];
+	Node0x5505030 -> Node0x54fd2a0;
+	Node0x54fd2a0 [shape=record,label="{libxml2-py.c:289:}"];
+}

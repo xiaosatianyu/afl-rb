@@ -1,0 +1,28 @@
+digraph "CFG for 'xmlSaveSwitchEncoding' function" {
+	label="CFG for 'xmlSaveSwitchEncoding' function";
+
+	Node0x4fceab0 [shape=record,label="{xmlsave.c:556:|{<s0>T|<s1>F}}"];
+	Node0x4fceab0 -> Node0x4f81880;
+	Node0x4fceab0 -> Node0x4f817b0;
+	Node0x4f81880 [shape=record,label="{xmlsave.c:559:|{<s0>T|<s1>F}}"];
+	Node0x4f81880 -> Node0x4f81800;
+	Node0x4f81880 -> Node0x4f817b0;
+	Node0x4f81800 [shape=record,label="{xmlsave.c:559:|{<s0>T|<s1>F}}"];
+	Node0x4f81800 -> Node0x4f81760;
+	Node0x4f81800 -> Node0x4f817b0;
+	Node0x4f81760 [shape=record,label="{xmlsave.c:560:|{<s0>T|<s1>F}}"];
+	Node0x4f81760 -> Node0x4f825f0;
+	Node0x4f81760 -> Node0x4f82640;
+	Node0x4f825f0 [shape=record,label="{xmlsave.c:563:}"];
+	Node0x4f825f0 -> Node0x4f80190;
+	Node0x4f82640 [shape=record,label="{xmlsave.c:566:|{<s0>T|<s1>F}}"];
+	Node0x4f82640 -> Node0x4f83760;
+	Node0x4f82640 -> Node0x4f83a90;
+	Node0x4f83760 [shape=record,label="{xmlsave.c:568:}"];
+	Node0x4f83760 -> Node0x4f80190;
+	Node0x4f83a90 [shape=record,label="{xmlsave.c:575:}"];
+	Node0x4f83a90 -> Node0x4f817b0;
+	Node0x4f817b0 [shape=record,label="{xmlsave.c:577:}"];
+	Node0x4f817b0 -> Node0x4f80190;
+	Node0x4f80190 [shape=record,label="{xmlsave.c:578:}"];
+}

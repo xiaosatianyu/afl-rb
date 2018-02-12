@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlNanoHTTPMimeType' function" {
+	label="CFG for 'xmlNanoHTTPMimeType' function";
+
+	Node0x39f1e20 [shape=record,label="{nanohttp.c:1794:|{<s0>T|<s1>F}}"];
+	Node0x39f1e20 -> Node0x39c3550;
+	Node0x39f1e20 -> Node0x39c35a0;
+	Node0x39c3550 [shape=record,label="{nanohttp.c:1797:}"];
+	Node0x39c3550 -> Node0x39c35f0;
+	Node0x39c35a0 [shape=record,label="{nanohttp.c:1797:}"];
+	Node0x39c35a0 -> Node0x39c35f0;
+	Node0x39c35f0 [shape=record,label="{nanohttp.c:1797:}"];
+}

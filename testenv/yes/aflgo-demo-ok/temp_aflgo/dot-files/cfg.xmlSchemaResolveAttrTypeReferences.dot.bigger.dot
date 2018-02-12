@@ -1,0 +1,40 @@
+digraph "CFG for 'xmlSchemaResolveAttrTypeReferences' function" {
+	label="CFG for 'xmlSchemaResolveAttrTypeReferences' function";
+
+	Node0x5451450 [shape=record,label="{xmlschemas.c:20315:|{<s0>T|<s1>F}}"];
+	Node0x5451450:s0 -> Node0x5460430;
+	Node0x5451450:s1 -> Node0x5460480;
+	Node0x5460430 [shape=record,label="{xmlschemas.c:20325:}"];
+	Node0x5460430 -> Node0x54602f0;
+	Node0x5460480 [shape=record,label="{xmlschemas.c:20326:|{<s0>T|<s1>F}}"];
+	Node0x5460480:s0 -> Node0x54653a0;
+	Node0x5460480:s1 -> Node0x54653f0;
+	Node0x54653a0 [shape=record,label="{xmlschemas.c:20328:}"];
+	Node0x54653a0 -> Node0x54602f0;
+	Node0x54653f0 [shape=record,label="{xmlschemas.c:20329:|{<s0>T|<s1>F}}"];
+	Node0x54653f0:s0 -> Node0x5465a20;
+	Node0x54653f0:s1 -> Node0x5465ac0;
+	Node0x5465a20 [shape=record,label="{xmlschemas.c:20330:|{<s0>T|<s1>F}}"];
+	Node0x5465a20:s0 -> Node0x54668c0;
+	Node0x5465a20:s1 -> Node0x54669b0;
+	Node0x54669b0 [shape=record,label="{xmlschemas.c:20334:|{<s0>T|<s1>F}}"];
+	Node0x54669b0:s0 -> Node0x5466960;
+	Node0x54669b0:s1 -> Node0x5466d30;
+	Node0x5466d30 [shape=record,label="{xmlschemas.c:20334:|{<s0>T|<s1>F}}"];
+	Node0x5466d30:s0 -> Node0x5466ff0;
+	Node0x5466d30:s1 -> Node0x54668c0;
+	Node0x5466ff0 [shape=record,label="{xmlschemas.c:20334:|{<s0>T|<s1>F}}"];
+	Node0x5466ff0:s0 -> Node0x5466960;
+	Node0x5466ff0:s1 -> Node0x54668c0;
+	Node0x54668c0 [shape=record,label="{xmlschemas.c:20335:}"];
+	Node0x54668c0 -> Node0x54602f0;
+	Node0x5466960 [shape=record,label="{xmlschemas.c:20342:}"];
+	Node0x5466960 -> Node0x5466910;
+	Node0x5466910 [shape=record,label="{xmlschemas.c:20344:}"];
+	Node0x5466910 -> Node0x5465a70;
+	Node0x5465ac0 [shape=record,label="{xmlschemas.c:20348:}"];
+	Node0x5465ac0 -> Node0x5465a70;
+	Node0x5465a70 [shape=record,label="{xmlschemas.c:20350:}"];
+	Node0x5465a70 -> Node0x54602f0;
+	Node0x54602f0 [shape=record,label="{xmlschemas.c:20351:}"];
+}

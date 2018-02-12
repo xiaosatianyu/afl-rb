@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlOutputBufferCreateFd' function" {
+	label="CFG for 'test_xmlOutputBufferCreateFd' function";
+
+	Node0x62540c0 [shape=record,label="{testapi.c:28437:}"];
+	Node0x62540c0 -> Node0x625d730;
+	Node0x625d730 [shape=record,label="{testapi.c:28447:|{<s0>T|<s1>F}}"];
+	Node0x625d730:s0 -> Node0x625da10;
+	Node0x625d730:s1 -> Node0x625d590;
+	Node0x625da10 [shape=record,label="{testapi.c:28448:}"];
+	Node0x625da10 -> Node0x625de00;
+	Node0x625de00 [shape=record,label="{testapi.c:28448:|{<s0>T|<s1>F}}"];
+	Node0x625de00:s0 -> Node0x625e080;
+	Node0x625de00:s1 -> Node0x625dce0;
+	Node0x625e080 [shape=record,label="{testapi.c:28449:|{<s0>T|<s1>F}}"];
+	Node0x625e080:s0 -> Node0x625f1d0;
+	Node0x625e080:s1 -> Node0x625f500;
+	Node0x625f1d0 [shape=record,label="{testapi.c:28461:}"];
+	Node0x625f1d0 -> Node0x625f500;
+	Node0x625f500 [shape=record,label="{testapi.c:28467:}"];
+	Node0x625f500 -> Node0x625dff0;
+	Node0x625dff0 [shape=record,label="{testapi.c:28448:}"];
+	Node0x625dff0 -> Node0x625de00;
+	Node0x625dce0 [shape=record,label="{testapi.c:28468:}"];
+	Node0x625dce0 -> Node0x625d980;
+	Node0x625d980 [shape=record,label="{testapi.c:28447:}"];
+	Node0x625d980 -> Node0x625d730;
+	Node0x625d590 [shape=record,label="{testapi.c:28469:}"];
+}

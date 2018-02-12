@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlEncodeEntities' function" {
+	label="CFG for 'libxml_xmlEncodeEntities' function";
+
+	Node0x574f130 [shape=record,label="{libxml2-py.c:2490:|{<s0>T|<s1>F}}"];
+	Node0x574f130:s0 -> Node0x5750b70;
+	Node0x574f130:s1 -> Node0x5750b20;
+	Node0x5750b20 [shape=record,label="{libxml2-py.c:2498:}"];
+	Node0x5750b20 -> Node0x574eef0;
+	Node0x5750b70 [shape=record,label="{libxml2-py.c:2499:|{<s0>T|<s1>F}}"];
+	Node0x5750b70:s0 -> Node0x5751400;
+	Node0x5750b70:s1 -> Node0x5751450;
+	Node0x5751400 [shape=record,label="{libxml2-py.c:2499:}"];
+	Node0x5751400 -> Node0x57514a0;
+	Node0x5751450 [shape=record,label="{libxml2-py.c:2499:}"];
+	Node0x5751450 -> Node0x57514a0;
+	Node0x57514a0 [shape=record,label="{libxml2-py.c:2499:}"];
+	Node0x57514a0 -> Node0x574eef0;
+	Node0x574eef0 [shape=record,label="{libxml2-py.c:2504:}"];
+}

@@ -1,0 +1,12 @@
+digraph "CFG for 'xmlXPathWrapString' function" {
+	label="CFG for 'xmlXPathWrapString' function";
+
+	Node0x457a8e0 [shape=record,label="{xpath.c:5302:|{<s0>T|<s1>F}}"];
+	Node0x457a8e0:s0 -> Node0x457cce0;
+	Node0x457a8e0:s1 -> Node0x457cd30;
+	Node0x457cce0 [shape=record,label="{xpath.c:5307:}"];
+	Node0x457cce0 -> Node0x457cf80;
+	Node0x457cd30 [shape=record,label="{xpath.c:5310:}"];
+	Node0x457cd30 -> Node0x457cf80;
+	Node0x457cf80 [shape=record,label="{xpath.c:5317:}"];
+}

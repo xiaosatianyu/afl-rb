@@ -1,0 +1,26 @@
+digraph "CFG for 'libxml_xmlXPtrNewLocationSetNodes' function" {
+	label="CFG for 'libxml_xmlXPtrNewLocationSetNodes' function";
+
+	Node0x6259450 [shape=record,label="{libxml2-py.c:14710:|{<s0>T|<s1>F}}"];
+	Node0x6259450:s0 -> Node0x625fff0;
+	Node0x6259450:s1 -> Node0x625ffa0;
+	Node0x625ffa0 [shape=record,label="{libxml2-py.c:14719:}"];
+	Node0x625ffa0 -> Node0x625d260;
+	Node0x625fff0 [shape=record,label="{libxml2-py.c:14720:|{<s0>T|<s1>F}}"];
+	Node0x625fff0:s0 -> Node0x6260890;
+	Node0x625fff0:s1 -> Node0x62608e0;
+	Node0x6260890 [shape=record,label="{libxml2-py.c:14720:}"];
+	Node0x6260890 -> Node0x6260930;
+	Node0x62608e0 [shape=record,label="{libxml2-py.c:14720:}"];
+	Node0x62608e0 -> Node0x6260930;
+	Node0x6260930 [shape=record,label="{libxml2-py.c:14720:|{<s0>T|<s1>F}}"];
+	Node0x6260930:s0 -> Node0x6260f60;
+	Node0x6260930:s1 -> Node0x6260fb0;
+	Node0x6260f60 [shape=record,label="{libxml2-py.c:14721:}"];
+	Node0x6260f60 -> Node0x6261000;
+	Node0x6260fb0 [shape=record,label="{libxml2-py.c:14721:}"];
+	Node0x6260fb0 -> Node0x6261000;
+	Node0x6261000 [shape=record,label="{libxml2-py.c:14721:}"];
+	Node0x6261000 -> Node0x625d260;
+	Node0x625d260 [shape=record,label="{libxml2-py.c:14726:}"];
+}

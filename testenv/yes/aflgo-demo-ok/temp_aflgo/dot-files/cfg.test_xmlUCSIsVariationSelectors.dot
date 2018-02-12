@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlUCSIsVariationSelectors' function" {
+	label="CFG for 'test_xmlUCSIsVariationSelectors' function";
+
+	Node0x6a04990 [shape=record,label="{testapi.c:42821:}"];
+	Node0x6a04990 -> Node0x6a0fc50;
+	Node0x6a0fc50 [shape=record,label="{testapi.c:42829:|{<s0>T|<s1>F}}"];
+	Node0x6a0fc50:s0 -> Node0x6a0ff30;
+	Node0x6a0fc50:s1 -> Node0x6a0fab0;
+	Node0x6a0ff30 [shape=record,label="{testapi.c:42830:|{<s0>T|<s1>F}}"];
+	Node0x6a0ff30:s0 -> Node0x6a10d90;
+	Node0x6a0ff30:s1 -> Node0x6a11560;
+	Node0x6a10d90 [shape=record,label="{testapi.c:42840:}"];
+	Node0x6a10d90 -> Node0x6a11560;
+	Node0x6a11560 [shape=record,label="{testapi.c:42845:}"];
+	Node0x6a11560 -> Node0x6a0fea0;
+	Node0x6a0fea0 [shape=record,label="{testapi.c:42829:}"];
+	Node0x6a0fea0 -> Node0x6a0fc50;
+	Node0x6a0fab0 [shape=record,label="{testapi.c:42846:}"];
+}

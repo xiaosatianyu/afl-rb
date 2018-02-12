@@ -1,0 +1,25 @@
+digraph "CFG for 'xmlRegisterCharEncodingHandler' function" {
+	label="CFG for 'xmlRegisterCharEncodingHandler' function";
+
+	Node0x409bed0 [shape=record,label="{encoding.c:1472:|{<s0>T|<s1>F}}"];
+	Node0x409bed0 -> Node0x409bbd0;
+	Node0x409bed0 -> Node0x40a7d10;
+	Node0x409bbd0 [shape=record,label="{encoding.c:1473:}"];
+	Node0x409bbd0 -> Node0x40a7d10;
+	Node0x40a7d10 [shape=record,label="{encoding.c:1474:|{<s0>T|<s1>F}}"];
+	Node0x40a7d10 -> Node0x40a8100;
+	Node0x40a7d10 -> Node0x40a81a0;
+	Node0x40a81a0 [shape=record,label="{encoding.c:1474:|{<s0>T|<s1>F}}"];
+	Node0x40a81a0 -> Node0x40a8100;
+	Node0x40a81a0 -> Node0x40a8150;
+	Node0x40a8100 [shape=record,label="{encoding.c:1475:}"];
+	Node0x40a8100 -> Node0x409baf0;
+	Node0x40a8150 [shape=record,label="{encoding.c:1480:|{<s0>T|<s1>F}}"];
+	Node0x40a8150 -> Node0x3d6a1c0;
+	Node0x40a8150 -> Node0x3d6a210;
+	Node0x3d6a1c0 [shape=record,label="{encoding.c:1481:}"];
+	Node0x3d6a1c0 -> Node0x409baf0;
+	Node0x3d6a210 [shape=record,label="{encoding.c:1486:}"];
+	Node0x3d6a210 -> Node0x409baf0;
+	Node0x409baf0 [shape=record,label="{encoding.c:1487:}"];
+}

@@ -1,0 +1,12 @@
+digraph "CFG for '__xmlLastError' function" {
+	label="CFG for '__xmlLastError' function";
+
+	Node0x374f8f0 [shape=record,label="{globals.c:717:|{<s0>T|<s1>F}}"];
+	Node0x374f8f0:s0 -> Node0x3760b20;
+	Node0x374f8f0:s1 -> Node0x374fe30;
+	Node0x3760b20 [shape=record,label="{globals.c:718:}"];
+	Node0x3760b20 -> Node0x3760170;
+	Node0x374fe30 [shape=record,label="{globals.c:720:}"];
+	Node0x374fe30 -> Node0x3760170;
+	Node0x3760170 [shape=record,label="{globals.c:721:}"];
+}

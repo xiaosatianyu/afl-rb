@@ -1,0 +1,19 @@
+digraph "CFG for 'test_xmlXPathIsInf' function" {
+	label="CFG for 'test_xmlXPathIsInf' function";
+
+	Node0x6c05ad0 [shape=record,label="{testapi.c:46799:}"];
+	Node0x6c05ad0 -> Node0x6c11f20;
+	Node0x6c11f20 [shape=record,label="{testapi.c:46807:|{<s0>T|<s1>F}}"];
+	Node0x6c11f20:s0 -> Node0x6c12200;
+	Node0x6c11f20:s1 -> Node0x6c11d80;
+	Node0x6c12200 [shape=record,label="{testapi.c:46808:|{<s0>T|<s1>F}}"];
+	Node0x6c12200:s0 -> Node0x6c13050;
+	Node0x6c12200:s1 -> Node0x6c13820;
+	Node0x6c13050 [shape=record,label="{testapi.c:46818:}"];
+	Node0x6c13050 -> Node0x6c13820;
+	Node0x6c13820 [shape=record,label="{testapi.c:46823:}"];
+	Node0x6c13820 -> Node0x6c12170;
+	Node0x6c12170 [shape=record,label="{testapi.c:46807:}"];
+	Node0x6c12170 -> Node0x6c11f20;
+	Node0x6c11d80 [shape=record,label="{testapi.c:46824:}"];
+}

@@ -1,0 +1,28 @@
+digraph "CFG for 'test_xmlSetDocCompressMode' function" {
+	label="CFG for 'test_xmlSetDocCompressMode' function";
+
+	Node0x5fb6950 [shape=record,label="{testapi.c:23514:}"];
+	Node0x5fb6950 -> Node0x5fd9f00;
+	Node0x5fd9f00 [shape=record,label="{testapi.c:23522:|{<s0>T|<s1>F}}"];
+	Node0x5fd9f00:s0 -> Node0x5fda1e0;
+	Node0x5fd9f00:s1 -> Node0x5fd9d60;
+	Node0x5fda1e0 [shape=record,label="{testapi.c:23523:}"];
+	Node0x5fda1e0 -> Node0x5fda5d0;
+	Node0x5fda5d0 [shape=record,label="{testapi.c:23523:|{<s0>T|<s1>F}}"];
+	Node0x5fda5d0:s0 -> Node0x5fda850;
+	Node0x5fda5d0:s1 -> Node0x5fda4b0;
+	Node0x5fda850 [shape=record,label="{testapi.c:23524:|{<s0>T|<s1>F}}"];
+	Node0x5fda850:s0 -> Node0x5fdb940;
+	Node0x5fda850:s1 -> Node0x5fdc190;
+	Node0x5fdb940 [shape=record,label="{testapi.c:23535:}"];
+	Node0x5fdb940 -> Node0x5fdc190;
+	Node0x5fdc190 [shape=record,label="{testapi.c:23541:}"];
+	Node0x5fdc190 -> Node0x5fda7c0;
+	Node0x5fda7c0 [shape=record,label="{testapi.c:23523:}"];
+	Node0x5fda7c0 -> Node0x5fda5d0;
+	Node0x5fda4b0 [shape=record,label="{testapi.c:23542:}"];
+	Node0x5fda4b0 -> Node0x5fda150;
+	Node0x5fda150 [shape=record,label="{testapi.c:23522:}"];
+	Node0x5fda150 -> Node0x5fd9f00;
+	Node0x5fd9d60 [shape=record,label="{testapi.c:23543:}"];
+}

@@ -1,0 +1,13 @@
+digraph "CFG for 'xmlDictCreateSub' function" {
+	label="CFG for 'xmlDictCreateSub' function";
+
+	Node0x3a56540 [shape=record,label="{dict.c:583:|{<s0>T|<s1>F}}"];
+	Node0x3a56540 -> Node0x3a56400;
+	Node0x3a56540 -> Node0x3a563b0;
+	Node0x3a56400 [shape=record,label="{dict.c:586:|{<s0>T|<s1>F}}"];
+	Node0x3a56400 -> Node0x3a56360;
+	Node0x3a56400 -> Node0x3a563b0;
+	Node0x3a56360 [shape=record,label="{dict.c:590:}"];
+	Node0x3a56360 -> Node0x3a563b0;
+	Node0x3a563b0 [shape=record,label="{dict.c:594:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'xmlRelaxNGElemPop' function" {
+	label="CFG for 'xmlRelaxNGElemPop' function";
+
+	Node0x5386500 [shape=record,label="{relaxng.c:8112:|{<s0>T|<s1>F}}"];
+	Node0x5386500 -> Node0x5386820;
+	Node0x5386500 -> Node0x5386870;
+	Node0x5386820 [shape=record,label="{relaxng.c:8117:}"];
+	Node0x5386820 -> Node0x538b700;
+	Node0x5386870 [shape=record,label="{relaxng.c:8118:|{<s0>T|<s1>F}}"];
+	Node0x5386870 -> Node0x538d1d0;
+	Node0x5386870 -> Node0x538d270;
+	Node0x538d1d0 [shape=record,label="{relaxng.c:8122:}"];
+	Node0x538d1d0 -> Node0x538d220;
+	Node0x538d270 [shape=record,label="{relaxng.c:8124:}"];
+	Node0x538d270 -> Node0x538d220;
+	Node0x538d220 [shape=record,label="{relaxng.c:8125:}"];
+	Node0x538d220 -> Node0x538b700;
+	Node0x538b700 [shape=record,label="{relaxng.c:8126:}"];
+}

@@ -1,0 +1,19 @@
+digraph "CFG for 'libxml_xmlParseMisc' function" {
+	label="CFG for 'libxml_xmlParseMisc' function";
+
+	Node0x59fbaa0 [shape=record,label="{libxml2-py.c:5168:|{<s0>T|<s1>F}}"];
+	Node0x59fbaa0:s0 -> Node0x59fecc0;
+	Node0x59fbaa0:s1 -> Node0x59fec70;
+	Node0x59fec70 [shape=record,label="{libxml2-py.c:5173:}"];
+	Node0x59fec70 -> Node0x59fd750;
+	Node0x59fecc0 [shape=record,label="{libxml2-py.c:5174:|{<s0>T|<s1>F}}"];
+	Node0x59fecc0:s0 -> Node0x59ff4e0;
+	Node0x59fecc0:s1 -> Node0x59ff530;
+	Node0x59ff4e0 [shape=record,label="{libxml2-py.c:5174:}"];
+	Node0x59ff4e0 -> Node0x59ff580;
+	Node0x59ff530 [shape=record,label="{libxml2-py.c:5174:}"];
+	Node0x59ff530 -> Node0x59ff580;
+	Node0x59ff580 [shape=record,label="{libxml2-py.c:5174:}"];
+	Node0x59ff580 -> Node0x59fd750;
+	Node0x59fd750 [shape=record,label="{libxml2-py.c:5179:}"];
+}
