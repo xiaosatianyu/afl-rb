@@ -2056,7 +2056,6 @@ static void update_all_d_attri(){
             //DEBUG_TEST("\n20%距离门限扩大至%0.3f\n", distance_threshold_20);   
             break;
         }
-        
     }
     if(distance_threshold_20 < 0.05){
         distance_threshold_20 =0.05;
@@ -2096,8 +2095,6 @@ static void update_all_d_attri(){
         distance_threshold_10 =0.05;
 
     DEBUG_TEST("更新10%距离门限为%.3f\n", distance_threshold_10 );
-
-
 }
 
 static void show_stats(void);
@@ -6694,10 +6691,10 @@ static u8 fuzz_one(char** argv) {
      if (queue_cycle <2)
         return 1;
      // 小d 小r 启用raritymask 和distance mask, 使用rb_fuzzing的模式运行
-     open_rarity_mask = 1 && use_rarity_mask;
+     open_rarity_mask =  use_rarity_mask & (UR(100) > 10);
      u8 ret =  check_if_open_distance_mask(queue_cur); 
      if(queue_cycle >1) 
-        open_distance_mask =  use_distance_mask & ret;
+        open_distance_mask =  use_distance_mask & ret & UR(100)>10 ;
      if(open_distance_mask)
         DEBUG_TEST("%s open distance_mask\n", queue_cur->fname); 
      vanilla_afl = 0;
@@ -6712,7 +6709,7 @@ static u8 fuzz_one(char** argv) {
      rb_fuzzing = 0;
      u8 ret =  check_if_open_distance_mask(queue_cur); 
      if (queue_cycle>1)
-        open_distance_mask =  use_distance_mask & ret;
+        open_distance_mask =  use_distance_mask & ret & UR(100) >10;
      if(open_distance_mask)
         DEBUG_TEST("%s open distance_mask\n", queue_cur->fname); 
      DEBUG_TEST("[select]%s is a SDBR\n", queue_cur->fname);
@@ -6720,7 +6717,7 @@ static u8 fuzz_one(char** argv) {
   else if (fit_flag == BDSR){
     // 大d 小r 只启用rarity mask, 使用rb_fuzzing的模式运行
      vanilla_afl = 0;
-     open_rarity_mask = 1 && use_rarity_mask;
+     open_rarity_mask = 1 && use_rarity_mask & UR(100) >10;
      DEBUG_TEST("abandon: %s is a BDSR\n", queue_cur->fname);
   }
 
@@ -6753,7 +6750,7 @@ static u8 fuzz_one(char** argv) {
 #else
   // @RB@
   //常规afl的筛选策略 AFL 跑一个fuzz_one 这个需要吗?
-  if (vanilla_afl ){
+  if ( vanilla_afl ){
         if (pending_favored) {
               /* If we have any favored, non-fuzzed new arrivals in the queue,
                  possibly skip to them at the expense of already-fuzzed or non-favored
