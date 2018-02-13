@@ -347,7 +347,7 @@ static void update_max_min_dis( u8 out_flag, u8 crash_flag){
     }
 
     // 如果命中目标
-    if (hit_target == 1  && crash_flag){
+    if (hit_target == 1  && crash_flag ){
         min_distance = 0;
         hit_target = 0;
        if (out_flag)  show_stats();

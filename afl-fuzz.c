@@ -2129,7 +2129,7 @@ static void update_max_min_distance(u8 out_flag , u8 crash_flag){
     // 如果命中了,把最小距离设为0
     //
     //if( hit_target == 1  ){
-    if( hit_target == 1 && crash_flag ){
+    if( hit_target == 1 && crash_flag  ){
             distance_threshold_20 = distance_ts_default;
             distance_threshold_10 = distance_ts_default;
             min_distance = 0;
@@ -4130,7 +4130,7 @@ static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,
   if (!dumb_mode && first_run && !fault && !new_bits) fault = FAULT_NOBITS;
 
 abort_calibration:
-
+  
   if (new_bits == 2 && !q->has_new_cov) {
     q->has_new_cov = 1;
     queued_with_cov++;
@@ -6691,10 +6691,10 @@ static u8 fuzz_one(char** argv) {
      if (queue_cycle <2)
         return 1;
      // 小d 小r 启用raritymask 和distance mask, 使用rb_fuzzing的模式运行
-     open_rarity_mask =  use_rarity_mask & (UR(100) > 10);
+     open_rarity_mask =  use_rarity_mask && (UR(100) > 10);
      u8 ret =  check_if_open_distance_mask(queue_cur); 
      if(queue_cycle >1) 
-        open_distance_mask =  use_distance_mask & ret & UR(100)>10 ;
+        open_distance_mask =  use_distance_mask && ret && (UR(100)>10) ;
      if(open_distance_mask)
         DEBUG_TEST("%s open distance_mask\n", queue_cur->fname); 
      vanilla_afl = 0;
@@ -6709,7 +6709,7 @@ static u8 fuzz_one(char** argv) {
      rb_fuzzing = 0;
      u8 ret =  check_if_open_distance_mask(queue_cur); 
      if (queue_cycle>1)
-        open_distance_mask =  use_distance_mask & ret & UR(100) >10;
+        open_distance_mask =  use_distance_mask && ret && (UR(100) >10);
      if(open_distance_mask)
         DEBUG_TEST("%s open distance_mask\n", queue_cur->fname); 
      DEBUG_TEST("[select]%s is a SDBR\n", queue_cur->fname);
@@ -6717,7 +6717,7 @@ static u8 fuzz_one(char** argv) {
   else if (fit_flag == BDSR){
     // 大d 小r 只启用rarity mask, 使用rb_fuzzing的模式运行
      vanilla_afl = 0;
-     open_rarity_mask = 1 && use_rarity_mask & UR(100) >10;
+     open_rarity_mask =  use_rarity_mask && (UR(100) >10);
      DEBUG_TEST("abandon: %s is a BDSR\n", queue_cur->fname);
   }
 
@@ -6731,7 +6731,7 @@ static u8 fuzz_one(char** argv) {
         init_run =0;
     }
     else {
-        if (!prev_cycle_wo_new)
+        if (!prev_cycle_wo_new && (UR(100) >5) )
             return 1;
         vanilla_afl =1;
         rb_fuzzing = 0;
