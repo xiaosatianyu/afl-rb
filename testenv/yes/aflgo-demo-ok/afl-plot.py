@@ -39,8 +39,8 @@ def plot():
     cur_dir=os.path.abspath(os.curdir)
     out_put_dir=cur_dir
     data_dir=os.path.join(cur_dir, "good_result")
-    target_path=os.path.join(out_put_dir, "mini_distance_good.png")
-    max_time=0
+    target_path=os.path.join(out_put_dir, "aflgo-demo.png")
+    max_time=1518424233
 		
     if not os.path.exists(data_dir):
         print "error,there is no input data"
@@ -63,10 +63,10 @@ def plot():
     if  plot_rd_data  is  not None:
         plt.plot(plot_rd_data[0],plot_rd_data[1],color='g',label='RDFuzz',lw=2) #marker="s" linestyle=':'    
         
-    plt.legend(loc='best',fontsize=15,shadow=True,framealpha=True,borderpad=True,labelspacing=False)
-    plt.ylabel('mini-distance',fontsize=15)
-    plt.xlabel("Time(minites)",fontsize=15)
-    plt.title("AFLGo-demo",fontsize=15)
+    plt.legend(loc='best',fontsize=18,shadow=False,framealpha=False,borderpad=True,labelspacing=False)
+    plt.ylabel('mini-distance',fontsize=18)
+    plt.xlabel("Time(minites)",fontsize=18)
+    plt.title("AFLGo-demo",fontsize=18)
     #plt.show()
     plt.savefig(target_path,edgecolor=None,transparent=False,borderpad=False,borderaxespad=False) #facecolor=None,
     plt.close()
