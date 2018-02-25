@@ -46,7 +46,6 @@ afl-qemu-trace
 /testenv/*/*/libwmf*/
 /testenv/*/*/libarchive*/
 /testenv/*/*/w3m
-/testenv/*/*/*.tar.gz
 /testenv/*/*/*-asan
 
 /testenv/*/*/temp*/dot-files
@@ -59,6 +58,9 @@ afl-qemu-trace
 /testenv/*/*/temp*/step2.log
 /testenv/*/*/mini_distance.png
 /testenv/*/*/*-asan
+
+/testenv/no/binutil/*
+
 
 
 
