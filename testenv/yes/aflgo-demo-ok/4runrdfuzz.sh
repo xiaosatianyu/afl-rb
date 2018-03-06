@@ -3,7 +3,7 @@
 AFL_HOME=`pwd`/../../../
 INPUT=`pwd`/input
 OUTPUT=/tmp/output-rd4
-target="./temp_aflgo/xmllint-no-asan --valid --recover  @@"
+target="./temp_aflgo/xmllint-asan --valid --recover  @@"
 
 # Create test environment for a CB
 create_env () {

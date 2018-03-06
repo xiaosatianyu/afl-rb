@@ -40,7 +40,7 @@ def plot():
     out_put_dir=cur_dir
     data_dir=os.path.join(cur_dir, "good_result")
     target_path=os.path.join(out_put_dir, "aflgo-demo.png")
-    max_time=1518424233
+    max_time=0
 		
     if not os.path.exists(data_dir):
         print "error,there is no input data"
