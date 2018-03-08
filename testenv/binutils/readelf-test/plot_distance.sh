@@ -50,8 +50,8 @@ set key outside  Right font "DejaVu Sans,18"  #bottom
 
 #set title "the min_distance "
 
-plot '/tmp/out-fairfuzz-readelf/master/plot_data'  using 1:13 with lines title 'farifuzz'    linewidth 4 linetype 8,\\
-     '/tmp/out-para-readelf/master/plot_data'  using 1:13 with lines title 'para'    linewidth 4 linetype 6 ,\\
+plot '/tmp/out-fairfuzz-readelf/master/plot_data'  using 1:4 with lines title 'farifuzz'    linewidth 4 linetype 8,\\
+     '/tmp/out-para-readelf/master/plot_data'  using 1:4 with lines title 'para'    linewidth 4 linetype 6 ,\\
 ######end the high_freq.png
 
 
