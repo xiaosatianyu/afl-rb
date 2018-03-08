@@ -7,10 +7,9 @@ fi
 num=$1
 
 x-terminal-emulator -e "`pwd`/startafl-para.sh 0 " &
-sleep 1
+num=$((num-1))
 while [ $num -ge 1 ]
 do
-	echo $num
 	x-terminal-emulator -e "`pwd`/startafl-para.sh $num " &
 	num=$((num-1))
 done

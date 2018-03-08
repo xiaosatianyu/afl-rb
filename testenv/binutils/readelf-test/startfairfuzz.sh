@@ -3,7 +3,7 @@
 FAIRFUZZ="`pwd`/../../../fairfuzz/afl-fuzz"
 
 SEED="`pwd`/seed"
-OUT_PUT="/tmp/out-para-readelf"
+OUT_PUT="/tmp/out-fairfuzz-readelf"
 EXE_STR="`pwd`/readelf2.26  -a @@ "
 
 if [ "$1" = "0" ]; then
