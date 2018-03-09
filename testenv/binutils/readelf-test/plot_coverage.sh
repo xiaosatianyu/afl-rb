@@ -48,7 +48,7 @@ set grid
 set key outside  Right font "DejaVu Sans,18"  #bottom
 #set label "ddd" at 0.5,0.5
 
-#set title "the min_distance "
+#set title "the path number "
 
 plot '/tmp/out-fairfuzz-readelf/master/plot_data'  using 1:4 with lines title 'farifuzz'    linewidth 4 linetype 8,\\
      '/tmp/out-para-readelf/master/plot_data'  using 1:4 with lines title 'para'    linewidth 4 linetype 6 ,\\
