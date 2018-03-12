@@ -9,7 +9,7 @@ if [ "$GNUPLOT" = "" ]; then
 
 fi
 
-rm -r './min_distance.png'
+rm -r './path-coverage.png'
 echo "[*] Generating plots..."
 
 (
