@@ -125,7 +125,7 @@ u64 getTaskId(const char* masterTaskDir){
     while ( dp!= NULL && (dirp = readdir(dp)) != NULL) {
 		if (!strcmp(dirp->d_name, "..") || !strcmp(dirp->d_name, "."))
 			continue;
-		else {
+        else {
              _ID = atoi(dirp->d_name);
             // check if it is a new id
             if ( fuzzedIDs.find(_ID) == fuzzedIDs.end() )
@@ -153,10 +153,45 @@ u64 getTaskId(const char* masterTaskDir){
         std::vector<std::pair<u64, u64> > sortedFuzzedIDs;    
         sortMapByValue(fuzzedIDs, sortedFuzzedIDs);
         int size=sortedFuzzedIDs.size();
+        {
+            /*
+            DEBUG("sortedFuzzedIDs lists below:\n");
+            int i = 0;
+            for (; i < size; i++) {
+                DEBUG("\tsortedFuzzedIDs[%d]: (%d, %d)\n", i, sortedFuzzedIDs[i].first, sortedFuzzedIDs[i].second);
+            }
+            */
+            DEBUG("taskIDs lists: (");
+            auto it = taskIDs.begin(), end = taskIDs.end();
+            for (; it != end; it++) {
+                u64 id = *it;
+                DEBUG(" %d,", id);
+            }
+            DEBUG(")\n");
+        }
         u64 ID;
         u64 hot;
-        while(size--){
-            auto it = sortedFuzzedIDs[size-1];
+        u64 index = 0;
+
+        if (taskIDs.size() == 0) {
+            DEBUG("No task found in master's task directory!\n");
+            DEBUG("Maybe we should roll back to vanilla AFL!\n");
+        }
+
+        /*
+        auto it = sortedFuzzedIDs[0];
+        if (it.second >= 10) {
+            targetID = 0;
+            DEBUG("all rare ids have been tested for 10 times, rolling back to fairfuzz mod!\n");
+        } else {
+            targetID = it.first;
+            fuzzedIDs[targetID] += 1;
+            DEBUG("select rare branch %d with hot %d\n", targetID, it.second);
+        }
+        */
+
+        while(index < size){
+            auto it = sortedFuzzedIDs[index];
             ID = it.first;
             hot = it.second;
             if ( taskIDs.find(ID) != taskIDs.end() ){
@@ -165,10 +200,13 @@ u64 getTaskId(const char* masterTaskDir){
                 DEBUG("Using prev rare branch %d with hot: %d\n", ID, hot);
                 break;
             }
-            else{
-                targetID=0;
-                 DEBUG("[para] why here, in getTaskId function--------------------------");
-            }
+            index += 1;
+        }
+
+        // Cannot find targetID
+        if (index == size) {
+            DEBUG("Cannot find old ID!\n");
+            targetID = 0;
         }
     }
 

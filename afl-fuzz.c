@@ -591,6 +591,8 @@ static void dump_to_logs() {
   close(branch_hit_fd);
 }
 
+
+
 /* Get unix time in milliseconds */
 
 static u64 get_cur_time(void) {
@@ -618,6 +620,19 @@ static u64 get_cur_time_us(void) {
 
 }
 
+/* at the end of execution, dump the number of inputs hitting
+   each branch to log */
+static void dump_to_logs_with_timestamp() {
+  u64 curtime = get_cur_time();
+  s32 branch_hit_fd = -1;
+  u8* fn = alloc_printf("%s/%d-branch-hits.bin", out_dir, curtime);
+  unlink(fn); /* Ignore errors */
+  branch_hit_fd = open(fn, O_CREAT | O_WRONLY | O_TRUNC, 0600);
+  if (branch_hit_fd < 0) PFATAL("Unable to create '%s'", fn);
+  ck_write(branch_hit_fd, hit_bits, sizeof(u64) * MAP_SIZE, fn);
+  ck_free(fn);
+  close(branch_hit_fd);
+}
 
 /* Generate a random number (from 0 to limit - 1). This may
    have slight bias. */
@@ -3703,9 +3718,9 @@ static void write_crash_readme(void) {
 
 /* increment hit bits by 1 for every element of trace_bits that has been hit.
  effectively counts that one input has hit each element of trace_bits */
-static void increment_hit_bits(){
+static inline void increment_hit_bits(){
   for (int i = 0; i < MAP_SIZE; i++){
-    if ( (trace_bits[i] > 0) && (hit_bits[i] < ULONG_MAX)) //trace_bits是每次的轨迹图,0表示没有执行
+    if ( unlikely(trace_bits[i] > 0) && (hit_bits[i] < ULONG_MAX)) //trace_bits是每次的轨迹图,0表示没有执行
       hit_bits[i]++; //记录执行当前基本块的测试用例数量,而非测试用例的执行次数
   }
 }
@@ -5815,6 +5830,7 @@ static u8 fuzz_one(char** argv, u64 target_id, u32* new_branches) {
       return 1;
     } else { 
         DEBUG1("Find seed %s that hits branch id: %d\n", queue_cur->fname, target_id);
+        DEBUGY("Find seed %s that hits branch id: %d\n", queue_cur->fname, target_id);
       int ii;
       for (ii = 0; min_branch_hits[ii] != 0; ii++){
         rb_fuzzing = min_branch_hits[ii]; //得到rare branch的id,注意是加了1
@@ -9191,17 +9207,31 @@ static void save_cmdline(u32 argc, char** argv) {
 //function for para
 // 返回1表明重新进行了rarest_branches计算
 static u8 save_rare_branch(){
-   
+    static log_counter = 0;
     u8 * fn;
 	fn = alloc_printf("%s/task", out_dir);
     if (delete_files(fn, NULL)) PFATAL("Unable to delete '%s'", fn);;
     if (mkdir(fn, 0700)) PFATAL("Unable to create '%s'", fn);
 	ck_free(fn);
     
+    if (log_counter == 10) {
+        log_counter = 0;
+        dump_to_logs_with_timestamp();
+    }
+    log_counter++;
+
+    // DEBUG: dump hitbits to log files
+
     int * rarest_branches = get_lowest_hit_branch_ids(); //从所有轨迹中得到rare brach的一个数组
 	int i;
 	//保存到mater下的task目录
+    DEBUG1("=======================================================\n");
 	for (i=0; i<MAX_RARE_BRANCHES && rarest_branches[i]!=-1; i++ ){
+        // 如果在黑名单中，则不放入task
+        if (likely(contains_id(i, blacklist))) {
+            DEBUG1("id %d is in blacklist now!\n", i);
+            continue;
+        }
 		u8* fn = alloc_printf("%s/task/%d", out_dir, rarest_branches[i]);
         DEBUG1("Saving task branch ID: %d\n", rarest_branches[i]);
 		unlink(fn); /* Ignore errors */
@@ -9211,6 +9241,7 @@ static u8 save_rare_branch(){
         ck_free(fn);
 	}
 
+    DEBUG1("=======================================================\n");
     return 1;
 }
 
@@ -9654,11 +9685,12 @@ int main(int argc, char** argv) {
             // 尽早释放所有权，防止计算rare branch的时候耗时过长，从而
             // 造成其它各个slave节点等待
             // 只有
-            if (skip_flag){
+            if (!skip_flag){
                 if(!semaphore_p()) {
                     DEBUGY("[parallel] Shit, can't get semaphore to read !!\n");
                     exit(EXIT_FAILURE);
                 }
+                DEBUGY("NICE, updating hit_bits with shm_hit_bits\n");
                 memcpy(hit_bits, shm_hit_bits, sizeof(u64)*MAP_SIZE);// copy the memory
                 if(!semaphore_v()) {
                     DEBUGY("[parallel] Shit, can't release semaphore for others !!\n");
@@ -9682,6 +9714,8 @@ int main(int argc, char** argv) {
             slave_task_dir=alloc_printf("%s/../%s/task", out_dir, get_one_slave_id);
             task_branch_ID = distributeRareSeeds(master_task_dir, slave_task_dir, free_slave_ID); //从master的task到 slave的task
             DEBUGY("[Parallel] Distributed seed branch id: %d to slave id: %d\n", task_branch_ID, free_slave_ID);
+            //DEBUGY("[Parallel] branchID %d has been hit for 0x%x times\n", task_branch_ID, shm_hit_bits[task_branch_ID]);
+            //DEBUGY("[Parallel] branchID %d has been hit for %d times\n", task_branch_ID, hit_bits[task_branch_ID]);
             ck_free(slave_task_dir);
 
             if (stop_soon){
@@ -9769,13 +9803,21 @@ int main(int argc, char** argv) {
                 }
                 
                 cull_queue(); //在这里会处理trace_mini
+                //DEBUGY("Entering into a new fuzz_one >>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
                 skipped_fuzz = fuzz_one(use_argv, target_id, &new_branches);
+                //DEBUGY("Leaving from fuzz_one <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
                 //如果没有跑过,调到下一个
                 if (skipped_fuzz){
                     queue_cur = queue_cur->next;
                     current_entry++;
                     continue;
-                }
+                } 
+
+                //u8 genius = 0;
+                //if (!slave_first_loop) {
+                //    DEBUGY("In this fuzz_one, I hit %d with %d times\n", target_id, hit_bits[target_id]);
+                //    genius = 1;
+                //}
 
                 //这里开始都是真实跑过完成fuzz_one函数后的操作
                 //一旦跑过,就不是第一轮 
@@ -9831,6 +9873,11 @@ int main(int argc, char** argv) {
                 for (u64 i = 0; i < MAP_SIZE; i++) {
                     shm_hit_bits[i] += hit_bits[i];
                 }
+
+                //if (genius == 1) {
+                //    DEBUGY("shm_hit_bits at branch ID %d is hit by %d times\n", target_id, shm_hit_bits[target_id]);
+               // }
+
                 if(!semaphore_v()) {
                     DEBUGY("[parallel] Shit, can't release semaphore for others !!\n");
                     exit(EXIT_FAILURE);
