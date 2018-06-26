@@ -112,6 +112,7 @@ EXP_ST u64 mem_limit  = MEM_LIMIT;    /* Memory cap for child (MB)        */
 
 
 static u32 stats_update_freq = 1;     /* Stats update frequency (execs)   */
+static u32 shm_hit_bits_token = 0;
 
 EXP_ST u8  skip_deterministic,        /* Skip deterministic stages?       */
            force_deterministic,       /* Force deterministic stages?      */
@@ -1309,7 +1310,8 @@ static void init_hit_bits() {
 // 创建共享内存
 static void init_shm_hit_bits() {
     //创建共享内存
-    shmid = shmget((key_t)1234, sizeof(u64)*MAP_SIZE, 0666|IPC_CREAT);
+    u32 key_value = 1234 + shm_hit_bits_token;
+    shmid = shmget((key_t)key_value, sizeof(u64)*MAP_SIZE, 0666|IPC_CREAT);
     if(shmid==-1)
     {
         fprintf(stderr, "shmget failed\n");
@@ -1329,7 +1331,7 @@ static void init_shm_hit_bits() {
     memset(shm_hit_bits, 0, sizeof(u64)*MAP_SIZE);
 
     //新建信号量
-    sem_id = semget((key_t)1234, 1 ,0666|IPC_CREAT);
+    sem_id = semget((key_t)key_value, 1 ,0666|IPC_CREAT);
 
     //信号量初始化
     if(!set_semvalue())
@@ -5818,8 +5820,9 @@ static u8 fuzz_one(char** argv, u64 target_id, u32* new_branches) {
         min_branch_hits = is_rb_hit_mini(queue_cur->trace_mini); //参数是当前测试用例的trace_mini
         memset(hit_bits, 0, sizeof(u64)*MAP_SIZE); // 重新置位hit_bits
     }
-    else if (AFL_mode == AFLpara)
+    else if (AFL_mode == AFLpara) {
         min_branch_hits = is_rb_target_hit_mini(queue_cur->trace_mini, target_id); //参数是当前测试用例的trace_mini
+    }
     else{
         DEBUG1("[para] why here?---------------------");
     }
@@ -9311,7 +9314,7 @@ int main(int argc, char** argv) {
   gettimeofday(&tv, &tz);
   srandom(tv.tv_sec ^ tv.tv_usec ^ getpid()); //设定种子,从而 random可以得到随机数
 
-  while ((opt = getopt(argc, argv, "+bq:rsi:o:f:m:t:T:dnCB:S:M:x:Q")) > 0)
+  while ((opt = getopt(argc, argv, "+bq:rsi:o:f:m:t:T:dnCB:S:M:x:QE:")) > 0)
 
     switch (opt) {
 
@@ -9321,6 +9324,10 @@ int main(int argc, char** argv) {
 
       case 'q': /* bootstrap queueing after being stuck */
         bootstrap = strtol(optarg, 0, 10);
+        break;
+
+      case 'E':
+        shm_hit_bits_token = strtol(optarg, 0, 10);
         break;
 
       case 'r': /* trim for branch */
